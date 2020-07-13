@@ -27,7 +27,8 @@ public class CompraPaquete {
 	}
 	 
 	public Boolean TieneEspectaculo(String nombreEspectaculo) {
-		return Paquete.tieneEspectaculo(nombreEspectaculo);
+		//return Paquete.tieneEspectaculo(nombreEspectaculo);
+		return true;
 	}
 	
 	public DtPaquete getDtPaquete() {
