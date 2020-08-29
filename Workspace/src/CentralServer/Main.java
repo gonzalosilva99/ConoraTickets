@@ -18,12 +18,29 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
+import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
+import javax.swing.JTextPane;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
+import javax.swing.JPanel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyVetoException;
+
+import javax.swing.JDesktopPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main {
 
-	private JFrame frame;
-	private JTextField textFieldNickname;
-	private JTextField textFieldNombre;
+	private JFrame frmMainWindow;
 
 	/**
 	 * Launch the application.
@@ -33,7 +50,7 @@ public class Main {
 			public void run() {
 				try {
 					Main window = new Main();
-					window.frame.setVisible(true);
+					window.frmMainWindow.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,68 +69,17 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 550, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmMainWindow = new JFrame();
+		frmMainWindow.setTitle("Main Window");
+		frmMainWindow.setBounds(100, 100, 550, 650);
+		frmMainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMainWindow.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JInternalFrame internalFrame = new JInternalFrame("Alta Usuario");
-		frame.getContentPane().add(internalFrame, BorderLayout.CENTER);
-		SpringLayout springLayout = new SpringLayout();
-		internalFrame.getContentPane().setLayout(springLayout);
-		
-		JLabel lblNickname = new JLabel("Nickname: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNickname, 12, SpringLayout.NORTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblNickname, 12, SpringLayout.WEST, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNickname, 47, SpringLayout.NORTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNickname, 123, SpringLayout.WEST, internalFrame.getContentPane());
-		internalFrame.getContentPane().add(lblNickname);
-		
-		JLabel lblNombre = new JLabel("Nombre: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNombre, 6, SpringLayout.SOUTH, lblNickname);
-		springLayout.putConstraint(SpringLayout.WEST, lblNombre, 0, SpringLayout.WEST, lblNickname);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNombre, 88, SpringLayout.NORTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNombre, 123, SpringLayout.WEST, internalFrame.getContentPane());
-		internalFrame.getContentPane().add(lblNombre);
-		
-		JLabel lblApellido = new JLabel("Apellido: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblApellido, 6, SpringLayout.SOUTH, lblNombre);
-		springLayout.putConstraint(SpringLayout.WEST, lblApellido, 0, SpringLayout.WEST, lblNickname);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblApellido, 129, SpringLayout.NORTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblApellido, -417, SpringLayout.EAST, internalFrame.getContentPane());
-		internalFrame.getContentPane().add(lblApellido);
-		
-		JLabel lblEmail = new JLabel("Email: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblEmail, 6, SpringLayout.SOUTH, lblApellido);
-		springLayout.putConstraint(SpringLayout.WEST, lblEmail, 12, SpringLayout.WEST, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblEmail, -240, SpringLayout.SOUTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblEmail, 0, SpringLayout.EAST, lblNickname);
-		internalFrame.getContentPane().add(lblEmail);
-		
-		JLabel lblNacimiento = new JLabel("Nacimiento: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNacimiento, 6, SpringLayout.SOUTH, lblEmail);
-		springLayout.putConstraint(SpringLayout.WEST, lblNacimiento, 0, SpringLayout.WEST, lblNickname);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNacimiento, -199, SpringLayout.SOUTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNacimiento, 123, SpringLayout.WEST, internalFrame.getContentPane());
-		internalFrame.getContentPane().add(lblNacimiento);
-		
-		textFieldNickname = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textFieldNickname, 20, SpringLayout.NORTH, internalFrame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textFieldNickname, 6, SpringLayout.EAST, lblNickname);
-		springLayout.putConstraint(SpringLayout.EAST, textFieldNickname, 166, SpringLayout.EAST, lblNickname);
-		internalFrame.getContentPane().add(textFieldNickname);
-		textFieldNickname.setColumns(10);
-		
-		textFieldNombre = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textFieldNombre, 22, SpringLayout.SOUTH, textFieldNickname);
-		springLayout.putConstraint(SpringLayout.WEST, textFieldNombre, 6, SpringLayout.EAST, lblNombre);
-		springLayout.putConstraint(SpringLayout.EAST, textFieldNombre, 0, SpringLayout.EAST, textFieldNickname);
-		internalFrame.getContentPane().add(textFieldNombre);
-		textFieldNombre.setColumns(10);
-		internalFrame.setVisible(true);
+		JDesktopPane desktopPane = new JDesktopPane();
+		frmMainWindow.getContentPane().add(desktopPane, BorderLayout.CENTER);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		frmMainWindow.setJMenuBar(menuBar);
 		
 		JMenu mnInicio = new JMenu("Inicio");
 		menuBar.add(mnInicio);
@@ -122,6 +88,25 @@ public class Main {
 		menuBar.add(mnAltas);
 		
 		JMenuItem mntmAltaUsuario = new JMenuItem("Alta Usuario");
+		mntmAltaUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AltaUsuario altausuario = new AltaUsuario();
+				desktopPane.add(altausuario);
+				altausuario.show();
+				try {
+					altausuario.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		mntmAltaUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		mnAltas.add(mntmAltaUsuario);
 		
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de Espectaculo");
