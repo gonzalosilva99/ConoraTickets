@@ -127,6 +127,20 @@ public class Main {
 		mnAltas.add(mntmAltaDeEspectaculo);
 		
 		JMenuItem mntmAltaFuncionDe = new JMenuItem("Alta Funcion de Espectaculo");
+		mntmAltaFuncionDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AltaFuncionEspectaculo altafuncionesp = new AltaFuncionEspectaculo();
+				desktopPane.add(altafuncionesp);
+				altafuncionesp.show();
+				try {
+					altafuncionesp.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		mnAltas.add(mntmAltaFuncionDe);
 		
 		JMenuItem mntmAltaDePlataforma = new JMenuItem("Alta de Plataforma");
@@ -147,6 +161,19 @@ public class Main {
 		mnAltas.add(mntmAltaDePlataforma);
 		
 		JMenuItem mntmCrearPaqueteDe = new JMenuItem("Crear Paquete de Espectaculo");
+		mntmCrearPaqueteDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CrearPaqueteDeEspectaculo crearpaqueteesp = new CrearPaqueteDeEspectaculo();
+				desktopPane.add(crearpaqueteesp);
+				crearpaqueteesp.show();
+				try {
+					crearpaqueteesp.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnAltas.add(mntmCrearPaqueteDe);
 		
 		JMenu mnRegistros = new JMenu("Registros");
@@ -156,6 +183,19 @@ public class Main {
 		mnRegistros.add(mntmRegistroFuncionDe);
 		
 		JMenuItem mntmAgregarEspectaculoA = new JMenuItem("Agregar Espectaculo a Paquete");
+		mntmAgregarEspectaculoA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AgregarEspectaculoAPaquete agregarespapaquete = new AgregarEspectaculoAPaquete();
+				desktopPane.add(agregarespapaquete);
+				agregarespapaquete.show();
+				try {
+					agregarespapaquete.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnRegistros.add(mntmAgregarEspectaculoA);
 		
 		JMenu mnConsultas = new JMenu("Consultas");
