@@ -127,6 +127,20 @@ public class Main {
 		mnAltas.add(mntmAltaDeEspectaculo);
 		
 		JMenuItem mntmAltaFuncionDe = new JMenuItem("Alta Funcion de Espectaculo");
+		mntmAltaFuncionDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AltaFuncionEspectaculo altafuncionesp = new AltaFuncionEspectaculo();
+				desktopPane.add(altafuncionesp);
+				altafuncionesp.show();
+				try {
+					altafuncionesp.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		mnAltas.add(mntmAltaFuncionDe);
 		
 		JMenuItem mntmAltaDePlataforma = new JMenuItem("Alta de Plataforma");
