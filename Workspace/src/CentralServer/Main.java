@@ -161,6 +161,19 @@ public class Main {
 		mnAltas.add(mntmAltaDePlataforma);
 		
 		JMenuItem mntmCrearPaqueteDe = new JMenuItem("Crear Paquete de Espectaculo");
+		mntmCrearPaqueteDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CrearPaqueteDeEspectaculo crearpaqueteesp = new CrearPaqueteDeEspectaculo();
+				desktopPane.add(crearpaqueteesp);
+				crearpaqueteesp.show();
+				try {
+					crearpaqueteesp.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnAltas.add(mntmCrearPaqueteDe);
 		
 		JMenu mnRegistros = new JMenu("Registros");
