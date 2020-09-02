@@ -110,6 +110,20 @@ public class Main {
 		mnAltas.add(mntmAltaUsuario);
 		
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de Espectaculo");
+		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AltaEspectaculo altaespectaculo = new AltaEspectaculo();
+				desktopPane.add(altaespectaculo);
+				altaespectaculo.show();
+				try {
+					altaespectaculo.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		mnAltas.add(mntmAltaDeEspectaculo);
 		
 		JMenuItem mntmAltaFuncionDe = new JMenuItem("Alta Funcion de Espectaculo");
