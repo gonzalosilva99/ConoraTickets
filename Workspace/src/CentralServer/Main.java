@@ -144,6 +144,20 @@ public class Main {
 		mnAltas.add(mntmAltaFuncionDe);
 		
 		JMenuItem mntmAltaDePlataforma = new JMenuItem("Alta de Plataforma");
+		mntmAltaDePlataforma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AltaPlataforma altaplataforma = new AltaPlataforma();
+				desktopPane.add(altaplataforma);
+				altaplataforma.show();
+				try {
+					altaplataforma.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnAltas.add(mntmAltaDePlataforma);
 		
 		JMenuItem mntmCrearPaqueteDe = new JMenuItem("Crear Paquete de Espectaculo");
@@ -165,6 +179,19 @@ public class Main {
 		mnConsultas.add(mntmConsultaDeUsuario);
 		
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de Espectaculo");
+		mntmConsultaDeEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaEspectaculo consultaespectaculo = new ConsultaEspectaculo();
+				desktopPane.add(consultaespectaculo);
+				consultaespectaculo.show();
+				try {
+					consultaespectaculo.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnConsultas.add(mntmConsultaDeEspectaculo);
 		
 		JMenuItem mntmConsultaDeFuncion = new JMenuItem("Consulta de Funcion de Espectaculo");
