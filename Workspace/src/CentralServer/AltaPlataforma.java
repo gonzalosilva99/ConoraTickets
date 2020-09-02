@@ -65,14 +65,13 @@ public class AltaPlataforma extends JInternalFrame {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Desc. General:");
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -305, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 20, SpringLayout.SOUTH, lblNewLabel_1);
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 212, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -6, SpringLayout.NORTH, textField_1);
 		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -131, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -134, SpringLayout.EAST, panel);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
@@ -90,6 +89,7 @@ public class AltaPlataforma extends JInternalFrame {
 		panel.add(textField_2);
 		
 		Button buttonCancelar = new Button("Cancelar");
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -64, SpringLayout.NORTH, buttonCancelar);
 		sl_panel.putConstraint(SpringLayout.WEST, buttonCancelar, -118, SpringLayout.EAST, textField);
 		sl_panel.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, buttonCancelar, 0, SpringLayout.EAST, textField);
