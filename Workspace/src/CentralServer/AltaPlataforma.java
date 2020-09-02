@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AltaPlataforma extends JInternalFrame {
 	private JTextField textField;
@@ -36,6 +38,7 @@ public class AltaPlataforma extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaPlataforma() {
+		setTitle("Alta de Plataforma");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
@@ -100,6 +103,10 @@ public class AltaPlataforma extends JInternalFrame {
 		panel.add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.EAST, textField_1, 13, SpringLayout.EAST, buttonAceptar);
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonCancelar, 0, SpringLayout.NORTH, buttonAceptar);
 		sl_panel.putConstraint(SpringLayout.EAST, buttonCancelar, -13, SpringLayout.WEST, buttonAceptar);
