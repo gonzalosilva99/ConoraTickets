@@ -53,7 +53,6 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		JComboBox comboBox = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 16, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 46, SpringLayout.EAST, lblPlataforma);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, 196, SpringLayout.EAST, lblPlataforma);
 		getContentPane().add(comboBox);
 		
 		JLabel lblEspectaculo = new JLabel("Espectaculo:");
@@ -64,8 +63,9 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 6, SpringLayout.SOUTH, comboBox);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, comboBox_1);
 		springLayout.putConstraint(SpringLayout.EAST, lblEspectaculo, -46, SpringLayout.WEST, comboBox_1);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, 306, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, 356, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 156, SpringLayout.WEST, getContentPane());
 		getContentPane().add(comboBox_1);
 		
@@ -107,7 +107,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		JComboBox comboBox_2 = new JComboBox();
 		
-		JLabel lblDatosFuncion = new JLabel("Datos Funcion");
+		JLabel lblDatosFuncion = new JLabel("Datos de la Funcion");
 		lblDatosFuncion.setFont(new Font("Dialog", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -125,9 +125,9 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 								.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
 							.addGap(45)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDatosFuncion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(199, Short.MAX_VALUE))
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblDatosFuncion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addContainerGap(151, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -149,26 +149,15 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		);
 		panel.setLayout(gl_panel);
 		
-		Button buttonAceptar = new Button("Aceptar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 6, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 377, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -24, SpringLayout.EAST, getContentPane());
-		getContentPane().add(buttonAceptar);
+		JButton btnAceptar = new JButton("Aceptar");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnAceptar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnAceptar, 0, SpringLayout.EAST, panel);
+		getContentPane().add(btnAceptar);
 		
-		JPanel panel_1 = new JPanel();
-		springLayout.putConstraint(SpringLayout.WEST, panel_1, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel_1, -10, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -6, SpringLayout.NORTH, panel_1);
-		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 440, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, 508, SpringLayout.NORTH, getContentPane());
-		getContentPane().add(panel_1);
-		
-		Button buttonAceptar_1 = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, 6, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -144, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, 55, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -22, SpringLayout.WEST, buttonAceptar);
-		getContentPane().add(buttonAceptar_1);
+		JButton btnCancelar = new JButton("Cancelar");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, btnCancelar, -6, SpringLayout.WEST, btnAceptar);
+		getContentPane().add(btnCancelar);
 		
 	
 		
