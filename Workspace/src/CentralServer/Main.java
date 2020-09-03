@@ -259,6 +259,19 @@ public class Main {
 		menuBar.add(mnModificar);
 		
 		JMenuItem mntmDatosDeUsuario = new JMenuItem("Modificar Datos de Usuario");
+		mntmDatosDeUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ModificarDatosUsuario modificar = new ModificarDatosUsuario();
+				desktopPane.add(modificar);
+				modificar.show();
+				try {
+					modificar.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnModificar.add(mntmDatosDeUsuario);
 	}
 }
