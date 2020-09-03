@@ -46,11 +46,12 @@ public class AltaPlataforma extends JInternalFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 510, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 460, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane, 499, SpringLayout.WEST, getContentPane());
 		getContentPane().add(scrollPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(null);
 		scrollPane.setViewportView(panel);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
@@ -70,51 +71,47 @@ public class AltaPlataforma extends JInternalFrame {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Desc. General:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 70, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -398, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_1, 121, SpringLayout.WEST, panel);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 6, SpringLayout.SOUTH, lblNewLabel_1);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 105, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -57, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -10, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -6, SpringLayout.NORTH, textField_1);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblUrl = new JLabel("URL:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 6, SpringLayout.SOUTH, lblUrl);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblUrl, 6, SpringLayout.SOUTH, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblUrl, -433, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblUrl, 38, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblUrl, 0, SpringLayout.EAST, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblUrl, 0, SpringLayout.WEST, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblUrl, -6, SpringLayout.NORTH, lblNewLabel_1);
+		sl_panel.putConstraint(SpringLayout.EAST, lblUrl, -28, SpringLayout.EAST, lblNewLabel);
 		panel.add(lblUrl);
 		
 		textField_2 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_2, 11, SpringLayout.SOUTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_2, 70, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_2, -261, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_2, 6, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_2, 0, SpringLayout.WEST, textField);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_2, -260, SpringLayout.EAST, panel);
 		textField_2.setColumns(10);
 		panel.add(textField_2);
 		
 		Button buttonCancelar = new Button("Cancelar");
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -18, SpringLayout.NORTH, buttonCancelar);
-		sl_panel.putConstraint(SpringLayout.WEST, buttonCancelar, 234, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, panel);
-		panel.add(buttonCancelar);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, 6, SpringLayout.SOUTH, scrollPane);
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 299, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -22, SpringLayout.SOUTH, getContentPane());
+		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		buttonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		sl_panel.putConstraint(SpringLayout.EAST, textField_1, 13, SpringLayout.EAST, buttonAceptar);
-		sl_panel.putConstraint(SpringLayout.NORTH, buttonCancelar, 0, SpringLayout.NORTH, buttonAceptar);
-		sl_panel.putConstraint(SpringLayout.EAST, buttonCancelar, -13, SpringLayout.WEST, buttonAceptar);
-		sl_panel.putConstraint(SpringLayout.NORTH, buttonAceptar, 458, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, buttonAceptar, 358, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, buttonAceptar, -23, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, panel);
-		panel.add(buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 6, SpringLayout.SOUTH, scrollPane);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 403, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -22, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, scrollPane);
+		getContentPane().add(buttonAceptar);
 
 	}
 }
