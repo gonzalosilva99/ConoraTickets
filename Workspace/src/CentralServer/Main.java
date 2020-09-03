@@ -253,6 +253,19 @@ public class Main {
 		mnConsultas.add(mntmConsultaDeFuncion);
 		
 		JMenuItem mntmConsultaDePaquete = new JMenuItem("Consulta de Paquete de Espectaculos");
+		mntmConsultaDePaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaDePaqueteDeEspectaculos consultapaquetedeespectaculo= new ConsultaDePaqueteDeEspectaculos ();
+				desktopPane.add(consultapaquetedeespectaculo);
+				consultapaquetedeespectaculo.show();
+				try {
+					consultapaquetedeespectaculo.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnConsultas.add(mntmConsultaDePaquete);
 		
 		JMenu mnModificar = new JMenu("Modificar");
