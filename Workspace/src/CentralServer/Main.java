@@ -202,6 +202,21 @@ public class Main {
 		menuBar.add(mnConsultas);
 		
 		JMenuItem mntmConsultaDeUsuario = new JMenuItem("Consulta de Usuario");
+		mntmConsultaDeUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ConsultaUsuario consultausuario = new ConsultaUsuario();
+				desktopPane.add(consultausuario);
+				consultausuario.show();
+				try {
+					consultausuario.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnConsultas.add(mntmConsultaDeUsuario);
 		
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de Espectaculo");
