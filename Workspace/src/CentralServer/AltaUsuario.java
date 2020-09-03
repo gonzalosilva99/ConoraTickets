@@ -20,13 +20,15 @@ import java.awt.Button;
 import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+import java.awt.BorderLayout;
 
 public class AltaUsuario extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldNickname;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField;
+	private JTextField textFieldApellido;
+	private JTextField textFieldEmail;
+	private JTextField textFieldLink;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -83,68 +85,69 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(lblEmail);
 		
 		JLabel lblNacimiento = new JLabel("Nacimiento: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNacimiento, 6, SpringLayout.SOUTH, lblEmail);
-		springLayout.putConstraint(SpringLayout.WEST, lblNacimiento, 0, SpringLayout.WEST, lblNickname);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNacimiento, 36, SpringLayout.SOUTH, lblEmail);
-		springLayout.putConstraint(SpringLayout.EAST, lblNacimiento, 0, SpringLayout.EAST, lblNickname);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNacimiento, 8, SpringLayout.NORTH, lblNickname);
+		springLayout.putConstraint(SpringLayout.EAST, lblNacimiento, -168, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblNacimiento);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		springLayout.putConstraint(SpringLayout.NORTH, dateChooser, 5, SpringLayout.NORTH, lblNickname);
+		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 6, SpringLayout.EAST, lblNacimiento);
+		BorderLayout borderLayout = (BorderLayout) dateChooser.getLayout();
+		dateChooser.setToolTipText("");
+		dateChooser.getDateEditor().setEnabled(false);
+		dateChooser.setDateFormatString("dd-MM-yyyy");
+		getContentPane().add(dateChooser);
 		
 		textFieldNombre = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, textFieldNombre, 5, SpringLayout.NORTH, lblNombre);
 		springLayout.putConstraint(SpringLayout.WEST, textFieldNombre, 6, SpringLayout.EAST, lblNombre);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldNombre, -261, SpringLayout.EAST, getContentPane());
 		textFieldNombre.setColumns(10);
 		getContentPane().add(textFieldNombre);
 		
 		textFieldNickname = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, textFieldNombre, 0, SpringLayout.EAST, textFieldNickname);
-		springLayout.putConstraint(SpringLayout.NORTH, textFieldNickname, 5, SpringLayout.NORTH, lblNickname);
+		springLayout.putConstraint(SpringLayout.WEST, lblNacimiento, 13, SpringLayout.EAST, textFieldNickname);
 		springLayout.putConstraint(SpringLayout.WEST, textFieldNickname, 6, SpringLayout.EAST, lblNickname);
-		springLayout.putConstraint(SpringLayout.EAST, textFieldNickname, 206, SpringLayout.EAST, lblNickname);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldNickname, -261, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldNickname, 5, SpringLayout.NORTH, lblNickname);
 		textFieldNickname.setColumns(10);
 		getContentPane().add(textFieldNickname);
 		
-		textField_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 5, SpringLayout.NORTH, lblApellido);
-		springLayout.putConstraint(SpringLayout.WEST, textField_2, 6, SpringLayout.EAST, lblApellido);
-		springLayout.putConstraint(SpringLayout.EAST, textField_2, 0, SpringLayout.EAST, textFieldNickname);
-		textField_2.setColumns(10);
-		getContentPane().add(textField_2);
+		textFieldApellido = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldApellido, 5, SpringLayout.NORTH, lblApellido);
+		springLayout.putConstraint(SpringLayout.WEST, textFieldApellido, 6, SpringLayout.EAST, lblApellido);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldApellido, -261, SpringLayout.EAST, getContentPane());
+		textFieldApellido.setColumns(10);
+		getContentPane().add(textFieldApellido);
 		
-		textField_3 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_3, 5, SpringLayout.NORTH, lblEmail);
-		springLayout.putConstraint(SpringLayout.WEST, textField_3, 6, SpringLayout.EAST, lblEmail);
-		springLayout.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, textFieldNombre);
-		textField_3.setColumns(10);
-		getContentPane().add(textField_3);
-		
-		JSpinner spinnerAnio = new JSpinner();
-		springLayout.putConstraint(SpringLayout.EAST, spinnerAnio, 108, SpringLayout.EAST, lblNacimiento);
-		spinnerAnio.setModel(new SpinnerDateModel(new Date(1598670000000L), null, null, Calendar.DAY_OF_YEAR));
-		spinnerAnio.setEditor(new JSpinner.DateEditor(spinnerAnio, "dd/MM/yyyy"));
-		springLayout.putConstraint(SpringLayout.NORTH, spinnerAnio, 5, SpringLayout.NORTH, lblNacimiento);
-		springLayout.putConstraint(SpringLayout.WEST, spinnerAnio, 6, SpringLayout.EAST, lblNacimiento);
-		getContentPane().add(spinnerAnio);
+		textFieldEmail = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldEmail, 5, SpringLayout.NORTH, lblEmail);
+		springLayout.putConstraint(SpringLayout.WEST, textFieldEmail, 6, SpringLayout.EAST, lblEmail);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldEmail, -261, SpringLayout.EAST, getContentPane());
+		textFieldEmail.setColumns(10);
+		getContentPane().add(textFieldEmail);
 		
 		JRadioButton rdbtnEspectador = new JRadioButton("Espectador");
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnEspectador, 42, SpringLayout.SOUTH, lblEmail);
 		buttonGroup.add(rdbtnEspectador);
 		rdbtnEspectador.setSelected(true);
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnEspectador, 6, SpringLayout.SOUTH, lblNacimiento);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnEspectador, 0, SpringLayout.WEST, lblNickname);
 		getContentPane().add(rdbtnEspectador);
 		
 		JRadioButton rdbtnArtista = new JRadioButton("Artista");
+		springLayout.putConstraint(SpringLayout.NORTH, rdbtnArtista, 47, SpringLayout.SOUTH, textFieldEmail);
 		
 		buttonGroup.add(rdbtnArtista);
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnArtista, 11, SpringLayout.SOUTH, spinnerAnio);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnArtista, 7, SpringLayout.EAST, rdbtnEspectador);
 		springLayout.putConstraint(SpringLayout.EAST, rdbtnArtista, 86, SpringLayout.EAST, rdbtnEspectador);
 		getContentPane().add(rdbtnArtista);
 		
 		Panel panel = new Panel();
-		panel.setEnabled(false);
+		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, panel);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, rdbtnEspectador);
-		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, 253, SpringLayout.SOUTH, rdbtnEspectador);
+		panel.setEnabled(false);
+		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, 499, SpringLayout.WEST, getContentPane());
 		getContentPane().add(panel);
 		
@@ -165,26 +168,26 @@ public class AltaUsuario extends JInternalFrame {
 		
 		JLabel lblBiografia = new JLabel("Biografia:");
 		
-		JTextPane textPane = new JTextPane();
+		JTextPane textPaneBiografia = new JTextPane();
 		
 		JLabel lblLink = new JLabel("Link:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textFieldLink = new JTextField();
+		textFieldLink.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+						.addComponent(textPaneBiografia, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
 						.addComponent(textPaneDescGeneral, GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
 						.addComponent(lblDescGeneral)
 						.addComponent(lblBiografia)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblLink)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)))
+							.addComponent(textFieldLink, GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -197,11 +200,11 @@ public class AltaUsuario extends JInternalFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblBiografia)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textPaneBiografia, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLink)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldLink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -209,16 +212,18 @@ public class AltaUsuario extends JInternalFrame {
 		Button buttonAceptar = new Button("Aceptar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 6, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -105, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, 44, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar);
 		
 		Button buttonCancelar = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, 6, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -101, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 44, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
 		getContentPane().add(buttonCancelar);
+		
+		
 
 	}
 }

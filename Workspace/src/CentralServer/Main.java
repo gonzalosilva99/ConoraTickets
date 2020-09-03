@@ -70,6 +70,7 @@ public class Main {
 	 */
 	private void initialize() {
 		frmMainWindow = new JFrame();
+		frmMainWindow.setResizable(false);
 		frmMainWindow.setTitle("Main Window");
 		frmMainWindow.setBounds(100, 100, 550, 650);
 		frmMainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -180,6 +181,19 @@ public class Main {
 		menuBar.add(mnRegistros);
 		
 		JMenuItem mntmRegistroFuncionDe = new JMenuItem("Registro Funcion de Espectaculo");
+		mntmRegistroFuncionDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistroFuncionDeEspectaculo registrofuncionespectaculo = new RegistroFuncionDeEspectaculo();
+				desktopPane.add(registrofuncionespectaculo);
+				registrofuncionespectaculo.show();
+				try {
+					registrofuncionespectaculo.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnRegistros.add(mntmRegistroFuncionDe);
 		
 		JMenuItem mntmAgregarEspectaculoA = new JMenuItem("Agregar Espectaculo a Paquete");
@@ -202,6 +216,21 @@ public class Main {
 		menuBar.add(mnConsultas);
 		
 		JMenuItem mntmConsultaDeUsuario = new JMenuItem("Consulta de Usuario");
+		mntmConsultaDeUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ConsultaUsuario consultausuario = new ConsultaUsuario();
+				desktopPane.add(consultausuario);
+				consultausuario.show();
+				try {
+					consultausuario.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnConsultas.add(mntmConsultaDeUsuario);
 		
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de Espectaculo");

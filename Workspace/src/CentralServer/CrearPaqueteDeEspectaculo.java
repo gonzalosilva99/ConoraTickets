@@ -13,6 +13,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Button;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 	private JTextField textField;
@@ -44,16 +46,15 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		getContentPane().setLayout(springLayout);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 56, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 65, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -427, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 66, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -405, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, textField, 213, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -48, SpringLayout.WEST, textField);
-		springLayout.putConstraint(SpringLayout.NORTH, textField, 8, SpringLayout.NORTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.EAST, textField, -118, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, textField, -2, SpringLayout.NORTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.WEST, textField, 2, SpringLayout.EAST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.EAST, textField, -203, SpringLayout.EAST, getContentPane());
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -67,14 +68,15 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		JTextPane textPane = new JTextPane();
 		springLayout.putConstraint(SpringLayout.NORTH, textPane, 11, SpringLayout.SOUTH, lblNewLabel_1);
 		springLayout.putConstraint(SpringLayout.WEST, textPane, 0, SpringLayout.WEST, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.EAST, textPane, 0, SpringLayout.EAST, textField);
+		springLayout.putConstraint(SpringLayout.EAST, textPane, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(textPane);
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.SOUTH, textPane, -32, SpringLayout.NORTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 236, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, 108, SpringLayout.EAST, textField);
+		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -161, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, textPane, -32, SpringLayout.NORTH, panel);
 		getContentPane().add(panel);
 		
 		JLabel lblFechaInicio = new JLabel("Fecha Inicio");
@@ -93,11 +95,8 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(171)
 							.addComponent(lblVigencia, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(56)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblFechaInicio_1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblFechaInicio_1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(224, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -105,57 +104,39 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblVigencia)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblFechaInicio)
 					.addGap(18)
+					.addComponent(lblFechaInicio)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblFechaInicio_1)
 					.addContainerGap(34, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
-		JLabel lblDescuento = new JLabel("Descuento:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblDescuento, 382, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblDescuento, 0, SpringLayout.WEST, lblNewLabel);
-		getContentPane().add(lblDescuento);
-		
 		textField_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -23, SpringLayout.NORTH, textField_1);
-		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 380, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textField_1, 163, SpringLayout.WEST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 23, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, textField);
 		springLayout.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, textField);
 		textField_1.setColumns(10);
 		getContentPane().add(textField_1);
 		
-		JPanel panel_1 = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, textField_1);
-		springLayout.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, 109, SpringLayout.SOUTH, textField_1);
-		springLayout.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, panel);
-		getContentPane().add(panel_1);
-		
 		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 0, SpringLayout.EAST, textPane);
+		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Cancelar");
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(222, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1)
-					.addGap(27)
-					.addComponent(btnNewButton)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(45, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1))
-					.addGap(33))
-		);
-		panel_1.setLayout(gl_panel_1);
+		JButton btnCancelar = new JButton("Cancelar");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnNewButton);
+		springLayout.putConstraint(SpringLayout.EAST, btnCancelar, -6, SpringLayout.WEST, btnNewButton);
+		getContentPane().add(btnCancelar);
+		
+		JLabel lblNewLabel_2 = new JLabel("Descuento:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 0, SpringLayout.NORTH, textField_1);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2, 10, SpringLayout.WEST, getContentPane());
+		getContentPane().add(lblNewLabel_2);
 
 	}
 }
