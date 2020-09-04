@@ -47,16 +47,19 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 81, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 113, SpringLayout.EAST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, 103, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBox, -141, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 3, SpringLayout.NORTH, comboBox);
 		getContentPane().add(comboBox);
 		
 		JLabel lblNewLabel_1 = new JLabel("Espect\u00E1culo:");
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, lblNewLabel_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -21, SpringLayout.NORTH, lblNewLabel_1);
 		getContentPane().add(lblNewLabel_1);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -336, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -141, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBox_1);
 		
@@ -68,20 +71,19 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		getContentPane().add(lblNewLabel_2);
 		
 		JComboBox comboBox_2 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 118, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, -15, SpringLayout.NORTH, comboBox_2);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2, -374, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 3, SpringLayout.NORTH, comboBox_2);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 16, SpringLayout.SOUTH, comboBox_2);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 0, SpringLayout.WEST, comboBox);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2, 0, SpringLayout.EAST, comboBox);
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 118, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 108, SpringLayout.EAST, lblNewLabel_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2, -374, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBox_2, -141, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 3, SpringLayout.NORTH, comboBox_2);
 		getContentPane().add(comboBox_2);
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 199, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, comboBox_1);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -61, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -21, SpringLayout.NORTH, panel);
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
@@ -167,18 +169,17 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		textField_4.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Mostrar datos");
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, 0, SpringLayout.NORTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 474, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, -261, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -124, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 253, SpringLayout.WEST, getContentPane());
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, -105, SpringLayout.EAST, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 0, SpringLayout.SOUTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, -10, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 1, SpringLayout.NORTH, btnNewButton_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, btnNewButton_1);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -6, SpringLayout.WEST, btnNewButton_1);
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 11, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 394, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, panel);
 		getContentPane().add(btnNewButton_1);
 
 	}

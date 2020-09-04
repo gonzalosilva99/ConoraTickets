@@ -59,6 +59,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblEspectaculos);
 		
 		Panel panel = new Panel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 9, SpringLayout.SOUTH, lblEspectaculos);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, 499, SpringLayout.WEST, getContentPane());
 		getContentPane().add(panel);
@@ -71,37 +72,39 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 		
 		JComboBox comboBox = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, comboBox);
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 6, SpringLayout.SOUTH, comboBoxPlataforma);
+		springLayout.putConstraint(SpringLayout.WEST, comboBox, 0, SpringLayout.WEST, comboBoxPlataforma);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, comboBoxPlataforma);
 		comboBox.setEnabled(false);
 		
 		JComboBox comboBoxFuncion = new JComboBox();
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxFuncion, -3, SpringLayout.NORTH, lblNewLabel_1);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFuncion, 26, SpringLayout.EAST, lblNewLabel_1);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFuncion, 24, SpringLayout.EAST, lblNewLabel_1);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBoxFuncion, -122, SpringLayout.EAST, panel);
 		panel.add(comboBoxFuncion);
 		
 		JComboBox comboBoxEspectador = new JComboBox();
-		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectador, -48, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, comboBoxFuncion, 0, SpringLayout.EAST, comboBoxEspectador);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectador, 0, SpringLayout.WEST, comboBoxFuncion);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectador, 0, SpringLayout.EAST, comboBoxFuncion);
 		comboBoxEspectador.setEnabled(false);
 		panel.add(comboBoxEspectador);
 		
 		JLabel lblNewLabel_2 = new JLabel("Espectador: ");
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxEspectador, -3, SpringLayout.NORTH, lblNewLabel_2);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectador, 6, SpringLayout.EAST, lblNewLabel_2);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 12, SpringLayout.SOUTH, lblNewLabel_1);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_2, 0, SpringLayout.WEST, lblNewLabel_1);
 		panel.add(lblNewLabel_2);
 		
 		JCheckBox chckbxCanjear = new JCheckBox("Canjear la Funcion?");
-		sl_panel.putConstraint(SpringLayout.NORTH, chckbxCanjear, 6, SpringLayout.SOUTH, comboBoxEspectador);
-		sl_panel.putConstraint(SpringLayout.WEST, chckbxCanjear, 0, SpringLayout.WEST, lblNewLabel_1);
+		sl_panel.putConstraint(SpringLayout.WEST, chckbxCanjear, 10, SpringLayout.WEST, panel);
 		panel.add(chckbxCanjear);
 		
 		Panel panel_1 = new Panel();
-		panel_1.setEnabled(false);
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, chckbxCanjear);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 94, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -10, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, chckbxCanjear, -6, SpringLayout.NORTH, panel_1);
+		panel_1.setEnabled(false);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 479, SpringLayout.WEST, panel);
 		panel.add(panel_1);
 		SpringLayout sl_panel_1 = new SpringLayout();
@@ -135,9 +138,6 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, list, 196, SpringLayout.SOUTH, lblListaPaquetesFunciones);
 		sl_panel_1.putConstraint(SpringLayout.EAST, list, 459, SpringLayout.WEST, panel_1);
 		panel_1.add(list);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 9, SpringLayout.SOUTH, comboBoxPlataforma);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 0, SpringLayout.WEST, comboBoxPlataforma);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(comboBox);
 		
 		Button buttonAceptar = new Button("Aceptar");

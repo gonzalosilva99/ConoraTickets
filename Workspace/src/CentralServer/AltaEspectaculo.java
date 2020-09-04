@@ -59,7 +59,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		JComboBox comboBox = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 50, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 171, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -188, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, 72, SpringLayout.NORTH, getContentPane());
 		getContentPane().add(comboBox);
 		
 		JLabel lblNewLabel_1 = new JLabel("Plataforma:");
@@ -81,16 +81,18 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonAceptar);
 		
 		JLabel lblNewLabel_2 = new JLabel("Artista:");
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, 0, SpringLayout.EAST, lblNewLabel_2);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 24, SpringLayout.SOUTH, lblNewLabel_1);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel_2);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2, 21, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_2, -421, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblNewLabel_2);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 3, SpringLayout.NORTH, comboBox_1);
+		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 83, SpringLayout.EAST, lblNewLabel_2);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -156, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, comboBox_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, 112, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 90, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 171, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, 0, SpringLayout.EAST, comboBox);
 		getContentPane().add(comboBox_1);
 		
 		JPanel panel = new JPanel();
