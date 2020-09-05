@@ -250,6 +250,19 @@ public class Main {
 		mnConsultas.add(mntmConsultaDeEspectaculo);
 		
 		JMenuItem mntmConsultaDeFuncion = new JMenuItem("Consulta de Funcion de Espectaculo");
+		mntmConsultaDeFuncion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaFuncionEspectaculo consultafuncionespectaculo= new ConsultaFuncionEspectaculo();
+				desktopPane.add(consultafuncionespectaculo);
+				consultafuncionespectaculo.show();
+				try {
+					consultafuncionespectaculo.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnConsultas.add(mntmConsultaDeFuncion);
 		
 		JMenuItem mntmConsultaDePaquete = new JMenuItem("Consulta de Paquete de Espectaculos");

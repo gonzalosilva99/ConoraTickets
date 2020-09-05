@@ -49,27 +49,22 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		springLayout.putConstraint(SpringLayout.EAST, comboBox, -115, SpringLayout.EAST, getContentPane());
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				panel.setVisible(true);
-			}
-		});
+		
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Usuario1", "Usuario2", "Usuario3"}));
 		getContentPane().add(comboBox);
 		
 		
 		JLabel lblNewLabel = new JLabel("Seleccionar usuario:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 46, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, -3, SpringLayout.NORTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 6, SpringLayout.EAST, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -341, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox, -5, SpringLayout.NORTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.WEST, comboBox, 6, SpringLayout.EAST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 22, SpringLayout.NORTH, getContentPane());
 		getContentPane().add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 49, SpringLayout.SOUTH, comboBox);
-		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -184, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 16, SpringLayout.SOUTH, comboBox);
+		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
@@ -144,33 +139,34 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.add(lblNewLabel_1_1_2);
 		
 		JLabel lblEspectaculosRegistrados = new JLabel("Espectaculos:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectaculosRegistrados, 3, SpringLayout.NORTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, lblEspectaculosRegistrados, 39, SpringLayout.EAST, textField);
-		sl_panel.putConstraint(SpringLayout.EAST, lblEspectaculosRegistrados, -161, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectaculosRegistrados, 2, SpringLayout.NORTH, textField);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEspectaculosRegistrados, 24, SpringLayout.EAST, textField);
+		sl_panel.putConstraint(SpringLayout.EAST, lblEspectaculosRegistrados, -176, SpringLayout.EAST, panel);
 		panel.add(lblEspectaculosRegistrados);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 0, SpringLayout.NORTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 17, SpringLayout.EAST, lblEspectaculosRegistrados);
-		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, -187, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 6, SpringLayout.EAST, lblEspectaculosRegistrados);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, 24, SpringLayout.NORTH, textField);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, -28, SpringLayout.EAST, panel);
 		panel.add(comboBox_1);
 		
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Rol:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_2_1, 0, SpringLayout.NORTH, lblNewLabel_1_1);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_1_1_2_1, 0, SpringLayout.EAST, lblEspectaculosRegistrados);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_2_1, 0, SpringLayout.WEST, lblEspectaculosRegistrados);
 		lblNewLabel_1_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel_1_1_2_1);
 		
 		textField_4 = new JTextField();
 		sl_panel.putConstraint(SpringLayout.NORTH, textField_4, -3, SpringLayout.NORTH, lblNewLabel_1_1);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_4, 0, SpringLayout.WEST, comboBox_1);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_4, 91, SpringLayout.EAST, lblNewLabel_1_1_2_1);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textField_4, 19, SpringLayout.NORTH, lblNewLabel_1_1);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, comboBox_1);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_4, -28, SpringLayout.EAST, panel);
 		textField_4.setColumns(10);
 		panel.add(textField_4);
 		
 		Button buttonAceptar_1 = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -195, SpringLayout.NORTH, buttonAceptar_1);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -48, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -191, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, -10, SpringLayout.SOUTH, getContentPane());
@@ -184,6 +180,11 @@ public class ConsultaUsuario extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1_1, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar_1_1);
 		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				panel.setVisible(true);
+			}
+		});
 
 	}
 }

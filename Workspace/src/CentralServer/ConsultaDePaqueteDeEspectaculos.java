@@ -50,6 +50,10 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		getContentPane().add(lblPaquetes);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addItem("");
+		comboBox.addItem("Pan");
+		comboBox.addItem("Manteca");
+		
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 41, SpringLayout.EAST, lblPaquetes);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, 34, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 10, SpringLayout.NORTH, getContentPane());
@@ -58,11 +62,12 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPaquetes, -10, SpringLayout.NORTH, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -255, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -241, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, comboBox);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblPaquetes);
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
+		panel.setVisible(false);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		
@@ -75,6 +80,12 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		JLabel lblEspectaculos = new JLabel("Espectaculos:");
 		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				panel.setVisible(true);
+			}
+		});
+		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.addItem("Espectaculo1");
 		comboBox_1.addItem("Espectaculo2");
@@ -82,39 +93,36 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNombre)
-							.addGap(53)
+							.addGap(41)
 							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(170)
-							.addComponent(lblDescripcion))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
+						.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblEspectaculos)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblDescripcion))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNombre)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNombre))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblDescripcion)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(21)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEspectaculos)
 						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(46, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 

@@ -13,13 +13,17 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import java.awt.Button;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JPanel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class ModificarDatosUsuario extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -46,9 +50,74 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		Panel panel = new Panel();
-		panel.setEnabled(false);
+		Button buttonAceptar = new Button("Aceptar");
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 411, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -16, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -44, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
+		getContentPane().add(buttonAceptar);
+		
+		Button buttonAceptar_1 = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, 311, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, 0, SpringLayout.NORTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, 0, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -12, SpringLayout.WEST, buttonAceptar);
+		getContentPane().add(buttonAceptar_1);
+		
+		JPanel panel = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 38, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
+		panel.setVisible(false);
+		
+		JLabel lblUsuario = new JLabel("Usuario:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblUsuario, 3, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, lblUsuario, 0, SpringLayout.WEST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblUsuario, -6, SpringLayout.NORTH, panel);
+		SpringLayout sl_panel = new SpringLayout();
+		panel.setLayout(sl_panel);
+		
+		JLabel lblNickname = new JLabel("Nickname:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNickname, 10, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNickname, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNickname, 40, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNickname, -401, SpringLayout.EAST, panel);
+		panel.add(lblNickname);
+		
+		JLabel lblNombre = new JLabel("E-Mail:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNombre, 6, SpringLayout.SOUTH, lblNickname);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNombre, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNombre, 0, SpringLayout.EAST, lblNickname);
+		panel.add(lblNombre);
+		
+		JLabel lblApellido = new JLabel("Nombre:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblApellido, 82, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblApellido, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblApellido, -401, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNombre, -6, SpringLayout.NORTH, lblApellido);
+		panel.add(lblApellido);
+		
+		JLabel lblEmail = new JLabel("Apellido:");
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblApellido, -6, SpringLayout.NORTH, lblEmail);
+		sl_panel.putConstraint(SpringLayout.EAST, lblEmail, 0, SpringLayout.EAST, lblNickname);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEmail, 118, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEmail, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblEmail, 148, SpringLayout.NORTH, panel);
+		panel.add(lblEmail);
+		
+		JLabel lblNacimiento = new JLabel("Nacimiento:");
+		sl_panel.putConstraint(SpringLayout.WEST, lblNacimiento, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNacimiento, 154, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNacimiento, 184, SpringLayout.NORTH, panel);
+		panel.add(lblNacimiento);
+		
+		Panel panel_1 = new Panel();
+		panel_1.setEnabled(false);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel);
+		panel.add(panel_1);
 		
 		JTextPane textPaneBiografia = new JTextPane();
 		
@@ -62,27 +131,27 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 489, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(textPaneBiografia, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
 						.addComponent(textPaneDescGeneral, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
 						.addComponent(lblDescGeneral)
 						.addComponent(lblBiografia)
-						.addGroup(gl_panel.createSequentialGroup()
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblLink)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 247, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 235, Short.MAX_VALUE)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblDescGeneral)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -92,98 +161,63 @@ public class ModificarDatosUsuario extends JInternalFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textPaneBiografia, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLink)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(23, Short.MAX_VALUE))
 		);
-		panel.setLayout(gl_panel);
+		panel_1.setLayout(gl_panel_1);
 		
 		textField_1 = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 16, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 117, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -218, SpringLayout.EAST, panel);
+		panel.add(textField_1);
 		textField_1.setColumns(10);
-		getContentPane().add(textField_1);
-		
-		JLabel lblNickname = new JLabel("Nickname: ");
-		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNickname);
-		springLayout.putConstraint(SpringLayout.WEST, lblNickname, 10, SpringLayout.WEST, getContentPane());
-		getContentPane().add(lblNickname);
-		
-		JLabel lblNombre = new JLabel("Nombre: ");
-		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 3, SpringLayout.NORTH, lblNombre);
-		springLayout.putConstraint(SpringLayout.WEST, lblNombre, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNombre, -378, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(lblNombre);
-		
-		textField_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, textField_2);
-		springLayout.putConstraint(SpringLayout.EAST, textField_2, -287, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, textField_2);
-		textField_2.setColumns(10);
-		getContentPane().add(textField_2);
 		
 		textField_3 = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, textField_3, 0, SpringLayout.WEST, textField_1);
-		springLayout.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, textField_1);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_3, 117, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_3, -218, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_3, 6, SpringLayout.NORTH, lblApellido);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField_3, 25, SpringLayout.NORTH, lblApellido);
 		textField_3.setColumns(10);
-		getContentPane().add(textField_3);
-		
-		JLabel lblApellido = new JLabel("Apellido: ");
-		springLayout.putConstraint(SpringLayout.NORTH, textField_3, 6, SpringLayout.NORTH, lblApellido);
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 16, SpringLayout.SOUTH, lblApellido);
-		springLayout.putConstraint(SpringLayout.NORTH, lblApellido, 6, SpringLayout.SOUTH, lblNombre);
-		springLayout.putConstraint(SpringLayout.WEST, lblApellido, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblApellido, -338, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(lblApellido);
-		
-		JLabel lblEmail = new JLabel("Email: ");
-		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 1, SpringLayout.NORTH, lblEmail);
-		springLayout.putConstraint(SpringLayout.WEST, textField_2, 42, SpringLayout.EAST, lblEmail);
-		springLayout.putConstraint(SpringLayout.WEST, lblEmail, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, lblNombre, 6, SpringLayout.SOUTH, lblEmail);
-		springLayout.putConstraint(SpringLayout.NORTH, lblEmail, 6, SpringLayout.SOUTH, lblNickname);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblEmail, -412, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(lblEmail);
+		panel.add(textField_3);
 		
 		textField_4 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_4, 3, SpringLayout.NORTH, lblNickname);
-		springLayout.putConstraint(SpringLayout.WEST, textField_4, 18, SpringLayout.EAST, lblNickname);
-		springLayout.putConstraint(SpringLayout.EAST, textField_4, -287, SpringLayout.EAST, getContentPane());
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_4, 17, SpringLayout.SOUTH, textField_3);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_4, 0, SpringLayout.WEST, textField_1);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, textField_1);
 		textField_4.setColumns(10);
-		getContentPane().add(textField_4);
+		panel.add(textField_4);
 		
-		JLabel lblNacimiento = new JLabel("Nacimiento: ");
-		getContentPane().add(lblNacimiento);
-		
-		JLabel lblNewLabel = new JLabel("Usuario:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNacimiento, 6, SpringLayout.NORTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNickname, 6, SpringLayout.SOUTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNickname, 34, SpringLayout.SOUTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, 38, SpringLayout.NORTH, getContentPane());
-		getContentPane().add(lblNewLabel);
+		JDateChooser dateChooser = new JDateChooser();
+		sl_panel.putConstraint(SpringLayout.NORTH, dateChooser, 0, SpringLayout.NORTH, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.WEST, dateChooser, 23, SpringLayout.EAST, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 0, SpringLayout.SOUTH, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textField_1);
+		panel.add(dateChooser);
+		getContentPane().add(lblUsuario);
 		
 		JComboBox comboBox = new JComboBox();
-		springLayout.putConstraint(SpringLayout.WEST, lblNacimiento, 39, SpringLayout.EAST, comboBox);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 5, SpringLayout.NORTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 34, SpringLayout.EAST, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, 34, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -289, SpringLayout.EAST, getContentPane());
+		
+		springLayout.putConstraint(SpringLayout.WEST, comboBox, 7, SpringLayout.EAST, lblUsuario);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, -6, SpringLayout.NORTH, panel);
+		comboBox.addItem("");
+		comboBox.addItem("Pan");
+		comboBox.addItem("Manteca");
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				panel.setVisible(true);
+			}
+		});
+		textField_2 = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_2, 6, SpringLayout.NORTH, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_2, 0, SpringLayout.WEST, textField_1);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_2, 0, SpringLayout.EAST, textField_1);
+		textField_2.setColumns(10);
+		panel.add(textField_2);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, -256, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBox);
-		
-		Button buttonAceptar = new Button("Aceptar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -44, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -88, SpringLayout.EAST, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, panel);
-		getContentPane().add(buttonAceptar);
-		
-		Button buttonAceptar_1 = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, 0, SpringLayout.NORTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -100, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, 0, SpringLayout.SOUTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -12, SpringLayout.WEST, buttonAceptar);
-		getContentPane().add(buttonAceptar_1);
 
 	}
 }
