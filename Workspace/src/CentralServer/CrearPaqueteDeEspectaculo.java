@@ -18,9 +18,9 @@ import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
 public class CrearPaqueteDeEspectaculo extends JInternalFrame {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textFieldNombre;
+	private JTextField textFieldDescuento;
+	private JTextField textFieldDescripcion;
 
 	/**
 	 * Launch the application.
@@ -47,76 +47,76 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		JLabel lblNewLabel = new JLabel("Nombre:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 26, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, getContentPane());
-		getContentPane().add(lblNewLabel);
+		JLabel lblNombre = new JLabel("Nombre:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNombre, 26, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, lblNombre, 10, SpringLayout.WEST, getContentPane());
+		getContentPane().add(lblNombre);
 		
-		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -14, SpringLayout.WEST, textField);
-		springLayout.putConstraint(SpringLayout.NORTH, textField, 21, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textField, 135, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, textField, -161, SpringLayout.EAST, getContentPane());
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldNombre = new JTextField();
+		springLayout.putConstraint(SpringLayout.EAST, lblNombre, -14, SpringLayout.WEST, textFieldNombre);
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldNombre, 21, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, textFieldNombre, 135, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, textFieldNombre, -161, SpringLayout.EAST, getContentPane());
+		getContentPane().add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
-		textField_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.SOUTH, textField_1, 255, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, textField_1, -161, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 230, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textField_1, 135, SpringLayout.WEST, getContentPane());
-		textField_1.setColumns(10);
-		getContentPane().add(textField_1);
+		textFieldDescuento = new JTextField();
+		springLayout.putConstraint(SpringLayout.SOUTH, textFieldDescuento, 255, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, textFieldDescuento, -161, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldDescuento, 230, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, textFieldDescuento, 135, SpringLayout.WEST, getContentPane());
+		textFieldDescuento.setColumns(10);
+		getContentPane().add(textFieldDescuento);
 		
 		JLabel lblNewLabel_2 = new JLabel("Descuento:");
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, 25, SpringLayout.NORTH, textField_1);
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_2, 0, SpringLayout.EAST, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, textField_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, 25, SpringLayout.NORTH, textFieldDescuento);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_2, 0, SpringLayout.EAST, lblNombre);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, textFieldDescuento);
 		getContentPane().add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 66, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, textField, -20, SpringLayout.NORTH, textField_2);
-		springLayout.putConstraint(SpringLayout.EAST, textField_2, 350, SpringLayout.WEST, textField);
-		springLayout.putConstraint(SpringLayout.WEST, textField_2, 0, SpringLayout.WEST, textField);
-		getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		textFieldDescripcion = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 66, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, textFieldNombre, -20, SpringLayout.NORTH, textFieldDescripcion);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldDescripcion, 350, SpringLayout.WEST, textFieldNombre);
+		springLayout.putConstraint(SpringLayout.WEST, textFieldDescripcion, 0, SpringLayout.WEST, textFieldNombre);
+		getContentPane().add(textFieldDescripcion);
+		textFieldDescripcion.setColumns(10);
 		
-		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblDescripcin, 25, SpringLayout.SOUTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.WEST, lblDescripcin, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblDescripcin, 0, SpringLayout.EAST, lblNewLabel);
-		getContentPane().add(lblDescripcin);
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblDescripcion, 25, SpringLayout.SOUTH, lblNombre);
+		springLayout.putConstraint(SpringLayout.WEST, lblDescripcion, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblDescripcion, 0, SpringLayout.EAST, lblNombre);
+		getContentPane().add(lblDescripcion);
 		
 		JLabel lblInicioVigencia = new JLabel("Inicio vigencia:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblInicioVigencia, 84, SpringLayout.SOUTH, lblDescripcin);
+		springLayout.putConstraint(SpringLayout.NORTH, lblInicioVigencia, 84, SpringLayout.SOUTH, lblDescripcion);
 		springLayout.putConstraint(SpringLayout.WEST, lblInicioVigencia, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblInicioVigencia, 0, SpringLayout.EAST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.EAST, lblInicioVigencia, 0, SpringLayout.EAST, lblNombre);
 		getContentPane().add(lblInicioVigencia);
 		
-		JLabel lblDescripcin_1_1 = new JLabel("Fin vigencia:");
-		springLayout.putConstraint(SpringLayout.SOUTH, lblInicioVigencia, -6, SpringLayout.NORTH, lblDescripcin_1_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblDescripcin_1_1, 221, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblDescripcin_1_1, 0, SpringLayout.EAST, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.WEST, lblDescripcin_1_1, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, lblDescripcin_1_1, 196, SpringLayout.NORTH, getContentPane());
-		getContentPane().add(lblDescripcin_1_1);
+		JLabel lblFin = new JLabel("Fin vigencia:");
+		springLayout.putConstraint(SpringLayout.SOUTH, lblInicioVigencia, -6, SpringLayout.NORTH, lblFin);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblFin, 221, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblFin, 0, SpringLayout.EAST, lblNombre);
+		springLayout.putConstraint(SpringLayout.WEST, lblFin, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblFin, 196, SpringLayout.NORTH, getContentPane());
+		getContentPane().add(lblFin);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		springLayout.putConstraint(SpringLayout.NORTH, dateChooser, 165, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, textField_2, -26, SpringLayout.NORTH, dateChooser);
-		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, textField);
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textField);
-		getContentPane().add(dateChooser);
+		JDateChooser dateChooserInicio = new JDateChooser();
+		springLayout.putConstraint(SpringLayout.NORTH, dateChooserInicio, 165, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, textFieldDescripcion, -26, SpringLayout.NORTH, dateChooserInicio);
+		springLayout.putConstraint(SpringLayout.WEST, dateChooserInicio, 0, SpringLayout.WEST, textFieldNombre);
+		springLayout.putConstraint(SpringLayout.EAST, dateChooserInicio, 0, SpringLayout.EAST, textFieldNombre);
+		getContentPane().add(dateChooserInicio);
 		
-		JDateChooser dateChooser_1 = new JDateChooser();
-		springLayout.putConstraint(SpringLayout.NORTH, dateChooser_1, 196, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, dateChooser_1, -9, SpringLayout.NORTH, textField_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, dateChooser, -6, SpringLayout.NORTH, dateChooser_1);
-		springLayout.putConstraint(SpringLayout.WEST, dateChooser_1, 0, SpringLayout.WEST, textField);
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser_1, 0, SpringLayout.EAST, textField);
-		getContentPane().add(dateChooser_1);
+		JDateChooser dateChooserFin = new JDateChooser();
+		springLayout.putConstraint(SpringLayout.NORTH, dateChooserFin, 196, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, dateChooserFin, -9, SpringLayout.NORTH, textFieldDescuento);
+		springLayout.putConstraint(SpringLayout.SOUTH, dateChooserInicio, -6, SpringLayout.NORTH, dateChooserFin);
+		springLayout.putConstraint(SpringLayout.WEST, dateChooserFin, 0, SpringLayout.WEST, textFieldNombre);
+		springLayout.putConstraint(SpringLayout.EAST, dateChooserFin, 0, SpringLayout.EAST, textFieldNombre);
+		getContentPane().add(dateChooserFin);
 		
 		Button buttonAceptar = new Button("Aceptar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -47, SpringLayout.SOUTH, getContentPane());

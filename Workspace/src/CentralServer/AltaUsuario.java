@@ -210,6 +210,7 @@ public class AltaUsuario extends JInternalFrame {
 		panel.setLayout(gl_panel);
 		
 		Button buttonAceptar = new Button("Aceptar");
+
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -46, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -105, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());

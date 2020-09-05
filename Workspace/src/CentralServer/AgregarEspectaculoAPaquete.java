@@ -53,26 +53,26 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPaquetes, 82, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblPaquetes, 110, SpringLayout.WEST, getContentPane());
 		
-		JComboBox comboBox = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 52, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 153, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -212, SpringLayout.EAST, getContentPane());
+		JComboBox comboBoxPaquetes = new JComboBox();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPaquetes, 52, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 153, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxPaquetes, -212, SpringLayout.EAST, getContentPane());
 		
 		JLabel lblPlataforma = new JLabel("Plataforma:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, 88, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPlataforma, -395, SpringLayout.SOUTH, getContentPane());
 		
-		JComboBox comboBox_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 99, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 153, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -212, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblPlataforma, -43, SpringLayout.WEST, comboBox_1);
+		JComboBox comboBoxPlataformas = new JComboBox();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataformas,  99, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataformas,  153, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataformas,  -212, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblPlataforma, -43, SpringLayout.WEST, comboBoxPlataformas);
 		
-		JComboBox comboBox_1_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1_1, 153, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1_1, -212, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1_1, 3, SpringLayout.SOUTH, comboBox_1);
+		JComboBox comboBoxEspectaculos = new JComboBox();
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos,  153, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos,  -212, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos,  3, SpringLayout.SOUTH, comboBoxPlataformas);
 		
 		JLabel lblEspectaculo = new JLabel("Espectaculos:");
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -86,9 +86,9 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 						.addComponent(lblPaquetes, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
 					.addGap(52)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxPlataformas,  GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxEspectaculos, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxPaquetes, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(181, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -97,15 +97,15 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPaquetes, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxPaquetes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(17)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxPlataformas,  GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPlataforma, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEspectaculo, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxEspectaculos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(118, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);

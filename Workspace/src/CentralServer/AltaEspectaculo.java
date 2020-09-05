@@ -18,14 +18,14 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 
 public class AltaEspectaculo extends JInternalFrame {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField textFieldNombre;
+	private JTextField textFieldDescripcion;
+	private JTextField textFieldEspectMin;
+	private JTextField textFieldEspectMax;
+	private JTextField textFieldURL;
+	private JTextField textFieldCosto;
+	private JTextField textFieldFecha;
+	private JTextField textFieldDuracion;
 	/**
 	 * Launch the application.
 	 */
@@ -56,164 +56,164 @@ public class AltaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, 44, SpringLayout.NORTH, getContentPane());
 		getContentPane().setLayout(springLayout);
 		
-		JComboBox comboBox = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 26, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -150, SpringLayout.EAST, getContentPane());
-		getContentPane().add(comboBox);
+		JComboBox comboBoxPlataforma = new JComboBox();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, 26, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -150, SpringLayout.EAST, getContentPane());
+		getContentPane().add(comboBoxPlataforma);
 		
-		JLabel lblNewLabel_1 = new JLabel("Plataforma:");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 21, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 30, SpringLayout.NORTH, getContentPane());
-		getContentPane().add(lblNewLabel_1);
+		JLabel lblPlataforma = new JLabel("Plataforma:");
+		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 21, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, 30, SpringLayout.NORTH, getContentPane());
+		getContentPane().add(lblPlataforma);
 		
-		Button buttonAceptar_1 = new Button("Cancelar");
-		getContentPane().add(buttonAceptar_1);
+		Button buttonCancelar = new Button("Cancelar");
+		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -37, SpringLayout.SOUTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -85, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, 0, SpringLayout.SOUTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -6, SpringLayout.WEST, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -37, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -85, SpringLayout.WEST, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(buttonAceptar);
 		
-		JLabel lblNewLabel_2 = new JLabel("Artista:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 26, SpringLayout.SOUTH, lblNewLabel_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2, 21, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, 0, SpringLayout.EAST, lblNewLabel_2);
-		getContentPane().add(lblNewLabel_2);
+		JLabel lblArtista = new JLabel("Artista:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblArtista, 26, SpringLayout.SOUTH, lblPlataforma);
+		springLayout.putConstraint(SpringLayout.WEST, lblArtista, 21, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblPlataforma, 0, SpringLayout.EAST, lblArtista);
+		getContentPane().add(lblArtista);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 172, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_2, -21, SpringLayout.WEST, comboBox_1);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 66, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -150, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 0, SpringLayout.WEST, comboBox_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, -18, SpringLayout.NORTH, comboBox_1);
-		getContentPane().add(comboBox_1);
+		JComboBox comboBoxArtista = new JComboBox();
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxArtista, 172, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblArtista, -21, SpringLayout.WEST, comboBoxArtista);
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxArtista, 66, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxArtista, -150, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 0, SpringLayout.WEST, comboBoxArtista);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxPlataforma, -18, SpringLayout.NORTH, comboBoxArtista);
+		getContentPane().add(comboBoxArtista);
 		
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 19, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -85, SpringLayout.EAST, panel);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -66, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, panel);
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 21, SpringLayout.SOUTH, comboBox_1);
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 21, SpringLayout.SOUTH, comboBoxArtista);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
-		JLabel lblNewLabel_3 = new JLabel("Nombre:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 10, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_3, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_3, 32, SpringLayout.NORTH, panel);
-		panel.add(lblNewLabel_3);
+		JLabel lblNombre = new JLabel("Nombre:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNombre, 10, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNombre, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNombre, 32, SpringLayout.NORTH, panel);
+		panel.add(lblNombre);
 		
-		JLabel lblNewLabel_4 = new JLabel("Descripci\u00F3n:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 44, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_4, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_4, 0, SpringLayout.EAST, lblNewLabel_3);
-		panel.add(lblNewLabel_4);
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescripcion, 44, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescripcion, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDescripcion, 0, SpringLayout.EAST, lblNombre);
+		panel.add(lblDescripcion);
 		
-		JLabel lblNewLabel_5 = new JLabel("Espectadores min.:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 79, SpringLayout.SOUTH, lblNewLabel_4);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_3, 0, SpringLayout.EAST, lblNewLabel_5);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_5, 10, SpringLayout.WEST, panel);
-		panel.add(lblNewLabel_5);
+		JLabel lblEspectMin = new JLabel("Espectadores min.:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectMin, 79, SpringLayout.SOUTH, lblDescripcion);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNombre, 0, SpringLayout.EAST, lblEspectMin);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEspectMin, 10, SpringLayout.WEST, panel);
+		panel.add(lblEspectMin);
 		
-		JLabel lblNewLabel_6 = new JLabel("Espectadores max.:");
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_5, -22, SpringLayout.NORTH, lblNewLabel_6);
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 176, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_6, 10, SpringLayout.WEST, panel);
-		panel.add(lblNewLabel_6);
+		JLabel lblEspectMax = new JLabel("Espectadores max.:");
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblEspectMin, -22, SpringLayout.NORTH, lblEspectMax);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectMax, 176, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEspectMax, 10, SpringLayout.WEST, panel);
+		panel.add(lblEspectMax);
 		
-		textField = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField, 12, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, textField, 162, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, textField, -141, SpringLayout.EAST, panel);
-		panel.add(textField);
-		textField.setColumns(10);
+		textFieldNombre = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 12, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldNombre, 162, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldNombre, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
-		textField_1 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 13, SpringLayout.SOUTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 16, SpringLayout.EAST, lblNewLabel_4);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -141, SpringLayout.EAST, panel);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldDescripcion = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 13, SpringLayout.SOUTH, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 16, SpringLayout.EAST, lblDescripcion);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldDescripcion);
+		textFieldDescripcion.setColumns(10);
 		
-		textField_2 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_2, 137, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -12, SpringLayout.NORTH, textField_2);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_2, 16, SpringLayout.EAST, lblNewLabel_5);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_2, -141, SpringLayout.EAST, panel);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		textFieldEspectMin = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectMin, 137, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescripcion, -12, SpringLayout.NORTH, textFieldEspectMin);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldEspectMin, 16, SpringLayout.EAST, lblEspectMin);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldEspectMin, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldEspectMin);
+		textFieldEspectMin.setColumns(10);
 		
-		textField_3 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_3, 18, SpringLayout.SOUTH, textField_2);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_3, 13, SpringLayout.EAST, lblNewLabel_6);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_3, -141, SpringLayout.EAST, panel);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		textFieldEspectMax = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectMax, 18, SpringLayout.SOUTH, textFieldEspectMin);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldEspectMax, 13, SpringLayout.EAST, lblEspectMax);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldEspectMax, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldEspectMax);
+		textFieldEspectMax.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Url:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_7, 24, SpringLayout.SOUTH, lblNewLabel_6);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_7, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_7, 0, SpringLayout.EAST, lblNewLabel_3);
-		panel.add(lblNewLabel_7);
+		JLabel lblURL = new JLabel("Url:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblURL, 24, SpringLayout.SOUTH, lblEspectMax);
+		sl_panel.putConstraint(SpringLayout.WEST, lblURL, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblURL, 0, SpringLayout.EAST, lblNombre);
+		panel.add(lblURL);
 		
-		textField_4 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.WEST, textField_4, 162, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_4, 22, SpringLayout.SOUTH, textField_3);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_4, -141, SpringLayout.EAST, panel);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		textFieldURL = new JTextField();
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldURL, 162, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldURL, 22, SpringLayout.SOUTH, textFieldEspectMax);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldURL, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldURL);
+		textFieldURL.setColumns(10);
 		
-		JLabel lblNewLabel_8 = new JLabel("Costo:");
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, -14, SpringLayout.NORTH, lblNewLabel_8);
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_8, 248, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_8, 267, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_8, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_8, 0, SpringLayout.EAST, lblNewLabel_3);
-		panel.add(lblNewLabel_8);
+		JLabel lblCosto = new JLabel("Costo:");
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblURL, -14, SpringLayout.NORTH, lblCosto);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblCosto, 248, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblCosto, 267, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblCosto, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblCosto, 0, SpringLayout.EAST, lblNombre);
+		panel.add(lblCosto);
 		
-		textField_5 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.WEST, textField_5, 162, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_5, 14, SpringLayout.SOUTH, textField_4);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_5, -141, SpringLayout.EAST, panel);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
+		textFieldCosto = new JTextField();
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldCosto, 162, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldCosto, 14, SpringLayout.SOUTH, textFieldURL);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldCosto, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldCosto);
+		textFieldCosto.setColumns(10);
 		
-		JLabel lblNewLabel_9 = new JLabel("Fecha:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_9, 19, SpringLayout.SOUTH, lblNewLabel_8);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_9, 34, SpringLayout.SOUTH, lblNewLabel_8);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_9, 0, SpringLayout.EAST, lblNewLabel_3);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_9, 10, SpringLayout.WEST, panel);
-		panel.add(lblNewLabel_9);
+		JLabel lblFecha = new JLabel("Fecha:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblFecha, 19, SpringLayout.SOUTH, lblCosto);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblFecha, 34, SpringLayout.SOUTH, lblCosto);
+		sl_panel.putConstraint(SpringLayout.EAST, lblFecha, 0, SpringLayout.EAST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 10, SpringLayout.WEST, panel);
+		panel.add(lblFecha);
 		
-		textField_6 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_6, 17, SpringLayout.SOUTH, textField_5);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_6, 162, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_6, 36, SpringLayout.SOUTH, textField_5);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_6, -141, SpringLayout.EAST, panel);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
+		textFieldFecha = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldFecha, 17, SpringLayout.SOUTH, textFieldCosto);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldFecha, 162, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldFecha, 36, SpringLayout.SOUTH, textFieldCosto);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldFecha, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldFecha);
+		textFieldFecha.setColumns(10);
 		
-		JLabel lblNewLabel_10 = new JLabel("Duraci\u00F3n");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_10, 15, SpringLayout.SOUTH, lblNewLabel_9);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_10, 30, SpringLayout.SOUTH, lblNewLabel_9);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_10, 0, SpringLayout.EAST, lblNewLabel_3);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_10, 10, SpringLayout.WEST, panel);
-		panel.add(lblNewLabel_10);
+		JLabel lblDuracion = new JLabel("Duraci\u00F3n");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDuracion, 15, SpringLayout.SOUTH, lblFecha);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblDuracion, 30, SpringLayout.SOUTH, lblFecha);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDuracion, 0, SpringLayout.EAST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDuracion, 10, SpringLayout.WEST, panel);
+		panel.add(lblDuracion);
 		
-		textField_7 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_7, 14, SpringLayout.SOUTH, textField_6);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_7, 16, SpringLayout.EAST, lblNewLabel_10);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_7, 33, SpringLayout.SOUTH, textField_6);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_7, -141, SpringLayout.EAST, panel);
-		panel.add(textField_7);
-		textField_7.setColumns(10);
+		textFieldDuracion = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 14, SpringLayout.SOUTH, textFieldFecha);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 16, SpringLayout.EAST, lblDuracion);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, 33, SpringLayout.SOUTH, textFieldFecha);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -141, SpringLayout.EAST, panel);
+		panel.add(textFieldDuracion);
+		textFieldDuracion.setColumns(10);
 
 	}
 }
