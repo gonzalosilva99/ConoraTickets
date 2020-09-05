@@ -65,6 +65,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 16, SpringLayout.SOUTH, comboBox);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -243, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
@@ -166,16 +167,15 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.add(textField_4);
 		
 		Button buttonAceptar_1 = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -195, SpringLayout.NORTH, buttonAceptar_1);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -48, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -191, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -110, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar_1);
 		
 		Button buttonAceptar_1_1 = new Button("Aceptar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1_1, 0, SpringLayout.NORTH, buttonAceptar_1);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1_1, -85, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -87, SpringLayout.WEST, buttonAceptar_1_1);
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -6, SpringLayout.WEST, buttonAceptar_1_1);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1_1, -48, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1_1, -91, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1_1, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1_1, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar_1_1);

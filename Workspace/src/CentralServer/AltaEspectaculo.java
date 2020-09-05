@@ -67,16 +67,13 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		Button buttonAceptar_1 = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -89, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar_1);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 321, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -20, SpringLayout.WEST, buttonAceptar_1);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, 0, SpringLayout.NORTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -37, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -85, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, 0, SpringLayout.SOUTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -47, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -6, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(buttonAceptar);
 		
@@ -96,10 +93,13 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(comboBox_1);
 		
 		JPanel panel = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 19, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -85, SpringLayout.EAST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -66, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, panel);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 21, SpringLayout.SOUTH, comboBox_1);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -19, SpringLayout.NORTH, buttonAceptar_1);
-		springLayout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST, buttonAceptar_1);
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);

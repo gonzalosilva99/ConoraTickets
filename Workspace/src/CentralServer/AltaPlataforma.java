@@ -100,15 +100,15 @@ public class AltaPlataforma extends JInternalFrame {
 		panel.add(textField_2);
 		
 		Button buttonCancelar = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, 6, SpringLayout.SOUTH, scrollPane);
-		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 299, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -22, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -104, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 6, SpringLayout.SOUTH, scrollPane);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 403, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -52, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -96, SpringLayout.EAST, scrollPane);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -22, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, scrollPane);
 		getContentPane().add(buttonAceptar);

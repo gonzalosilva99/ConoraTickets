@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.Button;
 
 public class AgregarEspectaculoAPaquete extends JInternalFrame {
 
@@ -42,6 +43,8 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, panel, 9, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -46, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, panel, -11, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		
 		JLabel lblPaquetes = new JLabel("Paquetes:");
@@ -107,17 +110,19 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		);
 		panel.setLayout(gl_panel);
 		
-		JButton btnNewButton = new JButton("Cancelar");
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -11, SpringLayout.NORTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -106, SpringLayout.EAST, getContentPane());
-		getContentPane().add(btnNewButton);
+		Button buttonAceptar = new Button("Aceptar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 6, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 419, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -8, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(buttonAceptar);
 		
-		JButton btnNewButton_1 = new JButton("Aceptar");
-		springLayout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST, btnNewButton_1);
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 6, SpringLayout.EAST, btnNewButton);
-		getContentPane().add(btnNewButton_1);
+		Button buttonCancelar = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -32, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -92, SpringLayout.WEST, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
+		getContentPane().add(buttonCancelar);
 
 	}
 }

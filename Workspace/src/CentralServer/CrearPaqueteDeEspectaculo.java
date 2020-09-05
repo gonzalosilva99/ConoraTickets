@@ -68,20 +68,6 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		textField_1.setColumns(10);
 		getContentPane().add(textField_1);
 		
-		JButton btnNewButton = new JButton("Aceptar");
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -10, SpringLayout.EAST, getContentPane());
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(btnNewButton);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.EAST, btnCancelar, -6, SpringLayout.WEST, btnNewButton);
-		getContentPane().add(btnCancelar);
-		
 		JLabel lblNewLabel_2 = new JLabel("Descuento:");
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, 25, SpringLayout.NORTH, textField_1);
@@ -131,6 +117,20 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, dateChooser_1, 0, SpringLayout.WEST, textField);
 		springLayout.putConstraint(SpringLayout.EAST, dateChooser_1, 0, SpringLayout.EAST, textField);
 		getContentPane().add(dateChooser_1);
+		
+		Button buttonAceptar = new Button("Aceptar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -47, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -104, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(buttonAceptar);
+		
+		Button buttonCancelar = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -47, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 311, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
+		getContentPane().add(buttonCancelar);
 
 	}
 }

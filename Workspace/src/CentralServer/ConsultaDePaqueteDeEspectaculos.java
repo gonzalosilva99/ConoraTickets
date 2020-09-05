@@ -15,6 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ItemListener;
 import java.beans.PropertyVetoException;
 import java.awt.event.ItemEvent;
+import java.awt.Button;
 
 public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JTextField textField;
@@ -125,6 +126,13 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
+		
+		Button buttonCancelar = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -108, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(buttonCancelar);
 
 	}
 }

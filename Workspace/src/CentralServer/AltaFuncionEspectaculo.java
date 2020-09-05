@@ -77,6 +77,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 16, SpringLayout.SOUTH, lblEspectaculo);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -118, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -4, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		
@@ -115,9 +116,6 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setToolTipText("");
 		dateChooser.setDateFormatString("dd-MM-yyyy");
-		
-		JButton btnAceptar = new JButton("Aceptar");
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -83, SpringLayout.NORTH, btnAceptar);
 		SpringLayout sl_panel = new SpringLayout();
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 182, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, panel);
@@ -167,14 +165,21 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, comboBox_2, 122, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBox_2, 0, SpringLayout.EAST, textField);
 		panel.add(comboBox_2);
-		springLayout.putConstraint(SpringLayout.EAST, btnAceptar, -4, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnAceptar, -10, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(btnAceptar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnAceptar);
-		springLayout.putConstraint(SpringLayout.EAST, btnCancelar, -6, SpringLayout.WEST, btnAceptar);
-		getContentPane().add(btnCancelar);
+		Button buttonAceptar = new Button("Aceptar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -52, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -86, SpringLayout.EAST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, panel);
+		getContentPane().add(buttonAceptar);
+		buttonAceptar.setSize(95, 36);
+		
+		Button buttonCancelar = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -92, SpringLayout.WEST, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
+		getContentPane().add(buttonCancelar);
 		
 	
 		

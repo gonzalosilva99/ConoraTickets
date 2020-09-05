@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Button;
 
 public class ConsultaFuncionEspectaculo extends JInternalFrame {
 	private JTextField textField;
@@ -99,9 +100,10 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		comboBox_2.setVisible(false);
 		
 		JPanel panel = new JPanel();
+		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -25, SpringLayout.NORTH, panel);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 21, SpringLayout.SOUTH, lblNewLabel_2);
-		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -110, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
@@ -189,13 +191,12 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("Cancelar");
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 60, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 394, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, -10, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST, btnNewButton_1);
-		getContentPane().add(btnNewButton_1);
+		Button buttonCancelar = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -116, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(buttonCancelar);
 		
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
