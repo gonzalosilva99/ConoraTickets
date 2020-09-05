@@ -71,24 +71,24 @@ public class AltaPlataforma extends JInternalFrame {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Desc. General:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 70, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_1, 121, SpringLayout.WEST, panel);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -6, SpringLayout.NORTH, textField_1);
 		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 105, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -57, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, -252, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -10, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -6, SpringLayout.NORTH, textField_1);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblUrl = new JLabel("URL:");
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblUrl, -383, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 6, SpringLayout.SOUTH, lblUrl);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblUrl, 6, SpringLayout.SOUTH, lblNewLabel);
 		sl_panel.putConstraint(SpringLayout.WEST, lblUrl, 0, SpringLayout.WEST, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblUrl, -6, SpringLayout.NORTH, lblNewLabel_1);
 		sl_panel.putConstraint(SpringLayout.EAST, lblUrl, -28, SpringLayout.EAST, lblNewLabel);
 		panel.add(lblUrl);
 		
