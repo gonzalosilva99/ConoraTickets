@@ -102,9 +102,7 @@ public class ManejadorUsuario {
 		}
 		public HashSet<DtUsuario> listarUsuarios(){
 			HashSet<DtUsuario> ret = new HashSet<DtUsuario>();
-			//Artistas.forEach((k,v) -> JOptionPane.showMessageDialog(null, "BIEN"));
 			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
-				JOptionPane.showMessageDialog(null, "BIEN");
 	            DtUsuario nuevo = entry.getValue().getDtUsuario();
 	            ret.add(nuevo);            
 			}
