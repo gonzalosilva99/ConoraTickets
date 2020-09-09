@@ -223,10 +223,19 @@ public class AltaUsuario extends JInternalFrame {
 					IUsuario iusuario = fabric.getIUsuario();
 					if(rdbtnArtista.isSelected()) {			
 						iusuario.confirmarAltaArtista(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate(), textPaneDescGeneral.getText(), textPaneBiografia.getText(), textFieldLink.getText());
+						textPaneDescGeneral.setText("");
+						textPaneBiografia.setText("");
+						textFieldLink.setText("");
 					}
 					if(rdbtnEspectador.isSelected()) {
 						iusuario.confirmarAltaEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate());
 					}
+					textFieldNickname.setText("");
+					textFieldNombre.setText("");
+					textFieldApellido.setText("");
+					textFieldEmail.setText("");
+					dateChooser.setCalendar(null);
+					
 					JOptionPane.showMessageDialog(null, "Alta de Usuario con exito");
 					//textFieldNickname.setText();
 				}
