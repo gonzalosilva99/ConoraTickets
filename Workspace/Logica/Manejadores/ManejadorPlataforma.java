@@ -1,5 +1,6 @@
 package Manejadores;
 import Clases.Plataforma;
+import Clases.Funcion;
 import java.util.*;
 import DataTypes.*;
 
@@ -14,6 +15,11 @@ public class ManejadorPlataforma {
 			return instancia;
 				
 		}
+	
+		public ManejadorPlataforma() {
+			super();
+		}
+
 		ManejadorPlataforma(Map<String,Plataforma> Plats){
 			super();
 			Plataformas = Plats;

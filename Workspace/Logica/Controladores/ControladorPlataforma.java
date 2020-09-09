@@ -31,7 +31,8 @@ public class ControladorPlataforma implements IPlataforma{
 		return ret;
 	};
 	public void AltaPlataforma(String nombre, String Descripcion,String Url) {
-	
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		manplat.AltaPlataforma(nombre, Descripcion, Url);
 	}
 	
 	public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
