@@ -97,21 +97,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		buttonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					IPlataforma iplataform = fabric.getIPlataforma();
-					iplataform.altaEspectaculo(nickname , textFieldNombre.getText(), textFieldDescripcion.getText(),
-							textFieldEspectMin.getText(), textFieldEspectMax.getText(), textFieldURL.getText(),
-							textFieldCosto.getText() , dateChooser.getDate()); //falta arreglar esta linea
-					
-				}
-				catch(Exception e){
-					JOptionPane.showMessageDialog(null, "ERROR");
-
-				}
-			}
-		});
+		
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -37, SpringLayout.SOUTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -85, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
@@ -130,7 +116,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		Set<DtArtista> listaArtistas = iusuario.listarArtistas();
 		Iterator<DtArtista> itra = listaArtistas.iterator();
 		while(itra.hasNext())
-			{comboBoxArtista.addItem(itra.next().getNombre());}
+			{comboBoxArtista.addItem(itra.next().getNickname());}
 		
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxArtista, 172, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblArtista, -21, SpringLayout.WEST, comboBoxArtista);
@@ -271,6 +257,22 @@ public class AltaEspectaculo extends JInternalFrame {
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+			}
+		});
+		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					IPlataforma iplataform = fabric.getIPlataforma();
+					iplataform.altaEspectaculo( comboBoxArtista.getSelectedItem().toString() , textFieldNombre.getText(), textFieldDescripcion.getText(),
+							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),
+							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate()); 
+					
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "ERROR");
+
+				}
 			}
 		});
 
