@@ -65,35 +65,46 @@ public class ManejadorUsuario {
 			return new Espectador("","","","",fecha);
 		}
 		
-		Boolean ExisteUsuarioConNickname(String Nickname, HashMap Usuarios) {
-			return Usuarios.containsKey(Nickname);
-			
+		Boolean ExisteUsuarioConNickname(String Nickname) {
+			return Artistas.containsKey(Nickname) || Espectadores.containsKey(Nickname);
 		}
 		
-		Boolean ExisteUsuarioConEmail(String Nickname, HashMap Usuarios) {
-			//FALTA
+		Boolean ExisteUsuarioConEmail(String email) {
+			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
+	            if(entry.getValue().getEmail().equals(email)) {
+	            	return true;
+	            }           
+			}
+			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
+	            if(entry.getValue().getEmail().equals(email)) {
+	            	return true;
+	            }           
+			}
 			return false;
 		}
 		
 		public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
-			//if (ExisteUsuarioConNickname(Nickname,Artistas)) {
+			if (ExisteUsuarioConNickname(Nickname)) {
 				//ERROR
-			//}
-			//else if(ExisteUsuarioConEmail(Email,Artistas)){
+			}
+			else if(ExisteUsuarioConEmail(Email)){
+				
 				//ERROR
-			//}		
-			JOptionPane.showMessageDialog(null, "BIEN1");
+			}	
+			else {
 				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
-				Artistas.put(Nickname, nuevo);			
+				Artistas.put(Nickname, nuevo);		
+			}
 		}
 		
 	
 		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
-			if (ExisteUsuarioConNickname(Nickname,Espectadores)) {
-
+			if (ExisteUsuarioConNickname(Nickname)) {
+				//ERROR
 			}
-			else if(ExisteUsuarioConEmail(Email,Espectadores)){
-
+			else if(ExisteUsuarioConEmail(Email)){
+				JOptionPane.showMessageDialog(null, "ERROR");
+				//ERROR
 			}
 			else {
 				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email,Nacimiento);
