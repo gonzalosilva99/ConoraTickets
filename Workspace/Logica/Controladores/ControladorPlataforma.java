@@ -10,7 +10,9 @@ import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncionDatos;
+import DataTypes.DtPlataforma;
 import Manejadores.ManejadorPlataforma;
+import Manejadores.ManejadorUsuario;
 
 public class ControladorPlataforma implements IPlataforma{
 
@@ -44,4 +46,8 @@ public class ControladorPlataforma implements IPlataforma{
 		Funcion ret = new Funcion(NomFuncion, null, null);
 		return ret;
 	};
+	public Set<DtPlataforma> listarPlataformas(){
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();	
+		return manplat.listarPlataformas();
+	}
 }

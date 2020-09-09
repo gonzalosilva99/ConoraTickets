@@ -2,6 +2,7 @@ package Clases;
 import java.util.HashMap;
 import java.util.Map;
 import DataTypes.DtFuncionDatos;
+import DataTypes.DtPlataforma;
 
 public class Plataforma {
 	private String Nombre;
@@ -46,4 +47,9 @@ public class Plataforma {
 			Espectaculo esp = Espectaculos.get(NombreEsp);
 			return esp.mostrarFuncion(NombreFun);
 		}
+		public DtPlataforma getDtPlataforma() {
+			DtPlataforma dtplat = new DtPlataforma(Nombre, Descripcion, Url);
+			return dtplat;
+		}
 }
+

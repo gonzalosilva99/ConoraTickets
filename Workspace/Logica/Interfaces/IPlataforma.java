@@ -8,6 +8,7 @@ import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
+import DataTypes.DtPlataforma;
 
 public interface IPlataforma {
 	public 
@@ -19,4 +20,5 @@ public interface IPlataforma {
 		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp);
 		void altaEspectaculo(String nickname, String nombre,String descripcion,Integer cantespmin, Integer cantmaxesp,String url,Integer costo,Date fecha);
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion);
+		Set<DtPlataforma> listarPlataformas();
 }
