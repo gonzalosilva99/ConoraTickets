@@ -3,9 +3,14 @@ package GUI;
 import java.awt.EventQueue;
 import Controladores.ControladorPlataforma;
 import Controladores.ControladorUsuario;
+import Controladores.Fabrica;
+import DataTypes.DtUsuario;
+import Interfaces.IUsuario;
+
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.GroupLayout;
@@ -13,12 +18,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.swing.JTextField;
 import java.awt.Button;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import Controladores.Fabrica;
+import Interfaces.IPlataforma;
+import DataTypes.DtPlataforma;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -64,6 +75,13 @@ public class AltaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -150, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPlataforma);
 		
+		Fabrica fabric = Fabrica.getInstancia();
+		IPlataforma iplataforma = fabric.getIPlataforma();
+		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
+		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
+		while(itr.hasNext())
+			{comboBoxPlataforma.addItem(itr.next().getNombre());}
+		
 		JLabel lblPlataforma = new JLabel("Plataforma:");
 		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 21, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, 30, SpringLayout.NORTH, getContentPane());
@@ -73,6 +91,17 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "ERROR");
+
+				}
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -37, SpringLayout.SOUTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -85, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);

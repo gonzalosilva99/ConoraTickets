@@ -1,7 +1,12 @@
 package Manejadores;
 import Clases.Plataforma;
+import Clases.Artista;
+import Clases.Espectador;
 import Clases.Funcion;
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import DataTypes.*;
 
 public class ManejadorPlataforma {
@@ -61,12 +66,7 @@ public class ManejadorPlataforma {
 		DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo, String NombrePlataforma ) {
 			return new DtEspectaculoDatos();
 		}
-		
-		Set<DtPlataforma> listarPlataformas() {
-			Set<DtPlataforma> plats = new HashSet<DtPlataforma>();
-			return plats;
-		}
-		
+				
 		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
 			return new HashSet<DtFuncion>();
 		}
@@ -79,6 +79,15 @@ public class ManejadorPlataforma {
 		Funcion getFuncion(String nombrePlataforma, String nombreEspectaculo, String nomFuncion) {
 			Plataforma plat = Plataformas.get(nombrePlataforma);
 			return plat.getFuncion(nombreEspectaculo, nomFuncion);
+		}
+		public Set<DtPlataforma> listarPlataformas() {
+			Set<DtPlataforma> ret = new HashSet<DtPlataforma>();		
+			for (Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				JOptionPane.showMessageDialog(null, "ok");
+	            DtPlataforma nueva = entry.getValue().getDtPlataforma();
+	            ret.add(nueva);            
+			}
+			return ret;
 		}
 		
 }
