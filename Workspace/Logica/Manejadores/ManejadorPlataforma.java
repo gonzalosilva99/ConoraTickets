@@ -12,14 +12,25 @@ public class ManejadorPlataforma {
 			Plataformas = Plats;
 		}
 
-		public Map<String, Plataforma> getPlataformas() {
+		Map<String, Plataforma> getPlataformas() {
 			return Plataformas;
 		}
 
-		public void setPlataformas(Map<String, Plataforma> plataformas) {
+		void setPlataformas(Map<String, Plataforma> plataformas) {
 			Plataformas = plataformas;
 		}
-	
+		
+		void AltaPlataforma(String nombre, String Descripcion) {
+			if(!ExistePlataforma(nombre)) {
+				Map<String,Espectaculo> espectacs = new HashMap<String,Espectaculo>
+				Plataforma plat = new Plataforma(nombre,Descripcion);
+				Plataformas.put(nombre, plat);
+			}
+		}
+		
+		Boolean ExistePlataforma(String nombre){
+			return Plataformas.containsKey(nombre);
+		}
 		Set<DtEspectaculo>  listarEspectaculosDePlataforma(String Nombre){
 			set<DtEspectaculo> dtesp = new Set<DtEspectaculo>();
 			return dtesp;

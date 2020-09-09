@@ -1,12 +1,29 @@
 package Clases;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Plataforma {
 	private String Nombre;
 	private String Descripcion;
-		public Plataforma(String nombre, String descripcion) {
+	private String Url;
+	private Map<String,Espectaculo> Espectaculos;
+		public Plataforma(String nombre, String descripcion, String Url) {
 			super();
 			Nombre = nombre;
 			Descripcion = descripcion;
+			Espectaculos = new HashMap<String,Espectaculo>();
+		}
+		public String getUrl() {
+			return Url;
+		}
+		public void setUrl(String url) {
+			Url = url;
+		}
+		public Map<String, Espectaculo> getEspectaculos() {
+			return Espectaculos;
+		}
+		public void setEspectaculos(Map<String, Espectaculo> espectaculos) {
+			Espectaculos = espectaculos;
 		}
 		public String getNombre() {
 			return Nombre;
