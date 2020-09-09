@@ -3,15 +3,21 @@ import java.util.*;
 import Clases.Espectador;
 import Clases.Artista;
 import DataTypes.DtPaquete;
-import DataTypes.DtArtisa;
+import DataTypes.DtArtista;
 import DataTypes.DtRegistro;
-
+import java.util.Date;
 public class ManejadorUsuario {
 	private 
+		static ManejadorUsuario instancia;
 		Map<String,Artista> Artistas;
 		Map<String,Espectador> Espectadores;
 		
 	public 
+		static ManejadorUsuario getInstancia() {
+			if(instancia==null)
+				instancia=new ManejadorUsuario();
+			return instancia;
+		}
 		Map<String, Artista> getArtistas() {
 			return Artistas;
 		}
@@ -41,12 +47,10 @@ public class ManejadorUsuario {
 			return HashSet<DtRegistro>();
 		}
 		
-		Set<DtArtista> listarArtistas(){
-			return new HashSet<DtUsuario>();
-		}
 		
 		Espectador getEspectador(String nickname) {
-			return new Espectador();
+			Date fecha = new Date();
+			return new Espectador("","","","",fecha);
 		}
 		
 		Boolean ExisteUsuarioConNickname(String Nickname, Map Usuarios) {

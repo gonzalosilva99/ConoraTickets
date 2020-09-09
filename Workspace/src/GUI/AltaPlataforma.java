@@ -12,11 +12,13 @@ import javax.swing.JTextField;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import Controladores.ControladorPlataforma;
+import Controladores.Fabrica;
+import Interfaces.IPlataforma;
 public class AltaPlataforma extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescGeneral;
-	private JTextField textFieldURL;
+	private JTextField textFieldurl;
 
 	/**
 	 * Launch the application.
@@ -38,6 +40,8 @@ public class AltaPlataforma extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaPlataforma() {
+		Fabrica fabric = Fabrica.getInstancia();
+		
 		setTitle("Alta de Plataforma");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
@@ -64,40 +68,38 @@ public class AltaPlataforma extends JInternalFrame {
 		panel.add(lblNombre);
 		
 		textFieldNombre = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 5, SpringLayout.NORTH, lblNombre);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldNombre, 1, SpringLayout.EAST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldNombre, -260, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 3, SpringLayout.NORTH, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldNombre, 32, SpringLayout.EAST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldNombre, -229, SpringLayout.EAST, panel);
 		panel.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		JLabel lblDescGeneral = new JLabel("Desc. General:");
-		sl_panel.putConstraint(SpringLayout.WEST, lblDescGeneral, 0, SpringLayout.WEST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.EAST, lblDescGeneral, 121, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescGeneral, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDescGeneral, -378, SpringLayout.EAST, panel);
 		panel.add(lblDescGeneral);
 		
 		textFieldDescGeneral = new JTextField();
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescGeneral, -6, SpringLayout.NORTH, textFieldDescGeneral);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescGeneral, 105, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescGeneral, 153, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescGeneral, -204, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescGeneral, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescGeneral, -252, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescGeneral, -10, SpringLayout.EAST, panel);
 		panel.add(textFieldDescGeneral);
 		textFieldDescGeneral.setColumns(10);
 		
-		JLabel lblUrl = new JLabel("URL:");
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblUrl, -383, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDescGeneral, 6, SpringLayout.SOUTH, lblUrl);
-		sl_panel.putConstraint(SpringLayout.NORTH, lblUrl, 6, SpringLayout.SOUTH, lblNombre);
-		sl_panel.putConstraint(SpringLayout.WEST, lblUrl, 0, SpringLayout.WEST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.EAST, lblUrl, -28, SpringLayout.EAST, lblNombre);
-		panel.add(lblUrl);
+		textFieldurl = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescGeneral, 61, SpringLayout.SOUTH, textFieldurl);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldurl, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldurl, 0, SpringLayout.EAST, textFieldNombre);
+		textFieldurl.setColumns(10);
+		panel.add(textFieldurl);
 		
-		textFieldURL = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldURL, 6, SpringLayout.SOUTH, lblNombre);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldURL, 0, SpringLayout.WEST, textFieldNombre);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldURL, -260, SpringLayout.EAST, panel);
-		textFieldURL.setColumns(10);
-		panel.add(textFieldURL);
+		JLabel lblUrl_2 = new JLabel("Url:");
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldurl, -3, SpringLayout.NORTH, lblUrl_2);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblUrl_2, 6, SpringLayout.SOUTH, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblUrl_2, 0, SpringLayout.WEST, lblNombre);
+		panel.add(lblUrl_2);
 		
 		Button buttonCancelar = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
@@ -105,6 +107,21 @@ public class AltaPlataforma extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
+		
+		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					IPlataforma iplataform = fabric.getIPlataforma();
+					iplataform.AltaPlataforma(textFieldNombre.getText(), textFieldDescGeneral.getText(), textFieldurl.getText());
+					
+				}
+				catch(Exception e){
+					
+				}
+				
+			}
+		});
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -104, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -52, SpringLayout.SOUTH, getContentPane());

@@ -1,7 +1,8 @@
 package GUI;
 
 import java.awt.EventQueue;
-
+import Controladores.ControladorPlataforma;
+import Controladores.ControladorUsuario;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -16,6 +17,8 @@ import javax.swing.JTextField;
 import java.awt.Button;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -214,6 +217,14 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
+		
+		
+		
+		comboBoxPlataforma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 
 	}
 }

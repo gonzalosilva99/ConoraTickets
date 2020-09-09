@@ -1,25 +1,48 @@
 package Manejadores;
 import Clases.Plataforma;
+import Clases.Funcion;
 import java.util.*;
 import DataTypes.*;
 
 public class ManejadorPlataforma {
 	private 
+		static ManejadorPlataforma instancia;
 		Map<String,Plataforma> Plataformas;
 	public 
+		static ManejadorPlataforma getInstancia() {
+			if(instancia==null)
+				instancia=new ManejadorPlataforma();
+			return instancia;
+				
+		}
+	
+		public ManejadorPlataforma() {
+			super();
+		}
+
 		ManejadorPlataforma(Map<String,Plataforma> Plats){
 			super();
 			Plataformas = Plats;
 		}
 
-		public Map<String, Plataforma> getPlataformas() {
+		Map<String, Plataforma> getPlataformas() {
 			return Plataformas;
 		}
 
-		public void setPlataformas(Map<String, Plataforma> plataformas) {
+		void setPlataformas(Map<String, Plataforma> plataformas) {
 			Plataformas = plataformas;
 		}
-	
+		
+		public void AltaPlataforma(String nombre, String Descripcion,String Url) {
+			if(!ExistePlataforma(nombre)) {
+				Plataforma plat = new Plataforma(nombre,Descripcion,Url);
+				Plataformas.put(nombre, plat);
+			}
+		}
+		
+		Boolean ExistePlataforma(String nombre){
+			return Plataformas.containsKey(nombre);
+		}
 		Set<DtEspectaculo>  listarEspectaculosDePlataforma(String Nombre){
 			set<DtEspectaculo> dtesp = new Set<DtEspectaculo>();
 			return dtesp;

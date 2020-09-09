@@ -7,8 +7,16 @@ import DataTypes.DtPaqueteDatos;
 
 public class ManejadorPaquetes {
 	private 
+		static ManejadorPaquetes instancia;
 		Map<String,Paquete> Paquetes;
 	public 
+		static ManejadorPaquetes getInstancia(){
+			if(instancia==null) {
+				instancia=new ManejadorPaquetes();
+			}
+			return instancia;
+				
+		}
 		Map<String, Paquete> getPaquetes() {
 			return Paquetes;
 		}

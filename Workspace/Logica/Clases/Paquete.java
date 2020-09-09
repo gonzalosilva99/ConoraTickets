@@ -7,6 +7,9 @@ public class Paquete {
 	private String Descripcion;
 	private Date Inicio;
 	private Date Fin;
+	public Paquete() {
+		super();
+	}
 	private Double Descuento;
 		public Paquete(String nombre, String descripcion, Date inicio, Date fin, Double descuento) {
 			super();
