@@ -4,8 +4,11 @@ import Clases.Espectador;
 import Clases.Artista;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
+import DataTypes.DtFuncion;
+import DataTypes.DtUsuario;
 import DataTypes.DtRegistro;
-import java.util.Date;
+
+import javax.swing.JOptionPane;
 public class ManejadorUsuario {
 	private 
 		static ManejadorUsuario instancia;
@@ -55,16 +58,53 @@ public class ManejadorUsuario {
 		
 		Boolean ExisteUsuarioConNickname(String Nickname, Map Usuarios) {
 			return Usuarios.containsKey(Nickname);
-		}
-		
-		Boolean ExisteUsuarioConEmail(String Nickname, Map Usuarios) {
-			return true;
-		}
-		
-		void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
 			
 		}
 		
-		void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {}
+		Boolean ExisteUsuarioConEmail(String Nickname, Map Usuarios) {
+			//FALTA
+			return false;
+		}
+		
+		public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+			//if (ExisteUsuarioConNickname(Nickname,Artistas)) {
+				//ERROR
+			//}
+			//else if(ExisteUsuarioConEmail(Email,Artistas)){
+				//ERROR
+			//}		
+				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
+				Artistas.put(Nickname, nuevo);
+		}
+		
+
+		
+		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
+			if (ExisteUsuarioConNickname(Nickname,Espectadores)) {
+
+			}
+			else if(ExisteUsuarioConEmail(Email,Espectadores)){
+
+			}
+			else {
+				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email,Nacimiento);
+				Espectadores.put(Nickname, nuevo);			
+			}
+		}
+		public Set<DtUsuario> listarUsuarios(){
+			Set<DtUsuario> ret = new HashSet<DtUsuario>();
+			//Artistas.forEach((k,v) -> JOptionPane.showMessageDialog(null, "BIEN"));
+			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
+				JOptionPane.showMessageDialog(null, "BIEN");
+	            DtUsuario nuevo = entry.getValue().getDtUsuario();
+	            ret.add(nuevo);            
+			}
+			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
+	            DtUsuario nuevo = entry.getValue().getDtUsuario();
+	            ret.add(nuevo);            
+			}
+			return ret;
+		}
+		
 		
 }

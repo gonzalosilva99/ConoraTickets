@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -22,7 +23,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
-import Controladores.ControladorUsuario;
+import Controladores.Fabrica;
+import Interfaces.IPlataforma;
+import Interfaces.IUsuario;
 
 
 public class AltaUsuario extends JInternalFrame {
@@ -53,6 +56,8 @@ public class AltaUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaUsuario() {
+		Fabrica fabric = Fabrica.getInstancia();
+		
 		setTitle("Alta de Usuario");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
@@ -214,6 +219,21 @@ public class AltaUsuario extends JInternalFrame {
 		Button buttonAceptar = new Button("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try{
+					IUsuario iusuario = fabric.getIUsuario();
+					if(rdbtnArtista.isSelected()) {			
+						iusuario.confirmarAltaArtista(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate(), textPaneDescGeneral.getText(), textPaneBiografia.getText(), textFieldLink.getText());
+					}
+					if(rdbtnEspectador.isSelected()) {
+						iusuario.confirmarAltaEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate());
+					}
+					JOptionPane.showMessageDialog(null, "BIEN");
+					//textFieldNickname.setText();
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "ERROR");
+
+				}
 				
 			}
 		});

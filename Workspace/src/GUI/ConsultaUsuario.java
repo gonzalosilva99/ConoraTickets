@@ -14,6 +14,11 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Button;
+import Controladores.Fabrica;
+import Interfaces.IUsuario;
+import DataTypes.DtUsuario;
+import java.util.Set;
+import java.util.Iterator;
 
 public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldNickname;
@@ -31,6 +36,7 @@ public class ConsultaUsuario extends JInternalFrame {
 				try {
 					ConsultaUsuario frame = new ConsultaUsuario();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,15 +48,23 @@ public class ConsultaUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ConsultaUsuario() {
+		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Consulta de Usuario");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
+		IUsuario iusuario = fabric.getIUsuario();
+		Set<DtUsuario> listaUsuarios = iusuario.listarUsuarios();
+		
 		JComboBox comboBoxUsuario = new JComboBox();
+		Iterator<DtUsuario> itr = listaUsuarios.iterator();
+		while(itr.hasNext())
+			{comboBoxUsuario.addItem(itr.next().getNickname());}
+
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxUsuario, -115, SpringLayout.EAST, getContentPane());
 		
-		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"", "Usuario1", "Usuario2", "Usuario3"}));
+		
 		getContentPane().add(comboBoxUsuario);
 		
 		

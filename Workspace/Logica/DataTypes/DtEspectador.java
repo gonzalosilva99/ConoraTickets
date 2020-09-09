@@ -3,17 +3,13 @@ package DataTypes;
 import java.util.Date;
 
 public class DtEspectador {
-	public DtEspectador(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String descgeneral, String biografia, String link) {
+	public DtEspectador(String nickname, String nombre, String apellido, String email, Date nacimiento) {
 		super();
 		Nickname = nickname;
 		Nombre = nombre;
 		Apellido = apellido;
 		Email = email;
 		Nacimiento = nacimiento;
-		Descgeneral = descgeneral;
-		Biografia = biografia;
-		this.link = link;
 	}
 	private
 	String Nickname;
@@ -25,12 +21,6 @@ public class DtEspectador {
 	String Email;
 	private
 	Date Nacimiento;
-	private
-	String Descgeneral;
-	private
-	String Biografia;
-	private
-	String link;
 	public String getNickname() {
 		return Nickname;
 	}
@@ -46,14 +36,6 @@ public class DtEspectador {
 	public Date getNacimiento() {
 		return Nacimiento;
 	}
-	public String getDescgeneral() {
-		return Descgeneral;
-	}
-	public String getBiografia() {
-		return Biografia;
-	}
-	public String getLink() {
-		return link;
-	}
+
 
 }

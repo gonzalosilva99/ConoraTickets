@@ -1,6 +1,7 @@
 package Clases;
 
 import java.util.Date;
+import DataTypes.DtUsuario;
 
 public class Artista extends Usuario{
 	private
@@ -30,6 +31,10 @@ public class Artista extends Usuario{
 		}
 		public void setURL(String uRL) {
 			URL = uRL;
+		}
+		public DtUsuario getDtUsuario() {
+			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
+			return ret;
 		}
 	
 }
