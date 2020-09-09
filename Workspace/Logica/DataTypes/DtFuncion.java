@@ -4,6 +4,12 @@ import java.util.Date;
 
 public class DtFuncion {
 
+public DtFuncion(String nombre, Date inicio, Date alta) {
+		super();
+		Nombre = nombre;
+		Inicio = inicio;
+		Alta = alta;
+	}
 private
 String Nombre;
 private

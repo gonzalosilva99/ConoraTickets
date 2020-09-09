@@ -1,7 +1,13 @@
 package DataTypes;
 
 public class DtPlataforma {
-
+	
+public DtPlataforma(String nombre, String descripcion, String uRL) {
+		super();
+		Nombre = nombre;
+		Descripcion = descripcion;
+		URL = uRL;
+	}
 private
 String Nombre;
 private

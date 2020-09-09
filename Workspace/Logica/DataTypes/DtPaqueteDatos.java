@@ -5,6 +5,16 @@ import java.util.Set;
 
 public class DtPaqueteDatos {
 	
+public DtPaqueteDatos(String nombre, String descripcion, Date inicio, Date fin, Float descuento,
+			Set<DtEspectaculo> espectaculos) {
+		super();
+		Nombre = nombre;
+		Descripcion = descripcion;
+		Inicio = inicio;
+		Fin = fin;
+		Descuento = descuento;
+		Espectaculos = espectaculos;
+	}
 private
 String Nombre;
 private

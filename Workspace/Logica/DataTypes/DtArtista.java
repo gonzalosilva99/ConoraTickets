@@ -2,6 +2,18 @@ package DataTypes;
 import java.util.Date;
 
 public class DtArtista {
+	public DtArtista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descgeneral,
+			String biografia, String link) {
+		super();
+		Nickname = nickname;
+		Nombre = nombre;
+		Apellido = apellido;
+		Email = email;
+		Nacimiento = nacimiento;
+		Descgeneral = descgeneral;
+		Biografia = biografia;
+		this.link = link;
+	}
 	private
 	String Nickname;
 	private

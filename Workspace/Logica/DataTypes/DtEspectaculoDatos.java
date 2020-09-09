@@ -6,6 +6,20 @@ import java.util.Set;
 
 public class DtEspectaculoDatos {
 	
+public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,
+			String uRL, Float costo, Date registro, Set<DtFuncion> funciones, Set<DtPaquete> paquetes) {
+		super();
+		Nombre = nombre;
+		Descripcion = descripcion;
+		Duracion = duracion;
+		CantMin = cantMin;
+		CantMax = cantMax;
+		URL = uRL;
+		Costo = costo;
+		Registro = registro;
+		Funciones = funciones;
+		Paquetes = paquetes;
+	}
 private
 	String Nombre;
 private

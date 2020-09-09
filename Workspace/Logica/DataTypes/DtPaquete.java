@@ -2,6 +2,11 @@ package DataTypes;
 
 public class DtPaquete {
 
+public DtPaquete(String nombre, String descripcion) {
+		super();
+		Nombre = nombre;
+		Descripcion = descripcion;
+	}
 private
 String Nombre;
 private

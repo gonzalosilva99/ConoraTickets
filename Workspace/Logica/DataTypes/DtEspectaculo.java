@@ -2,6 +2,11 @@ package DataTypes;
 
 public class DtEspectaculo {
 	
+public DtEspectaculo(String nombre, String descripcion) {
+		super();
+		Nombre = nombre;
+		Descripcion = descripcion;
+	}
 private
 String Nombre;
 private
