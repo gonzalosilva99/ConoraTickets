@@ -4,13 +4,13 @@ import Controladores.*;
 
 public class Fabrica {
 	
-	private Fabrica Instancia;
+	private static Fabrica Instancia;
 	private IUsuario InterfazUsuario;
 	private IPaquete InterfazPaquete;
 	private IPlataforma InterfazPlataforma;
 	private Fabrica() {
 	}
-	public Fabrica getInstancia() {
+	public static Fabrica getInstancia() {
 		if (Instancia==null) {
 			Instancia = new Fabrica();
 		}

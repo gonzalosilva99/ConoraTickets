@@ -13,10 +13,12 @@ import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import Controladores.ControladorPlataforma;
+import Controladores.Fabrica;
+import Interfaces.IPlataforma;
 public class AltaPlataforma extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescGeneral;
-	private JTextField textField;
+	private JTextField textFieldurl;
 
 	/**
 	 * Launch the application.
@@ -38,6 +40,8 @@ public class AltaPlataforma extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaPlataforma() {
+		Fabrica fabric = Fabrica.getInstancia();
+		
 		setTitle("Alta de Plataforma");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
@@ -84,15 +88,15 @@ public class AltaPlataforma extends JInternalFrame {
 		panel.add(textFieldDescGeneral);
 		textFieldDescGeneral.setColumns(10);
 		
-		textField = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDescGeneral, 61, SpringLayout.SOUTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, textField, 0, SpringLayout.WEST, textFieldNombre);
-		sl_panel.putConstraint(SpringLayout.EAST, textField, 0, SpringLayout.EAST, textFieldNombre);
-		textField.setColumns(10);
-		panel.add(textField);
+		textFieldurl = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescGeneral, 61, SpringLayout.SOUTH, textFieldurl);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldurl, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldurl, 0, SpringLayout.EAST, textFieldNombre);
+		textFieldurl.setColumns(10);
+		panel.add(textFieldurl);
 		
 		JLabel lblUrl_2 = new JLabel("Url:");
-		sl_panel.putConstraint(SpringLayout.NORTH, textField, -3, SpringLayout.NORTH, lblUrl_2);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldurl, -3, SpringLayout.NORTH, lblUrl_2);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblUrl_2, 6, SpringLayout.SOUTH, lblNombre);
 		sl_panel.putConstraint(SpringLayout.WEST, lblUrl_2, 0, SpringLayout.WEST, lblNombre);
 		panel.add(lblUrl_2);
@@ -108,6 +112,9 @@ public class AltaPlataforma extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
+					IPlataforma iplataform = fabric.getIPlataforma();
+					iplataform.AltaPlataforma(textFieldNombre.getText(), textFieldDescGeneral.getText(), textFieldurl.getText());
+					
 				}
 				catch(Exception e){
 					

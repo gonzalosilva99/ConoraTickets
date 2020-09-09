@@ -21,6 +21,10 @@ private
 String Descripcion;
 private
 Date Inicio;
+
+public DtPaqueteDatos() {
+	super();
+}
 private
 Date Fin;
 private
