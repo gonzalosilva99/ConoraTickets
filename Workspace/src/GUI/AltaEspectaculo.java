@@ -44,7 +44,6 @@ public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldEspectMax;
 	private JTextField textFieldURL;
 	private JTextField textFieldCosto;
-	private JTextField textFieldFecha;
 	private JTextField textFieldDuracion;
 	/**
 	 * Launch the application.
@@ -242,14 +241,6 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 10, SpringLayout.WEST, panel);
 		panel.add(lblFecha);
 		
-		textFieldFecha = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldFecha, 17, SpringLayout.SOUTH, textFieldCosto);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldFecha, 162, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldFecha, 36, SpringLayout.SOUTH, textFieldCosto);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldFecha, -141, SpringLayout.EAST, panel);
-		panel.add(textFieldFecha);
-		textFieldFecha.setColumns(10);
-		
 
 		
 		JLabel lblDuracion = new JLabel("Duraci\u00F3n");
@@ -260,12 +251,20 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(lblDuracion);
 		
 		textFieldDuracion = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 14, SpringLayout.SOUTH, textFieldFecha);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 50, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 16, SpringLayout.EAST, lblDuracion);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, 33, SpringLayout.SOUTH, textFieldFecha);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, -5, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		sl_panel.putConstraint(SpringLayout.NORTH, dateChooser, 0, SpringLayout.NORTH, lblFecha);
+		sl_panel.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
+		dateChooser.setToolTipText("");
+		dateChooser.setDateFormatString("dd-MM-yyyy");
+		panel.add(dateChooser);
 		
 		
 		
