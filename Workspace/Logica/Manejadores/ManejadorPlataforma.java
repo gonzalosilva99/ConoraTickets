@@ -20,10 +20,9 @@ public class ManejadorPlataforma {
 			Plataformas = plataformas;
 		}
 		
-		void AltaPlataforma(String nombre, String Descripcion) {
+		void AltaPlataforma(String nombre, String Descripcion,String Url) {
 			if(!ExistePlataforma(nombre)) {
-				Map<String,Espectaculo> espectacs = new HashMap<String,Espectaculo>
-				Plataforma plat = new Plataforma(nombre,Descripcion);
+				Plataforma plat = new Plataforma(nombre,Descripcion,Url);
 				Plataformas.put(nombre, plat);
 			}
 		}
