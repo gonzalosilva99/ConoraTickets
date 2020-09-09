@@ -1,4 +1,4 @@
-package Manejadores;
+	package Manejadores;
 import java.util.*;
 import Clases.Espectador;
 import Clases.Artista;
@@ -7,6 +7,7 @@ import DataTypes.DtArtista;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtRegistro;
+import DataTypes.DtEspectador;
 
 import javax.swing.JOptionPane;
 public class ManejadorUsuario {
@@ -35,7 +36,7 @@ public class ManejadorUsuario {
 		}
 		
 		Set<DtArtista> listarArtistas(){
-			return new HashSet<DtUsuario>();
+			return new HashSet<DtArtista>();
 		}
 		
 		Set<DtEspectador> listarEspectadores() {
@@ -47,7 +48,7 @@ public class ManejadorUsuario {
 		}
 		
 		Set<DtRegistro> listarResgistrosSinCanjear(String nickname) {
-			return HashSet<DtRegistro>();
+			return new HashSet<DtRegistro>();
 		}
 		
 		

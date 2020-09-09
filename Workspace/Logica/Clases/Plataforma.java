@@ -37,5 +37,8 @@ public class Plataforma {
 		public void setDescripcion(String descripcion) {
 			Descripcion = descripcion;
 		}
-		
+		public Funcion getFuncion(String nombreEspectaculo, String nomFuncion) {
+			Espectaculo esp = Espectaculos.get(nombreEspectaculo);
+			return esp.getFuncion(nomFuncion);
+		}
 }

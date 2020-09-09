@@ -44,12 +44,12 @@ public class ManejadorPlataforma {
 			return Plataformas.containsKey(nombre);
 		}
 		Set<DtEspectaculo>  listarEspectaculosDePlataforma(String Nombre){
-			set<DtEspectaculo> dtesp = new Set<DtEspectaculo>();
+			Set<DtEspectaculo> dtesp = new HashSet<DtEspectaculo>();
 			return dtesp;
 		}
 		
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
-			set<DtFuncion> dtfun = new Set<DtFuncion>();
+			Set<DtFuncion> dtfun = new HashSet<DtFuncion>();
 			return dtfun;
 		}
 		
@@ -71,11 +71,13 @@ public class ManejadorPlataforma {
 		}
 		
 		Plataforma getPlataforma(String nomPlataforma) {
-			return new Plataforma();
+			return Plataformas.get(nomPlataforma);
+			
 		}
 		
 		Funcion getFuncion(String nombrePlataforma, String nombreEspectaculo, String nomFuncion) {
-			return new Funcion();
+			Plataforma plat = Plataformas.get(nombrePlataforma);
+			return plat.getFuncion(nombreEspectaculo, nomFuncion);
 		}
 		
 }

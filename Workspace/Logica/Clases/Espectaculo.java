@@ -1,6 +1,10 @@
 package Clases;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
+
 
 public class Espectaculo {
 	private String Nombre;
@@ -11,8 +15,9 @@ public class Espectaculo {
 	private Integer CantMin;
 	private Double Duracion;
 	private String Descripcion;
+	private Map<String, Funcion> Funciones;
 		public Espectaculo(String nombre, Date registro, Double costo, String uRL, Integer cantMax, Integer cantMin,
-				Double duracion, String descripcion) {
+				Double duracion, String descripcion, Map<String, Funcion> funciones) {
 			super();
 			Nombre = nombre;
 			Registro = registro;
@@ -22,6 +27,7 @@ public class Espectaculo {
 			CantMin = cantMin;
 			Duracion = duracion;
 			Descripcion = descripcion;
+			Funciones = new HashMap<String, Funcion>();
 		}
 		public String getNombre() {
 			return Nombre;
@@ -70,6 +76,9 @@ public class Espectaculo {
 		}
 		public void setDescripcion(String descripcion) {
 			Descripcion = descripcion;
+		}
+		public Funcion getFuncion(String nomFuncion) {
+			return Funciones.get(nomFuncion);
 		}
 		
 }
