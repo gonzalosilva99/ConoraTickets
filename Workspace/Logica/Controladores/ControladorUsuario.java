@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
+import DataTypes.DtArtista;
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
@@ -36,9 +37,13 @@ public class ControladorUsuario implements IUsuario{
 	}
 	
 	public Set<DtUsuario> listarUsuarios(){
-		
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
-		HashSet<DtUsuario> h = manusu.listarUsuarios();
+		Set<DtUsuario> h = manusu.listarUsuarios();
+		return h;
+	}
+	public Set<DtArtista> listarArtistas(){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Set<DtArtista> h = manusu.listarArtistas();
 		return h;
 	}
 }

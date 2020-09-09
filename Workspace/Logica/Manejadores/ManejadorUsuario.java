@@ -42,11 +42,7 @@ public class ManejadorUsuario {
 		void setEspectadores(HashMap<String, Espectador> espectadores) {
 			Espectadores = espectadores;
 		}
-		
-		Set<DtArtista> listarArtistas(){
-			return new HashSet<DtArtista>();
-		}
-		
+			
 		Set<DtEspectador> listarEspectadores() {
 			return new HashSet<DtEspectador>();
 		}
@@ -108,6 +104,14 @@ public class ManejadorUsuario {
 			}
 			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
 	            DtUsuario nuevo = entry.getValue().getDtUsuario();
+	            ret.add(nuevo);            
+			}
+			return ret;
+		}
+		public Set<DtArtista> listarArtistas() {
+			HashSet<DtArtista> ret = new HashSet<DtArtista>();
+			for (Map.Entry<String, Artista> entry : Artistas.entrySet()) {
+	            DtArtista nuevo = entry.getValue().getDtArtista();
 	            ret.add(nuevo);            
 			}
 			return ret;
