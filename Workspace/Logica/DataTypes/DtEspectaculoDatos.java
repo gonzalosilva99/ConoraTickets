@@ -20,6 +20,9 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		Funciones = funciones;
 		Paquetes = paquetes;
 	}
+public DtEspectaculoDatos() {
+	
+}
 private
 	String Nombre;
 private

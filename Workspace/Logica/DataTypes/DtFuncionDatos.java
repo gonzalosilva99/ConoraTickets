@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class DtFuncionDatos {
 	
+	
 public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas, DtEspectaculo espectaculo) {
 		super();
 		Nombre = nombre;
@@ -13,6 +14,7 @@ public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> arti
 		Artistas = artistas;
 		Espectaculo = espectaculo;
 	}
+public DtFuncionDatos() {}
 private
 String Nombre;
 private

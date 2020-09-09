@@ -53,12 +53,13 @@ public class ManejadorPlataforma {
 			return dtfun;
 		}
 		
-		DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp) {
-			return new DtFuncionDatos;
+		DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun) {
+			Plataforma plat = Plataformas.get(NombrePlat);
+			return plat.mostrarFuncion(NombreEsp, NombreFun);
 		}
 		
 		DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo, String NombrePlataforma ) {
-			return new DtEspectaculoDatos;
+			return new DtEspectaculoDatos();
 		}
 		
 		Set<DtPlataforma> listarPlataformas() {
@@ -66,7 +67,7 @@ public class ManejadorPlataforma {
 			return plats;
 		}
 		
-		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, string nombrePlat) {
+		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
 			return new HashSet<DtFuncion>();
 		}
 		
@@ -87,4 +88,4 @@ public class ManejadorPlataforma {
 		
 		
 		
-}
+

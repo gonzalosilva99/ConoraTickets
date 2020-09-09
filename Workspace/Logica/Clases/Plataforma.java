@@ -1,6 +1,7 @@
 package Clases;
 import java.util.HashMap;
 import java.util.Map;
+import DataTypes.DtFuncionDatos;
 
 public class Plataforma {
 	private String Nombre;
@@ -40,5 +41,9 @@ public class Plataforma {
 		public Funcion getFuncion(String nombreEspectaculo, String nomFuncion) {
 			Espectaculo esp = Espectaculos.get(nombreEspectaculo);
 			return esp.getFuncion(nomFuncion);
+		}
+		public DtFuncionDatos mostrarFuncion(String NombreEsp, String NombreFun) {
+			Espectaculo esp = Espectaculos.get(NombreEsp);
+			return esp.mostrarFuncion(NombreFun);
 		}
 }

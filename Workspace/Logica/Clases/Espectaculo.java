@@ -5,6 +5,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 
+import DataTypes.DtArtista;
+import DataTypes.DtEspectaculo;
+import DataTypes.DtFuncionDatos;
+
 
 public class Espectaculo {
 	private String Nombre;
@@ -28,6 +32,7 @@ public class Espectaculo {
 			Duracion = duracion;
 			Descripcion = descripcion;
 			Funciones = new HashMap<String, Funcion>();
+		
 		}
 		public String getNombre() {
 			return Nombre;
@@ -79,6 +84,15 @@ public class Espectaculo {
 		}
 		public Funcion getFuncion(String nomFuncion) {
 			return Funciones.get(nomFuncion);
+		}
+		public DtEspectaculo getDatosEspectaculo() {
+			DtEspectaculo dte = new DtEspectaculo(Nombre, Descripcion);
+			return dte;
+		}
+		public DtFuncionDatos mostrarFuncion(String NombreFun) {
+			Funcion fun = Funciones.get(NombreFun);
+			DtFuncionDatos dtfun = new DtFuncionDatos();
+			return dtfun;
 		}
 		
 }
