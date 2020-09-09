@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
+import Controladores.ControladorUsuario;
+
 
 public class AltaUsuario extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -210,6 +212,11 @@ public class AltaUsuario extends JInternalFrame {
 		panel.setLayout(gl_panel);
 		
 		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -46, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -105, SpringLayout.EAST, getContentPane());

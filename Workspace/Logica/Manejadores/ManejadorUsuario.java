@@ -48,4 +48,19 @@ public class ManejadorUsuario {
 		Espectador getEspectador(String nickname) {
 			return new Espectador();
 		}
+		
+		Boolean ExisteUsuarioConNickname(String Nickname, Map Usuarios) {
+			return Usuarios.containsKey(Nickname);
+		}
+		
+		Boolean ExisteUsuarioConEmail(String Nickname, Map Usuarios) {
+			return true;
+		}
+		
+		void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+			
+		}
+		
+		void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {}
+		
 }
