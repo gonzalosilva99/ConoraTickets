@@ -227,7 +227,7 @@ public class AltaUsuario extends JInternalFrame {
 					if(rdbtnEspectador.isSelected()) {
 						iusuario.confirmarAltaEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate());
 					}
-					JOptionPane.showMessageDialog(null, "BIEN");
+					//JOptionPane.showMessageDialog(null, "BIEN");
 					//textFieldNickname.setText();
 				}
 				catch(Exception e){

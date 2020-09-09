@@ -38,7 +38,7 @@ public class ControladorUsuario implements IUsuario{
 	public Set<DtUsuario> listarUsuarios(){
 		
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
-		Set<DtUsuario> h = manusu.listarUsuarios();
+		HashSet<DtUsuario> h = manusu.listarUsuarios();
 		return h;
 	}
 }

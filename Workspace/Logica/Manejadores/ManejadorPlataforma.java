@@ -7,7 +7,7 @@ import DataTypes.*;
 public class ManejadorPlataforma {
 	private 
 		static ManejadorPlataforma instancia;
-		Map<String,Plataforma> Plataformas;
+		HashMap<String,Plataforma> Plataformas;
 	public 
 		static ManejadorPlataforma getInstancia() {
 			if(instancia==null)
@@ -16,11 +16,11 @@ public class ManejadorPlataforma {
 				
 		}
 	
-		public ManejadorPlataforma() {
-			super();
+		private ManejadorPlataforma() {
+			Plataformas = new HashMap<String,Plataforma>();
 		}
 
-		ManejadorPlataforma(Map<String,Plataforma> Plats){
+		ManejadorPlataforma(HashMap<String,Plataforma> Plats){
 			super();
 			Plataformas = Plats;
 		}
@@ -29,7 +29,7 @@ public class ManejadorPlataforma {
 			return Plataformas;
 		}
 
-		void setPlataformas(Map<String, Plataforma> plataformas) {
+		void setPlataformas(HashMap<String, Plataforma> plataformas) {
 			Plataformas = plataformas;
 		}
 		

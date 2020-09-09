@@ -60,7 +60,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		JComboBox comboBoxUsuario = new JComboBox();
 		Iterator<DtUsuario> itr = listaUsuarios.iterator();
 		while(itr.hasNext())
-			{comboBoxUsuario.addItem(itr.next().getNickname());}
+			{comboBoxUsuario.addItem(itr.next().getNombre());}
 
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxUsuario, -115, SpringLayout.EAST, getContentPane());
 		

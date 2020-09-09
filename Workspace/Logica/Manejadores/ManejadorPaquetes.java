@@ -8,7 +8,7 @@ import DataTypes.DtPaqueteDatos;
 public class ManejadorPaquetes {
 	private 
 		static ManejadorPaquetes instancia;
-		Map<String,Paquete> Paquetes;
+		HashMap<String,Paquete> Paquetes;
 	public 
 		static ManejadorPaquetes getInstancia(){
 			if(instancia==null) {
@@ -17,11 +17,16 @@ public class ManejadorPaquetes {
 			return instancia;
 				
 		}
+	
+		private ManejadorPaquetes() {
+			Paquetes = new HashMap<String,Paquete>();
+		}
+	
 		Map<String, Paquete> getPaquetes() {
 			return Paquetes;
 		}
 
-		void setPaquetes(Map<String, Paquete> paquetes) {
+		void setPaquetes(HashMap<String, Paquete> paquetes) {
 			Paquetes = paquetes;
 		}
 		

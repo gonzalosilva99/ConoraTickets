@@ -9,29 +9,37 @@ import DataTypes.DtUsuario;
 import DataTypes.DtRegistro;
 import DataTypes.DtEspectador;
 
+
+
 import javax.swing.JOptionPane;
 public class ManejadorUsuario {
 	private 
 		static ManejadorUsuario instancia;
-		Map<String,Artista> Artistas;
-		Map<String,Espectador> Espectadores;
-		
+		HashMap<String,Artista> Artistas;
+		HashMap<String,Espectador> Espectadores;
+		private ManejadorUsuario() {
+			Artistas = new HashMap<String,Artista>();
+			Espectadores = new HashMap<String,Espectador>();
+		};
 	public 
 		static ManejadorUsuario getInstancia() {
-			if(instancia==null)
-				instancia=new ManejadorUsuario();
+			if(instancia==null) {
+				instancia=new ManejadorUsuario();		
+			}
 			return instancia;
 		}
+	
+		
 		Map<String, Artista> getArtistas() {
 			return Artistas;
 		}
-		void setArtistas(Map<String, Artista> artistas) {
+		void setArtistas(HashMap<String, Artista> artistas) {
 			Artistas = artistas;
 		}
 		Map<String, Espectador> getEspectadores() {
 			return Espectadores;
 		}
-		void setEspectadores(Map<String, Espectador> espectadores) {
+		void setEspectadores(HashMap<String, Espectador> espectadores) {
 			Espectadores = espectadores;
 		}
 		
@@ -57,12 +65,12 @@ public class ManejadorUsuario {
 			return new Espectador("","","","",fecha);
 		}
 		
-		Boolean ExisteUsuarioConNickname(String Nickname, Map Usuarios) {
+		Boolean ExisteUsuarioConNickname(String Nickname, HashMap Usuarios) {
 			return Usuarios.containsKey(Nickname);
 			
 		}
 		
-		Boolean ExisteUsuarioConEmail(String Nickname, Map Usuarios) {
+		Boolean ExisteUsuarioConEmail(String Nickname, HashMap Usuarios) {
 			//FALTA
 			return false;
 		}
@@ -74,12 +82,12 @@ public class ManejadorUsuario {
 			//else if(ExisteUsuarioConEmail(Email,Artistas)){
 				//ERROR
 			//}		
+			JOptionPane.showMessageDialog(null, "BIEN1");
 				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
-				Artistas.put(Nickname, nuevo);
+				Artistas.put(Nickname, nuevo);			
 		}
 		
-
-		
+	
 		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
 			if (ExisteUsuarioConNickname(Nickname,Espectadores)) {
 
@@ -92,8 +100,8 @@ public class ManejadorUsuario {
 				Espectadores.put(Nickname, nuevo);			
 			}
 		}
-		public Set<DtUsuario> listarUsuarios(){
-			Set<DtUsuario> ret = new HashSet<DtUsuario>();
+		public HashSet<DtUsuario> listarUsuarios(){
+			HashSet<DtUsuario> ret = new HashSet<DtUsuario>();
 			//Artistas.forEach((k,v) -> JOptionPane.showMessageDialog(null, "BIEN"));
 			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
 				JOptionPane.showMessageDialog(null, "BIEN");
