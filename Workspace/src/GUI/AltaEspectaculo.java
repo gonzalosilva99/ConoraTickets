@@ -218,6 +218,8 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
 		
+		
+		
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
