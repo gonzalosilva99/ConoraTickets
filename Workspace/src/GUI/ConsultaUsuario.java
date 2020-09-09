@@ -6,6 +6,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -60,7 +61,13 @@ public class ConsultaUsuario extends JInternalFrame {
 		JComboBox comboBoxUsuario = new JComboBox();
 		Iterator<DtUsuario> itr = listaUsuarios.iterator();
 		while(itr.hasNext())
-			{comboBoxUsuario.addItem(itr.next().getNombre());}
+			{DtUsuario aux = itr.next();
+			 String nick = aux.getNickname();
+			 String nom = aux.getNombre();
+			 String ap = aux.getApellido();
+			 String op = nick+" "+nom+" "+ap;
+			 comboBoxUsuario.addItem(op);
+			}
 
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxUsuario, -115, SpringLayout.EAST, getContentPane());
 		
