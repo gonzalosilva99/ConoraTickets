@@ -1,6 +1,7 @@
 package Manejadores;
 import Clases.Plataforma;
 import Clases.Artista;
+import Clases.Espectaculo;
 import Clases.Espectador;
 import Clases.Funcion;
 import java.util.*;
@@ -50,8 +51,10 @@ public class ManejadorPlataforma {
 		}
 		Set<DtEspectaculo>  listarEspectaculosDePlataforma(String Nombre){
 			Set<DtEspectaculo> dtesp = new HashSet<DtEspectaculo>();
+			Map<String,Espectaculo> Espectaculos;
 			return dtesp;
 		}
+		
 		
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
 			Set<DtFuncion> dtfun = new HashSet<DtFuncion>();

@@ -12,6 +12,21 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import Interfaces.IPaquete;
+import Controladores.ControladorPaquete;
+import Controladores.Fabrica;
+import Interfaces.IPlataforma;
+import Controladores.ControladorPlataforma;
+import DataTypes.DtPlataforma;
+
+
+import java.util.Iterator;
+import java.util.Set;
+
+import DataTypes.DtArtista;
+import DataTypes.DtPaquete;
 
 public class AgregarEspectaculoAPaquete extends JInternalFrame {
 
@@ -35,6 +50,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AgregarEspectaculoAPaquete() {
+		Fabrica fabricosa = Fabrica.getInstancia();
 		setTitle("Agregar Espectaculo a Paquete");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
@@ -54,6 +70,9 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, lblPaquetes, 110, SpringLayout.WEST, getContentPane());
 		
 		JComboBox comboBoxPaquetes = new JComboBox();
+				
+				
+		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPaquetes, 52, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 153, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPaquetes, -212, SpringLayout.EAST, getContentPane());
@@ -123,6 +142,32 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
 		getContentPane().add(buttonCancelar);
+		
+		IPaquete paquetosa = fabricosa.getIPaquete();
+		Set<DtPaquete> DtPaquetes = paquetosa.ListarPaquetes();
+		Iterator<DtPaquete> iterador = DtPaquetes.iterator();
+		
+		while(iterador.hasNext()) {
+			comboBoxPaquetes.addItem(iterador.next().getNombre());
+		}
+		
+		IPlataforma plataformosa = fabricosa.getIPlataforma();
+		
+		Set<DtPlataforma> DtPlataformas = plataformosa.listarPlataformas();
+		Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
+		
+		while(iterador2.hasNext()) {
+			comboBoxPlataformas.addItem(iterador.next().getNombre());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	}
 }
