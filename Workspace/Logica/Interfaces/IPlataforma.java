@@ -2,6 +2,7 @@ package Interfaces;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.Map;
 
 import Clases.Funcion;
 import DataTypes.DtEspectaculo;
@@ -17,7 +18,7 @@ public interface IPlataforma {
 		DtFuncionDatos MostrarFuncion(String NombreEsp, String NombreFun);
 		DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo);
 		void AltaPlataforma(String nombre, String Descripcion,String Url);
-		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp);
+		Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp);
 		void altaEspectaculo(String nickname, String nombre,String descripcion,Integer cantespmin, Integer cantmaxesp,String url,Integer costo,Date fecha);
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion);
 		Set<DtPlataforma> listarPlataformas();
