@@ -181,25 +181,17 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		IPlataforma iplataforma = fabric.getIPlataforma();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
+		comboBoxPlataforma.addItem("");
 		while(itr.hasNext())
 			{comboBoxPlataforma.addItem(itr.next().getNombre());}
 		
 		IUsuario iusuario = fabric.getIUsuario();
 		Set<DtArtista> listArts = iusuario.listarArtistas();
+		Iterator<DtArtista> iterArtista = listArts.iterator();
 		DefaultListModel listaArtistas = new DefaultListModel();
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
-		listaArtistas.addElement("Lara");
+		while(iterArtista.hasNext()) {
+			listaArtistas.addElement(iterArtista.next().getNickname());
+		}
 		JList list = new JList(listaArtistas);
 		scrollPane.setViewportView(list);
 		
@@ -209,6 +201,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 				comboBoxEspectaculo.removeAllItems();
 				Set<DtEspectaculo> listarEspecsDePlat = iplataforma.listarEspectaculosDePlataforma(comboBoxPlataforma.getToolTipText());
 				Iterator<DtEspectaculo> itr = listarEspecsDePlat.iterator();
+				comboBoxEspectaculo.addItem("");
 				while(itr.hasNext())
 					{comboBoxEspectaculo.addItem(itr.next().getNombre());}
 			}
