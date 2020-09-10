@@ -73,4 +73,23 @@ public class ControladorUsuario implements IUsuario{
 		DtEspectadorConsulta h = manusu.MostrarEspectador(nickname);
 		return h;
 	}
+	
+	public void ModificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+		try {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+		manusu.ModificarArtista(Nickname,Nombre,Apellido,Nacimiento,Descripcion,Biografia,Link);
+		}
+		catch(Exception e) {
+			
+		}
+	}
+		
+	public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento) {
+		try {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+		manusu.ModificarEspectador(Nickname,Nombre,Apellido,Nacimiento);
+		}
+		catch(Exception e) {
+		}
+	}
 }

@@ -63,8 +63,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		getContentPane().setLayout(springLayout);
 		
 		IUsuario iusuario = fabric.getIUsuario();
-		Set<DtUsuario> listaUsuarios = iusuario.listarUsuarios();
-		
+		Set<DtUsuario> listaUsuarios = iusuario.listarUsuarios();		
 		JComboBox comboBoxUsuario = new JComboBox();
 		comboBoxUsuario.addItem("");
 		Iterator<DtUsuario> itr = listaUsuarios.iterator();
@@ -209,9 +208,6 @@ public class ConsultaUsuario extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, lblBiografia, -53, SpringLayout.EAST, panel);
 		panel.add(lblBiografia);
 		
-		Button buttonAceptar_1 = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAceptar_1);
-		
 		JTextPane txtpndescgeneral = new JTextPane();
 		sl_panel.putConstraint(SpringLayout.NORTH, lblBiografia, 6, SpringLayout.SOUTH, txtpndescgeneral);
 		sl_panel.putConstraint(SpringLayout.EAST, txtpndescgeneral, 0, SpringLayout.EAST, lblDescgeneral);
@@ -240,18 +236,14 @@ public class ConsultaUsuario extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldLink, 348, SpringLayout.NORTH, panel);
 		textFieldLink.setColumns(10);
 		panel.add(textFieldLink);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -48, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, -10, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(buttonAceptar_1);
 		
-		Button buttonAceptar_1_1 = new Button("Aceptar");
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -87, SpringLayout.WEST, buttonAceptar_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, -6, SpringLayout.WEST, buttonAceptar_1_1);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1_1, -48, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1_1, -91, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1_1, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1_1, -10, SpringLayout.EAST, getContentPane());
-		getContentPane().add(buttonAceptar_1_1);
+		Button buttonAtras = new Button("Atras");
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAtras);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAtras, -48, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonAtras, -91, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAtras, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAtras, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(buttonAtras);
 		
 		comboBoxUsuario.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
@@ -330,7 +322,7 @@ public class ConsultaUsuario extends JInternalFrame {
 					textFieldNombre.setText(iusuario.MostrarEspectador(nick[0]).getNombre());
 					textFieldApellido.setText(iusuario.MostrarEspectador(nick[0]).getApellido());
 					textFieldEmail.setText(iusuario.MostrarEspectador(nick[0]).getEmail());
-					dateChooser.setDate(iusuario.MostrarArtista(nick[0]).getNacimiento());
+					dateChooser.setDate(iusuario.MostrarEspectador(nick[0]).getNacimiento());
 					txtpndescgeneral.setText("");
 					txtpnbiografia.setText("");
 					textFieldLink.setText("");
