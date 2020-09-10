@@ -1,14 +1,16 @@
 package GUI;
 
 import java.awt.EventQueue;
+import DataTypes.DtEspectaculo;
 
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
-
+import DataTypes.DtFuncion;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
+import DataTypes.DtEspectador;
 import Interfaces.IPlataforma;
-
+import Interfaces.IUsuario;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -21,6 +23,12 @@ import javax.swing.JCheckBox;
 import java.awt.Button;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.Map;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -56,18 +64,24 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, lblPlataforma, -377, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblPlataforma);
 		
+		
+		
+
 		JComboBox comboBoxPlataforma = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, -5, SpringLayout.NORTH, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -152, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPlataforma);
-		
-		//Cargamos las plataformas
+	
+
+		//1)--------------> Cargamos las plataformas
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
 		while(itr.hasNext())
 			{comboBoxPlataforma.addItem(itr.next().getNombre());}
+		
+
 		
 		
 		JLabel lblEspectaculos = new JLabel("Espectaculo: ");
@@ -89,13 +103,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, lblFuncion, -342, SpringLayout.EAST, panel);
 		panel.add(lblFuncion);
 		
-		JComboBox comboBoxEspectaculo = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 3, SpringLayout.SOUTH, comboBoxEspectaculo);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculo, 8, SpringLayout.SOUTH, comboBoxPlataforma);
-		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculo, 17, SpringLayout.EAST, lblEspectaculos);
-		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculo, -152, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 0, SpringLayout.WEST, comboBoxEspectaculo);
-		comboBoxEspectaculo.setEnabled(false);
+		
 		
 		JComboBox comboBoxFuncion = new JComboBox();
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxFuncion, 5, SpringLayout.NORTH, panel);
@@ -109,6 +117,12 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFuncion, 0, SpringLayout.WEST, comboBoxEspectador);
 		comboBoxEspectador.setEnabled(false);
 		panel.add(comboBoxEspectador);
+		IUsuario iusu = fabric.getIUsuario();
+		Set<DtEspectador> especs = iusu.listarEspectadores();
+		Iterator<DtEspectador> itesp = especs.iterator();
+		while(itesp.hasNext()) {
+			comboBoxEspectador.addItem(itesp.next().getNickname());
+		}
 		
 		JLabel lblEspectador = new JLabel("Espectador: ");
 		sl_panel.putConstraint(SpringLayout.EAST, lblEspectador, -342, SpringLayout.EAST, panel);
@@ -117,9 +131,6 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		panel.add(lblEspectador);
 		
 		JCheckBox chckbxCanjear = new JCheckBox("Canjear la Funcion?");
-		sl_panel.putConstraint(SpringLayout.WEST, chckbxCanjear, 10, SpringLayout.WEST, panel);
-		panel.add(chckbxCanjear);
-		
 		Panel panelInterior = new Panel();
 		sl_panel.putConstraint(SpringLayout.NORTH, panelInterior, 94, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panelInterior, -10, SpringLayout.SOUTH, panel);
@@ -130,6 +141,52 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		panel.add(panelInterior);
 		SpringLayout sl_panelInterior = new SpringLayout();
 		panelInterior.setLayout(sl_panelInterior);
+		panelInterior.setVisible(false);
+		
+		chckbxCanjear.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				panelInterior.setVisible(!panelInterior.isVisible());
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.WEST, chckbxCanjear, 10, SpringLayout.WEST, panel);
+		panel.add(chckbxCanjear);
+		
+		
+		
+		
+		// 3)-------------->Cuando se selecciona espectaculo listamos las funciones del el
+		JComboBox comboBoxEspectaculo = new JComboBox();
+		comboBoxEspectaculo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				Map<String,DtFuncion> listafunciones= iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedItem().toString());
+				for(Map.Entry<String,DtFuncion> entry : listafunciones.entrySet()) {
+					comboBoxFuncion.addItem(entry.getValue().getNombre());
+				}
+			}
+		});
+		
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 3, SpringLayout.SOUTH, comboBoxEspectaculo);
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculo, 8, SpringLayout.SOUTH, comboBoxPlataforma);
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculo, 17, SpringLayout.EAST, lblEspectaculos);
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculo, -152, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 0, SpringLayout.WEST, comboBoxEspectaculo);
+		comboBoxEspectaculo.setEnabled(false);
+		
+		
+		//  2)------>   cuando se selecciona una plataforma listo los espectaculos de esa plataforma 
+
+		comboBoxPlataforma.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				Set<DtEspectaculo> listaespectaculos = iplataforma.listarEspectaculosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());
+				Iterator<DtEspectaculo> ite = listaespectaculos.iterator();
+				while(ite.hasNext()) {
+					comboBoxEspectaculo.addItem(ite.next().getNombre());
+				}
+				
+			}
+		});
+		
+		
 		
 		JLabel lblCanjearPor = new JLabel("Canjear por:");
 		sl_panelInterior.putConstraint(SpringLayout.NORTH, lblCanjearPor, 10, SpringLayout.NORTH, panelInterior);

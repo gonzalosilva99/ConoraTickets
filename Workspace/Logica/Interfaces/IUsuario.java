@@ -16,4 +16,5 @@ public interface IUsuario {
 	public DtArtistaConsulta MostrarArtista(String nickname);
 	public DtEspectadorConsulta MostrarEspectador(String nickname);
 	public Set<DtArtista> listarArtistas();
+	public Set<DtEspectador> listarEspectadores();
 }
