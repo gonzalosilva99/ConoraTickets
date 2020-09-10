@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
+import DataTypes.DtArtista;
+import DataTypes.DtEspectador;
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
@@ -39,6 +41,24 @@ public class ControladorUsuario implements IUsuario{
 		
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		HashSet<DtUsuario> h = manusu.listarUsuarios();
+		return h;
+	}
+	
+	public Boolean EsArtista(String nickname) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Boolean h = manusu.EsArtista(nickname);
+		return h;
+	}
+	
+	public DtArtista MostrarArtista(String nickname) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		DtArtista h = manusu.MostrarArtista(nickname);
+		return h;
+	}
+	
+	public DtEspectador MostrarEspectador(String nickname) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		DtEspectador h = manusu.MostrarEspectador(nickname);
 		return h;
 	}
 }

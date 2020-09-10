@@ -124,5 +124,17 @@ public class ManejadorUsuario {
 			return ret;
 		}
 		
+		public Boolean EsArtista(String nickname) {
+			return Artistas.containsKey(nickname);
+		}
+		
+		public DtArtista MostrarArtista(String nickname) {
+			return Artistas.get(nickname).getDtArtista();
+		}
+		
+		public DtEspectador MostrarEspectador(String nickname) {
+			return Espectadores.get(nickname).getDtEspectador();
+		}
+		
 		
 }

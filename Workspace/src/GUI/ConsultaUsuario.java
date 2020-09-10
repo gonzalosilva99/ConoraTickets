@@ -18,6 +18,8 @@ import java.awt.Button;
 import Controladores.Fabrica;
 import Interfaces.IUsuario;
 import DataTypes.DtUsuario;
+import DataTypes.DtEspectador;
+import DataTypes.DtArtista;
 import java.util.Set;
 import java.util.Iterator;
 
@@ -84,10 +86,9 @@ public class ConsultaUsuario extends JInternalFrame {
 		getContentPane().add(lblUsuario);
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 16, SpringLayout.SOUTH, comboBoxUsuario);
-		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblUsuario);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -243, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 35, SpringLayout.SOUTH, comboBoxUsuario);
+		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, lblUsuario);
+		springLayout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
@@ -178,12 +179,25 @@ public class ConsultaUsuario extends JInternalFrame {
 		textFieldRol = new JTextField();
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldRol, 12, SpringLayout.SOUTH, comboBoxEspectaculos);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldRol, 0, SpringLayout.WEST, comboBoxEspectaculos);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldRol, -156, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldRol, -324, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldRol, 0, SpringLayout.EAST, comboBoxEspectaculos);
 		textFieldRol.setColumns(10);
 		panel.add(textFieldRol);
 		
+		JLabel lblDescgeneral = new JLabel("DescGeneral:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescgeneral, 11, SpringLayout.SOUTH, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescgeneral, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescgeneral, 34, SpringLayout.SOUTH, lblNacimiento);
+		panel.add(lblDescgeneral);
+		
+		JLabel lblDescgeneral_1 = new JLabel("DescGeneral:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescgeneral_1, 58, SpringLayout.SOUTH, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescgeneral_1, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescgeneral_1, -53, SpringLayout.SOUTH, panel);
+		panel.add(lblDescgeneral_1);
+		
 		Button buttonAceptar_1 = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAceptar_1);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -48, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, -10, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(buttonAceptar_1);
@@ -200,6 +214,23 @@ public class ConsultaUsuario extends JInternalFrame {
 		comboBoxUsuario.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
+				String usuario = comboBoxUsuario.getSelectedItem().toString();
+				String[] nick = usuario.split(" ");
+				if(iusuario.EsArtista(nick[0])) {
+					//DtArtista datos = iusuario.MostrarArtista(nick[0]);
+					textFieldNickname.setText(iusuario.MostrarArtista(nick[0]).getNickname());
+					textFieldNombre.setText(iusuario.MostrarArtista(nick[0]).getNombre());
+					textFieldApellido.setText(iusuario.MostrarArtista(nick[0]).getApellido());
+					textFieldEmail.setText(iusuario.MostrarArtista(nick[0]).getEmail());
+					//dateChooser.setCalendar(iusuario.MostrarArtista(nick[0]).getNacimiento());
+					//textPaneDescGeneral.setText(iusuario.MostrarArtista(nick[0]).getNickname());
+					//textPaneBiografia.setText(iusuario.MostrarArtista(nick[0]).getNickname());
+					//textFieldLink.setText(iusuario.MostrarArtista(nick[0]).getNickname());
+				}
+				else {
+					DtEspectador datos = iusuario.MostrarEspectador(nick[0]);
+				}
+				JOptionPane.showMessageDialog(null, nick[0]);
 			}
 		});
 

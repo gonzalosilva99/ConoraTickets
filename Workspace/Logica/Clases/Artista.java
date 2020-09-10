@@ -2,6 +2,7 @@ package Clases;
 
 import java.util.Date;
 import DataTypes.DtUsuario;
+import DataTypes.DtArtista;
 
 public class Artista extends Usuario{
 	private
@@ -34,6 +35,11 @@ public class Artista extends Usuario{
 		}
 		public DtUsuario getDtUsuario() {
 			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
+			return ret;
+		}
+		
+		public DtArtista getDtArtista() {
+			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL());
 			return ret;
 		}
 	
