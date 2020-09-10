@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
@@ -36,6 +37,7 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	private JTextField textFieldApellido;
 	private JTextField textFieldEmail;
 	private Boolean esArtista;
+	private JTextField textFieldRol;
 	/**
 	 * Launch the application.
 	 */
@@ -65,26 +67,24 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		Button buttonAceptar = new Button("Aceptar");
-		buttonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -44, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -104, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -16, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(buttonAceptar);
+		Button buttonModificar = new Button("Modificar");
+		
+		springLayout.putConstraint(SpringLayout.NORTH, buttonModificar, -44, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonModificar, -104, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonModificar, -16, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonModificar, -10, SpringLayout.SOUTH, getContentPane());
+		getContentPane().add(buttonModificar);
+		buttonModificar.setEnabled(false);
 		
 		Button buttonCancelar = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -44, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 311, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -12, SpringLayout.WEST, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -12, SpringLayout.WEST, buttonModificar);
 		getContentPane().add(buttonCancelar);
 		
 		JPanel panelExterior = new JPanel();
-		springLayout.putConstraint(SpringLayout.SOUTH, panelExterior, -6, SpringLayout.NORTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.SOUTH, panelExterior, -6, SpringLayout.NORTH, buttonModificar);
 		springLayout.putConstraint(SpringLayout.WEST, panelExterior, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panelExterior, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panelExterior);
@@ -98,17 +98,15 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		panelExterior.setLayout(sl_panelExterior);
 		
 		JLabel lblNickname = new JLabel("Nickname:");
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNickname, 10, SpringLayout.NORTH, panelExterior);
 		sl_panelExterior.putConstraint(SpringLayout.WEST, lblNickname, 10, SpringLayout.WEST, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblNickname, 40, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNickname, -401, SpringLayout.EAST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblNickname, 35, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNickname, -412, SpringLayout.EAST, panelExterior);
 		panelExterior.add(lblNickname);
 		
 		JLabel lblNombre = new JLabel("E-Mail:");
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNombre, 6, SpringLayout.SOUTH, lblNickname);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNombre, 23, SpringLayout.SOUTH, lblNickname);
 		sl_panelExterior.putConstraint(SpringLayout.WEST, lblNombre, 0, SpringLayout.WEST, lblNickname);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblNombre, 36, SpringLayout.SOUTH, lblNickname);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNombre, 84, SpringLayout.WEST, lblNickname);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNombre, -412, SpringLayout.EAST, panelExterior);
 		panelExterior.add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Nombre:");
@@ -117,43 +115,42 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		panelExterior.add(lblApellido);
 		
 		JLabel lblEmail = new JLabel("Apellido:");
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblApellido, -6, SpringLayout.NORTH, lblEmail);
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblEmail, 154, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, lblEmail, 0, SpringLayout.WEST, lblNickname);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblApellido, -17, SpringLayout.NORTH, lblEmail);
 		sl_panelExterior.putConstraint(SpringLayout.EAST, lblEmail, 0, SpringLayout.EAST, lblNickname);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblEmail, 160, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, lblEmail, 10, SpringLayout.WEST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblEmail, 179, SpringLayout.NORTH, panelExterior);
 		panelExterior.add(lblEmail);
 		
 		JLabel lblNacimiento = new JLabel("Nacimiento:");
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNacimiento, 12, SpringLayout.SOUTH, lblNombre);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, lblNacimiento, 10, SpringLayout.WEST, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblNacimiento, -15, SpringLayout.NORTH, lblApellido);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNacimiento, 0, SpringLayout.EAST, lblNickname);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNickname, -2, SpringLayout.NORTH, lblNacimiento);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNacimiento, 18, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, lblNacimiento, 255, SpringLayout.WEST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNacimiento, 339, SpringLayout.WEST, panelExterior);
 		panelExterior.add(lblNacimiento);
 		
 		Panel panelInterior = new Panel();
-		panelInterior.setVisible(false);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblEmail, -6, SpringLayout.NORTH, panelInterior);
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, panelInterior, 190, SpringLayout.NORTH, panelExterior);
-		panelInterior.setEnabled(false);
 		sl_panelExterior.putConstraint(SpringLayout.WEST, panelInterior, 0, SpringLayout.WEST, panelExterior);
 		panelExterior.add(panelInterior);
+		panelInterior.setVisible(false);
 		
 		JTextPane textPaneBiografia = new JTextPane();
-		textPaneBiografia.setVisible(false);
+		
 		JTextPane textPaneDescGeneral = new JTextPane();
-		textPaneDescGeneral.setVisible(false);
+		
 		JLabel lblDescGeneral = new JLabel("Desc. General:");
-		lblDescGeneral.setVisible(false);
+		
 		
 		
 		JLabel lblBiografia = new JLabel("Biografia:");
-		lblBiografia.setVisible(false);
+		
 		
 		JLabel lblLink = new JLabel("Link:");
-		lblLink.setVisible(false);
+		
 		textFieldLink = new JTextField();
 		textFieldLink.setColumns(10);
-		textFieldLink.setVisible(false);
+
 		GroupLayout gl_panelInterior = new GroupLayout(panelInterior);
 		gl_panelInterior.setHorizontalGroup(
 			gl_panelInterior.createParallelGroup(Alignment.LEADING)
@@ -192,64 +189,54 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		panelInterior.setLayout(gl_panelInterior);
 		
 		textFieldNickname = new JTextField();
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNickname, 6, SpringLayout.EAST, lblNickname);
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldNickname, 16, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNickname, 117, SpringLayout.WEST, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldNickname, 40, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldNickname, -218, SpringLayout.EAST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldNickname, -21, SpringLayout.WEST, lblNacimiento);
 		panelExterior.add(textFieldNickname);
 		textFieldNickname.setColumns(10);
 		textFieldNickname.setEditable(false);
 		
 		textFieldNombre = new JTextField();
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldNombre, -2, SpringLayout.NORTH, lblApellido);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNombre, 23, SpringLayout.EAST, lblApellido);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldNombre, 22, SpringLayout.NORTH, lblApellido);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldNombre, -218, SpringLayout.EAST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNombre, 6, SpringLayout.EAST, lblApellido);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldNombre, 0, SpringLayout.EAST, textFieldNickname);
 		textFieldNombre.setColumns(10);
 		panelExterior.add(textFieldNombre);
 		
 		textFieldApellido = new JTextField();
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldApellido, 6, SpringLayout.NORTH, lblEmail);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldApellido, 23, SpringLayout.EAST, lblEmail);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldApellido, 30, SpringLayout.NORTH, lblEmail);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldApellido, -218, SpringLayout.EAST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldApellido, 6, SpringLayout.EAST, lblEmail);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldApellido, 182, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldApellido, 0, SpringLayout.EAST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldApellido, 158, SpringLayout.NORTH, panelExterior);
 		textFieldApellido.setColumns(10);
 		panelExterior.add(textFieldApellido);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		sl_panelExterior.putConstraint(SpringLayout.WEST, dateChooser, 23, SpringLayout.EAST, lblNacimiento);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, dateChooser, -13, SpringLayout.NORTH, textFieldNombre);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, dateChooser, -218, SpringLayout.EAST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, dateChooser, 16, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, dateChooser, 344, SpringLayout.WEST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, dateChooser, -150, SpringLayout.NORTH, panelInterior);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, dateChooser, 489, SpringLayout.WEST, panelExterior);
 		panelExterior.add(dateChooser);
 		getContentPane().add(lblUsuario);
 		
-		JComboBox comboBoxUsuario = new JComboBox();
 		
 		
 		//Cargo la lista de los usuarios
-		Set<DtUsuario> listausuarios = iusu.listarUsuarios();
-		Iterator<DtUsuario> itru = listausuarios.iterator();
-		while(itru.hasNext())
-			{
-			DtUsuario aux = itru.next();
+		Set<DtUsuario> listaUsuarios = iusu.listarUsuarios();		
+		JComboBox comboBoxUsuario = new JComboBox();
+		comboBoxUsuario.addItem("");
+		Iterator<DtUsuario> itr = listaUsuarios.iterator();
+		while(itr.hasNext())
+			{DtUsuario aux = itr.next();
 			 String nick = aux.getNickname();
 			 String nom = aux.getNombre();
 			 String ap = aux.getApellido();
 			 String op = nick+" "+nom+" "+ap;
 			 comboBoxUsuario.addItem(op);
-		}
-		
-		
-		
-		comboBoxUsuario.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				String nicknameselec = comboBoxUsuario.getSelectedItem().toString();
-				String[] nick = nicknameselec.split(" ");
-				if(iusu.EsArtista(nick[0])) {
-					panelInterior.setVisible(true);
-				}
 			}
-		});
+		
+		
+		
+		
 		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxUsuario, 5, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxUsuario, 6, SpringLayout.EAST, lblUsuario);
@@ -257,14 +244,146 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	
 		
 		textFieldEmail = new JTextField();
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, dateChooser, 18, SpringLayout.SOUTH, textFieldEmail);
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldEmail, 52, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldEmail, 23, SpringLayout.EAST, lblNombre);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldEmail, 76, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldEmail, -218, SpringLayout.EAST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldEmail, 17, SpringLayout.SOUTH, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldEmail, 6, SpringLayout.EAST, lblNombre);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldEmail, 0, SpringLayout.EAST, textFieldNickname);
 		textFieldEmail.setColumns(10);
 		panelExterior.add(textFieldEmail);
 		getContentPane().add(comboBoxUsuario);
-		textFieldNickname.setEditable(false);
+		textFieldEmail.setEditable(false);
+		
+		JLabel lblRol = new JLabel("Rol:");
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblApellido, 14, SpringLayout.SOUTH, lblRol);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, lblRol, 0, SpringLayout.WEST, lblNickname);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, lblRol, 0, SpringLayout.EAST, lblNickname);
+		panelExterior.add(lblRol);
+		lblRol.setVisible(false);
+		
+		textFieldRol = new JTextField();
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblRol, 0, SpringLayout.NORTH, textFieldRol);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblRol, 19, SpringLayout.NORTH, textFieldRol);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldNombre, 13, SpringLayout.SOUTH, textFieldRol);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldNombre, 34, SpringLayout.SOUTH, textFieldRol);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldRol, 20, SpringLayout.SOUTH, textFieldEmail);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldRol, 0, SpringLayout.EAST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldRol, 0, SpringLayout.WEST, textFieldNickname);
+		textFieldRol.setEditable(false);
+		textFieldRol.setColumns(10);
+		panelExterior.add(textFieldRol);
+		textFieldRol.setVisible(false);
+		textFieldRol.setVisible(false);
+		textFieldNickname.setVisible(false);
+		textFieldNombre.setVisible(false);
+		textFieldApellido.setVisible(false);
+		textFieldEmail.setVisible(false);
+		dateChooser.setVisible(false);
+		dateChooser.setVisible(false);
+		lblNickname.setVisible(false);
+		lblNombre.setVisible(false);
+		lblApellido.setVisible(false);
+		lblEmail.setVisible(false);
+		lblNacimiento.setVisible(false);
+		
+		
+		
+		comboBoxUsuario.addItemListener(new ItemListener() {
+
+			public void itemStateChanged(ItemEvent arg0) {
+				
+				String nicknameselec = comboBoxUsuario.getSelectedItem().toString();
+				String[] nick = nicknameselec.split(" ");
+				if(iusu.EsArtista(nick[0])) {
+					panelInterior.setVisible(true);
+					textFieldNickname.setText(iusu.MostrarArtista(nick[0]).getNickname());
+					textFieldNombre.setText(iusu.MostrarArtista(nick[0]).getNombre());
+					textFieldApellido.setText(iusu.MostrarArtista(nick[0]).getApellido());
+					textFieldEmail.setText(iusu.MostrarArtista(nick[0]).getEmail());
+					dateChooser.setDate(iusu.MostrarArtista(nick[0]).getNacimiento());
+					textPaneDescGeneral.setText(iusu.MostrarArtista(nick[0]).getDescgeneral());
+					textPaneBiografia.setText(iusu.MostrarArtista(nick[0]).getBiografia());
+					textFieldLink.setText(iusu.MostrarArtista(nick[0]).getLink());
+					lblRol.setVisible(true);
+					textFieldRol.setVisible(true);
+					textFieldRol.setText("Artista");
+					buttonModificar.setEnabled(true);
+					textFieldNickname.setVisible(true);
+					textFieldNombre.setVisible(true);
+					textFieldApellido.setVisible(true);
+					textFieldEmail.setVisible(true);
+					dateChooser.setVisible(true);
+					lblNickname.setVisible(true);
+					lblNombre.setVisible(true);
+					lblApellido.setVisible(true);
+					lblEmail.setVisible(true);
+					lblNacimiento.setVisible(true);
+					
+				}
+				else if(comboBoxUsuario.getSelectedItem().toString().equals("")) {
+					panelInterior.setVisible(false);
+					textFieldNickname.setText("");
+					textFieldNombre.setText("");
+					textFieldApellido.setText("");
+					textFieldEmail.setText("");
+					dateChooser.setDate(null);
+					textPaneDescGeneral.setText("");
+					textPaneBiografia.setText("");
+					textFieldLink.setText("");
+					lblRol.setVisible(false);
+					textFieldRol.setVisible(false);
+					textFieldNickname.setVisible(false);
+					textFieldNombre.setVisible(false);
+					textFieldApellido.setVisible(false);
+					textFieldEmail.setVisible(false);
+					dateChooser.setVisible(false);
+					dateChooser.setVisible(false);
+					lblNickname.setVisible(false);
+					lblNombre.setVisible(false);
+					lblApellido.setVisible(false);
+					lblEmail.setVisible(false);
+					lblNacimiento.setVisible(false);
+				}
+				else {
+					panelInterior.setVisible(false);
+					textFieldNickname.setText(iusu.MostrarEspectador(nick[0]).getNickname());
+					textFieldNombre.setText(iusu.MostrarEspectador(nick[0]).getNombre());
+					textFieldApellido.setText(iusu.MostrarEspectador(nick[0]).getApellido());
+					textFieldEmail.setText(iusu.MostrarEspectador(nick[0]).getEmail());
+					dateChooser.setDate(iusu.MostrarEspectador(nick[0]).getNacimiento());
+					textPaneDescGeneral.setText("");
+					textPaneBiografia.setText("");
+					textFieldLink.setText("");
+					lblRol.setVisible(true);
+					textFieldRol.setVisible(true);
+					textFieldRol.setText("Espectador");
+					buttonModificar.setEnabled(true);
+					textFieldNickname.setVisible(true);
+					textFieldNombre.setVisible(true);
+					textFieldApellido.setVisible(true);
+					textFieldEmail.setVisible(true);
+					dateChooser.setVisible(true);
+					dateChooser.setVisible(true);
+					lblNickname.setVisible(true);
+					lblNombre.setVisible(true);
+					lblApellido.setVisible(true);
+					lblEmail.setVisible(true);
+					lblNacimiento.setVisible(true);
+				}
+			}
+		});
+		
+		
+		buttonModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textFieldRol.getText().equals("Artista")) {
+					iusu.ModificarArtista(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), dateChooser.getDate(), textPaneDescGeneral.getText(), textPaneBiografia.getText(), textFieldLink.getText());
+				}
+				else if(textFieldRol.getText().equals("Espectador")) {
+					iusu.ModificarEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), dateChooser.getDate());
+				}
+				JOptionPane.showMessageDialog(null, "Usuario modificado con exito");
+			}
+		});
 	}
+	
+	
 }

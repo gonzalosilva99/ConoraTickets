@@ -142,5 +142,22 @@ public class ManejadorUsuario {
 			return Espectadores.get(nickname).getDtEspectadorConsulta();
 		}
 		
+		public void ModificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+			Artista mod = Artistas.get(Nickname);
+			mod.setNombre(Nombre);
+			mod.setApellido(Apellido);
+			mod.setNacimiento(Nacimiento);
+			mod.setDescripcionGeneral(Descripcion);
+			mod.setBiografia(Biografia);
+			mod.setURL(Link);
+		}
+		
+		public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento) {
+			Espectador mod = Espectadores.get(Nickname);
+			mod.setNombre(Nombre);
+			mod.setApellido(Apellido);
+			mod.setNacimiento(Nacimiento);
+		}
+		
 		
 }
