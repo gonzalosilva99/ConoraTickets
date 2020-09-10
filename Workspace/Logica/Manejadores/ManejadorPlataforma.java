@@ -87,7 +87,6 @@ public class ManejadorPlataforma {
 		public Set<DtPlataforma> listarPlataformas() {
 			Set<DtPlataforma> ret = new HashSet<DtPlataforma>();		
 			for (Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
-				JOptionPane.showMessageDialog(null, "ok");
 	            DtPlataforma nueva = entry.getValue().getDtPlataforma();
 	            ret.add(nueva);            
 			}
@@ -100,7 +99,7 @@ public class ManejadorPlataforma {
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
 			Plataforma plat = Plataformas.get(nomPlat);
 			plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
-		}
+		} 
 }
 		
 

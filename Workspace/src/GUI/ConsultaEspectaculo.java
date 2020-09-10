@@ -269,19 +269,17 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 		comboBoxPlataforma.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
+				comboBoxEspectaculos.removeAllItems();
 				comboBoxEspectaculos.setVisible(true);	
-				lblEspectaculos.setVisible(true);
-				
-				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());
-				
+				lblEspectaculos.setVisible(true);	
+				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());	
 				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
 				while(itre.hasNext())
 				{
 					String nombreEspectaculo = itre.next().getNombre();
 					comboBoxEspectaculos.addItem(nombreEspectaculo);
-					System.out.print(nombreEspectaculo);
 				}
-				
+				 
 				
 			}
 		});

@@ -29,7 +29,7 @@ public class Espectaculo {
 			Nombre = nombre;
 			Registro = registro;
 			Costo = costo;
-			URL = uRL;
+			URL = uRL; 
 			CantMax = cantMax;
 			CantMin = cantMin;
 			Duracion = duracion;

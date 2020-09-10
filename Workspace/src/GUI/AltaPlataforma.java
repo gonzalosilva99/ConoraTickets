@@ -35,7 +35,7 @@ public class AltaPlataforma extends JInternalFrame {
 			}
 		});
 	}
-
+ 
 	/**
 	 * Create the frame.
 	 */
