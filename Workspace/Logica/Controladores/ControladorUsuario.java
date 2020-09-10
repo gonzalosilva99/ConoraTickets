@@ -11,10 +11,7 @@ import javax.swing.JOptionPane;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
-<<<<<<< HEAD
 import DataTypes.DtEspectador;
-=======
->>>>>>> 460303d0a8c13d6eba4f2a8e551fb321567b957d
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;

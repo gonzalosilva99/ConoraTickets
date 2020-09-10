@@ -22,6 +22,7 @@ import DataTypes.DtEspectador;
 import DataTypes.DtArtista;
 import java.util.Set;
 import java.util.Iterator;
+import javax.swing.JTextPane;
 
 public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldNickname;
@@ -29,6 +30,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldApellido;
 	private JTextField textFieldEmail;
 	private JTextField textFieldRol;
+	private JTextField textFieldLink;
 
 	/**
 	 * Launch the application.
@@ -61,6 +63,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		Set<DtUsuario> listaUsuarios = iusuario.listarUsuarios();
 		
 		JComboBox comboBoxUsuario = new JComboBox();
+		comboBoxUsuario.addItem("");
 		Iterator<DtUsuario> itr = listaUsuarios.iterator();
 		while(itr.hasNext())
 			{DtUsuario aux = itr.next();
@@ -70,6 +73,7 @@ public class ConsultaUsuario extends JInternalFrame {
 			 String op = nick+" "+nom+" "+ap;
 			 comboBoxUsuario.addItem(op);
 			}
+		
 
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxUsuario, -115, SpringLayout.EAST, getContentPane());
 		
@@ -95,46 +99,46 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.setVisible(false);
 		
 		textFieldNickname = new JTextField();
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldNickname, 95, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNickname, 7, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNickname, 9, SpringLayout.NORTH, panel);
 		textFieldNickname.setColumns(10);
 		panel.add(textFieldNickname);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		sl_panel.putConstraint(SpringLayout.WEST, lblNombre, 0, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNombre, 84, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNombre, 99, SpringLayout.WEST, panel);
 		panel.add(lblNombre);
 		
 		textFieldNombre = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNombre, 2, SpringLayout.NORTH, textFieldNombre);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 14, SpringLayout.SOUTH, textFieldNickname);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldNombre, 0, SpringLayout.EAST, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 12, SpringLayout.SOUTH, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldNombre, 6, SpringLayout.EAST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldNombre, 120, SpringLayout.EAST, lblNombre);
 		textFieldNombre.setColumns(10);
 		panel.add(textFieldNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblApellido, 21, SpringLayout.SOUTH, lblNombre);
 		sl_panel.putConstraint(SpringLayout.WEST, lblApellido, 0, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblApellido, 99, SpringLayout.WEST, panel);
 		panel.add(lblApellido);
 		
 		textFieldApellido = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, lblApellido, 4, SpringLayout.NORTH, textFieldApellido);
-		sl_panel.putConstraint(SpringLayout.EAST, lblApellido, -11, SpringLayout.WEST, textFieldApellido);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldApellido, 15, SpringLayout.SOUTH, textFieldNombre);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldApellido, 0, SpringLayout.EAST, textFieldNickname);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldApellido, 95, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldApellido, 17, SpringLayout.SOUTH, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldApellido, 6, SpringLayout.EAST, lblApellido);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldApellido, 120, SpringLayout.EAST, lblApellido);
 		textFieldApellido.setColumns(10);
 		panel.add(textFieldApellido);
 		
 		JLabel lblEmail = new JLabel("Email:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEmail, 20, SpringLayout.SOUTH, lblApellido);
 		sl_panel.putConstraint(SpringLayout.WEST, lblEmail, 0, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblEmail, 99, SpringLayout.WEST, panel);
 		panel.add(lblEmail);
 		
 		textFieldEmail = new JTextField();
-		sl_panel.putConstraint(SpringLayout.EAST, lblEmail, -11, SpringLayout.WEST, textFieldEmail);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEmail, 110, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldApellido, -13, SpringLayout.NORTH, textFieldEmail);
-		sl_panel.putConstraint(SpringLayout.NORTH, lblEmail, 3, SpringLayout.NORTH, textFieldEmail);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldApellido, -17, SpringLayout.NORTH, textFieldEmail);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldEmail, 0, SpringLayout.EAST, textFieldNickname);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldEmail, 0, SpringLayout.WEST, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEmail, 112, SpringLayout.NORTH, panel);
 		textFieldEmail.setColumns(10);
 		panel.add(textFieldEmail);
 		
@@ -147,57 +151,92 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.add(dateChooser);
 		
 		JLabel lblNacimiento = new JLabel("Nacimiento:");
-		sl_panel.putConstraint(SpringLayout.WEST, lblNacimiento, 0, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNacimiento, 0, SpringLayout.SOUTH, dateChooser);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNacimiento, 134, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblEmail, -3, SpringLayout.NORTH, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNacimiento, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNacimiento, 0, SpringLayout.EAST, lblNombre);
 		panel.add(lblNacimiento);
 		
 		JLabel lblNickname = new JLabel("Nickname:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNickname, 3, SpringLayout.NORTH, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldNickname, 6, SpringLayout.EAST, lblNickname);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldNickname, 120, SpringLayout.EAST, lblNickname);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNombre, 17, SpringLayout.SOUTH, lblNickname);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNickname, 99, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNickname, 10, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNickname, 0, SpringLayout.WEST, panel);
-		lblNickname.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNickname);
 		
 		JLabel lblEspectaculosRegistrados = new JLabel("Espectaculos:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectaculosRegistrados, 2, SpringLayout.NORTH, textFieldNickname);
-		sl_panel.putConstraint(SpringLayout.WEST, lblEspectaculosRegistrados, 24, SpringLayout.EAST, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEspectaculosRegistrados, 239, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblEspectaculosRegistrados, 343, SpringLayout.WEST, panel);
 		panel.add(lblEspectaculosRegistrados);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
-		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 343, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, -10, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblEspectaculosRegistrados, -6, SpringLayout.WEST, comboBoxEspectaculos);
-		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, -3, SpringLayout.NORTH, textFieldNickname);
-		sl_panel.putConstraint(SpringLayout.SOUTH, comboBoxEspectaculos, 21, SpringLayout.NORTH, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 0, SpringLayout.EAST, lblEspectaculosRegistrados);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 142, SpringLayout.EAST, lblEspectaculosRegistrados);
 		panel.add(comboBoxEspectaculos);
 		
 		JLabel lblRol = new JLabel("Rol:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblRol, 19, SpringLayout.SOUTH, lblEspectaculosRegistrados);
-		sl_panel.putConstraint(SpringLayout.WEST, lblRol, 0, SpringLayout.WEST, lblEspectaculosRegistrados);
-		lblRol.setHorizontalAlignment(SwingConstants.CENTER);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectaculosRegistrados, 9, SpringLayout.SOUTH, lblRol);
+		sl_panel.putConstraint(SpringLayout.WEST, lblRol, 20, SpringLayout.EAST, textFieldNickname);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblRol, 9, SpringLayout.NORTH, panel);
 		panel.add(lblRol);
 		
 		textFieldRol = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldRol, 12, SpringLayout.SOUTH, comboBoxEspectaculos);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldRol, 0, SpringLayout.WEST, comboBoxEspectaculos);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldRol, -324, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldRol, 0, SpringLayout.EAST, comboBoxEspectaculos);
+		sl_panel.putConstraint(SpringLayout.EAST, lblRol, -6, SpringLayout.WEST, textFieldRol);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 9, SpringLayout.SOUTH, textFieldRol);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldRol, 485, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldRol, 343, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldRol, 28, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldRol, 5, SpringLayout.NORTH, panel);
 		textFieldRol.setColumns(10);
 		panel.add(textFieldRol);
 		
 		JLabel lblDescgeneral = new JLabel("DescGeneral:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDescgeneral, 11, SpringLayout.SOUTH, lblNacimiento);
-		sl_panel.putConstraint(SpringLayout.WEST, lblDescgeneral, 0, SpringLayout.WEST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescgeneral, 34, SpringLayout.SOUTH, lblNacimiento);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNacimiento, -6, SpringLayout.NORTH, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescgeneral, 0, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDescgeneral, -53, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblEspectaculosRegistrados, -116, SpringLayout.NORTH, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescgeneral, 192, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescgeneral, 173, SpringLayout.NORTH, panel);
 		panel.add(lblDescgeneral);
 		
-		JLabel lblDescgeneral_1 = new JLabel("DescGeneral:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDescgeneral_1, 58, SpringLayout.SOUTH, lblDescgeneral);
-		sl_panel.putConstraint(SpringLayout.WEST, lblDescgeneral_1, 0, SpringLayout.WEST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescgeneral_1, -53, SpringLayout.SOUTH, panel);
-		panel.add(lblDescgeneral_1);
+		JLabel lblBiografia = new JLabel("Biografia:");
+		sl_panel.putConstraint(SpringLayout.WEST, lblBiografia, 0, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblBiografia, -53, SpringLayout.EAST, panel);
+		panel.add(lblBiografia);
 		
 		Button buttonAceptar_1 = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAceptar_1);
+		
+		JTextPane txtpndescgeneral = new JTextPane();
+		sl_panel.putConstraint(SpringLayout.NORTH, lblBiografia, 6, SpringLayout.SOUTH, txtpndescgeneral);
+		sl_panel.putConstraint(SpringLayout.EAST, txtpndescgeneral, 0, SpringLayout.EAST, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.NORTH, txtpndescgeneral, 198, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, txtpndescgeneral, 10, SpringLayout.WEST, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.SOUTH, txtpndescgeneral, 248, SpringLayout.NORTH, panel);
+		panel.add(txtpndescgeneral);
+		
+		JTextPane txtpnbiografia = new JTextPane();
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblBiografia, -6, SpringLayout.NORTH, txtpnbiografia);
+		sl_panel.putConstraint(SpringLayout.EAST, txtpnbiografia, 0, SpringLayout.EAST, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.WEST, txtpnbiografia, 10, SpringLayout.WEST, lblBiografia);
+		sl_panel.putConstraint(SpringLayout.NORTH, txtpnbiografia, 284, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, txtpnbiografia, 334, SpringLayout.NORTH, panel);
+		panel.add(txtpnbiografia);
+		
+		JLabel lblLink = new JLabel("Link:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblLink, 350, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblLink, 0, SpringLayout.WEST, panel);
+		panel.add(lblLink);
+		
+		textFieldLink = new JTextField();
+		sl_panel.putConstraint(SpringLayout.EAST, lblLink, -11, SpringLayout.WEST, textFieldLink);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldLink, 0, SpringLayout.EAST, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldLink, -347, SpringLayout.EAST, lblDescgeneral);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldLink, 348, SpringLayout.NORTH, panel);
+		textFieldLink.setColumns(10);
+		panel.add(textFieldLink);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, -48, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, -10, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(buttonAceptar_1);
@@ -217,18 +256,45 @@ public class ConsultaUsuario extends JInternalFrame {
 				String usuario = comboBoxUsuario.getSelectedItem().toString();
 				String[] nick = usuario.split(" ");
 				if(iusuario.EsArtista(nick[0])) {
-					//DtArtista datos = iusuario.MostrarArtista(nick[0]);
+					panel.setVisible(true);
+					comboBoxEspectaculos.setVisible(false);
+					lblEspectaculosRegistrados.setVisible(false);
+					txtpndescgeneral.setVisible(true);
+					txtpnbiografia.setVisible(true);
+					textFieldLink.setVisible(true);
+					lblDescgeneral.setVisible(true);
+					lblBiografia.setVisible(true);
+					lblLink.setVisible(true);
 					textFieldNickname.setText(iusuario.MostrarArtista(nick[0]).getNickname());
 					textFieldNombre.setText(iusuario.MostrarArtista(nick[0]).getNombre());
 					textFieldApellido.setText(iusuario.MostrarArtista(nick[0]).getApellido());
 					textFieldEmail.setText(iusuario.MostrarArtista(nick[0]).getEmail());
 					//dateChooser.setCalendar(iusuario.MostrarArtista(nick[0]).getNacimiento());
-					//textPaneDescGeneral.setText(iusuario.MostrarArtista(nick[0]).getNickname());
-					//textPaneBiografia.setText(iusuario.MostrarArtista(nick[0]).getNickname());
-					//textFieldLink.setText(iusuario.MostrarArtista(nick[0]).getNickname());
+					txtpndescgeneral.setText(iusuario.MostrarArtista(nick[0]).getDescgeneral());
+					txtpnbiografia.setText(iusuario.MostrarArtista(nick[0]).getBiografia());
+					textFieldLink.setText(iusuario.MostrarArtista(nick[0]).getLink());
+				}
+				else if(comboBoxUsuario.getSelectedItem().toString().equals("")){
+					panel.setVisible(false);
 				}
 				else {
-					DtEspectador datos = iusuario.MostrarEspectador(nick[0]);
+					panel.setVisible(true);
+					comboBoxEspectaculos.setVisible(true);
+					lblEspectaculosRegistrados.setVisible(true);
+					txtpndescgeneral.setVisible(false);
+					txtpnbiografia.setVisible(false);
+					textFieldLink.setVisible(false);
+					lblDescgeneral.setVisible(false);
+					lblBiografia.setVisible(false);
+					lblLink.setVisible(false);
+					textFieldNickname.setText(iusuario.MostrarEspectador(nick[0]).getNickname());
+					textFieldNombre.setText(iusuario.MostrarEspectador(nick[0]).getNombre());
+					textFieldApellido.setText(iusuario.MostrarEspectador(nick[0]).getApellido());
+					textFieldEmail.setText(iusuario.MostrarEspectador(nick[0]).getEmail());
+					//dateChooser.setCalendar(iusuario.MostrarArtista(nick[0]).getNacimiento());
+					txtpndescgeneral.setText("");
+					txtpnbiografia.setText("");
+					textFieldLink.setText("");
 				}
 				JOptionPane.showMessageDialog(null, nick[0]);
 			}
