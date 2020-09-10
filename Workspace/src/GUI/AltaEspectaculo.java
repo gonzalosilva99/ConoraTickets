@@ -288,3 +288,6 @@ public class AltaEspectaculo extends JInternalFrame {
 
 	}
 }
+
+
+

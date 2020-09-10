@@ -24,4 +24,6 @@ public interface IPlataforma {
 		Set<DtPlataforma> listarPlataformas();
 		Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);
 
+		
+		
 }
