@@ -30,6 +30,8 @@ import java.awt.event.ActionEvent;
 import Controladores.Fabrica;
 import Interfaces.IPlataforma;
 import DataTypes.DtPlataforma;
+import DataTypes.DtArtista;
+import com.toedter.calendar.JDateChooser;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -38,7 +40,6 @@ public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldEspectMax;
 	private JTextField textFieldURL;
 	private JTextField textFieldCosto;
-	private JTextField textFieldFecha;
 	private JTextField textFieldDuracion;
 	/**
 	 * Launch the application.
@@ -82,6 +83,9 @@ public class AltaEspectaculo extends JInternalFrame {
 		while(itr.hasNext())
 			{comboBoxPlataforma.addItem(itr.next().getNombre());}
 		
+		
+
+		
 		JLabel lblPlataforma = new JLabel("Plataforma:");
 		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 21, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, 30, SpringLayout.NORTH, getContentPane());
@@ -123,6 +127,17 @@ public class AltaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 0, SpringLayout.WEST, comboBoxArtista);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxPlataforma, -18, SpringLayout.NORTH, comboBoxArtista);
 		getContentPane().add(comboBoxArtista);
+		IUsuario iusuario= fabric.getIUsuario();
+		Set<DtArtista> listaArtistas = iusuario.listarArtistas();
+		Iterator<DtArtista> itra = listaArtistas.iterator();
+		while(itra.hasNext())
+			{DtArtista aux = itra.next();
+			String nick = aux.getNickname();
+			 String nom = aux.getNombre();
+			 String ap = aux.getApellido();
+			 String op = nick+" "+nom+" "+ap;
+			 comboBoxArtista.addItem(op);
+			}
 		
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 19, SpringLayout.SOUTH, panel);
@@ -224,14 +239,6 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 10, SpringLayout.WEST, panel);
 		panel.add(lblFecha);
 		
-		textFieldFecha = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldFecha, 17, SpringLayout.SOUTH, textFieldCosto);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldFecha, 162, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldFecha, 36, SpringLayout.SOUTH, textFieldCosto);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldFecha, -141, SpringLayout.EAST, panel);
-		panel.add(textFieldFecha);
-		textFieldFecha.setColumns(10);
-		
 		JLabel lblDuracion = new JLabel("Duraci\u00F3n");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblDuracion, 15, SpringLayout.SOUTH, lblFecha);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblDuracion, 30, SpringLayout.SOUTH, lblFecha);
@@ -240,14 +247,36 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(lblDuracion);
 		
 		textFieldDuracion = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 14, SpringLayout.SOUTH, textFieldFecha);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 50, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 16, SpringLayout.EAST, lblDuracion);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, 33, SpringLayout.SOUTH, textFieldFecha);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, -5, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
 		
+		JDateChooser dateChooser = new JDateChooser();
+		sl_panel.putConstraint(SpringLayout.NORTH, dateChooser, 15, SpringLayout.SOUTH, textFieldCosto);
+		sl_panel.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 34, SpringLayout.SOUTH, textFieldCosto);
+		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
+		panel.add(dateChooser);
 		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					IPlataforma iplataform = fabric.getIPlataforma();
+					iplataform.altaEspectaculo( comboBoxArtista.getSelectedItem().toString() , textFieldNombre.getText(), textFieldDescripcion.getText(),
+							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),
+							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate()); 
+					
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "ERROR");
+
+				}
+			}
+		});
+
 		
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

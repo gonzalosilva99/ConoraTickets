@@ -4,10 +4,12 @@ import Clases.Espectador;
 import Clases.Artista;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
+import DataTypes.DtArtistaConsulta;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtRegistro;
 import DataTypes.DtEspectador;
+import DataTypes.DtEspectadorConsulta;
 
 
 
@@ -132,12 +134,12 @@ public class ManejadorUsuario {
 			return Artistas.containsKey(nickname);
 		}
 		
-		public DtArtista MostrarArtista(String nickname) {
-			return Artistas.get(nickname).getDtArtista();
+		public DtArtistaConsulta MostrarArtista(String nickname) {
+			return Artistas.get(nickname).getDtArtistaConsulta();
 		}
 		
-		public DtEspectador MostrarEspectador(String nickname) {
-			return Espectadores.get(nickname).getDtEspectador();
+		public DtEspectadorConsulta MostrarEspectador(String nickname) {
+			return Espectadores.get(nickname).getDtEspectadorConsulta();
 		}
 		
 		

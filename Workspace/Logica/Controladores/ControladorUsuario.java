@@ -12,6 +12,8 @@ import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
 import DataTypes.DtEspectador;
+import DataTypes.DtArtistaConsulta;
+import DataTypes.DtEspectadorConsulta;
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
@@ -54,15 +56,15 @@ public class ControladorUsuario implements IUsuario{
 		return h;
 	}
 	
-	public DtArtista MostrarArtista(String nickname) {
+	public DtArtistaConsulta MostrarArtista(String nickname) {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
-		DtArtista h = manusu.MostrarArtista(nickname);
+		DtArtistaConsulta h = manusu.MostrarArtista(nickname);
 		return h;
 	}
 	
-	public DtEspectador MostrarEspectador(String nickname) {
+	public DtEspectadorConsulta MostrarEspectador(String nickname) {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
-		DtEspectador h = manusu.MostrarEspectador(nickname);
+		DtEspectadorConsulta h = manusu.MostrarEspectador(nickname);
 		return h;
 	}
 }

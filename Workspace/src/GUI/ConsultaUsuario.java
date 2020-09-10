@@ -19,10 +19,13 @@ import Controladores.Fabrica;
 import Interfaces.IUsuario;
 import DataTypes.DtUsuario;
 import DataTypes.DtEspectador;
+import DataTypes.DtEspectaculo;
 import DataTypes.DtArtista;
+import DataTypes.DtFuncion;
 import java.util.Set;
 import java.util.Iterator;
 import javax.swing.JTextPane;
+
 
 public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldNickname;
@@ -257,46 +260,89 @@ public class ConsultaUsuario extends JInternalFrame {
 				String[] nick = usuario.split(" ");
 				if(iusuario.EsArtista(nick[0])) {
 					panel.setVisible(true);
-					comboBoxEspectaculos.setVisible(false);
-					lblEspectaculosRegistrados.setVisible(false);
+					lblEspectaculosRegistrados.setText("Espectaculos:");
+					textFieldNickname.setEditable(false);
+					textFieldNombre.setEditable(false);
+					textFieldApellido.setEditable(false);
+					textFieldNickname.setEditable(false);
+					textFieldEmail.setEditable(false);
+					txtpndescgeneral.setEditable(false);
+					textFieldRol.setEditable(false);
+					txtpnbiografia.setEditable(false);
+					textFieldLink.setEditable(false);
+					dateChooser.getCalendarButton().setEnabled(false);
+					comboBoxEspectaculos.setEditable(false);
 					txtpndescgeneral.setVisible(true);
 					txtpnbiografia.setVisible(true);
 					textFieldLink.setVisible(true);
 					lblDescgeneral.setVisible(true);
 					lblBiografia.setVisible(true);
 					lblLink.setVisible(true);
+					textFieldRol.setVisible(true);
+					textFieldRol.setText("Artista");
+					lblRol.setVisible(true);
 					textFieldNickname.setText(iusuario.MostrarArtista(nick[0]).getNickname());
 					textFieldNombre.setText(iusuario.MostrarArtista(nick[0]).getNombre());
 					textFieldApellido.setText(iusuario.MostrarArtista(nick[0]).getApellido());
 					textFieldEmail.setText(iusuario.MostrarArtista(nick[0]).getEmail());
-					//dateChooser.setCalendar(iusuario.MostrarArtista(nick[0]).getNacimiento());
+					dateChooser.setDate(iusuario.MostrarArtista(nick[0]).getNacimiento());
 					txtpndescgeneral.setText(iusuario.MostrarArtista(nick[0]).getDescgeneral());
 					txtpnbiografia.setText(iusuario.MostrarArtista(nick[0]).getBiografia());
 					textFieldLink.setText(iusuario.MostrarArtista(nick[0]).getLink());
+					Iterator<DtEspectaculo> itr = iusuario.MostrarArtista(nick[0]).getEspectaculos().iterator();
+					while(itr.hasNext()) {
+						DtEspectaculo aux = itr.next();
+						 String nom = aux.getNombre();
+						 String des = aux.getDescripcion();
+						 String op = nom+" "+des;
+						 comboBoxEspectaculos.addItem(op);
+					}
 				}
 				else if(comboBoxUsuario.getSelectedItem().toString().equals("")){
 					panel.setVisible(false);
+					textFieldRol.setVisible(false);
+					lblRol.setVisible(false);
 				}
 				else {
 					panel.setVisible(true);
-					comboBoxEspectaculos.setVisible(true);
-					lblEspectaculosRegistrados.setVisible(true);
+					lblEspectaculosRegistrados.setText("Funciones:");
+					textFieldNickname.setEditable(false);
+					textFieldNombre.setEditable(false);
+					textFieldApellido.setEditable(false);
+					textFieldNickname.setEditable(false);
+					textFieldEmail.setEditable(false);
+					textFieldRol.setEditable(false);
+					txtpndescgeneral.setEditable(false);
+					txtpnbiografia.setEditable(false);
+					textFieldLink.setEditable(false);
+					dateChooser.getCalendarButton().setEnabled(false);
+					comboBoxEspectaculos.setEditable(false);
 					txtpndescgeneral.setVisible(false);
 					txtpnbiografia.setVisible(false);
 					textFieldLink.setVisible(false);
 					lblDescgeneral.setVisible(false);
 					lblBiografia.setVisible(false);
 					lblLink.setVisible(false);
+					textFieldRol.setVisible(true);
+					textFieldRol.setText("Espectador");
+					lblRol.setVisible(true);
 					textFieldNickname.setText(iusuario.MostrarEspectador(nick[0]).getNickname());
 					textFieldNombre.setText(iusuario.MostrarEspectador(nick[0]).getNombre());
 					textFieldApellido.setText(iusuario.MostrarEspectador(nick[0]).getApellido());
 					textFieldEmail.setText(iusuario.MostrarEspectador(nick[0]).getEmail());
-					//dateChooser.setCalendar(iusuario.MostrarArtista(nick[0]).getNacimiento());
+					dateChooser.setDate(iusuario.MostrarArtista(nick[0]).getNacimiento());
 					txtpndescgeneral.setText("");
 					txtpnbiografia.setText("");
 					textFieldLink.setText("");
+					Iterator<DtFuncion> itr = iusuario.MostrarEspectador(nick[0]).getFunciones().iterator();
+					while(itr.hasNext()) {
+						DtFuncion aux = itr.next();
+						 String nom = aux.getNombre();
+						 String ini = aux.getInicio().toString();
+						 String op = nom+" "+ini;
+						 comboBoxEspectaculos.addItem(op);
+					}
 				}
-				JOptionPane.showMessageDialog(null, nick[0]);
 			}
 		});
 

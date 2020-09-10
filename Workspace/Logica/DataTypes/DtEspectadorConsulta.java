@@ -1,20 +1,16 @@
 package DataTypes;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.HashSet;
 
 public class DtEspectadorConsulta {
-	public DtEspectadorConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String descgeneral, String biografia, String link, Set<DtFuncionDatos> funciones) {
+	public DtEspectadorConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento,HashSet<DtFuncion> funciones) {
 		super();
 		Nickname = nickname;
 		Nombre = nombre;
 		Apellido = apellido;
 		Email = email;
 		Nacimiento = nacimiento;
-		Descgeneral = descgeneral;
-		Biografia = biografia;
-		this.link = link;
 		Funciones = funciones;
 	}
 	private
@@ -28,13 +24,7 @@ public class DtEspectadorConsulta {
 	private
 	Date Nacimiento;
 	private
-	String Descgeneral;
-	private
-	String Biografia;
-	private
-	String link;
-	private
-	Set<DtFuncionDatos> Funciones;
+	HashSet<DtFuncion> Funciones;
 	public String getNickname() {
 		return Nickname;
 	}
@@ -50,16 +40,7 @@ public class DtEspectadorConsulta {
 	public Date getNacimiento() {
 		return Nacimiento;
 	}
-	public String getDescgeneral() {
-		return Descgeneral;
-	}
-	public String getBiografia() {
-		return Biografia;
-	}
-	public String getLink() {
-		return link;
-	}
-	public Set<DtFuncionDatos> getFunciones() {
+	public HashSet<DtFuncion> getFunciones() {
 		return Funciones;
 	}
 	

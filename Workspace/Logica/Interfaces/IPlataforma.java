@@ -22,5 +22,5 @@ public interface IPlataforma {
 		void altaEspectaculo(String nickname, String nombre,String descripcion,Integer cantespmin, Integer cantmaxesp,String url,Integer costo,Date fecha);
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion);
 		Set<DtPlataforma> listarPlataformas();
-		Set<DtEspectaculo> ListarEspectaculosEnPlataformaNoPaquete(String nombre);
+
 }
