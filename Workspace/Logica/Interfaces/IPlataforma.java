@@ -12,7 +12,7 @@ import DataTypes.DtPlataforma;
 
 public interface IPlataforma {
 	public 
-		Set<DtEspectaculo> listarEspectaculosDePlataforma();
+		Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre);
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp);
 		DtFuncionDatos MostrarFuncion(String NombreEsp, String NombreFun);
 		DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo);

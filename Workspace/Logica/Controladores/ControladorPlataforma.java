@@ -16,7 +16,7 @@ import Manejadores.ManejadorUsuario;
 
 public class ControladorPlataforma implements IPlataforma{
 
-	public Set<DtEspectaculo> listarEspectaculosDePlataforma() {
+	public Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre) {
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 		return ret;
 	};
