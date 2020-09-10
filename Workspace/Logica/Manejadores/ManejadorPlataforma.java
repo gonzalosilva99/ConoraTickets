@@ -67,8 +67,9 @@ public class ManejadorPlataforma {
 			return new DtEspectaculoDatos();
 		}
 				
-		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
-			return new HashSet<DtFuncion>();
+		Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
+			Plataforma plat = Plataformas.get(nombrePlat);
+			return plat.listarFuncionesVigentesEspectaculo(nombreEsp);
 		}
 		
 		Plataforma getPlataforma(String nomPlataforma) {

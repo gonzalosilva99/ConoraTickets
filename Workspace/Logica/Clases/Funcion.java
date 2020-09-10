@@ -1,6 +1,8 @@
 package Clases;
 
+import java.util.Calendar;
 import java.util.Date;
+import DataTypes.DtFuncion;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -28,11 +30,22 @@ public class Funcion {
 		public void setInicio(Date inicio) {
 			Inicio = inicio;
 		}
+		public Boolean estaVigente() {
+			Date today = Calendar.getInstance().getTime();
+			if(today.compareTo(Inicio) > 0)
+				return false;
+			else return true;
+		}
 		public Date getAlta() {
 			return Alta;
 		}
 		public void setAlta(Date alta) {
 			Alta = alta;
+		}
+		
+		public DtFuncion getDtFuncion() {
+			DtFuncion dtfun = new DtFuncion(this.Nombre,this.Inicio,this.Alta);
+			return dtfun;
 		}
 		public Map<String, Artista> getArtistasInvitado(){
 			return ArtistasInvitados;
