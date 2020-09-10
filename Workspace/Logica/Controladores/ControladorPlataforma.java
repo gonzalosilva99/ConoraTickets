@@ -14,6 +14,7 @@ import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
+import Clases.Espectaculo;
 
 public class ControladorPlataforma implements IPlataforma{
 
@@ -42,7 +43,12 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
 	};
-	public void altaEspectaculo(String nickname, String nombre,String descripcion,Integer cantespmin, Integer cantmaxesp,String url,Integer costo,Date fecha) {};
+	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+	};
+	
+	
 	public Funcion getFuncion(String nombreEspectaculo, String NomFuncion) {
 		Funcion ret = new Funcion(NomFuncion, null, null);
 		return ret;
@@ -51,5 +57,11 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();	
 		return manplat.listarPlataformas();
 	}
+	public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma){
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarEspectaculos(nombrePlataforma);
+	}
 	
 }
+
+

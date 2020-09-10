@@ -16,15 +16,16 @@ import DataTypes.DtFuncionDatos;
 public class Espectaculo {
 	private String Nombre;
 	private Date Registro;
-	private Double Costo;
+	private Integer Costo;
 	private String URL;
 	private Integer CantMax;
 	private Integer CantMin;
-	private Double Duracion;
+	private Integer Duracion;
 	private String Descripcion;
+	private Artista Organizador;
 	private Map<String, Funcion> Funciones;
-		public Espectaculo(String nombre, Date registro, Double costo, String uRL, Integer cantMax, Integer cantMin,
-				Double duracion, String descripcion, Map<String, Funcion> funciones) {
+	
+		public Espectaculo(String nombre, Date registro, Integer costo, String uRL, Integer cantMax, Integer cantMin, Integer duracion, String descripcion) {
 			super();
 			Nombre = nombre;
 			Registro = registro;
@@ -34,8 +35,7 @@ public class Espectaculo {
 			CantMin = cantMin;
 			Duracion = duracion;
 			Descripcion = descripcion;
-			Funciones = new HashMap<String, Funcion>();
-		
+			Funciones = null;
 		}
 		public String getNombre() {
 			return Nombre;
@@ -49,10 +49,10 @@ public class Espectaculo {
 		public void setRegistro(Date registro) {
 			Registro = registro;
 		}
-		public Double getCosto() {
+		public Integer getCosto() {
 			return Costo;
 		}
-		public void setCosto(Double costo) {
+		public void setCosto(Integer costo) {
 			Costo = costo;
 		}
 		public String getURL() {
@@ -95,10 +95,10 @@ public class Espectaculo {
 		public void setCantMin(Integer cantMin) {
 			CantMin = cantMin;
 		}
-		public Double getDuracion() {
+		public Integer getDuracion() {
 			return Duracion;
 		}
-		public void setDuracion(Double duracion) {
+		public void setDuracion(Integer duracion) {
 			Duracion = duracion;
 		}
 		public String getDescripcion() {
@@ -120,4 +120,7 @@ public class Espectaculo {
 			return dtfun;
 		}
 		
+		
 }
+
+

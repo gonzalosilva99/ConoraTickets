@@ -1,9 +1,13 @@
 package Clases;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
+import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
@@ -59,6 +63,7 @@ public class Plataforma {
 			DtPlataforma dtplat = new DtPlataforma(Nombre, Descripcion, Url);
 			return dtplat;
 		}
+		
 		public Set<DtEspectaculo> listarEspectaculosDePlataforma(){
 			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
@@ -67,10 +72,28 @@ public class Plataforma {
 			}
 			return ret;
 		}
-		
+
+		public Set<DtEspectaculo> listarEspectaculos(){
+		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
+		for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+			JOptionPane.showMessageDialog(null, "ok");
+			DtEspectaculo nueva = entry.getValue().getDatosEspectaculo();
+			ret.add(nueva);            
+		}
+		return ret;
+		}	
 		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp){
 			Espectaculo espec = Espectaculos.get(NombreEsp);
 			return espec.listarFunciones();
 		}
+		
+		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
+			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion);
+			Espectaculos.put(nomEspectaculo, nuevo);
+		}
 }
+		
+
+
+
 
