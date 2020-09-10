@@ -16,17 +16,12 @@ import javax.swing.JTextPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import com.toedter.calendar.JDateChooser;
-
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.JTextField;
-
-import java.awt.BorderLayout;
 import java.awt.Button;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -36,6 +31,7 @@ import Controladores.Fabrica;
 import Interfaces.IPlataforma;
 import DataTypes.DtPlataforma;
 import DataTypes.DtArtista;
+import com.toedter.calendar.JDateChooser;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -65,7 +61,6 @@ public class AltaEspectaculo extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaEspectaculo() {
-		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Alta de espectaculo");
 		setBounds(100, 100, 525, 550);
 		
@@ -81,12 +76,15 @@ public class AltaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -150, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPlataforma);
 		
-		
+		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
 		while(itr.hasNext())
 			{comboBoxPlataforma.addItem(itr.next().getNombre());}
+		
+		
+
 		
 		JLabel lblPlataforma = new JLabel("Plataforma:");
 		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 21, SpringLayout.WEST, getContentPane());
@@ -97,7 +95,17 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "ERROR");
+
+				}
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -37, SpringLayout.SOUTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -85, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
@@ -112,12 +120,6 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(lblArtista);
 		
 		JComboBox comboBoxArtista = new JComboBox();
-		IUsuario iusuario= fabric.getIUsuario();
-		Set<DtArtista> listaArtistas = iusuario.listarArtistas();
-		Iterator<DtArtista> itra = listaArtistas.iterator();
-		while(itra.hasNext())
-			{comboBoxArtista.addItem(itra.next().getNickname());}
-		
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxArtista, 172, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblArtista, -21, SpringLayout.WEST, comboBoxArtista);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxArtista, 66, SpringLayout.NORTH, getContentPane());
@@ -125,6 +127,17 @@ public class AltaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 0, SpringLayout.WEST, comboBoxArtista);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxPlataforma, -18, SpringLayout.NORTH, comboBoxArtista);
 		getContentPane().add(comboBoxArtista);
+		IUsuario iusuario= fabric.getIUsuario();
+		Set<DtArtista> listaArtistas = iusuario.listarArtistas();
+		Iterator<DtArtista> itra = listaArtistas.iterator();
+		while(itra.hasNext())
+			{DtArtista aux = itra.next();
+			String nick = aux.getNickname();
+			 String nom = aux.getNombre();
+			 String ap = aux.getApellido();
+			 String op = nick+" "+nom+" "+ap;
+			 comboBoxArtista.addItem(op);
+			}
 		
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 19, SpringLayout.SOUTH, panel);
@@ -219,15 +232,12 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
-		
 		JLabel lblFecha = new JLabel("Fecha:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblFecha, 19, SpringLayout.SOUTH, lblCosto);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblFecha, 34, SpringLayout.SOUTH, lblCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, lblFecha, 0, SpringLayout.EAST, lblNombre);
 		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 10, SpringLayout.WEST, panel);
 		panel.add(lblFecha);
-		
-
 		
 		JLabel lblDuracion = new JLabel("Duraci\u00F3n");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblDuracion, 15, SpringLayout.SOUTH, lblFecha);
@@ -245,20 +255,11 @@ public class AltaEspectaculo extends JInternalFrame {
 		textFieldDuracion.setColumns(10);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		sl_panel.putConstraint(SpringLayout.NORTH, dateChooser, 0, SpringLayout.NORTH, lblFecha);
+		sl_panel.putConstraint(SpringLayout.NORTH, dateChooser, 15, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 34, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
-		dateChooser.setToolTipText("");
-		dateChooser.setDateFormatString("dd-MM-yyyy");
 		panel.add(dateChooser);
-		
-		
-		
-		comboBoxPlataforma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -273,6 +274,13 @@ public class AltaEspectaculo extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "ERROR");
 
 				}
+			}
+		});
+
+		
+		comboBoxPlataforma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 

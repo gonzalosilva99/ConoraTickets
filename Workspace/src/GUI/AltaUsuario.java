@@ -153,19 +153,19 @@ public class AltaUsuario extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, panel);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, rdbtnEspectador);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, 253, SpringLayout.SOUTH, rdbtnEspectador);
-		panel.setEnabled(false);
+		panel.setVisible(false);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, 499, SpringLayout.WEST, getContentPane());
 		getContentPane().add(panel);
 		
 		rdbtnArtista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.setEnabled(true);
+				panel.setVisible(true);
 			}
 		});
 		rdbtnEspectador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.setEnabled(false);
+				panel.setVisible(false);
 			}
 		});
 		

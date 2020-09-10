@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import java.awt.Panel;
@@ -14,9 +15,19 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import java.awt.Button;
 import com.toedter.calendar.JDateChooser;
+
+import Controladores.Fabrica;
+import Interfaces.IUsuario;
+import DataTypes.DtArtista;
+import Interfaces.IUsuario;
 import javax.swing.JPanel;
 import java.awt.event.ItemListener;
+import java.util.Iterator;
+import java.util.Set;
 import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import DataTypes.DtUsuario;
 
 public class ModificarDatosUsuario extends JInternalFrame {
 	private JTextField textFieldLink;
@@ -24,7 +35,7 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldEmail;
-
+	private Boolean esArtista;
 	/**
 	 * Launch the application.
 	 */
@@ -45,12 +56,20 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ModificarDatosUsuario() {
+		Fabrica fabric = Fabrica.getInstancia();
+		IUsuario iusu = fabric.getIUsuario();
+		esArtista=false;
+		
 		setTitle("Modificar Datos de Usuario");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
 		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -44, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -104, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -16, SpringLayout.EAST, getContentPane());
@@ -69,7 +88,6 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, panelExterior, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panelExterior, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panelExterior);
-		panelExterior.setVisible(false);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		springLayout.putConstraint(SpringLayout.NORTH, panelExterior, 6, SpringLayout.SOUTH, lblUsuario);
@@ -106,12 +124,14 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		panelExterior.add(lblEmail);
 		
 		JLabel lblNacimiento = new JLabel("Nacimiento:");
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNacimiento, 88, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, lblNacimiento, 12, SpringLayout.SOUTH, lblNombre);
 		sl_panelExterior.putConstraint(SpringLayout.WEST, lblNacimiento, 10, SpringLayout.WEST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblNacimiento, -15, SpringLayout.NORTH, lblApellido);
 		sl_panelExterior.putConstraint(SpringLayout.EAST, lblNacimiento, 0, SpringLayout.EAST, lblNickname);
 		panelExterior.add(lblNacimiento);
 		
 		Panel panelInterior = new Panel();
+		panelInterior.setVisible(false);
 		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblEmail, -6, SpringLayout.NORTH, panelInterior);
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, panelInterior, 190, SpringLayout.NORTH, panelExterior);
 		panelInterior.setEnabled(false);
@@ -119,17 +139,21 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		panelExterior.add(panelInterior);
 		
 		JTextPane textPaneBiografia = new JTextPane();
-		
+		textPaneBiografia.setVisible(false);
 		JTextPane textPaneDescGeneral = new JTextPane();
-		
+		textPaneDescGeneral.setVisible(false);
 		JLabel lblDescGeneral = new JLabel("Desc. General:");
+		lblDescGeneral.setVisible(false);
+		
 		
 		JLabel lblBiografia = new JLabel("Biografia:");
+		lblBiografia.setVisible(false);
 		
 		JLabel lblLink = new JLabel("Link:");
-		
+		lblLink.setVisible(false);
 		textFieldLink = new JTextField();
 		textFieldLink.setColumns(10);
+		textFieldLink.setVisible(false);
 		GroupLayout gl_panelInterior = new GroupLayout(panelInterior);
 		gl_panelInterior.setHorizontalGroup(
 			gl_panelInterior.createParallelGroup(Alignment.LEADING)
@@ -170,52 +194,77 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		textFieldNickname = new JTextField();
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldNickname, 16, SpringLayout.NORTH, panelExterior);
 		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNickname, 117, SpringLayout.WEST, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldNickname, 40, SpringLayout.NORTH, panelExterior);
 		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldNickname, -218, SpringLayout.EAST, panelExterior);
 		panelExterior.add(textFieldNickname);
 		textFieldNickname.setColumns(10);
+		textFieldNickname.setEditable(false);
 		
 		textFieldNombre = new JTextField();
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldNombre, -2, SpringLayout.NORTH, lblApellido);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNombre, 0, SpringLayout.WEST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldNombre, 23, SpringLayout.EAST, lblApellido);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldNombre, 22, SpringLayout.NORTH, lblApellido);
 		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldNombre, -218, SpringLayout.EAST, panelExterior);
 		textFieldNombre.setColumns(10);
 		panelExterior.add(textFieldNombre);
 		
 		textFieldApellido = new JTextField();
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldApellido, 6, SpringLayout.NORTH, lblEmail);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldApellido, 0, SpringLayout.WEST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldApellido, 23, SpringLayout.EAST, lblEmail);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldApellido, 30, SpringLayout.NORTH, lblEmail);
 		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldApellido, -218, SpringLayout.EAST, panelExterior);
 		textFieldApellido.setColumns(10);
 		panelExterior.add(textFieldApellido);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		sl_panelExterior.putConstraint(SpringLayout.NORTH, dateChooser, 88, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.SOUTH, lblNacimiento, 0, SpringLayout.SOUTH, dateChooser);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, dateChooser, 23, SpringLayout.EAST, lblNacimiento);
 		sl_panelExterior.putConstraint(SpringLayout.SOUTH, dateChooser, -13, SpringLayout.NORTH, textFieldNombre);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, dateChooser, -218, SpringLayout.EAST, panelExterior);
 		panelExterior.add(dateChooser);
 		getContentPane().add(lblUsuario);
 		
 		JComboBox comboBoxUsuario = new JComboBox();
+		
+		
+		//Cargo la lista de los usuarios
+		Set<DtUsuario> listausuarios = iusu.listarUsuarios();
+		Iterator<DtUsuario> itru = listausuarios.iterator();
+		while(itru.hasNext())
+			{
+			DtUsuario aux = itru.next();
+			 String nick = aux.getNickname();
+			 String nom = aux.getNombre();
+			 String ap = aux.getApellido();
+			 String op = nick+" "+nom+" "+ap;
+			 comboBoxUsuario.addItem(op);
+		}
+		
+		
+		
+		comboBoxUsuario.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				String nicknameselec = comboBoxUsuario.getSelectedItem().toString();
+				String[] nick = nicknameselec.split(" ");
+				if(iusu.EsArtista(nick[0])) {
+					panelInterior.setVisible(true);
+				}
+			}
+		});
+		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxUsuario, 5, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxUsuario, 6, SpringLayout.EAST, lblUsuario);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxUsuario, -257, SpringLayout.EAST, getContentPane());
-		comboBoxUsuario.addItem("");
-		comboBoxUsuario.addItem("Pan");
-		comboBoxUsuario.addItem("Manteca");
-		comboBoxUsuario.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				panelExterior.setVisible(true);
-			}
-		});
+	
+		
 		textFieldEmail = new JTextField();
+		sl_panelExterior.putConstraint(SpringLayout.NORTH, dateChooser, 18, SpringLayout.SOUTH, textFieldEmail);
 		sl_panelExterior.putConstraint(SpringLayout.NORTH, textFieldEmail, 52, SpringLayout.NORTH, panelExterior);
-		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldEmail, 0, SpringLayout.WEST, textFieldNickname);
-		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldEmail, 0, SpringLayout.EAST, textFieldNickname);
+		sl_panelExterior.putConstraint(SpringLayout.WEST, textFieldEmail, 23, SpringLayout.EAST, lblNombre);
+		sl_panelExterior.putConstraint(SpringLayout.SOUTH, textFieldEmail, 76, SpringLayout.NORTH, panelExterior);
+		sl_panelExterior.putConstraint(SpringLayout.EAST, textFieldEmail, -218, SpringLayout.EAST, panelExterior);
 		textFieldEmail.setColumns(10);
 		panelExterior.add(textFieldEmail);
 		getContentPane().add(comboBoxUsuario);
-
+		textFieldNickname.setEditable(false);
 	}
 }

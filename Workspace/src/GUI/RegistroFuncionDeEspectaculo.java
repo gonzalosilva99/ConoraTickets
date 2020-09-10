@@ -4,10 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
+
+import Controladores.Fabrica;
+import DataTypes.DtPlataforma;
+import Interfaces.IPlataforma;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Panel;
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.swing.JList;
 import javax.swing.JCheckBox;
 import java.awt.Button;
@@ -52,6 +60,15 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, -5, SpringLayout.NORTH, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -152, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPlataforma);
+		
+		//Cargamos las plataformas
+		Fabrica fabric = Fabrica.getInstancia();
+		IPlataforma iplataforma = fabric.getIPlataforma();
+		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
+		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
+		while(itr.hasNext())
+			{comboBoxPlataforma.addItem(itr.next().getNombre());}
+		
 		
 		JLabel lblEspectaculos = new JLabel("Espectaculo: ");
 		springLayout.putConstraint(SpringLayout.NORTH, lblEspectaculos, 15, SpringLayout.SOUTH, lblPlataforma);

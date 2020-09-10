@@ -1,11 +1,11 @@
 package DataTypes;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.HashSet;
 
 public class DtArtistaConsulta {
 	public DtArtistaConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String descgeneral, String biografia, String link, Set<DtEspectaculo> espectaculos) {
+			String descgeneral, String biografia, String link, HashSet<DtEspectaculo> espectaculos) {
 		super();
 		Nickname = nickname;
 		Nombre = nombre;
@@ -34,7 +34,7 @@ public class DtArtistaConsulta {
 	private
 	String link;
 	private
-	Set<DtEspectaculo> Espectaculos;
+	HashSet<DtEspectaculo> Espectaculos;
 	public String getNickname() {
 		return Nickname;
 	}
@@ -59,7 +59,7 @@ public class DtArtistaConsulta {
 	public String getLink() {
 		return link;
 	}
-	public Set<DtEspectaculo> getEspectaculos() {
+	public HashSet<DtEspectaculo> getEspectaculos() {
 		return Espectaculos;
 	}
 	

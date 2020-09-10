@@ -102,6 +102,10 @@ public class AltaPlataforma extends JInternalFrame {
 		panel.add(lblUrl_2);
 		
 		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -22, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(buttonCancelar);

@@ -1,7 +1,8 @@
 package Controladores;
 
 import Interfaces.IPlataforma;
-
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,8 +38,8 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.AltaPlataforma(nombre, Descripcion, Url);
 	}
 	
-	public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
-		Set<DtFuncion> ret = new HashSet<DtFuncion>();
+	public Map<String, DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
+		Map<String,DtFuncion> ret = new HashMap<String,DtFuncion>();
 		return ret;
 	};
 	public void altaEspectaculo(String nickname, String nombre,String descripcion,Integer cantespmin, Integer cantmaxesp,String url,Integer costo,Date fecha) {};
@@ -50,4 +51,5 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();	
 		return manplat.listarPlataformas();
 	}
+	
 }

@@ -4,10 +4,12 @@ import Clases.Espectador;
 import Clases.Artista;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
+import DataTypes.DtArtistaConsulta;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtRegistro;
 import DataTypes.DtEspectador;
+import DataTypes.DtEspectadorConsulta;
 
 
 
@@ -46,7 +48,7 @@ public class ManejadorUsuario {
 		Set<DtEspectador> listarEspectadores() {
 			return new HashSet<DtEspectador>();
 		}
-		
+
 		Set<DtPaquete> listarPaquetesCanjeables(String nickname, String espectaculo) {
 			return new HashSet<DtPaquete>();
 		}
@@ -126,6 +128,18 @@ public class ManejadorUsuario {
 	            ret.add(nuevo);            
 			}
 			return ret;
+		}
+		
+		public Boolean EsArtista(String nickname) {
+			return Artistas.containsKey(nickname);
+		}
+		
+		public DtArtistaConsulta MostrarArtista(String nickname) {
+			return Artistas.get(nickname).getDtArtistaConsulta();
+		}
+		
+		public DtEspectadorConsulta MostrarEspectador(String nickname) {
+			return Espectadores.get(nickname).getDtEspectadorConsulta();
 		}
 		
 		

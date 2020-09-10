@@ -1,6 +1,9 @@
 package Clases;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
+import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
 
@@ -14,6 +17,10 @@ public class Plataforma {
 			Nombre = nombre;
 			Descripcion = descripcion;
 			Espectaculos = new HashMap<String,Espectaculo>();
+		}
+		public Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
+			Espectaculo espec = Espectaculos.get(nombreEsp);
+			return espec.getFuncionesVigentes();
 		}
 		public String getUrl() {
 			return Url;
