@@ -268,6 +268,7 @@ public class AltaEspectaculo extends JInternalFrame {
 					iplataform.altaEspectaculo( comboBoxArtista.getSelectedItem().toString() , textFieldNombre.getText(), textFieldDescripcion.getText(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),
 							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate()); 
+							JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
 					
 				}
 				catch(Exception e){
