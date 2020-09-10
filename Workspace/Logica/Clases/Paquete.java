@@ -1,6 +1,7 @@
 package Clases;
 
 import java.util.Date;
+import DataTypes.DtPaquete;
 
 public class Paquete {
 	private String Nombre;
@@ -48,6 +49,10 @@ public class Paquete {
 		}
 		public void setDescuento(Double descuento) {
 			Descuento = descuento;
+		}
+		public DtPaquete getDtPaquete() {
+			DtPaquete ret = new DtPaquete(Nombre, Descripcion);
+			return ret;
 		}
 		
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
@@ -90,6 +91,10 @@ public class Plataforma {
 		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion);
 			Espectaculos.put(nomEspectaculo, nuevo);
+		}
+		public DtEspectaculoDatos getDtEspectaculoDatos(String NombreEspectaculo) {
+			Espectaculo esp = Espectaculos.get(NombreEspectaculo);
+			return esp.getDtEspectaculoDatos();
 		}
 }
 		

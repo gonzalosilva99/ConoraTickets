@@ -22,7 +22,7 @@ public class ControladorPlataforma implements IPlataforma{
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 		return ret;
 	};
-	public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp) {
+	public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp) { 
 		Set<DtFuncion> ret = new HashSet<DtFuncion>();
 		return ret;
 	};
@@ -30,9 +30,9 @@ public class ControladorPlataforma implements IPlataforma{
 		DtFuncionDatos ret = new DtFuncionDatos(NombreFun, null, null, null, null);
 		return ret;
 	};
-	public DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo) {
-		DtEspectaculoDatos ret = new DtEspectaculoDatos(NombreEspectaculo, NombreEspectaculo, null, null, null, NombreEspectaculo, null, null, null, null);
-		return ret;
+	public DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
 	};
 	public void AltaPlataforma(String nombre, String Descripcion,String Url) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();

@@ -276,19 +276,23 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
 				while(itre.hasNext())
 				{
-					String nombreEspectaculo = itre.next().getNombre();
-					comboBoxEspectaculos.addItem(nombreEspectaculo);
+					
+					Espectaculo = itre.next();
+					comboBoxEspectaculos.addItem(Espectaculo.getNombre());
 				}
-				 
+				textFieldNombre.setText(Espectaculo.getNombre());
+				textFieldDescripcion.setText(Espectaculo.getDescripcion());
+				textFieldDuracion.setText(Espectaculo.getDuracion());
+				textFieldDuracion.setText(Espectaculo.getDuracion());
 				
 			}
-		});
+		});  
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
 			}
 		});
-
+    
 	}
-}
+}    

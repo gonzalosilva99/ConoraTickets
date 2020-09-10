@@ -16,7 +16,7 @@ public interface IPlataforma {
 		Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre);
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp);
 		DtFuncionDatos MostrarFuncion(String NombreEsp, String NombreFun);
-		DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo);
+		DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
 		void AltaPlataforma(String nombre, String Descripcion,String Url);
 		Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat);
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion);
