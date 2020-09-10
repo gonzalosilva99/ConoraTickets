@@ -46,7 +46,7 @@ public class ManejadorUsuario {
 		Set<DtEspectador> listarEspectadores() {
 			return new HashSet<DtEspectador>();
 		}
-		
+
 		Set<DtPaquete> listarPaquetesCanjeables(String nickname, String espectaculo) {
 			return new HashSet<DtPaquete>();
 		}
@@ -126,6 +126,18 @@ public class ManejadorUsuario {
 	            ret.add(nuevo);            
 			}
 			return ret;
+		}
+		
+		public Boolean EsArtista(String nickname) {
+			return Artistas.containsKey(nickname);
+		}
+		
+		public DtArtista MostrarArtista(String nickname) {
+			return Artistas.get(nickname).getDtArtista();
+		}
+		
+		public DtEspectador MostrarEspectador(String nickname) {
+			return Espectadores.get(nickname).getDtEspectador();
 		}
 		
 		

@@ -11,6 +11,10 @@ import javax.swing.JOptionPane;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
+<<<<<<< HEAD
+import DataTypes.DtEspectador;
+=======
+>>>>>>> 460303d0a8c13d6eba4f2a8e551fb321567b957d
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
@@ -26,7 +30,7 @@ public class ControladorUsuario implements IUsuario{
 			
 		}
 	}
-	
+		
 	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
 		try {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
@@ -44,6 +48,24 @@ public class ControladorUsuario implements IUsuario{
 	public Set<DtArtista> listarArtistas(){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Set<DtArtista> h = manusu.listarArtistas();
+		return h;
+	}
+	
+	public Boolean EsArtista(String nickname) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Boolean h = manusu.EsArtista(nickname);
+		return h;
+	}
+	
+	public DtArtista MostrarArtista(String nickname) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		DtArtista h = manusu.MostrarArtista(nickname);
+		return h;
+	}
+	
+	public DtEspectador MostrarEspectador(String nickname) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		DtEspectador h = manusu.MostrarEspectador(nickname);
 		return h;
 	}
 }

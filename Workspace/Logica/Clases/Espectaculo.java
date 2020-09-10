@@ -1,5 +1,6 @@
 package Clases;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -7,6 +8,7 @@ import java.util.HashMap;
 
 import DataTypes.DtArtista;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 
 
@@ -67,6 +69,20 @@ public class Espectaculo {
 		public Integer getCantMin() {
 			return CantMin;
 		}
+		
+		
+		public Map<String,DtFuncion> getFuncionesVigentes(){
+			HashMap<String,DtFuncion> ret = new HashMap<String,DtFuncion>();
+			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
+				if(entry.getValue().estaVigente()) {
+					DtFuncion nueva = entry.getValue().getDtFuncion();
+					ret.put(nueva.getNombre(), nueva);   
+				}				
+			}
+			return ret;
+		}
+		
+		
 		public void setCantMin(Integer cantMin) {
 			CantMin = cantMin;
 		}
