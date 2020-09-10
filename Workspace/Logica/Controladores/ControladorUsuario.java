@@ -26,7 +26,7 @@ public class ControladorUsuario implements IUsuario{
 			
 		}
 	}
-	
+		
 	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
 		try {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	

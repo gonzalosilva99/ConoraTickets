@@ -46,7 +46,7 @@ public class ManejadorUsuario {
 		Set<DtEspectador> listarEspectadores() {
 			return new HashSet<DtEspectador>();
 		}
-		
+
 		Set<DtPaquete> listarPaquetesCanjeables(String nickname, String espectaculo) {
 			return new HashSet<DtPaquete>();
 		}
