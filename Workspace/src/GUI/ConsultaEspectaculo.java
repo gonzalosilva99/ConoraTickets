@@ -4,10 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
+
+import Controladores.Fabrica;
+import DataTypes.DtPlataforma;
+import DataTypes.DtEspectaculo;
+import Interfaces.IPlataforma;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import java.awt.event.ItemListener;
+import java.util.Iterator;
+import java.util.Set;
 import java.awt.event.ItemEvent;
 import java.awt.Button;
 import javax.swing.JTextField;
@@ -56,16 +64,19 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		getContentPane().add(lblPlataforma);
 		
 		JComboBox comboBoxPlataforma = new JComboBox();
-
-		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, 17, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -189, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, -4, SpringLayout.NORTH, comboBoxPlataforma);
-		comboBoxPlataforma.addItem("");
-		comboBoxPlataforma.addItem("Pan");
-		comboBoxPlataforma.addItem("Manteca");
 		getContentPane().add(comboBoxPlataforma);
+		Fabrica fabric = Fabrica.getInstancia();
+		IPlataforma iplataforma = fabric.getIPlataforma();
+		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
+		Iterator<DtPlataforma> itrp = listaPlataformas.iterator();
+		while(itrp.hasNext())
+		{
+			comboBoxPlataforma.addItem(itrp.next().getNombre());
+			}
 		
 		JLabel lblEspectaculos = new JLabel("Espectaculos:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblEspectaculos, 6, SpringLayout.SOUTH, lblPlataforma);
@@ -255,14 +266,23 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(comboBoxEspectaculos);
 		comboBoxEspectaculos.setVisible(false);
-		comboBoxEspectaculos.addItem("");
-		comboBoxEspectaculos.addItem("Pan");
-		comboBoxEspectaculos.addItem("Manteca");
 		
 		comboBoxPlataforma.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				comboBoxEspectaculos.setVisible(true);	
 				lblEspectaculos.setVisible(true);
+				
+				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());
+				
+				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
+				while(itre.hasNext())
+				{
+					String nombreEspectaculo = itre.next().getNombre();
+					comboBoxEspectaculos.addItem(nombreEspectaculo);
+					System.out.print(nombreEspectaculo);
+				}
+				
+				
 			}
 		});
 		

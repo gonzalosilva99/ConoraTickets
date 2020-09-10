@@ -57,7 +57,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		});
 	}
 
-	/**
+	/** 
 	 * Create the frame.
 	 */
 	public AltaEspectaculo() {
@@ -265,9 +265,10 @@ public class AltaEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					IPlataforma iplataform = fabric.getIPlataforma();
-					iplataform.altaEspectaculo( comboBoxArtista.getSelectedItem().toString() , textFieldNombre.getText(), textFieldDescripcion.getText(),
+					iplataform.altaEspectaculo( comboBoxPlataforma.getSelectedItem().toString(),comboBoxArtista.getSelectedItem().toString() , textFieldNombre.getText(), textFieldDescripcion.getText(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),
-							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate()); 
+							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate(), Integer.valueOf( textFieldDuracion.getText() )); 
+							JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
 					
 				}
 				catch(Exception e){
