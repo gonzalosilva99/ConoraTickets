@@ -11,7 +11,7 @@ import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
-
+import DataTypes.DtEspectaculo;
 public class Plataforma {
 	private String Nombre;
 	private String Descripcion;
@@ -63,19 +63,37 @@ public class Plataforma {
 			DtPlataforma dtplat = new DtPlataforma(Nombre, Descripcion, Url);
 			return dtplat;
 		}
-		public Set<DtEspectaculo> listarEspectaculos(){
-			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
-			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
-				JOptionPane.showMessageDialog(null, "ok");
-	            DtEspectaculo nueva = entry.getValue().getDatosEspectaculo();
-	            ret.add(nueva);            
+		
+		public Set<DtEspectaculo> listarEspectaculosDePlataforma(){
+			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+					ret.add(nuevo);
 			}
 			return ret;
 		}
+
+		public Set<DtEspectaculo> listarEspectaculos(){
+		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
+		for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+			JOptionPane.showMessageDialog(null, "ok");
+			DtEspectaculo nueva = entry.getValue().getDatosEspectaculo();
+			ret.add(nueva);            
+		}
+		return ret;
+		}	
+		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp){
+			Espectaculo espec = Espectaculos.get(NombreEsp);
+			return espec.listarFunciones();
+		}
+		
 		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion);
-			Espectaculos.put(nomEspectaculo, nuevo);	
+			Espectaculos.put(nomEspectaculo, nuevo);
 		}
 }
+		
+
+ 
 
 

@@ -18,4 +18,6 @@ public interface IUsuario {
 	public Set<DtArtista> listarArtistas();
 	public void ModificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link);
 	public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento);
+	public Set<DtEspectador> listarEspectadores();
+
 }

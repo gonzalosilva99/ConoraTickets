@@ -45,8 +45,13 @@ public class ManejadorUsuario {
 			Espectadores = espectadores;
 		}
 			
-		Set<DtEspectador> listarEspectadores() {
-			return new HashSet<DtEspectador>();
+		public Set<DtEspectador> listarEspectadores() {
+			HashSet<DtEspectador> ret = new HashSet<DtEspectador>();
+			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
+	            DtEspectador nuevo = entry.getValue().getDtEspectador();
+	            ret.add(nuevo);            
+			}
+			return ret;
 		}
 
 		Set<DtPaquete> listarPaquetesCanjeables(String nickname, String espectaculo) {
@@ -95,7 +100,6 @@ public class ManejadorUsuario {
 			}
 		}
 		
-	
 		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
 			if (ExisteUsuarioConNickname(Nickname)) {
 				//ERROR

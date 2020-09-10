@@ -50,15 +50,14 @@ public class ManejadorPlataforma {
 			return Plataformas.containsKey(nombre);
 		}
 		Set<DtEspectaculo>  listarEspectaculosDePlataforma(String Nombre){
-			Set<DtEspectaculo> dtesp = new HashSet<DtEspectaculo>();
-			Map<String,Espectaculo> Espectaculos;
-			return dtesp;
+			Plataforma plat = Plataformas.get(Nombre);
+			return plat.listarEspectaculosDePlataforma();
 		}
 		
 		
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
-			Set<DtFuncion> dtfun = new HashSet<DtFuncion>();
-			return dtfun;
+			Plataforma plat = Plataformas.get(NombrePlat);
+			return plat.listarFuncionesDeEspectaculo(NombreEsp);
 		}
 		
 		DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun) {
@@ -70,7 +69,7 @@ public class ManejadorPlataforma {
 			return new DtEspectaculoDatos();
 		}
 				
-		Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
+		public Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
 			Plataforma plat = Plataformas.get(nombrePlat);
 			return plat.listarFuncionesVigentesEspectaculo(nombreEsp);
 		}
@@ -87,7 +86,6 @@ public class ManejadorPlataforma {
 		public Set<DtPlataforma> listarPlataformas() {
 			Set<DtPlataforma> ret = new HashSet<DtPlataforma>();		
 			for (Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
-				JOptionPane.showMessageDialog(null, "ok");
 	            DtPlataforma nueva = entry.getValue().getDtPlataforma();
 	            ret.add(nueva);            
 			}
@@ -100,7 +98,7 @@ public class ManejadorPlataforma {
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
 			Plataforma plat = Plataformas.get(nomPlat);
 			plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
-		}
+		} 
 }
 		
 
@@ -109,4 +107,6 @@ public class ManejadorPlataforma {
 		
 		
 		
+
+
 

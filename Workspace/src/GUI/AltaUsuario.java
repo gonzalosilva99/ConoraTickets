@@ -51,7 +51,7 @@ public class AltaUsuario extends JInternalFrame {
 			}
 		});
 	}
-
+ 
 	/**
 	 * Create the frame.
 	 */

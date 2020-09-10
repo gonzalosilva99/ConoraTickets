@@ -56,7 +56,7 @@ public class AltaEspectaculo extends JInternalFrame {
 				}
 			}
 		});
-	}
+	} 
 
 	/** 
 	 * Create the frame.
@@ -288,3 +288,6 @@ public class AltaEspectaculo extends JInternalFrame {
 
 	}
 }
+
+
+
