@@ -37,9 +37,15 @@ public class Artista extends Usuario{
 			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
 			return ret;
 		}
+<<<<<<< HEAD
 		
 		public DtArtista getDtArtista() {
 			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL());
+=======
+		public DtArtista getDtArtista() {
+			DtArtista ret = new DtArtista(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento(), this.getDescripcionGeneral() ,
+					this.getBiografia() , this.getURL());
+>>>>>>> 460303d0a8c13d6eba4f2a8e551fb321567b957d
 			return ret;
 		}
 	
