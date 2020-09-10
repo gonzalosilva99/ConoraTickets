@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import DataTypes.DtArtista;
 import DataTypes.DtEspectaculo;
@@ -82,6 +83,14 @@ public class Espectaculo {
 			return ret;
 		}
 		
+		public Set<DtFuncion> listarFunciones(){
+			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
+			for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+				DtFuncion nueva = entry.getValue().getDtFuncion();
+				ret.add(nueva);
+			}
+			return ret;
+		}
 		
 		public void setCantMin(Integer cantMin) {
 			CantMin = cantMin;

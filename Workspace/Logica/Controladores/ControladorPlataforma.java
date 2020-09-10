@@ -38,9 +38,9 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.AltaPlataforma(nombre, Descripcion, Url);
 	}
 	
-	public Map<String, DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
-		Map<String,DtFuncion> ret = new HashMap<String,DtFuncion>();
-		return ret;
+	public Map<String, DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat){
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
 	};
 	public void altaEspectaculo(String nickname, String nombre,String descripcion,Integer cantespmin, Integer cantmaxesp,String url,Integer costo,Date fecha) {};
 	public Funcion getFuncion(String nombreEspectaculo, String NomFuncion) {

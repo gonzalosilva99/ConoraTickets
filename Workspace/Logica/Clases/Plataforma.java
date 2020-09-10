@@ -1,12 +1,13 @@
 package Clases;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
-
+import DataTypes.DtEspectaculo;
 public class Plataforma {
 	private String Nombre;
 	private String Descripcion;
@@ -57,6 +58,19 @@ public class Plataforma {
 		public DtPlataforma getDtPlataforma() {
 			DtPlataforma dtplat = new DtPlataforma(Nombre, Descripcion, Url);
 			return dtplat;
+		}
+		public Set<DtEspectaculo> listarEspectaculosDePlataforma(){
+			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+					ret.add(nuevo);
+			}
+			return ret;
+		}
+		
+		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp){
+			Espectaculo espec = Espectaculos.get(NombreEsp);
+			return espec.listarFunciones();
 		}
 }
 

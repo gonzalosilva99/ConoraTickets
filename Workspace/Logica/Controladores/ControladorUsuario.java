@@ -39,6 +39,12 @@ public class ControladorUsuario implements IUsuario{
 		}
 	}
 	
+
+	public Set<DtEspectador> listarEspectadores(){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		return manusu.listarEspectadores();
+	}
+	
 	public Set<DtUsuario> listarUsuarios(){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Set<DtUsuario> h = manusu.listarUsuarios();
