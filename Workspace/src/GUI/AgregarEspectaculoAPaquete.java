@@ -18,8 +18,10 @@ import Interfaces.IPaquete;
 import Controladores.ControladorPaquete;
 import Controladores.Fabrica;
 import Interfaces.IPlataforma;
+import Manejadores.ManejadorPaquetes;
 import Controladores.ControladorPlataforma;
 import DataTypes.DtPlataforma;
+import DataTypes.DtEspectaculo;
 
 
 import java.util.Iterator;
@@ -157,11 +159,30 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
 		
 		while(iterador2.hasNext()) {
-			comboBoxPlataformas.addItem(iterador.next().getNombre());
+			comboBoxPlataformas.addItem(iterador2.next().getNombre());
+		}
+		String a = comboBoxPaquetes.getSelectedItem().toString();
+		String b = comboBoxPlataformas.getSelectedItem().toString();
+		
+		Set<DtEspectaculo> EspectaculosNoPaquete = plataformosa.listarEspectaculosEnPlataformaNoPaquete(a ,b);
+		
+	Iterator<DtEspectaculo> iterador3 = EspectaculosNoPaquete.iterator();
+		
+		while(iterador3.hasNext()) {
+			comboBoxEspectaculos.addItem(iterador3.next().getNombre());
 		}
 		
+		String c = comboBoxEspectaculos.getSelectedItem().toString();
 		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				IPaquete pac = fabricosa.getIPaquete();
+				pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
+				
+			}
+		});
 		
+
 		
 		
 		
