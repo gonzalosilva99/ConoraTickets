@@ -77,4 +77,7 @@ public class Paquete {
 		public boolean hayEspectaculo(String nombreEsp) {
 			return Espectaculos.containsKey(nombreEsp);
 		}
+		public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, String Descuento) {
+			
+		}
 } 

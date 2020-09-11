@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JPanel;
@@ -16,12 +17,18 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
+import Excepciones.Identidad;
+import Excepciones.CheckDatos;
+import Controladores.Fabrica;
+import Interfaces.IPlataforma;
+import Interfaces.IPaquete;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescuento;
-	private JTextField textFieldDescripcion;
-
+	private JTextPane textFieldDescripcion;
 	/**
 	 * Launch the application.
 	 */
@@ -42,6 +49,8 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CrearPaqueteDeEspectaculo() {
+		Fabrica fabric = Fabrica.getInstancia();
+		
 		setTitle("Crear Paquete De Espectaculo");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
@@ -61,6 +70,20 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		textFieldNombre.setColumns(10);
 		
 		textFieldDescuento = new JTextField();
+		textFieldDescuento.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+
+			      // Verificar si la tecla pulsada no es un digito
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' /*corresponde a BACK_SPACE*/) && (caracter != '.'))
+			      {
+			         e.consume();  // ignorar el evento de teclado
+			      }
+			}
+		});
 		springLayout.putConstraint(SpringLayout.SOUTH, textFieldDescuento, 255, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, textFieldDescuento, -161, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, textFieldDescuento, 230, SpringLayout.NORTH, getContentPane());
@@ -75,13 +98,13 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, textFieldDescuento);
 		getContentPane().add(lblNewLabel_2);
 		
-		textFieldDescripcion = new JTextField();
+		textFieldDescripcion = new JTextPane();
 		springLayout.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 66, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, textFieldNombre, -20, SpringLayout.NORTH, textFieldDescripcion);
 		springLayout.putConstraint(SpringLayout.EAST, textFieldDescripcion, 350, SpringLayout.WEST, textFieldNombre);
 		springLayout.putConstraint(SpringLayout.WEST, textFieldDescripcion, 0, SpringLayout.WEST, textFieldNombre);
 		getContentPane().add(textFieldDescripcion);
-		textFieldDescripcion.setColumns(10);
+		
 		
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblDescripcion, 25, SpringLayout.SOUTH, lblNombre);
@@ -118,7 +141,23 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, dateChooserFin, 0, SpringLayout.EAST, textFieldNombre);
 		getContentPane().add(dateChooserFin);
 		
+		
+		
 		Button buttonAceptar = new Button("Aceptar");
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {		
+				try {
+				
+				if(textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || dateChooserInicio.getDate()==null || dateChooserFin.getDate()==null || textFieldDescuento.getText().length()==0) throw new CheckDatos("No pueden quedar campos vacios.");
+				IPaquete ipaq = fabric.getIPaquete();
+				ipaq.ConfirmarAltaPaquete(textFieldNombre.getText(), textFieldDescripcion.getText(), dateChooserInicio.getDate(), dateChooserFin.getDate(), Double.valueOf( textFieldDescuento.getText()));
+				JOptionPane.showMessageDialog(null, "Paquete agregado con exito");
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -47, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -104, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
