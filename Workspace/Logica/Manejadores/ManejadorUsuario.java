@@ -12,6 +12,7 @@ import Excepciones.Identidad;
 import DataTypes.DtRegistro;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
+import DataTypes.DtArtista;
 
 
 
@@ -170,6 +171,21 @@ public class ManejadorUsuario {
 		}
 		public Artista getArtista(String nickname) {
 			return Artistas.get(nickname);
+		}
+		public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
+			HashSet<DtArtista> ret = new HashSet<DtArtista>();
+			for (Map.Entry<String, Artista> entry : Artistas.entrySet()) {
+				if (entry.getValue().participaEspectaculo(nombreEspectaculo)) {
+		            DtArtista nuevo = entry.getValue().getDtArtista();
+		            ret.add(nuevo);   
+				}
+			}
+			return ret;
+		}
+		
+		public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
+			Espectador espec = Espectadores.get(nickname);
+			return espec.listarRegistrosSinCanjeaer();
 		}
 		
 		

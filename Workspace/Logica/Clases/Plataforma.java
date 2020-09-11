@@ -30,7 +30,7 @@ public class Plataforma {
 			Descripcion = descripcion;
 			Espectaculos = new HashMap<String,Espectaculo>();
 		}
-		public Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
+		public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
 			Espectaculo espec = Espectaculos.get(nombreEsp);
 			return espec.getFuncionesVigentes();
 		}

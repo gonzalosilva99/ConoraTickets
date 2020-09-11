@@ -215,6 +215,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		while(itr.hasNext())
 			{comboBoxPlataforma.addItem(itr.next().getNombre());}
 		
+		//Cuando selecciona el espectaculo cargo las funciones
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBoxEspectaculo.removeAllItems();

@@ -269,7 +269,7 @@ public class AltaEspectaculo extends JInternalFrame {
 					IPlataforma iplataform = fabric.getIPlataforma();
 					String usuario = comboBoxArtista.getSelectedItem().toString();
 					String[] nick = usuario.split(" ");
-					if(textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || textFieldURL.getText().length()==0 || dateChooser.getDate()==null) 
+					if(comboBoxArtista.getItemCount() == 0 || comboBoxPlataforma.getItemCount() == 0 || textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || textFieldURL.getText().length()==0 || dateChooser.getDate()==null) 
 						throw new Identidad("No deben quedar campos vacios.");
 					if(!(isNumeric(textFieldEspectMin.getText())))
 						throw new Identidad("En el campo Espectadores Min. debe ingresar un entero");

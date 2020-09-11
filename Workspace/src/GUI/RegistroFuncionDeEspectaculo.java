@@ -69,6 +69,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 
 		JComboBox comboBoxPlataforma = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, -5, SpringLayout.NORTH, lblPlataforma);
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 17, SpringLayout.EAST, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -152, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPlataforma);
 		comboBoxPlataforma.addItem("");
@@ -92,6 +93,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblEspectaculos);
 		
 		Panel panel = new Panel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 3, SpringLayout.SOUTH, lblEspectaculos);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, 499, SpringLayout.WEST, getContentPane());
 		getContentPane().add(panel);
@@ -144,6 +146,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		panelInterior.setLayout(sl_panelInterior);
 		panelInterior.setVisible(false);
 		
+		
 		chckbxCanjear.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				panelInterior.setVisible(!panelInterior.isVisible());
@@ -154,29 +157,28 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		
 		
-		
-		// 3)-------------->Cuando se selecciona espectaculo listamos las funciones del el
 		JComboBox comboBoxEspectaculo = new JComboBox();
-		comboBoxEspectaculo.addItem("");
-		//comboBoxEspectaculo.addItemListener(new ItemListener() {
-			//public void itemStateChanged(ItemEvent e) {
-				//Map<String,DtFuncion> listafunciones= iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedItem().toString());
-				//for(Map.Entry<String,DtFuncion> entry : listafunciones.entrySet()) {
-					//comboBoxFuncion.addItem(entry.getValue().getNombre());
-				//}
-			//}
-		//});
 		
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 3, SpringLayout.SOUTH, comboBoxEspectaculo);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculo, 8, SpringLayout.SOUTH, comboBoxPlataforma);
-		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculo, 17, SpringLayout.EAST, lblEspectaculos);
-		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculo, -152, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 0, SpringLayout.WEST, comboBoxEspectaculo);
-		comboBoxEspectaculo.setEnabled(false);
-		
+		//Cuando selecciono espectaculos cargo las funciones vigentes 
+		comboBoxEspectaculo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				comboBoxFuncion.setEnabled(true);
+				comboBoxFuncion.removeAllItems();
+				comboBoxFuncion.addItem("");
+				Set<DtFuncion> listafunciones = iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedObjects().toString());
+				Iterator<DtFuncion> itfun = listafunciones.iterator();
+				while(itfun.hasNext()) {
+					comboBoxFuncion.addItem(itfun.next().getNombre());
+				}
+				
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculo, 6, SpringLayout.SOUTH, comboBoxPlataforma);
+		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculo, 0, SpringLayout.WEST, comboBoxPlataforma);
+		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculo, 0, SpringLayout.EAST, comboBoxPlataforma);
+		getContentPane().add(comboBoxEspectaculo);
 		
 		//  2)------>   cuando se selecciona una plataforma listo los espectaculos de esa plataforma 
-
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBoxEspectaculo.setEnabled(true);
@@ -220,7 +222,6 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		sl_panelInterior.putConstraint(SpringLayout.SOUTH, list, 196, SpringLayout.SOUTH, lblListaPaquetesFunciones);
 		sl_panelInterior.putConstraint(SpringLayout.EAST, list, 459, SpringLayout.WEST, panelInterior);
 		panelInterior.add(list);
-		getContentPane().add(comboBoxEspectaculo);
 		
 		Button buttonAceptar = new Button("Aceptar");
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -15, SpringLayout.NORTH, buttonAceptar);
@@ -237,6 +238,8 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
 		buttonCancelar.setActionCommand("Cancelar");
 		getContentPane().add(buttonCancelar);
+		
+		
 
 	}
 }
