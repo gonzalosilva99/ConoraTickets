@@ -144,8 +144,9 @@ public class Espectaculo {
 			return ret;
 		
 		}
-		public void AnadirFuncion(String nombre,Date fecha, Date inicio, Date alta) {
-			
+		public void AnadirFuncion(String nombre, Date inicio, Date alta) {
+			Funcion ret = new Funcion(nombre, inicio, alta);
+			Funciones.put(nombre, ret);
 		}
 		
 		

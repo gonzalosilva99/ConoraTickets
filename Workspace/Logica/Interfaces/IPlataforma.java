@@ -24,7 +24,7 @@ public interface IPlataforma {
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion);
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);
-		void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre,Date fecha, Date inicio,Set<String> artistas, Date alta);		
+		void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio,Set<String> artistas, Date alta);		
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma);
 		Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre);
 }

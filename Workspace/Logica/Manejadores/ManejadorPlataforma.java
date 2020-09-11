@@ -126,9 +126,14 @@ public class ManejadorPlataforma {
 		}
 
 		
-		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date fecha, Date inicio, Set<String> artistas, Date alta) {
+		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta) {
 			Plataforma Plat = Plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);
+			Espec.AnadirFuncion(nombre, inicio, alta);
+			Iterator<String> iterArtistas = artistas.iterator();
+			while(iterArtistas.hasNext()) {
+				
+			}
 		}
 
 		public Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre){
