@@ -23,8 +23,8 @@ import Clases.Plataforma;
 public class ControladorPlataforma implements IPlataforma{
 
 	public Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre) {
-		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-		return ret;
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarEspectaculos(Nombre);
 	};
 	public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp) { 
 		Set<DtFuncion> ret = new HashSet<DtFuncion>();
