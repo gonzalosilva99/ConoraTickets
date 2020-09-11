@@ -101,9 +101,12 @@ public class Espectaculo {
 		
 		public Set<DtFuncion> listarFunciones(){
 			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
-			for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
-				DtFuncion nueva = entry.getValue().getDtFuncion();
-				ret.add(nueva);
+			if (!Funciones.isEmpty()){
+				System.out.print("no deberia ENTRAR ACA************************** " );
+				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+					DtFuncion nueva = entry.getValue().getDtFuncion();
+					ret.add(nueva);
+				}
 			}
 			return ret;
 		}
@@ -138,7 +141,7 @@ public class Espectaculo {
 		public DtEspectaculoDatos getDtEspectaculoDatos() {
 			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
 			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(Nombre);
-			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFunciones() , listaPaquetes);
+			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, null , listaPaquetes); //en null va this.listarFunciones()
 			return ret;
 		
 		}

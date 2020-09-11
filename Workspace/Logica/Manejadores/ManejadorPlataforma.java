@@ -124,6 +124,10 @@ public class ManejadorPlataforma {
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
 			
 		}
+		public Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre){
+			Plataforma pla = this.getPlataforma(Nombre);
+			return pla.listarEspectaculoDatos();
+		}
 }
 		
 

@@ -9,6 +9,7 @@ import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPlataforma;
 
 import javax.swing.JLabel;
@@ -275,18 +276,23 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				comboBoxEspectaculos.removeAllItems();
 				comboBoxEspectaculos.setVisible(true);	
 				lblEspectaculos.setVisible(true);	
-				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());	
-				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
-				DtEspectaculo Espectaculo;
+				Set<DtEspectaculoDatos> listaEspectaculoDatos = iplataforma.listarEspectaculoDatosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());	
+				Iterator<DtEspectaculoDatos> itre = listaEspectaculoDatos .iterator();
+				DtEspectaculoDatos datosEspectaculo;
 				while(itre.hasNext())
 				{
-					Espectaculo = itre.next();
-					comboBoxEspectaculos.addItem(Espectaculo.getNombre());
+					datosEspectaculo = itre.next();
+					comboBoxEspectaculos.addItem(datosEspectaculo.getNombre());
+					textFieldNombre.setText(datosEspectaculo.getNombre());
+					textFieldDescripcion.setText(datosEspectaculo.getDescripcion());
+					textFieldDuracion.setText(datosEspectaculo.getDuracion().toString());
+					textFieldCosto.setText(datosEspectaculo.getCosto().toString()); 
+					textFieldNombre.setEditable(false);
+					textFieldDescripcion.setEditable(false);
+					textFieldDuracion.setEditable(false);
+					textFieldCosto.setEditable(false);
 				}
-				/**textFieldNombre.setText(Espectaculo.getNombre());
-				textFieldDescripcion.setText(Espectaculo.getDescripcion());
-				textFieldDuracion.setText(Espectaculo.getDuracion());
-				textFieldDuracion.setText(Espectaculo.getDuracion());**/
+				
 				
 			}
 		});  
