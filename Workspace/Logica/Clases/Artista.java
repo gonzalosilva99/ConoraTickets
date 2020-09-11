@@ -20,6 +20,7 @@ public class Artista extends Usuario{
 		String Biografia;
 		String URL;
 		HashSet<Espectaculo> Espectaculos;
+		HashSet<Funcion> FuncionesInvitado;
 		
 		public Artista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descripcionGeneral, String biografia, String uRL) {
 			super(nickname,nombre, apellido, email,nacimiento);
@@ -75,6 +76,10 @@ public class Artista extends Usuario{
 		
 		public void AnadirEspectaculo(Espectaculo e) {
 			Espectaculos.add(e);
+		}
+		public void anadirFuncion(Funcion funcion) {
+			funcion.anadirArtista(this,this.getNickname());
+			FuncionesInvitado.add(funcion);
 		}
 	
 }

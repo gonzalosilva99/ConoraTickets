@@ -168,6 +168,9 @@ public class ManejadorUsuario {
 			nuevo.setOrganizador(Organizador);
 			Organizador.AnadirEspectaculo(nuevo);
 		}
+		public Artista getArtista(String nickname) {
+			return Artistas.get(nickname);
+		}
 		
 		
 }
