@@ -98,6 +98,7 @@ public class ManejadorPlataforma {
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
 			Plataforma plat = Plataformas.get(nomPlat);
 			plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+			System.out.print("a ver");
 		} 
 }
 		
