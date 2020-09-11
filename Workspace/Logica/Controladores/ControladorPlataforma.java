@@ -49,8 +49,10 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
 	};
 	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad {
-		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
-		manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+		if (minEsp<maxEsp && duracion>0) {
+			ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+		}
 	};
 	
 	
