@@ -41,6 +41,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.ItemListener;
 import java.io.Console;
+import java.text.SimpleDateFormat;
 import java.awt.event.ItemEvent;
 
 public class AltaFuncionEspectaculo extends JInternalFrame {
@@ -151,7 +152,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(122, 86, 175, 28);
 		dateChooser.setToolTipText("");
-		dateChooser.setDateFormatString("hh:mm:ss");
+		dateChooser.setDateFormatString("yyyy-MM-dd ");
 		panel.setLayout(null);
 		panel.add(lblHoraInicio);
 		panel.add(lblNewLabel);
@@ -228,7 +229,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		
 		/** CREAR FUNCION DE LISTAR ARTISTAS NO ESPECTACULO *********ESTA CREADA PERO AUN NO FUNCIONA BIEN*************
-		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE ESPECTACULO :D ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡HECHO!!!!!!!!!!!!
+		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE ESPECTACULO :D ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HECHO!!!!!!!!!!!!
 		 ** 
 		 **/
 		JList list = new JList();
@@ -300,9 +301,17 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty()) {
-					
+				try {
+					//if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty()) {
+					SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd ");
+					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString(); 
+						System.out.println(dateInicio);
+					//}
 				}
+				catch(Exception e1) {
+					System.out.println(e1.getMessage());
+				}
+				
 			}
 		});
 	}
