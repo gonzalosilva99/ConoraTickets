@@ -127,6 +127,10 @@ public class AltaPlataforma extends JInternalFrame {
 					IPlataforma iplataform = fabric.getIPlataforma();
 					iplataform.AltaPlataforma(textFieldNombre.getText(), textFieldDescGeneral.getText(), textFieldurl.getText());
 					JOptionPane.showMessageDialog(null, "Alta de Plataforma con exito");
+					textFieldNombre.setText("");
+					textFieldDescGeneral.setText("");
+					textFieldurl.setText("");
+	
 					
 				}
 				catch(Exception e){

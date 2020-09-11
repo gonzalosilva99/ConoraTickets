@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ItemListener;
+import java.beans.PropertyVetoException;
 import java.awt.event.ItemEvent;
 import java.awt.Button;
 import Controladores.Fabrica;
@@ -286,6 +287,7 @@ public class ConsultaUsuario extends JInternalFrame {
 					txtpndescgeneral.setText(iusuario.MostrarArtista(nick[0]).getDescgeneral());
 					txtpnbiografia.setText(iusuario.MostrarArtista(nick[0]).getBiografia());
 					textFieldLink.setText(iusuario.MostrarArtista(nick[0]).getLink());
+					comboBoxEspectaculos.addItem("");
 					Iterator<DtEspectaculo> itr = iusuario.MostrarArtista(nick[0]).getEspectaculos().iterator();
 					while(itr.hasNext()) {
 						DtEspectaculo aux = itr.next();
@@ -334,6 +336,7 @@ public class ConsultaUsuario extends JInternalFrame {
 					txtpndescgeneral.setText("");
 					txtpnbiografia.setText("");
 					textFieldLink.setText("");
+					comboBoxEspectaculos.addItem("");
 					Iterator<DtFuncion> itr = iusuario.MostrarEspectador(nick[0]).getFunciones().iterator();
 					while(itr.hasNext()) {
 						DtFuncion aux = itr.next();
@@ -348,7 +351,12 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				
+				if(textFieldRol.getText()=="Artista") {
+					ConsultaEspectaculoReferenciado consultaespR = new ConsultaEspectaculoReferenciado();
+					consultaespR.setLocationRelativeTo(null);
+					consultaespR.setFocusable(true);
+					consultaespR.setVisible(true);					
+				}
 			}
 		});
 

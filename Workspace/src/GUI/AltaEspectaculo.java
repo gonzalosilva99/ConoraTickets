@@ -352,7 +352,6 @@ public class AltaEspectaculo extends JInternalFrame {
 							textFieldCosto.setText("");
 							textFieldURL.setText("");
 							textFieldDuracion.setText("");
-							dateChooser.setDate(null);
 				}
 				catch(Exception e){
 					JOptionPane.showMessageDialog(null, e.getMessage());
