@@ -46,8 +46,8 @@ public class ManejadorPaquetes {
 		
 		public Set<DtPaquete> listarPaquetesEspectaculo(String nomEsp){
 			Set<DtPaquete> ret = new HashSet<DtPaquete>();		
-			for (Map.Entry<String, Plataforma> entry : Paquetes.entrySet()) {
-	            DtPlataforma nueva = entry.getValue().getDtPlataforma();
+			for (Map.Entry<String, Paquete> entry : Paquetes.entrySet()) {
+	            DtPaquete nueva = entry.getValue().getDtPaquete();
 	            ret.add(nueva);            
 			}
 			return ret;

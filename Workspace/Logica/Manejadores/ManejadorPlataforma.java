@@ -64,10 +64,6 @@ public class ManejadorPlataforma {
 			Plataforma plat = Plataformas.get(NombrePlat);
 			return plat.mostrarFuncion(NombreEsp, NombreFun);
 		}
-		
-		DtEspectaculoDatos listarDtEspectaculoDatos(String NombreEspectaculo, String NombrePlataforma ) {
-			return new DtEspectaculoDatos();
-		}
 				
 		public Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
 			Plataforma plat = Plataformas.get(nombrePlat);

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 
+import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
 import DataTypes.DtEspectaculo;
@@ -274,16 +275,16 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				lblEspectaculos.setVisible(true);	
 				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());	
 				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
+				DtEspectaculo Espectaculo;
 				while(itre.hasNext())
 				{
-					
 					Espectaculo = itre.next();
 					comboBoxEspectaculos.addItem(Espectaculo.getNombre());
 				}
-				textFieldNombre.setText(Espectaculo.getNombre());
+				/**textFieldNombre.setText(Espectaculo.getNombre());
 				textFieldDescripcion.setText(Espectaculo.getDescripcion());
 				textFieldDuracion.setText(Espectaculo.getDuracion());
-				textFieldDuracion.setText(Espectaculo.getDuracion());
+				textFieldDuracion.setText(Espectaculo.getDuracion());**/
 				
 			}
 		});  

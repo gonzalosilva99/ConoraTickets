@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -16,6 +17,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -32,6 +35,8 @@ import javax.swing.JTree;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -93,9 +98,11 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, lblEspectaculo);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblPlataforma);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -128, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -4, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
+		
+		
+		
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(10, 42, 106, 34);
@@ -138,7 +145,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(122, 86, 175, 28);
 		dateChooser.setToolTipText("");
-		dateChooser.setDateFormatString("dd-MM-yyyy");
+		dateChooser.setDateFormatString("hh:mm:ss");
 		panel.setLayout(null);
 		panel.add(lblHoraInicio);
 		panel.add(lblNewLabel);
@@ -147,27 +154,43 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		panel.add(textFieldNombre);
 		panel.add(lblDatosFuncion);
 		panel.add(dateChooser);
-		
 		Button buttonAceptar = new Button("Aceptar");
+		
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -52, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 425, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -4, SpringLayout.EAST, getContentPane());
 		
+		JLabel lblArtistasSeleccionados = new JLabel("");
+		lblArtistasSeleccionados.setBounds(122, 285, 335, 28);
+		panel.add(lblArtistasSeleccionados);
 		
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(122, 127, 175, 28);
-		dateChooser_1.setToolTipText("");
-		dateChooser_1.setDateFormatString("dd-MM-yyyy");
-		panel.add(dateChooser_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 180, 369, 93);
+		scrollPane.setBounds(120, 180, 337, 93);
 		panel.add(scrollPane);
 		
+		JSpinner spinnerHora = new JSpinner();
+		spinnerHora.setModel(new SpinnerNumberModel(0, 0, 24, 1));
+		spinnerHora.setBounds(122, 127, 49, 28);
+		panel.add(spinnerHora);
+		
+		JSpinner spinnerMinutos = new JSpinner();
+		spinnerMinutos.setModel(new SpinnerNumberModel(0, 0, 60, 1));
+		spinnerMinutos.setBounds(183, 127, 49, 28);
+		panel.add(spinnerMinutos);
 		
 		getContentPane().add(buttonAceptar);
 		buttonAceptar.setSize(95, 36);
+		
+		Button buttonAnadir = new Button("+");
+		buttonAnadir.setBounds(463, 182, 28, 28);
+		panel.add(buttonAnadir);
+		
+		Button buttonQuitar = new Button("-");
+		buttonQuitar.setBounds(463, 216, 28, 28);
+		panel.add(buttonQuitar);
 		
 		Button buttonCancelar = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 333, SpringLayout.WEST, getContentPane());
@@ -185,17 +208,6 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		while(itr.hasNext())
 			{comboBoxPlataforma.addItem(itr.next().getNombre());}
 		
-		IUsuario iusuario = fabric.getIUsuario();
-		Set<DtArtista> listArts = iusuario.listarArtistas();
-		Iterator<DtArtista> iterArtista = listArts.iterator();
-		DefaultListModel listaArtistas = new DefaultListModel();
-		while(iterArtista.hasNext()) {
-			listaArtistas.addElement(iterArtista.next().getNickname());
-		}
-		JList list = new JList(listaArtistas);
-		scrollPane.setViewportView(list);
-		
-		
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBoxEspectaculo.removeAllItems();
@@ -206,6 +218,60 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					{comboBoxEspectaculo.addItem(itr.next().getNombre());}
 			}
 		});
+		
+		IUsuario iusuario = fabric.getIUsuario();
+		Set<DtArtista> listArts = iusuario.listarArtistas();
+		Object[] ArregloArtistas = listArts.toArray();
+		Iterator<DtArtista> iterArtista = listArts.iterator();
+		DefaultListModel listaArtistas = new DefaultListModel();
+		while(iterArtista.hasNext()) {
+			listaArtistas.addElement(iterArtista.next().getNickname());
+		}
+		JList list = new JList();
+		list.setModel(listaArtistas);
+		scrollPane.setViewportView(list);
+		
+		
+		
+		Set<String> ArtistasADevolver = new HashSet<String>();
+		Set<Integer> IndicesArtistas = new HashSet<Integer>();
+		
+		buttonAnadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(list.getSelectedIndex()!=0 & !(IndicesArtistas.contains(list.getSelectedIndex()))){
+					ArtistasADevolver.add(list.getSelectedValue().toString());
+					IndicesArtistas.add(list.getSelectedIndex());
+					Iterator<String> iterArtistasString = ArtistasADevolver.iterator();
+					lblArtistasSeleccionados.setText("");
+					while(iterArtistasString.hasNext()) {
+						lblArtistasSeleccionados.setText(lblArtistasSeleccionados.getText() + ", " + iterArtistasString.next());
+					}
+				}
+			}
+		});
+		
+		
+		buttonQuitar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(list.getSelectedIndex()!=0 & IndicesArtistas.contains(list.getSelectedIndex())){
+					ArtistasADevolver.remove(list.getSelectedValue().toString());
+					IndicesArtistas.remove(list.getSelectedIndex());
+					Iterator<String> iterArtistasString = ArtistasADevolver.iterator();
+					lblArtistasSeleccionados.setText("");
+					while(iterArtistasString.hasNext()) {
+						lblArtistasSeleccionados.setText(lblArtistasSeleccionados.getText() + ", " + iterArtistasString.next());
+					}
+				}
+			}
+		});
 
+		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(true) {
+					
+				}
+			}
+		});
 	}
 }

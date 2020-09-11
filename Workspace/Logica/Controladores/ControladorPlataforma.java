@@ -32,7 +32,7 @@ public class ControladorPlataforma implements IPlataforma{
 	};
 	public DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
-		return manplat.listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
+		return manplat.listarDtEspectaculoDatos(nomPlat, NombreEspectaculo);
 	};
 	public void AltaPlataforma(String nombre, String Descripcion,String Url) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
@@ -61,7 +61,9 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarEspectaculos(nombrePlataforma);
 	}
-	
+	public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre,Date fecha, Date inicio,Set<String> artistas, Date alta) {
+		
+	}
 }
 
 
