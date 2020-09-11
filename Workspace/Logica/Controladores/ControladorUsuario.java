@@ -94,7 +94,7 @@ public class ControladorUsuario implements IUsuario{
 	}
 	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
-		Set<DtArtista> h = manusu.listarArtistas();
+		Set<DtArtista> h = manusu.listarArtistasNoEspectaculo(nombreEspectaculo);
 		return h;
 	}
 	public void RelacionarArtistaFuncion(String nickArtista, Funcion funcion) {
