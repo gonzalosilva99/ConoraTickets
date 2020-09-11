@@ -7,19 +7,24 @@ import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
 import DataTypes.DtUsuario;
 import DataTypes.DtFuncion;
+import DataTypes.DtRegistro;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-
+import java.util.Map;
+import java.util.Set;
+import Relaciones.RegistroFuncion;
 import javax.swing.JOptionPane;
 
 
 public class Espectador extends Usuario{
+
+	private HashMap<Integer,RegistroFuncion> RegistroFunciones;
 	
 	public Espectador(String nickname, String nombre, String apellido, String email, Date nacimiento) {
 		super(nickname,nombre, apellido, email,nacimiento);
-		Funciones = new HashSet<Funcion>();
+		RegistroFunciones = new HashMap<Integer,RegistroFuncion>();
 	}
-	private HashSet<Funcion> Funciones;
 	public DtUsuario getDtUsuario() {
 		DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
 		return ret;
@@ -30,22 +35,36 @@ public class Espectador extends Usuario{
 		return ret;
 	}
 	
-	public HashSet<Funcion> getFunciones() {
-		return Funciones;
+	public HashMap<Integer,RegistroFuncion> getRegistroFunciones() {
+		return RegistroFunciones;
 	}
 
-	public void setFunciones(HashSet<Funcion> funciones) {
-		Funciones = funciones;
+	public void setFunciones(HashMap<Integer,RegistroFuncion> regfunciones) {
+		RegistroFunciones = regfunciones;
 	}
 
 	public DtEspectadorConsulta getDtEspectadorConsulta() {
-		HashSet<DtFuncion> esp = new HashSet<DtFuncion>();
-		Iterator<Funcion> itr = Funciones.iterator();	
-		while(itr.hasNext()) {
-			DtFuncion nuevo = itr.next().getDtFuncion();
-			esp.add(nuevo);
+		//HashMap<Integer,RegistroFuncion> esp = new HashSet<DtFuncion>();
+		//Iterator<Funcion> itr = Funciones.iterator();	
+		//while(itr.hasNext()) {
+			//DtFuncion nuevo = itr.next().getDtFuncion();
+			//esp.add(nuevo);
+		//}
+		//DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp);
+		Date coso = new Date();
+		HashSet<DtFuncion> popo = new HashSet<DtFuncion>();
+		DtEspectadorConsulta ret = new DtEspectadorConsulta("","","","",coso,popo);
+		return ret;
+	}
+	
+	public Set<DtRegistro> listarRegistrosSinCanjeaer(){
+		HashSet<DtRegistro> ret = new HashSet<DtRegistro>();
+		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
+			if(entry.getValue().getCanjeable()) {
+				DtRegistro nuevo = entry.getValue().getDtRegistro();
+				ret.add(nuevo);
+			}
 		}
-		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp);
 		return ret;
 	}
 }

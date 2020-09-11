@@ -70,7 +70,7 @@ public class ManejadorPlataforma {
 			return plat.mostrarFuncion(NombreEsp, NombreFun);
 		}
 				
-		public Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
+		public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
 			Plataforma plat = Plataformas.get(nombrePlat);
 			return plat.listarFuncionesVigentesEspectaculo(nombreEsp);
 		}

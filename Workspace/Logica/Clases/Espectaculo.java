@@ -39,7 +39,7 @@ public class Espectaculo {
 			CantMin = cantMin;
 			Duracion = duracion;
 			Descripcion = descripcion;
-			Funciones = null;
+			Funciones = new HashMap<String,Funcion>();
 		}
 		public String getNombre() {
 			return Nombre;
@@ -88,12 +88,12 @@ public class Espectaculo {
 		public void setFunciones(Map<String, Funcion> funciones) {
 			Funciones = funciones;
 		}
-		public Map<String,DtFuncion> getFuncionesVigentes(){
-			HashMap<String,DtFuncion> ret = new HashMap<String,DtFuncion>();
+		public Set<DtFuncion> getFuncionesVigentes(){
+			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
 			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
 				if(entry.getValue().estaVigente()) {
 					DtFuncion nueva = entry.getValue().getDtFuncion();
-					ret.put(nueva.getNombre(), nueva);   
+					ret.add(nueva);  
 				}				
 			}
 			return ret;

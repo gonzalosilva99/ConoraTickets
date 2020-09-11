@@ -12,6 +12,7 @@ import Clases.Espectaculo;
 import Clases.Artista;
 import Clases.Funcion;
 import DataTypes.DtFuncion;
+import DataTypes.DtRegistro;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
 import DataTypes.DtEspectador;
@@ -38,6 +39,11 @@ public class ControladorUsuario implements IUsuario{
 	public Set<DtEspectador> listarEspectadores(){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		return manusu.listarEspectadores();
+	}
+	
+	public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		return manusu.listarRegistrosSinCanjeaer(nickname);
 	}
 	
 	public Set<DtUsuario> listarUsuarios(){

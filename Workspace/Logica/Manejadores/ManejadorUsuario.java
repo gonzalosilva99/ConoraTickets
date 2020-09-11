@@ -172,5 +172,10 @@ public class ManejadorUsuario {
 			return Artistas.get(nickname);
 		}
 		
+		public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
+			Espectador espec = Espectadores.get(nickname);
+			return espec.listarRegistrosSinCanjeaer();
+		}
+		
 		
 }
