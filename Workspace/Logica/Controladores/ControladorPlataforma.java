@@ -67,7 +67,8 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.listarEspectaculos(nombrePlataforma);
 	}
 	public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre,Date fecha, Date inicio,Set<String> artistas, Date alta) {
-		
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		manplat.ConfirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, fecha, inicio, artistas, alta);
 	}
 	public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();	
@@ -76,6 +77,7 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete, NombrePlataforma);
 		
 	}
+	
 
 }
 

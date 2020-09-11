@@ -125,7 +125,6 @@ public class Plataforma {
 		}
 		public Espectaculo getEspectaculo(String NombreEspectaculo) {
 			return Espectaculos.get(NombreEspectaculo);
-			
 		}
 }
 		

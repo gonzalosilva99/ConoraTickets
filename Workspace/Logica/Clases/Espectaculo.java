@@ -142,6 +142,9 @@ public class Espectaculo {
 			return ret;
 		
 		}
+		public void AnadirFuncion(String nombre,Date fecha, Date inicio, Date alta) {
+			
+		}
 		
 		
 }

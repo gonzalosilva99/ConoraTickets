@@ -217,7 +217,6 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxPlataforma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBoxEspectaculo.removeAllItems();
-				System.out.println(comboBoxPlataforma.getSelectedItem().toString());
 				Set<DtEspectaculo> listarEspecsDePlat = iplataforma.listarEspectaculosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());
 				Iterator<DtEspectaculo> itr = listarEspecsDePlat.iterator();
 				comboBoxEspectaculo.addItem("");
@@ -228,8 +227,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		
 		/** CREAR FUNCION DE LISTAR ARTISTAS NO ESPECTACULO *********ESTA CREADA PERO AUN NO FUNCIONA BIEN*************
-		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE 
-		 ** ESPECTACULO :D
+		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE ESPECTACULO :D ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡HECHO!!!!!!!!!!!!
+		 ** 
 		 **/
 		JList list = new JList();
 		scrollPane.setViewportView(list);
@@ -242,14 +241,10 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 						IUsuario iusuario = fabric.getIUsuario();
 						Set<DtArtista> listArtsAux = iusuario.listarArtistasNoEspectaculo(comboBoxEspectaculo.getSelectedItem().toString());
 						Iterator<DtArtista> iterArtista = listArtsAux.iterator();
-						for(Integer i=1; !iterArtista.hasNext();i++) {
-							listArts.put(i, iterArtista.next());
-						}
-						iterArtista = listArtsAux.iterator();
-						listaArtistas.addElement("");
-						listaArtistas.addElement("");
-						while(iterArtista.hasNext()) {
+						listaArtistas.addElement(" ");
+						for(Integer i=1; iterArtista.hasNext();i++) {
 							DtArtista DtArtistaAux = iterArtista.next();
+							listArts.put(i, DtArtistaAux);
 							listaArtistas.addElement(DtArtistaAux.getNickname() + ", " + DtArtistaAux.getNombre() + " " + DtArtistaAux.getApellido());
 						}
 						list.setModel(listaArtistas);
@@ -275,8 +270,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(list.getSelectedIndex()!=0 & !(IndicesArtistas.contains(list.getSelectedIndex()))){
-					ArtistasADevolver.add(listArts.get(list.getSelectedIndex()).getNickname());
 					IndicesArtistas.add(list.getSelectedIndex());
+					ArtistasADevolver.add(listArts.get(list.getSelectedIndex()).getNickname());
 					Iterator<String> iterArtistasString = ArtistasADevolver.iterator();
 					lblArtistasSeleccionados.setText("");
 					while(iterArtistasString.hasNext()) {
@@ -290,7 +285,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonQuitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(list.getSelectedIndex()!=0 & IndicesArtistas.contains(list.getSelectedIndex())){
-					ArtistasADevolver.remove(list.getSelectedValue().toString());
+					ArtistasADevolver.remove(listArts.get(list.getSelectedValue()).getNickname());
 					IndicesArtistas.remove(list.getSelectedIndex());
 					Iterator<String> iterArtistasString = ArtistasADevolver.iterator();
 					lblArtistasSeleccionados.setText("");
@@ -304,7 +299,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(true) {
+				if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty()) {
 					
 				}
 			}
