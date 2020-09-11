@@ -40,8 +40,8 @@ public class ManejadorPaquetes {
 			return new DtPaqueteDatos();
 		}
 		
-		Paquete getPaquete(String NombrePaquete) {
-			return new Paquete();
+		public Paquete getPaquete(String NombrePaquete) {
+			return Paquetes.get(NombrePaquete);
 		}
 		
 		public Set<DtPaquete> listarPaquetesEspectaculo(String nomEsp){
@@ -52,6 +52,8 @@ public class ManejadorPaquetes {
 			}
 			return ret;
 		}
+		
+		
 		
 		
 }

@@ -4,6 +4,8 @@ import Clases.Artista;
 import Clases.Espectaculo;
 import Clases.Espectador;
 import Clases.Funcion;
+import Clases.Paquete;
+
 import java.util.*;
 import Excepciones.Identidad;
 
@@ -73,7 +75,7 @@ public class ManejadorPlataforma {
 			return plat.listarFuncionesVigentesEspectaculo(nombreEsp);
 		}
 		
-		Plataforma getPlataforma(String nomPlataforma) {
+		public Plataforma getPlataforma(String nomPlataforma) {
 			return Plataformas.get(nomPlataforma);
 			
 		}
@@ -115,6 +117,12 @@ public class ManejadorPlataforma {
 		public DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo) {
 			Plataforma plat = Plataformas.get(nomPlat);
 			return plat.getDtEspectaculoDatos(NombreEspectaculo);
+		}
+		
+		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
+			Plataforma pla = this.getPlataforma(NombrePlataforma);
+			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
+			
 		}
 }
 		

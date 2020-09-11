@@ -90,4 +90,9 @@ public class ControladorUsuario implements IUsuario{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
 		manusu.RelacionarArtistaEspectaculo(nickArtista,nuevo);
 	}
+	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Set<DtArtista> h = manusu.listarArtistas();
+		return h;
+	}
 }

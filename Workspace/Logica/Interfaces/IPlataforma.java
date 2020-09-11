@@ -25,5 +25,5 @@ public interface IPlataforma {
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);
 		void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre,Date fecha, Date inicio,Set<String> artistas, Date alta);		
-		
+		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma);
 }

@@ -7,21 +7,25 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import Clases.Funcion;
+import Clases.Paquete;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
 import Excepciones.Identidad;
+import Manejadores.ManejadorPaquetes;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
 import Clases.Espectaculo;
+import Clases.Plataforma;
+
 
 public class ControladorPlataforma implements IPlataforma{
 
 	public Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre) {
-		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-		return ret;
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarEspectaculos(Nombre);
 	};
 	public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp) { 
 		Set<DtFuncion> ret = new HashSet<DtFuncion>();
@@ -65,6 +69,14 @@ public class ControladorPlataforma implements IPlataforma{
 	public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre,Date fecha, Date inicio,Set<String> artistas, Date alta) {
 		
 	}
+	public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();	
+		
+	
+		return manplat.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete, NombrePlataforma);
+		
+	}
+
 }
 
 

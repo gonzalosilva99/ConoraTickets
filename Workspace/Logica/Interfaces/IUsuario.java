@@ -22,5 +22,5 @@ public interface IUsuario {
 	public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento);
 	public Set<DtEspectador> listarEspectadores();
 	public void RelacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo);
-
+	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo);
 }

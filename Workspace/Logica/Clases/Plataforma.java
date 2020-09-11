@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import Manejadores.ManejadorPaquetes;
+
 import javax.swing.JOptionPane;
 
 import DataTypes.DtEspectaculo;
@@ -21,6 +23,7 @@ public class Plataforma {
 	private String Descripcion;
 	private String Url;
 	private HashMap<String,Espectaculo> Espectaculos;
+
 		public Plataforma(String nombre, String descripcion, String Url) {
 			super();
 			Nombre = nombre;
@@ -103,8 +106,26 @@ public class Plataforma {
 			return esp.getDtEspectaculoDatos();
 		}
 		
+
 		public Boolean ExisteEspectaculo(String nomEspectaculo) {
 			return Espectaculos.containsKey(nomEspectaculo);
+		}
+		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete){
+			
+			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
+			Paquete p = manpaq.getPaquete(NombrePaquete);
+			
+			Set<DtEspectaculo> set = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+				DtEspectaculo nuevo = nuevo = entry.getValue().getDatosEspectaculo();
+				if (p.tieneEspectaculo(entry.getValue().getNombre()))  set.add(nuevo);
+				
+			}
+			return set;
+		}
+		public Espectaculo getEspectaculo(String NombreEspectaculo) {
+			return Espectaculos.get(NombreEspectaculo);
+			
 		}
 }
 		
