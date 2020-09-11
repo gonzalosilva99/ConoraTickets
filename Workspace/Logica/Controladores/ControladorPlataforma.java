@@ -21,6 +21,7 @@ import Clases.Espectaculo;
 import Clases.Plataforma;
 
 
+
 public class ControladorPlataforma implements IPlataforma{
 
 	public Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre) {
@@ -44,13 +45,13 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.AltaPlataforma(nombre, Descripcion, Url);
 	}
 	
-	public Map<String, DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat){
+	public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat){
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
 	};
-	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad {
-		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
-		manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad{	 
+			ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
 	};
 	
 	

@@ -81,5 +81,13 @@ public class Artista extends Usuario{
 			funcion.anadirArtista(this,this.getNickname());
 			FuncionesInvitado.add(funcion);
 		}
+		public boolean participaEspectaculo(String nombreEspectaculo) {
+			Iterator<Espectaculo> itr = Espectaculos.iterator();
+			while(itr.hasNext()) {
+				if (itr.next().getNombre() == nombreEspectaculo)
+					return true;	
+				}
+			return false;
+		}
 	
 }
