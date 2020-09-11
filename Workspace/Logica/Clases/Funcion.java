@@ -50,6 +50,8 @@ public class Funcion {
 		public Map<String, Artista> getArtistasInvitado(){
 			return ArtistasInvitados;
 		}
-
+		public void anadirArtista(Artista artista, String nick) {
+			ArtistasInvitados.put(nick, artista);	
+		}
 		
 }

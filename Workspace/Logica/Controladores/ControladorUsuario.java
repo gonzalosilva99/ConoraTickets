@@ -8,6 +8,9 @@ import java.util.Set;
 
 import javax.swing.JOptionPane;
 
+import Clases.Espectaculo;
+import Clases.Artista;
+import Clases.Funcion;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
@@ -17,26 +20,18 @@ import DataTypes.DtEspectadorConsulta;
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
+import Excepciones.Identidad;
 
 public class ControladorUsuario implements IUsuario{
 	
-	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
-		try {
+	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
 		manusu.confirmarAltaArtista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
-		}
-		catch(Exception e) {
-			
-		}
 	}
 		
-	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
-		try {
+	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) throws Identidad{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
 		manusu.confirmarAltaEspectador(Nickname,Nombre,Apellido,Email,Nacimiento);
-		}
-		catch(Exception e) {
-		}
 	}
 	
 
@@ -72,5 +67,40 @@ public class ControladorUsuario implements IUsuario{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		DtEspectadorConsulta h = manusu.MostrarEspectador(nickname);
 		return h;
+	}
+	
+	public void ModificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+		try {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+		manusu.ModificarArtista(Nickname,Nombre,Apellido,Nacimiento,Descripcion,Biografia,Link);
+		}
+		catch(Exception e) {
+			
+		}
+	}
+		
+	public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento) {
+		try {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+		manusu.ModificarEspectador(Nickname,Nombre,Apellido,Nacimiento);
+		}
+		catch(Exception e) {
+		}
+	}
+	
+	public void RelacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+		manusu.RelacionarArtistaEspectaculo(nickArtista,nuevo);
+	}
+	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Set<DtArtista> h = manusu.listarArtistas();
+		return h;
+	}
+	public void RelacionarArtistaFuncion(String nickArtista, Funcion funcion) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Artista artista = manusu.getArtista(nickArtista);
+		artista.anadirFuncion(funcion);
+		
 	}
 }

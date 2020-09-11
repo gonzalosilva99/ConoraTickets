@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
@@ -24,6 +25,7 @@ import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import Controladores.Fabrica;
+import Excepciones.Identidad;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
 
@@ -220,14 +222,28 @@ public class AltaUsuario extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
+					if(textFieldNickname.getText().length()==0) {
+						throw new Identidad("El Nickname no debe ser vacío");
+					}
+					if(textFieldEmail.getText().length()==0) {
+						throw new Identidad("El Email no debe ser vacío");
+					}
 					IUsuario iusuario = fabric.getIUsuario();
-					if(rdbtnArtista.isSelected()) {			
+					if(rdbtnArtista.isSelected()) {
+						if(textFieldNickname.getText().indexOf(" ")>-1) {
+							throw new Identidad("El Nickname no debe contener espacios");
+						}
+						
 						iusuario.confirmarAltaArtista(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate(), textPaneDescGeneral.getText(), textPaneBiografia.getText(), textFieldLink.getText());
 						textPaneDescGeneral.setText("");
 						textPaneBiografia.setText("");
 						textFieldLink.setText("");
+						
 					}
 					if(rdbtnEspectador.isSelected()) {
+						if(textFieldNickname.getText().indexOf(" ")>-1) {
+							throw new Identidad("El Nickname no debe contener espacios");
+						}
 						iusuario.confirmarAltaEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate());
 					}
 					textFieldNickname.setText("");
@@ -240,7 +256,7 @@ public class AltaUsuario extends JInternalFrame {
 					//textFieldNickname.setText();
 				}
 				catch(Exception e){
-					JOptionPane.showMessageDialog(null, "ERROR");
+					JOptionPane.showMessageDialog(null, e.getMessage());
 
 				}
 				
@@ -253,7 +269,13 @@ public class AltaUsuario extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar);
 		
+		
 		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -46, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 309, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());

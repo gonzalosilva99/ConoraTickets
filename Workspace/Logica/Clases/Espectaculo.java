@@ -9,8 +9,12 @@ import java.util.HashSet;
 
 import DataTypes.DtArtista;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
+import DataTypes.DtPaquete;
+import Manejadores.ManejadorPlataforma;
+import Manejadores.ManejadorPaquetes;
 
 
 public class Espectaculo {
@@ -72,6 +76,18 @@ public class Espectaculo {
 		}
 		
 		
+		public Artista getOrganizador() {
+			return Organizador;
+		}
+		public void setOrganizador(Artista organizador) {
+			Organizador = organizador;
+		}
+		public Map<String, Funcion> getFunciones() {
+			return Funciones;
+		}
+		public void setFunciones(Map<String, Funcion> funciones) {
+			Funciones = funciones;
+		}
 		public Map<String,DtFuncion> getFuncionesVigentes(){
 			HashMap<String,DtFuncion> ret = new HashMap<String,DtFuncion>();
 			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
@@ -82,12 +98,14 @@ public class Espectaculo {
 			}
 			return ret;
 		}
-		
+		 
 		public Set<DtFuncion> listarFunciones(){
 			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
-			for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
-				DtFuncion nueva = entry.getValue().getDtFuncion();
-				ret.add(nueva);
+			if ( Funciones != null) {
+				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+					DtFuncion nueva = entry.getValue().getDtFuncion();
+					ret.add(nueva);
+				}
 			}
 			return ret;
 		}
@@ -118,6 +136,16 @@ public class Espectaculo {
 			Funcion fun = Funciones.get(NombreFun);
 			DtFuncionDatos dtfun = new DtFuncionDatos();
 			return dtfun;
+		}
+		public DtEspectaculoDatos getDtEspectaculoDatos() {
+			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
+			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(Nombre);
+			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFunciones() , listaPaquetes); 
+			return ret;
+		
+		}
+		public void AnadirFuncion(String nombre,Date fecha, Date inicio, Date alta) {
+			
 		}
 		
 		

@@ -5,18 +5,25 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import Manejadores.ManejadorPaquetes;
+
 import javax.swing.JOptionPane;
 
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
 import DataTypes.DtEspectaculo;
+import Controladores.Fabrica;
+import Interfaces.IUsuario;
+
 public class Plataforma {
 	private String Nombre;
 	private String Descripcion;
 	private String Url;
-	private Map<String,Espectaculo> Espectaculos;
+	private HashMap<String,Espectaculo> Espectaculos;
+
 		public Plataforma(String nombre, String descripcion, String Url) {
 			super();
 			Nombre = nombre;
@@ -36,7 +43,7 @@ public class Plataforma {
 		public Map<String, Espectaculo> getEspectaculos() {
 			return Espectaculos;
 		}
-		public void setEspectaculos(Map<String, Espectaculo> espectaculos) {
+		public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
 			Espectaculos = espectaculos;
 		}
 		public String getNombre() {
@@ -76,7 +83,6 @@ public class Plataforma {
 		public Set<DtEspectaculo> listarEspectaculos(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
 		for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
-			JOptionPane.showMessageDialog(null, "ok");
 			DtEspectaculo nueva = entry.getValue().getDatosEspectaculo();
 			ret.add(nueva);            
 		}
@@ -89,7 +95,44 @@ public class Plataforma {
 		
 		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion);
+			Fabrica fabric = Fabrica.getInstancia();
+			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculos.put(nomEspectaculo, nuevo);
+			iusuario.RelacionarArtistaEspectaculo(nickArtista,nuevo);
+		}
+		public DtEspectaculoDatos getDtEspectaculoDatos(String NombreEspectaculo) {
+			Espectaculo esp = Espectaculos.get(NombreEspectaculo);
+			return esp.getDtEspectaculoDatos();
+		}
+		
+
+		public Boolean ExisteEspectaculo(String nomEspectaculo) {
+			return Espectaculos.containsKey(nomEspectaculo);
+		}
+		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete){
+			
+			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
+			Paquete p = manpaq.getPaquete(NombrePaquete);
+			
+			Set<DtEspectaculo> set = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+				DtEspectaculo nuevo = nuevo = entry.getValue().getDatosEspectaculo();
+				if (p.tieneEspectaculo(entry.getValue().getNombre()))  set.add(nuevo);
+				
+			}
+			return set;
+		}
+		public Espectaculo getEspectaculo(String NombreEspectaculo) {
+			return Espectaculos.get(NombreEspectaculo);
+		}
+		
+		public Set<DtEspectaculoDatos> listarEspectaculoDatos(){
+			Set<DtEspectaculoDatos> ret = new HashSet<DtEspectaculoDatos>();		
+			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				DtEspectaculoDatos nueva = entry.getValue().getDtEspectaculoDatos();
+				ret.add(nueva);            
+			}
+			return ret;
 		}
 }
 		

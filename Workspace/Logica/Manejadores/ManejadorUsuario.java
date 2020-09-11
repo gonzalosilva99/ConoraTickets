@@ -2,11 +2,13 @@
 import java.util.*;
 import Clases.Espectador;
 import Clases.Artista;
+import Clases.Espectaculo;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
 import DataTypes.DtArtistaConsulta;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
+import Excepciones.Identidad;
 import DataTypes.DtRegistro;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
@@ -86,13 +88,12 @@ public class ManejadorUsuario {
 			return false;
 		}
 		
-		public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+		public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad {
 			if (ExisteUsuarioConNickname(Nickname)) {
-				//ERROR
+				throw new Identidad("Ya Existe un Usuario con este Nickname");
 			}
 			else if(ExisteUsuarioConEmail(Email)){
-				
-				//ERROR
+				throw new Identidad("Ya Existe un Usuario con este Email");
 			}	
 			else {
 				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
@@ -100,13 +101,12 @@ public class ManejadorUsuario {
 			}
 		}
 		
-		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
+		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) throws Identidad{
 			if (ExisteUsuarioConNickname(Nickname)) {
-				//ERROR
+				throw new Identidad("Ya Existe un Usuario con este Nickname");
 			}
 			else if(ExisteUsuarioConEmail(Email)){
-				JOptionPane.showMessageDialog(null, "ERROR");
-				//ERROR
+				throw new Identidad("Ya Existe un Usuario con este Email");
 			}
 			else {
 				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email,Nacimiento);
@@ -144,6 +144,32 @@ public class ManejadorUsuario {
 		
 		public DtEspectadorConsulta MostrarEspectador(String nickname) {
 			return Espectadores.get(nickname).getDtEspectadorConsulta();
+		}
+		
+		public void ModificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link) {
+			Artista mod = Artistas.get(Nickname);
+			mod.setNombre(Nombre);
+			mod.setApellido(Apellido);
+			mod.setNacimiento(Nacimiento);
+			mod.setDescripcionGeneral(Descripcion);
+			mod.setBiografia(Biografia);
+			mod.setURL(Link);
+		}
+		
+		public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento) {
+			Espectador mod = Espectadores.get(Nickname);
+			mod.setNombre(Nombre);
+			mod.setApellido(Apellido);
+			mod.setNacimiento(Nacimiento);
+		}
+		
+		public void RelacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo) {
+			Artista Organizador = Artistas.get(nickArtista);
+			nuevo.setOrganizador(Organizador);
+			Organizador.AnadirEspectaculo(nuevo);
+		}
+		public Artista getArtista(String nickname) {
+			return Artistas.get(nickname);
 		}
 		
 		

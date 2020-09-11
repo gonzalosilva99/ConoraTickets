@@ -1,8 +1,10 @@
 package Manejadores;
 import java.util.*;
 import Clases.Paquete;
+import Clases.Plataforma;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
+import DataTypes.DtPlataforma;
 
 
 public class ManejadorPaquetes {
@@ -38,9 +40,22 @@ public class ManejadorPaquetes {
 			return new DtPaqueteDatos();
 		}
 		
-		Paquete getPaquete(String NombrePaquete) {
-			return new Paquete();
+		public Paquete getPaquete(String NombrePaquete) {
+			return Paquetes.get(NombrePaquete);
 		}
+		
+		public Set<DtPaquete> listarPaquetesEspectaculo(String nomEsp){
+			Set<DtPaquete> ret = new HashSet<DtPaquete>();		
+			for (Map.Entry<String, Paquete> entry : Paquetes.entrySet()) {
+				if ( entry.getValue().hayEspectaculo(nomEsp)) {
+		            DtPaquete nueva = entry.getValue().getDtPaquete();
+		            ret.add(nueva);
+				}
+			}
+			return ret;
+		} 
+		
+		
 		
 		
 }

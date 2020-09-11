@@ -7,17 +7,20 @@ import javax.swing.SpringLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import Controladores.ControladorPlataforma;
 import Controladores.Fabrica;
+import Excepciones.Identidad;
 import Interfaces.IPlataforma;
 public class AltaPlataforma extends JInternalFrame {
 	private JTextField textFieldNombre;
-	private JTextField textFieldDescGeneral;
+	private JTextPane textFieldDescGeneral;
 	private JTextField textFieldurl;
 
 	/**
@@ -75,21 +78,21 @@ public class AltaPlataforma extends JInternalFrame {
 		textFieldNombre.setColumns(10);
 		
 		JLabel lblDescGeneral = new JLabel("Desc. General:");
-		sl_panel.putConstraint(SpringLayout.WEST, lblDescGeneral, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblDescGeneral, -378, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescGeneral, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescGeneral, -347, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDescGeneral, -351, SpringLayout.EAST, panel);
 		panel.add(lblDescGeneral);
 		
-		textFieldDescGeneral = new JTextField();
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescGeneral, -6, SpringLayout.NORTH, textFieldDescGeneral);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescGeneral, 153, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescGeneral, -204, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescGeneral, 10, SpringLayout.WEST, panel);
+		textFieldDescGeneral = new JTextPane();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescGeneral, 6, SpringLayout.SOUTH, lblDescGeneral);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescGeneral, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescGeneral, -251, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescGeneral, -10, SpringLayout.EAST, panel);
 		panel.add(textFieldDescGeneral);
-		textFieldDescGeneral.setColumns(10);
+		//textFieldDescGeneral.setColumns(10);
 		
 		textFieldurl = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDescGeneral, 61, SpringLayout.SOUTH, textFieldurl);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescGeneral, 14, SpringLayout.SOUTH, textFieldurl);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldurl, 0, SpringLayout.WEST, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldurl, 0, SpringLayout.EAST, textFieldNombre);
 		textFieldurl.setColumns(10);
@@ -104,6 +107,7 @@ public class AltaPlataforma extends JInternalFrame {
 		Button buttonCancelar = new Button("Cancelar");
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
@@ -116,12 +120,16 @@ public class AltaPlataforma extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
+					if(textFieldNombre.getText().length()==0) {
+						throw new Identidad("El Nombre no debe ser vacío");
+					}
 					IPlataforma iplataform = fabric.getIPlataforma();
 					iplataform.AltaPlataforma(textFieldNombre.getText(), textFieldDescGeneral.getText(), textFieldurl.getText());
+					JOptionPane.showMessageDialog(null, "Alta de Plataforma con exito");
 					
 				}
 				catch(Exception e){
-					
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 				
 			}

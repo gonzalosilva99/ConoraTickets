@@ -5,9 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 
+import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
+import DataTypes.DtFuncion;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPlataforma;
 
 import javax.swing.JLabel;
@@ -68,6 +71,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -189, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, -4, SpringLayout.NORTH, comboBoxPlataforma);
+		comboBoxPlataforma.addItem("");
 		getContentPane().add(comboBoxPlataforma);
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
@@ -251,6 +255,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		panel.add(comboBoxFunciones);
 		getContentPane().add(buttonAceptar);
 		
+		
 		Button buttonCancelar = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -46, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -99, SpringLayout.WEST, buttonAceptar);
@@ -259,7 +264,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
-		
+		comboBoxEspectaculos.addItem("");
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 11, SpringLayout.SOUTH, comboBoxPlataforma);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxEspectaculos, -24, SpringLayout.NORTH, panel);
@@ -272,23 +277,51 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				comboBoxEspectaculos.removeAllItems();
 				comboBoxEspectaculos.setVisible(true);	
 				lblEspectaculos.setVisible(true);	
-				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());	
-				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
+				Set<DtEspectaculoDatos> listaEspectaculoDatos = iplataforma.listarEspectaculoDatosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());	
+				Iterator<DtEspectaculoDatos> itre = listaEspectaculoDatos .iterator();
+				DtEspectaculoDatos datosEspectaculo;
 				while(itre.hasNext())
 				{
-					String nombreEspectaculo = itre.next().getNombre();
-					comboBoxEspectaculos.addItem(nombreEspectaculo);
-				}
-				 
+					datosEspectaculo = itre.next();
+					comboBoxEspectaculos.addItem(datosEspectaculo.getNombre());
+					textFieldNombre.setText(datosEspectaculo.getNombre());
+					textFieldDescripcion.setText(datosEspectaculo.getDescripcion());
+					textFieldDuracion.setText(datosEspectaculo.getDuracion().toString());
+					textFieldCosto.setText(datosEspectaculo.getCosto().toString());  
+					textFieldURL.setText(datosEspectaculo.getURL().toString());
+					textFieldFechaAlta.setText(datosEspectaculo.getRegistro().toString());
+					textFieldEspectMin.setText(datosEspectaculo.getCantMin().toString());
+					textFieldEspectMax.setText(datosEspectaculo.getCantMax().toString());
+					textFieldNombre.setEditable(false);
+					textFieldDescripcion.setEditable(false);
+					textFieldDuracion.setEditable(false);
+					textFieldCosto.setEditable(false);
+					textFieldURL.setEditable(false);
+					textFieldFechaAlta.setEditable(false);
+					textFieldEspectMin.setEditable(false);
+					textFieldEspectMax.setEditable(false);
+					
+					comboBoxFunciones.removeAllItems();
+					comboBoxFunciones.setVisible(true);	
+					lblFunciones.setVisible(true);	
+					Set<DtFuncion> listaFunciones = datosEspectaculo.getFunciones();
+					Iterator<DtFuncion> iterf = listaFunciones.iterator();
+					while(iterf.hasNext()) {
+						comboBoxFunciones.removeAllItems();
+						comboBoxFunciones.addItem(iterf.next().getNombre()); }
+					}
+				
 				
 			}
-		});
+		} );  
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
 			}
 		});
+		
 
+    
 	}
-}
+}    
