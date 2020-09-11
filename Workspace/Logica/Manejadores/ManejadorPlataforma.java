@@ -107,14 +107,11 @@ public class ManejadorPlataforma {
 		}
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad {
 			Plataforma plat = Plataformas.get(nomPlat);
-			if(!ExisteEspectaculo(nomEspectaculo) && !(minEsp>=maxEsp || costo<0 || duracion<0)) {
+			if(!ExisteEspectaculo(nomEspectaculo)) {
 				plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
 			}
-			else if (ExisteEspectaculo(nomEspectaculo)){
+			else{
 				throw new Identidad("Ya Existe un Espectaculo con este Nombre");
-			}
-			else if (minEsp>=maxEsp || costo<0 || duracion<0){
-				throw new Identidad("Formato incorrecto de datos");
 			}
 		}  
 		public DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo) {

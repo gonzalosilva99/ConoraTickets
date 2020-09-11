@@ -6,6 +6,7 @@ import Controladores.ControladorUsuario;
 import Controladores.Fabrica;
 import DataTypes.DtUsuario;
 import Excepciones.Identidad;
+import Excepciones.CheckDatos;
 import Interfaces.IUsuario;
 
 import javax.swing.JInternalFrame;
@@ -36,6 +37,8 @@ import DataTypes.DtPlataforma;
 import DataTypes.DtArtista;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -184,6 +187,20 @@ public class AltaEspectaculo extends JInternalFrame {
 		//textFieldDescripcion.setCo
 		
 		textFieldEspectMin = new JTextField();
+		textFieldEspectMin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+
+			      // Verificar si la tecla pulsada no es un digito
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' /*corresponde a BACK_SPACE*/))
+			      {
+			         e.consume();  // ignorar el evento de teclado
+			      }
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectMin, 137, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescripcion, -12, SpringLayout.NORTH, textFieldEspectMin);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldEspectMin, 16, SpringLayout.EAST, lblEspectMin);
@@ -192,6 +209,20 @@ public class AltaEspectaculo extends JInternalFrame {
 		textFieldEspectMin.setColumns(10);
 		
 		textFieldEspectMax = new JTextField();
+		textFieldEspectMax.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+
+			      // Verificar si la tecla pulsada no es un digito
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' /*corresponde a BACK_SPACE*/))
+			      {
+			         e.consume();  // ignorar el evento de teclado
+			      }
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectMax, 18, SpringLayout.SOUTH, textFieldEspectMin);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldEspectMax, 13, SpringLayout.EAST, lblEspectMax);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldEspectMax, -141, SpringLayout.EAST, panel);
@@ -220,6 +251,20 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(lblCosto);
 		
 		textFieldCosto = new JTextField();
+		textFieldCosto.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+
+			      // Verificar si la tecla pulsada no es un digito
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' /*corresponde a BACK_SPACE*/))
+			      {
+			         e.consume();  // ignorar el evento de teclado
+			      }
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldCosto, 162, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldCosto, 14, SpringLayout.SOUTH, textFieldURL);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldCosto, -141, SpringLayout.EAST, panel);
@@ -241,6 +286,20 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(lblDuracion);
 		
 		textFieldDuracion = new JTextField();
+		textFieldDuracion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+
+			      // Verificar si la tecla pulsada no es un digito
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' /*corresponde a BACK_SPACE*/))
+			      {
+			         e.consume();  // ignorar el evento de teclado
+			      }
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 50, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 16, SpringLayout.EAST, lblDuracion);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, 69, SpringLayout.SOUTH, textFieldCosto);
@@ -270,15 +329,17 @@ public class AltaEspectaculo extends JInternalFrame {
 					String usuario = comboBoxArtista.getSelectedItem().toString();
 					String[] nick = usuario.split(" ");
 					if(comboBoxArtista.getItemCount() == 0 || comboBoxPlataforma.getItemCount() == 0 || textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || textFieldURL.getText().length()==0 || dateChooser.getDate()==null) 
-						throw new Identidad("No deben quedar campos vacios.");
+						throw new CheckDatos("No deben quedar campos vacios.");
 					if(!(isNumeric(textFieldEspectMin.getText())))
-						throw new Identidad("En el campo Espectadores Min. debe ingresar un entero");
+						throw new CheckDatos("En el campo Espectadores Min. debe ingresar un entero");
 					if(!(isNumeric(textFieldEspectMax.getText())))
-						throw new Identidad("En el campo Espectadores Max. debe ingresar un entero");
+						throw new CheckDatos("En el campo Espectadores Max. debe ingresar un entero");
 					if(!(isNumeric(textFieldCosto.getText())))
-						throw new Identidad("En el campo Costo debe ingresar un entero");
+						throw new CheckDatos("En el campo Costo debe ingresar un entero");
 					if(!(isNumeric(textFieldDuracion.getText())))
-						throw new Identidad("En el campo Duracion debe ingresar un entero");
+						throw new CheckDatos("En el campo Duracion debe ingresar un entero");
+					if(Integer.valueOf(textFieldEspectMax.getText())<Integer.valueOf(textFieldEspectMin.getText()))
+						throw new CheckDatos("La cantidad de Espectadores minimos debe ser menor que Expectadores maximos");
 					iplataform.altaEspectaculo( comboBoxPlataforma.getSelectedItem().toString(),nick[0] , 
 							textFieldNombre.getText(), textFieldDescripcion.getText(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),

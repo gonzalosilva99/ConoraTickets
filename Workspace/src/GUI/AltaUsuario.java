@@ -26,6 +26,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import Controladores.Fabrica;
 import Excepciones.Identidad;
+import Excepciones.CheckDatos;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
 
@@ -223,15 +224,15 @@ public class AltaUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					if(textFieldNickname.getText().length()==0) {
-						throw new Identidad("El Nickname no debe ser vacío");
+						throw new CheckDatos("El Nickname no debe ser vacío");
 					}
 					if(textFieldEmail.getText().length()==0) {
-						throw new Identidad("El Email no debe ser vacío");
+						throw new CheckDatos("El Email no debe ser vacío");
 					}
 					IUsuario iusuario = fabric.getIUsuario();
 					if(rdbtnArtista.isSelected()) {
 						if(textFieldNickname.getText().indexOf(" ")>-1) {
-							throw new Identidad("El Nickname no debe contener espacios");
+							throw new CheckDatos("El Nickname no debe contener espacios");
 						}
 						
 						iusuario.confirmarAltaArtista(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate(), textPaneDescGeneral.getText(), textPaneBiografia.getText(), textFieldLink.getText());
@@ -242,7 +243,7 @@ public class AltaUsuario extends JInternalFrame {
 					}
 					if(rdbtnEspectador.isSelected()) {
 						if(textFieldNickname.getText().indexOf(" ")>-1) {
-							throw new Identidad("El Nickname no debe contener espacios");
+							throw new CheckDatos("El Nickname no debe contener espacios");
 						}
 						iusuario.confirmarAltaEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate());
 					}

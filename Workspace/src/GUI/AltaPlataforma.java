@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import Controladores.ControladorPlataforma;
 import Controladores.Fabrica;
 import Excepciones.Identidad;
+import Excepciones.CheckDatos;
 import Interfaces.IPlataforma;
 public class AltaPlataforma extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -121,7 +122,7 @@ public class AltaPlataforma extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					if(textFieldNombre.getText().length()==0) {
-						throw new Identidad("El Nombre no debe ser vacío");
+						throw new CheckDatos("El Nombre no debe ser vacío");
 					}
 					IPlataforma iplataform = fabric.getIPlataforma();
 					iplataform.AltaPlataforma(textFieldNombre.getText(), textFieldDescGeneral.getText(), textFieldurl.getText());

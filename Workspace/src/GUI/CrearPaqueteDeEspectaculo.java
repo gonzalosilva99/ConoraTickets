@@ -146,12 +146,19 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		Button buttonAceptar = new Button("Aceptar");
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {		
-				try {
-				
-				if(textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || dateChooserInicio.getDate()==null || dateChooserFin.getDate()==null || textFieldDescuento.getText().length()==0) throw new CheckDatos("No pueden quedar campos vacios.");
+				try {		
+				if(textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || dateChooserInicio.getDate()==null || dateChooserFin.getDate()==null || textFieldDescuento.getText().length()==0) 
+					throw new CheckDatos("No pueden quedar campos vacios.");
+				if(dateChooserInicio.getDate().after(dateChooserFin.getDate()))
+					throw new CheckDatos("Fecha de inicio posterior a la de fin de vigencia");
 				IPaquete ipaq = fabric.getIPaquete();
 				ipaq.ConfirmarAltaPaquete(textFieldNombre.getText(), textFieldDescripcion.getText(), dateChooserInicio.getDate(), dateChooserFin.getDate(), Double.valueOf( textFieldDescuento.getText()));
 				JOptionPane.showMessageDialog(null, "Paquete agregado con exito");
+				textFieldNombre.setText("");
+				textFieldDescripcion.setText("");
+				dateChooserInicio.setDate(null);
+				dateChooserFin.setDate(null);
+				textFieldDescuento.setText("");
 				}
 				catch(Exception e){
 					JOptionPane.showMessageDialog(null, e.getMessage());
