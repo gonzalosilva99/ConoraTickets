@@ -76,6 +76,18 @@ public class Espectaculo {
 		}
 		
 		
+		public Artista getOrganizador() {
+			return Organizador;
+		}
+		public void setOrganizador(Artista organizador) {
+			Organizador = organizador;
+		}
+		public Map<String, Funcion> getFunciones() {
+			return Funciones;
+		}
+		public void setFunciones(Map<String, Funcion> funciones) {
+			Funciones = funciones;
+		}
 		public Map<String,DtFuncion> getFuncionesVigentes(){
 			HashMap<String,DtFuncion> ret = new HashMap<String,DtFuncion>();
 			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {

@@ -55,6 +55,8 @@ public class ConsultaUsuario extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	String EspectaculoAux;
+	String FuncionAux;
 	public ConsultaUsuario() {
 		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Consulta de Usuario");
@@ -174,6 +176,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.add(lblEspectaculosRegistrados);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
+		
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 0, SpringLayout.EAST, lblEspectaculosRegistrados);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 142, SpringLayout.EAST, lblEspectaculosRegistrados);
 		panel.add(comboBoxEspectaculos);
@@ -252,6 +255,7 @@ public class ConsultaUsuario extends JInternalFrame {
 				String[] nick = usuario.split(" ");
 				if(iusuario.EsArtista(nick[0])) {
 					panel.setVisible(true);
+					comboBoxEspectaculos.removeAllItems();
 					lblEspectaculosRegistrados.setText("Espectaculos:");
 					textFieldNickname.setEditable(false);
 					textFieldNombre.setEditable(false);
@@ -286,7 +290,7 @@ public class ConsultaUsuario extends JInternalFrame {
 						DtEspectaculo aux = itr.next();
 						 String nom = aux.getNombre();
 						 String des = aux.getDescripcion();
-						 String op = nom+" "+des;
+						 String op = nom+" | "+des;
 						 comboBoxEspectaculos.addItem(op);
 					}
 				}
@@ -294,9 +298,11 @@ public class ConsultaUsuario extends JInternalFrame {
 					panel.setVisible(false);
 					textFieldRol.setVisible(false);
 					lblRol.setVisible(false);
+					comboBoxEspectaculos.removeAllItems();
 				}
 				else {
 					panel.setVisible(true);
+					comboBoxEspectaculos.removeAllItems();
 					lblEspectaculosRegistrados.setText("Funciones:");
 					textFieldNickname.setEditable(false);
 					textFieldNombre.setEditable(false);
@@ -331,10 +337,16 @@ public class ConsultaUsuario extends JInternalFrame {
 						DtFuncion aux = itr.next();
 						 String nom = aux.getNombre();
 						 String ini = aux.getInicio().toString();
-						 String op = nom+" "+ini;
+						 String op = nom+" | "+ini;
 						 comboBoxEspectaculos.addItem(op);
 					}
 				}
+			}
+		});
+		
+		comboBoxEspectaculos.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				
 			}
 		});
 

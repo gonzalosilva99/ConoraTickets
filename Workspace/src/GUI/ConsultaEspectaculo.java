@@ -69,6 +69,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -189, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lblPlataforma, -4, SpringLayout.NORTH, comboBoxPlataforma);
+		comboBoxPlataforma.addItem("");
 		getContentPane().add(comboBoxPlataforma);
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
@@ -252,6 +253,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		panel.add(comboBoxFunciones);
 		getContentPane().add(buttonAceptar);
 		
+		
 		Button buttonCancelar = new Button("Cancelar");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -46, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -99, SpringLayout.WEST, buttonAceptar);
@@ -260,7 +262,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
-		
+		comboBoxEspectaculos.addItem("");
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 11, SpringLayout.SOUTH, comboBoxPlataforma);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxEspectaculos, -24, SpringLayout.NORTH, panel);

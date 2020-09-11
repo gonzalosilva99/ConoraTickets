@@ -5,6 +5,7 @@ import Controladores.ControladorPlataforma;
 import Controladores.ControladorUsuario;
 import Controladores.Fabrica;
 import DataTypes.DtUsuario;
+import Excepciones.Identidad;
 import Interfaces.IUsuario;
 
 import javax.swing.JInternalFrame;
@@ -33,10 +34,11 @@ import Interfaces.IPlataforma;
 import DataTypes.DtPlataforma;
 import DataTypes.DtArtista;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.SwingConstants;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
-	private JTextField textFieldDescripcion;
+	private JTextPane textFieldDescripcion;
 	private JTextField textFieldEspectMin;
 	private JTextField textFieldEspectMax;
 	private JTextField textFieldURL;
@@ -96,17 +98,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		buttonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					
-				}
-				catch(Exception e){
-					JOptionPane.showMessageDialog(null, "ERROR");
-
-				}
-			}
-		});
+		
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -37, SpringLayout.SOUTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -85, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
@@ -183,12 +175,12 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
-		textFieldDescripcion = new JTextField();
+		textFieldDescripcion = new JTextPane();
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 13, SpringLayout.SOUTH, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 16, SpringLayout.EAST, lblDescripcion);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldDescripcion);
-		textFieldDescripcion.setColumns(10);
+		//textFieldDescripcion.setCo
 		
 		textFieldEspectMin = new JTextField();
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectMin, 137, SpringLayout.NORTH, panel);
@@ -218,7 +210,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(textFieldURL);
 		textFieldURL.setColumns(10);
 		
-		JLabel lblCosto = new JLabel("Costo:");
+		JLabel lblCosto = new JLabel("Costo $U:");
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblURL, -14, SpringLayout.NORTH, lblCosto);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblCosto, 248, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblCosto, 267, SpringLayout.NORTH, panel);
@@ -240,7 +232,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 10, SpringLayout.WEST, panel);
 		panel.add(lblFecha);
 		
-		JLabel lblDuracion = new JLabel("Duraci\u00F3n");
+		JLabel lblDuracion = new JLabel("Duración(minutos):");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblDuracion, 15, SpringLayout.SOUTH, lblFecha);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblDuracion, 30, SpringLayout.SOUTH, lblFecha);
 		sl_panel.putConstraint(SpringLayout.EAST, lblDuracion, 0, SpringLayout.EAST, lblNombre);
@@ -250,7 +242,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		textFieldDuracion = new JTextField();
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 50, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 16, SpringLayout.EAST, lblDuracion);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, -5, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, 69, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
@@ -263,17 +255,43 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(dateChooser);
 		
 		buttonAceptar.addActionListener(new ActionListener() {
+			
+			public boolean isNumeric(String str) {
+		        return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("")==false);
+		    }
+
+			
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					IPlataforma iplataform = fabric.getIPlataforma();
-					iplataform.altaEspectaculo( comboBoxPlataforma.getSelectedItem().toString(),comboBoxArtista.getSelectedItem().toString() , 
+					String usuario = comboBoxArtista.getSelectedItem().toString();
+					String[] nick = usuario.split(" ");
+					if(textFieldNombre.getText().length()==0 || textFieldDescripcion.getText().length()==0 || textFieldURL.getText().length()==0 || dateChooser.getDate()==null) 
+						throw new Identidad("No deben quedar campos vacios.");
+					if(!(isNumeric(textFieldEspectMin.getText())))
+						throw new Identidad("En el campo Espectadores Min. debe ingresar un entero");
+					if(!(isNumeric(textFieldEspectMax.getText())))
+						throw new Identidad("En el campo Espectadores Max. debe ingresar un entero");
+					if(!(isNumeric(textFieldCosto.getText())))
+						throw new Identidad("En el campo Costo debe ingresar un entero");
+					if(!(isNumeric(textFieldDuracion.getText())))
+						throw new Identidad("En el campo Duracion debe ingresar un entero");
+					iplataform.altaEspectaculo( comboBoxPlataforma.getSelectedItem().toString(),nick[0] , 
 							textFieldNombre.getText(), textFieldDescripcion.getText(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),
 							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate(), Integer.valueOf( textFieldDuracion.getText() )); 
 							JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
+							textFieldNombre.setText("");
+							textFieldDescripcion.setText("");
+							textFieldEspectMin.setText("");
+							textFieldEspectMax.setText("");
+							textFieldCosto.setText("");
+							textFieldURL.setText("");
+							textFieldDuracion.setText("");
+							dateChooser.setDate(null);
 				}
 				catch(Exception e){
-					JOptionPane.showMessageDialog(null, "ERROR");
+					JOptionPane.showMessageDialog(null, e.getMessage());
 
 				}
 			}

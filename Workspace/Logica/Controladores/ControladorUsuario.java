@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.swing.JOptionPane;
 
+import Clases.Espectaculo;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
@@ -17,26 +18,18 @@ import DataTypes.DtEspectadorConsulta;
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
+import Excepciones.Identidad;
 
 public class ControladorUsuario implements IUsuario{
 	
-	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) {
-		try {
+	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
 		manusu.confirmarAltaArtista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
-		}
-		catch(Exception e) {
-			
-		}
 	}
 		
-	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) {
-		try {
+	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) throws Identidad{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
 		manusu.confirmarAltaEspectador(Nickname,Nombre,Apellido,Email,Nacimiento);
-		}
-		catch(Exception e) {
-		}
 	}
 	
 
@@ -91,5 +84,10 @@ public class ControladorUsuario implements IUsuario{
 		}
 		catch(Exception e) {
 		}
+	}
+	
+	public void RelacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+		manusu.RelacionarArtistaEspectaculo(nickArtista,nuevo);
 	}
 }

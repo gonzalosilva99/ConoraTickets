@@ -12,6 +12,7 @@ import DataTypes.DtFuncion;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
+import Excepciones.Identidad;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
 import Clases.Espectaculo;
@@ -34,7 +35,7 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarDtEspectaculoDatos(nomPlat, NombreEspectaculo);
 	};
-	public void AltaPlataforma(String nombre, String Descripcion,String Url) {
+	public void AltaPlataforma(String nombre, String Descripcion,String Url) throws Identidad{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		manplat.AltaPlataforma(nombre, Descripcion, Url);
 	}
@@ -43,7 +44,7 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
 	};
-	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
+	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
 	};

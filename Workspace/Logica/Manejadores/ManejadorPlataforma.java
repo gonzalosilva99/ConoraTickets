@@ -5,6 +5,7 @@ import Clases.Espectaculo;
 import Clases.Espectador;
 import Clases.Funcion;
 import java.util.*;
+import Excepciones.Identidad;
 
 import javax.swing.JOptionPane;
 
@@ -39,11 +40,13 @@ public class ManejadorPlataforma {
 			Plataformas = plataformas;
 		}
 		
-		public void AltaPlataforma(String nombre, String Descripcion,String Url) {
+		public void AltaPlataforma(String nombre, String Descripcion,String Url) throws Identidad{
 			if(!ExistePlataforma(nombre)) {
 				Plataforma plat = new Plataforma(nombre,Descripcion,Url);
 				Plataformas.put(nombre, plat);
 			}
+			else
+				throw new Identidad("Ya existe una plataforma con ese Nombre");
 		}
 		
 		Boolean ExistePlataforma(String nombre){
@@ -91,9 +94,23 @@ public class ManejadorPlataforma {
 			Plataforma plat = Plataformas.get(nombrePlataforma);
 			return plat.listarEspectaculos();
 		}
-		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
+		
+		public Boolean ExisteEspectaculo(String nomEspectaculo) {
+			Boolean ret = false;
+			for (Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+	            ret = entry.getValue().ExisteEspectaculo(nomEspectaculo);
+	            if(ret) return true;           
+			}
+			return false;
+		}
+		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad {
 			Plataforma plat = Plataformas.get(nomPlat);
-			plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+			if(!ExisteEspectaculo(nomEspectaculo)) {
+				plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+			}
+			else {
+				throw new Identidad("Ya Existe un Espectaculo con este Nombre");
+			}
 		}  
 		public DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo) {
 			Plataforma plat = Plataformas.get(nomPlat);

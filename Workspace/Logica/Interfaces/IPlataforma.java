@@ -10,6 +10,7 @@ import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
+import Excepciones.Identidad;
 
 public interface IPlataforma {
 	public 
@@ -17,9 +18,9 @@ public interface IPlataforma {
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp);
 		DtFuncionDatos MostrarFuncion(String NombreEsp, String NombreFun);
 		DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
-		void AltaPlataforma(String nombre, String Descripcion,String Url);
+		void AltaPlataforma(String nombre, String Descripcion,String Url) throws Identidad;
 		Map<String,DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat);
-		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion);
+		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad;
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion);
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);

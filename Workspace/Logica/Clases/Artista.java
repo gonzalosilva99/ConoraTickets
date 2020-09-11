@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import DataTypes.DtArtistaConsulta;
 
 
@@ -69,6 +71,10 @@ public class Artista extends Usuario{
 			}
 			DtArtistaConsulta ret = new DtArtistaConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp);
 			return ret;
+		}
+		
+		public void AnadirEspectaculo(Espectaculo e) {
+			Espectaculos.add(e);
 		}
 	
 }
