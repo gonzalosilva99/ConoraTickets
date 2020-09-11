@@ -92,4 +92,10 @@ public class ControladorUsuario implements IUsuario{
 		catch(Exception e) {
 		}
 	}
+	
+	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Set<DtArtista> h = manusu.listarArtistas();
+		return h;
+	}
 }

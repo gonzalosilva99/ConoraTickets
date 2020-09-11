@@ -19,5 +19,5 @@ public interface IUsuario {
 	public void ModificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link);
 	public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento);
 	public Set<DtEspectador> listarEspectadores();
-
+	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo);
 }
