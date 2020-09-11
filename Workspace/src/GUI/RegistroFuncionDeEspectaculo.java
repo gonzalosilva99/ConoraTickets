@@ -71,6 +71,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, -5, SpringLayout.NORTH, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -152, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPlataforma);
+		comboBoxPlataforma.addItem("");
 	
 
 		//1)--------------> Cargamos las plataformas
@@ -156,14 +157,15 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		// 3)-------------->Cuando se selecciona espectaculo listamos las funciones del el
 		JComboBox comboBoxEspectaculo = new JComboBox();
-		comboBoxEspectaculo.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				Map<String,DtFuncion> listafunciones= iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedItem().toString());
-				for(Map.Entry<String,DtFuncion> entry : listafunciones.entrySet()) {
-					comboBoxFuncion.addItem(entry.getValue().getNombre());
-				}
-			}
-		});
+		comboBoxEspectaculo.addItem("");
+		//comboBoxEspectaculo.addItemListener(new ItemListener() {
+			//public void itemStateChanged(ItemEvent e) {
+				//Map<String,DtFuncion> listafunciones= iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedItem().toString());
+				//for(Map.Entry<String,DtFuncion> entry : listafunciones.entrySet()) {
+					//comboBoxFuncion.addItem(entry.getValue().getNombre());
+				//}
+			//}
+		//});
 		
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 3, SpringLayout.SOUTH, comboBoxEspectaculo);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculo, 8, SpringLayout.SOUTH, comboBoxPlataforma);
@@ -175,16 +177,18 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		//  2)------>   cuando se selecciona una plataforma listo los espectaculos de esa plataforma 
 
-		comboBoxPlataforma.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				Set<DtEspectaculo> listaespectaculos = iplataforma.listarEspectaculosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());
-				Iterator<DtEspectaculo> ite = listaespectaculos.iterator();
-				while(ite.hasNext()) {
-					comboBoxEspectaculo.addItem(ite.next().getNombre());
-				}
-				
+		comboBoxPlataforma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				comboBoxEspectaculo.setEnabled(true);
+				comboBoxEspectaculo.removeAllItems();
+				Set<DtEspectaculo> listarEspecsDePlat = iplataforma.listarEspectaculosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());
+				Iterator<DtEspectaculo> itr = listarEspecsDePlat.iterator();
+				comboBoxEspectaculo.addItem("");
+				while(itr.hasNext())
+					{comboBoxEspectaculo.addItem(itr.next().getNombre());}
 			}
 		});
+		
 		
 		
 		
