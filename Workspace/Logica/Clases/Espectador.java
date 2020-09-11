@@ -44,16 +44,12 @@ public class Espectador extends Usuario{
 	}
 
 	public DtEspectadorConsulta getDtEspectadorConsulta() {
-		//HashMap<Integer,RegistroFuncion> esp = new HashSet<DtFuncion>();
-		//Iterator<Funcion> itr = Funciones.iterator();	
-		//while(itr.hasNext()) {
-			//DtFuncion nuevo = itr.next().getDtFuncion();
-			//esp.add(nuevo);
-		//}
-		//DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp);
-		Date coso = new Date();
-		HashSet<DtFuncion> popo = new HashSet<DtFuncion>();
-		DtEspectadorConsulta ret = new DtEspectadorConsulta("","","","",coso,popo);
+		HashSet<DtFuncion> esp = new HashSet<DtFuncion>();
+		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
+			DtFuncion nuevo = entry.getValue().getDtFuncion();
+			esp.add(nuevo);
+		}
+		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp);
 		return ret;
 	}
 	

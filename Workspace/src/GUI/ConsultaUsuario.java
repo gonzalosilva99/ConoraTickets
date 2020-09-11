@@ -176,6 +176,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.add(lblEspectaculosRegistrados);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
+		comboBoxEspectaculos.addItem("");
 		
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 0, SpringLayout.EAST, lblEspectaculosRegistrados);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 142, SpringLayout.EAST, lblEspectaculosRegistrados);
@@ -299,6 +300,7 @@ public class ConsultaUsuario extends JInternalFrame {
 					textFieldRol.setVisible(false);
 					lblRol.setVisible(false);
 					comboBoxEspectaculos.removeAllItems();
+					comboBoxEspectaculos.addItem("");
 				}
 				else {
 					panel.setVisible(true);

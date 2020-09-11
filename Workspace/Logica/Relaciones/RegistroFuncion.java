@@ -1,7 +1,7 @@
 package Relaciones;
 import Clases.Espectador;
 import DataTypes.DtRegistro;
-
+import DataTypes.DtFuncion;
 import java.util.Date;
 
 import DataTypes.TipoRegistro;
@@ -51,6 +51,9 @@ public class RegistroFuncion {
 	}
 	public void setCanjeable(Boolean canjeable) {
 		Canjeable = canjeable;
+	}
+	public DtFuncion getDtFuncion() {
+		return this.Funcion.getDtFuncion();
 	}
 	
 }
