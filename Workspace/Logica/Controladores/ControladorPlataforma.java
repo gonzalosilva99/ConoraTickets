@@ -77,7 +77,11 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete, NombrePlataforma);
 		
 	}
-	
+
+	public Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre){
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarEspectaculoDatosDePlataforma(Nombre);
+	}
 
 }
 

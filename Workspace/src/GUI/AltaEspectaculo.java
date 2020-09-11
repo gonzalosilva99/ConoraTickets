@@ -19,6 +19,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -56,7 +57,7 @@ public class AltaEspectaculo extends JInternalFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			} 
 		});
 	} 
 
@@ -225,7 +226,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
-		JLabel lblFecha = new JLabel("Fecha:");
+		JLabel lblFecha = new JLabel("Fecha de alta:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblFecha, 19, SpringLayout.SOUTH, lblCosto);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblFecha, 34, SpringLayout.SOUTH, lblCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, lblFecha, 0, SpringLayout.EAST, lblNombre);
@@ -253,6 +254,8 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 34, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
 		panel.add(dateChooser);
+		dateChooser.setEnabled(false);
+		dateChooser.setDate(Calendar.getInstance().getTime());
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			

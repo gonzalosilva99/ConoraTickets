@@ -74,4 +74,7 @@ public class Paquete {
 			
 			
 		}
-}
+		public boolean hayEspectaculo(String nombreEsp) {
+			return Espectaculos.containsKey(nombreEsp);
+		}
+} 

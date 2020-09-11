@@ -124,11 +124,16 @@ public class ManejadorPlataforma {
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
 			
 		}
+
 		
 		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date fecha, Date inicio, Set<String> artistas, Date alta) {
 			Plataforma Plat = Plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);
-			
+		}
+
+		public Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre){
+			Plataforma pla = this.getPlataforma(Nombre);
+			return pla.listarEspectaculoDatos();
 		}
 }
 		

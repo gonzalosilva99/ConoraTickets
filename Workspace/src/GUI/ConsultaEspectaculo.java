@@ -8,7 +8,9 @@ import javax.swing.SpringLayout;
 import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
+import DataTypes.DtFuncion;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPlataforma;
 
 import javax.swing.JLabel;
@@ -275,27 +277,51 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				comboBoxEspectaculos.removeAllItems();
 				comboBoxEspectaculos.setVisible(true);	
 				lblEspectaculos.setVisible(true);	
-				Set<DtEspectaculo> listaEspectaculos= iplataforma.listarEspectaculos(comboBoxPlataforma.getSelectedItem().toString());	
-				Iterator<DtEspectaculo> itre = listaEspectaculos.iterator();
-				DtEspectaculo Espectaculo;
+				Set<DtEspectaculoDatos> listaEspectaculoDatos = iplataforma.listarEspectaculoDatosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());	
+				Iterator<DtEspectaculoDatos> itre = listaEspectaculoDatos .iterator();
+				DtEspectaculoDatos datosEspectaculo;
 				while(itre.hasNext())
 				{
-					Espectaculo = itre.next();
-					comboBoxEspectaculos.addItem(Espectaculo.getNombre());
-				}
-				/**textFieldNombre.setText(Espectaculo.getNombre());
-				textFieldDescripcion.setText(Espectaculo.getDescripcion());
-				textFieldDuracion.setText(Espectaculo.getDuracion());
-				textFieldDuracion.setText(Espectaculo.getDuracion());**/
+					datosEspectaculo = itre.next();
+					comboBoxEspectaculos.addItem(datosEspectaculo.getNombre());
+					textFieldNombre.setText(datosEspectaculo.getNombre());
+					textFieldDescripcion.setText(datosEspectaculo.getDescripcion());
+					textFieldDuracion.setText(datosEspectaculo.getDuracion().toString());
+					textFieldCosto.setText(datosEspectaculo.getCosto().toString());  
+					textFieldURL.setText(datosEspectaculo.getURL().toString());
+					textFieldFechaAlta.setText(datosEspectaculo.getRegistro().toString());
+					textFieldEspectMin.setText(datosEspectaculo.getCantMin().toString());
+					textFieldEspectMax.setText(datosEspectaculo.getCantMax().toString());
+					textFieldNombre.setEditable(false);
+					textFieldDescripcion.setEditable(false);
+					textFieldDuracion.setEditable(false);
+					textFieldCosto.setEditable(false);
+					textFieldURL.setEditable(false);
+					textFieldFechaAlta.setEditable(false);
+					textFieldEspectMin.setEditable(false);
+					textFieldEspectMax.setEditable(false);
+					
+					comboBoxFunciones.removeAllItems();
+					comboBoxFunciones.setVisible(true);	
+					lblFunciones.setVisible(true);	
+					Set<DtFuncion> listaFunciones = datosEspectaculo.getFunciones();
+					Iterator<DtFuncion> iterf = listaFunciones.iterator();
+					while(iterf.hasNext()) {
+						comboBoxFunciones.removeAllItems();
+						comboBoxFunciones.addItem(iterf.next().getNombre()); }
+					}
+				
 				
 			}
-		});  
+		} );  
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
 			}
 		});
+		
+
     
 	}
 }    

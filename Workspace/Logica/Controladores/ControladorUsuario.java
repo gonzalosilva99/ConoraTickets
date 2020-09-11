@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import Clases.Espectaculo;
+import Clases.Artista;
+import Clases.Funcion;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
@@ -94,5 +96,11 @@ public class ControladorUsuario implements IUsuario{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Set<DtArtista> h = manusu.listarArtistas();
 		return h;
+	}
+	public void RelacionarArtistaFuncion(String nickArtista, Funcion funcion) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Artista artista = manusu.getArtista(nickArtista);
+		artista.anadirFuncion(funcion);
+		
 	}
 }

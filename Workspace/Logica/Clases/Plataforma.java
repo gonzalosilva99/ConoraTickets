@@ -83,7 +83,6 @@ public class Plataforma {
 		public Set<DtEspectaculo> listarEspectaculos(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
 		for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
-			JOptionPane.showMessageDialog(null, "ok");
 			DtEspectaculo nueva = entry.getValue().getDatosEspectaculo();
 			ret.add(nueva);            
 		}
@@ -125,6 +124,15 @@ public class Plataforma {
 		}
 		public Espectaculo getEspectaculo(String NombreEspectaculo) {
 			return Espectaculos.get(NombreEspectaculo);
+		}
+		
+		public Set<DtEspectaculoDatos> listarEspectaculoDatos(){
+			Set<DtEspectaculoDatos> ret = new HashSet<DtEspectaculoDatos>();		
+			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				DtEspectaculoDatos nueva = entry.getValue().getDtEspectaculoDatos();
+				ret.add(nueva);            
+			}
+			return ret;
 		}
 }
 		
