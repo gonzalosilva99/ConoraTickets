@@ -8,6 +8,7 @@ import javax.swing.SpringLayout;
 import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
+import DataTypes.DtFuncion;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPlataforma;
@@ -286,22 +287,41 @@ public class ConsultaEspectaculo extends JInternalFrame {
 					textFieldNombre.setText(datosEspectaculo.getNombre());
 					textFieldDescripcion.setText(datosEspectaculo.getDescripcion());
 					textFieldDuracion.setText(datosEspectaculo.getDuracion().toString());
-					textFieldCosto.setText(datosEspectaculo.getCosto().toString()); 
+					textFieldCosto.setText(datosEspectaculo.getCosto().toString());  
+					textFieldURL.setText(datosEspectaculo.getURL().toString());
+					textFieldFechaAlta.setText(datosEspectaculo.getRegistro().toString());
+					textFieldEspectMin.setText(datosEspectaculo.getCantMin().toString());
+					textFieldEspectMax.setText(datosEspectaculo.getCantMax().toString());
 					textFieldNombre.setEditable(false);
 					textFieldDescripcion.setEditable(false);
 					textFieldDuracion.setEditable(false);
 					textFieldCosto.setEditable(false);
-				}
+					textFieldURL.setEditable(false);
+					textFieldFechaAlta.setEditable(false);
+					textFieldEspectMin.setEditable(false);
+					textFieldEspectMax.setEditable(false);
+					
+					comboBoxFunciones.removeAllItems();
+					comboBoxFunciones.setVisible(true);	
+					lblFunciones.setVisible(true);	
+					Set<DtFuncion> listaFunciones = datosEspectaculo.getFunciones();
+					Iterator<DtFuncion> iterf = listaFunciones.iterator();
+					while(iterf.hasNext()) {
+						comboBoxFunciones.removeAllItems();
+						comboBoxFunciones.addItem(iterf.next().getNombre()); }
+					}
 				
 				
 			}
-		});  
+		} );  
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
 			}
 		});
+		
+
     
 	}
 }    

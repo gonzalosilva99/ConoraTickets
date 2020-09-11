@@ -56,7 +56,7 @@ public class AltaEspectaculo extends JInternalFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			} 
 		});
 	} 
 

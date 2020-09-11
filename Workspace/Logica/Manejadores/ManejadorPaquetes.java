@@ -47,11 +47,13 @@ public class ManejadorPaquetes {
 		public Set<DtPaquete> listarPaquetesEspectaculo(String nomEsp){
 			Set<DtPaquete> ret = new HashSet<DtPaquete>();		
 			for (Map.Entry<String, Paquete> entry : Paquetes.entrySet()) {
-	            DtPaquete nueva = entry.getValue().getDtPaquete();
-	            ret.add(nueva);            
+				if ( entry.getValue().hayEspectaculo(nomEsp)) {
+		            DtPaquete nueva = entry.getValue().getDtPaquete();
+		            ret.add(nueva);
+				}
 			}
 			return ret;
-		}
+		} 
 		
 		
 		
