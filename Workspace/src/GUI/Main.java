@@ -249,6 +249,19 @@ public class Main {
 			fechaInicioFuncion = FormatoInicio.parse("2020-08-10 17:45:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+
+
+			
+			// PLATAFORMAS (Nombre, Descripcion, URL)
+			iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
+					"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
+			iplataforma.AltaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
+					"Facebook.","https://www.facebook.com/watch/");
+			iplataforma.AltaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
+					"en directo (streaming).","https://twitter.com/");
+			iplataforma.AltaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
+					"compartir videos.","https://www.youtube.com/");
+
 			
 			//F17
 			artistas.clear();
@@ -264,6 +277,7 @@ public class Main {
 			fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);
+
 			
 			//F15
 			artistas.clear();

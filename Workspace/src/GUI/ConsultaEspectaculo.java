@@ -34,6 +34,8 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldURL;
 	private JTextField textFieldCosto;
 	private JTextField textFieldFechaAlta;
+	private DtEspectaculoDatos datosEspectaculo;
+
 
 	/**
 	 * Launch the application.
@@ -83,6 +85,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldEspectMax.setText("");
 	}
 	private void setFieldTexts(DtEspectaculoDatos Espectaculo) {
+		setFieldsTextsEnabled();
 		cleanFieldTexts();
 		textFieldNombre.setText(Espectaculo.getNombre());
 		textFieldDescripcion.setText(Espectaculo.getDescripcion());
@@ -92,7 +95,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldFechaAlta.setText(Espectaculo.getRegistro().toString());
 		textFieldEspectMin.setText(Espectaculo.getCantMin().toString());
 		textFieldEspectMax.setText(Espectaculo.getCantMax().toString());
-		cleanFieldTexts();
+		setFieldsTextsNotEnabled();
 	}
 	
 
@@ -317,62 +320,28 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	
 		
 		comboBoxPlataforma.addItemListener(new ItemListener() {
-			Set<DtEspectaculoDatos> listaEspectaculoDatos;
-			Iterator<DtEspectaculoDatos> itre;
-			DtEspectaculoDatos datosEspectaculo;
-			public void itemStateChanged(ItemEvent arg0) { 
-				
+			public void itemStateChanged(ItemEvent arg0) {
+				panel.setVisible(true);
 				comboBoxEspectaculos.removeAllItems();
 				comboBoxEspectaculos.setVisible(true);	
 				lblEspectaculos.setVisible(true);	
-				listaEspectaculoDatos = iplataforma.listarEspectaculoDatosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());	
-				itre = listaEspectaculoDatos .iterator();
-				
+				Set<DtEspectaculoDatos> listaEspectaculoDatos = iplataforma.listarEspectaculoDatosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());	
+				Iterator<DtEspectaculoDatos> itre = listaEspectaculoDatos .iterator();
 				while(itre.hasNext())
 				{
-					
 					datosEspectaculo = itre.next();
 					comboBoxEspectaculos.addItem(datosEspectaculo.getNombre());
-					setFieldTexts(datosEspectaculo);
-					
-					comboBoxFunciones.removeAllItems();
-					comboBoxFunciones.setVisible(true);	
-					lblFunciones.setVisible(true);	
-					Set<DtFuncion> listaFunciones = datosEspectaculo.getFunciones();
-					Iterator<DtFuncion> iterf = listaFunciones.iterator();
-					while(iterf.hasNext()) {
-						comboBoxFunciones.addItem(iterf.next().getNombre()); }
-					}
-				
-				
+				}
+				datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+				setFieldTexts(datosEspectaculo);
 			}
-		} );  
+		});  
+  
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
-			Iterator<DtEspectaculoDatos> itr;
-			DtEspectaculoDatos datosEspectaculo;
-			Set<DtEspectaculoDatos> listaEspectaculoDatos;
-			Set<DtFuncion> listaFunciones;
 			public void itemStateChanged(ItemEvent arg0) {	
-				listaEspectaculoDatos = iplataforma.listarEspectaculoDatosDePlataforma(comboBoxPlataforma.getSelectedItem().toString());	
-				itr = listaEspectaculoDatos .iterator();
-				while(itr.hasNext())
-				{
-					
-					datosEspectaculo = itr.next();
-					comboBoxEspectaculos.addItem(datosEspectaculo.getNombre());
-					setFieldTexts(datosEspectaculo);
-					
-					comboBoxFunciones.removeAllItems();
-					comboBoxFunciones.setVisible(true);	
-					lblFunciones.setVisible(true);	
-					Set<DtFuncion> listaFunciones = datosEspectaculo.getFunciones();
-					Iterator<DtFuncion> iterf = listaFunciones.iterator();
-					while(iterf.hasNext()) {
-						comboBoxFunciones.addItem(iterf.next().getNombre()); }
-					}
-
-					System.out.println("*****************Cambio de espectaculo");;
+				
+				
 			}
 		});
 		
