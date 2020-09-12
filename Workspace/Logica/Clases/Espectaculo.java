@@ -29,6 +29,8 @@ public class Espectaculo {
 	private Artista Organizador;
 	private Map<String, Funcion> Funciones;
 	
+	
+	
 		public Espectaculo(String nombre, Date registro, Integer costo, String uRL, Integer cantMax, Integer cantMin, Integer duracion, String descripcion) {
 			super();
 			Nombre = nombre;
@@ -40,6 +42,7 @@ public class Espectaculo {
 			Duracion = duracion;
 			Descripcion = descripcion;
 			Funciones = new HashMap<String,Funcion>();
+		
 		}
 		public String getNombre() {
 			return Nombre;

@@ -30,6 +30,8 @@ import java.util.Set;
 
 import DataTypes.DtArtista;
 import DataTypes.DtPaquete;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class AgregarEspectaculoAPaquete extends JInternalFrame {
 
@@ -85,6 +87,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPlataforma, -395, SpringLayout.SOUTH, getContentPane());
 		
 		JComboBox comboBoxPlataformas = new JComboBox();
+	
 
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataformas,  99, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataformas,  153, SpringLayout.WEST, getContentPane());
@@ -134,6 +137,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		panel.setLayout(gl_panel);
 		
 		Button buttonAceptar = new Button("Aceptar");
+	
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 6, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 419, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -8, SpringLayout.SOUTH, getContentPane());
@@ -153,63 +157,74 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		comboBoxPaquetes.addItem("");
 		comboBoxPlataformas.addItem("");
 		comboBoxEspectaculos.addItem("");
-		String a = "";
-		String b = "";
-		String c = "";
+	
+		
 		
 		while(iterador.hasNext()) {
 			comboBoxPaquetes.addItem(iterador.next().getNombre());
 		}
 		
-		comboBoxPaquetes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		
+		comboBoxPaquetes.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+			
 				
-				IPlataforma plataformosa = fabricosa.getIPlataforma();
+	IPlataforma plataformosa = fabricosa.getIPlataforma();
 				
 				Set<DtPlataforma> DtPlataformas = plataformosa.listarPlataformas();
 				Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
 				
 				while(iterador2.hasNext()) {
 					comboBoxPlataformas.addItem(iterador2.next().getNombre()); }
-					
-					comboBoxPlataformas.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							
-							comboBoxEspectaculos.removeAllItems();
-							comboBoxEspectaculos.addItem("");
-							
-							String a = comboBoxPaquetes.getSelectedItem().toString();
-							String b = comboBoxPlataformas.getSelectedItem().toString();
-							
-							Set<DtEspectaculo> EspectaculosNoPaquete = plataformosa.listarEspectaculosEnPlataformaNoPaquete(a ,b);
-							
-							Iterator<DtEspectaculo> iterador3 = EspectaculosNoPaquete.iterator();
-								
-								while(iterador3.hasNext()) {
-									comboBoxEspectaculos.addItem(iterador3.next().getNombre());
-								}
-								
-								
-							
-								
-								
-								buttonAceptar.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent arg0) {
-										String c = comboBoxEspectaculos.getSelectedItem().toString();
-										IPaquete pac = fabricosa.getIPaquete();
-										pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
-										JOptionPane.showMessageDialog(null, "Espectaculo agregado a paquete con exito");
-										
-									}
-								});
-						}
-					});
-				
-			
 			}
 		});
+		
+
+		
+		
+		comboBoxPlataformas.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
 				
+				String a = comboBoxPaquetes.getSelectedItem().toString();
+				if (a != "") {
+					comboBoxEspectaculos.removeAllItems();
+					comboBoxEspectaculos.addItem("");
+					
+					IPlataforma plataformosa = fabricosa.getIPlataforma();
+				String b = comboBoxPlataformas.getSelectedItem().toString();
 				
+				Set<DtEspectaculo> EspectaculosNoPaquete = plataformosa.listarEspectaculosEnPlataformaNoPaquete(a ,b);
+				
+				Iterator<DtEspectaculo> iterador3 = EspectaculosNoPaquete.iterator();
+					
+					while(iterador3.hasNext()) {
+						comboBoxEspectaculos.addItem(iterador3.next().getNombre());
+					}
+						
+				}
+			}
+		});
+	
+		
+		
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String a = comboBoxPaquetes.getSelectedItem().toString();
+				String b = comboBoxPlataformas.getSelectedItem().toString();
+				String c = comboBoxEspectaculos.getSelectedItem().toString();
+			if ((a!="") && (b!="") && (c!="")) {
+				IPaquete pac = fabricosa.getIPaquete();
+				pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
+				JOptionPane.showMessageDialog(null, "Espectaculo agregado a paquete con exito");
+				comboBoxEspectaculos.removeAllItems();
+				
+
+			}
+			
+				
+			}
+		});
 		
 		
 	
