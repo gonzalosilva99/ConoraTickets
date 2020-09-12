@@ -80,11 +80,11 @@ public class Main {
 		IUsuario iusuario = fab.getIUsuario();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
-		Date fechaNac = formato.parse("31/12/1971");
-		iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
+	Date fechaNac = formato.parse("31/12/1971");
+	/**	 iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
 		fechaNac = formato.parse("15/11/1983");
 		iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac);
-		/**fechaNac = formato.parse("//");
+		fechaNac = formato.parse("//");
 		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
 		fechaNac = formato.parse("//");
 		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
@@ -100,6 +100,14 @@ public class Main {
 		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
 		
 		**/
+		//Cargar Artista de prueba
+		IPlataforma iplataforma = fab.getIPlataforma();
+		iusuario.confirmarAltaArtista("Peke77", "Jacinto" , "Vera" , "peke77@gmail.com" , fechaNac, "Soy rapero" , "naci blabla", "peke77.com");
+		iplataforma.AltaPlataforma("Facebook", "Una descricpion" ," facebook.com"); 
+		iplataforma.AltaPlataforma("Youtube", "Una descricpion" ," youtube.com"); 
+		iplataforma.AltaPlataforma("Instagram", "Una descricpion" ," instagram.com"); 
+		
+		
 		
 		
 		/*** FIN CARGAR DATOS DE PRUEBA ***/
