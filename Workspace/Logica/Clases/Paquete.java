@@ -1,9 +1,14 @@
 package Clases;
 
 import java.util.Date;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
 
+import DataTypes.DtPaqueteDatos;
+import DataTypes.DtEspectaculoDatos;
+import DataTypes.DtEspectaculo;
 import DataTypes.DtPaquete;
+import Manejadores.ManejadorPaquetes;
 import Manejadores.ManejadorPlataforma;
 
 public class Paquete {
@@ -11,7 +16,7 @@ public class Paquete {
 	private String Descripcion;
 	private Date Inicio;
 	private Date Fin;
-	private Map<String, Espectaculo> Espectaculos;
+	private HashMap<String, Espectaculo> Espectaculos;
 	
 	public Paquete() {
 		super();
@@ -24,6 +29,7 @@ public class Paquete {
 			Inicio = inicio;
 			Fin = fin;
 			Descuento = descuento;
+			Espectaculos = new HashMap<String, Espectaculo>();
 		}
 		public String getNombre() {
 			return Nombre;
@@ -56,7 +62,7 @@ public class Paquete {
 			Descuento = descuento;
 		}
 		public DtPaquete getDtPaquete() {
-			DtPaquete ret = new DtPaquete(Nombre, Descripcion);
+			DtPaquete ret = new DtPaquete(this.Nombre, this.Descripcion);
 			return ret;
 		}
 		public Boolean tieneEspectaculo(String NombreEspectaculo) {
@@ -79,5 +85,14 @@ public class Paquete {
 		}
 		public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, String Descuento) {
 			
+		}
+		public DtPaqueteDatos getDtPaqueteDatos() {
+			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
+			for(HashMap.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+				esp.add(nuevo);
+			}
+			DtPaqueteDatos ret = new DtPaqueteDatos(Nombre, Descripcion, Inicio, Fin, Descuento,esp); 
+			return ret;
 		}
 } 

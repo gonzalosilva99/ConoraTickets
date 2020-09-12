@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -66,15 +67,14 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		JComboBox comboBoxPaquetes = new JComboBox();
 		IPaquete ipaquete = fabric.getIPaquete();
 		Set<DtPaquete> listaPaquetes = ipaquete.ListarPaquetes();		
-		JComboBox comboBoxUsuario = new JComboBox();
 		comboBoxPaquetes.addItem("");
 		Iterator<DtPaquete> itr = listaPaquetes.iterator();
 		while(itr.hasNext())
 			{DtPaquete aux = itr.next();
 			 String nom = aux.getNombre();
 			 String des = aux.getDescripcion();
-			 String op = nom+"|"+des;
-			 comboBoxUsuario.addItem(op);
+			 String op = nom+"-"+des;
+			 comboBoxPaquetes.addItem(op);
 			}
 		
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 41, SpringLayout.EAST, lblPaquetes);
@@ -188,6 +188,8 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		textPaneDescripcion.setEditable(false);
 		dateChooserFin.getCalendarButton().setEnabled(false);
 		dateChooserInicio.getCalendarButton().setEnabled(false);
+		dateChooserFin.getDateEditor().setEnabled(false);
+		dateChooserInicio.getDateEditor().setEnabled(false);
 		textFieldDescuento.setEditable(false);
 		comboBoxEspectaculos.setEditable(false);
 		Button buttonCancelar = new Button("Atras");
@@ -207,11 +209,12 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 				else {
 					panel.setVisible(true);
 					String paquete = comboBoxPaquetes.getSelectedItem().toString();
-					String[] nom = paquete.split("|");
+					String[] nom = paquete.split("-");
 					textFieldNombre.setText(ipaquete.MostrarPaquete(nom[0]).getNombre());
 					textPaneDescripcion.setText(ipaquete.MostrarPaquete(nom[0]).getDescripcion());
 					dateChooserFin.setDate(ipaquete.MostrarPaquete(nom[0]).getInicio());
 					dateChooserInicio.setDate(ipaquete.MostrarPaquete(nom[0]).getFin());
+					Double descuento = ipaquete.MostrarPaquete(nom[0]).getDescuento();
 					textFieldDescuento.setText(ipaquete.MostrarPaquete(nom[0]).getDescuento().toString());
 					Iterator<DtEspectaculo> itr = ipaquete.MostrarPaquete(nom[0]).getEspectaculos().iterator();
 					while(itr.hasNext()) {

@@ -27,8 +27,8 @@ public class ControladorPaquete implements IPaquete{
 	}
 	
 	public DtPaqueteDatos MostrarPaquete(String NombrePaquete) {
-		DtPaqueteDatos ret = new DtPaqueteDatos();
-		return ret;
+		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
+		return manpaq.MostrarPaquete(NombrePaquete);
 	};
 	
 	public void ConfirmarAgregarEspectaculoPaquete(String NombrePaquete, String NombrePlataforma, String NombreEspectaculo) {

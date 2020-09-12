@@ -28,7 +28,7 @@ public class ManejadorPaquetes {
 			Paquetes = new HashMap<String,Paquete>();
 		}
 	
-		Map<String, Paquete> getPaquetes() {
+		public Map<String, Paquete> getPaquetes() {
 			return Paquetes;
 		}
 
@@ -36,12 +36,13 @@ public class ManejadorPaquetes {
 			Paquetes = paquetes;
 		}
 		
-		Set<DtPaquete> ListarPaquetes(){
+		public Set<DtPaquete> ListarPaquetes(){
 			return new HashSet<DtPaquete>();
 		}
 		
-		DtPaqueteDatos MostrarPaquete(String NombrePaquete) {
-			return new DtPaqueteDatos();
+		public DtPaqueteDatos MostrarPaquete(String NombrePaquete) {
+			Paquete p = Paquetes.get(NombrePaquete);
+			return p.getDtPaqueteDatos();
 		}
 		
 		public Paquete getPaquete(String NombrePaquete) {
@@ -68,7 +69,7 @@ public class ManejadorPaquetes {
 			return ret;
 		}
 		
-		Boolean ExistePaquete(String nombre){
+		public Boolean ExistePaquete(String nombre){
 			return Paquetes.containsKey(nombre);
 		}
 		
