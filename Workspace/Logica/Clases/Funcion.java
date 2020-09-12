@@ -51,7 +51,6 @@ public class Funcion {
 			return ArtistasInvitados;
 		}
 		public void anadirArtista(Artista artista, String nick) {
-			System.out.println(nick);
 			ArtistasInvitados.put(nick, artista);	
 		}
 		

@@ -9,11 +9,12 @@ import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
 import DataTypes.DtFuncion;
+import DataTypes.DtPaquete;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
+import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -28,7 +29,7 @@ import java.awt.event.ActionEvent;
 
 public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
-	private JTextPane textFieldDescripcion;
+	private JTextField textFieldDescripcion;
 	private JTextField textFieldDuracion;
 	private JTextField textFieldEspectMin;
 	private JTextField textFieldEspectMax;
@@ -36,6 +37,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
+	private DtPaquete datosPaquete;
 
 
 
@@ -230,11 +232,11 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldNombre.setColumns(10);
 		panel.add(textFieldNombre);
 		
-		textFieldDescripcion = new JTextPane();
+		textFieldDescripcion = new JTextField();
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 39, SpringLayout.EAST, lblDescripcion);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, 0, SpringLayout.EAST, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 4, SpringLayout.NORTH, lblDescripcion);
-		//textFieldDescripcion.setColumns(10);
+		textFieldDescripcion.setColumns(10);
 		panel.add(textFieldDescripcion);
 		
 		textFieldDuracion = new JTextField();
@@ -314,12 +316,32 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 11, SpringLayout.SOUTH, comboBoxPlataforma);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxEspectaculos, -24, SpringLayout.NORTH, panel);
+		
+		Button buttonVerFunciones = new Button("Ver mas");
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerFunciones, 0, SpringLayout.NORTH, lblFunciones);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonVerFunciones, -10, SpringLayout.EAST, panel);
+		panel.add(buttonVerFunciones);
+		
+		Button buttonVerPaquetes = new Button("Ver mas");
+		buttonVerPaquetes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ConsultaPaqueteEspectaculoWindowView ventana = new ConsultaPaqueteEspectaculoWindowView();
+				ventana.setDatosPaquete(datosPaquete);
+				ventana.setAlwaysOnTop(true);
+				ventana.setVisible(true);
+				
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 0, SpringLayout.NORTH, lblPaquetes);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonVerPaquetes, 0, SpringLayout.EAST, buttonVerFunciones);
+		panel.add(buttonVerPaquetes);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(comboBoxEspectaculos);
 		comboBoxEspectaculos.setVisible(false);
 		
 	
-		
+		IPaquete ipaquete= fabric.getIPaquete();
 		comboBoxPlataforma.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
@@ -345,6 +367,17 @@ public class ConsultaEspectaculo extends JInternalFrame {
 					datosFuncion = itrf.next();
 					comboBoxFunciones.addItem(datosFuncion .getNombre());
 				}
+				
+				
+				Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(datosEspectaculo.getNombre());
+				Iterator<DtPaquete> itrp = listaPaquetes.iterator();
+				
+				comboBoxPaquetes.removeAllItems();
+				while(itrp.hasNext())
+				{
+					datosPaquete = itrp.next();
+					comboBoxPaquetes.addItem(datosPaquete.getNombre());
+				}
 			}
 		});  
   
@@ -361,4 +394,5 @@ public class ConsultaEspectaculo extends JInternalFrame {
 
     
 	}
+
 }    

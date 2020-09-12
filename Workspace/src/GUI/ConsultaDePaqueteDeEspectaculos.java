@@ -30,10 +30,14 @@ import com.toedter.calendar.JDateChooser;
 public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescuento;
-
+	private DtPaquete datosPaquete;
 	/**
 	 * Launch the application.
 	 */
+	
+	public void setDatosPaquete(DtPaquete dtpaquete) {
+		datosPaquete = dtpaquete;
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,6 +54,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public ConsultaDePaqueteDeEspectaculos() {
 		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Consulta de Paquete de Espectaculo");
@@ -70,9 +75,9 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		comboBoxPaquetes.addItem("");
 		Iterator<DtPaquete> itr = listaPaquetes.iterator();
 		while(itr.hasNext())
-			{DtPaquete aux = itr.next();
-			 String nom = aux.getNombre();
-			 String des = aux.getDescripcion();
+			{ datosPaquete = itr.next();
+			 String nom = datosPaquete.getNombre();
+			 String des = datosPaquete.getDescripcion();
 			 String op = nom+"-"+des;
 			 comboBoxPaquetes.addItem(op);
 			}
