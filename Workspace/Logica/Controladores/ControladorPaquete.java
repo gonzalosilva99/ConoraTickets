@@ -42,9 +42,9 @@ public class ControladorPaquete implements IPaquete{
 	
 	
 	
-	public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin,Double Descuento) throws Identidad{
+	public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin,Double Descuento, Date alta) throws Identidad{
 		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
-		manpaq.ConfirmarAltaPaquete(NombrePaquete,Descripcion,inicio,fin,Descuento);
+		manpaq.ConfirmarAltaPaquete(NombrePaquete,Descripcion,inicio,fin,Descuento, alta);
 	}
 
 }

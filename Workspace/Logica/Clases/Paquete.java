@@ -16,19 +16,21 @@ public class Paquete {
 	private String Descripcion;
 	private Date Inicio;
 	private Date Fin;
+	private Date Alta;
 	private HashMap<String, Espectaculo> Espectaculos;
 	
 	public Paquete() {
 		super();
 	}
 	private Double Descuento;
-		public Paquete(String nombre, String descripcion, Date inicio, Date fin, Double descuento) {
+		public Paquete(String nombre, String descripcion, Date inicio, Date fin, Double descuento, Date alta) {
 			super();
 			Nombre = nombre;
 			Descripcion = descripcion;
 			Inicio = inicio;
 			Fin = fin;
 			Descuento = descuento;
+			Alta = alta;
 			Espectaculos = new HashMap<String, Espectaculo>();
 		}
 		public String getNombre() {
@@ -76,6 +78,7 @@ public class Paquete {
 			Plataforma p = manplat.getPlataforma(NombrePlataforma);
 			Espectaculo s = p.getEspectaculo(NombreEspectaculo);
 			this.agregarEspectaculo(s);
+			
 			
 			
 		}
