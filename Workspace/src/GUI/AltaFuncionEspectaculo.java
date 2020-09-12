@@ -167,6 +167,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		panel.add(textFieldNombre);
 		panel.add(lblDatosFuncion);
 		panel.add(dateChooser);
+		dateChooser.getDateEditor().setEnabled(false);
 		Button buttonAceptar = new Button("Aceptar");
 		
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAceptar);
@@ -185,12 +186,12 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		panel.add(scrollPane);
 		
 		JSpinner spinnerHora = new JSpinner();
-		spinnerHora.setModel(new SpinnerNumberModel(0, 0, 24, 1));
+		spinnerHora.setModel(new SpinnerNumberModel(0, 0, 23, 1));
 		spinnerHora.setBounds(122, 127, 49, 28);
 		panel.add(spinnerHora);
 		
 		JSpinner spinnerMinutos = new JSpinner();
-		spinnerMinutos.setModel(new SpinnerNumberModel(0, 0, 60, 1));
+		spinnerMinutos.setModel(new SpinnerNumberModel(0, 0, 59, 1));
 		spinnerMinutos.setBounds(183, 127, 49, 28);
 		panel.add(spinnerMinutos);
 		
@@ -323,17 +324,20 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(comboBoxPlataforma.getSelectedItem().toString()=="") {
+					if(comboBoxPlataforma.getSelectedItem().toString().length()==0) {
 						throw new CheckDatos("Debe seleccionar una Plataforma");
 					}
 					if(iplataforma.existeFuncion(textFieldNombre.getText())) {
 						throw new Identidad("Ya existe una funcion en el sistema con ese nombre");
 					}
-					if(comboBoxEspectaculo.getSelectedItem().toString()=="") {
+					if(comboBoxEspectaculo.getSelectedItem().toString().length()==0) {
 						throw new CheckDatos("Debe seleccionar un Espectaculo");
 					}
-					if(textFieldNombre.getText()=="" ) {
+					if(textFieldNombre.getText().length()==0 ) {
 						throw new CheckDatos("El campo nombre no puede estar vacío");
+					}
+					if(dateChooser.getDate()==null) {
+						throw new CheckDatos("El campo fecha no puede estar vacío");
 					}
 					SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd ");
 					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString() + ":00"; 					
