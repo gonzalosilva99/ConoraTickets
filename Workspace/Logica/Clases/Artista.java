@@ -28,6 +28,7 @@ public class Artista extends Usuario{
 			Biografia = biografia;
 			URL = uRL;
 			Espectaculos = new HashSet<Espectaculo>();
+			FuncionesInvitado = new HashSet<Funcion>();
 		}
 		public String getDescripcionGeneral() {
 			return DescripcionGeneral;

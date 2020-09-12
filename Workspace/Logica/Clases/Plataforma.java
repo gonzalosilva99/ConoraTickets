@@ -104,7 +104,16 @@ public class Plataforma {
 			Espectaculo esp = Espectaculos.get(NombreEspectaculo);
 			return esp.getDtEspectaculoDatos();
 		}
-		
+		public Boolean existeFuncion(String nombreFuncion) {
+			boolean ret = false;
+			for(Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				ret = entry.getValue().existeFuncion(nombreFuncion);
+				if(ret){
+					return ret;
+				}
+			}
+			return ret;
+		}
 
 		public Boolean ExisteEspectaculo(String nomEspectaculo) {
 			return Espectaculos.containsKey(nomEspectaculo);

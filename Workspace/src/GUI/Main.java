@@ -15,6 +15,10 @@ import java.awt.GridLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import Controladores.Fabrica;
+import Interfaces.IUsuario;
+
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
@@ -33,6 +37,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JDesktopPane;
 import java.awt.event.ActionListener;
@@ -69,6 +74,40 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		/*** CARGAR DATOS DE PRUEBA ***/
+		Fabrica fab = Fabrica.getInstancia();
+		IUsuario iusuario = fab.getIUsuario();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
+		Date fechaNac = formato.parse("31/12/1971");
+		iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
+		fechaNac = formato.parse("15/11/1983");
+		iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac);
+		/**fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("//");
+		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		
+		**/
+		
+		
+		/*** FIN CARGAR DATOS DE PRUEBA ***/
+		
+		
+		
+		
+		
 		frmMainWindow = new JFrame();
 		frmMainWindow.setResizable(false);
 		frmMainWindow.setTitle("Main Window");

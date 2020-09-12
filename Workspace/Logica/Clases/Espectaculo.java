@@ -152,6 +152,10 @@ public class Espectaculo {
 			return Funciones.get(nombre);
 		}
 		
+		public boolean existeFuncion(String nombreFuncion) {
+			return Funciones.containsKey(nombreFuncion);	
+		}
+		
 		
 }
 

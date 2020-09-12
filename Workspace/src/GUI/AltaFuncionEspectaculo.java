@@ -30,6 +30,8 @@ import com.toedter.calendar.JDateChooser;
 
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
+import Excepciones.CheckDatos;
+import Excepciones.Identidad;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
 import DataTypes.DtArtista;
@@ -237,6 +239,9 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE ESPECTACULO :D HECHO!!!!!!!!!!!!
 		 ** 
 		 **/
+		Set<String> ArtistasADevolver = new HashSet<String>();
+		Set<Integer> IndicesArtistas = new HashSet<Integer>();
+		
 		JList list = new JList();
 		scrollPane.setViewportView(list);
 		Map<Integer, DtArtista> listArts = new HashMap<Integer, DtArtista>();
@@ -244,6 +249,9 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxEspectaculo.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 					if(comboBoxEspectaculo.isFocusOwner() & comboBoxEspectaculo.getSelectedIndex()!=0) {
+						ArtistasADevolver.clear();
+						IndicesArtistas.clear();
+						lblArtistasSeleccionados.setText("");
 						DefaultListModel listaArtistas = new DefaultListModel();
 						Set<DtArtista> listArtsAux = iusuario.listarArtistasNoEspectaculo(comboBoxEspectaculo.getSelectedItem().toString());
 						Iterator<DtArtista> iterArtista = listArtsAux.iterator();
@@ -270,8 +278,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		/*** ***/ 
 		
 		
-		Set<String> ArtistasADevolver = new HashSet<String>();
-		Set<Integer> IndicesArtistas = new HashSet<Integer>();
+		
 		
 		buttonAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -281,7 +288,12 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					Iterator<String> iterArtistasString = ArtistasADevolver.iterator();
 					lblArtistasSeleccionados.setText("");
 					while(iterArtistasString.hasNext()) {
-						lblArtistasSeleccionados.setText(lblArtistasSeleccionados.getText() + ", " + iterArtistasString.next());
+						if(lblArtistasSeleccionados.getText()=="") {
+							lblArtistasSeleccionados.setText(iterArtistasString.next());
+						}
+						else {
+							lblArtistasSeleccionados.setText(iterArtistasString.next() + ", " + lblArtistasSeleccionados.getText());
+						}
 					}
 				}
 			}
@@ -291,12 +303,17 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonQuitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(list.getSelectedIndex()!=0 & IndicesArtistas.contains(list.getSelectedIndex())){
-					ArtistasADevolver.remove(listArts.get(list.getSelectedValue()).getNickname());
+					ArtistasADevolver.remove(listArts.get(list.getSelectedIndex()).getNickname());
 					IndicesArtistas.remove(list.getSelectedIndex());
 					Iterator<String> iterArtistasString = ArtistasADevolver.iterator();
 					lblArtistasSeleccionados.setText("");
 					while(iterArtistasString.hasNext()) {
-						lblArtistasSeleccionados.setText(lblArtistasSeleccionados.getText() + ", " + iterArtistasString.next());
+						if(lblArtistasSeleccionados.getText()=="") {
+							lblArtistasSeleccionados.setText(iterArtistasString.next());
+						}
+						else {
+							lblArtistasSeleccionados.setText(iterArtistasString.next() + ", " + lblArtistasSeleccionados.getText());
+						}
 					}
 				}
 			}
@@ -306,20 +323,32 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty() & textFieldNombre.getText()!="" ) {
+					if(comboBoxPlataforma.getSelectedItem().toString()=="") {
+						throw new CheckDatos("Debe seleccionar una Plataforma");
+					}
+					if(iplataforma.existeFuncion(textFieldNombre.getText())) {
+						throw new Identidad("Ya existe una funcion en el sistema con ese nombre");
+					}
+					if(comboBoxEspectaculo.getSelectedItem().toString()=="") {
+						throw new CheckDatos("Debe seleccionar un Espectaculo");
+					}
+					if(textFieldNombre.getText()=="" ) {
+						throw new CheckDatos("El campo nombre no puede estar vacío");
+					}
 					SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd ");
 					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString() + ":00"; 					
 					formatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					System.out.println(dateInicio);
 					Date FechaInicio = formatoInicio.parse(dateInicio);
 					Date FechaAlta = Calendar.getInstance().getTime();
 					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText(), FechaInicio, ArtistasADevolver, FechaAlta);
 					JOptionPane.showMessageDialog(null, "Funcion creada con Exito");
-					System.out.println("LLega");
-					}
+					textFieldNombre.setText("");
+					comboBoxEspectaculo.setSelectedIndex(0);
+					comboBoxPlataforma.setSelectedIndex(0);
+					dateChooser.getDateEditor().setDate(Calendar.getInstance().getTime());
 				}
 				catch(Exception e1) {
-					System.out.println(e1.getMessage());
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				
 			}

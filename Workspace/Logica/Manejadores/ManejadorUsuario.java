@@ -171,7 +171,7 @@ public class ManejadorUsuario {
 		public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
 			HashSet<DtArtista> ret = new HashSet<DtArtista>();
 			for (Map.Entry<String, Artista> entry : Artistas.entrySet()) {
-				if (entry.getValue().participaEspectaculo(nombreEspectaculo)) {
+				if (!entry.getValue().participaEspectaculo(nombreEspectaculo)) {
 		            DtArtista nuevo = entry.getValue().getDtArtista();
 		            ret.add(nuevo);   
 				}

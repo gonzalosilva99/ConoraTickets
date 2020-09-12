@@ -124,7 +124,6 @@ public class ManejadorPlataforma {
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
 			Plataforma pla = this.getPlataforma(NombrePlataforma);
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
-			
 		}
 
 		
@@ -143,6 +142,17 @@ public class ManejadorPlataforma {
 		public Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre){
 			Plataforma pla = this.getPlataforma(Nombre);
 			return pla.listarEspectaculoDatos();
+		}
+		
+		public boolean existeFuncion(String nombreFuncion) {
+			boolean ret = false;
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				ret = entry.getValue().existeFuncion(nombreFuncion);
+				if(ret){
+					return ret;
+				}
+			}
+			return ret;
 		}
 }
 		

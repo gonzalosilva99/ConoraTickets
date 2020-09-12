@@ -84,7 +84,10 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.listarEspectaculoDatosDePlataforma(Nombre);
 	}
 	
-	
+	public boolean existeFuncion(String nombreFuncion) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.existeFuncion(nombreFuncion);
+	}
 
 }
 

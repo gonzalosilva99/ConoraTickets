@@ -27,4 +27,5 @@ public interface IPlataforma {
 		void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio,Set<String> artistas, Date alta);		
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma);
 		Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre);
+		public boolean existeFuncion(String nombreFuncion);
 }
