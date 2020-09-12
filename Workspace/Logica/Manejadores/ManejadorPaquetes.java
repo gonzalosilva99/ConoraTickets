@@ -73,9 +73,9 @@ public class ManejadorPaquetes {
 			return Paquetes.containsKey(nombre);
 		}
 		
-		public void ConfirmarAltaPaquete(String NombrePaquete,String Descripcion,Date inicio,Date fin,Double Descuento) throws Identidad{
+		public void ConfirmarAltaPaquete(String NombrePaquete,String Descripcion,Date inicio,Date fin,Double Descuento, Date alta) throws Identidad{
 			if(!ExistePaquete(NombrePaquete)) {
-				Paquete paq = new Paquete(NombrePaquete,Descripcion,inicio,fin,Descuento);
+				Paquete paq = new Paquete(NombrePaquete,Descripcion,inicio,fin,Descuento, alta);
 				Paquetes.put(NombrePaquete, paq);
 			}
 			else {

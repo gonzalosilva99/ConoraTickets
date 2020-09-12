@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import Controladores.Fabrica;
+import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
 
@@ -285,6 +286,27 @@ public class Main {
 			fechaInicioFuncion = FormatoInicio.parse("2020-09-25 19:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion);
+	
+			//Cargar Paquetes
+			IPaquete ipaquete= fab.getIPaquete();
+			
+			Date inicio = formato.parse("01/05/2020");
+			Date fin = formato.parse("31/07/2020");
+			Date alta = formato.parse("30/4/2020");
+			ipaquete.ConfirmarAltaPaquete("Paquete de Bandas", "Paquete de bandas musicales" , inicio, fin, 20.0, alta);
+			
+
+			inicio = formato.parse("01/08/2020");
+			fin = formato.parse("30/09/2020");
+			alta = formato.parse("15/7/2020");
+			ipaquete.ConfirmarAltaPaquete("Paquete Solistas", "Paquete de solistas." , inicio, fin, 30.0, alta);
+			
+			inicio = formato.parse("15/08/2020");
+			fin = formato.parse("15/11/2020");
+			alta = formato.parse("1/8/2020");
+			ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta);
+
+		
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
