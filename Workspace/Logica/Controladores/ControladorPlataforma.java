@@ -28,9 +28,10 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarEspectaculos(Nombre);
 	};
-	public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp) { 
-		Set<DtFuncion> ret = new HashSet<DtFuncion>();
-		return ret;
+						 
+	public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp) { 
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarFuncionesDeEspectaculo(NombrePlat ,NombreEsp) ;
 	};
 	public DtFuncionDatos MostrarFuncion(String NombreEsp, String NombreFun) {
 		DtFuncionDatos ret = new DtFuncionDatos(NombreFun, null, null, null, null);
