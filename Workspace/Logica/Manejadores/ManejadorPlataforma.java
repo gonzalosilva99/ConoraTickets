@@ -154,6 +154,10 @@ public class ManejadorPlataforma {
 			}
 			return ret;
 		}
+		public DtEspectaculoDatos getDatosEspectaculo(String nombrePlataforma, String nombreEspectaculo) {
+			Plataforma pla = this.getPlataforma(nombrePlataforma);
+			return pla.getDtEspectaculoDatos(nombreEspectaculo);
+		}
 }
 		
 

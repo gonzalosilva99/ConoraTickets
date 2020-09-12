@@ -177,7 +177,7 @@ public class Main {
 			
 			
 			//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
-			SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		/**	SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date fechaAltaFuncion;
 			Date fechaInicioFuncion;
 			
@@ -210,7 +210,7 @@ public class Main {
 			artistas.add("lospimpi");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
 
-			
+			**/
 			// PLATAFORMAS (Nombre, Descripcion, URL)
 			iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
 					"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
