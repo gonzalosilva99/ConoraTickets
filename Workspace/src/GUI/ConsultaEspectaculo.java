@@ -35,14 +35,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
-	private String NombreEsp;
-	private String DescripcionEsp;
-	private String DuracionEsp;
-	private String CostoEsp;
-	private String UrlEsp;
-	private String FechaAltaEsp;
-	private String EspMin;
-	private String EspMax;
+
 
 
 	/**
@@ -105,20 +98,6 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldEspectMax.setText(Espectaculo.getCantMax().toString());
 		
 	}
-	private void setAtributosEspectaculo(DtEspectaculoDatos Espectaculo) {
-		
-		cleanFieldTexts();
-		NombreEsp =Espectaculo.getNombre();
-		DescripcionEsp = Espectaculo.getDescripcion();
-		DuracionEsp =Espectaculo.getDuracion().toString();
-		CostoEsp = Espectaculo.getCosto().toString();
-		UrlEsp = Espectaculo.getURL().toString();
-		FechaAltaEsp = Espectaculo.getRegistro().toString();
-		EspMin = Espectaculo.getCantMin().toString();
-		EspMax = Espectaculo.getCantMax().toString();
-		
-	}
-	
 
 	
 	public ConsultaEspectaculo() {
@@ -355,6 +334,16 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				}
 				datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 				setFieldTexts(datosEspectaculo);
+				
+				Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+				Iterator<DtFuncion> itrf = listaFunciones.iterator();
+				DtFuncion datosFuncion;
+				while(itrf.hasNext())
+				{
+					datosFuncion = itrf.next();
+					comboBoxEspectaculos.addItem(datosFuncion .getNombre());
+					System.out.println("funcion************");
+				}
 			}
 		});  
   

@@ -62,7 +62,7 @@ public class ManejadorPlataforma {
 		}
 		
 		
-		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
+		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
 			Plataforma plat = Plataformas.get(NombrePlat);
 			return plat.listarFuncionesDeEspectaculo(NombreEsp);
 		}
@@ -158,7 +158,10 @@ public class ManejadorPlataforma {
 			Plataforma pla = this.getPlataforma(nombrePlataforma);
 			return pla.getDtEspectaculoDatos(nombreEspectaculo);
 		}
+		
+
 }
+
 		
 
 		
