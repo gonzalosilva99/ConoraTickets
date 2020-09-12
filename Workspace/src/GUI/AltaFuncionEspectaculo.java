@@ -42,6 +42,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.event.ItemListener;
 import java.io.Console;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.awt.event.ItemEvent;
 
 public class AltaFuncionEspectaculo extends JInternalFrame {
@@ -209,6 +210,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		/** COMIENZA EL CODIGO **/
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
+		IUsuario iusuario = fabric.getIUsuario();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
 		comboBoxPlataforma.addItem("");
@@ -240,7 +242,6 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			public void itemStateChanged(ItemEvent arg0) {
 					if(comboBoxEspectaculo.isFocusOwner() & comboBoxEspectaculo.getSelectedIndex()!=0) {
 						DefaultListModel listaArtistas = new DefaultListModel();
-						IUsuario iusuario = fabric.getIUsuario();
 						Set<DtArtista> listArtsAux = iusuario.listarArtistasNoEspectaculo(comboBoxEspectaculo.getSelectedItem().toString());
 						Iterator<DtArtista> iterArtista = listArtsAux.iterator();
 						listaArtistas.addElement(" ");
@@ -302,10 +303,15 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty()) {
+					//if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty() & textFieldNombre.text()!="" ) {
 					SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd ");
-					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString(); 
-						System.out.println(dateInicio);
+					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString() + ":00"; 					
+					formatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date FechaInicio = formatoInicio.parse(dateInicio);
+					String dateAlta = formatoInicio.format(LocalDate.now());
+					Date FechaAlta = formatoInicio.parse(dateAlta);
+					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText(), FechaInicio, ArtistasADevolver, FechaAlta);
+					
 					//}
 				}
 				catch(Exception e1) {
