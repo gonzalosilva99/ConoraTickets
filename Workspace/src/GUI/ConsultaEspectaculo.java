@@ -13,6 +13,7 @@ import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPlataforma;
 
+import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -27,7 +28,7 @@ import java.awt.event.ActionEvent;
 
 public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
-	private JTextField textFieldDescripcion;
+	private JTextPane textFieldDescripcion;
 	private JTextField textFieldDuracion;
 	private JTextField textFieldEspectMin;
 	private JTextField textFieldEspectMax;
@@ -229,11 +230,11 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldNombre.setColumns(10);
 		panel.add(textFieldNombre);
 		
-		textFieldDescripcion = new JTextField();
+		textFieldDescripcion = new JTextPane();
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 39, SpringLayout.EAST, lblDescripcion);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, 0, SpringLayout.EAST, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 4, SpringLayout.NORTH, lblDescripcion);
-		textFieldDescripcion.setColumns(10);
+		//textFieldDescripcion.setColumns(10);
 		panel.add(textFieldDescripcion);
 		
 		textFieldDuracion = new JTextField();
