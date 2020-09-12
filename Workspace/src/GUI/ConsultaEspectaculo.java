@@ -35,6 +35,14 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
+	private String NombreEsp;
+	private String DescripcionEsp;
+	private String DuracionEsp;
+	private String CostoEsp;
+	private String UrlEsp;
+	private String FechaAltaEsp;
+	private String EspMin;
+	private String EspMax;
 
 
 	/**
@@ -85,7 +93,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldEspectMax.setText("");
 	}
 	private void setFieldTexts(DtEspectaculoDatos Espectaculo) {
-		setFieldsTextsEnabled();
+		
 		cleanFieldTexts();
 		textFieldNombre.setText(Espectaculo.getNombre());
 		textFieldDescripcion.setText(Espectaculo.getDescripcion());
@@ -95,7 +103,20 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldFechaAlta.setText(Espectaculo.getRegistro().toString());
 		textFieldEspectMin.setText(Espectaculo.getCantMin().toString());
 		textFieldEspectMax.setText(Espectaculo.getCantMax().toString());
-		setFieldsTextsNotEnabled();
+		
+	}
+	private void setAtributosEspectaculo(DtEspectaculoDatos Espectaculo) {
+		
+		cleanFieldTexts();
+		NombreEsp =Espectaculo.getNombre();
+		DescripcionEsp = Espectaculo.getDescripcion();
+		DuracionEsp =Espectaculo.getDuracion().toString();
+		CostoEsp = Espectaculo.getCosto().toString();
+		UrlEsp = Espectaculo.getURL().toString();
+		FechaAltaEsp = Espectaculo.getRegistro().toString();
+		EspMin = Espectaculo.getCantMin().toString();
+		EspMax = Espectaculo.getCantMax().toString();
+		
 	}
 	
 
@@ -340,8 +361,10 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {	
-				
-				
+				if (comboBoxEspectaculos.isFocusOwner()) {
+					datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+					setFieldTexts(datosEspectaculo);
+				}
 			}
 		});
 		
