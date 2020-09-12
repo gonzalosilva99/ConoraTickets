@@ -174,7 +174,8 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 				
 				Set<DtPlataforma> DtPlataformas = plataformosa.listarPlataformas();
 				Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
-				
+				comboBoxPlataformas.removeAllItems();
+				comboBoxPlataformas.addItem("");
 				while(iterador2.hasNext()) {
 					comboBoxPlataformas.addItem(iterador2.next().getNombre()); }
 			}
@@ -185,7 +186,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		
 		comboBoxPlataformas.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				
+				if (comboBoxPlataformas.isFocusOwner()) {
 				String a = comboBoxPaquetes.getSelectedItem().toString();
 				if (a != "") {
 					comboBoxEspectaculos.removeAllItems();
@@ -203,6 +204,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 					}
 						
 				}
+				}
 			}
 		});
 	
@@ -218,6 +220,16 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 				pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
 				JOptionPane.showMessageDialog(null, "Espectaculo agregado a paquete con exito");
 				comboBoxEspectaculos.removeAllItems();
+				comboBoxPlataformas.removeAllItems();
+				comboBoxPaquetes.removeAllItems();
+				comboBoxPaquetes.addItem("");
+				Set<DtPaquete> DtPaquetes = paquetosa.ListarPaquetes();
+				Iterator<DtPaquete> iterador = DtPaquetes.iterator();
+				while(iterador.hasNext()) {
+					comboBoxPaquetes.addItem(iterador.next().getNombre());
+					
+				}
+				
 				
 
 			}
