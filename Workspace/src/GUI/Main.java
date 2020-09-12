@@ -174,52 +174,16 @@ public class Main {
 					"originalmente compuesta e interpretada en 1985 por el\n" + 
 					"músico brasileño Luiz Caldas bajo el título «Fricote»." , "naci blabla", "");
 			
-			
-			
-			//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
-		/**	SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Date fechaAltaFuncion;
-			Date fechaInicioFuncion;
-			
-			Set<String> artistas = new HashSet<String>();
-			artistas.add("dmode"); 
-			artistas.add("clauper"); 
-			fechaInicioFuncion = FormatoInicio.parse("-- ::");
-			fechaAltaFuncion = FormatoInicio.parse("-- 00:00:00");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live","Los Village Volvieron", "Los Village Volvieron - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);	
-			
-			artistas.clear();
-			artistas.add("bruceTheBoss");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", fechaInicioFuncion, artistas, fechaAltaFuncion);	
-			
-			artistas.clear();
-			artistas.add("bruceTheBoss");
-			artistas.add("clauper");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", fechaInicioFuncion, artistas, fechaAltaFuncion);	
-			
-			artistas.clear();
-			artistas.add("vpeople");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
-			
-			artistas.clear();
-			artistas.add("clauper");
-			artistas.add("bruceTheBoss");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
-			
-			artistas.clear();
-			artistas.add("lospimpi");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
-
-			**/
 			// PLATAFORMAS (Nombre, Descripcion, URL)
-			iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
-					"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
-			iplataforma.AltaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
-					"Facebook.","https://www.facebook.com/watch/");
-			iplataforma.AltaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
-					"en directo (streaming).","https://twitter.com/");
-			iplataforma.AltaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
-					"compartir videos.","https://www.youtube.com/");
+						iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
+								"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
+						iplataforma.AltaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
+								"Facebook.","https://www.facebook.com/watch/");
+						iplataforma.AltaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
+								"en directo (streaming).","https://twitter.com/");
+						iplataforma.AltaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
+								"compartir videos.","https://www.youtube.com/");
+					
 			
 			// ESPECTACULOS (nombrePlataforma, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, URL, costo, fecha, duracion)
 			Date fechaAltaEspectaculo;
@@ -236,6 +200,104 @@ public class Main {
 			fechaAltaEspectaculo = formato.parse("31/07/2020");
 			iplataforma.altaEspectaculo("Twitter Live","alcides","30 años","Espectáculo conmemorando los 30 años de Violeta.",30,150,"https://twitter.com/alcides_shows",450,fechaAltaEspectaculo,80);
 			
+			//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
+			SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date fechaAltaFuncion;
+			Date fechaInicioFuncion;
+			Set<String> artistas = new HashSet<String>();
+			
+			//F1
+			artistas.add("dmode"); 
+			artistas.add("clauper"); 
+			fechaInicioFuncion = FormatoInicio.parse("2020-04-15 15:30:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live","Los Village Volvieron", "Los Village Volvieron - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			
+			//F2
+			artistas.clear();
+			artistas.add("bruceTheBoss");
+			fechaInicioFuncion = FormatoInicio.parse("2020-05-01 17:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			
+			//F3
+			artistas.clear();
+			artistas.add("bruceTheBoss");
+			artistas.add("clauper");
+			fechaInicioFuncion = FormatoInicio.parse("2020-06-01 18:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			
+			//F4
+			artistas.clear();
+			artistas.add("vpeople");
+			fechaInicioFuncion = FormatoInicio.parse("2020-06-10 19:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			
+			//F5
+			artistas.clear();
+			artistas.add("clauper");
+			artistas.add("bruceTheBoss");
+			fechaInicioFuncion = FormatoInicio.parse("2020-07-10 20:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			
+			//F6
+			artistas.clear();
+			artistas.add("lospimpi");
+			fechaInicioFuncion = FormatoInicio.parse("2020-08-10 17:45:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+
+
+			
+			// PLATAFORMAS (Nombre, Descripcion, URL)
+			iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
+					"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
+			iplataforma.AltaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
+					"Facebook.","https://www.facebook.com/watch/");
+			iplataforma.AltaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
+					"en directo (streaming).","https://twitter.com/");
+			iplataforma.AltaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
+					"compartir videos.","https://www.youtube.com/");
+
+			
+			//F17
+			artistas.clear();
+			artistas.add("lospimpi");
+			artistas.add("dyangounchained");
+			fechaInicioFuncion = FormatoInicio.parse("2020-10-01 19:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 2", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+		
+			//F16
+			artistas.clear();
+			artistas.add("DY");
+			fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);
+
+			
+			//F15
+			artistas.clear();
+			fechaInicioFuncion = FormatoInicio.parse("2020-11-25 17:45:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - C", fechaInicioFuncion, artistas, fechaAltaFuncion);
+			
+			//F14
+			artistas.clear();
+			artistas.add("tripleNelson");
+			fechaInicioFuncion = FormatoInicio.parse("2020-10-25 18:30:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - B", fechaInicioFuncion, artistas, fechaAltaFuncion);
+			
+			//F13
+			artistas.clear();
+			artistas.add("alcides");
+			fechaInicioFuncion = FormatoInicio.parse("2020-09-25 19:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion);
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
