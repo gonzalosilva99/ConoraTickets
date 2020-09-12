@@ -50,6 +50,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public ConsultaDePaqueteDeEspectaculos() {
 		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Consulta de Paquete de Espectaculo");

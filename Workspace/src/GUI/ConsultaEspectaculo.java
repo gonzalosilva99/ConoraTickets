@@ -37,6 +37,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
+	private DtPaquete datosPaquete;
 
 
 
@@ -315,6 +316,23 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 11, SpringLayout.SOUTH, comboBoxPlataforma);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxEspectaculos, -24, SpringLayout.NORTH, panel);
+		
+		Button buttonVerFunciones = new Button("Ver mas");
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerFunciones, 0, SpringLayout.NORTH, lblFunciones);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonVerFunciones, -10, SpringLayout.EAST, panel);
+		panel.add(buttonVerFunciones);
+		
+		Button buttonVerPaquetes = new Button("Ver mas");
+		buttonVerPaquetes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaPaqueteEspectaculoWindowView ventana = new ConsultaPaqueteEspectaculoWindowView();
+				ventana.setAlwaysOnTop(true);
+				ventana.setVisible(true);
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 0, SpringLayout.NORTH, lblPaquetes);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonVerPaquetes, 0, SpringLayout.EAST, buttonVerFunciones);
+		panel.add(buttonVerPaquetes);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(comboBoxEspectaculos);
 		comboBoxEspectaculos.setVisible(false);
@@ -350,7 +368,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				
 				Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(datosEspectaculo.getNombre());
 				Iterator<DtPaquete> itrp = listaPaquetes.iterator();
-				DtPaquete datosPaquete;
+				
 				comboBoxPaquetes.removeAllItems();
 				while(itrp.hasNext())
 				{
