@@ -9,8 +9,10 @@ import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
 import DataTypes.DtFuncion;
+import DataTypes.DtPaquete;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
+import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 
 import javax.swing.JLabel;
@@ -318,7 +320,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		comboBoxEspectaculos.setVisible(false);
 		
 	
-		
+		IPaquete ipaquete= fabric.getIPaquete();
 		comboBoxPlataforma.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				panel.setVisible(true);
@@ -343,6 +345,17 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				{
 					datosFuncion = itrf.next();
 					comboBoxFunciones.addItem(datosFuncion .getNombre());
+				}
+				
+				
+				Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(datosEspectaculo.getNombre());
+				Iterator<DtPaquete> itrp = listaPaquetes.iterator();
+				DtPaquete datosPaquete;
+				comboBoxPaquetes.removeAllItems();
+				while(itrp.hasNext())
+				{
+					datosPaquete = itrp.next();
+					comboBoxPaquetes.addItem(datosPaquete.getNombre());
 				}
 			}
 		});  
