@@ -1,7 +1,10 @@
 package Manejadores;
 import java.util.*;
+
+import Clases.Espectador;
 import Clases.Paquete;
 import Clases.Plataforma;
+import DataTypes.DtEspectador;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
 import DataTypes.DtPlataforma;
@@ -55,6 +58,15 @@ public class ManejadorPaquetes {
 			}
 			return ret;
 		} 
+		
+		public Set<DtPaquete> listarPaquetes(){
+			HashSet<DtPaquete> ret = new HashSet<DtPaquete>();
+			for (Map.Entry<String,Paquete> entry : Paquetes.entrySet()) {
+	            DtPaquete nuevo = entry.getValue().getDtPaquete();
+	            ret.add(nuevo);            
+			}
+			return ret;
+		}
 		
 		Boolean ExistePaquete(String nombre){
 			return Paquetes.containsKey(nombre);
