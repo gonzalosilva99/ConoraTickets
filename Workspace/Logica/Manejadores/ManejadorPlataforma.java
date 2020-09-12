@@ -73,7 +73,9 @@ public class ManejadorPlataforma {
 		}
 				
 		public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat) {
+			System.out.println("nombre espec: " + nombreEsp +  "nombre plat:" + nombrePlat );
 			Plataforma plat = Plataformas.get(nombrePlat);
+			System.out.print("hasta aca va bien");
 			return plat.listarFuncionesVigentesEspectaculo(nombreEsp);
 		}
 		
@@ -153,6 +155,10 @@ public class ManejadorPlataforma {
 				}
 			}
 			return ret;
+		}
+		public DtEspectaculoDatos getDatosEspectaculo(String nombrePlataforma, String nombreEspectaculo) {
+			Plataforma pla = this.getPlataforma(nombrePlataforma);
+			return pla.getDtEspectaculoDatos(nombreEspectaculo);
 		}
 }
 		

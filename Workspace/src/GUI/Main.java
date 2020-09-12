@@ -264,6 +264,7 @@ public class Main {
 			fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);
+
 			
 			//F15
 			artistas.clear();
