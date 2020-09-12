@@ -66,8 +66,7 @@ public class Paquete {
 			return ret;
 		}
 		public Boolean tieneEspectaculo(String NombreEspectaculo) {
-			if (Espectaculos.get(NombreEspectaculo) == null) return false;
-			else return true;
+			return Espectaculos.containsKey(NombreEspectaculo);
 		}
 		public void agregarEspectaculo(Espectaculo e) {
 			Espectaculos.put(e.getNombre(), e);

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -72,8 +73,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, lblPaquetes, 110, SpringLayout.WEST, getContentPane());
 		
 		JComboBox comboBoxPaquetes = new JComboBox();
-				
-				
+		
 		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPaquetes, 52, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 153, SpringLayout.WEST, getContentPane());
@@ -85,12 +85,14 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPlataforma, -395, SpringLayout.SOUTH, getContentPane());
 		
 		JComboBox comboBoxPlataformas = new JComboBox();
+
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataformas,  99, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataformas,  153, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataformas,  -212, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblPlataforma, -43, SpringLayout.WEST, comboBoxPlataformas);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
+	
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos,  153, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos,  -212, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos,  3, SpringLayout.SOUTH, comboBoxPlataformas);
@@ -148,42 +150,61 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		IPaquete paquetosa = fabricosa.getIPaquete();
 		Set<DtPaquete> DtPaquetes = paquetosa.ListarPaquetes();
 		Iterator<DtPaquete> iterador = DtPaquetes.iterator();
+		comboBoxPaquetes.addItem("");
+		comboBoxPlataformas.addItem("");
+		comboBoxEspectaculos.addItem("");
 		
 		while(iterador.hasNext()) {
 			comboBoxPaquetes.addItem(iterador.next().getNombre());
 		}
 		
-		IPlataforma plataformosa = fabricosa.getIPlataforma();
-		
-		Set<DtPlataforma> DtPlataformas = plataformosa.listarPlataformas();
-		Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
-		
-		while(iterador2.hasNext()) {
-			comboBoxPlataformas.addItem(iterador2.next().getNombre());
-		}
-		String a = comboBoxPaquetes.getSelectedItem().toString();
-		String b = comboBoxPlataformas.getSelectedItem().toString();
-		
-		Set<DtEspectaculo> EspectaculosNoPaquete = plataformosa.listarEspectaculosEnPlataformaNoPaquete(a ,b);
-		
-	Iterator<DtEspectaculo> iterador3 = EspectaculosNoPaquete.iterator();
-		
-		while(iterador3.hasNext()) {
-			comboBoxEspectaculos.addItem(iterador3.next().getNombre());
-		}
-		
-		String c = comboBoxEspectaculos.getSelectedItem().toString();
-		
-		buttonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				IPaquete pac = fabricosa.getIPaquete();
-				pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
+		comboBoxPaquetes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IPlataforma plataformosa = fabricosa.getIPlataforma();
 				
+				Set<DtPlataforma> DtPlataformas = plataformosa.listarPlataformas();
+				Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
+				
+				while(iterador2.hasNext()) {
+					comboBoxPlataformas.addItem(iterador2.next().getNombre());
+					
+					comboBoxPlataformas.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							String a = comboBoxPaquetes.getSelectedItem().toString();
+							String b = comboBoxPlataformas.getSelectedItem().toString();
+							
+							Set<DtEspectaculo> EspectaculosNoPaquete = plataformosa.listarEspectaculosEnPlataformaNoPaquete(a ,b);
+							
+							Iterator<DtEspectaculo> iterador3 = EspectaculosNoPaquete.iterator();
+								
+								while(iterador3.hasNext()) {
+									comboBoxEspectaculos.addItem(iterador3.next().getNombre());
+								}
+								
+							
+								
+								
+								buttonAceptar.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent arg0) {
+										String c = comboBoxEspectaculos.getSelectedItem().toString();
+										IPaquete pac = fabricosa.getIPaquete();
+										pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
+										JOptionPane.showMessageDialog(null, "Espectaculo agregado a paquete con exito");
+									}
+								});
+						}
+					});
+				}
+			
 			}
 		});
+				
+				
 		
+		
+	
 
-		
 		
 		
 		

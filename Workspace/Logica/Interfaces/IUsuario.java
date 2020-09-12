@@ -1,6 +1,7 @@
 package Interfaces;
 
 import java.util.Date;
+import DataTypes.DtPaquete;
 import java.util.Set;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
@@ -26,4 +27,5 @@ public interface IUsuario {
 	public void RelacionarArtistaFuncion(String nickArtista, Funcion funcion);
 	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo);
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname);
+	public Set<DtPaquete> listarPaquetesCanjeables(String nickname, String nombreEspectaculo);
 }

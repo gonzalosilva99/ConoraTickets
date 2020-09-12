@@ -116,8 +116,8 @@ public class Plataforma {
 			
 			Set<DtEspectaculo> set = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
-				DtEspectaculo nuevo = nuevo = entry.getValue().getDatosEspectaculo();
-				if (p.tieneEspectaculo(entry.getValue().getNombre()))  set.add(nuevo);
+				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+				if (!p.tieneEspectaculo(entry.getValue().getNombre())) set.add(nuevo);
 				
 			}
 			return set;
