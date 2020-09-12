@@ -14,7 +14,7 @@ import DataTypes.DtPaquete;
 public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 
 	private JPanel contentPane;
-
+	private DtPaquete datosPaquete;
 	/**
 	 * Launch the application.
 	 */
@@ -34,8 +34,12 @@ public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-
+	public void setDatosPaquete(DtPaquete dtpaquete) {
+		datosPaquete = dtpaquete;
+	}
 	public ConsultaPaqueteEspectaculoWindowView() {
+		System.out.println("Ventana");
+		System.out.println(datosPaquete.getNombre()+" en vantana");
 		setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 525, 596);
 		
@@ -45,7 +49,8 @@ public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new SpringLayout());
 		
-		ConsultaDePaqueteDeEspectaculos consultapaquetedeespectaculo= new ConsultaDePaqueteDeEspectaculos();
+		ConsultaDePaqueteDeEspectaculos consultapaquetedeespectaculo = new ConsultaDePaqueteDeEspectaculos();
+		consultapaquetedeespectaculo.setDatosPaquete(datosPaquete);
 		desktopPane.add(consultapaquetedeespectaculo);
 		consultapaquetedeespectaculo.show();
 		try {

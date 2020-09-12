@@ -325,9 +325,12 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		Button buttonVerPaquetes = new Button("Ver mas");
 		buttonVerPaquetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				ConsultaPaqueteEspectaculoWindowView ventana = new ConsultaPaqueteEspectaculoWindowView();
+				ventana.setDatosPaquete(datosPaquete);
 				ventana.setAlwaysOnTop(true);
 				ventana.setVisible(true);
+				
 			}
 		});
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 0, SpringLayout.NORTH, lblPaquetes);
