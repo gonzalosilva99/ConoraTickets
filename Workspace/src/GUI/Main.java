@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JInternalFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -28,6 +29,8 @@ import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Calendar;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -38,6 +41,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.text.SimpleDateFormat;
+import Interfaces.IPlataforma;
 
 import javax.swing.JDesktopPane;
 import java.awt.event.ActionListener;
@@ -100,15 +104,120 @@ public class Main {
 		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
 		
 		**/
-		//Cargar Artista de prueba
-		IPlataforma iplataforma = fab.getIPlataforma();
-		iusuario.confirmarAltaArtista("Peke77", "Jacinto" , "Vera" , "peke77@gmail.com" , fechaNac, "Soy rapero" , "naci blabla", "peke77.com");
-		iplataforma.AltaPlataforma("Facebook", "Una descricpion" ," facebook.com"); 
-		iplataforma.AltaPlataforma("Youtube", "Una descricpion" ," youtube.com"); 
-		iplataforma.AltaPlataforma("Instagram", "Una descricpion" ," instagram.com"); 
 		
-		
-		
+		try {
+			//Cargar Artista 
+			IPlataforma iplataforma = fab.getIPlataforma();
+			fechaNac = formato.parse("1/1/1977");
+			iusuario.confirmarAltaArtista("vpeople", "Village" , "People" , "vpeople@tuta.io" , fechaNac, "Village People es una innovadora formación musical\n" + 
+					"de estilo disco de finales de los años 70. Fue famosa\n" + 
+					"tanto por sus peculiares disfraces, como por sus\n" + 
+					"canciones pegadizas, con letras sugerentes y llenas de\n" + 
+					"dobles sentidos." , "Grupo americano del disco creado\n" + 
+							"por Jacques Morali y Henry Belolo\n" + 
+							"en 1977. Según Marjorie Burgess,\n" + 
+							"todo comenzó cuando Morali fue a\n" + 
+							"un bar gay de Nueva York una\n" + 
+							"noche y notó al bailarín Felipe Rose\n" + 
+							"vestido como un nativo americano.", "http://www.officialvillag/");
+			fechaNac = formato.parse("14/6/1980");
+			iusuario.confirmarAltaArtista("dmode", "Depeche" , "Mode" , "dmode@tuta.io" , fechaNac, "Depeche Mode es un grupo inglés de música\n" + 
+					"electrónica formado en Basildon, Essex, en 1980 por\n" + 
+					"Vicent Clarke y Andrew John Fletcher, a los que se\n" + 
+					"unieron Martin Lee Gore y poco después David Gahan.\n" + 
+					"Actualmente se le considera como grupo de música\n" + 
+					"alternativa." , "", "http://www.depechemod/");
+			fechaNac = formato.parse("22/6/1953");
+			iusuario.confirmarAltaArtista("clauper", "Cyndi" , "Lauper" , "clauper@hotmail.com" , fechaNac, "Cynthia Ann Stephanie Lauper, conocida simplemente\n" + 
+					"como Cyndi Lauper, es una cantautora, actriz y\n" + 
+					"empresaria estadounidense. Después de participar en\n" + 
+					"el grupo musical, Blue Angel, en 1983 firmó con\n" + 
+					"Portrait Records (filial de Epic Records) y lanzó su\n" + 
+					"exitoso álbum debut She's So Unusual a finales de ese\n" + 
+					"mismo año. Siguió lanzando una serie de álbumes en\n" + 
+					"los que encontró una inmensa popularidad, superando\n" + 
+					"los límites de contenido de las letras de sus canciones." , "Cynthia Ann Stephanie Lauper\n" + 
+							"(Brooklyn, Nueva York; 22 de junio\n" + 
+							"de 1953). ", "cyndilauper.com");
+			fechaNac = formato.parse("23/9/1949");
+			iusuario.confirmarAltaArtista("bruceTheBoss", "Bruce" , "Springsteen" , "bruceTheBoss@gmail.com" , fechaNac, "Bruce Frederick Joseph Springsteen (Long Branch,\n" + 
+					"Nueva Jersey, 23 de septiembre de 1949), más conocido\n" + 
+					"como Bruce Springsteen, es un cantante, músico y\n" + 
+					"compositor estadounidense. " , "naci blabla", "brucespringsteen.n\n" + 
+							"et");
+			fechaNac = formato.parse("1/1/1998");
+			iusuario.confirmarAltaArtista("tripleNelson", "La Triple" , "Nelson" , "tripleNelson@tuta.io" , fechaNac, "La Triple Nelson es un grupo de rock uruguayo\n" + 
+					"formado en enero de 1998 e integrado inicialmente por\n" + 
+					"Christian Cary (guitarra y voz), Fernando \"Paco\" Pintos\n" + 
+					"(bajo y coros) y Rubén Otonello (actualmente su nuevo\n" + 
+					"baterista es Rafael Ugo)." , "naci blabla", "http://www.latriplenelso/");
+			fechaNac = formato.parse("14/2/1987");
+			iusuario.confirmarAltaArtista("la_ley", "La" , "Ley" , "la_ley@tuta.io" , fechaNac, "La Ley fue una banda chilena de rock formada en 1987\n" + 
+					"por iniciativa del tecladista y guitarrista. En un\n" + 
+					"principio, La Ley tenía la aspiración de ser un grupo de\n" + 
+					"música tecno. Este disco resulta ser un éxito de ventas\n" + 
+					"y reciben una invitación al Festival Internacional de\n" + 
+					"Viña del Mar de febrero de 1994." , "naci blabla", "http://www.lasleyesdene/");
+			fechaNac = formato.parse("13/8/1981");
+			iusuario.confirmarAltaArtista("lospimpi", "Pimpinela" , "Pimpinela" , "lospimpi@gmail.com" , fechaNac, "Pimpinela es un dúo musical argentino compuesto por\n" + 
+					"los hermanos Lucía Galán y Joaquín Galán. Pimpinela\n" + 
+					"ha editado veinticuatro discos" , "naci blabla", "http://www.pimpinela.n/");
+			fechaNac = formato.parse("5/3/1940");
+			iusuario.confirmarAltaArtista("dyangounchained", "Dyango" , "Ango" , "dyangounchained@gmail.com" , fechaNac, "José Gómez Romero, conocido artísticamente como\n" + 
+					"Dyango es un cantante español de música romántica." , "naci blabla", "");
+			fechaNac = formato.parse("17/7/1952");
+			iusuario.confirmarAltaArtista("alcides", "Alcides" , "Violeta" , "alceides@tuta.io" , fechaNac, "Su carrera comienza en 1976 cuando forma la banda\n" + 
+					"Los Playeros junto a su hermano Víctor. Al poco\n" + 
+					"tiempo se mudan a San Luis donde comienzan a\n" + 
+					"hacerse conocidos en la escena musical. Su éxito a nivel\n" + 
+					"nacional llega a comienzos de los años 1990 cuando\n" + 
+					"desembarca en Buenos Aires y graba el éxito \"Violeta\",\n" + 
+					"originalmente compuesta e interpretada en 1985 por el\n" + 
+					"músico brasileño Luiz Caldas bajo el título «Fricote»." , "naci blabla", "");
+			
+
+			
+			//Cargar Plataforma
+			iplataforma.AltaPlataforma("Facebook", "Una descricpion" ," facebook.com"); 
+			iplataforma.AltaPlataforma("Youtube", "Una descricpion" ," youtube.com"); 
+			iplataforma.AltaPlataforma("Instagram", "Una descricpion" ," instagram.com"); 
+			
+			
+			
+			//Cargar Funciones
+			Set<String> artistas = new HashSet<String>();
+			artistas.add("dmode"); 
+			artistas.add("clauper"); 
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live","Los Village Volvieron", "Los Village Volvieron - 1", inicio, artistas, alta);	
+			
+			artistas.clear();
+			artistas.add("bruceTheBoss");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", inicio, artistas, alta);	
+			
+			artistas.clear();
+			artistas.add("bruceTheBoss");
+			artistas.add("clauper");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", inicio, artistas, alta);	
+			
+			artistas.clear();
+			artistas.add("vpeople");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (I)", inicio, artistas, alta);	
+			
+			artistas.clear();
+			artistas.add("clauper");
+			artistas.add("bruceTheBoss");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (II)", inicio, artistas, alta);	
+			
+			artistas.clear();
+			artistas.add("lospimpi");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (III)", inicio, artistas, alta);	
+
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+
+		}
+			
+			
 		
 		/*** FIN CARGAR DATOS DE PRUEBA ***/
 		
