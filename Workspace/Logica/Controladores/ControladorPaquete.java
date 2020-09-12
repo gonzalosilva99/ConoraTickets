@@ -17,9 +17,15 @@ public class ControladorPaquete implements IPaquete{
 	
 	public Set<DtPaquete> ListarPaquetes() {
 		ManejadorPaquetes manpac = ManejadorPaquetes.getInstancia();
-		return manpac.listarPaquetesEspectaculo("asd");
+		return manpac.listarPaquetes();
 		
 	};
+	
+	public Set<DtPaquete> ListarPaquetesEspectaculo(String nomEsp){
+		ManejadorPaquetes manpac = ManejadorPaquetes.getInstancia();
+		return manpac.listarPaquetesEspectaculo(nomEsp);
+	}
+	
 	public DtPaqueteDatos MostrarPaquete(String NombrePaquete) {
 		DtPaqueteDatos ret = new DtPaqueteDatos();
 		return ret;
@@ -40,4 +46,5 @@ public class ControladorPaquete implements IPaquete{
 		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
 		manpaq.ConfirmarAltaPaquete(NombrePaquete,Descripcion,inicio,fin,Descuento);
 	}
+
 }
