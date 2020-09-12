@@ -4,7 +4,11 @@ import java.util.Date;
 import java.util.Set;
 
 public class DtFuncionDatos {
-	
+private String Nombre;
+private	Date Inicio;
+private	Date Alta;
+private	Set<DtArtista> Artistas;
+private	DtEspectaculo Espectaculo;	
 	
 public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas, DtEspectaculo espectaculo) {
 		super();
@@ -15,16 +19,7 @@ public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> arti
 		Espectaculo = espectaculo;
 	}
 public DtFuncionDatos() {}
-private
-String Nombre;
-private
-Date Inicio;
-private
-Date Alta;
-private
-Set<DtArtista> Artistas;
-private
-DtEspectaculo Espectaculo;
+
 public String getNombre() {
 	return Nombre;
 }

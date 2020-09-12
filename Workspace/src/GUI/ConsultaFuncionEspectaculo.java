@@ -18,7 +18,10 @@ import java.awt.Button;
 import com.toedter.calendar.JDateChooser;
 
 import Controladores.Fabrica;
+import DataTypes.DtArtista;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtFuncion;
+import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
@@ -28,7 +31,12 @@ import java.awt.TextArea;
 public class ConsultaFuncionEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldEspectaculo;
-
+	private JDateChooser dateChooser;
+	private JDateChooser dateChooserAlta;
+	private JComboBox comboBoxArtistas;
+	private JComboBox comboBoxEspectaculos;
+	private JComboBox comboBoxPlataforma;
+	private TextArea textArea_1;
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +52,11 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 			}
 		});
 	}
-
+	
+	private void llenarParametrosFuncion(DtFuncionDatos dtfuncion) {
+		
+		
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -154,6 +166,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxArtistas, -114, SpringLayout.EAST, panel);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxArtistas, -3, SpringLayout.NORTH, lblArtistas);
 		panel.add(comboBoxArtistas);
+		comboBoxArtistas.setMaximumRowCount(2);
 		
 		textFieldEspectaculo = new JTextField();
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectaculo, 13, SpringLayout.SOUTH, comboBoxArtistas);
@@ -169,6 +182,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 22, SpringLayout.NORTH, lblFechaInicio);
 		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
+		dateChooser.setEnabled(false);
 		panel.add(dateChooser);
 		
 		JDateChooser dateChooserAlta = new JDateChooser();
@@ -176,6 +190,8 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, dateChooserAlta, 0, SpringLayout.WEST, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooserAlta, 22, SpringLayout.NORTH, lblFechaAlta);
 		sl_panel.putConstraint(SpringLayout.EAST, dateChooserAlta, 0, SpringLayout.EAST, textFieldNombre);
+		dateChooserAlta.setEnabled(false);
+		
 		panel.add(dateChooserAlta);
 		
 		/**JTextArea textArea = new JTextArea();
@@ -200,19 +216,9 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 			
-		comboBoxEspectaculos.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				lblFuncion.setVisible(true);
-				comboBoxFuncion.setVisible(true);
-			}
-		});
 		
-		comboBoxFuncion.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				panel.setVisible(true);
-			}
-		});
-
+		
+		
 		
 		
 		/** COMIENZA EL CODIGO **/
@@ -237,10 +243,48 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 						comboBoxEspectaculos.addItem("");
 						while(itr.hasNext())
 							{comboBoxEspectaculos.addItem(itr.next().getNombre());}
+					}
 				}
+			});
+			
+			//Selecciono un Espectaculo
+			comboBoxEspectaculos.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent arg0) {
+					if(comboBoxEspectaculos.isFocusOwner() & comboBoxEspectaculos.getSelectedIndex()!=0) {
+						comboBoxFuncion.removeAllItems();
+						Set<DtFuncion> listaFuncionesEspectaculo = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+						Iterator<DtFuncion> itr = listaFuncionesEspectaculo.iterator();
+						comboBoxFuncion.addItem("");
+						while(itr.hasNext())
+							{comboBoxFuncion.addItem(itr.next().getNombre());}
+					}
 				}
 			});
 		
+			//Selecciono una Funcion
+			comboBoxFuncion.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent arg0) {
+					if(comboBoxFuncion.isFocusOwner() & comboBoxFuncion.getSelectedIndex()!=0) {
+						panel.setVisible(true);
+						System.out.println(comboBoxFuncion.getSelectedItem().toString());
+						DtFuncionDatos DatosDeFuncion = iplataforma.MostrarFuncion(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString(), comboBoxFuncion.getSelectedItem().toString());
+						textFieldNombre.setText(DatosDeFuncion.getNombre());
+						dateChooser.setDate(DatosDeFuncion.getInicio());
+						dateChooserAlta.setDate(DatosDeFuncion.getAlta());
+						textFieldEspectaculo.setText(DatosDeFuncion.getEspectaculo().getNombre());
+						textArea_1.setText(DatosDeFuncion.getEspectaculo().getDescripcion());
+						Iterator<DtArtista> iterArtista = DatosDeFuncion.getArtistas().iterator();
+						comboBoxArtistas.removeAllItems();
+						comboBoxArtistas.addItem("");
+						while(iterArtista.hasNext()) {
+							DtArtista DtArtistaAux = iterArtista.next();
+							comboBoxArtistas.addItem(DtArtistaAux.getNombre() + " " + DtArtistaAux.getApellido());
+						}
+						
+					}
+				}
+			});
+
 		/** FIN CODIGO **/
 		
 	}

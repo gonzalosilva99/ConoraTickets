@@ -135,6 +135,10 @@ public class Espectaculo {
 			DtEspectaculo dte = new DtEspectaculo(Nombre, Descripcion);
 			return dte;
 		}
+		public DtFuncionDatos getDtFuncionDatos(String nombreFuncion){
+			return Funciones.get(nombreFuncion).getDtFuncionDatos(this.getDatosEspectaculo());
+		}
+		
 		public DtFuncionDatos mostrarFuncion(String NombreFun) {
 			Funcion fun = Funciones.get(NombreFun);
 			DtFuncionDatos dtfun = new DtFuncionDatos();

@@ -33,9 +33,9 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarFuncionesDeEspectaculo(NombrePlat ,NombreEsp) ;
 	};
-	public DtFuncionDatos MostrarFuncion(String NombreEsp, String NombreFun) {
-		DtFuncionDatos ret = new DtFuncionDatos(NombreFun, null, null, null, null);
-		return ret;
+	public DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.listarDtFuncionDatos(NombrePlat, NombreEsp, NombreFun);
 	};
 	public DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
@@ -44,12 +44,14 @@ public class ControladorPlataforma implements IPlataforma{
 	public void AltaPlataforma(String nombre, String Descripcion,String Url) throws Identidad{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		manplat.AltaPlataforma(nombre, Descripcion, Url);
-	}
+	};
 	
 	public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat){
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
 	};
+	
+	
 	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad{	 
 			ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
