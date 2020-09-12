@@ -17,6 +17,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import Controladores.Fabrica;
+import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -74,45 +75,73 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+		try {
 		/*** CARGAR DATOS DE PRUEBA ***/
 		Fabrica fab = Fabrica.getInstancia();
 		IUsuario iusuario = fab.getIUsuario();
+		IPlataforma iplataforma = fab.getIPlataforma();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
-	Date fechaNac = formato.parse("31/12/1971");
-	/**	 iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
+		Date fechaNac = formato.parse("31/12/1971");
+		iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
 		fechaNac = formato.parse("15/11/1983");
 		iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
-		fechaNac = formato.parse("//");
-		iusuario.confirmarAltaEspectador("", "", "", "", fechaNac);
+		fechaNac = formato.parse("15/4/1990");
+		iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac);
+		fechaNac = formato.parse("15/5/1959");
+		iusuario.confirmarAltaEspectador("house", "Gregory", "House", "greghouse@gmail.com", fechaNac);
+		fechaNac = formato.parse("28/01/1950");
+		iusuario.confirmarAltaEspectador("sergiop", "Sergio", "Puglia", "puglia@alpanpan.com.uy", fechaNac);
+		fechaNac = formato.parse("17/03/1976");
+		iusuario.confirmarAltaEspectador("chino", "Alvaro", "Recoba", "chino@trico.com.uy", fechaNac);
+		fechaNac = formato.parse("14/02/1955");
+		iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac);
+		fechaNac = formato.parse("23/02/1927");
+		iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac);
+		fechaNac = formato.parse("08/05/1937");
+		iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac);
 		
-		**/
+		
 		//Cargar Artista de prueba
-		IPlataforma iplataforma = fab.getIPlataforma();
 		iusuario.confirmarAltaArtista("Peke77", "Jacinto" , "Vera" , "peke77@gmail.com" , fechaNac, "Soy rapero" , "naci blabla", "peke77.com");
-		iplataforma.AltaPlataforma("Facebook", "Una descricpion" ," facebook.com"); 
-		iplataforma.AltaPlataforma("Youtube", "Una descricpion" ," youtube.com"); 
-		iplataforma.AltaPlataforma("Instagram", "Una descricpion" ," instagram.com"); 
 		
 		
 		
+		// PLATAFORMAS (Nombre, Descripcion, URL)
+		iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
+				"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
+		iplataforma.AltaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
+				"Facebook.","https://www.facebook.com/watch/");
+		iplataforma.AltaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
+				"en directo (streaming).","https://twitter.com/");
+		iplataforma.AltaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
+				"compartir videos.","https://www.youtube.com/");
 		
+		// ESPECTACULOS (nombrePlataforma, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, URL, costo, fecha, duracion)
+		Date fechaAltaEspectaculo;
+		fechaAltaEspectaculo = formato.parse("31/03/2020");
+		iplataforma.altaEspectaculo("Instagram Live","vpeople","Los Village Volvieron","Espectáculo de retorno de los Village People.",10,800,"https://www.instagram.com/realvillagepeople/",550,fechaAltaEspectaculo,90);
+		fechaAltaEspectaculo = formato.parse("20/04/2020");
+		iplataforma.altaEspectaculo("Facebook Watch","dmode","Global Spirit","Espectáculo donde se presenta el álbum Spirit.",30,1300,"https://es-la.facebook.com/depechemode/",750,fechaAltaEspectaculo,120);
+		fechaAltaEspectaculo = formato.parse("30/05/2020");
+		iplataforma.altaEspectaculo("Twitter Live","clauper","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",5,1000,"https://twitter.com/cyndilauper",800,fechaAltaEspectaculo,110);
+		fechaAltaEspectaculo = formato.parse("07/06/2020");
+		iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100);
+		fechaAltaEspectaculo = formato.parse("08/07/2020");
+		iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150);
+		fechaAltaEspectaculo = formato.parse("31/07/2020");
+		iplataforma.altaEspectaculo("Twitter Live","alcides","30 años","Espectáculo conmemorando los 30 años de Violeta.",30,150,"https://twitter.com/alcides_shows",450,fechaAltaEspectaculo,80);
+		
+		
+		//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
+		SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date fechaAltaFuncion;
+		Date fechaInicioFuncion;
 		/*** FIN CARGAR DATOS DE PRUEBA ***/
-		
-		
+		}
+		catch(Exception e) {
+			
+		}
 		
 		
 		
