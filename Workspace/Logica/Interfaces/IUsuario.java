@@ -9,6 +9,7 @@ import DataTypes.DtUsuario;
 import Excepciones.Identidad;
 import DataTypes.DtArtista;
 import Clases.Espectaculo;
+import Clases.Funcion;
 import DataTypes.DtRegistro;
 public interface IUsuario {
 	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad;
@@ -22,6 +23,7 @@ public interface IUsuario {
 	public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento);
 	public Set<DtEspectador> listarEspectadores();
 	public void RelacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo);
+	public void RelacionarArtistaFuncion(String nickArtista, Funcion funcion);
 	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo);
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname);
 }

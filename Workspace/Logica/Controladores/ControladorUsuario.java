@@ -103,10 +103,10 @@ public class ControladorUsuario implements IUsuario{
 		Set<DtArtista> h = manusu.listarArtistasNoEspectaculo(nombreEspectaculo);
 		return h;
 	}
+	
 	public void RelacionarArtistaFuncion(String nickArtista, Funcion funcion) {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Artista artista = manusu.getArtista(nickArtista);
 		artista.anadirFuncion(funcion);
-		
 	}
 }

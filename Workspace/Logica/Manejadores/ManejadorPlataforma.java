@@ -1,5 +1,6 @@
 package Manejadores;
 import Clases.Plataforma;
+import Controladores.Fabrica;
 import Clases.Artista;
 import Clases.Espectaculo;
 import Clases.Espectador;
@@ -8,6 +9,7 @@ import Clases.Paquete;
 
 import java.util.*;
 import Excepciones.Identidad;
+import Interfaces.IUsuario;
 
 import javax.swing.JOptionPane;
 
@@ -130,9 +132,11 @@ public class ManejadorPlataforma {
 			Plataforma Plat = Plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);
 			Espec.AnadirFuncion(nombre, inicio, alta);
+			Fabrica fab = Controladores.Fabrica.getInstancia();
+			IUsuario iusuario = fab.getIUsuario();
 			Iterator<String> iterArtistas = artistas.iterator();
 			while(iterArtistas.hasNext()) {
-				
+				iusuario.RelacionarArtistaFuncion(iterArtistas.next(), Espec.ObtenerFuncion(nombre));
 			}
 		}
 

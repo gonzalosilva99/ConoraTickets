@@ -17,7 +17,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -37,6 +39,7 @@ import javax.swing.JTree;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.ItemListener;
@@ -231,7 +234,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		
 		/** CREAR FUNCION DE LISTAR ARTISTAS NO ESPECTACULO *********ESTA CREADA PERO AUN NO FUNCIONA BIEN*************
-		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE ESPECTACULO :D ���������������HECHO!!!!!!!!!!!!
+		 ** SETEAR QUE SE HAGA CUANDO SE CAMBIA EN EL COMBOBOX DE ESPECTACULO :D HECHO!!!!!!!!!!!!
 		 ** 
 		 **/
 		JList list = new JList();
@@ -307,10 +310,12 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd ");
 					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString() + ":00"; 					
 					formatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					System.out.println(dateInicio);
 					Date FechaInicio = formatoInicio.parse(dateInicio);
-					String dateAlta = formatoInicio.format(LocalDate.now());
-					Date FechaAlta = formatoInicio.parse(dateAlta);
+					Date FechaAlta = Calendar.getInstance().getTime();
 					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText(), FechaInicio, ArtistasADevolver, FechaAlta);
+					JOptionPane.showMessageDialog(null, "Funcion creada con Exito");
+					System.out.println("LLega");
 					}
 				}
 				catch(Exception e1) {

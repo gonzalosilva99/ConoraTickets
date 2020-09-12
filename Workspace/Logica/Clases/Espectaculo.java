@@ -148,6 +148,9 @@ public class Espectaculo {
 			Funcion ret = new Funcion(nombre, inicio, alta);
 			Funciones.put(nombre, ret);
 		}
+		public Funcion ObtenerFuncion(String nombre) {
+			return Funciones.get(nombre);
+		}
 		
 		
 }
