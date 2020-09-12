@@ -153,6 +153,9 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		comboBoxPaquetes.addItem("");
 		comboBoxPlataformas.addItem("");
 		comboBoxEspectaculos.addItem("");
+		String a = "";
+		String b = "";
+		String c = "";
 		
 		while(iterador.hasNext()) {
 			comboBoxPaquetes.addItem(iterador.next().getNombre());
@@ -160,16 +163,20 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		
 		comboBoxPaquetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				IPlataforma plataformosa = fabricosa.getIPlataforma();
 				
 				Set<DtPlataforma> DtPlataformas = plataformosa.listarPlataformas();
 				Iterator<DtPlataforma> iterador2 = DtPlataformas.iterator();
 				
 				while(iterador2.hasNext()) {
-					comboBoxPlataformas.addItem(iterador2.next().getNombre());
+					comboBoxPlataformas.addItem(iterador2.next().getNombre()); }
 					
 					comboBoxPlataformas.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							
+							comboBoxEspectaculos.removeAllItems();
+							comboBoxEspectaculos.addItem("");
 							
 							String a = comboBoxPaquetes.getSelectedItem().toString();
 							String b = comboBoxPlataformas.getSelectedItem().toString();
@@ -182,6 +189,7 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 									comboBoxEspectaculos.addItem(iterador3.next().getNombre());
 								}
 								
+								
 							
 								
 								
@@ -191,11 +199,12 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 										IPaquete pac = fabricosa.getIPaquete();
 										pac.ConfirmarAgregarEspectaculoPaquete(a, b, c);
 										JOptionPane.showMessageDialog(null, "Espectaculo agregado a paquete con exito");
+										
 									}
 								});
 						}
 					});
-				}
+				
 			
 			}
 		});
