@@ -7,6 +7,7 @@ import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
 import DataTypes.DtUsuario;
 import DataTypes.DtFuncion;
+import DataTypes.DtPaquete;
 import DataTypes.DtRegistro;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,16 +16,19 @@ import java.util.Map;
 import java.util.Set;
 import Relaciones.RegistroFuncion;
 import javax.swing.JOptionPane;
-
+import Relaciones.CompraPaquete;
 
 public class Espectador extends Usuario{
 
 	private HashMap<Integer,RegistroFuncion> RegistroFunciones;
+	private HashMap<Integer,CompraPaquete> CompraPaquetes;
 	
 	public Espectador(String nickname, String nombre, String apellido, String email, Date nacimiento) {
 		super(nickname,nombre, apellido, email,nacimiento);
 		RegistroFunciones = new HashMap<Integer,RegistroFuncion>();
+		CompraPaquetes = new HashMap<Integer,CompraPaquete>();
 	}
+	
 	public DtUsuario getDtUsuario() {
 		DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
 		return ret;
@@ -59,6 +63,18 @@ public class Espectador extends Usuario{
 			if(entry.getValue().getCanjeable()) {
 				DtRegistro nuevo = entry.getValue().getDtRegistro();
 				ret.add(nuevo);
+			}
+		}
+		return ret;
+	}
+	
+	public Set<DtPaquete> listarPaquetesCanjeables(String nombreEspectaculo){
+		HashSet<DtPaquete> ret = new HashSet<DtPaquete>();
+		for(Map.Entry<Integer, CompraPaquete> entry : CompraPaquetes.entrySet()) {
+			if(entry.getValue().TieneEspectaculo(nombreEspectaculo)) {
+				DtPaquete dtpaq = entry.getValue().getDtPaquete();
+				ret.add(dtpaq);
+				
 			}
 		}
 		return ret;

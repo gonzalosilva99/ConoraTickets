@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.EventQueue;
+import javax.swing.ListSelectionModel;
 import DataTypes.DtEspectaculo;
 
 import javax.swing.JInternalFrame;
@@ -23,13 +24,17 @@ import javax.swing.JCheckBox;
 import java.awt.Button;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-
+import DataTypes.DtPaquete;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
@@ -53,6 +58,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public RegistroFuncionDeEspectaculo() {
+		Integer contador = 0;
 		setTitle("Registrar Espectador a Funcion de Espectaculo");
 		setBounds(100, 100, 525, 550);
 		SpringLayout springLayout = new SpringLayout();
@@ -63,6 +69,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblPlataforma, -377, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblPlataforma);
+		
 		
 		
 		
@@ -78,6 +85,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		//1)--------------> Cargamos las plataformas
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
+		IUsuario iusu = fabric.getIUsuario();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
 		while(itr.hasNext())
@@ -109,23 +117,36 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		
 		JComboBox comboBoxFuncion = new JComboBox();
+		
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxFuncion, 5, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxFuncion, -110, SpringLayout.EAST, panel);
 		panel.add(comboBoxFuncion);
 		
 		JComboBox comboBoxEspectador = new JComboBox();
+		comboBoxEspectador.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxEspectador, 3, SpringLayout.SOUTH, comboBoxFuncion);
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxEspectador, 179, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxEspectador, -110, SpringLayout.EAST, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFuncion, 0, SpringLayout.WEST, comboBoxEspectador);
 		comboBoxEspectador.setEnabled(false);
 		panel.add(comboBoxEspectador);
-		IUsuario iusu = fabric.getIUsuario();
 		Set<DtEspectador> especs = iusu.listarEspectadores();
 		Iterator<DtEspectador> itesp = especs.iterator();
 		while(itesp.hasNext()) {
 			comboBoxEspectador.addItem(itesp.next().getNickname());
 		}
+		
+		comboBoxFuncion.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				comboBoxEspectador.setEnabled(true);
+			}
+			
+		});
+		
+		
 		
 		JLabel lblEspectador = new JLabel("Espectador: ");
 		sl_panel.putConstraint(SpringLayout.EAST, lblEspectador, -342, SpringLayout.EAST, panel);
@@ -145,6 +166,9 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		SpringLayout sl_panelInterior = new SpringLayout();
 		panelInterior.setLayout(sl_panelInterior);
 		panelInterior.setVisible(false);
+		
+		
+		
 		
 		
 		chckbxCanjear.addItemListener(new ItemListener() {
@@ -199,7 +223,51 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		sl_panelInterior.putConstraint(SpringLayout.WEST, lblCanjearPor, 10, SpringLayout.WEST, panelInterior);
 		panelInterior.add(lblCanjearPor);
 		
+
+		JLabel lblListaPaquetesFunciones = new JLabel("Paquetes por los que puede canjear:");
+		sl_panelInterior.putConstraint(SpringLayout.NORTH, lblListaPaquetesFunciones, 54, SpringLayout.SOUTH, lblCanjearPor);
+		sl_panelInterior.putConstraint(SpringLayout.WEST, lblListaPaquetesFunciones, 0, SpringLayout.WEST, lblCanjearPor);
+		panelInterior.add(lblListaPaquetesFunciones);
+		
+		
+		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		sl_panelInterior.putConstraint(SpringLayout.NORTH, scrollPane, 9, SpringLayout.SOUTH, lblListaPaquetesFunciones);
+		sl_panelInterior.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, lblCanjearPor);
+		sl_panelInterior.putConstraint(SpringLayout.SOUTH, scrollPane, 164, SpringLayout.SOUTH, lblListaPaquetesFunciones);
+		sl_panelInterior.putConstraint(SpringLayout.EAST, scrollPane, 410, SpringLayout.WEST, panelInterior);
+		panelInterior.add(scrollPane);
+		
+		
+		JList<? extends String> list = new JList();
+		scrollPane.add(list);
+		
+		
+		
+		//Si selecciono canjear por paquetes los cargo
 		JRadioButton rdbtnPaquete = new JRadioButton("Paquete");
+		
+		
+		rdbtnPaquete.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(rdbtnPaquete.isSelected()) {
+					DefaultListModel listapaquetes = new DefaultListModel();
+					Set<DtPaquete> listpaqcanj = iusu.listarPaquetesCanjeables(comboBoxEspectador.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString());
+					Iterator<DtPaquete> itpaq = listpaqcanj.iterator();
+					listapaquetes.addElement("");
+					while(itpaq.hasNext()) {
+						DtPaquete dtpaq = itpaq.next();
+						listapaquetes.addElement(dtpaq.getNombre());
+					}
+					list.setModel(listapaquetes);
+					scrollPane.setViewportView(list);
+				}
+				
+			}
+		});
+		
+		
 		buttonGroup.add(rdbtnPaquete);
 		sl_panelInterior.putConstraint(SpringLayout.NORTH, rdbtnPaquete, -4, SpringLayout.NORTH, lblCanjearPor);
 		sl_panelInterior.putConstraint(SpringLayout.WEST, rdbtnPaquete, 6, SpringLayout.EAST, lblCanjearPor);
@@ -211,17 +279,24 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		sl_panelInterior.putConstraint(SpringLayout.WEST, rdbtnFuncion, 0, SpringLayout.WEST, rdbtnPaquete);
 		panelInterior.add(rdbtnFuncion);
 		
-		JLabel lblListaPaquetesFunciones = new JLabel("Paquetes por los que puede canjear:");
-		sl_panelInterior.putConstraint(SpringLayout.NORTH, lblListaPaquetesFunciones, 54, SpringLayout.SOUTH, lblCanjearPor);
-		sl_panelInterior.putConstraint(SpringLayout.WEST, lblListaPaquetesFunciones, 0, SpringLayout.WEST, lblCanjearPor);
-		panelInterior.add(lblListaPaquetesFunciones);
+		Button buttonAnadir = new Button("+");
+		sl_panelInterior.putConstraint(SpringLayout.SOUTH, buttonAnadir, -121, SpringLayout.SOUTH, panelInterior);
+		sl_panelInterior.putConstraint(SpringLayout.EAST, buttonAnadir, -10, SpringLayout.EAST, panelInterior);
+		panelInterior.add(buttonAnadir);
 		
-		JList<? extends String> list = new JList();
-		sl_panelInterior.putConstraint(SpringLayout.NORTH, list, 6, SpringLayout.SOUTH, lblListaPaquetesFunciones);
-		sl_panelInterior.putConstraint(SpringLayout.WEST, list, 10, SpringLayout.WEST, panelInterior);
-		sl_panelInterior.putConstraint(SpringLayout.SOUTH, list, 196, SpringLayout.SOUTH, lblListaPaquetesFunciones);
-		sl_panelInterior.putConstraint(SpringLayout.EAST, list, 459, SpringLayout.WEST, panelInterior);
-		panelInterior.add(list);
+		Button buttonQuitar = new Button("-");
+		sl_panelInterior.putConstraint(SpringLayout.SOUTH, buttonQuitar, -87, SpringLayout.SOUTH, panelInterior);
+		sl_panelInterior.putConstraint(SpringLayout.EAST, buttonQuitar, -10, SpringLayout.EAST, panelInterior);
+		panelInterior.add(buttonQuitar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		sl_panelInterior.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, lblCanjearPor);
+		sl_panelInterior.putConstraint(SpringLayout.SOUTH, lblNewLabel, 0, SpringLayout.SOUTH, panelInterior);
+		panelInterior.add(lblNewLabel);
+		
+		
+		
+		
 		
 		Button buttonAceptar = new Button("Aceptar");
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -15, SpringLayout.NORTH, buttonAceptar);

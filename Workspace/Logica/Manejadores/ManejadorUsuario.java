@@ -56,10 +56,6 @@ public class ManejadorUsuario {
 			}
 			return ret;
 		}
-
-		Set<DtPaquete> listarPaquetesCanjeables(String nickname, String espectaculo) {
-			return new HashSet<DtPaquete>();
-		}
 		
 		Set<DtRegistro> listarResgistrosSinCanjear(String nickname) {
 			return new HashSet<DtRegistro>();
@@ -186,6 +182,11 @@ public class ManejadorUsuario {
 		public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
 			Espectador espec = Espectadores.get(nickname);
 			return espec.listarRegistrosSinCanjeaer();
+		}
+		
+		public Set<DtPaquete> listarPaquetesCanjeables(String nickname, String nombreEspectaculo){
+			Espectador espec = Espectadores.get(nickname);
+			return espec.listarPaquetesCanjeables(nombreEspectaculo);
 		}
 		
 		

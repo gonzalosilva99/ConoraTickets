@@ -12,6 +12,7 @@ import Clases.Espectaculo;
 import Clases.Artista;
 import Clases.Funcion;
 import DataTypes.DtFuncion;
+import DataTypes.DtPaquete;
 import DataTypes.DtRegistro;
 import DataTypes.DtUsuario;
 import DataTypes.DtArtista;
@@ -108,5 +109,10 @@ public class ControladorUsuario implements IUsuario{
 		Artista artista = manusu.getArtista(nickArtista);
 		artista.anadirFuncion(funcion);
 		
+	}
+	
+	public Set<DtPaquete> listarPaquetesCanjeables(String nickname, String nombreEspectaculo){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		return manusu.listarPaquetesCanjeables(nickname,nombreEspectaculo);
 	}
 }
