@@ -96,7 +96,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldFechaAlta.setText(Espectaculo.getRegistro().toString());
 		textFieldEspectMin.setText(Espectaculo.getCantMin().toString());
 		textFieldEspectMax.setText(Espectaculo.getCantMax().toString());
-		
+		setFieldsTextsNotEnabled();
 	}
 
 	
@@ -335,14 +335,14 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 				setFieldTexts(datosEspectaculo);
 				
-				Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+				Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), datosEspectaculo.getNombre());
 				Iterator<DtFuncion> itrf = listaFunciones.iterator();
 				DtFuncion datosFuncion;
+				comboBoxFunciones.removeAllItems();
 				while(itrf.hasNext())
 				{
 					datosFuncion = itrf.next();
-					comboBoxEspectaculos.addItem(datosFuncion .getNombre());
-					System.out.println("funcion************");
+					comboBoxFunciones.addItem(datosFuncion .getNombre());
 				}
 			}
 		});  
