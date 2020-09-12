@@ -183,17 +183,20 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		JComboBox comboBoxEspectaculo = new JComboBox();
 		
-		//Cuando selecciono espectaculos cargo las funciones vigentes 
+		//Cuando selecciono espectaculo cargo las funciones vigentes 
 		comboBoxEspectaculo.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				comboBoxFuncion.setEnabled(true);
-				comboBoxFuncion.removeAllItems();
-				comboBoxFuncion.addItem("");
-				Set<DtFuncion> listafunciones = iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedObjects().toString());
-				Iterator<DtFuncion> itfun = listafunciones.iterator();
-				while(itfun.hasNext()) {
-					comboBoxFuncion.addItem(itfun.next().getNombre());
+				if(comboBoxEspectaculo.getSelectedItem().toString() != "") {
+					comboBoxFuncion.setEnabled(true);
+					comboBoxFuncion.removeAllItems();
+					comboBoxFuncion.addItem("");
+					Set<DtFuncion> listafunciones = iplataforma.listarFuncionesVigentesEspectaculo(comboBoxEspectaculo.getSelectedItem().toString(), comboBoxPlataforma.getSelectedItem().toString());
+					Iterator<DtFuncion> itfun = listafunciones.iterator();
+					while(itfun.hasNext()) {
+						comboBoxFuncion.addItem(itfun.next().getNombre());
+					}
 				}
+				
 				
 			}
 		});
