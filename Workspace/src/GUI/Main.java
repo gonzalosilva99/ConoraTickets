@@ -233,7 +233,7 @@ public class Main {
 			artistas.add("vpeople");
 			fechaInicioFuncion = FormatoInicio.parse("2020-06-10 19:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
 			
 			//F5
 			artistas.clear();
@@ -241,14 +241,14 @@ public class Main {
 			artistas.add("bruceTheBoss");
 			fechaInicioFuncion = FormatoInicio.parse("2020-07-10 20:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
 			
 			//F6
 			artistas.clear();
 			artistas.add("lospimpi");
 			fechaInicioFuncion = FormatoInicio.parse("2020-08-10 17:45:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Espectaculo donde se presenta el album Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
 			
 			//F17
 			artistas.clear();
@@ -260,7 +260,7 @@ public class Main {
 		
 			//F16
 			artistas.clear();
-			artistas.add("DY");
+			artistas.add("dyangounchained");
 			fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);
