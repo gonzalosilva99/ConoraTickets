@@ -303,7 +303,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty() & textFieldNombre.text()!="" ) {
+					if(comboBoxPlataforma.getSelectedItem().toString()!="" & comboBoxEspectaculo.getSelectedItem().toString()!="" & !ArtistasADevolver.isEmpty() & textFieldNombre.getText()!="" ) {
 					SimpleDateFormat formatoInicio = new SimpleDateFormat("yyyy-MM-dd ");
 					String dateInicio = formatoInicio.format(dateChooser.getDate()) + spinnerHora.getValue().toString() + ":" + spinnerMinutos.getValue().toString() + ":00"; 					
 					formatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -311,8 +311,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					String dateAlta = formatoInicio.format(LocalDate.now());
 					Date FechaAlta = formatoInicio.parse(dateAlta);
 					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText(), FechaInicio, ArtistasADevolver, FechaAlta);
-					
-					//}
+					}
 				}
 				catch(Exception e1) {
 					System.out.println(e1.getMessage());
