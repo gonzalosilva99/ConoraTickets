@@ -123,11 +123,8 @@ public class ManejadorPlataforma {
 		
 		public DtFuncionDatos listarDtFuncionDatos(String nomPlat, String NombreEspectaculo, String nombreFuncion) {
 			Plataforma plat = Plataformas.get(nomPlat);
-			System.out.println("Plataforma Seleccionada");
 			Espectaculo esp = plat.getEspectaculo(NombreEspectaculo);
-			System.out.println("Espectaculo Seleccionada");
 			Funcion fun = esp.getFuncion(nombreFuncion);
-			System.out.println("Funcion Seleccionada");
 			return fun.getDtFuncionDatos(esp.getDatosEspectaculo());
 		}
 		

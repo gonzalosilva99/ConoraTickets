@@ -460,6 +460,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 			}
 		});
     

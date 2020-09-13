@@ -27,6 +27,8 @@ import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
 
 import java.awt.TextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConsultaFuncionEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -223,6 +225,11 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		panel.add(textArea_1);
 		
 		Button buttonCancelar = new Button("Atras");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -116, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
@@ -280,7 +287,6 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 				public void itemStateChanged(ItemEvent arg0) {
 					if(comboBoxFuncion.isFocusOwner() & comboBoxFuncion.getSelectedIndex()!=0) {
 						panel.setVisible(true);
-						System.out.println(comboBoxFuncion.getSelectedItem().toString());
 						DtFuncionDatos DatosDeFuncion = iplataforma.MostrarFuncion(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString(), comboBoxFuncion.getSelectedItem().toString());
 						textFieldNombre.setText(DatosDeFuncion.getNombre());
 						dateChooser.setDate(DatosDeFuncion.getInicio());

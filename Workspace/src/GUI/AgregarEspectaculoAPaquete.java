@@ -145,6 +145,11 @@ public class AgregarEspectaculoAPaquete extends JInternalFrame {
 		getContentPane().add(buttonAceptar);
 		
 		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -32, SpringLayout.SOUTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -92, SpringLayout.WEST, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);

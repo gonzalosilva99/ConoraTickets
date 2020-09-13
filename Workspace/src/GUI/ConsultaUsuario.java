@@ -248,6 +248,11 @@ public class ConsultaUsuario extends JInternalFrame {
 		panel.add(textFieldLink);
 		
 		Button buttonAtras = new Button("Atras");
+		buttonAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAtras);
 		
 		Button buttonVerPaquetes = new Button("Ver mas");
