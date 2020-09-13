@@ -379,7 +379,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 					datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 					setFieldTexts(datosEspectaculo);
 				}
-			}
+			} 
 		});
 		
 		buttonVerPaquetes.addActionListener(new ActionListener() {

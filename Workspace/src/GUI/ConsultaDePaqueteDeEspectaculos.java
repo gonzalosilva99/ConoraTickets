@@ -37,6 +37,8 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JTextPane textPaneDescripcion ;
 	private JDateChooser dateChooserInicio;
 	private JDateChooser dateChooserFin;
+	private Button buttonCancelar;
+	private JLabel lblPaquetes;
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +56,10 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		textFieldDescuento.setText(paqueteDatos.getDescripcion());
 		textPaneDescripcion.setText(paqueteDatos.getDescripcion());
 		dateChooserInicio.setDate(paqueteDatos.getInicio());
-		dateChooserFin.setDate(paqueteDatos.getFin());
+		dateChooserFin.setDate(paqueteDatos.getFin()); 
+		buttonCancelar.setVisible(false);
+		lblPaquetes.setVisible(false);
+		
 		
 		
 		
@@ -85,7 +90,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		
 		
-		JLabel lblPaquetes = new JLabel("Paquetes:");
+		lblPaquetes = new JLabel("Paquetes:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblPaquetes, 15, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblPaquetes, 10, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblPaquetes);
@@ -218,7 +223,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		dateChooserInicio.getDateEditor().setEnabled(false);
 		textFieldDescuento.setEditable(false);
 		comboBoxEspectaculos.setEditable(false);
-		Button buttonCancelar = new Button("Atras");
+		buttonCancelar = new Button("Atras");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -108, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());

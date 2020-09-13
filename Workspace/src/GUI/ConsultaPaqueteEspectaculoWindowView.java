@@ -34,10 +34,7 @@ public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public void setDatosPaquete(DtPaquete dtpaquete) {
-		datosPaquete = dtpaquete;
-		System.out.println(datosPaquete.getNombre()+"**************EN VENTANA*************************************");
-	}
+
 	public ConsultaPaqueteEspectaculoWindowView() {
 		System.out.println("Ventana");
 		
@@ -54,7 +51,6 @@ public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 	}
 	public ConsultaPaqueteEspectaculoWindowView(DtPaquete dtpaquete) {
 		
-		System.out.println(dtpaquete.getNombre()+"**************EN VENTANA*************************************");
 		setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 525, 596);
 		
