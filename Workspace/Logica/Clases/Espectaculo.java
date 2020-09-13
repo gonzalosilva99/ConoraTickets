@@ -162,6 +162,11 @@ public class Espectaculo {
 		public boolean existeFuncion(String nombreFuncion) {
 			return Funciones.containsKey(nombreFuncion);	
 		}
+		public DtFuncionDatos getFuncionDatos(String nombreFuncion) {
+			Funcion fun = Funciones.get(nombreFuncion);
+			DtEspectaculo datosEsp = new DtEspectaculo(Nombre, Descripcion);
+			return fun.getDtFuncionDatos(datosEsp);
+		}
 		
 		
 }

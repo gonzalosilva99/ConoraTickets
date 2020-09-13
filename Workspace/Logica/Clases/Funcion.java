@@ -76,5 +76,6 @@ public class Funcion {
 			}
 			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo);
 		}
+
 		
 }

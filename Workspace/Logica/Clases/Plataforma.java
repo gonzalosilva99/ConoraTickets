@@ -146,6 +146,10 @@ public class Plataforma {
 			}
 			return ret;
 		}
+		public DtFuncionDatos getFuncionDatos(String nombreEspectaculo, String nombreFuncion) {
+			
+			return Espectaculos.get(nombreEspectaculo).getFuncionDatos(nombreFuncion);
+		}
 }
 		
 

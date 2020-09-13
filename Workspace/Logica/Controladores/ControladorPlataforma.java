@@ -103,6 +103,10 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.getPlataformaDeEspectaculo(esp);
 	}
+	public DtFuncionDatos getFuncionDatos(String nombrePlat, String nombreEspectaculo, String nombreFuncion) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.getFuncionDatos(nombrePlat, nombreEspectaculo, nombreFuncion) ;
+	}
 
 }
 

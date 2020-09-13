@@ -9,6 +9,7 @@ import Clases.Espectaculo;
 import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
 import DataTypes.DtFuncion;
+import DataTypes.DtFuncionDatos;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
 import DataTypes.DtEspectaculo;
@@ -40,14 +41,14 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
 	private DtPaquete datosPaquete;
-	private JComboBox comboBoxPlataforma = new JComboBox();
-	private JComboBox comboBoxEspectaculos = new JComboBox();
-	private JComboBox comboBoxFunciones = new JComboBox();
-	private JComboBox comboBoxPaquetes = new JComboBox();
-	private JPanel panel = new JPanel();
-	private JLabel lblPlataforma = new JLabel();
-	private JLabel lblEspectaculos = new JLabel();
-	private Button buttonAceptar = new Button();
+	private JComboBox comboBoxPlataforma;
+	private JComboBox comboBoxEspectaculos;
+	private JComboBox comboBoxFunciones;
+	private JComboBox comboBoxPaquetes;
+	private JPanel panel;
+	private JLabel lblPlataforma;
+	private JLabel lblEspectaculos;
+	private Button buttonAceptar;
 	private JTextField textFieldOrganizador;
 
 	public void setDatosEspectaculo(DtEspectaculoDatos dtespectaculo) {
@@ -155,11 +156,11 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		JLabel lblPlataforma = new JLabel("Plataforma:");
+		lblPlataforma = new JLabel("Plataforma:");
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPlataforma, 44, SpringLayout.NORTH, getContentPane());
 		getContentPane().add(lblPlataforma);
 		
-		JComboBox comboBoxPlataforma = new JComboBox();
+		comboBoxPlataforma = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, 17, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPlataforma, -189, SpringLayout.EAST, getContentPane());
@@ -175,7 +176,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 			comboBoxPlataforma.addItem(itrp.next().getNombre());
 			}
 		
-		JLabel lblEspectaculos = new JLabel("Espectaculos:");
+		lblEspectaculos = new JLabel("Espectaculos:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblEspectaculos, 6, SpringLayout.SOUTH, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.WEST, lblEspectaculos, 20, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblEspectaculos, -384, SpringLayout.EAST, getContentPane());
@@ -185,7 +186,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 100, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblEspectaculos, -19, SpringLayout.NORTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
@@ -254,7 +255,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblFunciones, 33, SpringLayout.SOUTH, lblPaquetes);
 		panel.add(lblFunciones);
 		
-		Button buttonAceptar = new Button("Atras");
+		buttonAceptar = new Button("Atras");
 		
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -10, SpringLayout.NORTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -109, SpringLayout.EAST, getContentPane());
@@ -331,7 +332,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldFechaAlta.setColumns(10);
 		panel.add(textFieldFechaAlta);
 		
-		JComboBox comboBoxPaquetes = new JComboBox();
+		comboBoxPaquetes = new JComboBox();
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 169, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, lblPaquetes, -40, SpringLayout.WEST, comboBoxPaquetes);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxPaquetes, 10, SpringLayout.SOUTH, textFieldFechaAlta);
@@ -339,7 +340,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxPaquetes, -117, SpringLayout.EAST, panel);
 		panel.add(comboBoxPaquetes);
 		
-		JComboBox comboBoxFunciones = new JComboBox();
+		comboBoxFunciones = new JComboBox();
 		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFunciones, 169, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, lblFunciones, -40, SpringLayout.WEST, comboBoxFunciones);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxFunciones, 2, SpringLayout.NORTH, lblFunciones);
@@ -348,7 +349,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		panel.add(comboBoxFunciones);
 		getContentPane().add(buttonAceptar);
 		
-		JComboBox comboBoxEspectaculos = new JComboBox();
+		comboBoxEspectaculos = new JComboBox();
 		comboBoxEspectaculos.addItem("");
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxEspectaculos, 158, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 11, SpringLayout.SOUTH, comboBoxPlataforma);
@@ -442,6 +443,17 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				
 				ventana.setAlwaysOnTop(true);
 				ventana.setVisible(true);
+				
+			}
+		});
+		buttonVerFunciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DtFuncionDatos datosFuncion = iplataforma.getFuncionDatos(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString(), comboBoxFunciones.getSelectedItem().toString());
+			
+				ConsultaFuncionEspectaculoWindowView ventana2 = new ConsultaFuncionEspectaculoWindowView(datosFuncion);
+				
+				ventana2.setAlwaysOnTop(true);
+				ventana2.setVisible(true);
 				
 			}
 		});

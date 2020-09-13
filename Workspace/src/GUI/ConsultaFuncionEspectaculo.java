@@ -36,7 +36,9 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 	private JComboBox comboBoxArtistas;
 	private JComboBox comboBoxEspectaculos;
 	private JComboBox comboBoxPlataforma;
+	private JComboBox comboBoxFuncion ;
 	private TextArea textArea_1;
+	private JPanel panel;
 	/**
 	 * Launch the application.
 	 */
@@ -51,6 +53,18 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 				}
 			}
 		});
+	}
+	public void setDatosFuncion(DtFuncionDatos datosFuncion) {
+		comboBoxPlataforma.setVisible(false);
+		comboBoxFuncion.setVisible(false);
+		comboBoxEspectaculos.setVisible(false);
+		textFieldNombre.setText(datosFuncion.getNombre());
+		dateChooser.setDate(datosFuncion.getInicio());
+		dateChooserAlta.setDate(datosFuncion.getAlta());
+		textFieldEspectaculo.setText(datosFuncion.getEspectaculo().getNombre());
+		textArea_1.setText(datosFuncion.getEspectaculo().getDescripcion());
+		
+		panel.setVisible(true);
 	}
 	
 	private void llenarParametrosFuncion(DtFuncionDatos dtfuncion) {
@@ -72,7 +86,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPlataforma, 42, SpringLayout.NORTH, getContentPane());
 		getContentPane().add(lblPlataforma);
 		
-		JComboBox comboBoxPlataforma = new JComboBox();
+		comboBoxPlataforma = new JComboBox();
 		comboBoxPlataforma.setMaximumRowCount(4);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxPlataforma, 4, SpringLayout.NORTH, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxPlataforma, 80, SpringLayout.EAST, lblPlataforma);
@@ -85,7 +99,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblEspectaculos, 38, SpringLayout.SOUTH, lblPlataforma);
 		getContentPane().add(lblEspectaculos);
 		
-		JComboBox comboBoxFuncion = new JComboBox();
+		comboBoxFuncion = new JComboBox();
 		comboBoxFuncion.setMaximumRowCount(2);;
 		springLayout.putConstraint(SpringLayout.WEST, comboBoxFuncion, 0, SpringLayout.WEST, comboBoxPlataforma);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxFuncion, -169, SpringLayout.EAST, getContentPane());
@@ -98,7 +112,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, lblFuncion, 0, SpringLayout.EAST, lblEspectaculos);
 		getContentPane().add(lblFuncion);
 		
-		JComboBox comboBoxEspectaculos = new JComboBox();
+		comboBoxEspectaculos = new JComboBox();
 		comboBoxEspectaculos.setMaximumRowCount(2);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxFuncion, 15, SpringLayout.SOUTH, comboBoxEspectaculos);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBoxEspectaculos, 3, SpringLayout.NORTH, lblEspectaculos);
@@ -106,7 +120,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, -176, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxEspectaculos);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBoxFuncion, -26, SpringLayout.NORTH, panel);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 22, SpringLayout.SOUTH, lblFuncion);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
