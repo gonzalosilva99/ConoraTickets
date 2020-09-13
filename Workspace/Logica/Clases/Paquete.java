@@ -80,6 +80,7 @@ public class Paquete {
 			this.agregarEspectaculo(s);
 			
 			
+			
 		}
 		public boolean hayEspectaculo(String nombreEsp) {
 			return Espectaculos.containsKey(nombreEsp);
