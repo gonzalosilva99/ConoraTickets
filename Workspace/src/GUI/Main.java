@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import Controladores.Fabrica;
+import DataTypes.TipoRegistro;
 import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
@@ -248,8 +249,54 @@ public class Main {
 			artistas.clear();
 			artistas.add("lospimpi");
 			fechaInicioFuncion = FormatoInicio.parse("2020-08-10 17:45:00");
-			fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+			
+			//F7
+			artistas.clear();
+			artistas.add("bruceTheBoss");
+			fechaInicioFuncion = FormatoInicio.parse("2020-8-15 17:45:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - A", fechaInicioFuncion, artistas, fechaAltaFuncion);
+			
+			//F8
+			artistas.clear();
+			artistas.add("bruceTheBoss");
+			artistas.add("dmode");
+			fechaInicioFuncion = FormatoInicio.parse("2020-8-31 19:30:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - B", fechaInicioFuncion, artistas, fechaAltaFuncion);
+
+			//F9
+			artistas.clear();
+			artistas.add("lospimpi");
+			artistas.add("bruceTheBoss");
+			fechaInicioFuncion = FormatoInicio.parse("2020-9-30 20:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - C", fechaInicioFuncion, artistas, fechaAltaFuncion);
+			
+			//F10
+			artistas.clear();
+			artistas.add("dmode");
+			artistas.add("tripleNelson");
+			fechaInicioFuncion = FormatoInicio.parse("2020-9-1 19:30:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - i", fechaInicioFuncion, artistas, fechaAltaFuncion);
+			
+			//F11
+			artistas.clear();
+			artistas.add("tripleNelson");
+			artistas.add("la_ley");
+			fechaInicioFuncion = FormatoInicio.parse("2020-9-30 17:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - ii", fechaInicioFuncion, artistas, fechaAltaFuncion);
+			
+			//F12
+			artistas.clear();
+			artistas.add("la_ley");
+			fechaInicioFuncion = FormatoInicio.parse("2020-10-15 20:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - iii", fechaInicioFuncion, artistas, fechaAltaFuncion);
 			
 			//F17
 			artistas.clear();
@@ -265,7 +312,6 @@ public class Main {
 			fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);
-
 			
 			//F15
 			artistas.clear();
@@ -306,6 +352,19 @@ public class Main {
 			alta = formato.parse("1/8/2020");
 			ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta);
 
+			//REGISTRO A FUNCIONES(NombrePlataforma, NombreEspectaculo, Nickname, NombreFuncion, Fecha, TipoRegistro, IntRegistro1, IntRegistro2, IntRegistro3, NombrePaquete, Costo)
+			//TipoRegistro: Tipo_1 : No importa lo que vaya en IntRegistros ni en NombrePaquete, costo del espectaculo.
+			//TipoRegisto: Tipo_2 : No importa lo que vaya en Paquete, y costo 0.
+			formato = new SimpleDateFormat("dd/MM/yyyy");
+			Date FechaRegistro;
+			
+			//R1
+			FechaRegistro = formato.parse("09/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "costas", "Los Village Volvieron - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			
+			
+			
 		
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
