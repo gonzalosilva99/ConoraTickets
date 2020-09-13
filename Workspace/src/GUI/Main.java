@@ -530,6 +530,14 @@ public class Main {
 			FechaRegistro = formato.parse("02/09/2020");
 			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "costas", "30 años - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
 			
+			//Espectaculos que integran paquetes
+			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete de Bandas","Instagram Live", "Los Village Volvieron");
+			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete de Bandas","Facebook Watch", "Global Spirit");
+			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Solistas","Twitter Live", "Memphis Blues World ");
+			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Solistas","Youtube", "Springsteen on Broadway");
+			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
+			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
+			
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
