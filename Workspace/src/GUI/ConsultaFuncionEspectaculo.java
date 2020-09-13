@@ -208,7 +208,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, textArea_1, -24, SpringLayout.EAST, panel);
 		panel.add(textArea_1);
 		
-		Button buttonCancelar = new Button("Cancelar");
+		Button buttonCancelar = new Button("Atras");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -116, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());

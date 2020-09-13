@@ -53,7 +53,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		IPaquete ipaquete = fabric.getIPaquete();
 		DtPaqueteDatos paqueteDatos = ipaquete.getPaqueteDatos(dtpaquete.getNombre());
 		textFieldNombre.setText(paqueteDatos.getNombre()); 
-		textFieldDescuento.setText(paqueteDatos.getDescripcion());
+		textFieldDescuento.setText(paqueteDatos.getDescuento().toString());
 		textPaneDescripcion.setText(paqueteDatos.getDescripcion());
 		dateChooserInicio.setDate(paqueteDatos.getInicio());
 		dateChooserFin.setDate(paqueteDatos.getFin()); 

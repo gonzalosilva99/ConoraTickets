@@ -29,4 +29,6 @@ public interface IPlataforma {
 		Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre);
 		public boolean existeFuncion(String nombreFuncion);
 		public DtEspectaculoDatos getDatosEspectaculo(String nombrePlataforma, String nombreEspectaculo);
+		public DtEspectaculoDatos findDatosEspectaculo(String nombreEspectaculo);
+		public String getPlataformaDeEspectaculo(String esp);
 }

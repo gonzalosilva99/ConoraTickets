@@ -10,6 +10,7 @@ import Controladores.Fabrica;
 import DataTypes.DtPlataforma;
 import DataTypes.DtFuncion;
 import DataTypes.DtPaquete;
+import DataTypes.DtPaqueteDatos;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPaquete;
@@ -18,6 +19,7 @@ import Interfaces.IPlataforma;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import java.awt.event.ItemListener;
 import java.util.Iterator;
 import java.util.Set;
@@ -29,7 +31,7 @@ import java.awt.event.ActionEvent;
 
 public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
-	private JTextField textFieldDescripcion;
+	private JTextPane textFieldDescripcion;
 	private JTextField textFieldDuracion;
 	private JTextField textFieldEspectMin;
 	private JTextField textFieldEspectMax;
@@ -38,12 +40,53 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
 	private DtPaquete datosPaquete;
+	private JComboBox comboBoxPlataforma = new JComboBox();
+	private JComboBox comboBoxEspectaculos = new JComboBox();
+	private JComboBox comboBoxFunciones = new JComboBox();
+	private JComboBox comboBoxPaquetes = new JComboBox();
+	private JPanel panel = new JPanel();
+	private JLabel lblPlataforma = new JLabel();
+	private JLabel lblEspectaculos = new JLabel();
+	private Button buttonAceptar = new Button();
+	private JTextField textFieldOrganizador;
 
-
-
-	/**
-	 * Launch the application.
-	 */
+	public void setDatosEspectaculo(DtEspectaculoDatos dtespectaculo) {
+		datosEspectaculo = dtespectaculo;
+		this.comboBoxPlataforma.setVisible(false);
+		comboBoxEspectaculos.setVisible(false);
+		panel.setVisible(true); 
+		setFieldTexts(dtespectaculo);
+		Fabrica fabric = Fabrica.getInstancia();
+		IPlataforma iplataforma = fabric.getIPlataforma();
+		IPaquete ipaquete = fabric.getIPaquete();
+		String nomPlat = iplataforma.getPlataformaDeEspectaculo(dtespectaculo.getNombre());
+		Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(nomPlat, dtespectaculo.getNombre());
+		Iterator<DtFuncion> itrf = listaFunciones.iterator();
+		DtFuncion datosFuncion;
+		comboBoxFunciones.removeAllItems();
+		while(itrf.hasNext())
+		{
+			datosFuncion = itrf.next();
+			comboBoxFunciones.addItem(datosFuncion .getNombre());
+		}
+		
+		
+		Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(dtespectaculo.getNombre());
+		Iterator<DtPaquete> itrp = listaPaquetes.iterator();
+		
+		comboBoxPaquetes.removeAllItems();
+		while(itrp.hasNext())
+		{
+			datosPaquete = itrp.next();
+			comboBoxPaquetes.addItem(datosPaquete.getNombre());
+		}
+		buttonAceptar.setVisible(false);
+		lblPlataforma.setVisible(false);
+		lblEspectaculos.setVisible(false);
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -99,12 +142,14 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		textFieldFechaAlta.setText(Espectaculo.getRegistro().toString());
 		textFieldEspectMin.setText(Espectaculo.getCantMin().toString());
 		textFieldEspectMax.setText(Espectaculo.getCantMax().toString());
+		textFieldOrganizador.setText(Espectaculo.getOrganizador().getNombre()+" "+Espectaculo.getOrganizador().getApellido());
 		setFieldsTextsNotEnabled();
 	}
-
+	
+	
+	
 	
 	public ConsultaEspectaculo() {
-	
 		setTitle("Consulta de Espectaculo");
 		setBounds(100, 100, 525, 596);
 		SpringLayout springLayout = new SpringLayout();
@@ -151,73 +196,66 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		panel.setVisible(false);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNombre, 10, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNombre, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNombre, 37, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNombre, 41, SpringLayout.NORTH, panel);
 		panel.add(lblNombre);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDescripcion, 6, SpringLayout.SOUTH, lblNombre);
-		sl_panel.putConstraint(SpringLayout.WEST, lblDescripcion, 0, SpringLayout.WEST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescripcion, 70, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDescripcion, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNombre, 0, SpringLayout.WEST, lblDescripcion);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNombre, -6, SpringLayout.NORTH, lblDescripcion);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblDescripcion, 101, SpringLayout.NORTH, panel);
 		panel.add(lblDescripcion);
 		
 		JLabel lblDuracion = new JLabel("Duracion:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblDuracion, 39, SpringLayout.SOUTH, lblDescripcion);
-		sl_panel.putConstraint(SpringLayout.EAST, lblDescripcion, 0, SpringLayout.EAST, lblDuracion);
-		sl_panel.putConstraint(SpringLayout.WEST, lblDuracion, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDuracion, 109, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblDuracion, 10, SpringLayout.WEST, panel);
 		panel.add(lblDuracion);
 		
 		JLabel lblEspectMin = new JLabel("Espect. minimos:");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectMin, 142, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEspectMin, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblDuracion, -6, SpringLayout.NORTH, lblEspectMin);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectMin, 142, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblEspectMin, -239, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblDuracion, 0, SpringLayout.EAST, lblEspectMin);
-		sl_panel.putConstraint(SpringLayout.WEST, lblEspectMin, 0, SpringLayout.WEST, lblNombre);
 		panel.add(lblEspectMin);
 		
 		JLabel lblEspectMax = new JLabel("Espect. maximos:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblEspectMax, 175, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblEspectMax, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblEspectMax, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblEspectMax, 33, SpringLayout.SOUTH, lblEspectMin);
 		panel.add(lblEspectMax);
 		
 		JLabel lblURL = new JLabel("URL:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblURL, 6, SpringLayout.SOUTH, lblEspectMax);
-		sl_panel.putConstraint(SpringLayout.WEST, lblURL, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblURL, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblURL, 33, SpringLayout.SOUTH, lblEspectMax);
-		sl_panel.putConstraint(SpringLayout.EAST, lblURL, 0, SpringLayout.EAST, lblEspectMin);
 		panel.add(lblURL);
 		
 		JLabel lblCosto = new JLabel("Costo:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblCosto, 6, SpringLayout.SOUTH, lblURL);
-		sl_panel.putConstraint(SpringLayout.WEST, lblCosto, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblCosto, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblCosto, -140, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblCosto, 0, SpringLayout.EAST, lblEspectMin);
 		panel.add(lblCosto);
 		
 		JLabel lblFecha = new JLabel("Fecha de alta:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblFecha, 6, SpringLayout.SOUTH, lblCosto);
-		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblFecha, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblFecha, 33, SpringLayout.SOUTH, lblCosto);
-		sl_panel.putConstraint(SpringLayout.EAST, lblFecha, 0, SpringLayout.EAST, lblDescripcion);
 		panel.add(lblFecha);
 		
 		JLabel lblPaquetes = new JLabel("Paquetes:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblPaquetes, 6, SpringLayout.SOUTH, lblFecha);
-		sl_panel.putConstraint(SpringLayout.WEST, lblPaquetes, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblPaquetes, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblPaquetes, 33, SpringLayout.SOUTH, lblFecha);
-		sl_panel.putConstraint(SpringLayout.EAST, lblPaquetes, 0, SpringLayout.EAST, lblDescripcion);
 		panel.add(lblPaquetes);
 		
 		JLabel lblFunciones = new JLabel("Funciones:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblFunciones, 6, SpringLayout.SOUTH, lblPaquetes);
-		sl_panel.putConstraint(SpringLayout.WEST, lblFunciones, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.WEST, lblFunciones, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblFunciones, 33, SpringLayout.SOUTH, lblPaquetes);
-		sl_panel.putConstraint(SpringLayout.EAST, lblFunciones, 119, SpringLayout.WEST, lblNombre);
 		panel.add(lblFunciones);
 		
-		Button buttonAceptar = new Button("Aceptar");
+		Button buttonAceptar = new Button("Atras");
+		
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -10, SpringLayout.NORTH, buttonAceptar);
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -109, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, -46, SpringLayout.SOUTH, getContentPane());
@@ -225,25 +263,27 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
 		
 		textFieldNombre = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 4, SpringLayout.NORTH, lblNombre);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldNombre, 98, SpringLayout.EAST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldNombre, 0, SpringLayout.SOUTH, lblNombre);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldNombre, 45, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldNombre, -117, SpringLayout.EAST, panel);
 		textFieldNombre.setColumns(10);
 		panel.add(textFieldNombre);
 		
-		textFieldDescripcion = new JTextField();
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 39, SpringLayout.EAST, lblDescripcion);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, 0, SpringLayout.EAST, textFieldNombre);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 4, SpringLayout.NORTH, lblDescripcion);
-		textFieldDescripcion.setColumns(10);
+		textFieldDescripcion = new JTextPane();
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 168, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldNombre, -6, SpringLayout.NORTH, textFieldDescripcion);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDescripcion, -39, SpringLayout.WEST, textFieldDescripcion);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 74, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldNombre, 0, SpringLayout.WEST, textFieldDescripcion);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, -117, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblDescripcion, 0, SpringLayout.NORTH, textFieldDescripcion);
 		panel.add(textFieldDescripcion);
 		
 		textFieldDuracion = new JTextField();
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 40, SpringLayout.EAST, lblDuracion);
-		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -117, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldDuracion, 169, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblDuracion, -40, SpringLayout.WEST, textFieldDuracion);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescripcion, -6, SpringLayout.NORTH, textFieldDuracion);
-		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 4, SpringLayout.NORTH, lblDuracion);
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDuracion, 113, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldDuracion, -117, SpringLayout.EAST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDuracion, 0, SpringLayout.SOUTH, lblDuracion);
 		textFieldDuracion.setColumns(10);
 		panel.add(textFieldDuracion);
@@ -265,51 +305,48 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		panel.add(textFieldEspectMax);
 		
 		textFieldURL = new JTextField();
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldURL, 169, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblURL, -40, SpringLayout.WEST, textFieldURL);
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldURL, 4, SpringLayout.NORTH, lblURL);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldURL, 40, SpringLayout.EAST, lblURL);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldURL, 0, SpringLayout.SOUTH, lblURL);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldURL, -117, SpringLayout.EAST, panel);
 		textFieldURL.setColumns(10);
 		panel.add(textFieldURL);
 		
 		textFieldCosto = new JTextField();
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldCosto, 169, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblCosto, -40, SpringLayout.WEST, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldCosto, 4, SpringLayout.NORTH, lblCosto);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldCosto, 40, SpringLayout.EAST, lblCosto);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldCosto, 0, SpringLayout.SOUTH, lblCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldCosto, -117, SpringLayout.EAST, panel);
 		textFieldCosto.setColumns(10);
 		panel.add(textFieldCosto);
 		
 		textFieldFechaAlta = new JTextField();
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldFechaAlta, 169, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblFecha, -40, SpringLayout.WEST, textFieldFechaAlta);
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldFechaAlta, 4, SpringLayout.NORTH, lblFecha);
-		sl_panel.putConstraint(SpringLayout.WEST, textFieldFechaAlta, 40, SpringLayout.EAST, lblFecha);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldFechaAlta, 0, SpringLayout.SOUTH, lblFecha);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldFechaAlta, -117, SpringLayout.EAST, panel);
 		textFieldFechaAlta.setColumns(10);
 		panel.add(textFieldFechaAlta);
 		
 		JComboBox comboBoxPaquetes = new JComboBox();
+		sl_panel.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 169, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblPaquetes, -40, SpringLayout.WEST, comboBoxPaquetes);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxPaquetes, 10, SpringLayout.SOUTH, textFieldFechaAlta);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBoxPaquetes, 40, SpringLayout.EAST, lblPaquetes);
 		sl_panel.putConstraint(SpringLayout.SOUTH, comboBoxPaquetes, 0, SpringLayout.SOUTH, lblPaquetes);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxPaquetes, -117, SpringLayout.EAST, panel);
 		panel.add(comboBoxPaquetes);
 		
 		JComboBox comboBoxFunciones = new JComboBox();
+		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFunciones, 169, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblFunciones, -40, SpringLayout.WEST, comboBoxFunciones);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBoxFunciones, 2, SpringLayout.NORTH, lblFunciones);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBoxFunciones, 40, SpringLayout.EAST, lblFunciones);
 		sl_panel.putConstraint(SpringLayout.SOUTH, comboBoxFunciones, 0, SpringLayout.SOUTH, lblFunciones);
 		sl_panel.putConstraint(SpringLayout.EAST, comboBoxFunciones, -117, SpringLayout.EAST, panel);
 		panel.add(comboBoxFunciones);
 		getContentPane().add(buttonAceptar);
-		
-		
-		Button buttonCancelar = new Button("Cancelar");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -46, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -99, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -6, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
-		getContentPane().add(buttonCancelar);
 		
 		JComboBox comboBoxEspectaculos = new JComboBox();
 		comboBoxEspectaculos.addItem("");
@@ -327,6 +364,22 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 0, SpringLayout.NORTH, lblPaquetes);
 		sl_panel.putConstraint(SpringLayout.EAST, buttonVerPaquetes, 0, SpringLayout.EAST, buttonVerFunciones);
 		panel.add(buttonVerPaquetes);
+		
+		textFieldOrganizador = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldOrganizador, 10, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldOrganizador, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldOrganizador, 33, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldOrganizador, 0, SpringLayout.EAST, textFieldNombre);
+		textFieldOrganizador.setColumns(10);
+		panel.add(textFieldOrganizador);
+		textFieldOrganizador.setEditable(false);
+		
+		JLabel lblArtista = new JLabel("Organizador:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblArtista, 0, SpringLayout.NORTH, textFieldOrganizador);
+		sl_panel.putConstraint(SpringLayout.WEST, lblArtista, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblArtista, -6, SpringLayout.NORTH, lblNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, lblArtista, 0, SpringLayout.EAST, lblDescripcion);
+		panel.add(lblArtista);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(comboBoxEspectaculos);
 		comboBoxEspectaculos.setVisible(false);
@@ -349,7 +402,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 				setFieldTexts(datosEspectaculo);
 				
-				Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), datosEspectaculo.getNombre());
+				Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 				Iterator<DtFuncion> itrf = listaFunciones.iterator();
 				DtFuncion datosFuncion;
 				comboBoxFunciones.removeAllItems();
@@ -360,7 +413,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				}
 				
 				
-				Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(datosEspectaculo.getNombre());
+				Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(comboBoxEspectaculos.getSelectedItem().toString());
 				Iterator<DtPaquete> itrp = listaPaquetes.iterator();
 				
 				comboBoxPaquetes.removeAllItems();
@@ -393,7 +446,10 @@ public class ConsultaEspectaculo extends JInternalFrame {
 			}
 		});
 		
-
+		buttonAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
     
 	}
 

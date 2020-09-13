@@ -169,7 +169,26 @@ public class ManejadorPlataforma {
 			Plataforma pla = this.getPlataforma(nombrePlataforma);
 			return pla.getDtEspectaculoDatos(nombreEspectaculo);
 		}
-		
+		public DtEspectaculoDatos findDatosEspectaculo(String nombreEspectaculo){
+			DtEspectaculoDatos ret = null;
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				if(entry.getValue().ExisteEspectaculo(nombreEspectaculo)) {
+					ret = entry.getValue().getDtEspectaculoDatos(nombreEspectaculo);
+					break;
+				}
+			}
+			return ret;
+		}
+		public String getPlataformaDeEspectaculo(String esp) {
+			String ret = "";
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				if(entry.getValue().ExisteEspectaculo(esp)) {
+					ret = entry.getValue().getNombre();
+					break;
+				}
+			}
+			return ret;
+		}
 
 }
 

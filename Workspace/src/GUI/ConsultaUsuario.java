@@ -18,14 +18,18 @@ import java.awt.event.ItemEvent;
 import java.awt.Button;
 import Controladores.Fabrica;
 import Interfaces.IUsuario;
+import Interfaces.IPlataforma;
 import DataTypes.DtUsuario;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtArtista;
 import DataTypes.DtFuncion;
 import java.util.Set;
 import java.util.Iterator;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ConsultaUsuario extends JInternalFrame {
@@ -35,7 +39,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldEmail;
 	private JTextField textFieldRol;
 	private JTextField textFieldLink;
-
+	private DtEspectaculoDatos datosEspectaculo;
 	/**
 	 * Launch the application.
 	 */
@@ -59,6 +63,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	String EspectaculoAux;
 	String FuncionAux;
 	public ConsultaUsuario() {
+		
 		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Consulta de Usuario");
 		setBounds(100, 100, 525, 550);
@@ -244,6 +249,12 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 		Button buttonAtras = new Button("Atras");
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, buttonAtras);
+		
+		Button buttonVerPaquetes = new Button("Ver mas");
+		
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 6, SpringLayout.SOUTH, comboBoxEspectaculos);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonVerPaquetes, 0, SpringLayout.EAST, comboBoxEspectaculos);
+		panel.add(buttonVerPaquetes);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAtras, -48, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAtras, -91, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAtras, -10, SpringLayout.SOUTH, getContentPane());
@@ -293,7 +304,7 @@ public class ConsultaUsuario extends JInternalFrame {
 						DtEspectaculo aux = itr.next();
 						 String nom = aux.getNombre();
 						 String des = aux.getDescripcion();
-						 String op = nom+" | "+des;
+						 String op = nom+"-"+des;
 						 comboBoxEspectaculos.addItem(op);
 					}
 				}
@@ -342,7 +353,7 @@ public class ConsultaUsuario extends JInternalFrame {
 						DtFuncion aux = itr.next();
 						 String nom = aux.getNombre();
 						 String ini = aux.getInicio().toString();
-						 String op = nom+" | "+ini;
+						 String op = nom+"-"+ini;
 						 comboBoxEspectaculos.addItem(op);
 					}
 				}
@@ -352,11 +363,24 @@ public class ConsultaUsuario extends JInternalFrame {
 		comboBoxEspectaculos.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				if(textFieldRol.getText()=="Artista") {
-					ConsultaEspectaculoReferenciado consultaespR = new ConsultaEspectaculoReferenciado();
+					ConsultaEspectaculoWindowView consultaespR = new ConsultaEspectaculoWindowView();
 					consultaespR.setLocationRelativeTo(null);
 					consultaespR.setFocusable(true);
 					consultaespR.setVisible(true);					
 				}
+			}
+		});
+		
+		buttonVerPaquetes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				IPlataforma iplataforma = fabric.getIPlataforma();
+				String esp = comboBoxEspectaculos.getSelectedItem().toString();
+				String[] nom = esp.split("-");
+				datosEspectaculo= iplataforma.findDatosEspectaculo(nom[0]);
+				ConsultaEspectaculoWindowView ventana = new ConsultaEspectaculoWindowView(datosEspectaculo);
+				
+				ventana.setAlwaysOnTop(true);
+				ventana.setVisible(true);
 			}
 		});
 
