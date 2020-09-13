@@ -35,6 +35,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JTextField textFieldDescuento;
 	private DtPaquete datosPaquete;
 	private JComboBox comboBoxPaquetes;
+	private JComboBox comboBoxEspectaculos;
 	private JPanel panel;
 	private JTextPane textPaneDescripcion ;
 	private JDateChooser dateChooserInicio;
@@ -61,7 +62,12 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		dateChooserFin.setDate(paqueteDatos.getFin()); 
 		buttonCancelar.setVisible(false);
 		lblPaquetes.setVisible(false);
-		
+		Set<DtEspectaculo> listaEspectaculos = paqueteDatos.getEspectaculos();
+		Iterator<DtEspectaculo> itr = listaEspectaculos.iterator();
+		while(itr.hasNext()) {
+			DtEspectaculo aux = itr.next(); 
+			 comboBoxEspectaculos.addItem(aux.getNombre());
+		}
 		
 		
 		
@@ -138,9 +144,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		
 		
-		JComboBox comboBoxEspectaculos = new JComboBox();
-		comboBoxEspectaculos.addItem("Espectaculo1");
-		comboBoxEspectaculos.addItem("Espectaculo2");
+		comboBoxEspectaculos = new JComboBox();
 		
 		JLabel lblInicioVigencia = new JLabel("Inicio vigencia:");
 		
