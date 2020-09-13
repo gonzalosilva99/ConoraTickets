@@ -14,4 +14,6 @@ public interface IPaquete {
 	public 	DtPaqueteDatos MostrarPaquete(String NombrePaquete);
 	public void ConfirmarAgregarEspectaculoPaquete(String NombrePaquete, String NombrePlataforma, String NombreEspectaculo);
 	public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, Double Descuento, Date alta) throws Identidad;
+	public DtPaqueteDatos getPaqueteDatos(String nombrePaquete);
+	public DtPaquete getDtPaquete(String nombrePaquete);
 }

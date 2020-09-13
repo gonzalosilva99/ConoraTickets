@@ -2,9 +2,16 @@ package Clases;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import DataTypes.DtArtista;
+import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncion;
+import DataTypes.DtFuncionDatos;
+
 import java.util.Map;
+import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Funcion {
 	private String Nombre;
@@ -53,8 +60,22 @@ public class Funcion {
 			return ArtistasInvitados;
 		}
 		public void anadirArtista(Artista artista, String nick) {
-			System.out.println(nick);
 			ArtistasInvitados.put(nick, artista);	
+		}
+		public DtFuncionDatos getDtFuncionDatos(DtEspectaculo Espectaculo) {
+			Set<DtArtista> DtArtistaDevolver = new HashSet<DtArtista>();
+			System.out.println("Bien");
+			for (Map.Entry<String,Artista> entry : ArtistasInvitados.entrySet()) {
+				System.out.println("Añadiendo Artista");
+				DtArtistaDevolver.add(entry.getValue().getDtArtista());
+			}
+			System.out.println("Bien2");
+			if(DtArtistaDevolver.isEmpty())
+				{System.out.println(this.Nombre + " :::: " + this.Inicio.toString() + " :::: " + this.Alta + " :::: NINGUN ARTISTA");}
+			else {
+				System.out.println(this.Nombre + " :::: " + this.Inicio.toString() + " :::: " + this.Alta);
+			}
+			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo);
 		}
 		
 }

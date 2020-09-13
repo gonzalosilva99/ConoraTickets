@@ -29,6 +29,8 @@ public class Espectaculo {
 	private Artista Organizador;
 	private Map<String, Funcion> Funciones;
 	
+	
+	
 		public Espectaculo(String nombre, Date registro, Integer costo, String uRL, Integer cantMax, Integer cantMin, Integer duracion, String descripcion) {
 			super();
 			Nombre = nombre;
@@ -40,6 +42,7 @@ public class Espectaculo {
 			Duracion = duracion;
 			Descripcion = descripcion;
 			Funciones = new HashMap<String,Funcion>();
+		
 		}
 		public String getNombre() {
 			return Nombre;
@@ -135,6 +138,10 @@ public class Espectaculo {
 			DtEspectaculo dte = new DtEspectaculo(Nombre, Descripcion);
 			return dte;
 		}
+		public DtFuncionDatos getDtFuncionDatos(String nombreFuncion){
+			return Funciones.get(nombreFuncion).getDtFuncionDatos(this.getDatosEspectaculo());
+		}
+		
 		public DtFuncionDatos mostrarFuncion(String NombreFun) {
 			Funcion fun = Funciones.get(NombreFun);
 			DtFuncionDatos dtfun = new DtFuncionDatos();

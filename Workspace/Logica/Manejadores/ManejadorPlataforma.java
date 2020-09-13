@@ -123,12 +123,21 @@ public class ManejadorPlataforma {
 			return plat.getDtEspectaculoDatos(NombreEspectaculo);
 		}
 		
+		public DtFuncionDatos listarDtFuncionDatos(String nomPlat, String NombreEspectaculo, String nombreFuncion) {
+			Plataforma plat = Plataformas.get(nomPlat);
+			System.out.println("Plataforma Seleccionada");
+			Espectaculo esp = plat.getEspectaculo(NombreEspectaculo);
+			System.out.println("Espectaculo Seleccionada");
+			Funcion fun = esp.getFuncion(nombreFuncion);
+			System.out.println("Funcion Seleccionada");
+			return fun.getDtFuncionDatos(esp.getDatosEspectaculo());
+		}
+		
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
 			Plataforma pla = this.getPlataforma(NombrePlataforma);
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
 		}
 
-		
 		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta) {
 			Plataforma Plat = Plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);

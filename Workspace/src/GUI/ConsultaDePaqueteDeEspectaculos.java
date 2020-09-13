@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import DataTypes.DtEspectaculo;
 import DataTypes.DtPaquete;
+import DataTypes.DtPaqueteDatos;
 import Interfaces.IPaquete;
 import Controladores.Fabrica;
 
@@ -30,10 +31,39 @@ import com.toedter.calendar.JDateChooser;
 public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescuento;
-
+	private DtPaquete datosPaquete;
+	private JComboBox comboBoxPaquetes;
+	private JPanel panel;
+	private JTextPane textPaneDescripcion ;
+	private JDateChooser dateChooserInicio;
+	private JDateChooser dateChooserFin;
+	private Button buttonCancelar;
+	private JLabel lblPaquetes;
 	/**
 	 * Launch the application.
 	 */
+	
+	public void setDatosPaquete(DtPaquete dtpaquete) {
+		datosPaquete = dtpaquete;
+		comboBoxPaquetes.setVisible(false);
+		panel.setVisible(true); 
+		
+		
+		Fabrica fabric = Fabrica.getInstancia();
+		IPaquete ipaquete = fabric.getIPaquete();
+		DtPaqueteDatos paqueteDatos = ipaquete.getPaqueteDatos(dtpaquete.getNombre());
+		textFieldNombre.setText(paqueteDatos.getNombre()); 
+		textFieldDescuento.setText(paqueteDatos.getDescripcion());
+		textPaneDescripcion.setText(paqueteDatos.getDescripcion());
+		dateChooserInicio.setDate(paqueteDatos.getInicio());
+		dateChooserFin.setDate(paqueteDatos.getFin()); 
+		buttonCancelar.setVisible(false);
+		lblPaquetes.setVisible(false);
+		
+		
+		
+		
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,6 +80,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public ConsultaDePaqueteDeEspectaculos() {
 		Fabrica fabric = Fabrica.getInstancia();
 		setTitle("Consulta de Paquete de Espectaculo");
@@ -59,20 +90,20 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		
 		
-		JLabel lblPaquetes = new JLabel("Paquetes:");
+		lblPaquetes = new JLabel("Paquetes:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblPaquetes, 15, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblPaquetes, 10, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblPaquetes);
 		
-		JComboBox comboBoxPaquetes = new JComboBox();
+		comboBoxPaquetes = new JComboBox();
 		IPaquete ipaquete = fabric.getIPaquete();
 		Set<DtPaquete> listaPaquetes = ipaquete.ListarPaquetes();		
 		comboBoxPaquetes.addItem("");
 		Iterator<DtPaquete> itr = listaPaquetes.iterator();
 		while(itr.hasNext())
-			{DtPaquete aux = itr.next();
-			 String nom = aux.getNombre();
-			 String des = aux.getDescripcion();
+			{ datosPaquete = itr.next();
+			 String nom = datosPaquete.getNombre();
+			 String des = datosPaquete.getDescripcion();
 			 String op = nom+"-"+des;
 			 comboBoxPaquetes.addItem(op);
 			}
@@ -83,7 +114,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxPaquetes, -191, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBoxPaquetes);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPaquetes, -10, SpringLayout.NORTH, panel);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -74, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, comboBoxPaquetes);
@@ -99,7 +130,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
 		
-		JTextPane textPaneDescripcion = new JTextPane();
+		textPaneDescripcion = new JTextPane();
 		
 		JLabel lblEspectaculos = new JLabel("Espectaculos:");
 		
@@ -115,9 +146,9 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Descuento:");
 		
-		JDateChooser dateChooserInicio = new JDateChooser();
+		dateChooserInicio = new JDateChooser();
 		
-		JDateChooser dateChooserFin = new JDateChooser();
+		dateChooserFin = new JDateChooser();
 		
 		textFieldDescuento = new JTextField();
 		textFieldDescuento.setColumns(10);
@@ -192,7 +223,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		dateChooserInicio.getDateEditor().setEnabled(false);
 		textFieldDescuento.setEditable(false);
 		comboBoxEspectaculos.setEditable(false);
-		Button buttonCancelar = new Button("Atras");
+		buttonCancelar = new Button("Atras");
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -108, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
