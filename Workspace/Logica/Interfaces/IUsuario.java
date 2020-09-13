@@ -1,6 +1,7 @@
 package Interfaces;
 
 import java.util.Date;
+import DataTypes.TipoRegistro;
 import DataTypes.DtPaquete;
 import java.util.Set;
 import DataTypes.DtEspectador;
@@ -28,4 +29,5 @@ public interface IUsuario {
 	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo);
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname);
 	public Set<DtPaquete> listarPaquetesCanjeables(String nickname, String nombreEspectaculo);
+	public void confirmarRegistroFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nickname, String nombreFuncion,Date fecha,TipoRegistro registro, Integer Registro1, Integer Registro2,Integer Registro3,String NombrePaquete,Double costo);
 }

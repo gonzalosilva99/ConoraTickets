@@ -29,6 +29,22 @@ public class Espectador extends Usuario{
 		CompraPaquetes = new HashMap<Integer,CompraPaquete>();
 	}
 	
+	public void agregarRegistroFuncion(RegistroFuncion registrofuncion) {
+		RegistroFunciones.put(RegistroFunciones.size() + 1, registrofuncion);
+	}
+	
+	public void MarcarRegistrosUsados(Integer Registro1,Integer Registro2,Integer Registro3 ) {
+		RegistroFuncion reg1 = RegistroFunciones.get(Registro1);
+		RegistroFuncion reg2 = RegistroFunciones.get(Registro2);
+		RegistroFuncion reg3 = RegistroFunciones.get(Registro3);
+		reg1.setCanjeable(false);
+		reg2.setCanjeable(false);
+		reg3.setCanjeable(false);
+	}
+	
+	public Integer getUltimoCodigo() {
+		return RegistroFunciones.size();
+	}
 	public DtUsuario getDtUsuario() {
 		DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
 		return ret;
@@ -58,10 +74,14 @@ public class Espectador extends Usuario{
 	}
 	
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(){
-		HashSet<DtRegistro> ret = new HashSet<DtRegistro>();
+		System.out.print("entro al espectador");
+		Set<DtRegistro> ret = new HashSet<DtRegistro>();
 		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
+			System.out.print("entro al for");
 			if(entry.getValue().getCanjeable()) {
+				System.out.print("entro al if");
 				DtRegistro nuevo = entry.getValue().getDtRegistro();
+				System.out.print("tyvi");
 				ret.add(nuevo);
 			}
 		}

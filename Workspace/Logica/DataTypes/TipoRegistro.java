@@ -1,6 +1,6 @@
 package DataTypes;
 
-public enum TipoRegistro {
+public enum TipoRegistro{
 	Tipo_1,
 	Tipo_2,
 	Tipo_3

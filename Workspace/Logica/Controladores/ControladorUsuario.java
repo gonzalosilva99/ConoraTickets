@@ -1,11 +1,13 @@
 package Controladores;
 
 import java.util.Date;
+import Clases.Espectador;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+import Clases.Paquete;
+import Manejadores.ManejadorPaquetes;
 import javax.swing.JOptionPane;
 
 import Clases.Espectaculo;
@@ -15,6 +17,7 @@ import DataTypes.DtFuncion;
 import DataTypes.DtPaquete;
 import DataTypes.DtRegistro;
 import DataTypes.DtUsuario;
+import DataTypes.TipoRegistro;
 import DataTypes.DtArtista;
 import DataTypes.DtEspectador;
 import DataTypes.DtArtistaConsulta;
@@ -23,6 +26,7 @@ import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
 import Excepciones.Identidad;
+import Relaciones.RegistroFuncion;
 
 public class ControladorUsuario implements IUsuario{
 	
@@ -114,5 +118,34 @@ public class ControladorUsuario implements IUsuario{
 	public Set<DtPaquete> listarPaquetesCanjeables(String nickname, String nombreEspectaculo){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		return manusu.listarPaquetesCanjeables(nickname,nombreEspectaculo);
+	}
+	
+	public void confirmarRegistroFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nickname, String nombreFuncion,Date fecha,TipoRegistro registro, Integer Registro1, Integer Registro2,Integer Registro3,String NombrePaquete,Double costo) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		Espectador espec = manusu.getEspectador(nickname);
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		Funcion fun = manplat.getFuncion(nombrePlataforma, nombreEspectaculo, nombreFuncion);
+		RegistroFuncion regfun = new RegistroFuncion(espec.getUltimoCodigo() + 1, fecha,registro,fun,espec);
+		espec.agregarRegistroFuncion(regfun);
+		if(registro == TipoRegistro.Tipo_2) {
+			espec.MarcarRegistrosUsados(Registro1, Registro2, Registro3);					
+		}
+		
+		ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
+		Paquete paq = manpaq.getPaquete(NombrePaquete);
+		if(registro == TipoRegistro.Tipo_3) {
+			regfun.canjearPaquete(paq);
+			regfun.setCosto(costo * paq.getDescuento());
+			regfun.setCanjeable(true);
+		}
+		else if(registro == TipoRegistro.Tipo_2) {
+			regfun.setCosto(0.0);
+			regfun.setCanjeable(true);
+		}
+		else {
+			regfun.setCosto(costo);
+			regfun.setCanjeable(true);
+		}
+		
 	}
 }

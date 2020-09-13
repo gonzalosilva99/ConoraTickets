@@ -32,10 +32,12 @@ public class Funcion {
 		}
 		public Boolean estaVigente() {
 			Date today = Calendar.getInstance().getTime();
+			System.out.println("la fecha actual es:" + today.toString() + "y el inicio es:" + Inicio.toString());
 			if(today.compareTo(Inicio) > 0)
 				return false;
 			else return true;
 		}
+		
 		public Date getAlta() {
 			return Alta;
 		}

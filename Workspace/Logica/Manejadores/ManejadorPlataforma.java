@@ -67,7 +67,7 @@ public class ManejadorPlataforma {
 			return plat.listarFuncionesDeEspectaculo(NombreEsp);
 		}
 		
-		DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun) {
+		public DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun) {
 			Plataforma plat = Plataformas.get(NombrePlat);
 			return plat.mostrarFuncion(NombreEsp, NombreFun);
 		}
@@ -84,7 +84,7 @@ public class ManejadorPlataforma {
 			
 		}
 		
-		Funcion getFuncion(String nombrePlataforma, String nombreEspectaculo, String nomFuncion) {
+		public Funcion getFuncion(String nombrePlataforma, String nombreEspectaculo, String nomFuncion) {
 			Plataforma plat = Plataformas.get(nombrePlataforma);
 			return plat.getFuncion(nombreEspectaculo, nomFuncion);
 		}

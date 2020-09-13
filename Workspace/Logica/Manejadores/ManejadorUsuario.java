@@ -62,9 +62,9 @@ public class ManejadorUsuario {
 		}
 		
 		
-		Espectador getEspectador(String nickname) {
-			Date fecha = new Date();
-			return new Espectador("","","","",fecha);
+		public Espectador getEspectador(String nickname) {
+			Espectador espec = Espectadores.get(nickname);
+			return espec;
 		}
 		
 		Boolean ExisteUsuarioConNickname(String Nickname) {
@@ -178,8 +178,12 @@ public class ManejadorUsuario {
 			}
 			return ret;
 		}
-		
+		public Integer getUltimoCodigo(String nickname) {
+			Espectador espec = Espectadores.get(nickname);
+			return espec.getUltimoCodigo();
+		}
 		public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
+			System.out.println("entro al manejador");
 			Espectador espec = Espectadores.get(nickname);
 			return espec.listarRegistrosSinCanjeaer();
 		}
