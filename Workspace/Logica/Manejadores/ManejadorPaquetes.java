@@ -82,6 +82,14 @@ public class ManejadorPaquetes {
 				throw new Identidad("Ya Existe un Paquete con ese Nombre");
 			}
 		}
+		public DtPaqueteDatos getPaqueteDatos(String nombrePaquete) {
+			Paquete paquete = Paquetes.get(nombrePaquete);
+			return paquete.getDtPaqueteDatos();
+		}
+		public DtPaquete getDtPaquete(String nombrePaquete) {
+			Paquete paquete = Paquetes.get(nombrePaquete);
+			return paquete.getDtPaquete();
+		}
 		
 		
 }

@@ -36,10 +36,11 @@ public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 	 */
 	public void setDatosPaquete(DtPaquete dtpaquete) {
 		datosPaquete = dtpaquete;
+		System.out.println(datosPaquete.getNombre()+"**************EN VENTANA*************************************");
 	}
 	public ConsultaPaqueteEspectaculoWindowView() {
 		System.out.println("Ventana");
-		System.out.println(datosPaquete.getNombre()+" en vantana");
+		
 		setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 525, 596);
 		
@@ -49,8 +50,23 @@ public class ConsultaPaqueteEspectaculoWindowView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new SpringLayout());
 		
+		
+	}
+	public ConsultaPaqueteEspectaculoWindowView(DtPaquete dtpaquete) {
+		
+		System.out.println(dtpaquete.getNombre()+"**************EN VENTANA*************************************");
+		setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 525, 596);
+		
+		JDesktopPane desktopPane = new JDesktopPane(); 
+		getContentPane().add(desktopPane, BorderLayout.CENTER);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new SpringLayout());
+		
+		
 		ConsultaDePaqueteDeEspectaculos consultapaquetedeespectaculo = new ConsultaDePaqueteDeEspectaculos();
-		consultapaquetedeespectaculo.setDatosPaquete(datosPaquete);
+		consultapaquetedeespectaculo.setDatosPaquete(dtpaquete);
 		desktopPane.add(consultapaquetedeespectaculo);
 		consultapaquetedeespectaculo.show();
 		try {

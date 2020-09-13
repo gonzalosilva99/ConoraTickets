@@ -323,16 +323,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		panel.add(buttonVerFunciones);
 		
 		Button buttonVerPaquetes = new Button("Ver mas");
-		buttonVerPaquetes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				ConsultaPaqueteEspectaculoWindowView ventana = new ConsultaPaqueteEspectaculoWindowView();
-				ventana.setDatosPaquete(datosPaquete);
-				ventana.setAlwaysOnTop(true);
-				ventana.setVisible(true);
-				
-			}
-		});
+		
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 0, SpringLayout.NORTH, lblPaquetes);
 		sl_panel.putConstraint(SpringLayout.EAST, buttonVerPaquetes, 0, SpringLayout.EAST, buttonVerFunciones);
 		panel.add(buttonVerPaquetes);
@@ -388,6 +379,17 @@ public class ConsultaEspectaculo extends JInternalFrame {
 					datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 					setFieldTexts(datosEspectaculo);
 				}
+			}
+		});
+		
+		buttonVerPaquetes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				datosPaquete= ipaquete.getDtPaquete(comboBoxPaquetes.getSelectedItem().toString());
+				ConsultaPaqueteEspectaculoWindowView ventana = new ConsultaPaqueteEspectaculoWindowView(datosPaquete);
+				
+				ventana.setAlwaysOnTop(true);
+				ventana.setVisible(true);
+				
 			}
 		});
 		

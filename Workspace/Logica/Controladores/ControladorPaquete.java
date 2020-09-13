@@ -46,5 +46,15 @@ public class ControladorPaquete implements IPaquete{
 		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
 		manpaq.ConfirmarAltaPaquete(NombrePaquete,Descripcion,inicio,fin,Descuento, alta);
 	}
+	public DtPaqueteDatos getPaqueteDatos(String nombrePaquete) {
+		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
+		return manpaq.getPaqueteDatos(nombrePaquete);
+	
+	}
+	public DtPaquete getDtPaquete(String nombrePaquete) {
+		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
+		return manpaq.getDtPaquete(nombrePaquete);
+	
+	}
 
 }
