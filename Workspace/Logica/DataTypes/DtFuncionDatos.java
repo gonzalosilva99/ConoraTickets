@@ -33,6 +33,7 @@ public Set<DtArtista> getArtistas() {
 	return Artistas;
 }
 public DtEspectaculo getEspectaculo() {
+
 	return Espectaculo;
 }
 

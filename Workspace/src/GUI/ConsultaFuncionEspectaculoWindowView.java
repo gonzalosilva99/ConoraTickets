@@ -45,6 +45,7 @@ public class ConsultaFuncionEspectaculoWindowView extends JFrame {
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		contentPane.add(desktopPane);
+		desktopPane.setLayout(new BorderLayout(0, 0));
 		
 		ConsultaFuncionEspectaculo consultaFuncionEspectaculo = new ConsultaFuncionEspectaculo();
 		desktopPane.add(consultaFuncionEspectaculo);
