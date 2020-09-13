@@ -362,10 +362,174 @@ public class Main {
 			FechaRegistro = formato.parse("09/04/2020");
 			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "costas", "Los Village Volvieron - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
 			
+			//R2
+			FechaRegistro = formato.parse("10/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "sergiop", "Los Village Volvieron - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
 			
+			//R3
+			FechaRegistro = formato.parse("12/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "chino", "Los Village Volvieron - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
 			
+			//R4
+			FechaRegistro = formato.parse("15/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "chino", "Los Village Volvieron - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
 			
-		
+			//R5
+			FechaRegistro = formato.parse("20/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "tonyp", "Los Village Volvieron - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			//R6
+			FechaRegistro = formato.parse("25/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "costas", "Los Village Volvieron - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			//R7
+			FechaRegistro = formato.parse("28/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "lachiqui", "Los Village Volvieron - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			//R8
+			FechaRegistro = formato.parse("16/04/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "cbochinche", "Los Village Volvieron - 3", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			//R9
+			FechaRegistro = formato.parse("15/05/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "costas", "Los Village Volvieron - 3", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			//R10
+			FechaRegistro = formato.parse("20/05/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "lachiqui", "Los Village Volvieron - 3", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			
+			//R11
+			FechaRegistro = formato.parse("05/05/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "eleven11", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			
+			//R12
+			FechaRegistro = formato.parse("10/05/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "waston", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R13
+			FechaRegistro = formato.parse("15/05/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "sergiop", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R14
+			FechaRegistro = formato.parse("20/05/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "tonyp", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R15
+			FechaRegistro = formato.parse("08/06/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "house", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R16
+			FechaRegistro = formato.parse("13/06/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "waston", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R17
+			FechaRegistro = formato.parse("25/06/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "waston", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R18
+			FechaRegistro = formato.parse("05/07/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "cbochinche", "Global Spirit (III)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R19
+			FechaRegistro = formato.parse("11/07/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "sergiop", "Global Spirit (III)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R20
+			FechaRegistro = formato.parse("18/07/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "chino", "Global Spirit (III)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			//R21
+			FechaRegistro = formato.parse("19/07/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "lachiqui", "Memphis Blues World - A", FechaRegistro, TipoRegistro.Tipo_2, 7, 10, 17, "", 0.0);
+			//R22
+			FechaRegistro = formato.parse("17/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "eleven11", "Memphis Blues World - B", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 800.0);
+			//R23
+			FechaRegistro = formato.parse("20/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "house", "Memphis Blues World - B", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 800.0);
+			//R24
+			FechaRegistro = formato.parse("23/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "chino", "Memphis Blues World - B", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 800.0);
+			
+			//R25
+			FechaRegistro = formato.parse("15/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "costas", "Memphis Blues World - C", FechaRegistro, TipoRegistro.Tipo_2, 1, 6, 9, "", 0.0);
+			
+			//R26
+			FechaRegistro = formato.parse("26/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "waston", "Memphis Blues World - C", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 800.0);
+			
+			//R27
+			FechaRegistro = formato.parse("19/7/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "chino", "Springsteen on Broadway - i", FechaRegistro, TipoRegistro.Tipo_2, 3, 4, 20, "", 0.0);
+			
+			//R28
+			FechaRegistro = formato.parse("19/7/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "tonyp", "Springsteen on Broadway - i", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R29
+			FechaRegistro = formato.parse("19/7/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "lachiqui", "Springsteen on Broadway - i", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R30
+			FechaRegistro = formato.parse("1/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "sergiop", "Springsteen on Broadway - ii", FechaRegistro, TipoRegistro.Tipo_2, 2, 13, 19, "", 0.0);
+			
+			//R31
+			FechaRegistro = formato.parse("30/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "house", "Springsteen on Broadway - ii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R32
+			FechaRegistro = formato.parse("16/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "eleven11", "Springsteen on Broadway - ii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R33
+			FechaRegistro = formato.parse("16/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "costas", "Springsteen on Broadway - iii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R34
+			FechaRegistro = formato.parse("1/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "waston", "Springsteen on Broadway - iii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R35
+			FechaRegistro = formato.parse("5/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "sergiop", "Springsteen on Broadway - iii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			
+			//R36
+			FechaRegistro = formato.parse("16/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "house", "Bien de Familia - A", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 500.0);
+			
+			//R37
+			FechaRegistro = formato.parse("03/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "cbochinche", "Bien de Familia - A", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 500.0);
+			
+			//R38
+			FechaRegistro = formato.parse("16/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "elevel11", "Bien de Familia - B", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 500.0);
+			
+			//R39
+			FechaRegistro = formato.parse("06/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "cbochinche", "Bien de Familia - B", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 500.0);
+			
+			//R40
+			FechaRegistro = formato.parse("01/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "costas", "Bien de Familia - C", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 500.0);
+			
+			//R41
+			FechaRegistro = formato.parse("16/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "sergiop", "30 años - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			
+			//R42
+			FechaRegistro = formato.parse("20/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "eleven11", "30 años - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			
+			//R43
+			FechaRegistro = formato.parse("03/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "tonyp", "30 años - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			
+			//R44
+			FechaRegistro = formato.parse("16/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "chino", "30 años - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			
+			//R45
+			FechaRegistro = formato.parse("20/08/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "tonyp", "30 años - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			
+			//R46
+			FechaRegistro = formato.parse("02/09/2020");
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "costas", "30 años - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
