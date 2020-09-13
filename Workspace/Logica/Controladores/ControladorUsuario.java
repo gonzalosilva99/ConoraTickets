@@ -140,7 +140,7 @@ public class ControladorUsuario implements IUsuario{
 		}
 		else if(registro == TipoRegistro.Tipo_2) {
 			regfun.setCosto(0.0);
-			regfun.setCanjeable(true);
+			regfun.setCanjeable(false);
 		}
 		else {
 			regfun.setCosto(costo);

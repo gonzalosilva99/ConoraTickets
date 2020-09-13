@@ -33,7 +33,6 @@ public class Plataforma {
 		public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
 			Set<DtFuncion> ret = new HashSet<DtFuncion>();
 			Espectaculo espec = Espectaculos.get(nombreEsp);
-			System.out.print("hasta aca va bien 2 2 2 ");
 			if(espec != null)
 				return espec.getFuncionesVigentes();
 			else return ret;

@@ -93,11 +93,8 @@ public class Espectaculo {
 		}
 		public Set<DtFuncion> getFuncionesVigentes(){
 			Set<DtFuncion> ret = new HashSet<DtFuncion>();
-			System.out.print("loco va bien");
 			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
-				System.out.print("se mete al for");
 				if(entry.getValue().estaVigente()) {
-					System.out.print("se mete al if");
 					DtFuncion nueva = entry.getValue().getDtFuncion();
 					ret.add(nueva);  
 				}				

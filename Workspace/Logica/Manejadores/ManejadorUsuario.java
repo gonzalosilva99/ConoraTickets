@@ -183,7 +183,6 @@ public class ManejadorUsuario {
 			return espec.getUltimoCodigo();
 		}
 		public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
-			System.out.println("entro al manejador");
 			Espectador espec = Espectadores.get(nickname);
 			return espec.listarRegistrosSinCanjeaer();
 		}

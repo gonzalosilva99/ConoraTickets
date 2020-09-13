@@ -43,7 +43,9 @@ public class Espectador extends Usuario{
 	}
 	
 	public Integer getUltimoCodigo() {
-		return RegistroFunciones.size();
+		if(RegistroFunciones!= null)
+			return RegistroFunciones.size();
+		else return 0;
 	}
 	public DtUsuario getDtUsuario() {
 		DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
@@ -74,14 +76,10 @@ public class Espectador extends Usuario{
 	}
 	
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(){
-		System.out.print("entro al espectador");
 		Set<DtRegistro> ret = new HashSet<DtRegistro>();
 		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
-			System.out.print("entro al for");
 			if(entry.getValue().getCanjeable()) {
-				System.out.print("entro al if");
 				DtRegistro nuevo = entry.getValue().getDtRegistro();
-				System.out.print("tyvi");
 				ret.add(nuevo);
 			}
 		}

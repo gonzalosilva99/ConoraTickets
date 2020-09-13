@@ -31,6 +31,7 @@ public class RegistroFuncion {
 	
 	public RegistroFuncion(Integer codigo, Date fecha,TipoRegistro registro,Funcion fun,Espectador espec) {
 		super();
+		Codigo = codigo;
 		Fecha = fecha;
 		Registro = registro;
 		Espectador = espec;
