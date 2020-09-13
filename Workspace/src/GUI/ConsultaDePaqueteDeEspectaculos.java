@@ -27,6 +27,8 @@ import java.util.Set;
 import java.awt.event.ItemEvent;
 import java.awt.Button;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -224,6 +226,11 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		textFieldDescuento.setEditable(false);
 		comboBoxEspectaculos.setEditable(false);
 		buttonCancelar = new Button("Atras");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -49, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -108, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());

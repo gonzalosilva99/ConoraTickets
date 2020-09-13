@@ -99,6 +99,11 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(lblPlataforma);
 		
 		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");

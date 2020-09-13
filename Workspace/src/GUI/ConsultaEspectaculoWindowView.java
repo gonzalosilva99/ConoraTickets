@@ -38,7 +38,6 @@ public class ConsultaEspectaculoWindowView extends JFrame {
 	 */
 
 	public ConsultaEspectaculoWindowView() {
-		System.out.println("Ventana");
 		
 		setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 525, 596);

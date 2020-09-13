@@ -207,6 +207,11 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		panel.add(buttonQuitar);
 		
 		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 333, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());

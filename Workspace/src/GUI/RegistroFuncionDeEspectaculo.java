@@ -192,6 +192,11 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		
 		Button buttonCancelar = new Button("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 323, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -104, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 6, SpringLayout.EAST, buttonCancelar);

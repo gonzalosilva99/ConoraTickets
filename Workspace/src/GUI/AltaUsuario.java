@@ -274,6 +274,7 @@ public class AltaUsuario extends JInternalFrame {
 		Button buttonCancelar = new Button("Cancelar");
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 			}
 		});
 
