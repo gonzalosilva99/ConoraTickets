@@ -206,16 +206,16 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAnadir = new Button("+");
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAnadir, 360, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAnadir, 304, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAnadir, 340, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonAnadir, -117, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAnadir);
 		buttonAnadir.setVisible(false);
 		
 		Button buttonQuitar = new Button("-");
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAnadir, 0, SpringLayout.SOUTH, buttonQuitar);
-		springLayout.putConstraint(SpringLayout.EAST, buttonAnadir, -23, SpringLayout.WEST, buttonQuitar);
-		springLayout.putConstraint(SpringLayout.NORTH, buttonQuitar, 362, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonQuitar, -88, SpringLayout.NORTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.EAST, buttonQuitar, -43, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonQuitar, 305, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonQuitar, 0, SpringLayout.SOUTH, buttonAnadir);
+		springLayout.putConstraint(SpringLayout.EAST, buttonQuitar, -82, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonQuitar);
 		buttonQuitar.setVisible(false);
 		
@@ -249,8 +249,8 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		lblCanjearPor.setVisible(false);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		springLayout.putConstraint(SpringLayout.WEST, buttonAnadir, 28, SpringLayout.EAST, scrollPane_1);
-		springLayout.putConstraint(SpringLayout.WEST, buttonQuitar, 80, SpringLayout.EAST, scrollPane_1);
+		springLayout.putConstraint(SpringLayout.WEST, buttonQuitar, 41, SpringLayout.EAST, scrollPane_1);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAnadir, 6, SpringLayout.EAST, scrollPane_1);
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane_1, 305, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblListaPaquetesFunciones, -6, SpringLayout.NORTH, scrollPane_1);
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane_1, 0, SpringLayout.WEST, lblPlataforma);
