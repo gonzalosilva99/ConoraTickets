@@ -206,16 +206,16 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAnadir = new Button("+");
-		springLayout.putConstraint(SpringLayout.EAST, buttonAnadir, 0, SpringLayout.EAST, buttonCancelar);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAnadir, 360, SpringLayout.NORTH, getContentPane());
 		getContentPane().add(buttonAnadir);
 		buttonAnadir.setVisible(false);
 		
 		Button buttonQuitar = new Button("-");
-		
-		springLayout.putConstraint(SpringLayout.NORTH, buttonQuitar, 366, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonQuitar, -84, SpringLayout.NORTH, buttonCancelar);
-		springLayout.putConstraint(SpringLayout.EAST, buttonQuitar, -104, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAnadir, -6, SpringLayout.NORTH, buttonQuitar);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAnadir, 0, SpringLayout.SOUTH, buttonQuitar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonAnadir, -23, SpringLayout.WEST, buttonQuitar);
+		springLayout.putConstraint(SpringLayout.NORTH, buttonQuitar, 362, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonQuitar, -88, SpringLayout.NORTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonQuitar, -43, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonQuitar);
 		buttonQuitar.setVisible(false);
 		
@@ -249,9 +249,10 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		lblCanjearPor.setVisible(false);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		springLayout.putConstraint(SpringLayout.WEST, buttonAnadir, 28, SpringLayout.EAST, scrollPane_1);
+		springLayout.putConstraint(SpringLayout.WEST, buttonQuitar, 80, SpringLayout.EAST, scrollPane_1);
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane_1, 305, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblListaPaquetesFunciones, -6, SpringLayout.NORTH, scrollPane_1);
-		springLayout.putConstraint(SpringLayout.WEST, buttonQuitar, 26, SpringLayout.EAST, scrollPane_1);
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane_1, 0, SpringLayout.WEST, lblPlataforma);
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane_1, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(scrollPane_1);
@@ -321,12 +322,13 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 		
 		buttonGroup.add(rdbtnPaquete);
 		
-		JLabel lblSeleccionados = new JLabel("Funciones seleccionadas: ");
+		JLabel lblSeleccionados = new JLabel("Seleccionadas: ");
 		springLayout.putConstraint(SpringLayout.NORTH, lblSeleccionados, 448, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane_1, -17, SpringLayout.NORTH, lblSeleccionados);
 		springLayout.putConstraint(SpringLayout.WEST, lblSeleccionados, 0, SpringLayout.WEST, lblPlataforma);
 		getContentPane().add(lblSeleccionados);
 		lblSeleccionados.setVisible(false);
+		
 		
 		
 		Set<String> listaseleccionados = new HashSet<String>();
@@ -343,8 +345,12 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 						if(itp.next().toString().equals(list.getSelectedValue().toString()))
 							existe=true;
 					if(!existe) {
+						
 						listaseleccionados.add(list.getSelectedValue().toString());
-						lblSeleccionados.setText(lblSeleccionados.getText() + list.getSelectedValue().toString());
+						if(contadorseleccionadas > 0) 
+							lblSeleccionados.setText(lblSeleccionados.getText() + ", " + list.getSelectedValue().toString());
+						else
+							lblSeleccionados.setText(lblSeleccionados.getText() + list.getSelectedValue().toString());
 						contadorseleccionadas = contadorseleccionadas + 1 ;
 						codigosseleccionados.add(codigos.get(list.getSelectedIndex()));
 					}
@@ -380,7 +386,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 						codigosseleccionados.remove(codigos.get(list.getSelectedIndex()));
 						contadorseleccionadas--;
 						Iterator<String> itr = listaseleccionados.iterator();
-						lblSeleccionados.setText("Funciones seleccionadas: ");
+						lblSeleccionados.setText("Seleccionadas: ");
 						while(itr.hasNext()) {
 							lblSeleccionados.setText(lblSeleccionados.getText() + itr.next().toString());
 						}
@@ -456,7 +462,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 							vacia.addElement("");
 							list.setModel(vacia);
 							list.removeAll();
-							lblSeleccionados.setText("Funciones seleccionadas: ");
+							lblSeleccionados.setText("Seleccionadas: ");
 							listaseleccionados.clear();
 							registro = TipoRegistro.Tipo_1;
 						}
@@ -467,7 +473,7 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 						chckbxCanjear.setSelected(false);
 						rdbtnPaquete.setSelected(false);
 						rdbtnFuncion.setSelected(false);
-						lblSeleccionados.setText("Funciones seleccionadas: ");
+						lblSeleccionados.setText("Seleccionadas: ");
 						buttonGroup.clearSelection();
 						DefaultListModel vacia = new DefaultListModel();
 						vacia.addElement("");
