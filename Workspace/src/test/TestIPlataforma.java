@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,29 +9,24 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import Clases.Espectador;
-import Clases.Paquete;
 import Controladores.Fabrica;
-import DataTypes.DtArtista;
-import DataTypes.DtArtistaConsulta;
-import DataTypes.DtFuncionDatos;
 import DataTypes.TipoRegistro;
-import Excepciones.Identidad;
 import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
-import Relaciones.CompraPaquete;
 
-public class TestsCompletos {
+public class TestIPlataforma {
 
 	@Test
 	public void test() {
-		try {	
-			Fabrica fab = Fabrica.getInstancia();
-			IUsuario iusuario = fab.getIUsuario();
-			IPlataforma iplataforma = fab.getIPlataforma();
-			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-			Date fechaNac;
+		try {
+		Fabrica fab = Fabrica.getInstancia();
+		IUsuario iusuario = fab.getIUsuario();
+		IPlataforma iplataforma = fab.getIPlataforma();
+		IPaquete ipaquete= fab.getIPaquete();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaNac;
+		try {
 			// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
 			fechaNac = formato.parse("31/12/1971");
 			iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
@@ -278,9 +272,7 @@ public class TestsCompletos {
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion);
 	
-			//Cargar Paquetes
-			IPaquete ipaquete= fab.getIPaquete();
-			
+			//Cargar Paquetes			
 			Date inicio = formato.parse("01/05/2020");
 			Date fin = formato.parse("31/07/2020");
 			Date alta = formato.parse("30/4/2020");
@@ -488,64 +480,27 @@ public class TestsCompletos {
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Solistas","Youtube", "Springsteen on Broadway");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
-		
-			//TESET FUNCIONES IPAQUETE
-			ipaquete.ListarPaquetes();
-			ipaquete.MostrarPaquete("Paquete Latino");
-			ipaquete.ListarPaquetesEspectaculo("Springsteen on Broadway");
-			ipaquete.getPaqueteDatos("Paquete Latino");
-			ipaquete.getDtPaquete("Paquete Latino");
-			
-			//TEST FUNCIONES IPLATAFORMA
-			iplataforma.getFuncion("Los Village Volvieron", "Los Village Volvieron - 1");
-			iplataforma.getFuncionDatos("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1");
-			iplataforma.MostrarFuncion("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1");
-			iplataforma.getDatosEspectaculo("Instagram Live", "Los Village Volvieron");
-			iplataforma.listarDtEspectaculoDatos("Instagram Live", "Los Village Volvieron");
-			iplataforma.listarEspectaculosEnPlataformaNoPaquete("Paquete Latino", "Twitter Live");
-			iplataforma.listarFuncionesDeEspectaculo("Instagram Live", "Los Village Volvieron");
-			iplataforma.listarPlataformas();
-			iplataforma.listarEspectaculosDePlataforma("Instagram Live");
-			iplataforma.listarEspectaculos("Instagram Live");
-			iplataforma.listarEspectaculoDatosDePlataforma("Instagram Live");
-			iplataforma.getPlataformaDeEspectaculo("Los Village Volvieron");
-			iplataforma.findDatosEspectaculo("Los Village Volvieron");
-			iplataforma.existeFuncion("Los Village Volvieron - 1");
-			iplataforma.listarFuncionesVigentesEspectaculo("Los Village Volvieron", "Instagram Live");
-			
-			//TEST FUNCIONES IUSUARIO
-			iusuario.listarEspectadores();
-			iusuario.listarRegistrosSinCanjeaer("waston");
-			iusuario.listarUsuarios();
-			iusuario.listarPaquetesCanjeables("waston", "Los Village Volvieron");
-			iusuario.listarArtistas();
-			iusuario.MostrarEspectador("waston");
-			DtArtistaConsulta artista = iusuario.MostrarArtista("clauper");
-			artista.getApellido();
-			artista.getNombre();
-			artista.getEmail();
-			artista.getBiografia();
-			artista.getLink();
-			iusuario.listarArtistasNoEspectaculo("Los Village Volvieron");
-			iusuario.EsArtista("clauper");
-			iusuario.EsArtista("waston");
-			Date FechaNacimientoPruebas = formato.parse("22/6/1953");
-			iusuario.ModificarArtista("clauper", "Cyndi", "Lauper", FechaNacimientoPruebas, "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.", "Cynthia Ann Stephanie Lauper (Brooklyn, Nueva York; 22 de junio de 1953).", "cyndilauper.com");
-			iusuario.ModificarEspectador("waston", "Cyndi", "Lauper", FechaNacimientoPruebas);
-			
-			//CompraPaquete
-			Espectador espectador = new Espectador(null,null,null,null,null);
-			Paquete paquete = new Paquete(null,null,null,null,null,null);
-			CompraPaquete comprapaquete = new CompraPaquete(FechaNacimientoPruebas,null,null);
-			comprapaquete.TieneEspectaculo("");
-			DtFuncionDatos dtfuncion = new DtFuncionDatos();
-			dtfuncion.getAlta();
-			dtfuncion.getArtistas();
-			dtfuncion.getEspectaculo();
-			dtfuncion.getInicio();
-			dtfuncion.getNombre();
 		}
-		catch(Exception e) {
+		catch(Exception e) {}
+		//TEST FUNCIONES IPLATAFORMA
+		iplataforma.getFuncion("Los Village Volvieron", "Los Village Volvieron - 1");
+		iplataforma.getFuncionDatos("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1");
+		iplataforma.MostrarFuncion("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1");
+		iplataforma.getDatosEspectaculo("Instagram Live", "Los Village Volvieron");
+		iplataforma.listarDtEspectaculoDatos("Instagram Live", "Los Village Volvieron");
+		iplataforma.listarEspectaculosEnPlataformaNoPaquete("Paquete Latino", "Twitter Live");
+		iplataforma.listarFuncionesDeEspectaculo("Instagram Live", "Los Village Volvieron");
+		iplataforma.listarPlataformas();
+		iplataforma.listarEspectaculosDePlataforma("Instagram Live");
+		iplataforma.listarEspectaculos("Instagram Live");
+		iplataforma.listarEspectaculoDatosDePlataforma("Instagram Live");
+		iplataforma.getPlataformaDeEspectaculo("Los Village Volvieron");
+		iplataforma.findDatosEspectaculo("Los Village Volvieron");
+		iplataforma.existeFuncion("Los Village Volvieron - 1");
+		iplataforma.listarFuncionesVigentesEspectaculo("Los Village Volvieron", "Instagram Live");
+		iplataforma.findDatosFuncion("Los Village Volvieron - 1");
 		}
-}
+		catch(Exception e) {}
 	}
+
+}
