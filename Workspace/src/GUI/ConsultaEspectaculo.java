@@ -432,29 +432,53 @@ public class ConsultaEspectaculo extends JInternalFrame {
 				if (comboBoxEspectaculos.isFocusOwner()) {
 					datosEspectaculo = iplataforma.getDatosEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
 					setFieldTexts(datosEspectaculo);
+					
+					Set<DtFuncion> listaFunciones = iplataforma.listarFuncionesDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+					Iterator<DtFuncion> itrf = listaFunciones.iterator();
+					DtFuncion datosFuncion;
+					comboBoxFunciones.removeAllItems();
+					while(itrf.hasNext())
+					{
+						datosFuncion = itrf.next();
+						comboBoxFunciones.addItem(datosFuncion .getNombre());
+					}
+					
+					
+					Set<DtPaquete> listaPaquetes= ipaquete.ListarPaquetesEspectaculo(comboBoxEspectaculos.getSelectedItem().toString());
+					Iterator<DtPaquete> itrp = listaPaquetes.iterator();
+					
+					comboBoxPaquetes.removeAllItems();
+					while(itrp.hasNext())
+					{
+						datosPaquete = itrp.next();
+						comboBoxPaquetes.addItem(datosPaquete.getNombre());
+					}
 				}
 			} 
 		});
 		
 		buttonVerPaquetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(comboBoxPaquetes.getSelectedItem()!=null) {
 				datosPaquete= ipaquete.getDtPaquete(comboBoxPaquetes.getSelectedItem().toString());
 				ConsultaPaqueteEspectaculoWindowView ventana = new ConsultaPaqueteEspectaculoWindowView(datosPaquete);
 				
 				ventana.setAlwaysOnTop(true);
 				ventana.setVisible(true);
+				}
 				
 			}
 		});
 		buttonVerFunciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(comboBoxFunciones.getSelectedItem()!=null) {
 				DtFuncionDatos datosFuncion = iplataforma.getFuncionDatos(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString(), comboBoxFunciones.getSelectedItem().toString());
 			
 				ConsultaFuncionEspectaculoWindowView ventana2 = new ConsultaFuncionEspectaculoWindowView(datosFuncion);
 				
 				ventana2.setAlwaysOnTop(true);
 				ventana2.setVisible(true);
-				
+				}
 			}
 		});
 		

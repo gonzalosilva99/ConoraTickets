@@ -53,8 +53,13 @@ public class ManejadorPlataforma {
 				throw new Identidad("Ya existe una plataforma con ese Nombre");
 		}
 		
-		Boolean ExistePlataforma(String nombre){
-			return Plataformas.containsKey(nombre);
+		public Boolean ExistePlataforma(String nombre){
+			for (Map.Entry<String,Plataforma> entry : Plataformas.entrySet()) {
+	            if(entry.getValue().getNombre().equalsIgnoreCase(nombre)) {
+	            	return true;
+	            }           
+			}
+			return false;
 		}
 		Set<DtEspectaculo>  listarEspectaculosDePlataforma(String Nombre){
 			Plataforma plat = Plataformas.get(Nombre);
@@ -187,6 +192,19 @@ public class ManejadorPlataforma {
 		public DtFuncionDatos getFuncionDatos(String nombrePlat, String nombreEspectaculo, String nombreFuncion) {
 			Plataforma pla = this.getPlataforma(nombrePlat);
 			return pla.getFuncionDatos(nombreEspectaculo, nombreFuncion);
+		}
+		
+		public DtFuncionDatos findFuncionDatos(String nombreFuncion) {
+			DtFuncionDatos ret = null;
+			
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				String esp = entry.getValue().ExisteEspectaculoDeFuncion(nombreFuncion);
+				if(!esp.equals("")) {
+					ret = entry.getValue().getFuncionDatos(esp,nombreFuncion);
+					break;
+				}
+			}
+			return ret;
 		}
 
 }

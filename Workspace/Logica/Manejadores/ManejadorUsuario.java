@@ -68,17 +68,27 @@ public class ManejadorUsuario {
 		}
 		
 		Boolean ExisteUsuarioConNickname(String Nickname) {
-			return Artistas.containsKey(Nickname) || Espectadores.containsKey(Nickname);
-		}
-		
-		Boolean ExisteUsuarioConEmail(String email) {
 			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
-	            if(entry.getValue().getEmail().equals(email)) {
+	            if(entry.getValue().getNickname().equalsIgnoreCase(Nickname)) {
 	            	return true;
 	            }           
 			}
 			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
-	            if(entry.getValue().getEmail().equals(email)) {
+	            if(entry.getValue().getNickname().equalsIgnoreCase(Nickname)) {
+	            	return true;
+	            }           
+			}
+			return false;
+		}
+		
+		Boolean ExisteUsuarioConEmail(String email) {
+			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
+	            if(entry.getValue().getEmail().equalsIgnoreCase(email)) {
+	            	return true;
+	            }           
+			}
+			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
+	            if(entry.getValue().getEmail().equalsIgnoreCase(email)) {
 	            	return true;
 	            }           
 			}
@@ -93,7 +103,7 @@ public class ManejadorUsuario {
 				throw new Identidad("Ya Existe un Usuario con este Email");
 			}	
 			else {
-				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
+				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email.toLowerCase(),Nacimiento,Descripcion,Biografia,Link);
 				Artistas.put(Nickname, nuevo);		
 			}
 		}
@@ -106,7 +116,7 @@ public class ManejadorUsuario {
 				throw new Identidad("Ya Existe un Usuario con este Email");
 			}
 			else {
-				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email,Nacimiento);
+				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email.toLowerCase(),Nacimiento);
 				Espectadores.put(Nickname, nuevo);			
 			}
 		}

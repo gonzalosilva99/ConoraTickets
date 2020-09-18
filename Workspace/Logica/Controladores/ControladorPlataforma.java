@@ -107,6 +107,11 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.getFuncionDatos(nombrePlat, nombreEspectaculo, nombreFuncion) ;
 	}
+	
+	public DtFuncionDatos findDatosFuncion(String nombre) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.findFuncionDatos(nombre) ;
+	}
 
 }
 

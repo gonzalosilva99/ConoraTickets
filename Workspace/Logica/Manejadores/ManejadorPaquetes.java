@@ -70,7 +70,12 @@ public class ManejadorPaquetes {
 		}
 		
 		public Boolean ExistePaquete(String nombre){
-			return Paquetes.containsKey(nombre);
+			for (Map.Entry<String,Paquete> entry : Paquetes.entrySet()) {
+	            if(entry.getValue().getNombre().equalsIgnoreCase(nombre)) {
+	            	return true;
+	            }           
+			}
+			return false;
 		}
 		
 		public void ConfirmarAltaPaquete(String NombrePaquete,String Descripcion,Date inicio,Date fin,Double Descuento, Date alta) throws Identidad{

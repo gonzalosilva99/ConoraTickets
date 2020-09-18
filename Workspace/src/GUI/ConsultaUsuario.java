@@ -25,6 +25,7 @@ import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtArtista;
 import DataTypes.DtFuncion;
+import DataTypes.DtFuncionDatos;
 import java.util.Set;
 import java.util.Iterator;
 import javax.swing.JTextPane;
@@ -40,6 +41,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldRol;
 	private JTextField textFieldLink;
 	private DtEspectaculoDatos datosEspectaculo;
+	private DtFuncionDatos datosFuncion;
 	/**
 	 * Launch the application.
 	 */
@@ -309,7 +311,7 @@ public class ConsultaUsuario extends JInternalFrame {
 						DtEspectaculo aux = itr.next();
 						 String nom = aux.getNombre();
 						 String des = aux.getDescripcion();
-						 String op = nom+"-"+des;
+						 String op = nom+","+des;
 						 comboBoxEspectaculos.addItem(op);
 					}
 				}
@@ -358,7 +360,7 @@ public class ConsultaUsuario extends JInternalFrame {
 						DtFuncion aux = itr.next();
 						 String nom = aux.getNombre();
 						 String ini = aux.getInicio().toString();
-						 String op = nom+"-"+ini;
+						 String op = nom+","+ini;
 						 comboBoxEspectaculos.addItem(op);
 					}
 				}
@@ -373,19 +375,39 @@ public class ConsultaUsuario extends JInternalFrame {
 					consultaespR.setFocusable(true);
 					consultaespR.setVisible(true);					
 				}
+				else if(textFieldRol.getText()=="Espectador") {
+					ConsultaFuncionEspectaculoWindowView consultafunR = new ConsultaFuncionEspectaculoWindowView();
+					consultafunR.setLocationRelativeTo(null);
+					consultafunR.setFocusable(true);
+					consultafunR.setVisible(true);
+				}
 			}
 		});
 		
 		buttonVerPaquetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(!comboBoxEspectaculos.getSelectedItem().toString().equals("")) {
+					
 				IPlataforma iplataforma = fabric.getIPlataforma();
 				String esp = comboBoxEspectaculos.getSelectedItem().toString();
-				String[] nom = esp.split("-");
+				String[] nom = esp.split(",");			
+				if(textFieldRol.getText().equals("Artista")) {				
 				datosEspectaculo= iplataforma.findDatosEspectaculo(nom[0]);
-				ConsultaEspectaculoWindowView ventana = new ConsultaEspectaculoWindowView(datosEspectaculo);
 				
+				ConsultaEspectaculoWindowView ventana = new ConsultaEspectaculoWindowView(datosEspectaculo);
+				ventana.setFocusable(true);
 				ventana.setAlwaysOnTop(true);
 				ventana.setVisible(true);
+				}
+				else if(textFieldRol.getText().equals("Espectador")) {
+				datosFuncion = iplataforma.findDatosFuncion(nom[0]);
+
+				ConsultaFuncionEspectaculoWindowView ventana = new ConsultaFuncionEspectaculoWindowView(datosFuncion);
+				ventana.setFocusable(true);
+				ventana.setAlwaysOnTop(true);
+				ventana.setVisible(true);
+				}
+			}
 			}
 		});
 

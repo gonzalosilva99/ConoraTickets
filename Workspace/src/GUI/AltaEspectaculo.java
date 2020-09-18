@@ -318,8 +318,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 34, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
 		panel.add(dateChooser);
-		dateChooser.setEnabled(false);
-		dateChooser.setDate(Calendar.getInstance().getTime());
+		dateChooser.getDateEditor().setEnabled(false);
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			
@@ -346,8 +345,8 @@ public class AltaEspectaculo extends JInternalFrame {
 					if(Integer.valueOf(textFieldEspectMax.getText())<Integer.valueOf(textFieldEspectMin.getText()))
 						throw new CheckDatos("La cantidad de Espectadores minimos debe ser menor que Expectadores maximos");
 					iplataform.altaEspectaculo( comboBoxPlataforma.getSelectedItem().toString(),nick[0] , 
-							textFieldNombre.getText(), textFieldDescripcion.getText(),
-							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText(),
+							textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(),
+							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText().trim(),
 							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate(), Integer.valueOf( textFieldDuracion.getText() )); 
 							JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
 							textFieldNombre.setText("");

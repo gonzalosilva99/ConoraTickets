@@ -32,4 +32,5 @@ public interface IPlataforma {
 		public DtEspectaculoDatos findDatosEspectaculo(String nombreEspectaculo);
 		public String getPlataformaDeEspectaculo(String esp);
 		public DtFuncionDatos getFuncionDatos(String nombrePlat, String nombreEspectaculo, String nombreFuncion);
+		public DtFuncionDatos findDatosFuncion(String nombre);
 }

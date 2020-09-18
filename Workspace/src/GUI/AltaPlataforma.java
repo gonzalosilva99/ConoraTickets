@@ -125,7 +125,7 @@ public class AltaPlataforma extends JInternalFrame {
 						throw new CheckDatos("El Nombre no debe ser vacío");
 					}
 					IPlataforma iplataform = fabric.getIPlataforma();
-					iplataform.AltaPlataforma(textFieldNombre.getText(), textFieldDescGeneral.getText(), textFieldurl.getText());
+					iplataform.AltaPlataforma(textFieldNombre.getText().trim(), textFieldDescGeneral.getText().trim(), textFieldurl.getText().trim());
 					JOptionPane.showMessageDialog(null, "Alta de Plataforma con exito");
 					textFieldNombre.setText("");
 					textFieldDescGeneral.setText("");

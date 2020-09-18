@@ -349,7 +349,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					formatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Date FechaInicio = formatoInicio.parse(dateInicio);
 					Date FechaAlta = Calendar.getInstance().getTime();
-					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText(), FechaInicio, ArtistasADevolver, FechaAlta);
+					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText().trim(), FechaInicio, ArtistasADevolver, FechaAlta);
 					JOptionPane.showMessageDialog(null, "Funcion creada con Exito");
 					textFieldNombre.setText("");
 					comboBoxEspectaculo.setSelectedIndex(0);

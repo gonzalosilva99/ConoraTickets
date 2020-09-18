@@ -153,7 +153,7 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 				if(dateChooserInicio.getDate().after(dateChooserFin.getDate()))
 					throw new CheckDatos("Fecha de inicio posterior a la de fin de vigencia");
 				IPaquete ipaq = fabric.getIPaquete();
-				ipaq.ConfirmarAltaPaquete(textFieldNombre.getText(), textFieldDescripcion.getText(), dateChooserInicio.getDate(), dateChooserFin.getDate(), Double.valueOf( textFieldDescuento.getText()), Calendar.getInstance().getTime());
+				ipaq.ConfirmarAltaPaquete(textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(), dateChooserInicio.getDate(), dateChooserFin.getDate(), Double.valueOf( textFieldDescuento.getText()), Calendar.getInstance().getTime());
 				JOptionPane.showMessageDialog(null, "Paquete agregado con exito");
 				textFieldNombre.setText("");
 				textFieldDescripcion.setText("");

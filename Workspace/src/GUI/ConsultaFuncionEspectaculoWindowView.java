@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.beans.PropertyVetoException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -67,5 +68,11 @@ public class ConsultaFuncionEspectaculoWindowView extends JFrame {
 		consultaFuncionEspectaculo.setDatosFuncion(datosFuncion);
 		desktopPane.add(consultaFuncionEspectaculo);
 		consultaFuncionEspectaculo.show();
+		try {
+			consultaFuncionEspectaculo.setMaximum(true);
+		} catch (PropertyVetoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

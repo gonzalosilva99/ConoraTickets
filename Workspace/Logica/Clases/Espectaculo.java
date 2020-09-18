@@ -160,7 +160,12 @@ public class Espectaculo {
 		}
 		
 		public boolean existeFuncion(String nombreFuncion) {
-			return Funciones.containsKey(nombreFuncion);	
+			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
+	            if(entry.getValue().getNombre().equalsIgnoreCase(nombreFuncion)) {
+	            	return true;
+	            }           
+			}
+			return false;	
 		}
 		public DtFuncionDatos getFuncionDatos(String nombreFuncion) {
 			Funcion fun = Funciones.get(nombreFuncion);

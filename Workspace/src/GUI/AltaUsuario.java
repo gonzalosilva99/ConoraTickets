@@ -235,7 +235,7 @@ public class AltaUsuario extends JInternalFrame {
 							throw new CheckDatos("El Nickname no debe contener espacios");
 						}
 						
-						iusuario.confirmarAltaArtista(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate(), textPaneDescGeneral.getText(), textPaneBiografia.getText(), textFieldLink.getText());
+						iusuario.confirmarAltaArtista(textFieldNickname.getText().trim(), textFieldNombre.getText().trim(), textFieldApellido.getText().trim(), textFieldEmail.getText().trim(), dateChooser.getDate(), textPaneDescGeneral.getText().trim(), textPaneBiografia.getText().trim(), textFieldLink.getText().trim());
 						textPaneDescGeneral.setText("");
 						textPaneBiografia.setText("");
 						textFieldLink.setText("");
@@ -245,7 +245,7 @@ public class AltaUsuario extends JInternalFrame {
 						if(textFieldNickname.getText().indexOf(" ")>-1) {
 							throw new CheckDatos("El Nickname no debe contener espacios");
 						}
-						iusuario.confirmarAltaEspectador(textFieldNickname.getText(), textFieldNombre.getText(), textFieldApellido.getText(), textFieldEmail.getText(), dateChooser.getDate());
+						iusuario.confirmarAltaEspectador(textFieldNickname.getText().trim(), textFieldNombre.getText().trim(), textFieldApellido.getText().trim(), textFieldEmail.getText().trim(), dateChooser.getDate());
 					}
 					textFieldNickname.setText("");
 					textFieldNombre.setText("");

@@ -74,7 +74,6 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		comboBoxArtistas.removeAllItems();
 		Set<DtArtista> listaArtistas = datosFuncion.getArtistas();
 		Iterator<DtArtista> itra = listaArtistas.iterator();
-		comboBoxArtistas.addItem("");
 		while(itra.hasNext())
 		{
 			comboBoxArtistas.addItem(itra.next().getNombre());

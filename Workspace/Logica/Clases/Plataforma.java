@@ -119,7 +119,12 @@ public class Plataforma {
 		}
 
 		public Boolean ExisteEspectaculo(String nomEspectaculo) {
-			return Espectaculos.containsKey(nomEspectaculo);
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+	            if(entry.getValue().getNombre().equalsIgnoreCase(nomEspectaculo)) {
+	            	return true;
+	            }           
+			}
+			return false;
 		}
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete){
 			
@@ -149,6 +154,17 @@ public class Plataforma {
 		public DtFuncionDatos getFuncionDatos(String nombreEspectaculo, String nombreFuncion) {
 			
 			return Espectaculos.get(nombreEspectaculo).getFuncionDatos(nombreFuncion);
+		}
+		
+		public String ExisteEspectaculoDeFuncion(String nombreFuncion){
+			String ret = "";
+			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				if(entry.getValue().existeFuncion(nombreFuncion)) {
+					ret = entry.getValue().getNombre();
+					break;
+				}           
+			}
+			return ret;
 		}
 }
 		
