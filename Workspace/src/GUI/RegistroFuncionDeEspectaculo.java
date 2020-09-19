@@ -445,7 +445,17 @@ public class RegistroFuncionDeEspectaculo extends JInternalFrame {
 						JOptionPane.showMessageDialog(null, "No se han ingresado todos los datos.");
 						return;
 					}
+					if(!iplataforma.PuedeAgregarEspectadores(nombreplataforma, nombreespectaculo, nombrefuncion)) {
+						JOptionPane.showMessageDialog(null, "No se permiten más espectadores a la funcion.");
+						return;
+					}
 					
+					if(iusu.ExisteRegistroaFuncion(nickname, nombrefuncion)) {
+						JOptionPane.showMessageDialog(null, "Error, ya existe un registro del espectador a esa funcion.");
+						return;
+					}
+								
+						
 					
 					if(registro == TipoRegistro.Tipo_2) {
 						if(listaseleccionados.size()==3) {

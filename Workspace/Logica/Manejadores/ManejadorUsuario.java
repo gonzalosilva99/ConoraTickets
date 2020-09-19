@@ -202,5 +202,10 @@ public class ManejadorUsuario {
 			return espec.listarPaquetesCanjeables(nombreEspectaculo);
 		}
 		
+		public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion) {
+			Espectador espec = Espectadores.get(nickname);
+			return espec.ExisteRegistroaFuncion(nombreFuncion);
+		}
+		
 		
 }

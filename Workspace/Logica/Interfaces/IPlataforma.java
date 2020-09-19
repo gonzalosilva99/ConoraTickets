@@ -33,4 +33,5 @@ public interface IPlataforma {
 		public String getPlataformaDeEspectaculo(String esp);
 		public DtFuncionDatos getFuncionDatos(String nombrePlat, String nombreEspectaculo, String nombreFuncion);
 		public DtFuncionDatos findDatosFuncion(String nombre);
+		public Boolean PuedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
 }

@@ -173,6 +173,11 @@ public class Espectaculo {
 			return fun.getDtFuncionDatos(datosEsp);
 		}
 		
+		public Boolean PuedeAgregarEspectadores(String nombreFuncion){
+			Funcion fun = Funciones.get(nombreFuncion);
+			Integer espec = fun.getEspectadores();
+			return (espec<CantMax);
+		}
 		
 }
 

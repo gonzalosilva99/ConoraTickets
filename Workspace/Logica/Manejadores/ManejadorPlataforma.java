@@ -206,6 +206,11 @@ public class ManejadorPlataforma {
 			}
 			return ret;
 		}
+		
+		public Boolean PuedeAgregarEspectadores(String nombrePlataforma,String nombreEspectaculo,String nombreFuncion){
+			Plataforma plat = Plataformas.get(nombrePlataforma);
+			return plat.PuedeAgregarEspectadores(nombreEspectaculo,nombreFuncion);
+		}
 
 }
 

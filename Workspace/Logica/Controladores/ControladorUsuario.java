@@ -148,4 +148,9 @@ public class ControladorUsuario implements IUsuario{
 		}
 		
 	}
+	
+	public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		return manusu.ExisteRegistroaFuncion(nickname,nombreFuncion);
+	}
 }

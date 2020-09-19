@@ -18,15 +18,29 @@ public class Funcion {
 	private Date Inicio;
 	private Date Alta;
 	private Map<String, Artista> ArtistasInvitados;
+	private Integer Espectadores;
 		public Funcion(String nombre, Date inicio, Date alta) {
 			super();
 			Nombre = nombre;
 			Inicio = inicio;
 			Alta = alta;
 			ArtistasInvitados = new HashMap<String, Artista>();
+			Espectadores = 0;
 		}
 		public String getNombre() {
 			return Nombre;
+		}
+		
+		
+		public Integer getEspectadores() {
+			return Espectadores;
+		}
+		
+		public void IncrementarEspectadores() {
+			Espectadores++;
+		}
+		public void setEspectadores(Integer espec) {
+			Espectadores = espec;
 		}
 		public void setNombre(String nombre) {
 			Nombre = nombre;

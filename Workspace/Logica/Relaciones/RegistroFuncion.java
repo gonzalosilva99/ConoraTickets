@@ -26,6 +26,7 @@ public class RegistroFuncion {
 		Canjeable = canjeable;
 		Espectador = espec;
 		Funcion = fun;
+		fun.IncrementarEspectadores();
 		Paquete = null;
 	}
 	
@@ -36,6 +37,7 @@ public class RegistroFuncion {
 		Registro = registro;
 		Espectador = espec;
 		Funcion = fun;
+		fun.IncrementarEspectadores();
 	}
 	
 	public void setPaquete(Paquete paq) {

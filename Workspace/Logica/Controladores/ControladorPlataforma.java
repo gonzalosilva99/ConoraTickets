@@ -112,6 +112,11 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.findFuncionDatos(nombre) ;
 	}
+	
+	public Boolean PuedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.PuedeAgregarEspectadores(nombrePlataforma,nombreEspectaculo,nombreFuncion);
+	}
 
 }
 

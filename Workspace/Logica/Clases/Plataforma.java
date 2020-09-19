@@ -166,6 +166,11 @@ public class Plataforma {
 			}
 			return ret;
 		}
+		
+		public Boolean PuedeAgregarEspectadores(String nombreEspectaculo,String nombreFuncion){
+			Espectaculo espec = Espectaculos.get(nombreEspectaculo);
+			return espec.PuedeAgregarEspectadores(nombreFuncion);
+		}
 }
 		
 

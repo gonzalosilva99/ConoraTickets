@@ -97,6 +97,15 @@ public class Espectador extends Usuario{
 		}
 		return ret;
 	}
+	
+	public Boolean ExisteRegistroaFuncion(String nombreFuncion) {
+		for(Map.Entry<Integer, RegistroFuncion> entry: RegistroFunciones.entrySet() ) {
+			if(entry.getValue().getDtFuncion().getNombre().equals(nombreFuncion))
+				return true;
+		}
+		return false;
+		
+	}
 }
 
 
