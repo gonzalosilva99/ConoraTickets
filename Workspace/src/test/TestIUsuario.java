@@ -484,6 +484,7 @@ public class TestIUsuario {
 		}
 		catch(Exception e) {}
 		//TEST FUNCIONES IUSUARIO
+		iusuario.ExisteRegistroaFuncion("waston", "Los Village Volvieron - 1");
 		iusuario.listarEspectadores();
 		iusuario.listarRegistrosSinCanjeaer("waston");
 		iusuario.listarUsuarios();

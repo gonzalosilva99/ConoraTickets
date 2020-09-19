@@ -207,11 +207,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		panel.add(buttonQuitar);
 		
 		Button buttonCancelar = new Button("Cancelar");
-		buttonCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+		
 		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 333, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -52, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
@@ -351,15 +347,21 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					Date FechaAlta = Calendar.getInstance().getTime();
 					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText().trim(), FechaInicio, ArtistasADevolver, FechaAlta);
 					JOptionPane.showMessageDialog(null, "Funcion creada con Exito");
-					textFieldNombre.setText("");
+					dispose();
+					/**textFieldNombre.setText("");
 					comboBoxEspectaculo.setSelectedIndex(0);
 					comboBoxPlataforma.setSelectedIndex(0);
-					dateChooser.getDateEditor().setDate(Calendar.getInstance().getTime());
+					dateChooser.getDateEditor().setDate(Calendar.getInstance().getTime());**/
 				}
 				catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				
+			}
+		});
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 	}
