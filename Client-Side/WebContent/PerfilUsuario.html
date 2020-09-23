@@ -99,7 +99,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-header mx-auto ml-sm-5"><a href="#">CORONATICKETS.UY</a></div>
+                        <div class="navbar-header mx-auto ml-sm-5"><a href="index.html">CORONATICKETS.UY</a></div>
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
@@ -130,36 +130,40 @@
             <h1>Novedades</h1>
             <div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-            <a href="#" class="pull-left">
-            	<img src="https://bit.ly/32V2lUD" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
-            </a>
-            <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Springsteen On Broadway</h4></a>
-            <p> Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. <u><a href="#">Leer más</a></u></p>
+	            <a href="#" class="pull-left">
+	            	<img src="https://bit.ly/2ROOpoO" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
+	            </a>
+	            <div class="media-body ml-sm-4">
+		            <a href="#" class="media-heading"><h4 id="nombreapellidoUsuario">Nombre Apellido</h4></a>
+		            <p> Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. <u><a href="#">Leer más</a></u></p>
+	            </div>
             </div>
-            </div>
-            
-            <div class="container-fluid media mb-sm-5">
-            <a href="#" class="pull-left">
-            	<img src="https://bit.ly/2FWyB0B" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>
-            </a>
-            <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Bien de Familia</h4></a>
-            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones <u><a href="#">Leer más</a></u></p>
-            </div>
-            </div>
-            
-            <div class="container-fluid media mb-sm-5">
-            <a href="#" class="pull-left">
-            	<img src="https://bit.ly/36dXLmH" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>
-            </a>
-            <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Global Spirit</h4></a>
-            <p> Espectáculo donde se presenta el álbum Spirit. <u><a href="#">Leer más</a></u></p> 
-            </div>
-            </div>
-        </div>
-    </div>
+           	<div class="container-fluid">
+	           	<ul class="nav nav-tabs" id="myTab" role="tablist">
+			  		<li class="nav-item">
+			  			<a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">GENERAL</a>
+			  		</li>
+					<li class="nav-item">
+						<a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="false">REGISTROS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="paquetes-tab" data-toggle="tab" href="#paquetes" role="tab" aria-controls="paquetes" aria-selected="false">PAQUETES</a>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="general" role="tabpanel" aria-labelledby="general-tab">
+						<p class="disabled"><b>Nickname:</b> <span id="nicknameUsuario">NombreUsuario</span></p>
+						<p class="text-dark"><b>Nombre:</b> <span id="nombreUsuario">Nombre</span></p>
+						<p class="text-dark"><b>Apellido:</b> <span id="apellidoUsuario">Apellido</span></p>
+						<p class="disabled"><b>Correo Electrónico:</b> <span id="correoUsuario">nombreusuario@correo.com</span></p>
+						<p class="text-dark"><b>Fecha de Nacimiento:</b> <span id="nacimientoUsuario">15/05/1999</span></p>
+					</div>
+			  		<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">...</div>
+			  		<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="paquetes-tab">...</div>
+				</div>
+			</div>
+       </div>
+</div>
 
 
 	<!-- jQuery CDN - Slim version (=without AJAX) -->
