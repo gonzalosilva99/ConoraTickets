@@ -46,6 +46,32 @@ a:focus {
     margin: 40px 0;
 }
 
+
+/* MENU USER */
+#menuSuperior ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#menuSuperior ul li.active>a,
+#menuSuperior a[aria-expanded="true"] {
+    background: #e9ecef;
+}
+
+#menuSuperior a[data-toggle="collapse"] {
+    position: relative;
+}
+
+#menuSuperior .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+/* END MENU USER */
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -59,7 +85,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #148ea1;
     color: #fff;
     transition: all 0.3s;
 }
@@ -70,12 +96,12 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #117a8b;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #148ea1;
 }
 
 #sidebar ul p {
@@ -90,21 +116,21 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #148ea1;
     background: #fff;
 }
 
 #sidebar ul li.active>a,
-a[aria-expanded="true"] {
+#sidebar a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #117a8b;
 }
 
-a[data-toggle="collapse"] {
+#sidebar a[data-toggle="collapse"] {
     position: relative;
 }
 
-.dropdown-toggle::after {
+#sidebar .dropdown-toggle::after {
     display: block;
     position: absolute;
     top: 50%;
@@ -112,17 +138,17 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
-ul ul a {
+#sidebar ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #117a8b;
 }
 
-ul.CTAs {
+#sidebar ul.CTAs {
     padding: 20px;
 }
 
-ul.CTAs a {
+#sidebar ul.CTAs a {
     text-align: center;
     font-size: 0.9em !important;
     display: block;
@@ -130,14 +156,14 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-a.download {
+#sidebar a.download {
     background: #fff;
-    color: #7386D5;
+    color: #148ea1;
 }
 
-a.article,
-a.article:hover {
-    background: #6d7fcc !important;
+#sidebar a.article,
+#sidebar a.article:hover {
+    background: #117a8b !important;
     color: #fff !important;
 }
 
