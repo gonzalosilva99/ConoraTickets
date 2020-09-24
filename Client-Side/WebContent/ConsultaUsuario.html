@@ -5,19 +5,17 @@
     <link rel="icon" type="image/png" href="images/favicon/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-	
+	<link rel="stylesheet" href="style.css">
 	<!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="styles/menu.css">
-	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="styles/font-awesome/css/all.css">
+
     <!-- Font Awesome JS -->
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script> -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-<title>CoronaTickets UY - Busqueda</title>
+<title>CoronaTickets UY</title>
 </head>
 <body>
 <div class="wrapper">
@@ -76,16 +74,6 @@
                 </li>
             </ul>
 
-           <!--
-           NO LO BORRO POR LAS DUDAS, MAYBE LUEGO NOS SIRVE
-             <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                </li>
-            </ul>  -->
         </nav>
 		<!-- FIN MENU LATERAL -->
         <!-- Page Content  -->
@@ -105,7 +93,7 @@
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
-      		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
+      		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo, Función..." aria-label="Search">
       		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" type="submit"><i class="fas fa-search"></i></button>
     	</form>
     </li>
@@ -128,83 +116,30 @@
             </nav>
 	<!-- FIN MENU ARRIBA -->
 	
-	
-            <h1>Resultado de Búsqueda</h1>
+
             <div class="mb-sm-4 container-fluid"></div>
-            <div class="panel-group container-fluid">
-  				<div class="panel panel-default">
-  					<div class="panel-heading mb-sm-2">
-  						<i class="fas fa-user"></i> <b>Usuarios</b>
-  					</div>
-    				<div class="panel-body">
-    					<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/2ROOpoO" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Nombre Apellido</h4>
-						    	NombreUsuario / nombreusuario@correo.com
-						  	</div>
-						</div>
-						<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/2ROOpoO" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Nombre Apellido</h4>
-						    	NombreUsuario / nombreusuario@correo.com
-						  	</div>
-						</div>
-						<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/2ROOpoO" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Nombre Apellido</h4>
-						    	NombreUsuario / nombreusuario@correo.com
-						  	</div>
-						</div>
-						<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/2ROOpoO" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Nombre Apellido</h4>
-						    	NombreUsuario / nombreusuario@correo.com
-						  	</div>
-						</div>
-    				</div>
-  				</div>
-  				<div class="panel panel-default mt-sm-5">
-  					<div class="panel-header mb-sm-2">
-  						<i class="fas fa-theater-masks"></i> <b>Espectáculos</b>
-  					</div>
-			    	<div class="panel-body">
-			    		<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/302AhwK" id="imgperfilUsuario" class="mr-3 rounded" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Springsteen On Broadway</h4>
-						    	Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. 
-						  	</div>
-						</div>
-						<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/302AhwK" id="imgperfilUsuario" class="mr-3 rounded" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Springsteen On Broadway</h4>
-						    	Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. 
-						  	</div>
-						</div>
-						<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/302AhwK" id="imgperfilUsuario" class="mr-3 rounded" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Springsteen On Broadway</h4>
-						    	Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. 
-						  	</div>
-						</div>
-						<div class="media mb-sm-2">
-						 	<img src="https://bit.ly/302AhwK" id="imgperfilUsuario" class="mr-3 rounded" alt="img-perfil-usuario" width=64em> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario">Springsteen On Broadway</h4>
-						    	Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. 
-						  	</div>
-						</div>
-			    	</div> <!-- PANEL-BODY -->
-			  	</div> <!-- PANEL -->
-			</div> <!-- PANEL GROUP -->
-       </div> <!-- CONTENT -->
-</div> <!-- WRAPPER -->
+            <div class="row">
+	            <img src="https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/11/07/14785256260398.jpg" class="shadow mx-auto rounded-circle" width=200em>
+	        </div >
+	        <div class="row">
+	 	      	<h1 class="mx-auto" style="margin-top:0.5em"> Emma Watson </h1><br>
+	 	    </div>
+	 	    <div class="row">
+	 	      	<p class="mx-auto" id="seguidores"> 5000 seguidores - 120 seguidos</p>
+	 	    </div>
+	 	    <div class="row">
+	 	      	<button type="button" class="mx-auto btn btn-info">
+                        <i class="fas fa-user-plus"></i> Seguir
+                 </button>
+	 	      	
+	 	    </div>
+	 	    
+	 	    
+	 	      	
+
+            
+       </div>
+</div>
 
 
 	<!-- jQuery CDN - Slim version (=without AJAX) -->
