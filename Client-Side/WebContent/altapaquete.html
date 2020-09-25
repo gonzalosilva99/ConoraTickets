@@ -15,7 +15,7 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-<title>CoronaTickets UY</title>
+<title>CoronaTickets UY - Registrarse</title>
 </head>
 <body>
 <div class="wrapper">
@@ -74,6 +74,16 @@
                 </li>
             </ul>
 
+           <!--
+           NO LO BORRO POR LAS DUDAS, MAYBE LUEGO NOS SIRVE
+             <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>  -->
         </nav>
 		<!-- FIN MENU LATERAL -->
         <!-- Page Content  -->
@@ -93,7 +103,7 @@
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
-      		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo, Función..." aria-label="Search">
+      		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
       		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" type="submit"><i class="fas fa-search"></i></button>
     	</form>
     </li>
@@ -116,55 +126,77 @@
             </nav>
 	<!-- FIN MENU ARRIBA -->
 	
-
-            <div class="mb-sm-4 container-fluid"></div>
-            <div class="row">
-	            <img src="https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/11/07/14785256260398.jpg" class="shadow mx-auto rounded-circle" width=150em>
-	        </div >
-	        <div class="row">
-	 	      	<h1 class="mx-auto" style="margin-top:0.5em"> Emma Watson </h1><br>
-	 	    </div>
-	 	    <div class="row">
-	 	      	<p class="mx-auto" id="usuariocorreo">NombreUsuario / nombreusuario@correo.com</p> 
-	 	    </div>
-	 	    <div class="row">
-	 	      	<p class="mx-auto" id="seguidores"> 5000 seguidores - 120 seguidos</p>
-	 	    </div>
-	 	    <div class="row">
-	 	      	<button type="button" class="mx-auto btn btn-info">
-                        <i class="fas fa-user-plus"></i> Seguir
-                 </button>
-	 	    </div>
-	 	    
-           	<div class="container mx-auto">
-	           	<ul class="nav nav-tabs mx-auto" id="myTab" role="tablist">
-			  		<li class="nav-item">
-			  			<a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">GENERAL</a>
-			  		</li>
-					<li class="nav-item">
-						<a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="false">REGISTROS</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="paquetes-tab" data-toggle="tab" href="#paquetes" role="tab" aria-controls="paquetes" aria-selected="false">PAQUETES</a>
-					</li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="general" role="tabpanel" aria-labelledby="general-tab">
-						<p class="disabled"><b>Nickname:</b> <span id="nicknameUsuario">NombreUsuario</span></p>
-						<p class="text-dark"><b>Nombre:</b> <span id="nombreUsuario">Nombre</span></p>
-						<p class="text-dark"><b>Apellido:</b> <span id="apellidoUsuario">Apellido</span></p>
-						<p class="disabled"><b>Correo Electrónico:</b> <span id="correoUsuario">nombreusuario@correo.com</span></p>
-						<p class="text-dark"><b>Fecha de Nacimiento:</b> <span id="nacimientoUsuario">15/05/1999</span></p>
-					</div>
-			  		<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">...</div>
-			  		<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="paquetes-tab">...</div>
-				</div>
-			</div>
-	 	    
-	 	    
-	 	      	
-
+	<h1 class="text-center">Crea un Paquete de Espectáculos</h1>
             
+   	<form class="needs-validation mt-5 " novalidate>
+   	
+   	
+    <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
+      <input type="text" class="form-control" id="validationNombre" placeholder="Nombre del Paquete" required>
+      <div class="valid-feedback">
+        Bien!
+      </div>
+    </div>
+
+    <div class="form-row col-md-5  mb-4 mx-auto">
+      <textarea class="form-control row-md-3" rows=5 id="Descripcion" placeholder="Descripción"></textarea>
+    </div>
+    
+    <div class="form-row col-md-5 mx-auto">
+    	<div class="form-group col-md-8">
+    		<label for="inputFechaInicio">Fecha Inicio:</label>
+    		<input type="date" name="dateFechaInicio" placeholder="FechaInicio" class="form-control" id="validationFechaInicio" placeholder="FechaInicio" required>
+    	</div>
+    </div>
+    <div class="form-row col-md-5 mb-4 mx-auto">
+    	<div class="form-group col-md-8">
+    		<label for="inputFechaInicio">Fecha Fin:</label>
+    		<input type="date" name="dateFechaFin" placeholder="FechaFin" class="form-control" id="validationFechaFin" placeholder="FechaFin" required>
+    	</div>
+    </div>
+    
+    <div class="form-row col-md-5 mb-4 mx-auto">
+    	<div class="input-group col-md-8">
+    		<div class="input-group-prepend">
+    			<span class="input-group-text">%</span>
+    		</div>
+    		<input type="number" class="form-control" id="inputPorcentajeDescuento" placeholder="25.55" required>
+    	</div>
+    </div>
+    <div class="form-row col-md-5 mb-4 mx-auto">
+  		<input type="file" class="custom-file-input" id="customFileLang" lang="es">
+  		<label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+	</div>
+	
+	<div class="form-row col-md-5 mb-4 mx-auto">
+  		<button class="btn btn-primary" style="width: 100%;" type="submit">Crear Paquete!</button>
+   </div>
+</form>
+
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+
        </div>
 </div>
 
@@ -181,7 +213,21 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
+            $('#gridRadios2').on('change', function () {
+                $('#opcionesArtista').show();
+            });
+            
+            $('#gridRadios1').on('change', function () {
+                $('#opcionesArtista').hide();
+            });
         });
     </script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+
+});
+</script>
 </body>
 </html>
