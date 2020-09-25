@@ -112,10 +112,10 @@ public class ManejadorPlataforma {
 			}
 			return false;
 		}
-		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad {
+		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) throws Identidad {
 			Plataforma plat = Plataformas.get(nomPlat);
 			if(!ExisteEspectaculo(nomEspectaculo)) {
-				plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+				plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen);
 			}
 			else{
 				throw new Identidad("Ya Existe un Espectaculo con este Nombre");
@@ -138,10 +138,10 @@ public class ManejadorPlataforma {
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
 		}
 
-		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta) {
+		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta, String imagen) {
 			Plataforma Plat = Plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);
-			Espec.AnadirFuncion(nombre, inicio, alta);
+			Espec.AnadirFuncion(nombre, inicio, alta, imagen);
 			Fabrica fab = Controladores.Fabrica.getInstancia();
 			IUsuario iusuario = fab.getIUsuario();
 			Iterator<String> iterArtistas = artistas.iterator();

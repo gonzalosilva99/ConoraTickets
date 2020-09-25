@@ -22,8 +22,8 @@ public class Artista extends Usuario{
 		HashSet<Espectaculo> Espectaculos;
 		HashSet<Funcion> FuncionesInvitado;
 		
-		public Artista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descripcionGeneral, String biografia, String uRL) {
-			super(nickname,nombre, apellido, email,nacimiento);
+		public Artista(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena, String descripcionGeneral, String biografia, String uRL) {
+			super(nickname,nombre, apellido, email,nacimiento,imagen,contrasena);
 			DescripcionGeneral = descripcionGeneral;
 			Biografia = biografia;
 			URL = uRL;

@@ -1,13 +1,20 @@
 package Clases;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 abstract class Usuario {
 	private String Nickname;
 	private String Nombre;
 	private String Apellido;
 	private String Email;
+	private String Imagen;
+	private String Contrasena;
 	private Date Nacimiento;
+	private HashMap<String, Usuario> Seguidores;
+	private HashMap<String, Usuario> Siguiendo;
 		public String getNickname() {
 			return Nickname;
 		}
@@ -38,15 +45,33 @@ abstract class Usuario {
 		public void setNacimiento(Date nacimiento) {
 			Nacimiento = nacimiento;
 		}
-		public Usuario(String nickname, String nombre, String apellido, String email, Date nacimiento) {
+		
+		public String getImagen() {
+			return Imagen;
+		}
+		public void setImagen(String imagen) {
+			Imagen = imagen;
+		}
+		public String getContrasena() {
+			return Contrasena;
+		}
+		public void setContrasena(String contrasena) {
+			Contrasena = contrasena;
+		}
+		public Usuario(String nickname, String nombre, String apellido, String email,
+				Date nacimiento, String imagen, String contrasena) {
 			super();
 			Nickname = nickname;
 			Nombre = nombre;
 			Apellido = apellido;
 			Email = email;
+			Imagen = imagen;
+			Contrasena = contrasena;
 			Nacimiento = nacimiento;
+			Seguidores = new HashMap<String, Usuario>();
+			Siguiendo = new HashMap<String, Usuario>();
 		}
-	
+		
 		
 }
 

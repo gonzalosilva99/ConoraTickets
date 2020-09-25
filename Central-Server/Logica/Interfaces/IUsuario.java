@@ -14,8 +14,8 @@ import Clases.Espectaculo;
 import Clases.Funcion;
 import DataTypes.DtRegistro;
 public interface IUsuario {
-	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad;
-	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) throws Identidad;
+	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena, String Descripcion, String Biografia, String Link) throws Identidad;
+	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena) throws Identidad;
 	public Set<DtUsuario> listarUsuarios();
 	public Boolean EsArtista(String nickname);
 	public DtArtistaConsulta MostrarArtista(String nickname);

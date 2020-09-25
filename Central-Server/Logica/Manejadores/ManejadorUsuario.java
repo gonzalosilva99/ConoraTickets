@@ -95,7 +95,7 @@ public class ManejadorUsuario {
 			return false;
 		}
 		
-		public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad {
+		public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena, String Descripcion, String Biografia, String Link) throws Identidad {
 			if (ExisteUsuarioConNickname(Nickname)) {
 				throw new Identidad("Ya Existe un Usuario con este Nickname");
 			}
@@ -103,12 +103,12 @@ public class ManejadorUsuario {
 				throw new Identidad("Ya Existe un Usuario con este Email");
 			}	
 			else {
-				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email.toLowerCase(),Nacimiento,Descripcion,Biografia,Link);
+				Artista nuevo = new Artista(Nickname,Nombre,Apellido,Email.toLowerCase(),Nacimiento,imagen,contrasena,Descripcion,Biografia,Link);
 				Artistas.put(Nickname, nuevo);		
 			}
 		}
 		
-		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) throws Identidad{
+		public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena) throws Identidad{
 			if (ExisteUsuarioConNickname(Nickname)) {
 				throw new Identidad("Ya Existe un Usuario con este Nickname");
 			}
@@ -116,7 +116,7 @@ public class ManejadorUsuario {
 				throw new Identidad("Ya Existe un Usuario con este Email");
 			}
 			else {
-				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email.toLowerCase(),Nacimiento);
+				Espectador nuevo = new Espectador(Nickname,Nombre,Apellido,Email.toLowerCase(),Nacimiento,imagen,contrasena);
 				Espectadores.put(Nickname, nuevo);			
 			}
 		}

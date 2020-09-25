@@ -30,14 +30,14 @@ import Relaciones.RegistroFuncion;
 
 public class ControladorUsuario implements IUsuario{
 	
-	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String Descripcion, String Biografia, String Link) throws Identidad {
+	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena,  String Descripcion, String Biografia, String Link) throws Identidad {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
-		manusu.confirmarAltaArtista(Nickname,Nombre,Apellido,Email,Nacimiento,Descripcion,Biografia,Link);
+		manusu.confirmarAltaArtista(Nickname,Nombre,Apellido,Email,Nacimiento,imagen,contrasena,Descripcion,Biografia,Link);
 	}
 		
-	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento) throws Identidad{
+	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena) throws Identidad{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
-		manusu.confirmarAltaEspectador(Nickname,Nombre,Apellido,Email,Nacimiento);
+		manusu.confirmarAltaEspectador(Nickname,Nombre,Apellido,Email,Nacimiento,imagen,contrasena);
 	}
 	
 

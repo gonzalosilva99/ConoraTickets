@@ -17,13 +17,15 @@ public class Funcion {
 	private String Nombre;
 	private Date Inicio;
 	private Date Alta;
+	private String Imagen;
 	private Map<String, Artista> ArtistasInvitados;
 	private Integer Espectadores;
-		public Funcion(String nombre, Date inicio, Date alta) {
+		public Funcion(String nombre, Date inicio, Date alta, String imagen) {
 			super();
 			Nombre = nombre;
 			Inicio = inicio;
 			Alta = alta;
+			Imagen = imagen;
 			ArtistasInvitados = new HashMap<String, Artista>();
 			Espectadores = 0;
 		}
@@ -56,6 +58,13 @@ public class Funcion {
 			if(today.compareTo(Inicio) > 0)
 				return false;
 			else return true;
+		}
+		
+		public String getImagen() {
+			return Imagen;
+		}
+		public void setImagen(String imagen) {
+			Imagen = imagen;
 		}
 		
 		public Date getAlta() {

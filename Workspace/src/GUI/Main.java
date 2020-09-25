@@ -673,6 +673,22 @@ public class Main {
 		});
 		mnAltas.add(mntmCrearPaqueteDe);
 		
+		JMenuItem mntmAltaCategoria = new JMenuItem("Alta Categoria");
+		mntmAltaCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AltaCategoria crearpaqueteesp = new AltaCategoria();
+				desktopPane.add(crearpaqueteesp);
+				crearpaqueteesp.show();
+				try {
+					crearpaqueteesp.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		mnAltas.add(mntmAltaCategoria);
+		
 		JMenu mnRegistros = new JMenu("Registros");
 		menuBar.add(mnRegistros);
 		

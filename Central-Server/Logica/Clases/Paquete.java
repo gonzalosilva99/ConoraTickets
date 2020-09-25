@@ -17,18 +17,20 @@ public class Paquete {
 	private Date Inicio;
 	private Date Fin;
 	private Date Alta;
+	private String Imagen;
 	private HashMap<String, Espectaculo> Espectaculos;
 	
 	public Paquete() {
 		super();
 	}
 	private Double Descuento;
-		public Paquete(String nombre, String descripcion, Date inicio, Date fin, Double descuento, Date alta) {
+		public Paquete(String nombre, String descripcion, Date inicio, Date fin, Double descuento, Date alta,String imagen) {
 			super();
 			Nombre = nombre;
 			Descripcion = descripcion;
 			Inicio = inicio;
 			Fin = fin;
+			Imagen = imagen;
 			Descuento = descuento;
 			Alta = alta;
 			Espectaculos = new HashMap<String, Espectaculo>();
@@ -82,6 +84,19 @@ public class Paquete {
 			
 			
 		}
+		public Date getAlta() {
+			return Alta;
+		}
+		public void setAlta(Date alta) {
+			Alta = alta;
+		}
+		public String getImagen() {
+			return Imagen;
+		}
+		public void setImagen(String imagen) {
+			Imagen = imagen;
+		}
+		
 		public boolean hayEspectaculo(String nombreEsp) {
 			return Espectaculos.containsKey(nombreEsp);
 		}

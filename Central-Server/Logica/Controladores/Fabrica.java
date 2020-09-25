@@ -8,6 +8,7 @@ public class Fabrica {
 	private IUsuario InterfazUsuario;
 	private IPaquete InterfazPaquete;
 	private IPlataforma InterfazPlataforma;
+	private ICategoria InterfazCategoria;
 	private Fabrica() {
 	}
 	public static Fabrica getInstancia() {
@@ -33,5 +34,11 @@ public class Fabrica {
 			InterfazPlataforma = new ControladorPlataforma();
 		}
 		return InterfazPlataforma;
+	};
+	public ICategoria getICategoria() {
+		if (InterfazCategoria==null) {
+			InterfazCategoria = new ControladorCategoria();
+		}
+		return InterfazCategoria;
 	};
 }

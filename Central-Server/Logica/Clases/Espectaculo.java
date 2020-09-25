@@ -13,6 +13,7 @@ import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPaquete;
+import DataTypes.EstadoEspectaculo;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorPaquetes;
 
@@ -27,11 +28,14 @@ public class Espectaculo {
 	private Integer Duracion;
 	private String Descripcion;
 	private Artista Organizador;
+	private String Imagen;
+	private EstadoEspectaculo Estado;
 	private Map<String, Funcion> Funciones;
+	private Map<String, Categoria> Categorias;
 	
 	
 	
-		public Espectaculo(String nombre, Date registro, Integer costo, String uRL, Integer cantMax, Integer cantMin, Integer duracion, String descripcion) {
+		public Espectaculo(String nombre, Date registro, Integer costo, String uRL, Integer cantMax, Integer cantMin, Integer duracion, String descripcion, String imagen) {
 			super();
 			Nombre = nombre;
 			Registro = registro;
@@ -41,6 +45,7 @@ public class Espectaculo {
 			CantMin = cantMin;
 			Duracion = duracion;
 			Descripcion = descripcion;
+			Imagen = imagen;
 			Funciones = new HashMap<String,Funcion>();
 		
 		}
@@ -79,6 +84,24 @@ public class Espectaculo {
 		}
 		
 		
+		public EstadoEspectaculo getEstado() {
+			return Estado;
+		}
+		public void setEstado(EstadoEspectaculo estado) {
+			Estado = estado;
+		}
+		public String getImagen() {
+			return Imagen;
+		}
+		public void setImagen(String imagen) {
+			Imagen = imagen;
+		}
+		public Map<String, Categoria> getCategorias() {
+			return Categorias;
+		}
+		public void setCategorias(Map<String, Categoria> categorias) {
+			Categorias = categorias;
+		}
 		public Artista getOrganizador() {
 			return Organizador;
 		}
@@ -151,8 +174,8 @@ public class Espectaculo {
 			return ret;
 		
 		}
-		public void AnadirFuncion(String nombre, Date inicio, Date alta) {
-			Funcion ret = new Funcion(nombre, inicio, alta);
+		public void AnadirFuncion(String nombre, Date inicio, Date alta, String imagen) {
+			Funcion ret = new Funcion(nombre, inicio, alta, imagen);
 			Funciones.put(nombre, ret);
 		}
 		public Funcion ObtenerFuncion(String nombre) {

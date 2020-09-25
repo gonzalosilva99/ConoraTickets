@@ -52,14 +52,14 @@ public class ControladorPlataforma implements IPlataforma{
 	};
 	
 	
-	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) throws Identidad{	 
+	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) throws Identidad{	 
 			ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
-			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion);
+			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen);
 	};
 	
 	
-	public Funcion getFuncion(String nombreEspectaculo, String NomFuncion) {
-		Funcion ret = new Funcion(NomFuncion, null, null);
+	public Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen) {
+		Funcion ret = new Funcion(NomFuncion, null, null, imagen);
 		return ret;
 	};
 	public Set<DtPlataforma> listarPlataformas(){
@@ -70,9 +70,9 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarEspectaculos(nombrePlataforma);
 	}
-	public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio,Set<String> artistas, Date alta) {
+	public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio,Set<String> artistas, Date alta, String imagen) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
-		manplat.ConfirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta);
+		manplat.ConfirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta, imagen);
 	}
 	public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();	

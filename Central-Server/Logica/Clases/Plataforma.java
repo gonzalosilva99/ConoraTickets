@@ -96,8 +96,8 @@ public class Plataforma {
 			return espec.listarFunciones();
 		}
 		
-		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion) {
-			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion);
+		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) {
+			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
 			Fabrica fabric = Fabrica.getInstancia();
 			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculos.put(nomEspectaculo, nuevo);

@@ -78,9 +78,9 @@ public class ManejadorPaquetes {
 			return false;
 		}
 		
-		public void ConfirmarAltaPaquete(String NombrePaquete,String Descripcion,Date inicio,Date fin,Double Descuento, Date alta) throws Identidad{
+		public void ConfirmarAltaPaquete(String NombrePaquete,String Descripcion,Date inicio,Date fin,Double Descuento, Date alta,String imagen) throws Identidad{
 			if(!ExistePaquete(NombrePaquete)) {
-				Paquete paq = new Paquete(NombrePaquete,Descripcion,inicio,fin,Descuento, alta);
+				Paquete paq = new Paquete(NombrePaquete,Descripcion,inicio,fin,Descuento, alta,imagen);
 				Paquetes.put(NombrePaquete, paq);
 			}
 			else {
