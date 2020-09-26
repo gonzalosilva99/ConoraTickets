@@ -1,9 +1,14 @@
 package Manejadores;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import Clases.Categoria;
+import Clases.Plataforma;
+import DataTypes.DtCategoria;
+import DataTypes.DtPlataforma;
 import Clases.Categoria;
 import Excepciones.Identidad;
 
@@ -44,5 +49,18 @@ public
             }           
 		}
 		return false;
+	}
+	
+	public HashSet<DtCategoria> listarCategorias(){
+		HashSet<DtCategoria> ret = new HashSet<DtCategoria>();		
+		for (Map.Entry<String, Categoria> entry : Categorias.entrySet()) {
+            DtCategoria nueva = entry.getValue().getDtCategoria();
+            ret.add(nueva);            
+		}
+		return ret;
+	}
+	
+	public Categoria getCategoria(String nombre) {
+		return Categorias.get(nombre);
 	}
 }

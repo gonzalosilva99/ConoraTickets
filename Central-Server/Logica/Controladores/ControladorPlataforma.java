@@ -10,6 +10,7 @@ import Clases.Funcion;
 import Clases.Paquete;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
@@ -17,6 +18,7 @@ import Excepciones.Identidad;
 import Manejadores.ManejadorPaquetes;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
+import Clases.Categoria;
 import Clases.Espectaculo;
 import Clases.Plataforma;
 
@@ -52,9 +54,9 @@ public class ControladorPlataforma implements IPlataforma{
 	};
 	
 	
-	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) throws Identidad{	 
+	public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) throws Identidad{	 
 			ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
-			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen);
+			manplat.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen, categorias);
 	};
 	
 	
@@ -116,6 +118,11 @@ public class ControladorPlataforma implements IPlataforma{
 	public Boolean PuedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.PuedeAgregarEspectadores(nombrePlataforma,nombreEspectaculo,nombreFuncion);
+	}
+	
+	public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.ListarCategoriasDeEspectaculo(Plataforma,Espectaculo);
 	}
 
 }

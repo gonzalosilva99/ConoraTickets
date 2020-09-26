@@ -3,6 +3,7 @@ package GUI;
 import java.awt.EventQueue;
 import Controladores.ControladorPlataforma;
 import Controladores.ControladorUsuario;
+import Controladores.ControladorCategoria;
 import Controladores.Fabrica;
 import DataTypes.DtUsuario;
 import Excepciones.Identidad;
@@ -15,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -22,7 +24,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JTextField;
@@ -32,13 +37,17 @@ import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import Controladores.Fabrica;
+import Interfaces.ICategoria;
 import Interfaces.IPlataforma;
 import DataTypes.DtPlataforma;
 import DataTypes.DtArtista;
+import DataTypes.DtCategoria;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -48,6 +57,8 @@ public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldURL;
 	private JTextField textFieldCosto;
 	private JTextField textFieldDuracion;
+	private JTextField textFieldImagen;
+	private Set<String> CategoriasADevolver;
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +79,7 @@ public class AltaEspectaculo extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaEspectaculo() {
+		Map<Integer, DtCategoria> listCats = new HashMap<Integer, DtCategoria>();
 		setTitle("Alta de espectaculo");
 		setBounds(100, 100, 525, 550);
 		
@@ -85,6 +97,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
+		ICategoria icategoria = fabric.getICategoria();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itr = listaPlataformas.iterator();
 		while(itr.hasNext())
@@ -99,6 +112,10 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(lblPlataforma);
 		
 		Button buttonCancelar = new Button("Cancelar");
+		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -47, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, 335, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -101, SpringLayout.EAST, getContentPane());
 		buttonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -107,12 +124,10 @@ public class AltaEspectaculo extends JInternalFrame {
 		getContentPane().add(buttonCancelar);
 		
 		Button buttonAceptar = new Button("Aceptar");
-		
-		springLayout.putConstraint(SpringLayout.NORTH, buttonCancelar, -37, SpringLayout.SOUTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.WEST, buttonCancelar, -85, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, 0, SpringLayout.SOUTH, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
-		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 0, SpringLayout.NORTH, buttonCancelar);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, 6, SpringLayout.EAST, buttonCancelar);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar, 37, SpringLayout.NORTH, buttonCancelar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar);
 		
 		JLabel lblArtista = new JLabel("Artista:");
@@ -142,11 +157,8 @@ public class AltaEspectaculo extends JInternalFrame {
 			}
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar, 19, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar, -85, SpringLayout.EAST, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -66, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, 0, SpringLayout.EAST, panel);
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 21, SpringLayout.SOUTH, comboBoxArtista);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -53, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, panel, -422, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
@@ -187,6 +199,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		textFieldDescripcion = new JTextPane();
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldDescripcion, 13, SpringLayout.SOUTH, textFieldNombre);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldDescripcion, 16, SpringLayout.EAST, lblDescripcion);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescripcion, 10, SpringLayout.SOUTH, lblDescripcion);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldDescripcion, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldDescripcion);
 		//textFieldDescripcion.setCo
@@ -207,7 +220,6 @@ public class AltaEspectaculo extends JInternalFrame {
 			}
 		});
 		sl_panel.putConstraint(SpringLayout.NORTH, textFieldEspectMin, 137, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldDescripcion, -12, SpringLayout.NORTH, textFieldEspectMin);
 		sl_panel.putConstraint(SpringLayout.WEST, textFieldEspectMin, 16, SpringLayout.EAST, lblEspectMin);
 		sl_panel.putConstraint(SpringLayout.EAST, textFieldEspectMin, -141, SpringLayout.EAST, panel);
 		panel.add(textFieldEspectMin);
@@ -318,7 +330,77 @@ public class AltaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, dateChooser, 34, SpringLayout.SOUTH, textFieldCosto);
 		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, textFieldNombre);
 		panel.add(dateChooser);
+		
+		JLabel lblImagen = new JLabel("Imagen(opc):");
+		sl_panel.putConstraint(SpringLayout.WEST, lblImagen, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblImagen, -17, SpringLayout.NORTH, lblEspectMin);
+		sl_panel.putConstraint(SpringLayout.EAST, lblImagen, 0, SpringLayout.EAST, lblNombre);
+		panel.add(lblImagen);
+		
+		textFieldImagen = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldImagen, -2, SpringLayout.NORTH, lblImagen);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldImagen, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldImagen, 0, SpringLayout.EAST, textFieldNombre);
+		textFieldImagen.setColumns(10);
+		panel.add(textFieldImagen);
+		
+		JLabel lblCategorias = new JLabel("Categorias:");
+		sl_panel.putConstraint(SpringLayout.WEST, lblCategorias, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblCategorias, -10, SpringLayout.SOUTH, panel);
+		panel.add(lblCategorias);
+		JList list = new JList();
+		JScrollPane scrollPane = new JScrollPane();
+		sl_panel.putConstraint(SpringLayout.NORTH, scrollPane, 8, SpringLayout.SOUTH, textFieldDuracion);
+		sl_panel.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, scrollPane, 10, SpringLayout.SOUTH, lblCategorias);
+		sl_panel.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, textFieldNombre);
+		panel.add(scrollPane);
+		scrollPane.setViewportView(list);
+		
+		Button buttonAnadir = new Button("+");
+		scrollPane.setViewportView(list);
+		
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonAnadir, 346, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, buttonAnadir, 12, SpringLayout.EAST, scrollPane);
+		sl_panel.putConstraint(SpringLayout.SOUTH, buttonAnadir, 369, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonAnadir, -105, SpringLayout.EAST, panel);
+		panel.add(buttonAnadir);
+		
+		Button buttonQuitar = new Button("-");
+		
+		sl_panel.putConstraint(SpringLayout.NORTH, buttonQuitar, 346, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, buttonQuitar, 6, SpringLayout.EAST, buttonAnadir);
+		sl_panel.putConstraint(SpringLayout.SOUTH, buttonQuitar, 0, SpringLayout.SOUTH, scrollPane);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonQuitar, -75, SpringLayout.EAST, panel);
+		panel.add(buttonQuitar);
+		
+		JLabel CategoriasSeleccionadas = new JLabel("");
+		sl_panel.putConstraint(SpringLayout.WEST, CategoriasSeleccionadas, 22, SpringLayout.EAST, textFieldDuracion);
+		sl_panel.putConstraint(SpringLayout.SOUTH, CategoriasSeleccionadas, 0, SpringLayout.SOUTH, lblDuracion);
+		panel.add(CategoriasSeleccionadas);
 		dateChooser.getDateEditor().setEnabled(false);
+		
+		
+		CategoriasADevolver = new HashSet<String>();
+		Set<Integer> IndicesCategorias = new HashSet<Integer>();
+		
+		CategoriasADevolver.clear();
+		IndicesCategorias.clear();
+		CategoriasSeleccionadas.setText("");
+		DefaultListModel listaCategorias = new DefaultListModel();
+		HashSet<DtCategoria> listCatAux = icategoria.listarCategorias();
+		if(listCatAux!=null) {
+		Iterator<DtCategoria> iterCategoria = listCatAux.iterator();
+		listaCategorias.addElement(" ");
+		for(Integer i=1; iterCategoria.hasNext();i++) {
+			DtCategoria DtCategoriaAux = iterCategoria.next();
+			listCats.put(i, DtCategoriaAux);
+			listaCategorias.addElement(i + ", " + DtCategoriaAux.getNomCategoria() );
+		}
+		list.setModel(listaCategorias);
+		scrollPane.setViewportView(list);
+		}
+		
 		
 		buttonAceptar.addActionListener(new ActionListener() {
 			
@@ -326,6 +408,8 @@ public class AltaEspectaculo extends JInternalFrame {
 		        return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("")==false);
 		    }
 
+			
+			
 			
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -347,8 +431,10 @@ public class AltaEspectaculo extends JInternalFrame {
 					iplataform.altaEspectaculo( comboBoxPlataforma.getSelectedItem().toString(),nick[0] , 
 							textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText().trim(),
-							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate(), Integer.valueOf( textFieldDuracion.getText() )); 
-							JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
+							Integer.valueOf( textFieldCosto.getText() ), dateChooser.getDate(), Integer.valueOf( textFieldDuracion.getText() ),textFieldImagen.getText(),CategoriasADevolver); 
+							
+					
+					JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
 							textFieldNombre.setText("");
 							textFieldDescripcion.setText("");
 							textFieldEspectMin.setText("");
@@ -363,6 +449,8 @@ public class AltaEspectaculo extends JInternalFrame {
 				}
 			}
 		});
+		
+		
 
 		
 		comboBoxPlataforma.addActionListener(new ActionListener() {
@@ -370,7 +458,48 @@ public class AltaEspectaculo extends JInternalFrame {
 				
 			}
 		});
-
+		
+		
+		buttonAnadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(list.getSelectedIndex()!=0 & !(IndicesCategorias.contains(list.getSelectedIndex()))){
+					IndicesCategorias.add(list.getSelectedIndex());
+					CategoriasADevolver.add(listCats.get(list.getSelectedIndex()).getNomCategoria());
+					Iterator<Integer> iterArtistasString = IndicesCategorias.iterator();
+					CategoriasSeleccionadas.setText("");
+					while(iterArtistasString.hasNext()) {
+						if(CategoriasSeleccionadas.getText()=="") {
+							CategoriasSeleccionadas.setText(iterArtistasString.next().toString());
+						}
+						else {
+							CategoriasSeleccionadas.setText(iterArtistasString.next().toString() + ", " + CategoriasSeleccionadas.getText());
+						}
+					}
+				}
+			}
+		});
+		
+		buttonQuitar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(list.getSelectedIndex()!=0 & (IndicesCategorias.contains(list.getSelectedIndex()))){
+					
+					CategoriasADevolver.remove(listCats.get(list.getSelectedIndex()).getNomCategoria());
+					IndicesCategorias.remove(list.getSelectedIndex());
+					Iterator<Integer> iterArtistasString = IndicesCategorias.iterator();
+					CategoriasSeleccionadas.setText("");
+					while(iterArtistasString.hasNext()) {
+						if(CategoriasSeleccionadas.getText()=="") {
+							CategoriasSeleccionadas.setText(iterArtistasString.next().toString());
+						}
+						else {
+							CategoriasSeleccionadas.setText(iterArtistasString.next().toString() + ", " + CategoriasSeleccionadas.getText());
+						}
+					}
+				}
+				
+			}
+		});
+		
 	}
 }
 

@@ -2,7 +2,9 @@ package Interfaces;
 
 import java.util.Set;
 import java.util.Date;
+import java.util.HashSet;
 
+import DataTypes.DtCategoria;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
 import Excepciones.Identidad;
@@ -16,4 +18,5 @@ public interface IPaquete {
 	public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, Double Descuento, Date alta,String imagen) throws Identidad;
 	public DtPaqueteDatos getPaqueteDatos(String nombrePaquete);
 	public DtPaquete getDtPaquete(String nombrePaquete);
+	public HashSet<DtCategoria> ListarCategorias(String Paquete);
 }

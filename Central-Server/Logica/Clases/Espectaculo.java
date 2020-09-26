@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import DataTypes.DtArtista;
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
@@ -31,7 +33,7 @@ public class Espectaculo {
 	private String Imagen;
 	private EstadoEspectaculo Estado;
 	private Map<String, Funcion> Funciones;
-	private Map<String, Categoria> Categorias;
+	private HashSet<Categoria> Categorias;
 	
 	
 	
@@ -47,7 +49,8 @@ public class Espectaculo {
 			Descripcion = descripcion;
 			Imagen = imagen;
 			Funciones = new HashMap<String,Funcion>();
-		
+			Estado = EstadoEspectaculo.Ingresado;
+			Categorias = new HashSet<Categoria>();
 		}
 		public String getNombre() {
 			return Nombre;
@@ -96,10 +99,11 @@ public class Espectaculo {
 		public void setImagen(String imagen) {
 			Imagen = imagen;
 		}
-		public Map<String, Categoria> getCategorias() {
+
+		public Set<Categoria> getCategorias() {
 			return Categorias;
 		}
-		public void setCategorias(Map<String, Categoria> categorias) {
+		public void setCategorias(HashSet<Categoria> categorias) {
 			Categorias = categorias;
 		}
 		public Artista getOrganizador() {
@@ -125,16 +129,7 @@ public class Espectaculo {
 			return ret;
 		}
 		 
-		public Set<DtFuncion> listarFunciones(){
-			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
-			if ( Funciones != null) {
-				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
-					DtFuncion nueva = entry.getValue().getDtFuncion();
-					ret.add(nueva);
-				}
-			}
-			return ret;
-		}
+		
 		
 		public void setCantMin(Integer cantMin) {
 			CantMin = cantMin;
@@ -161,6 +156,7 @@ public class Espectaculo {
 		public DtFuncionDatos getDtFuncionDatos(String nombreFuncion){
 			return Funciones.get(nombreFuncion).getDtFuncionDatos(this.getDatosEspectaculo());
 		}
+		
 		
 		public DtFuncionDatos mostrarFuncion(String NombreFun) {
 			Funcion fun = Funciones.get(NombreFun);
@@ -202,6 +198,30 @@ public class Espectaculo {
 			return (espec<CantMax);
 		}
 		
+		public void AnadirCategoria(Categoria c) {
+			Categorias.add(c);
+		}
+		
+		public HashSet<DtCategoria> listarCategorias() {
+			HashSet<DtCategoria> ret = new HashSet<DtCategoria>();
+			Iterator<Categoria> iter = Categorias.iterator();
+			while(iter.hasNext()) {
+				DtCategoria nueva = iter.next().getDtCategoria();
+				ret.add(nueva);
+			}
+			return ret;
+		}
+		
+		public Set<DtFuncion> listarFunciones(){
+			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
+			if ( Funciones != null) {
+				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+					DtFuncion nueva = entry.getValue().getDtFuncion();
+					ret.add(nueva);
+				}
+			}
+			return ret;
+		}
 }
 
 

@@ -2,6 +2,7 @@ package Clases;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import Manejadores.ManejadorPaquetes;
 
 import javax.swing.JOptionPane;
 
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
@@ -17,6 +19,7 @@ import DataTypes.DtPlataforma;
 import DataTypes.DtEspectaculo;
 import Controladores.Fabrica;
 import Interfaces.IUsuario;
+import Interfaces.ICategoria;
 
 public class Plataforma {
 	private String Nombre;
@@ -96,10 +99,20 @@ public class Plataforma {
 			return espec.listarFunciones();
 		}
 		
-		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) {
-			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
-			Fabrica fabric = Fabrica.getInstancia();
+		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) {
+			Fabrica fabric = Controladores.Fabrica.getInstancia();
+			ICategoria icat = fabric.getICategoria();
 			IUsuario iusuario = fabric.getIUsuario();
+			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
+			
+			if(categorias!=null) {
+			Iterator<String> itercat = categorias.iterator();
+			while(itercat.hasNext()) {
+				Categoria aux = icat.getCategoria(itercat.next());
+				nuevo.AnadirCategoria(aux);
+				aux.anadirEspectaculo(nuevo);
+			}
+			}
 			Espectaculos.put(nomEspectaculo, nuevo);
 			iusuario.RelacionarArtistaEspectaculo(nickArtista,nuevo);
 		}
@@ -171,6 +184,13 @@ public class Plataforma {
 			Espectaculo espec = Espectaculos.get(nombreEspectaculo);
 			return espec.PuedeAgregarEspectadores(nombreFuncion);
 		}
+		
+		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Espectaculo) {
+			Espectaculo espec = Espectaculos.get(Espectaculo);
+			return espec.listarCategorias();
+		}
+		
+		
 }
 		
 

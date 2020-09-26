@@ -29,8 +29,8 @@ public class TestCompraPaquete {
 	public void test() {
 		try {	
 			//CompraPaquete
-			Espectador espectador = new Espectador(null,null,null,null,null);
-			Paquete paquete = new Paquete(null,null,null,null,null,null);
+			Espectador espectador = new Espectador(null,null,null,null,null, "", "");
+			Paquete paquete = new Paquete(null,null,null,null,null,null, "");
 			CompraPaquete comprapaquete = new CompraPaquete(null,null,null);
 			comprapaquete.TieneEspectaculo("");
 			DtFuncionDatos dtfuncion = new DtFuncionDatos();

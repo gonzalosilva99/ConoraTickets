@@ -30,6 +30,7 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescuento;
 	private JTextPane textFieldDescripcion;
+	private JTextField textFieldImagen;
 	/**
 	 * Launch the application.
 	 */
@@ -153,7 +154,7 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 				if(dateChooserInicio.getDate().after(dateChooserFin.getDate()))
 					throw new CheckDatos("Fecha de inicio posterior a la de fin de vigencia");
 				IPaquete ipaq = fabric.getIPaquete();
-				ipaq.ConfirmarAltaPaquete(textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(), dateChooserInicio.getDate(), dateChooserFin.getDate(), Double.valueOf( textFieldDescuento.getText()), Calendar.getInstance().getTime());
+				ipaq.ConfirmarAltaPaquete(textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(), dateChooserInicio.getDate(), dateChooserFin.getDate(), Double.valueOf( textFieldDescuento.getText()), Calendar.getInstance().getTime(), textFieldImagen.getText());
 				JOptionPane.showMessageDialog(null, "Paquete agregado con exito");
 				textFieldNombre.setText("");
 				textFieldDescripcion.setText("");
@@ -183,6 +184,20 @@ public class CrearPaqueteDeEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
 		getContentPane().add(buttonCancelar);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Imagen:");
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2_1, 0, SpringLayout.WEST, lblNombre);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_2_1, 0, SpringLayout.EAST, lblNombre);
+		getContentPane().add(lblNewLabel_2_1);
+		
+		textFieldImagen = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldImagen, 14, SpringLayout.SOUTH, textFieldDescuento);
+		springLayout.putConstraint(SpringLayout.SOUTH, textFieldImagen, -177, SpringLayout.NORTH, buttonCancelar);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2_1, 5, SpringLayout.NORTH, textFieldImagen);
+		springLayout.putConstraint(SpringLayout.WEST, textFieldImagen, 0, SpringLayout.WEST, textFieldNombre);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldImagen, 0, SpringLayout.EAST, textFieldNombre);
+		textFieldImagen.setColumns(10);
+		getContentPane().add(textFieldImagen);
 
 	}
 }

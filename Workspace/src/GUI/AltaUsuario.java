@@ -38,6 +38,8 @@ public class AltaUsuario extends JInternalFrame {
 	private JTextField textFieldEmail;
 	private JTextField textFieldLink;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField textFieldContrasena;
+	private JTextField textFieldImagen;
 
 	/**
 	 * Launch the application.
@@ -96,12 +98,13 @@ public class AltaUsuario extends JInternalFrame {
 		
 		JLabel lblNacimiento = new JLabel("Nacimiento: ");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNacimiento, 8, SpringLayout.NORTH, lblNickname);
-		springLayout.putConstraint(SpringLayout.EAST, lblNacimiento, -168, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblNacimiento, -175, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblNacimiento);
 		
 		JDateChooser dateChooser = new JDateChooser();
 		springLayout.putConstraint(SpringLayout.NORTH, dateChooser, 5, SpringLayout.NORTH, lblNickname);
-		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 6, SpringLayout.EAST, lblNacimiento);
+		springLayout.putConstraint(SpringLayout.WEST, dateChooser, 13, SpringLayout.EAST, lblNacimiento);
+		springLayout.putConstraint(SpringLayout.EAST, dateChooser, -16, SpringLayout.EAST, getContentPane());
 		BorderLayout borderLayout = (BorderLayout) dateChooser.getLayout();
 		dateChooser.setToolTipText("");
 		dateChooser.getDateEditor().setEnabled(false);
@@ -116,7 +119,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textFieldNombre);
 		
 		textFieldNickname = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, lblNacimiento, 13, SpringLayout.EAST, textFieldNickname);
+		springLayout.putConstraint(SpringLayout.WEST, lblNacimiento, 6, SpringLayout.EAST, textFieldNickname);
 		springLayout.putConstraint(SpringLayout.WEST, textFieldNickname, 6, SpringLayout.EAST, lblNickname);
 		springLayout.putConstraint(SpringLayout.EAST, textFieldNickname, -261, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, textFieldNickname, 5, SpringLayout.NORTH, lblNickname);
@@ -153,7 +156,6 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(rdbtnArtista);
 		
 		Panel panel = new Panel();
-		springLayout.putConstraint(SpringLayout.EAST, dateChooser, 0, SpringLayout.EAST, panel);
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, rdbtnEspectador);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, 253, SpringLayout.SOUTH, rdbtnEspectador);
 		panel.setVisible(false);
@@ -235,7 +237,7 @@ public class AltaUsuario extends JInternalFrame {
 							throw new CheckDatos("El Nickname no debe contener espacios");
 						}
 						
-						iusuario.confirmarAltaArtista(textFieldNickname.getText().trim(), textFieldNombre.getText().trim(), textFieldApellido.getText().trim(), textFieldEmail.getText().trim(), dateChooser.getDate(), textPaneDescGeneral.getText().trim(), textPaneBiografia.getText().trim(), textFieldLink.getText().trim());
+						iusuario.confirmarAltaArtista(textFieldNickname.getText().trim(), textFieldNombre.getText().trim(), textFieldApellido.getText().trim(), textFieldEmail.getText().trim(), dateChooser.getDate(),textFieldImagen.getText().trim(),textFieldContrasena.getText().trim(), textPaneDescGeneral.getText().trim(), textPaneBiografia.getText().trim(), textFieldLink.getText().trim());
 						textPaneDescGeneral.setText("");
 						textPaneBiografia.setText("");
 						textFieldLink.setText("");
@@ -245,7 +247,7 @@ public class AltaUsuario extends JInternalFrame {
 						if(textFieldNickname.getText().indexOf(" ")>-1) {
 							throw new CheckDatos("El Nickname no debe contener espacios");
 						}
-						iusuario.confirmarAltaEspectador(textFieldNickname.getText().trim(), textFieldNombre.getText().trim(), textFieldApellido.getText().trim(), textFieldEmail.getText().trim(), dateChooser.getDate());
+						iusuario.confirmarAltaEspectador(textFieldNickname.getText().trim(), textFieldNombre.getText().trim(), textFieldApellido.getText().trim(), textFieldEmail.getText().trim(), dateChooser.getDate(),textFieldImagen.getText().trim(),textFieldContrasena.getText().trim());
 					}
 					textFieldNickname.setText("");
 					textFieldNombre.setText("");
@@ -283,6 +285,32 @@ public class AltaUsuario extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonCancelar, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, buttonCancelar, -6, SpringLayout.WEST, buttonAceptar);
 		getContentPane().add(buttonCancelar);
+		
+		textFieldContrasena = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldContrasena, 6, SpringLayout.NORTH, lblNombre);
+		springLayout.putConstraint(SpringLayout.WEST, textFieldContrasena, 0, SpringLayout.WEST, dateChooser);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldContrasena, 0, SpringLayout.EAST, dateChooser);
+		textFieldContrasena.setColumns(10);
+		getContentPane().add(textFieldContrasena);
+		
+		textFieldImagen = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textFieldImagen, 6, SpringLayout.NORTH, lblApellido);
+		springLayout.putConstraint(SpringLayout.WEST, textFieldImagen, 0, SpringLayout.WEST, dateChooser);
+		springLayout.putConstraint(SpringLayout.EAST, textFieldImagen, 0, SpringLayout.EAST, dateChooser);
+		textFieldImagen.setColumns(10);
+		getContentPane().add(textFieldImagen);
+		
+		JLabel lblContrasena = new JLabel("Contras: ");
+		springLayout.putConstraint(SpringLayout.NORTH, lblContrasena, 8, SpringLayout.NORTH, lblNombre);
+		springLayout.putConstraint(SpringLayout.WEST, lblContrasena, 0, SpringLayout.WEST, lblNacimiento);
+		springLayout.putConstraint(SpringLayout.EAST, lblContrasena, -6, SpringLayout.WEST, textFieldContrasena);
+		getContentPane().add(lblContrasena);
+		
+		JLabel lblImagen = new JLabel("Imagen: ");
+		springLayout.putConstraint(SpringLayout.NORTH, lblImagen, 8, SpringLayout.NORTH, lblApellido);
+		springLayout.putConstraint(SpringLayout.WEST, lblImagen, 0, SpringLayout.WEST, lblNacimiento);
+		springLayout.putConstraint(SpringLayout.EAST, lblImagen, -1, SpringLayout.WEST, textFieldImagen);
+		getContentPane().add(lblImagen);
 		
 		
 

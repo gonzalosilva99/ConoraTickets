@@ -52,6 +52,7 @@ import java.awt.event.ItemEvent;
 
 public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
+	private JTextField textFieldImagen;
 
 	/**
 	 * Launch the application.
@@ -246,6 +247,15 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		JList list = new JList();
 		scrollPane.setViewportView(list);
+		
+		JLabel lblImagen = new JLabel("Imagen:");
+		lblImagen.setBounds(10, 321, 106, 34);
+		panel.add(lblImagen);
+		
+		textFieldImagen = new JTextField();
+		textFieldImagen.setColumns(10);
+		textFieldImagen.setBounds(122, 325, 175, 28);
+		panel.add(textFieldImagen);
 		Map<Integer, DtArtista> listArts = new HashMap<Integer, DtArtista>();
 		
 		comboBoxEspectaculo.addItemListener(new ItemListener() {
@@ -345,7 +355,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 					formatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Date FechaInicio = formatoInicio.parse(dateInicio);
 					Date FechaAlta = Calendar.getInstance().getTime();
-					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText().trim(), FechaInicio, ArtistasADevolver, FechaAlta);
+					iplataforma.ConfirmarAltaFuncionEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculo.getSelectedItem().toString(), textFieldNombre.getText().trim(), FechaInicio, ArtistasADevolver, FechaAlta, "");
 					JOptionPane.showMessageDialog(null, "Funcion creada con Exito");
 					dispose();
 					/**textFieldNombre.setText("");

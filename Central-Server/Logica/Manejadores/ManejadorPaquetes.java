@@ -4,6 +4,7 @@ import java.util.*;
 import Clases.Espectador;
 import Clases.Paquete;
 import Clases.Plataforma;
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectador;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
@@ -94,6 +95,11 @@ public class ManejadorPaquetes {
 		public DtPaquete getDtPaquete(String nombrePaquete) {
 			Paquete paquete = Paquetes.get(nombrePaquete);
 			return paquete.getDtPaquete();
+		}
+		
+		public HashSet<DtCategoria> ListarCategorias(String Paquete){
+			Paquete paquete = Paquetes.get(Paquete);
+			return paquete.ListarCategorias();
 		}
 		
 		

@@ -11,11 +11,13 @@ import DataTypes.DtPlataforma;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPaquete;
+import DataTypes.DtCategoria;
 import DataTypes.DtPaqueteDatos;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
+import Interfaces.ICategoria;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -41,6 +43,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JTextField textFieldFechaAlta;
 	private DtEspectaculoDatos datosEspectaculo;
 	private DtPaquete datosPaquete;
+	private DtCategoria datosCategoria;
 	private JComboBox comboBoxPlataforma;
 	private JComboBox comboBoxEspectaculos;
 	private JComboBox comboBoxFunciones;
@@ -50,6 +53,8 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	private JLabel lblEspectaculos;
 	private Button buttonAceptar;
 	private JTextField textFieldOrganizador;
+	private JLabel lblCategorias;
+	private JComboBox comboBoxCategorias;
 
 	public void setDatosEspectaculo(DtEspectaculoDatos dtespectaculo) {
 		datosEspectaculo = dtespectaculo;
@@ -80,6 +85,16 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		{
 			datosPaquete = itrp.next();
 			comboBoxPaquetes.addItem(datosPaquete.getNombre());
+		}
+		
+		Set<DtCategoria> listaCategorias= iplataforma.ListarCategoriasDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+		Iterator<DtCategoria> itrc = listaCategorias.iterator();
+		
+		comboBoxCategorias.removeAllItems();
+		while(itrc.hasNext())
+		{
+			datosCategoria = itrc.next();
+			comboBoxCategorias.addItem(datosCategoria.getNomCategoria());
 		}
 		buttonAceptar.setVisible(false);
 		lblPlataforma.setVisible(false);
@@ -169,6 +184,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		getContentPane().add(comboBoxPlataforma);
 		Fabrica fabric = Fabrica.getInstancia();
 		IPlataforma iplataforma = fabric.getIPlataforma();
+		ICategoria icategoria = fabric.getICategoria();
 		Set<DtPlataforma> listaPlataformas = iplataforma.listarPlataformas();
 		Iterator<DtPlataforma> itrp = listaPlataformas.iterator();
 		while(itrp.hasNext())
@@ -381,6 +397,19 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblArtista, -6, SpringLayout.NORTH, lblNombre);
 		sl_panel.putConstraint(SpringLayout.EAST, lblArtista, 0, SpringLayout.EAST, lblDescripcion);
 		panel.add(lblArtista);
+		
+		lblCategorias = new JLabel("Categorias:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblCategorias, 6, SpringLayout.SOUTH, lblFunciones);
+		sl_panel.putConstraint(SpringLayout.WEST, lblCategorias, 0, SpringLayout.WEST, lblNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblCategorias, -6, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblCategorias, 0, SpringLayout.EAST, lblDescripcion);
+		panel.add(lblCategorias);
+		
+		comboBoxCategorias = new JComboBox();
+		sl_panel.putConstraint(SpringLayout.WEST, comboBoxCategorias, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBoxCategorias, 0, SpringLayout.SOUTH, lblCategorias);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBoxCategorias, 0, SpringLayout.EAST, textFieldNombre);
+		panel.add(comboBoxCategorias);
 		springLayout.putConstraint(SpringLayout.EAST, comboBoxEspectaculos, 0, SpringLayout.EAST, comboBoxPlataforma);
 		getContentPane().add(comboBoxEspectaculos);
 		comboBoxEspectaculos.setVisible(false);
@@ -452,6 +481,16 @@ public class ConsultaEspectaculo extends JInternalFrame {
 					{
 						datosPaquete = itrp.next();
 						comboBoxPaquetes.addItem(datosPaquete.getNombre());
+					}
+					
+					Set<DtCategoria> listaCategorias= iplataforma.ListarCategoriasDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+					Iterator<DtCategoria> itrc = listaCategorias.iterator();
+					
+					comboBoxCategorias.removeAllItems();
+					while(itrc.hasNext())
+					{
+						datosCategoria = itrc.next();
+						comboBoxCategorias.addItem(datosCategoria.getNomCategoria());
 					}
 				}
 			} 

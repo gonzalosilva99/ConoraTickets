@@ -2,6 +2,7 @@ package Manejadores;
 import Clases.Plataforma;
 import Controladores.Fabrica;
 import Clases.Artista;
+import Clases.Categoria;
 import Clases.Espectaculo;
 import Clases.Espectador;
 import Clases.Funcion;
@@ -66,6 +67,10 @@ public class ManejadorPlataforma {
 			return plat.listarEspectaculosDePlataforma();
 		}
 		
+		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
+			Plataforma plat = Plataformas.get(Plataforma);
+			return plat.ListarCategoriasDeEspectaculo(Espectaculo);
+		}
 		
 		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
 			Plataforma plat = Plataformas.get(NombrePlat);
@@ -112,10 +117,10 @@ public class ManejadorPlataforma {
 			}
 			return false;
 		}
-		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) throws Identidad {
+		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) throws Identidad {
 			Plataforma plat = Plataformas.get(nomPlat);
 			if(!ExisteEspectaculo(nomEspectaculo)) {
-				plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen);
+				plat.altaEspectaculo(nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen, categorias);
 			}
 			else{
 				throw new Identidad("Ya Existe un Espectaculo con este Nombre");
@@ -211,6 +216,7 @@ public class ManejadorPlataforma {
 			Plataforma plat = Plataformas.get(nombrePlataforma);
 			return plat.PuedeAgregarEspectadores(nombreEspectaculo,nombreFuncion);
 		}
+		
 
 }
 

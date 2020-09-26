@@ -3,9 +3,12 @@ package Clases;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 import DataTypes.DtPaqueteDatos;
 import DataTypes.DtEspectaculoDatos;
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtPaquete;
 import Manejadores.ManejadorPaquetes;
@@ -110,6 +113,36 @@ public class Paquete {
 				esp.add(nuevo);
 			}
 			DtPaqueteDatos ret = new DtPaqueteDatos(Nombre, Descripcion, Inicio, Fin, Descuento,esp); 
+			return ret;
+		}
+		
+		public boolean PerteneceDtCategoria(DtCategoria a, HashSet<DtCategoria> ret) {
+			boolean r = false;
+			Iterator<DtCategoria> iter = ret.iterator();
+			while(iter.hasNext()){
+				if(iter.next().getNomCategoria().equals(a.getNomCategoria())) {
+					r = true;
+					break;
+				}
+			}
+			return r;
+		}
+		
+		public HashSet<DtCategoria> ListarCategorias(){
+			HashSet<DtCategoria> ret = new HashSet<DtCategoria>();
+			
+			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				
+				HashSet<DtCategoria> nueva = entry.getValue().listarCategorias();
+				Iterator<DtCategoria> iter = nueva.iterator();
+				while(iter.hasNext()){
+					DtCategoria a = iter.next();
+					if(!PerteneceDtCategoria(a, ret)) {
+						ret.add(a);
+					}
+					
+				}
+			}
 			return ret;
 		}
 } 

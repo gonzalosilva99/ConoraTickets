@@ -113,27 +113,27 @@ public class Main {
 						Date fechaNac;
 						// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
 						fechaNac = formato.parse("31/12/1971");
-						iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac);
+						iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, "", "");
 						fechaNac = formato.parse("15/11/1983");
-						iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac);
+						iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, "", "");
 						fechaNac = formato.parse("15/4/1990");
-						iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac);
+						iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac, "", "");
 						fechaNac = formato.parse("15/5/1959");
-						iusuario.confirmarAltaEspectador("house", "Gregory", "House", "greghouse@gmail.com", fechaNac);
+						iusuario.confirmarAltaEspectador("house", "Gregory", "House", "greghouse@gmail.com", fechaNac, "", "");
 						fechaNac = formato.parse("28/01/1950");
-						iusuario.confirmarAltaEspectador("sergiop", "Sergio", "Puglia", "puglia@alpanpan.com.uy", fechaNac);
+						iusuario.confirmarAltaEspectador("sergiop", "Sergio", "Puglia", "puglia@alpanpan.com.uy", fechaNac, "", "");
 						fechaNac = formato.parse("17/03/1976");
-						iusuario.confirmarAltaEspectador("chino", "Alvaro", "Recoba", "chino@trico.com.uy", fechaNac);
+						iusuario.confirmarAltaEspectador("chino", "Alvaro", "Recoba", "chino@trico.com.uy", fechaNac, "", "");
 						fechaNac = formato.parse("14/02/1955");
-						iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac);
+						iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac, "", "");
 						fechaNac = formato.parse("23/02/1927");
-						iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac);
+						iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, "", "");
 						fechaNac = formato.parse("08/05/1937");
-						iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac);
+						iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, "", "");
 						
 						//Cargar Artista
 						fechaNac = formato.parse("1/1/1977");
-						iusuario.confirmarAltaArtista("vpeople", "Village" , "People" , "vpeople@tuta.io" , fechaNac, "Village People es una innovadora formación musical\n" + 
+						iusuario.confirmarAltaArtista("vpeople", "Village" , "People" , "vpeople@tuta.io" , fechaNac, "", "", "Village People es una innovadora formación musical\n" + 
 								"de estilo disco de finales de los años 70. Fue famosa\n" + 
 								"tanto por sus peculiares disfraces, como por sus\n" + 
 								"canciones pegadizas, con letras sugerentes y llenas de\n" + 
@@ -145,14 +145,14 @@ public class Main {
 										"noche y notó al bailarín Felipe Rose\n" + 
 										"vestido como un nativo americano.", "http://www.officialvillag/");
 						fechaNac = formato.parse("14/6/1980");
-						iusuario.confirmarAltaArtista("dmode", "Depeche" , "Mode" , "dmode@tuta.io" , fechaNac, "Depeche Mode es un grupo inglés de música\n" + 
+						iusuario.confirmarAltaArtista("dmode", "Depeche" , "Mode" , "dmode@tuta.io" , fechaNac, "", "", "Depeche Mode es un grupo inglés de música\n" + 
 								"electrónica formado en Basildon, Essex, en 1980 por\n" + 
 								"Vicent Clarke y Andrew John Fletcher, a los que se\n" + 
 								"unieron Martin Lee Gore y poco después David Gahan.\n" + 
 								"Actualmente se le considera como grupo de música\n" + 
 								"alternativa." , "", "http://www.depechemod/");
 						fechaNac = formato.parse("22/6/1953");
-						iusuario.confirmarAltaArtista("clauper", "Cyndi" , "Lauper" , "clauper@hotmail.com" , fechaNac, "Cynthia Ann Stephanie Lauper, conocida simplemente\n" + 
+						iusuario.confirmarAltaArtista("clauper", "Cyndi" , "Lauper" , "clauper@hotmail.com" , fechaNac, "", "", "Cynthia Ann Stephanie Lauper, conocida simplemente\n" + 
 								"como Cyndi Lauper, es una cantautora, actriz y\n" + 
 								"empresaria estadounidense. Después de participar en\n" + 
 								"el grupo musical, Blue Angel, en 1983 firmó con\n" + 
@@ -164,33 +164,33 @@ public class Main {
 										"(Brooklyn, Nueva York; 22 de junio\n" + 
 										"de 1953). ", "cyndilauper.com");
 						fechaNac = formato.parse("23/9/1949");
-						iusuario.confirmarAltaArtista("bruceTheBoss", "Bruce" , "Springsteen" , "bruceTheBoss@gmail.com" , fechaNac, "Bruce Frederick Joseph Springsteen (Long Branch,\n" + 
+						iusuario.confirmarAltaArtista("bruceTheBoss", "Bruce" , "Springsteen" , "bruceTheBoss@gmail.com" , fechaNac, "", "", "Bruce Frederick Joseph Springsteen (Long Branch,\n" + 
 								"Nueva Jersey, 23 de septiembre de 1949), más conocido\n" + 
 								"como Bruce Springsteen, es un cantante, músico y\n" + 
 								"compositor estadounidense. " , "naci blabla", "brucespringsteen.n\n" + 
 										"et");
 						fechaNac = formato.parse("1/1/1998");
-						iusuario.confirmarAltaArtista("tripleNelson", "La Triple" , "Nelson" , "tripleNelson@tuta.io" , fechaNac, "La Triple Nelson es un grupo de rock uruguayo\n" + 
+						iusuario.confirmarAltaArtista("tripleNelson", "La Triple" , "Nelson" , "tripleNelson@tuta.io" , fechaNac, "", "", "La Triple Nelson es un grupo de rock uruguayo\n" + 
 								"formado en enero de 1998 e integrado inicialmente por\n" + 
 								"Christian Cary (guitarra y voz), Fernando \"Paco\" Pintos\n" + 
 								"(bajo y coros) y Rubén Otonello (actualmente su nuevo\n" + 
 								"baterista es Rafael Ugo)." , "naci blabla", "http://www.latriplenelso/");
 						fechaNac = formato.parse("14/2/1987");
-						iusuario.confirmarAltaArtista("la_ley", "La" , "Ley" , "la_ley@tuta.io" , fechaNac, "La Ley fue una banda chilena de rock formada en 1987\n" + 
+						iusuario.confirmarAltaArtista("la_ley", "La" , "Ley" , "la_ley@tuta.io" , fechaNac, "", "", "La Ley fue una banda chilena de rock formada en 1987\n" + 
 								"por iniciativa del tecladista y guitarrista. En un\n" + 
 								"principio, La Ley tenía la aspiración de ser un grupo de\n" + 
 								"música tecno. Este disco resulta ser un éxito de ventas\n" + 
 								"y reciben una invitación al Festival Internacional de\n" + 
 								"Viña del Mar de febrero de 1994." , "naci blabla", "http://www.lasleyesdene/");
 						fechaNac = formato.parse("13/8/1981");
-						iusuario.confirmarAltaArtista("lospimpi", "Pimpinela" , "Pimpinela" , "lospimpi@gmail.com" , fechaNac, "Pimpinela es un dúo musical argentino compuesto por\n" + 
+						iusuario.confirmarAltaArtista("lospimpi", "Pimpinela" , "Pimpinela" , "lospimpi@gmail.com" , fechaNac, "", "", "Pimpinela es un dúo musical argentino compuesto por\n" + 
 								"los hermanos Lucía Galán y Joaquín Galán. Pimpinela\n" + 
 								"ha editado veinticuatro discos" , "naci blabla", "http://www.pimpinela.n/");
 						fechaNac = formato.parse("5/3/1940");
-						iusuario.confirmarAltaArtista("dyangounchained", "Dyango" , "Ango" , "dyangounchained@gmail.com" , fechaNac, "José Gómez Romero, conocido artísticamente como\n" + 
+						iusuario.confirmarAltaArtista("dyangounchained", "Dyango" , "Ango" , "dyangounchained@gmail.com" , fechaNac, "", "", "José Gómez Romero, conocido artísticamente como\n" + 
 								"Dyango es un cantante español de música romántica." , "naci blabla", "");
 						fechaNac = formato.parse("17/7/1952");
-						iusuario.confirmarAltaArtista("alcides", "Alcides" , "Violeta" , "alceides@tuta.io" , fechaNac, "Su carrera comienza en 1976 cuando forma la banda\n" + 
+						iusuario.confirmarAltaArtista("alcides", "Alcides" , "Violeta" , "alceides@tuta.io" , fechaNac, "", "", "Su carrera comienza en 1976 cuando forma la banda\n" + 
 								"Los Playeros junto a su hermano Víctor. Al poco\n" + 
 								"tiempo se mudan a San Luis donde comienzan a\n" + 
 								"hacerse conocidos en la escena musical. Su éxito a nivel\n" + 
@@ -213,17 +213,17 @@ public class Main {
 						// ESPECTACULOS (nombrePlataforma, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, URL, costo, fecha, duracion)
 						Date fechaAltaEspectaculo;
 						fechaAltaEspectaculo = formato.parse("31/03/2020");
-						iplataforma.altaEspectaculo("Instagram Live","vpeople","Los Village Volvieron","Espectáculo de retorno de los Village People.",10,800,"https://www.instagram.com/realvillagepeople/",550,fechaAltaEspectaculo,90);
+						iplataforma.altaEspectaculo("Instagram Live","vpeople","Los Village Volvieron","Espectáculo de retorno de los Village People.",10,800,"https://www.instagram.com/realvillagepeople/",550,fechaAltaEspectaculo,90, "", null);
 						fechaAltaEspectaculo = formato.parse("20/04/2020");
-						iplataforma.altaEspectaculo("Facebook Watch","dmode","Global Spirit","Espectáculo donde se presenta el álbum Spirit.",30,1300,"https://es-la.facebook.com/depechemode/",750,fechaAltaEspectaculo,120);
+						iplataforma.altaEspectaculo("Facebook Watch","dmode","Global Spirit","Espectáculo donde se presenta el álbum Spirit.",30,1300,"https://es-la.facebook.com/depechemode/",750,fechaAltaEspectaculo,120, "", null);
 						fechaAltaEspectaculo = formato.parse("30/05/2020");
-						iplataforma.altaEspectaculo("Twitter Live","clauper","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",5,1000,"https://twitter.com/cyndilauper",800,fechaAltaEspectaculo,110);
+						iplataforma.altaEspectaculo("Twitter Live","clauper","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",5,1000,"https://twitter.com/cyndilauper",800,fechaAltaEspectaculo,110, "", null);
 						fechaAltaEspectaculo = formato.parse("07/06/2020");
-						iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100);
+						iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", null);
 						fechaAltaEspectaculo = formato.parse("08/07/2020");
-						iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150);
+						iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150, "", null);
 						fechaAltaEspectaculo = formato.parse("31/07/2020");
-						iplataforma.altaEspectaculo("Twitter Live","alcides","30 años","Espectáculo conmemorando los 30 años de Violeta.",30,150,"https://twitter.com/alcides_shows",450,fechaAltaEspectaculo,80);
+						iplataforma.altaEspectaculo("Twitter Live","alcides","30 años","Espectáculo conmemorando los 30 años de Violeta.",30,150,"https://twitter.com/alcides_shows",450,fechaAltaEspectaculo,80, "", null);
 						
 						//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
 						SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -236,14 +236,14 @@ public class Main {
 						artistas.add("clauper"); 
 						fechaInicioFuncion = FormatoInicio.parse("2020-04-15 15:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live","Los Village Volvieron", "Los Village Volvieron - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live","Los Village Volvieron", "Los Village Volvieron - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 						
 						//F2
 						artistas.clear();
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-05-01 17:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 						
 						//F3
 						artistas.clear();
@@ -251,14 +251,14 @@ public class Main {
 						artistas.add("clauper");
 						fechaInicioFuncion = FormatoInicio.parse("2020-06-01 18:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 						
 						//F4
 						artistas.clear();
 						artistas.add("vpeople");
 						fechaInicioFuncion = FormatoInicio.parse("2020-06-10 19:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 						
 						//F5
 						artistas.clear();
@@ -266,21 +266,21 @@ public class Main {
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-07-10 20:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 						
 						//F6
 						artistas.clear();
 						artistas.add("lospimpi");
 						fechaInicioFuncion = FormatoInicio.parse("2020-08-10 17:45:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 						
 						//F7
 						artistas.clear();
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-8-15 17:45:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - A", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - A", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F8
 						artistas.clear();
@@ -288,7 +288,7 @@ public class Main {
 						artistas.add("dmode");
 						fechaInicioFuncion = FormatoInicio.parse("2020-8-31 19:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - B", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - B", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 
 						//F9
 						artistas.clear();
@@ -296,7 +296,7 @@ public class Main {
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-9-30 20:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - C", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Memphis Blues World", "Memphis Blues World - C", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F10
 						artistas.clear();
@@ -304,7 +304,7 @@ public class Main {
 						artistas.add("tripleNelson");
 						fechaInicioFuncion = FormatoInicio.parse("2020-9-1 19:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - i", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - i", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F11
 						artistas.clear();
@@ -312,14 +312,14 @@ public class Main {
 						artistas.add("la_ley");
 						fechaInicioFuncion = FormatoInicio.parse("2020-9-30 17:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - ii", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - ii", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F12
 						artistas.clear();
 						artistas.add("la_ley");
 						fechaInicioFuncion = FormatoInicio.parse("2020-10-15 20:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - iii", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - iii", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F17
 						artistas.clear();
@@ -327,34 +327,34 @@ public class Main {
 						artistas.add("dyangounchained");
 						fechaInicioFuncion = FormatoInicio.parse("2020-10-01 19:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 2", fechaInicioFuncion, artistas, fechaAltaFuncion);	
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
 					
 						//F16
 						artistas.clear();
 						artistas.add("dyangounchained");
 						fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F15
 						artistas.clear();
 						fechaInicioFuncion = FormatoInicio.parse("2020-11-25 17:45:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - C", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - C", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F14
 						artistas.clear();
 						artistas.add("tripleNelson");
 						fechaInicioFuncion = FormatoInicio.parse("2020-10-25 18:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - B", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - B", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 						
 						//F13
 						artistas.clear();
 						artistas.add("alcides");
 						fechaInicioFuncion = FormatoInicio.parse("2020-09-25 19:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
-						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion);
+						iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 				
 						//Cargar Paquetes
 						IPaquete ipaquete= fab.getIPaquete();
@@ -362,18 +362,18 @@ public class Main {
 						Date inicio = formato.parse("01/05/2020");
 						Date fin = formato.parse("31/07/2020");
 						Date alta = formato.parse("30/4/2020");
-						ipaquete.ConfirmarAltaPaquete("Paquete de Bandas", "Paquete de bandas musicales" , inicio, fin, 20.0, alta);
+						ipaquete.ConfirmarAltaPaquete("Paquete de Bandas", "Paquete de bandas musicales" , inicio, fin, 20.0, alta, "");
 						
 
 						inicio = formato.parse("01/08/2020");
 						fin = formato.parse("30/09/2020");
 						alta = formato.parse("15/7/2020");
-						ipaquete.ConfirmarAltaPaquete("Paquete Solistas", "Paquete de solistas." , inicio, fin, 30.0, alta);
+						ipaquete.ConfirmarAltaPaquete("Paquete Solistas", "Paquete de solistas." , inicio, fin, 30.0, alta, "");
 						
 						inicio = formato.parse("15/08/2020");
 						fin = formato.parse("15/11/2020");
 						alta = formato.parse("1/8/2020");
-						ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta);
+						ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta, "");
 
 						//REGISTRO A FUNCIONES(NombrePlataforma, NombreEspectaculo, Nickname, NombreFuncion, Fecha, TipoRegistro, IntRegistro1, IntRegistro2, IntRegistro3, NombrePaquete, Costo)
 						//TipoRegistro: Tipo_1 : No importa lo que vaya en IntRegistros ni en NombrePaquete, costo del espectaculo.

@@ -1,10 +1,13 @@
 package Interfaces;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Map;
 
+import Clases.Categoria;
 import Clases.Funcion;
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
@@ -20,7 +23,7 @@ public interface IPlataforma {
 		DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
 		void AltaPlataforma(String nombre, String Descripcion,String Url) throws Identidad;
 		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat);
-		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen) throws Identidad;
+		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) throws Identidad;
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen);
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);
@@ -34,4 +37,5 @@ public interface IPlataforma {
 		public DtFuncionDatos getFuncionDatos(String nombrePlat, String nombreEspectaculo, String nombreFuncion);
 		public DtFuncionDatos findDatosFuncion(String nombre);
 		public Boolean PuedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
+		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Plataforma, String Espectaculo);
 }

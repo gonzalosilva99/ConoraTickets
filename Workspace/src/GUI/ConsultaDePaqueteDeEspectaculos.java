@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import DataTypes.DtCategoria;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
@@ -42,6 +43,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private JDateChooser dateChooserFin;
 	private Button buttonCancelar;
 	private JLabel lblPaquetes;
+	private JLabel lblCategorias;
 	/**
 	 * Launch the application.
 	 */
@@ -158,6 +160,11 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		textFieldDescuento = new JTextField();
 		textFieldDescuento.setColumns(10);
+		
+		lblCategorias = new JLabel("Categorias:");
+		
+		JComboBox comboBoxCategorias = new JComboBox();
+		comboBoxCategorias.setEditable(false);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -181,11 +188,14 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblEspectaculos))
+								.addComponent(lblEspectaculos)
+								.addComponent(lblCategorias, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
 							.addGap(14)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(comboBoxEspectaculos, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(textFieldDescuento, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))))
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxCategorias, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(comboBoxEspectaculos, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(textFieldDescuento, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)))))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -199,7 +209,6 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addComponent(lblDescripcion)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textPaneDescripcion, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblInicioVigencia, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
@@ -218,7 +227,11 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEspectaculos)
 						.addComponent(comboBoxEspectaculos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(80, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboBoxCategorias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCategorias))
+					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		textFieldNombre.setEditable(false);
@@ -244,6 +257,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		comboBoxPaquetes.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				comboBoxEspectaculos.removeAllItems();
+				comboBoxCategorias.removeAllItems();
 				if(comboBoxPaquetes.getSelectedItem().toString().equals("")) {
 					panel.setVisible(false);
 					comboBoxEspectaculos.addItem("");
@@ -266,6 +280,14 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 						 String op = nomE+" | "+des;
 						 comboBoxEspectaculos.addItem(op);
 					}
+					
+					Iterator<DtCategoria> itrc = ipaquete.ListarCategorias(nom[0]).iterator();
+					
+					while(itrc.hasNext()) {
+						 DtCategoria aux = itrc.next();
+						 comboBoxCategorias.addItem(aux.getNomCategoria());
+					}
+					
 				}
 
 			}

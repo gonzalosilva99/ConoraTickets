@@ -6,6 +6,7 @@ import java.util.Set;
 
 import Clases.Paquete;
 import Clases.Plataforma;
+import DataTypes.DtCategoria;
 import DataTypes.DtPaquete;
 import DataTypes.DtPaqueteDatos;
 import Excepciones.Identidad;
@@ -40,6 +41,10 @@ public class ControladorPaquete implements IPaquete{
 		
 	}
 	
+	public HashSet<DtCategoria> ListarCategorias(String Paquete){
+		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
+		return manpaq.ListarCategorias(Paquete);
+	}
 	
 	
 	public void ConfirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin,Double Descuento, Date alta,String imagen) throws Identidad{
