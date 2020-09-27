@@ -67,6 +67,19 @@ public class AltaCategoria extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(buttonAceptar);
 		
+		Button buttonAceptar_1 = new Button("Cancelar");
+		buttonAceptar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, buttonAceptar_1, 0, SpringLayout.NORTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.WEST, buttonAceptar_1, -86, SpringLayout.EAST, textField);
+		springLayout.putConstraint(SpringLayout.SOUTH, buttonAceptar_1, 0, SpringLayout.SOUTH, buttonAceptar);
+		springLayout.putConstraint(SpringLayout.EAST, buttonAceptar_1, 0, SpringLayout.EAST, textField);
+		buttonAceptar_1.setActionCommand("Aceptar");
+		getContentPane().add(buttonAceptar_1);
+		
 		buttonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				

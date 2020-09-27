@@ -72,6 +72,12 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarEspectaculos(nombrePlataforma);
 	}
+	
+	public HashSet<DtEspectaculo> ListarEspectaculosIngresados(){
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.ListarEspectaculosIngresados();
+	}
+	
 	public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio,Set<String> artistas, Date alta, String imagen) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		manplat.ConfirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta, imagen);
@@ -123,6 +129,16 @@ public class ControladorPlataforma implements IPlataforma{
 	public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.ListarCategoriasDeEspectaculo(Plataforma,Espectaculo);
+	}
+	
+	public void AceptarEspectaculo(String nomEspectaculo) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		manplat.AceptarEspectaculo(nomEspectaculo);
+	}
+	
+	public void RechazarEspectaculo(String nomEspectaculo) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		manplat.RechazarEspectaculo(nomEspectaculo);
 	}
 
 }

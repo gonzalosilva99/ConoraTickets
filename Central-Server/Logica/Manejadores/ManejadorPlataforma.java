@@ -184,6 +184,19 @@ public class ManejadorPlataforma {
 			}
 			return ret;
 		}
+		
+		public HashSet<DtEspectaculo> ListarEspectaculosIngresados(){
+			HashSet<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				Set<DtEspectaculo> aux = entry.getValue().listarEspectaculosIngresadosDePlataforma();
+				Iterator<DtEspectaculo> it = aux.iterator();
+				while(it.hasNext()) {
+					ret.add(it.next());
+				}
+			}
+			return ret;
+		}
+		
 		public String getPlataformaDeEspectaculo(String esp) {
 			String ret = "";
 			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
@@ -217,6 +230,23 @@ public class ManejadorPlataforma {
 			return plat.PuedeAgregarEspectadores(nombreEspectaculo,nombreFuncion);
 		}
 		
+		public void AceptarEspectaculo(String nomEspectaculo) {
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				if(entry.getValue().ExisteEspectaculo(nomEspectaculo)) {
+					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Aceptado);
+					break;
+				}
+			}
+		}
+		
+		public void RechazarEspectaculo(String nomEspectaculo) {
+			for(Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+				if(entry.getValue().ExisteEspectaculo(nomEspectaculo)) {
+					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Rechazado);
+					break;
+				}
+			}
+		}
 
 }
 

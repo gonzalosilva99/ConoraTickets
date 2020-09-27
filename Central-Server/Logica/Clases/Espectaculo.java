@@ -67,6 +67,7 @@ public class Espectaculo {
 		public Integer getCosto() {
 			return Costo;
 		}
+		
 		public void setCosto(Integer costo) {
 			Costo = costo;
 		}

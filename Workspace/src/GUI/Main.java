@@ -799,11 +799,11 @@ public class Main {
 		JMenuItem mntmDatosDeUsuario = new JMenuItem("Modificar Datos de Usuario");
 		mntmDatosDeUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ModificarDatosUsuario modificar = new ModificarDatosUsuario();
-				desktopPane.add(modificar);
-				modificar.show();
+				ModificarDatosUsuario consultausuario = new ModificarDatosUsuario();
+				desktopPane.add(consultausuario);
+				consultausuario.show();
 				try {
-					modificar.setMaximum(true);
+					consultausuario.setMaximum(true);
 				} catch (PropertyVetoException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -811,5 +811,21 @@ public class Main {
 			}
 		});
 		mnModificar.add(mntmDatosDeUsuario);
+		
+		JMenuItem mntmAceptarRechazar = new JMenuItem("Aceptar/Rechazar Espectaculo");
+		mntmAceptarRechazar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AceptarRechazarEspectaculo consultausuario = new AceptarRechazarEspectaculo();
+				desktopPane.add(consultausuario);
+				consultausuario.show();
+				try {
+					consultausuario.setMaximum(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		mnModificar.add(mntmAceptarRechazar);
 	}
 }

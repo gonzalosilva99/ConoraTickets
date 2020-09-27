@@ -38,4 +38,7 @@ public interface IPlataforma {
 		public DtFuncionDatos findDatosFuncion(String nombre);
 		public Boolean PuedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
 		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Plataforma, String Espectaculo);
+		public HashSet<DtEspectaculo> ListarEspectaculosIngresados();
+		public void AceptarEspectaculo(String nomEspectaculo);
+		public void RechazarEspectaculo(String nomEspectaculo);
 }

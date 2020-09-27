@@ -16,6 +16,7 @@ import DataTypes.DtEspectaculoDatos;
 import DataTypes.DtFuncion;
 import DataTypes.DtFuncionDatos;
 import DataTypes.DtPlataforma;
+import DataTypes.EstadoEspectaculo;
 import DataTypes.DtEspectaculo;
 import Controladores.Fabrica;
 import Interfaces.IUsuario;
@@ -85,6 +86,17 @@ public class Plataforma {
 			}
 			return ret;
 		}
+		
+		public Set<DtEspectaculo> listarEspectaculosIngresadosDePlataforma(){
+			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+				if(entry.getValue().getEstado().toString().equals("Ingresado")) {
+					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+					ret.add(nuevo);
+			}
+			}
+			return ret;
+		}
 
 		public Set<DtEspectaculo> listarEspectaculos(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
@@ -104,7 +116,7 @@ public class Plataforma {
 			ICategoria icat = fabric.getICategoria();
 			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
-			
+			nuevo.setEstado(EstadoEspectaculo.Aceptado);
 			if(categorias!=null) {
 			Iterator<String> itercat = categorias.iterator();
 			while(itercat.hasNext()) {

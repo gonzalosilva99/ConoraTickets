@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class DtPaqueteDatos {
 	
 public DtPaqueteDatos(String nombre, String descripcion, Date inicio, Date fin, Double descuento,
-			HashSet<DtEspectaculo> espectaculos) {
+			HashSet<DtEspectaculo> espectaculos, HashSet<DtCategoria> categorias) {
 		super();
 		Nombre = nombre;
 		Descripcion = descripcion;
@@ -14,6 +14,7 @@ public DtPaqueteDatos(String nombre, String descripcion, Date inicio, Date fin, 
 		Fin = fin;
 		Descuento = descuento;
 		Espectaculos = espectaculos;
+		Categorias = categorias;
 	}
 private
 String Nombre;
@@ -31,6 +32,8 @@ private
 Double Descuento;
 private
 HashSet<DtEspectaculo> Espectaculos;
+private
+HashSet<DtCategoria> Categorias;
 
 public String getNombre() {
 	return Nombre;
@@ -49,6 +52,9 @@ public Double getDescuento() {
 }
 public HashSet<DtEspectaculo> getEspectaculos() {
 	return Espectaculos;
+}
+public HashSet<DtCategoria> getCategorias() {
+	return Categorias;
 }
 
 }

@@ -107,12 +107,13 @@ public class Paquete {
 			
 		}
 		public DtPaqueteDatos getDtPaqueteDatos() {
+			HashSet<DtCategoria> cat = this.ListarCategorias();
 			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
 			for(HashMap.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
 				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
-			DtPaqueteDatos ret = new DtPaqueteDatos(Nombre, Descripcion, Inicio, Fin, Descuento,esp); 
+			DtPaqueteDatos ret = new DtPaqueteDatos(Nombre, Descripcion, Inicio, Fin, Descuento,esp,cat); 
 			return ret;
 		}
 		

@@ -37,6 +37,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 	private DtPaquete datosPaquete;
 	private JComboBox comboBoxPaquetes;
 	private JComboBox comboBoxEspectaculos;
+	private JComboBox comboBoxCategorias;
 	private JPanel panel;
 	private JTextPane textPaneDescripcion ;
 	private JDateChooser dateChooserInicio;
@@ -69,6 +70,14 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		while(itr.hasNext()) {
 			DtEspectaculo aux = itr.next(); 
 			 comboBoxEspectaculos.addItem(aux.getNombre());
+		}
+		
+		Set<DtCategoria> listaCategorias = paqueteDatos.getCategorias();
+		Iterator<DtCategoria> itrc = listaCategorias.iterator();
+		
+		while(itrc.hasNext()) {
+			 DtCategoria aux = itrc.next();
+			 comboBoxCategorias.addItem(aux.getNomCategoria());
 		}
 		
 		
@@ -163,7 +172,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 		
 		lblCategorias = new JLabel("Categorias:");
 		
-		JComboBox comboBoxCategorias = new JComboBox();
+		comboBoxCategorias = new JComboBox();
 		comboBoxCategorias.setEditable(false);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -173,29 +182,35 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNombre)
-							.addGap(62)
+							.addGap(51)
 							.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
-						.addComponent(textPaneDescripcion, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
-						.addComponent(lblDescripcion)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblInicioVigencia, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-							.addGap(14)
-							.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblFin, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-							.addGap(14)
-							.addComponent(dateChooserFin, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
+						.addComponent(textPaneDescripcion, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblEspectaculos)
-								.addComponent(lblCategorias, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-							.addGap(14)
+								.addGroup(Alignment.TRAILING, gl_panel.createParallelGroup(Alignment.LEADING)
+									.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblEspectaculos)
+											.addComponent(lblCategorias, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+										.addGap(14))
+									.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+										.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+										.addGap(1))
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(lblFin, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+										.addGap(1)))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblInicioVigencia, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+									.addGap(1)))
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBoxCategorias, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(comboBoxEspectaculos, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(textFieldDescuento, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)))))
+								.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+								.addComponent(dateChooserFin, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textFieldDescuento, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(comboBoxCategorias, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(comboBoxEspectaculos, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
+							.addGap(138))
+						.addComponent(lblDescripcion))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -205,7 +220,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNombre)
 						.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(12)
 					.addComponent(lblDescripcion)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textPaneDescripcion, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
@@ -213,17 +228,15 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblInicioVigencia, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(dateChooserInicio, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
+					.addGap(14)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblFin, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(dateChooserFin, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addGap(9)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(5)
-							.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textFieldDescuento, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEspectaculos)
 						.addComponent(comboBoxEspectaculos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -231,7 +244,7 @@ public class ConsultaDePaqueteDeEspectaculos extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(comboBoxCategorias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCategorias))
-					.addContainerGap(29, Short.MAX_VALUE))
+					.addContainerGap(24, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		textFieldNombre.setEditable(false);
