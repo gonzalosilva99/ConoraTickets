@@ -126,7 +126,7 @@
             </nav>
 	<!-- FIN MENU ARRIBA -->
 	
-	<h1 class="text-center">Alta de Espectaculo</h1>
+	<h1 class="text-center">Alta de Funcion de Espectaculo</h1>
             
    	<form class="needs-validation mt-5 " novalidate>
    	
@@ -134,106 +134,43 @@
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
 <!--       <label class="mr-sm-2" for="inlineFormCustomSelect">Plataforma</label> -->
       <select class="custom-select" id="inlineFormCustomSelect" >
-      <option value="" selected>Elije la plataforma</option>
-      <optgroup label="Plataformas:">
-      <option value="1">Facebook Watch</option>
-        <option value="2">Twitter Live</option>
-        <option value="3">Instagram Live</option>
-        <option value="3">Youtube</option>
+      <option value="" selected>Elije el Espectaculo</option>
+      <optgroup label="Espectaculos disponibles:">
+      <option value="1">Opcion1</option>
+        <option value="2">Opcion2</option>
+        <option value="3">Opcion3</option>
+        <option value="3">Opcion4</option>
       </optgroup>
         
       </select>
    </div>
 
 	<div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
-      <input type="text" class="form-control" id="validationNombre" placeholder="Nombre del Espectaculo" required>
+      <input type="text" class="form-control" id="validationNombre" placeholder="Nombre de la función" required>
       <div class="valid-feedback">
         Bien!
       </div>
     </div>
     
-    <div class="form-row col-md-5  mb-4 mx-auto">
-      <textarea class="form-control row-md-3" rows=5 id="Descripcion" placeholder="Descripción"></textarea>
+    <div class="form-row col-md-5 mx-auto">
+    	<div class="form-group col-md-8">
+    		<input class="form-control" type="date" name="dateFechaInicio" placeholder="FechaInicio" required>
+    	</div>
     </div>
     
     <div class="form-row col-md-5 mx-auto">
     	<div class="form-group col-md-8">
-<!--     		<label for="espmin">Espectadores minimos:</label> -->
-    		<input type="number" name="espmin" placeholder="Espectadores mínimos" class="form-control" id="validationEspMin" required>
-    	</div>
-    </div>
-    <div class="form-row col-md-5 mb-4 mx-auto">
-    	<div class="form-group col-md-8">
-<!--     		<label for="espmax">Espectadores máximos:</label> -->
-    		<input type="number" name="espmax" placeholder="Espectadores máximos" class="form-control" id="validationEspMin" required>
+    		<input type="time" name="timeFechaInicio" placeholder="HoraInicio" class="form-control" required>
     	</div>
     </div>
     
-    <div class="form-row col-md-5 mb-4 mx-auto">
-    	<div class="input-group col-md-8">
-    		<div class="input-group-prepend">
-    			<span class="input-group-text">$</span>
-    		</div>
-    		<input type="number" class="form-control" id="inputPorcentajeDescuento" placeholder="Costo" required>
-    	</div>
-    </div>
-    
-    <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
-      <input type="url" class="form-control"  placeholder="URL" required>
-    </div>
-    
-    <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
-      <input type="number" class="form-control"  placeholder="Duracion(minutos)" required>
-    </div>
-    
-  <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">   
-     
-  <ul class="list-group list-group-flush" style="">
-  <label>Categorías:</label>
-    <li class="list-group-item">
-      <!-- Default checked -->
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check1" checked>
-        <label class="custom-control-label" for="check1">Musica</label>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <!-- Default checked -->
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check2">
-        <label class="custom-control-label" for="check2">Teatro</label>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <!-- Default checked -->
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check3" checked>
-        <label class="custom-control-label" for="check3">Literatura</label>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <!-- Default checked -->
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check4" checked>
-        <label class="custom-control-label" for="check4">Danza</label>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <!-- Default checked -->
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check5">
-        <label class="custom-control-label" for="check5">Carnaval</label>
-      </div>
-    </li>
-  </ul>
-   </div> 
     <div class="form-row col-md-5 mb-4 mx-auto">
   		<input type="file" class="custom-file-input" id="customFileLang" lang="es">
   		<label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
 	</div>
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
-  		<button class="btn btn-primary" style="width: 100%;" type="submit">Crear Espectaculo!</button>
+  		<button class="btn btn-primary" style="width: 100%;" type="submit">Agregar Funcion!</button>
    </div>
 </form>
 
