@@ -61,5 +61,8 @@ public class ControladorPaquete implements IPaquete{
 		return manpaq.getDtPaquete(nombrePaquete);
 	
 	}
-
+	public Set<DtPaquete> ListarPaquetesVigentes(){
+		ManejadorPaquetes manpac = ManejadorPaquetes.getInstancia();
+		return manpac.listarPaquetesVigentes();
+	}
 }

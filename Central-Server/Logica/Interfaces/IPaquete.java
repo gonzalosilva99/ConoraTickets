@@ -19,4 +19,5 @@ public interface IPaquete {
 	public DtPaqueteDatos getPaqueteDatos(String nombrePaquete);
 	public DtPaquete getDtPaquete(String nombrePaquete);
 	public HashSet<DtCategoria> ListarCategorias(String Paquete);
+	public Set<DtPaquete> ListarPaquetesVigentes();
 }
