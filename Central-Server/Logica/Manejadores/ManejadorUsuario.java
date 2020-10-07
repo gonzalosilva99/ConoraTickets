@@ -37,6 +37,53 @@ public class ManejadorUsuario {
 			return instancia;
 		}
 	
+	public 
+		Boolean LogueoCorrecto(String login, String password) {
+			if(login.contains("@")) {
+				DtUsuario useremail = this.getUsuarioEmail(login);
+				if(useremail!=null && useremail.getContrasena().equals(password)) {
+					return true;
+				}
+			}
+			else {
+				DtUsuario usernickname = this.getUsuarioNickname(login);
+				if(usernickname != null && usernickname.getContrasena().equals(password)) {
+					return true;
+				}
+			}
+			return false;
+			}
+		DtUsuario getUsuarioEmail(String email) {
+			DtUsuario ret=null;
+			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
+	            if(entry.getValue().getEmail().equals(email)) {
+	            	return entry.getValue().getDtUsuario();
+	            }           
+			}
+			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
+	            if(entry.getValue().getEmail().equals(email)) {
+	            	return entry.getValue().getDtUsuario();
+	            }           
+			}
+			return ret;
+		}
+		
+		DtUsuario getUsuarioNickname(String nickname) {
+			DtUsuario ret=null;
+			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
+	            if(entry.getValue().getNickname().equals(nickname)) {
+	            	return entry.getValue().getDtUsuario();
+	            }           
+			}
+			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
+	            if(entry.getValue().getNickname().equals(nickname)) {
+	            	return entry.getValue().getDtUsuario();
+	            }           
+			}
+			return ret;
+		}
+
+
 		
 		Map<String, Artista> getArtistas() {
 			return Artistas;
