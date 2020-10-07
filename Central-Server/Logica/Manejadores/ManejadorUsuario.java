@@ -1,6 +1,8 @@
 	package Manejadores;
 import java.util.*;
 import Clases.Espectador;
+import Clases.Paquete;
+import Controladores.Fabrica;
 import Clases.Artista;
 import Clases.Espectaculo;
 import Clases.Usuario;
@@ -206,6 +208,12 @@ public class ManejadorUsuario {
 		public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion) {
 			Espectador espec = Espectadores.get(nickname);
 			return espec.ExisteRegistroaFuncion(nombreFuncion);
+		}
+		public void comprarPaquete(String nickname, String nombrePaquete) {
+			Espectador espec = Espectadores.get(nickname);
+			Fabrica fab = Fabrica.getInstancia();
+			Paquete paquete = fab.getIPaquete().getPaquete(nombrePaquete);
+			espec.anadirPaquete(paquete);
 		}
 		
 		public void SeguirUsuario(String NickSeguidor, String NickASeguir) {
