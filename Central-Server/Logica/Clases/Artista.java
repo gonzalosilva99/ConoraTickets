@@ -56,7 +56,7 @@ public class Artista extends Usuario{
 			Espectaculos = espectaculos;
 		}
 		public DtUsuario getDtUsuario() {
-			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido());
+			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido(),this.getContrasena(),this.getEmail());
 			return ret;
 		}
 		public DtArtista getDtArtista() {

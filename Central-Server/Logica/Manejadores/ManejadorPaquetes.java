@@ -101,6 +101,13 @@ public class ManejadorPaquetes {
 			Paquete paquete = Paquetes.get(Paquete);
 			return paquete.ListarCategorias();
 		}
-		
+		public Set<DtPaquete> listarPaquetesVigentes(){
+			Set<DtPaquete> ret = new HashSet<DtPaquete>();		
+			for (Map.Entry<String, Paquete> entry : Paquetes.entrySet()) {
+		            DtPaquete nueva = entry.getValue().getDtPaquete();
+		            ret.add(nueva);
+			}
+			return ret;
+		}
 		
 }
