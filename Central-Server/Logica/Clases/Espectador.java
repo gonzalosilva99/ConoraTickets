@@ -107,8 +107,8 @@ public class Espectador extends Usuario{
 		return false;
 	}
 	
-	public void anadirPaquete(Paquete paquete) {
-		CompraPaquete compraPaquete = new CompraPaquete(Calendar.getInstance().getTime(), this, paquete);
+	public void anadirPaquete(Paquete paquete, Date fecha) {
+		CompraPaquete compraPaquete = new CompraPaquete(fecha, this, paquete);
 		CompraPaquetes.put(CompraPaquetes.size()+1, compraPaquete);
 		
 	}

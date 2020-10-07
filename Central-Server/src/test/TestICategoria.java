@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -9,14 +10,26 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import Clases.Categoria;
+import Clases.Espectador;
+import Clases.Paquete;
 import Controladores.Fabrica;
+import DataTypes.DtArtista;
+import DataTypes.DtArtistaConsulta;
+import DataTypes.DtCategoria;
+import DataTypes.DtEspectaculo;
+import DataTypes.DtEspectaculoDatos;
+import DataTypes.DtFuncion;
+import DataTypes.DtFuncionDatos;
 import DataTypes.TipoRegistro;
+import Excepciones.Identidad;
 import Interfaces.ICategoria;
 import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
+import Relaciones.CompraPaquete;
 
-public class TestIPaquete {
+public class TestICategoria {
 
 	@Test
 	public void test() {
@@ -598,17 +611,19 @@ public class TestIPaquete {
 				ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
 				ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
 			}
-		catch(Exception e) {}
-	
-	//TESET FUNCIONES IPAQUETE
-	ipaquete.ListarPaquetes();
-	ipaquete.MostrarPaquete("Paquete Latino");
-	ipaquete.ListarPaquetesEspectaculo("Springsteen on Broadway");
-	ipaquete.getPaqueteDatos("Paquete Latino");
-	ipaquete.getDtPaquete("Paquete Latino");
-	ipaquete.ListarCategorias("Paquete Latino");
-	ipaquete.ListarPaquetesVigentes();
-	}
-	catch(Exception e) {}
-}
+			catch(Exception e) {}
+			//TEST FUNCIONES IUSUARIO
+			icategoria.getCategoria("Solistas");
+			icategoria.listarCategorias();
+			icategoria.ListarFuncionesDeEspectaculoDesdeCategoria("", "");
+			icategoria.listarEspectaculosAceptadosDeCategoria("");
+			icategoria.MostrarFuncionDesdeCategoria("", "", "");
+			icategoria.ListarFuncionesVigentesDeEspectaculoDesdeCategoria();
+			icategoria.mostrarDatosEspectaculoPorCategoria("", "");
+		
+		}
+			catch(Exception e) {}
+			}
+
+
 	}

@@ -130,11 +130,15 @@ public class ControladorUsuario implements IUsuario{
 		if(registro == TipoRegistro.Tipo_2) {
 			espec.MarcarRegistrosUsados(Registro1, Registro2, Registro3);					
 		}
-		Fabrica fab = Fabrica.getInstancia();
-		Paquete paq = fab.getIPaquete().getPaquete(NombrePaquete);
+		
+		
 		if(registro == TipoRegistro.Tipo_3) {
+			
+			Fabrica fab = Fabrica.getInstancia();
+			Paquete paq = fab.getIPaquete().getPaquete(NombrePaquete);
+			String prueba = paq.getNombre();
 			regfun.canjearPaquete(paq);
-			regfun.setCosto(costo * paq.getDescuento());
+			regfun.setCosto(costo * paq.getDescuento() / 100);
 			regfun.setCanjeable(true);
 		}
 		else if(registro == TipoRegistro.Tipo_2) {
@@ -158,8 +162,8 @@ public class ControladorUsuario implements IUsuario{
 		manusu.SeguirUsuario(NickSeguidor,NickASeguir);
 	}
 
-	public void comprarPaquete(String nickname, String nombrePaquete) {
+	public void comprarPaquete(String nickname, String nombrePaquete, Date fecha) {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
-		manusu.comprarPaquete(nickname, nombrePaquete);
+		manusu.comprarPaquete(nickname, nombrePaquete, fecha);
 	}
 }

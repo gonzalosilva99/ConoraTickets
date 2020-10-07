@@ -209,11 +209,11 @@ public class ManejadorUsuario {
 			Espectador espec = Espectadores.get(nickname);
 			return espec.ExisteRegistroaFuncion(nombreFuncion);
 		}
-		public void comprarPaquete(String nickname, String nombrePaquete) {
+		public void comprarPaquete(String nickname, String nombrePaquete, Date fecha) {
 			Espectador espec = Espectadores.get(nickname);
 			Fabrica fab = Fabrica.getInstancia();
 			Paquete paquete = fab.getIPaquete().getPaquete(nombrePaquete);
-			espec.anadirPaquete(paquete);
+			espec.anadirPaquete(paquete, fecha);
 		}
 		
 		public void SeguirUsuario(String NickSeguidor, String NickASeguir) {

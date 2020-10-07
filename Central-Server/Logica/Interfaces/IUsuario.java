@@ -32,5 +32,5 @@ public interface IUsuario {
 	public void confirmarRegistroFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nickname, String nombreFuncion,Date fecha,TipoRegistro registro, Integer Registro1, Integer Registro2,Integer Registro3,String NombrePaquete,Double costo);
 	public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion);
 	public void SeguirUsuario(String NickSeguidor, String NickASeguir);
-	public void comprarPaquete(String nickname, String nombrePaquete);
+	public void comprarPaquete(String nickname, String nombrePaquete, Date fecha);
 }
