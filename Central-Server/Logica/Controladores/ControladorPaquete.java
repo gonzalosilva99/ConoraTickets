@@ -65,4 +65,9 @@ public class ControladorPaquete implements IPaquete{
 		ManejadorPaquetes manpac = ManejadorPaquetes.getInstancia();
 		return manpac.listarPaquetesVigentes();
 	}
+	public Paquete getPaquete(String nombrePaquete) {
+		ManejadorPaquetes manpac = ManejadorPaquetes.getInstancia();
+		return manpac.getPaquete(nombrePaquete);
+	}
+
 }

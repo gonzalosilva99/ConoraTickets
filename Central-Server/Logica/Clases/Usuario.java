@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-abstract class Usuario {
+public abstract class Usuario {
 	private String Nickname;
 	private String Nombre;
 	private String Apellido;
@@ -70,6 +70,13 @@ abstract class Usuario {
 			Nacimiento = nacimiento;
 			Seguidores = new HashMap<String, Usuario>();
 			Siguiendo = new HashMap<String, Usuario>();
+		}
+		public void AgregarSeguido(String nick,Usuario usu) {
+			Siguiendo.put(nick, usu);
+		}
+		
+		public void AgregarSeguidor(String nick,Usuario usu) {
+			Seguidores.put(nick, usu);
 		}
 		
 		
