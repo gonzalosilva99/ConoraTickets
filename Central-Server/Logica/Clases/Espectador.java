@@ -1,5 +1,6 @@
 package Clases;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import DataTypes.DtEspectaculo;
@@ -104,8 +105,14 @@ public class Espectador extends Usuario{
 				return true;
 		}
 		return false;
+	}
+	
+	public void anadirPaquete(Paquete paquete) {
+		CompraPaquete compraPaquete = new CompraPaquete(Calendar.getInstance().getTime(), this, paquete);
+		CompraPaquetes.put(CompraPaquetes.size()+1, compraPaquete);
 		
 	}
+	
 }
 
 

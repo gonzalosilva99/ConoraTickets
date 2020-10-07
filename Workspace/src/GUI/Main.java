@@ -22,6 +22,7 @@ import DataTypes.TipoRegistro;
 import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
 import Interfaces.IUsuario;
+import Interfaces.ICategoria;
 
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JRadioButton;
@@ -109,31 +110,32 @@ public class Main {
 						Fabrica fab = Fabrica.getInstancia();
 						IUsuario iusuario = fab.getIUsuario();
 						IPlataforma iplataforma = fab.getIPlataforma();
+						ICategoria icategoria = fab.getICategoria();
 						SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 						Date fechaNac;
 						// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
 						fechaNac = formato.parse("31/12/1971");
-						iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, "", "lkj34df");
 						fechaNac = formato.parse("15/11/1983");
-						iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, "", "poke579");
 						fechaNac = formato.parse("15/4/1990");
-						iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac, "https://bit.ly/3jrashA", "mkji648");
 						fechaNac = formato.parse("15/5/1959");
-						iusuario.confirmarAltaEspectador("house", "Gregory", "House", "greghouse@gmail.com", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("house", "Gregory", "House", "greghouse@gmail.com", fechaNac, "https://bit.ly/3ng8YZE", "fcku0123");
 						fechaNac = formato.parse("28/01/1950");
-						iusuario.confirmarAltaEspectador("sergiop", "Sergio", "Puglia", "puglia@alpanpan.com.uy", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("sergiop", "Sergio", "Puglia", "puglia@alpanpan.com.uy", fechaNac, "https://bit.ly/2EViUGV", "vbmn4r");
 						fechaNac = formato.parse("17/03/1976");
-						iusuario.confirmarAltaEspectador("chino", "Alvaro", "Recoba", "chino@trico.com.uy", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("chino", "Alvaro", "Recoba", "chino@trico.com.uy", fechaNac, "https://bit.ly/3cTJWuX", "ncnl123");
 						fechaNac = formato.parse("14/02/1955");
-						iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac, "https://bit.ly/3cS2bkh", "mny101");
 						fechaNac = formato.parse("23/02/1927");
-						iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, "", "1o1vbm");
 						fechaNac = formato.parse("08/05/1937");
-						iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, "", "");
+						iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, "", "ultraton01");
 						
 						//Cargar Artista
 						fechaNac = formato.parse("1/1/1977");
-						iusuario.confirmarAltaArtista("vpeople", "Village" , "People" , "vpeople@tuta.io" , fechaNac, "", "", "Village People es una innovadora formación musical\n" + 
+						iusuario.confirmarAltaArtista("vpeople", "Village" , "People" , "vpeople@tuta.io" , fechaNac, "https://bit.ly/36uctpI", "asdfg456", "Village People es una innovadora formación musical\n" + 
 								"de estilo disco de finales de los años 70. Fue famosa\n" + 
 								"tanto por sus peculiares disfraces, como por sus\n" + 
 								"canciones pegadizas, con letras sugerentes y llenas de\n" + 
@@ -145,14 +147,14 @@ public class Main {
 										"noche y notó al bailarín Felipe Rose\n" + 
 										"vestido como un nativo americano.", "http://www.officialvillag/");
 						fechaNac = formato.parse("14/6/1980");
-						iusuario.confirmarAltaArtista("dmode", "Depeche" , "Mode" , "dmode@tuta.io" , fechaNac, "", "", "Depeche Mode es un grupo inglés de música\n" + 
+						iusuario.confirmarAltaArtista("dmode", "Depeche" , "Mode" , "dmode@tuta.io" , fechaNac, "https://bit.ly/2GB7vME", "123rtgfdv", "Depeche Mode es un grupo inglés de música\n" + 
 								"electrónica formado en Basildon, Essex, en 1980 por\n" + 
 								"Vicent Clarke y Andrew John Fletcher, a los que se\n" + 
 								"unieron Martin Lee Gore y poco después David Gahan.\n" + 
 								"Actualmente se le considera como grupo de música\n" + 
 								"alternativa." , "", "http://www.depechemod/");
 						fechaNac = formato.parse("22/6/1953");
-						iusuario.confirmarAltaArtista("clauper", "Cyndi" , "Lauper" , "clauper@hotmail.com" , fechaNac, "", "", "Cynthia Ann Stephanie Lauper, conocida simplemente\n" + 
+						iusuario.confirmarAltaArtista("clauper", "Cyndi" , "Lauper" , "clauper@hotmail.com" , fechaNac, "https://bit.ly/34zFWvV", "poiuy086", "Cynthia Ann Stephanie Lauper, conocida simplemente\n" + 
 								"como Cyndi Lauper, es una cantautora, actriz y\n" + 
 								"empresaria estadounidense. Después de participar en\n" + 
 								"el grupo musical, Blue Angel, en 1983 firmó con\n" + 
@@ -164,33 +166,33 @@ public class Main {
 										"(Brooklyn, Nueva York; 22 de junio\n" + 
 										"de 1953). ", "cyndilauper.com");
 						fechaNac = formato.parse("23/9/1949");
-						iusuario.confirmarAltaArtista("bruceTheBoss", "Bruce" , "Springsteen" , "bruceTheBoss@gmail.com" , fechaNac, "", "", "Bruce Frederick Joseph Springsteen (Long Branch,\n" + 
+						iusuario.confirmarAltaArtista("bruceTheBoss", "Bruce" , "Springsteen" , "bruceTheBoss@gmail.com" , fechaNac, "https://bit.ly/34hFwde", "GTO468", "Bruce Frederick Joseph Springsteen (Long Branch,\n" + 
 								"Nueva Jersey, 23 de septiembre de 1949), más conocido\n" + 
 								"como Bruce Springsteen, es un cantante, músico y\n" + 
 								"compositor estadounidense. " , "naci blabla", "brucespringsteen.n\n" + 
 										"et");
 						fechaNac = formato.parse("1/1/1998");
-						iusuario.confirmarAltaArtista("tripleNelson", "La Triple" , "Nelson" , "tripleNelson@tuta.io" , fechaNac, "", "", "La Triple Nelson es un grupo de rock uruguayo\n" + 
+						iusuario.confirmarAltaArtista("tripleNelson", "La Triple" , "Nelson" , "tripleNelson@tuta.io" , fechaNac, "https://bit.ly/2Geps4a", "HGF135", "La Triple Nelson es un grupo de rock uruguayo\n" + 
 								"formado en enero de 1998 e integrado inicialmente por\n" + 
 								"Christian Cary (guitarra y voz), Fernando \"Paco\" Pintos\n" + 
 								"(bajo y coros) y Rubén Otonello (actualmente su nuevo\n" + 
 								"baterista es Rafael Ugo)." , "naci blabla", "http://www.latriplenelso/");
 						fechaNac = formato.parse("14/2/1987");
-						iusuario.confirmarAltaArtista("la_ley", "La" , "Ley" , "la_ley@tuta.io" , fechaNac, "", "", "La Ley fue una banda chilena de rock formada en 1987\n" + 
+						iusuario.confirmarAltaArtista("la_ley", "La" , "Ley" , "la_ley@tuta.io" , fechaNac, "https://bit.ly/33oXxqQ", "lkj65D", "La Ley fue una banda chilena de rock formada en 1987\n" + 
 								"por iniciativa del tecladista y guitarrista. En un\n" + 
 								"principio, La Ley tenía la aspiración de ser un grupo de\n" + 
 								"música tecno. Este disco resulta ser un éxito de ventas\n" + 
 								"y reciben una invitación al Festival Internacional de\n" + 
 								"Viña del Mar de febrero de 1994." , "naci blabla", "http://www.lasleyesdene/");
 						fechaNac = formato.parse("13/8/1981");
-						iusuario.confirmarAltaArtista("lospimpi", "Pimpinela" , "Pimpinela" , "lospimpi@gmail.com" , fechaNac, "", "", "Pimpinela es un dúo musical argentino compuesto por\n" + 
+						iusuario.confirmarAltaArtista("lospimpi", "Pimpinela" , "Pimpinela" , "lospimpi@gmail.com" , fechaNac, "https://bit.ly/30t4tRI", "jhvf395", "Pimpinela es un dúo musical argentino compuesto por\n" + 
 								"los hermanos Lucía Galán y Joaquín Galán. Pimpinela\n" + 
 								"ha editado veinticuatro discos" , "naci blabla", "http://www.pimpinela.n/");
 						fechaNac = formato.parse("5/3/1940");
-						iusuario.confirmarAltaArtista("dyangounchained", "Dyango" , "Ango" , "dyangounchained@gmail.com" , fechaNac, "", "", "José Gómez Romero, conocido artísticamente como\n" + 
+						iusuario.confirmarAltaArtista("dyangounchained", "Dyango" , "Ango" , "dyangounchained@gmail.com" , fechaNac, "https://bit.ly/3jwA8JS", "ijngr024", "José Gómez Romero, conocido artísticamente como\n" + 
 								"Dyango es un cantante español de música romántica." , "naci blabla", "");
 						fechaNac = formato.parse("17/7/1952");
-						iusuario.confirmarAltaArtista("alcides", "Alcides" , "Violeta" , "alceides@tuta.io" , fechaNac, "", "", "Su carrera comienza en 1976 cuando forma la banda\n" + 
+						iusuario.confirmarAltaArtista("alcides", "Alcides" , "Violeta" , "alceides@tuta.io" , fechaNac, "https://bit.ly/3nnpAiu", "987mnbgh", "Su carrera comienza en 1976 cuando forma la banda\n" + 
 								"Los Playeros junto a su hermano Víctor. Al poco\n" + 
 								"tiempo se mudan a San Luis donde comienzan a\n" + 
 								"hacerse conocidos en la escena musical. Su éxito a nivel\n" + 
@@ -198,6 +200,73 @@ public class Main {
 								"desembarca en Buenos Aires y graba el éxito \"Violeta\",\n" + 
 								"originalmente compuesta e interpretada en 1985 por el\n" + 
 								"músico brasileño Luiz Caldas bajo el título «Fricote»." , "naci blabla", "");
+						
+						//SEGUIDORES
+						iusuario.SeguirUsuario("vpeople", "bruceTheBoss");
+						iusuario.SeguirUsuario("dmode", "clauper");
+						iusuario.SeguirUsuario("dmode", "bruceTheBoss");
+						iusuario.SeguirUsuario("clauper", "vpeople");
+						iusuario.SeguirUsuario("clauper", "dmode");
+						iusuario.SeguirUsuario("clauper", "dyangounchained");
+						iusuario.SeguirUsuario("bruceTheBoss", "vpeople");
+						iusuario.SeguirUsuario("bruceTheBoss", "dmode");
+						iusuario.SeguirUsuario("bruceTheBoss", "clauper");
+						iusuario.SeguirUsuario("bruceTheBoss", "house");
+						iusuario.SeguirUsuario("tripleNelson", "clauper");
+						iusuario.SeguirUsuario("tripleNelson", "la_ley");
+						iusuario.SeguirUsuario("tripleNelson", "waston");
+						iusuario.SeguirUsuario("la_ley", "dmode");
+						iusuario.SeguirUsuario("la_ley", "lospimpi");
+						iusuario.SeguirUsuario("la_ley", "waston");
+						iusuario.SeguirUsuario("lospimpi", "dmode");
+						iusuario.SeguirUsuario("lospimpi", "dyangounchained");
+						iusuario.SeguirUsuario("lospimpi", "alcides");
+						iusuario.SeguirUsuario("dyangounchained", "tripleNelson");
+						iusuario.SeguirUsuario("dyangounchained", "lospimpi");
+						iusuario.SeguirUsuario("alcides", "lospimpi");
+						iusuario.SeguirUsuario("alcides", "sergiop");
+						iusuario.SeguirUsuario("eleven11", "lospimpi");
+						iusuario.SeguirUsuario("eleven11", "dyangounchained");
+						iusuario.SeguirUsuario("eleven11", "waston");
+						iusuario.SeguirUsuario("eleven11", "chino");
+						iusuario.SeguirUsuario("eleven11", "tonyp");
+						iusuario.SeguirUsuario("costas", "vpeople");
+						iusuario.SeguirUsuario("costas", "dmode");
+						iusuario.SeguirUsuario("costas", "clauper");
+						iusuario.SeguirUsuario("costas", "bruceTheBoss");
+						iusuario.SeguirUsuario("costas", "tripleNelson");
+						iusuario.SeguirUsuario("costas", "la_ley");
+						iusuario.SeguirUsuario("costas", "lospimpi");
+						iusuario.SeguirUsuario("costas", "dyangounchained");
+						iusuario.SeguirUsuario("costas", "alcides");
+						iusuario.SeguirUsuario("waston", "dmode");
+						iusuario.SeguirUsuario("waston", "clauper");
+						iusuario.SeguirUsuario("waston", "bruceTheBoss");
+						iusuario.SeguirUsuario("waston", "house");
+						iusuario.SeguirUsuario("house", "bruceTheBoss");
+						iusuario.SeguirUsuario("house", "la_ley");
+						iusuario.SeguirUsuario("house", "dyangounchained");
+						iusuario.SeguirUsuario("sergiop", "vpeople");
+						iusuario.SeguirUsuario("sergiop", "la_ley");
+						iusuario.SeguirUsuario("sergiop", "lospimpi");
+						iusuario.SeguirUsuario("sergiop", "chino");
+						iusuario.SeguirUsuario("sergiop", "tonyp");
+						iusuario.SeguirUsuario("sergiop", "lachiqui");
+						iusuario.SeguirUsuario("chino", "alcides");
+						iusuario.SeguirUsuario("chino", "sergiop");
+						iusuario.SeguirUsuario("tonyp", "alcides");
+						iusuario.SeguirUsuario("tonyp", "sergiop");
+						iusuario.SeguirUsuario("lachiqui", "lospimpi");
+						iusuario.SeguirUsuario("lachiqui", "alcides");
+						iusuario.SeguirUsuario("cbochinche", "la_ley");
+						iusuario.SeguirUsuario("cbochinche", "lospimpi");
+						iusuario.SeguirUsuario("cbochinche", "alcides");
+						iusuario.SeguirUsuario("cbochinche", "tonyp");
+						iusuario.SeguirUsuario("cbochinche", "chino");
+						iusuario.SeguirUsuario("cbochinche", "lachiqui");
+						
+						
+						
 						
 						// PLATAFORMAS (Nombre, Descripcion, URL)
 									iplataforma.AltaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
@@ -209,21 +278,55 @@ public class Main {
 									iplataforma.AltaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
 											"compartir videos.","https://www.youtube.com/");
 								
-						
+						//Alta  Categorias
+						icategoria.AltaCategoria("Bandas Latinas");
+						icategoria.AltaCategoria("Solistas");
+						icategoria.AltaCategoria("Rock en Ingles");
+						icategoria.AltaCategoria("Musica Tropical");
+									
+									
 						// ESPECTACULOS (nombrePlataforma, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, URL, costo, fecha, duracion)
 						Date fechaAltaEspectaculo;
-						fechaAltaEspectaculo = formato.parse("31/03/2020");
-						iplataforma.altaEspectaculo("Instagram Live","vpeople","Los Village Volvieron","Espectáculo de retorno de los Village People.",10,800,"https://www.instagram.com/realvillagepeople/",550,fechaAltaEspectaculo,90, "", null);
+						Set<String> cat = new HashSet<String>();
+						
+						fechaAltaEspectaculo = formato.parse("31/03/2020");				
+						cat.add("Rock en Ingles");
+						iplataforma.altaEspectaculo("Instagram Live","vpeople","Los Village Volvieron","Espectáculo de retorno de los Village People.",10,800,"https://www.instagram.com/realvillagepeople/",550,fechaAltaEspectaculo,90, "", cat);
+						iplataforma.AceptarEspectaculo("Los Village Volvieron");
+						
 						fechaAltaEspectaculo = formato.parse("20/04/2020");
-						iplataforma.altaEspectaculo("Facebook Watch","dmode","Global Spirit","Espectáculo donde se presenta el álbum Spirit.",30,1300,"https://es-la.facebook.com/depechemode/",750,fechaAltaEspectaculo,120, "", null);
+						cat.add("Rock en Ingles");
+						iplataforma.altaEspectaculo("Facebook Watch","dmode","Global Spirit","Espectáculo donde se presenta el álbum Spirit.",30,1300,"https://es-la.facebook.com/depechemode/",750,fechaAltaEspectaculo,120, "", cat);
+						iplataforma.AceptarEspectaculo("Global Spirit");
+						
 						fechaAltaEspectaculo = formato.parse("30/05/2020");
-						iplataforma.altaEspectaculo("Twitter Live","clauper","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",5,1000,"https://twitter.com/cyndilauper",800,fechaAltaEspectaculo,110, "", null);
+						cat.add("Solistas");
+						iplataforma.altaEspectaculo("Twitter Live","clauper","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",5,1000,"https://twitter.com/cyndilauper",800,fechaAltaEspectaculo,110, "", cat);
+						iplataforma.AceptarEspectaculo("Memphis Blues World");
+						
 						fechaAltaEspectaculo = formato.parse("07/06/2020");
-						iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", null);
+						cat.add("Rock en Ingles");
+						iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
+						iplataforma.AceptarEspectaculo("Springsteen on Broadway");
+						
 						fechaAltaEspectaculo = formato.parse("08/07/2020");
-						iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150, "", null);
+						cat.add("Bandas Latinas");
+						iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150, "", cat);
+						iplataforma.AceptarEspectaculo("Bien de Familia");
+						
 						fechaAltaEspectaculo = formato.parse("31/07/2020");
-						iplataforma.altaEspectaculo("Twitter Live","alcides","30 años","Espectáculo conmemorando los 30 años de Violeta.",30,150,"https://twitter.com/alcides_shows",450,fechaAltaEspectaculo,80, "", null);
+						cat.add("Musica Tropical");
+						iplataforma.altaEspectaculo("Twitter Live","alcides","30 años","Espectáculo conmemorando los 30 años de Violeta.",30,150,"https://twitter.com/alcides_shows",450,fechaAltaEspectaculo,80, "", cat);
+						iplataforma.AceptarEspectaculo("30 años");
+						
+						fechaAltaEspectaculo = formato.parse("09/01/2020");
+						cat.add("Solistas");
+						iplataforma.altaEspectaculo("Youtube","dyangounchained","Grandes Exitos 2020","Espectaculo de gira con los temas de siempre",5,1000,"https://www.youtube.com/c/dyangooficial",550,fechaAltaEspectaculo,120, "", cat);
+						iplataforma.RechazarEspectaculo("Grandes Exitos 2020");
+						
+						fechaAltaEspectaculo = formato.parse("20/05/2020");
+						cat.add("Bandas Latinas");
+						iplataforma.altaEspectaculo("Instagram Live","tripleNelson","Llego a Casa","Primer Espectaculo con transmision por streaming",100,1500,"https://www.instagram.com/latriplenelson/",400,fechaAltaEspectaculo,100, "", cat);
 						
 						//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
 						SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -362,18 +465,20 @@ public class Main {
 						Date inicio = formato.parse("01/05/2020");
 						Date fin = formato.parse("31/07/2020");
 						Date alta = formato.parse("30/4/2020");
-						ipaquete.ConfirmarAltaPaquete("Paquete de Bandas", "Paquete de bandas musicales" , inicio, fin, 20.0, alta, "");
+						ipaquete.ConfirmarAltaPaquete("Paquete de Bandas", "Paquete de bandas musicales" , inicio, fin, 20.0, alta, "https://bit.ly/3l9Vihe");
 						
 
 						inicio = formato.parse("01/08/2020");
 						fin = formato.parse("30/09/2020");
 						alta = formato.parse("15/7/2020");
-						ipaquete.ConfirmarAltaPaquete("Paquete Solistas", "Paquete de solistas." , inicio, fin, 30.0, alta, "");
+						ipaquete.ConfirmarAltaPaquete("Paquete Solistas", "Paquete de solistas." , inicio, fin, 30.0, alta, "https://bit.ly/2HSF4e0");
 						
 						inicio = formato.parse("15/08/2020");
 						fin = formato.parse("15/11/2020");
 						alta = formato.parse("1/8/2020");
-						ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta, "");
+						ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta, "https://bit.ly/2HSF4e0/3ndBhIw");
+
+						
 
 						//REGISTRO A FUNCIONES(NombrePlataforma, NombreEspectaculo, Nickname, NombreFuncion, Fecha, TipoRegistro, IntRegistro1, IntRegistro2, IntRegistro3, NombrePaquete, Costo)
 						//TipoRegistro: Tipo_1 : No importa lo que vaya en IntRegistros ni en NombrePaquete, costo del espectaculo.

@@ -1,8 +1,11 @@
 	package Manejadores;
 import java.util.*;
 import Clases.Espectador;
+import Clases.Paquete;
+import Controladores.Fabrica;
 import Clases.Artista;
 import Clases.Espectaculo;
+import Clases.Usuario;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
 import DataTypes.DtArtistaConsulta;
@@ -34,21 +37,7 @@ public class ManejadorUsuario {
 			return instancia;
 		}
 	
-		public Boolean LogueoCorrecto(String login, String password) {
-			if(login.contains("@")) {
-				DtUsuario useremail = this.getUsuarioEmail(login);
-				if(useremail!=null && useremail.getContrasena().equals(password)) {
-					return true;
-				}
-			}
-			else {
-				DtUsuario usernickname = this.getUsuarioNickname(login);
-				if(usernickname != null && usernickname.getContrasena().equals(password)) {
-					return true;
-				}
-			}
-			return false;
-		}
+		
 		Map<String, Artista> getArtistas() {
 			return Artistas;
 		}
@@ -93,35 +82,6 @@ public class ManejadorUsuario {
 	            }           
 			}
 			return false;
-		}
-		DtUsuario getUsuarioEmail(String email) {
-			DtUsuario ret=null;
-			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
-	            if(entry.getValue().getEmail().equals(email)) {
-	            	return entry.getValue().getDtUsuario();
-	            }           
-			}
-			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
-	            if(entry.getValue().getEmail().equals(email)) {
-	            	return entry.getValue().getDtUsuario();
-	            }           
-			}
-			return ret;
-		}
-		
-		DtUsuario getUsuarioNickname(String nickname) {
-			DtUsuario ret=null;
-			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
-	            if(entry.getValue().getNickname().equals(nickname)) {
-	            	return entry.getValue().getDtUsuario();
-	            }           
-			}
-			for (Map.Entry<String,Espectador> entry : Espectadores.entrySet()) {
-	            if(entry.getValue().getNickname().equals(nickname)) {
-	            	return entry.getValue().getDtUsuario();
-	            }           
-			}
-			return ret;
 		}
 		
 		Boolean ExisteUsuarioConEmail(String email) {
@@ -248,6 +208,31 @@ public class ManejadorUsuario {
 		public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion) {
 			Espectador espec = Espectadores.get(nickname);
 			return espec.ExisteRegistroaFuncion(nombreFuncion);
+		}
+		public void comprarPaquete(String nickname, String nombrePaquete) {
+			Espectador espec = Espectadores.get(nickname);
+			Fabrica fab = Fabrica.getInstancia();
+			Paquete paquete = fab.getIPaquete().getPaquete(nombrePaquete);
+			espec.anadirPaquete(paquete);
+		}
+		
+		public void SeguirUsuario(String NickSeguidor, String NickASeguir) {
+			Usuario seguidor;
+			Usuario aseguir;
+			if(EsArtista(NickSeguidor)) {
+				seguidor = Artistas.get(NickSeguidor);
+			}
+			else {
+				seguidor = Espectadores.get(NickSeguidor);
+			}
+			if(EsArtista(NickASeguir)) {
+				aseguir = Artistas.get(NickASeguir);
+			}
+			else {
+				aseguir = Espectadores.get(NickASeguir);
+			}
+			seguidor.AgregarSeguido(NickASeguir,aseguir);
+			aseguir.AgregarSeguidor(NickSeguidor,seguidor);
 		}
 		
 		

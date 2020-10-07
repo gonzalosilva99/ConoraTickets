@@ -1,6 +1,9 @@
 package Interfaces;
 
 import java.util.Set;
+
+import Clases.Paquete;
+
 import java.util.Date;
 import java.util.HashSet;
 
@@ -20,4 +23,5 @@ public interface IPaquete {
 	public DtPaquete getDtPaquete(String nombrePaquete);
 	public HashSet<DtCategoria> ListarCategorias(String Paquete);
 	public Set<DtPaquete> ListarPaquetesVigentes();
+	public Paquete getPaquete(String nombrePaquete);
 }
