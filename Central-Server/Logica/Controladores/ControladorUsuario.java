@@ -153,4 +153,9 @@ public class ControladorUsuario implements IUsuario{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		return manusu.ExisteRegistroaFuncion(nickname,nombreFuncion);
 	}
+	
+	public void SeguirUsuario(String NickSeguidor, String NickASeguir) {
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		manusu.SeguirUsuario(NickSeguidor,NickASeguir);
+	}
 }

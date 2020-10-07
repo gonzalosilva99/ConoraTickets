@@ -3,6 +3,7 @@ import java.util.*;
 import Clases.Espectador;
 import Clases.Artista;
 import Clases.Espectaculo;
+import Clases.Usuario;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
 import DataTypes.DtArtistaConsulta;
@@ -205,6 +206,25 @@ public class ManejadorUsuario {
 		public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion) {
 			Espectador espec = Espectadores.get(nickname);
 			return espec.ExisteRegistroaFuncion(nombreFuncion);
+		}
+		
+		public void SeguirUsuario(String NickSeguidor, String NickASeguir) {
+			Usuario seguidor;
+			Usuario aseguir;
+			if(EsArtista(NickSeguidor)) {
+				seguidor = Artistas.get(NickSeguidor);
+			}
+			else {
+				seguidor = Espectadores.get(NickSeguidor);
+			}
+			if(EsArtista(NickASeguir)) {
+				aseguir = Artistas.get(NickASeguir);
+			}
+			else {
+				aseguir = Espectadores.get(NickASeguir);
+			}
+			seguidor.AgregarSeguido(NickASeguir,aseguir);
+			aseguir.AgregarSeguidor(NickSeguidor,seguidor);
 		}
 		
 		
