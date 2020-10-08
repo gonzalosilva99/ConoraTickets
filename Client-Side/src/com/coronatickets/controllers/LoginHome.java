@@ -33,7 +33,6 @@ public class LoginHome extends HttpServlet {
 	public static void initSession(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("estado_sesion") == null) {
-			session.setAttribute("prueba", "hola papi");
 			session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
 		}
 	}
@@ -41,7 +40,7 @@ public class LoginHome extends HttpServlet {
 	/**
 	 * Devuelve el estado de la sesión
 	 * @param request
-	 * @return 
+	 *  
 	 */
 	/*public static EstadoSesion getEstado(HttpServletRequest request)
 	{
