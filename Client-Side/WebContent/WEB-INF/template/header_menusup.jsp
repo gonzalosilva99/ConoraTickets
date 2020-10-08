@@ -22,7 +22,7 @@
     	<form class="form-inline my-2 my-lg-0 mx-auto">
       		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
       		<!--<a class="rounded-circle btn btn-outline-success my-2 mr-sm-2" href="../Client-Side/HTMLs/busqueda.html">-->
-     		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="location.href='/HTMLs/busqueda.html'" type="button"> 
+     		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="location.href='HTMLs/busqueda.html'" type="button"> 
       		<i class="fas fa-search"></i>
      		</button> 
       	<!--  	</a> -->

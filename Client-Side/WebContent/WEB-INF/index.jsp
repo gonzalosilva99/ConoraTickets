@@ -32,7 +32,7 @@
             </a>
             <div class="media-body ml-sm-4">
             <a href="#" class="media-heading"><h4>Bien de Familia</h4></a>
-            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <u><a href="../Client-Side/HTMLs/consultaEspectaculo.html">Leer más</a></u></p>
+            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <u><a href="/HTMLs/consultaEspectaculo.html">Leer más</a></u></p>
             </div>
             </div>
             

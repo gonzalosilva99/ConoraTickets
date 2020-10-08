@@ -45,7 +45,7 @@
                             <a href="#">Facebook Watch</a>
                         </li>
                         <li>
-                            <a href="../iniciar-sesion">Twitter Live</a>
+                            <a href="/home">Twitter Live</a>
                         </li>
                         <li>
                             <a href="#">Youtube</a>
@@ -94,7 +94,7 @@
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
       		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo, Función..." aria-label="Search">
-      		<a href="busqueda.html"><i class="fas fa-search"></i></a>
+      		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="location.href='/HTMLs/busqueda.html'" type="button"><i class="fas fa-search"></i></button>
     	</form>
     </li>
     <li class="nav-item dropdown">
@@ -162,12 +162,15 @@ ha editado veinticuatro discos</textarea>
 				  						 <p class="media-heading"><h4 id="tituloFunciones">Espectaculos:</h4></p>
 				  					</div>
 				  					<hr>
-				    				<div class="panel-body">	
+				    				<div class="panel-body">
+				    				 <a href="consultaEspectaculo.html">	
 				    						 <div class="row">
+				    						
 				    						 	<div class="col-md-2">
 				    						 		<img src="https://srt-assets.tadevel.xyz/5e267597723c28018527c9a0/720.webp" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
 	            
 					    						 </div>
+					    						 
 				   		 						 <div class="col-md-10">
 				    						 		<p class="text-dark"><b>Nombre:</b> <span id="nombreEspectaculo">Bien de familia</span></p>
 								  			 		<p class="text-dark"><b>Descripción:</b> <span id="DescripcionEspectaculo">El dúo estará presentando sus más sonados éxitos y también nuevas canciones.</span></p>
@@ -175,7 +178,9 @@ ha editado veinticuatro discos</textarea>
 								  			 		<p class="text-dark"><b>Duración:</b> <span id="artistasInvitadosFuncion">150</span></p>
 								  			 		<p class="text-dark"><b>Costo:</b> <span id="costoFuncion">$500</span></p>	
 				    							 </div>
-				    				</div>			
+				    							 
+				    				</div>	
+				    				</a>		
 				  				</div>
 							 </div>		  
 
