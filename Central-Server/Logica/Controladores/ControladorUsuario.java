@@ -162,4 +162,14 @@ public class ControladorUsuario implements IUsuario{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		manusu.comprarPaquete(nickname, nombrePaquete);
 	}
+	
+	public DtUsuario getUsuarioNickname(String nickname) {
+		return ManejadorUsuario.getInstancia().getUsuarioNickname(nickname);
+	}
+	public DtUsuario getUsuarioEmail(String email) {
+		return ManejadorUsuario.getInstancia().getUsuarioEmail(email);
+	}
+	public Boolean LogueoCorrecto(String login, String password) {
+		return ManejadorUsuario.getInstancia().LogueoCorrecto(login, password);
+	}
 }

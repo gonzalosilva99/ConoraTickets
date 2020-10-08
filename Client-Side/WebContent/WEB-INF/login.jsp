@@ -7,8 +7,8 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link href="styles/login.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="styles/font-awesome/css/all.css">
+	<link href="media/styles/login.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="media/styles/font-awesome/css/all.css">
 </head>
 <body style="background-color:#f0f2f5;">
 <div class="container wrapper "  >

@@ -48,10 +48,7 @@ public class Espectador extends Usuario{
 			return RegistroFunciones.size();
 		else return 0;
 	}
-	public DtUsuario getDtUsuario() {
-		DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido(),this.getContrasena(),this.getEmail());
-		return ret;
-	}
+
 	
 	public DtEspectador getDtEspectador() {
 		DtEspectador ret = new DtEspectador(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento());
@@ -67,12 +64,24 @@ public class Espectador extends Usuario{
 	}
 
 	public DtEspectadorConsulta getDtEspectadorConsulta() {
+		HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
+		for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+				DtUsuario nuevo = entry.getValue().getDtUsuario();
+				seguidores.add(nuevo);
+		}
+		
+		HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
+		for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+				DtUsuario nuevo = entry.getValue().getDtUsuario();
+				siguiendo.add(nuevo);
+		}
+		
 		HashSet<DtFuncion> esp = new HashSet<DtFuncion>();
 		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
 			DtFuncion nuevo = entry.getValue().getDtFuncion();
 			esp.add(nuevo);
 		}
-		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp);
+		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp,seguidores,siguiendo);
 		return ret;
 	}
 	

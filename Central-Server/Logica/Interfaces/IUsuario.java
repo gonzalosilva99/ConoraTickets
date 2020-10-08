@@ -33,4 +33,7 @@ public interface IUsuario {
 	public Boolean ExisteRegistroaFuncion(String nickname,String nombreFuncion);
 	public void SeguirUsuario(String NickSeguidor, String NickASeguir);
 	public void comprarPaquete(String nickname, String nombrePaquete);
+	public DtUsuario getUsuarioNickname(String nickname);
+	public DtUsuario getUsuarioEmail(String email);
+	public Boolean LogueoCorrecto(String login, String password);
 }

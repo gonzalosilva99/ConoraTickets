@@ -8,8 +8,8 @@ public class DtEspectadorPerfil extends DtEspectadorConsulta{
 	HashSet<DtPaquete> PaquetesComprados;
 
 	public DtEspectadorPerfil(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			HashSet<DtFuncion> funciones, HashSet<DtPaquete> paquetesComprados) {
-		super(nickname, nombre, apellido, email, nacimiento, funciones);
+			HashSet<DtFuncion> funciones, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo, HashSet<DtPaquete> paquetesComprados) {
+		super(nickname, nombre, apellido, email, nacimiento, funciones,seguidores,siguiendo);
 		PaquetesComprados = paquetesComprados;
 	}
 

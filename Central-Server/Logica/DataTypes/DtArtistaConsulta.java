@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class DtArtistaConsulta {
 	public DtArtistaConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String descgeneral, String biografia, String link, HashSet<DtEspectaculo> espectaculos) {
+			String descgeneral, String biografia, String link, HashSet<DtEspectaculo> espectaculos, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo) {
 		super();
 		Nickname = nickname;
 		Nombre = nombre;
@@ -16,6 +16,8 @@ public class DtArtistaConsulta {
 		Biografia = biografia;
 		this.link = link;
 		Espectaculos = espectaculos;
+		Siguiendo = siguiendo;
+		Seguidores = seguidores;
 	}
 	private
 	String Nickname;
@@ -35,6 +37,10 @@ public class DtArtistaConsulta {
 	String link;
 	private
 	HashSet<DtEspectaculo> Espectaculos;
+	private
+	HashSet<DtUsuario> Seguidores;
+	private
+	HashSet<DtUsuario> Siguiendo;
 	public String getNickname() {
 		return Nickname;
 	}
@@ -61,6 +67,12 @@ public class DtArtistaConsulta {
 	}
 	public HashSet<DtEspectaculo> getEspectaculos() {
 		return Espectaculos;
+	}
+	public HashSet<DtUsuario> getSeguidores() {
+		return Seguidores;
+	}
+	public HashSet<DtUsuario> getSiguiendo() {
+		return Siguiendo;
 	}
 	
 
