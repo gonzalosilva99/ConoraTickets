@@ -23,16 +23,17 @@
     	</form>
     </li>
     <li class="nav-item dropdown">
-       	<a class="nav-link" style="border-radius:0.25em;" href="#" id="UsernavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       		<%
+    		<%
        			if (request.getSession().getAttribute("usuario_logueado")==null){
        		%>
+       		
        		Error
        		<%
        			}
        			else{
        				DtUsuario usuario = Login.getUsuarioLogueado(request);
        		%>
+       <a class="nav-link" style="border-radius:0.25em;" href="#" id="UsernavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
        		<img alt="" src="<%= usuario.getImagen() %>" width=32em class="rounded-circle img-responsive img-fluid">
        		<%= usuario.getNickname() %>
        		<i class="fas fa-sort-down"></i>

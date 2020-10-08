@@ -35,7 +35,7 @@ public class CasosPrueba extends HttpServlet {
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
     	PrintWriter writer = response.getWriter();
-        writer.println("La hora es: " + new Date().toString() + " PRUEBA1");
+        writer.println("La hora es: " + new Date().toString() + " PRUEBA12");
     	try {
     		Fabrica fab = Fabrica.getInstancia();
 			IUsuario iusuario = fab.getIUsuario();

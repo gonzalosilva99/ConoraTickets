@@ -3,6 +3,7 @@ package com.coronatickets.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,13 +41,7 @@ public class LoginHome extends HttpServlet {
 	/**
 	 * Devuelve el estado de la sesión
 	 * @param request
-	 *  
 	 */
-	/*public static EstadoSesion getEstado(HttpServletRequest request)
-	{
-		return (EstadoSesion) 
-	}*/
-
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		initSession(req);
@@ -60,15 +55,27 @@ public class LoginHome extends HttpServlet {
 			case LOGIN_INCORRECTO:
 				// hace que se ejecute el jsp sin cambiar la url
 				PrintWriter writer = resp.getWriter();
-				writer.println("Mal iniciada la sesion papu");
+				writer.println("Mal iniciada la sesion");
 				//		forward(req, resp);
-				//break;
+				break;
 			case LOGIN_CORRECTO:
 				// manda una redirección a otra URL (cambia la URL)
-				resp.sendRedirect("/WEB-INF/index.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
+		        dispatcher.forward(req, resp);
 				break;
 		}
 	}
+	
+	/**
+	 * Devuelve el estado de la sesión
+	 * @param request
+	 * @return 
+	 */
+	public static EstadoSesion getEstado(HttpServletRequest request)
+	{
+		return (EstadoSesion) request.getAttribute("estado_sesion");
+	}
+	
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

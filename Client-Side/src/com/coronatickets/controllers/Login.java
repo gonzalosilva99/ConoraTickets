@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
         HttpSession objSesion = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        EstadoSesion nuevoEstado;
+        EstadoSesion nuevoEstado=null;
         try {
         	if(Fabrica.getInstancia().getIUsuario().LogueoCorrecto(login, password)) {
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
@@ -50,16 +50,15 @@ public class Login extends HttpServlet {
         		else {
         			request.getSession().setAttribute("usuario_logueado", login);
         		}
-        		request.setAttribute("estado_sesion", nuevoEstado);
         	}
         	else {
         		nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
-                
         	}
         }
         catch(Exception e) {
         	nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
         }
+        objSesion.setAttribute("estado_sesion", nuevoEstado);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
         dispatcher.forward(request, response);
     } 
