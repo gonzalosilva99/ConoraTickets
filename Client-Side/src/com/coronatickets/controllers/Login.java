@@ -40,35 +40,27 @@ public class Login extends HttpServlet {
         HttpSession objSesion = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        EstadoSesion nuevoEstado;
-        PrintWriter writer = response.getWriter();
-        writer.println((String) objSesion.getAttribute("prueba"));
+        EstadoSesion nuevoEstado=null;
         try {
         	if(Fabrica.getInstancia().getIUsuario().LogueoCorrecto(login, password)) {
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		if(login.contains("@")) {
-        			writer.println("Con arroba");
         			request.getSession().setAttribute("usuario_logueado", Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
         		}
         		else {
-        			writer.println("Sin arroba");
         			request.getSession().setAttribute("usuario_logueado", login);
         		}
-        		request.setAttribute("estado_sesion", nuevoEstado);
-        		
-        		/**RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
-                dispatcher.forward(request, response);**/
         	}
         	else {
         		nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
-                writer.println("La hora es: " + new Date().toString() + " ");
         	}
         }
         catch(Exception e) {
         	nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
-            writer.println("La hora es: " + new Date().toString() + " ");
         }
-
+        objSesion.setAttribute("estado_sesion", nuevoEstado);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+        dispatcher.forward(request, response);
     } 
 	
 	/**
