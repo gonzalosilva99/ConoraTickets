@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 
 public class DtEspectadorConsulta {
-	public DtEspectadorConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento,HashSet<DtFuncion> funciones, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo) {
+	public DtEspectadorConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena, HashSet<DtFuncion> funciones, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo) {
 		super();
 		Nickname = nickname;
 		Nombre = nombre;
@@ -14,7 +14,13 @@ public class DtEspectadorConsulta {
 		Funciones = funciones;
 		Siguiendo= siguiendo;
 		Seguidores = seguidores;
+		Imagen = imagen;
+		Contrasena = contrasena;
 	}
+	private
+	String Imagen;
+	private
+	String Contrasena;
 	private
 	String Nickname;
 	private
@@ -54,6 +60,12 @@ public class DtEspectadorConsulta {
 	}
 	public HashSet<DtUsuario> getSiguiendo() {
 		return Siguiendo;
+	}
+	public String getImagen() {
+		return Imagen;
+	}
+	public String getContrasena() {
+		return Contrasena;
 	}
 	
 	

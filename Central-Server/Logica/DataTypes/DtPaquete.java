@@ -2,16 +2,15 @@ package DataTypes;
 
 public class DtPaquete {
 
-public DtPaquete(String nombre, String descripcion) {
-		super();
-		Nombre = nombre;
-		Descripcion = descripcion;
-	}
+
 private
 String Nombre;
 private
 String Descripcion;
-
+public DtPaquete(String nombre, String descripcion) {
+	Nombre = nombre;
+	Descripcion = descripcion;
+}
 public String getNombre() {
 	return Nombre;
 }
