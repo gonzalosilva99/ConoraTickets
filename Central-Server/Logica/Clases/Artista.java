@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
 
@@ -55,23 +56,33 @@ public class Artista extends Usuario{
 		public void setEspectaculos(HashSet<Espectaculo> espectaculos) {
 			Espectaculos = espectaculos;
 		}
-		public DtUsuario getDtUsuario() {
-			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido(),this.getContrasena(),this.getEmail());
-			return ret;
-		}
+		
+		
 		public DtArtista getDtArtista() {
 			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL());
 			return ret;
 		}
 		
 		public DtArtistaConsulta getDtArtistaConsulta() {
+			HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
+			for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+					DtUsuario nuevo = entry.getValue().getDtUsuario();
+					seguidores.add(nuevo);
+			}
+			
+			HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
+			for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+					DtUsuario nuevo = entry.getValue().getDtUsuario();
+					siguiendo.add(nuevo);
+			}
+			
 			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
 			Iterator<Espectaculo> itr = Espectaculos.iterator();
 			while(itr.hasNext()) {
 				DtEspectaculo nuevo = itr.next().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
-			DtArtistaConsulta ret = new DtArtistaConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp);
+			DtArtistaConsulta ret = new DtArtistaConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo);
 			return ret;
 		}
 		

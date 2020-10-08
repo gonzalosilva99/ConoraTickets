@@ -37,8 +37,7 @@ public class ManejadorUsuario {
 			return instancia;
 		}
 	
-	public 
-		Boolean LogueoCorrecto(String login, String password) {
+	public	Boolean LogueoCorrecto(String login, String password) {
 			if(login.contains("@")) {
 				DtUsuario useremail = this.getUsuarioEmail(login);
 				if(useremail!=null && useremail.getContrasena().equals(password)) {
@@ -53,7 +52,7 @@ public class ManejadorUsuario {
 			}
 			return false;
 			}
-		DtUsuario getUsuarioEmail(String email) {
+		public DtUsuario getUsuarioEmail(String email) {
 			DtUsuario ret=null;
 			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
 	            if(entry.getValue().getEmail().equals(email)) {
@@ -68,7 +67,7 @@ public class ManejadorUsuario {
 			return ret;
 		}
 		
-		DtUsuario getUsuarioNickname(String nickname) {
+		public DtUsuario getUsuarioNickname(String nickname) {
 			DtUsuario ret=null;
 			for (Map.Entry<String,Artista> entry : Artistas.entrySet()) {
 	            if(entry.getValue().getNickname().equals(nickname)) {

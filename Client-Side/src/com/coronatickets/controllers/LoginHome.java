@@ -1,6 +1,8 @@
 package com.coronatickets.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +33,7 @@ public class LoginHome extends HttpServlet {
 	public static void initSession(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("estado_sesion") == null) {
+			session.setAttribute("prueba", "hola papi");
 			session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
 		}
 	}
@@ -55,9 +58,10 @@ public class LoginHome extends HttpServlet {
 				req.getRequestDispatcher("/WEB-INF/login.jsp").
 						forward(req, resp);
 				break;
-			//case LOGIN_INCORRECTO:
+			case LOGIN_INCORRECTO:
 				// hace que se ejecute el jsp sin cambiar la url
-				//req.getRequestDispatcher("/WEB-INF/home/inicioErroneo.jsp").
+				PrintWriter writer = resp.getWriter();
+				writer.println("Mal iniciada la sesion papu");
 				//		forward(req, resp);
 				//break;
 			case LOGIN_CORRECTO:

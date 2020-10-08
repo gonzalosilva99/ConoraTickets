@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import DataTypes.DtUsuario;
 
 public abstract class Usuario {
 	private String Nickname;
@@ -13,8 +16,8 @@ public abstract class Usuario {
 	private String Imagen;
 	private String Contrasena;
 	private Date Nacimiento;
-	private HashMap<String, Usuario> Seguidores;
-	private HashMap<String, Usuario> Siguiendo;
+	protected HashMap<String, Usuario> Seguidores;
+	protected HashMap<String, Usuario> Siguiendo;
 		public String getNickname() {
 			return Nickname;
 		}
@@ -78,6 +81,24 @@ public abstract class Usuario {
 		public void AgregarSeguidor(String nick,Usuario usu) {
 			Seguidores.put(nick, usu);
 		}
+		public HashMap<String, Usuario> getSeguidores() {
+			return Seguidores;
+		}
+		public void setSeguidores(HashMap<String, Usuario> seguidores) {
+			Seguidores = seguidores;
+		}
+		public HashMap<String, Usuario> getSiguiendo() {
+			return Siguiendo;
+		}
+		public void setSiguiendo(HashMap<String, Usuario> siguiendo) {
+			Siguiendo = siguiendo;
+		}
+		
+		public DtUsuario getDtUsuario() {
+			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido(),this.getContrasena(),this.getEmail(), this.getImagen(),this.getNacimiento());
+			return ret;
+		}
+		
 		
 		
 }
