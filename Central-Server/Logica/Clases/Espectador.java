@@ -81,7 +81,7 @@ public class Espectador extends Usuario{
 			DtFuncion nuevo = entry.getValue().getDtFuncion();
 			esp.add(nuevo);
 		}
-		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),esp,seguidores,siguiendo);
+		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),esp,seguidores,siguiendo);
 		return ret;
 	}
 	

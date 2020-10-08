@@ -86,8 +86,10 @@ public class ConsultaEspectaculo extends JInternalFrame {
 			datosPaquete = itrp.next();
 			comboBoxPaquetes.addItem(datosPaquete.getNombre());
 		}
-		
-		Set<DtCategoria> listaCategorias= iplataforma.ListarCategoriasDeEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), comboBoxEspectaculos.getSelectedItem().toString());
+		System.out.print(nomPlat+"\n");
+		System.out.print(dtespectaculo.getNombre()+"\n");
+		Set<DtCategoria> listaCategorias= iplataforma.ListarCategoriasDeEspectaculo(nomPlat, dtespectaculo.getNombre());
+
 		Iterator<DtCategoria> itrc = listaCategorias.iterator();
 		
 		comboBoxCategorias.removeAllItems();

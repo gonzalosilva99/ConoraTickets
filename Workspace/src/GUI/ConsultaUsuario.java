@@ -64,6 +64,8 @@ public class ConsultaUsuario extends JInternalFrame {
 	 */
 	String EspectaculoAux;
 	String FuncionAux;
+	private JTextField textFieldImagen;
+	private JTextField textFieldContrasena;
 	public ConsultaUsuario() {
 		
 		Fabrica fabric = Fabrica.getInstancia();
@@ -262,6 +264,34 @@ public class ConsultaUsuario extends JInternalFrame {
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonVerPaquetes, 6, SpringLayout.SOUTH, comboBoxEspectaculos);
 		sl_panel.putConstraint(SpringLayout.EAST, buttonVerPaquetes, 0, SpringLayout.EAST, comboBoxEspectaculos);
 		panel.add(buttonVerPaquetes);
+		
+		JLabel lblRol_1 = new JLabel("Imagen(URL):");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblRol_1, 2, SpringLayout.NORTH, lblEmail);
+		sl_panel.putConstraint(SpringLayout.WEST, lblRol_1, 0, SpringLayout.WEST, lblEspectaculosRegistrados);
+		sl_panel.putConstraint(SpringLayout.EAST, lblRol_1, 1, SpringLayout.EAST, lblRol);
+		panel.add(lblRol_1);
+		
+		JLabel lblRol_1_1 = new JLabel("Contrasena:");
+		sl_panel.putConstraint(SpringLayout.WEST, lblRol_1_1, 0, SpringLayout.WEST, lblEspectaculosRegistrados);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblRol_1_1, 0, SpringLayout.SOUTH, dateChooser);
+		sl_panel.putConstraint(SpringLayout.EAST, lblRol_1_1, 0, SpringLayout.EAST, lblRol);
+		panel.add(lblRol_1_1);
+		
+		textFieldImagen = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldImagen, 0, SpringLayout.NORTH, lblEmail);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldImagen, 0, SpringLayout.WEST, comboBoxEspectaculos);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldImagen, 1, SpringLayout.SOUTH, lblEmail);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldImagen, 0, SpringLayout.EAST, comboBoxEspectaculos);
+		textFieldImagen.setColumns(10);
+		panel.add(textFieldImagen);
+		
+		textFieldContrasena = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textFieldContrasena, 0, SpringLayout.NORTH, dateChooser);
+		sl_panel.putConstraint(SpringLayout.WEST, textFieldContrasena, 0, SpringLayout.WEST, comboBoxEspectaculos);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textFieldContrasena, 0, SpringLayout.SOUTH, dateChooser);
+		sl_panel.putConstraint(SpringLayout.EAST, textFieldContrasena, 0, SpringLayout.EAST, comboBoxEspectaculos);
+		textFieldContrasena.setColumns(10);
+		panel.add(textFieldContrasena);
 		springLayout.putConstraint(SpringLayout.NORTH, buttonAtras, -48, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, buttonAtras, -91, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, buttonAtras, -10, SpringLayout.SOUTH, getContentPane());
@@ -279,6 +309,8 @@ public class ConsultaUsuario extends JInternalFrame {
 					lblEspectaculosRegistrados.setText("Espectaculos:");
 					textFieldNickname.setEditable(false);
 					textFieldNombre.setEditable(false);
+					textFieldImagen.setEditable(false);
+					textFieldContrasena.setEditable(false);
 					textFieldApellido.setEditable(false);
 					textFieldNickname.setEditable(false);
 					textFieldEmail.setEditable(false);
@@ -299,6 +331,8 @@ public class ConsultaUsuario extends JInternalFrame {
 					lblRol.setVisible(true);
 					textFieldNickname.setText(iusuario.MostrarArtista(nick[0]).getNickname());
 					textFieldNombre.setText(iusuario.MostrarArtista(nick[0]).getNombre());
+					textFieldImagen.setText(iusuario.MostrarArtista(nick[0]).getImagen());
+					textFieldContrasena.setText(iusuario.MostrarArtista(nick[0]).getContrasena());
 					textFieldApellido.setText(iusuario.MostrarArtista(nick[0]).getApellido());
 					textFieldEmail.setText(iusuario.MostrarArtista(nick[0]).getEmail());
 					dateChooser.setDate(iusuario.MostrarArtista(nick[0]).getNacimiento());
@@ -330,6 +364,8 @@ public class ConsultaUsuario extends JInternalFrame {
 					textFieldNombre.setEditable(false);
 					textFieldApellido.setEditable(false);
 					textFieldNickname.setEditable(false);
+					textFieldImagen.setEditable(false);
+					textFieldContrasena.setEditable(false);
 					textFieldEmail.setEditable(false);
 					textFieldRol.setEditable(false);
 					txtpndescgeneral.setEditable(false);
@@ -350,6 +386,8 @@ public class ConsultaUsuario extends JInternalFrame {
 					textFieldNombre.setText(iusuario.MostrarEspectador(nick[0]).getNombre());
 					textFieldApellido.setText(iusuario.MostrarEspectador(nick[0]).getApellido());
 					textFieldEmail.setText(iusuario.MostrarEspectador(nick[0]).getEmail());
+					textFieldImagen.setText(iusuario.MostrarEspectador(nick[0]).getImagen());
+					textFieldContrasena.setText(iusuario.MostrarEspectador(nick[0]).getContrasena());
 					dateChooser.setDate(iusuario.MostrarEspectador(nick[0]).getNacimiento());
 					txtpndescgeneral.setText("");
 					txtpnbiografia.setText("");
