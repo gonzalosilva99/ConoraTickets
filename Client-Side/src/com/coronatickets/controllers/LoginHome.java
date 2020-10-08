@@ -56,6 +56,12 @@ public class LoginHome extends HttpServlet {
 				// hace que se ejecute el jsp sin cambiar la url
 				PrintWriter writer = resp.getWriter();
 				writer.println("Mal iniciada la sesion");
+				try {
+					wait(5000);
+				}
+				catch(Exception e) {}
+				req.getRequestDispatcher("/WEB-INF/login.jsp").
+				forward(req, resp);
 				//		forward(req, resp);
 				break;
 			case LOGIN_CORRECTO:

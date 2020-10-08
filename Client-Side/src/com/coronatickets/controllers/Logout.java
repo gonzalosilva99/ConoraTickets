@@ -18,13 +18,13 @@ import Manejadores.ManejadorUsuario;
 
 
 
-public class Login extends HttpServlet {
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,58 +37,10 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        HttpSession objSesion = request.getSession();
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        EstadoSesion nuevoEstado=null;
-        try {
-        	if(Fabrica.getInstancia().getIUsuario().LogueoCorrecto(login, password)) {
-        		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
-        		if(login.contains("@")) {
-        			request.getSession().setAttribute("usuario_logueado", Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
-        		}
-        		else {
-        			request.getSession().setAttribute("usuario_logueado", login);
-        		}
-        	}
-        	else {
-        		nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
-        	}
-        }
-        catch(Exception e) {
-        	nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
-        }
-        objSesion.setAttribute("estado_sesion", nuevoEstado);
-        RequestDispatcher dispatcher;
-        if(nuevoEstado==EstadoSesion.LOGIN_CORRECTO) {
-        	dispatcher = request.getRequestDispatcher("/home");
-        }
-        else {
-        	dispatcher = request.getRequestDispatcher("/login");
-        }
-        
-        dispatcher.forward(request, response);
+        request.getSession().setAttribute("estado_sesion", null);
+        request.getSession().setAttribute("usuario_logueado",null);
+        response.sendRedirect("/home");
     } 
-	
-	/**
-	 * Devuelve el usuario logueado
-	 * @param request
-	 * @return
-	 */
-	
-    static public DtUsuario getUsuarioLogueado(HttpServletRequest request) {
-		return Fabrica.getInstancia().getIUsuario().getUsuarioNickname((String) request.getSession().getAttribute("usuario_logueado"));
-	}
-    
-    /**
-	 * Devuelve el usuario logueado
-	 * @param request
-	 * @return
-	 */
-	
-    static public void Logout(HttpServletRequest request) {
-		request.getSession().setAttribute("estado_sesion", null);
-	}
 
      /** 
      * Handles the HTTP <code>GET</code> method.
