@@ -19,7 +19,11 @@
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
       		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
-      		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" type="submit"><i class="fas fa-search"></i></button>
+      		<a href="../Client-Side/HTMLs/busqueda.html">
+<!--       		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" type="submit"> -->
+      		<i class="fas fa-search"></i>
+<!--       		</button> -->
+      		</a>
     	</form>
     </li>
     <li class="nav-item dropdown">

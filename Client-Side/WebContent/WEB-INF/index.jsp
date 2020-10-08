@@ -14,15 +14,15 @@
         <div id="content">
 		<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 	
-            <h1>Novedades</h1>
+            <h2>Espectáculos disponibles en Twitter Live</h2>
             <div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
             <a href="#" class="pull-left">
-            	<img src="https://bit.ly/32V2lUD" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
+            	<img src="https://www.revistamoi.com/wp-content/uploads/2016/08/cuando-cumples-30-an%CC%83os.jpg" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
             </a>
             <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Springsteen On Broadway</h4></a>
-            <p> Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. <u><a href="#">Leer más</a></u></p>
+            <a href="#" class="media-heading"><h4>30 años</h4></a>
+            <p>Espectáculo conmemorando los 30 años de Violeta. <u><a href="#">Leer más</a></u></p>
             </div>
             </div>
             
@@ -32,17 +32,17 @@
             </a>
             <div class="media-body ml-sm-4">
             <a href="#" class="media-heading"><h4>Bien de Familia</h4></a>
-            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones <u><a href="#">Leer más</a></u></p>
+            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <u><a href="../Client-Side/HTMLs/consultaEspectaculo.html">Leer más</a></u></p>
             </div>
             </div>
             
             <div class="container-fluid media mb-sm-5">
             <a href="#" class="pull-left">
-            	<img src="https://bit.ly/36dXLmH" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>
+            	<img src="https://www.memphisbluesbbq.com/wp-content/uploads/2019/05/Colour.png" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>
             </a>
             <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Global Spirit</h4></a>
-            <p> Espectáculo donde se presenta el álbum Spirit. <u><a href="#">Leer más</a></u></p> 
+            <a href="#" class="media-heading"><h4>Memphis Blues World</h4></a>
+            <p> Espectáculo promoviendo álbum Memphis Blues. <u><a href="#">Leer más</a></u></p> 
             </div>
             </div>
         </div>
