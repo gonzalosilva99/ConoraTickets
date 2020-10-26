@@ -6,7 +6,9 @@ import DataTypes.DtPaquete;
 import java.util.Set;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
+import DataTypes.DtEspectadorPerfil;
 import DataTypes.DtArtistaConsulta;
+import DataTypes.DtArtistaPerfil;
 import DataTypes.DtUsuario;
 import Excepciones.Identidad;
 import DataTypes.DtArtista;
@@ -18,6 +20,8 @@ public interface IUsuario {
 	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena) throws Identidad;
 	public Set<DtUsuario> listarUsuarios();
 	public Boolean EsArtista(String nickname);
+	public DtArtistaPerfil PerfilArtista(String nickname);
+	public DtEspectadorPerfil PerfilEspectador(String nickname);
 	public DtArtistaConsulta MostrarArtista(String nickname);
 	public DtEspectadorConsulta MostrarEspectador(String nickname);
 	public Set<DtArtista> listarArtistas();

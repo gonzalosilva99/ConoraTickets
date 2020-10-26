@@ -9,12 +9,14 @@ import Clases.Usuario;
 import DataTypes.DtPaquete;
 import DataTypes.DtArtista;
 import DataTypes.DtArtistaConsulta;
+import DataTypes.DtArtistaPerfil;
 import DataTypes.DtFuncion;
 import DataTypes.DtUsuario;
 import Excepciones.Identidad;
 import DataTypes.DtRegistro;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
+import DataTypes.DtEspectadorPerfil;
 import DataTypes.DtArtista;
 
 
@@ -192,6 +194,14 @@ public class ManejadorUsuario {
 		
 		public Boolean EsArtista(String nickname) {
 			return Artistas.containsKey(nickname);
+		}
+		
+		public DtArtistaPerfil PerfilArtista(String nickname) {
+			return Artistas.get(nickname).getDtArtistaPerfil();
+		}
+		
+		public DtEspectadorPerfil PerfilEspectador(String nickname) {
+			return Espectadores.get(nickname).getDtEspectadorPerfil();
 		}
 		
 		public DtArtistaConsulta MostrarArtista(String nickname) {

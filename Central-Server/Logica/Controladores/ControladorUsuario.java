@@ -21,7 +21,9 @@ import DataTypes.TipoRegistro;
 import DataTypes.DtArtista;
 import DataTypes.DtEspectador;
 import DataTypes.DtArtistaConsulta;
+import DataTypes.DtArtistaPerfil;
 import DataTypes.DtEspectadorConsulta;
+import DataTypes.DtEspectadorPerfil;
 import Interfaces.IUsuario;
 import Manejadores.ManejadorPlataforma;
 import Manejadores.ManejadorUsuario;
@@ -66,6 +68,13 @@ public class ControladorUsuario implements IUsuario{
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Boolean h = manusu.EsArtista(nickname);
 		return h;
+	}
+	
+	public DtArtistaPerfil PerfilArtista(String nickname) {
+		return ManejadorUsuario.getInstancia().PerfilArtista(nickname);
+	}
+	public DtEspectadorPerfil PerfilEspectador(String nickname) {
+		return ManejadorUsuario.getInstancia().PerfilEspectador(nickname);
 	}
 	
 	public DtArtistaConsulta MostrarArtista(String nickname) {

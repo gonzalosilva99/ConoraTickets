@@ -2,6 +2,7 @@ package Clases;
 
 import java.util.Date;
 import DataTypes.DtUsuario;
+import DataTypes.EstadoEspectaculo;
 import DataTypes.DtArtista;
 import DataTypes.DtEspectaculo;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import DataTypes.DtArtistaConsulta;
+import DataTypes.DtArtistaPerfil;
 
 
 public class Artista extends Usuario{
@@ -60,6 +62,36 @@ public class Artista extends Usuario{
 		
 		public DtArtista getDtArtista() {
 			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL());
+			return ret;
+		}
+		
+		public DtArtistaPerfil getDtArtistaPerfil() {
+			HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
+			for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+					DtUsuario nuevo = entry.getValue().getDtUsuario();
+					seguidores.add(nuevo);
+			}
+			
+			HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
+			for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+					DtUsuario nuevo = entry.getValue().getDtUsuario();
+					siguiendo.add(nuevo);
+			}
+			HashSet<DtEspectaculo> espna = new HashSet<DtEspectaculo>();
+			Iterator<Espectaculo> itresp = Espectaculos.iterator();
+			while(itresp.hasNext()) {
+				Espectaculo nuevo = itresp.next();
+				if(nuevo.getEstado()!=EstadoEspectaculo.Aceptado)
+					espna.add(nuevo.getDatosEspectaculo());
+			}
+			
+			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
+			Iterator<Espectaculo> itr = Espectaculos.iterator();
+			while(itr.hasNext()) {
+				DtEspectaculo nuevo = itr.next().getDatosEspectaculo();
+				esp.add(nuevo);
+			}
+			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo,espna);
 			return ret;
 		}
 		

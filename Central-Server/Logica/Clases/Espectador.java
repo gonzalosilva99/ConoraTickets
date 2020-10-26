@@ -6,6 +6,7 @@ import java.util.Date;
 import DataTypes.DtEspectaculo;
 import DataTypes.DtEspectador;
 import DataTypes.DtEspectadorConsulta;
+import DataTypes.DtEspectadorPerfil;
 import DataTypes.DtUsuario;
 import DataTypes.DtFuncion;
 import DataTypes.DtPaquete;
@@ -82,6 +83,34 @@ public class Espectador extends Usuario{
 			esp.add(nuevo);
 		}
 		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),esp,seguidores,siguiendo);
+		return ret;
+	}
+	
+	public DtEspectadorPerfil getDtEspectadorPerfil() {
+		HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
+		for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+				DtUsuario nuevo = entry.getValue().getDtUsuario();
+				seguidores.add(nuevo);
+		}
+		
+		HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
+		for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+				DtUsuario nuevo = entry.getValue().getDtUsuario();
+				siguiendo.add(nuevo);
+		}
+		
+		HashSet<DtPaquete> paq = new HashSet<DtPaquete>();
+		for(Map.Entry<Integer, CompraPaquete> entry : CompraPaquetes.entrySet()) {
+			DtPaquete nuevo = entry.getValue().getDtPaquete();
+			paq.add(nuevo);
+		}
+		
+		HashSet<DtFuncion> esp = new HashSet<DtFuncion>();
+		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
+			DtFuncion nuevo = entry.getValue().getDtFuncion();
+			esp.add(nuevo);
+		}
+		DtEspectadorPerfil ret = new DtEspectadorPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),esp,seguidores,siguiendo, paq);
 		return ret;
 	}
 	
