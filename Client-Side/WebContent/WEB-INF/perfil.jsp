@@ -18,25 +18,15 @@
 	boolean PerfilPropio = false;
 	DtArtistaPerfil dtart=null;
 	DtEspectadorPerfil dtesp=null;
-	boolean EsArtista = false;
-	if((String) request.getParameter("id")==null){
-		PerfilPropio = (EstadoSesion) request.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO;}
-		//ELSE REDIRECT A ERROR PAGE
-	else if ((String) request.getParameter("id")==null){
-		if (Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getParameter("id"))){
-			EsArtista = true;
-			if(!PerfilPropio)
-				dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista((String) request.getParameter("id"));
-			else
-				dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista((String) request.getAttribute("usuario_logueado"));
-			}
-		else{
-			if(!PerfilPropio)
-				dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador((String) request.getParameter("id"));
-			else
-				dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador((String) request.getParameter("usuario_logueado"));
-			}	
-		}
+	boolean EsArtista =((String) request.getAttribute("tipo_usuario"))=="Artista";
+	if(EsArtista){
+		dtart = (DtArtistaPerfil) request.getAttribute("usuario_perfil");
+		PerfilPropio = dtart.getNickname() == (String) request.getSession().getAttribute("usuario_logueado");
+	}
+	else{
+		dtesp = (DtEspectadorPerfil) request.getAttribute("usuario_perfil");
+		PerfilPropio = dtesp.getNickname() == (String) request.getSession().getAttribute("usuario_logueado");
+	}
 	%>
 	<div class="wrapper">
         <jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
@@ -69,7 +59,15 @@
 		 	      			<%}%> </p>
 	 	   		</div>
 		 	    <div class="row">
-		 	    	<p class="mx-auto"><b>Último Ingreso: </b>25/09/2020</p>
+		 	    	<p class="mx-auto"><b>Último Ingreso: </b><% if(EsArtista){if(dtart.getUltimoIngreso()!=null){%>
+						<%= dtart.getUltimoIngreso()%>
+		 	      		<%}else{%>
+		 	      			<%= "Nunca" %>
+		 	      		<% }}else{if(dtesp.getUltimoIngreso()!=null){ %>
+		 	      		<%= dtesp.getUltimoIngreso() %>
+		 	      		<%}else{ %>
+		 	      			<%= "Nunca" %>
+		 	      			<%}}%></p>
 		 	    </div>
 		 	    <div class="row">
 	 	      		<p class="mx-auto" id="seguidores"> 5000 seguidores - 120 seguidos</p>

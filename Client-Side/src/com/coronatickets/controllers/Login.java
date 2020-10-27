@@ -45,10 +45,12 @@ public class Login extends HttpServlet {
         	if(Fabrica.getInstancia().getIUsuario().LogueoCorrecto(login, password)) {
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		if(login.contains("@")) {
+        			Fabrica.getInstancia().getIUsuario().actualizarUltimoIngreso(Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
         			request.getSession().setAttribute("usuario_logueado", Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
         		}
         		else {
         			request.getSession().setAttribute("usuario_logueado", login);
+        			Fabrica.getInstancia().getIUsuario().actualizarUltimoIngreso(login);
         		}
         	}
         	else {
