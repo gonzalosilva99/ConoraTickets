@@ -31,6 +31,7 @@ public class AltaPaquete extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+		
 		request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
 	}
     
