@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import Controladores.Fabrica;
 import DataTypes.EstadoSesion;
 import DataTypes.TipoRegistro;
+import Excepciones.Identidad;
 import Interfaces.ICategoria;
 import Interfaces.IPaquete;
 import Interfaces.IPlataforma;
@@ -42,18 +43,71 @@ public class Registrarse extends HttpServlet {
         
         String nickname = req.getParameter("inputNickname");
         objSesion.setAttribute("nickname", nickname);
-        Integer nuevoEstado = 0;
-
-    
-        req.getRequestDispatcher("/WEB-INF/registrarse.jsp").forward(req, resp);
         
+        String password = req.getParameter("inputPassword");
+        objSesion.setAttribute("password", password);
+        
+        String confirmarPassword = req.getParameter("inputConfirmarPassword");
+        objSesion.setAttribute("confirmarPassword", confirmarPassword);
+        
+        String nacimientoString= req.getParameter("trip-start");
+        
+        String checkbox = req.getParameter("espectadorArtista");
+        
+        System.out.println("nickname:" + nickname);
+        System.out.println("nombre:" + nombre);
+        System.out.println("apellido:" + apellido);
+        System.out.println("email:" + email);
+        System.out.println("PASS :" + password);
+        System.out.println("confirmar Pass:" + confirmarPassword);
+        System.out.println("nacimiento:" + nacimientoString);
+        System.out.println("CheckBox:" + checkbox);
+        
+        
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date fechaNac;
+		Boolean estadoOK = false;
+		try {
+			fechaNac = formato.parse(nacimientoString);
+			if (!Fabrica.getInstancia().getIUsuario().existeNickname(nickname) && password.equals(confirmarPassword) ) {
+				estadoOK = true;
+				if (checkbox.equals("espectador")) {
+					System.out.println("nuevo Espectador");
+					Fabrica.getInstancia().getIUsuario().confirmarAltaEspectador(nickname, nombre, apellido, email, fechaNac, "", password);
+				}else if (checkbox.equals("artista")) {
+					System.out.println("nuevo Artista");
+					Fabrica.getInstancia().getIUsuario().confirmarAltaArtista(nickname, nombre, apellido, email, fechaNac, "", password, "","", "");
+				}
+			}else { 
+				if (Fabrica.getInstancia().getIUsuario().existeNickname(nickname)) {
+					System.out.println("YA EXISTE NICK");
+				}
+				if (!password.equals(confirmarPassword)) {
+					System.out.println("DIFIEREN LAS PASSWORD");
+				}
+			}
+			
+		}catch(Exception e) {
+			 System.out.println("Excepcion: " + e.getMessage());
+		}
+		
+		RequestDispatcher dispatcher;
+		
+		if (estadoOK) {
+			dispatcher = req.getRequestDispatcher("/login");
+		}else {
+			dispatcher = req.getRequestDispatcher("/home");
+		}
+		
+        dispatcher.forward(req, resp);
+                
 	}
 	
 
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+    	request.getRequestDispatcher("/WEB-INF/registrarse.jsp").forward(request, response);
     } 
 
 
