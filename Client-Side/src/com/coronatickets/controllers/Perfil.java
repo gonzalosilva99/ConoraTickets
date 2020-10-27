@@ -43,8 +43,20 @@ public class Perfil extends HttpServlet {
 				//LLEVAR A ERROR
 			}
 		}
-		PrintWriter writer = response.getWriter();
-        writer.println("usuario: " + nickname);
+		if(Fabrica.getInstancia().getIUsuario().existeNickname(nickname)) {
+			if(Fabrica.getInstancia().getIUsuario().EsArtista(nickname)) {
+				request.setAttribute("tipo_usuario", "Artista");
+				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().PerfilArtista(nickname));
+			}
+			else {
+				request.setAttribute("tipo_usuario", "Espectador");
+				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().PerfilEspectador(nickname));
+			}
+			request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request, response);
+		}
+		else {
+			//LLEVAR A ERROR
+		}
 		//request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request,response);
 	}
 	
