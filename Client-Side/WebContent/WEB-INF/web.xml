@@ -33,6 +33,14 @@
         <servlet-name>Servlet Login</servlet-name>
         <url-pattern>/iniciar-sesion</url-pattern>
   	</servlet-mapping>
+  		<servlet>
+        <servlet-name>Servlet Alta Paquete</servlet-name>
+        <servlet-class>com.coronatickets.controllers.AltaPaquete</servlet-class>
+  	</servlet>
+  		<servlet-mapping>
+        <servlet-name>Servlet Alta Paquete</servlet-name>
+        <url-pattern>/altapaquete</url-pattern>
+  	</servlet-mapping>
 	<servlet>
         <servlet-name>Casos de Prueba</servlet-name>
         <servlet-class>com.coronatickets.controllers.CasosPrueba</servlet-class>
