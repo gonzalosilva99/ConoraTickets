@@ -185,4 +185,7 @@ public class ControladorUsuario implements IUsuario{
 	public Boolean LogueoCorrecto(String login, String password) {
 		return ManejadorUsuario.getInstancia().LogueoCorrecto(login, password);
 	}
+	public Boolean existeNickname(String nickname) {
+		return ManejadorUsuario.getInstancia().existeNickname(nickname);
+	}
 }

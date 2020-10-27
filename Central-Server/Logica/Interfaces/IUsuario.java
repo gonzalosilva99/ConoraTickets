@@ -40,4 +40,5 @@ public interface IUsuario {
 	public DtUsuario getUsuarioEmail(String email);
 	public Boolean LogueoCorrecto(String login, String password);
 	public void comprarPaquete(String nickname, String nombrePaquete, Date fecha);
+	public Boolean existeNickname(String nickname);
 }
