@@ -57,7 +57,7 @@
 		</li>
 		<li class="nav-item">/</li>
 		<li class="nav-item">
-		<a href="/HTMLs/Registrarse.html">Registrarse</a>
+		<a href="/signin">Registrarse</a>
 		</li>				
        	<%
        		}

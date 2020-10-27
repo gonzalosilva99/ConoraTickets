@@ -290,6 +290,9 @@ public class ManejadorUsuario {
 			seguidor.AgregarSeguido(NickASeguir,aseguir);
 			aseguir.AgregarSeguidor(NickSeguidor,seguidor);
 		}
+		public Boolean existeNickname(String nickname) {
+			return Artistas.containsKey(nickname) || Espectadores.containsKey(nickname);
+		}
 		
 		
 }
