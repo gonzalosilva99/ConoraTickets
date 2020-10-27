@@ -50,6 +50,14 @@
         <url-pattern>/cargarcasosdeprueba</url-pattern>
   	</servlet-mapping>
   	<servlet>
+        <servlet-name>Busqueda</servlet-name>
+        <servlet-class>com.coronatickets.controllers.Busqueda</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Busqueda</servlet-name>
+        <url-pattern>/busqueda</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
         <servlet-name>Logout</servlet-name>
         <servlet-class>com.coronatickets.controllers.Logout</servlet-class>
   	</servlet>
