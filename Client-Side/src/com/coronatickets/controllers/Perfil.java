@@ -2,6 +2,7 @@ package com.coronatickets.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,7 +34,18 @@ public class Perfil extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request,response);
+		String nickname = (String) request.getParameter("id");
+		if(nickname==null) {
+			if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO) {
+				nickname = (String) request.getSession().getAttribute("usuario_logueado");
+			}
+			else {
+				//LLEVAR A ERROR
+			}
+		}
+		PrintWriter writer = response.getWriter();
+        writer.println("usuario: " + nickname);
+		//request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request,response);
 	}
 	
 	

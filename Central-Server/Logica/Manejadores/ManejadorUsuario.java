@@ -84,7 +84,14 @@ public class ManejadorUsuario {
 			return ret;
 		}
 
-
+		public void actualizarUltimoIngreso(String nickname) {
+			if(Artistas.containsKey(nickname)) {
+				Artistas.get(nickname).setUltimoIngreso(new Date());
+			}
+			else if(Espectadores.containsKey(nickname)) {
+				Espectadores.get(nickname).setUltimoIngreso(new Date());
+			}
+		}
 		
 		Map<String, Artista> getArtistas() {
 			return Artistas;
