@@ -91,7 +91,7 @@ public class Artista extends Usuario{
 				DtEspectaculo nuevo = itr.next().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
-			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo,espna);
+			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo,espna, this.getUltimoIngreso());
 			return ret;
 		}
 		
