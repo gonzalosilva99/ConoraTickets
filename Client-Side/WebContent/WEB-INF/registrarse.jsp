@@ -21,21 +21,21 @@
     <div class="col-auto mb-4 justify-content-center align-items-center" >
     <h1 class="text-center col-auto mb-4">Regístrate</h1>
 <!--       <label for="validationCustom01">Nombre:</label> -->
-      <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" required>
+      <input type="text" class="form-control" name="inputNombre" id="inputNombre" placeholder="Nombre" required>
       <div class="valid-feedback">
         Bien!
       </div>
     </div>
     <div class="col-auto mb-4">
 <!--       <label for="validationCustom02">Apellido:</label> -->
-      <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" required>
+      <input type="text" class="form-control" name="inputApellido" id="inputApellido" placeholder="Apellido" required>
       <div class="valid-feedback">
         Bien!
       </div>
     </div>
     <div class="col-auto mb-4">
       <div class="input-group">
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" required>
+        <input type="text" class="form-control" name="inputEmail" id="inputEmail"  placeholder="Email" aria-describedby="inputGroupPrepend" required>
         <div class="invalid-feedback">
           Email inválido.
         </div>
@@ -43,36 +43,36 @@
   </div>
     <div class="col-auto mb-4">
 
-      <input type="text" class="form-control" id="nickname" placeholder="Nickname" name="nickname" required>
+      <input type="text" class="form-control" id="inputNickname" placeholder="Nickname" name="inputNickname" required>
       <div class="invalid-feedback">
         Nickname inválido.
       </div>
     </div>
     <div class="col-auto mb-4">
-      <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" required>
+      <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña" required>
       <div class="invalid-feedback">
         Contraseña inválida.
       </div>
     </div>
     <div class="col-auto mb-4">
-      <input type="password" class="form-control" id="inputConfirmarPassword" placeholder="Confirmar Contraseña" required>
+      <input type="password" class="form-control" id="inputConfirmarPassword" name="inputConfirmarPassword" placeholder="Confirmar Contraseña" required>
       <div class="invalid-feedback">
         Contraseña inválida.
       </div>
     </div>
     <div class="col-auto mb-4">
-      <input type="date" name="trip-start" placeholder="Nacimiento" class="form-control" id="validationCustom05" placeholder="Nacimiento" required>
+      <input type="date" name="trip-start" placeholder="Nacimiento" class="form-control"  id="inputNacimiento" placeholder="Nacimiento" required>
     </div>
     <div class="col-auto mb-4">
     <input type="file" >
 	</div>
     	<div class="form-group col-auto">
     <div class="form-radio ml-4 mb-4">
-      <input class="form-check-input" type="radio" name="tipo" id="gridRadios1" value="espectador" checked>
+      <input class="form-check-input" id="inputCheckEspectador" type="radio" name="espectadorArtista"  value="espectador" checked>
       <label class="form-check-label mr-5" for="invalidCheck" id="chartista">
         Espectador
       </label>
-      <input class="form-check-input" type="radio" name="tipo" id="gridRadios2" value="artista"">
+      <input class="form-check-input" id="inputCheckArtista" type="radio" name="espectadorArtista"  value="artista"">
       <label class="form-check-label" for="invalidCheck">
         Artista
       </label>

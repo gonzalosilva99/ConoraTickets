@@ -23,7 +23,7 @@
 	      			<input type="text" id="login" class="fadeIn second mt-sm-3" name="login" placeholder="Usuario">
 	      			<input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
 	      			<input type="submit" class="fadeIn fourth" value="Acceder" onclick="submit()">
-	      			<a href="Registrarse.html"> ¿No tienes cuenta? Regístrate</a>
+	      			<a href="/signin"> ¿No tienes cuenta? Regístrate</a>
 				</form>
 			</div>
 		</div>
