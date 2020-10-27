@@ -24,44 +24,43 @@ import Excepciones.Identidad;
  * Servlet implementation class Home
  */
 public class AltaEspectaculo extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AltaEspectaculo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/*
+	 * public AltaEspectaculo() { super(); // TODO Auto-generated constructor stub }
+	 */
 	
 	/**
 	 * Devuelve el estado de la sesión
 	 * @param request
 	 */
-	private void processRequest(HttpServletRequest request, HttpServletResponse response)
+	private void processRequest(HttpServletRequest requestt, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String nombre = request.getParameter("Nombre");
-		request.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(request,response);
-		String plat = request.getParameter("plat");
-	    String descripcion = request.getParameter("descripcion");
-	    String min = request.getParameter("espmin");
-	    String max = request.getParameter("espmax");
-	    String costo = request.getParameter("costo");
-	    String duracion = request.getParameter("duracion");
-	    String url = request.getParameter("url");
-	    String imagen = request.getParameter("imagen");
-	    Set<String> cats = new HashSet<String>();
-	    String[] values = request.getParameterValues("checked");
-	    for (int i = 0; i < values.length; i++) {
-	    	  cats.add(values[i]);
-	    	}
-	    java.util.Date fechaactual = new Date();
 	    try {
-	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, "sa", nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats);
+	    	String nombre = requestt.getParameter("Nombre");
+			String plat = requestt.getParameter("plat");
+		    String descripcion = requestt.getParameter("descripcion");
+		    String min = requestt.getParameter("espmin");
+		    String max = requestt.getParameter("espmax");
+		    String costo = requestt.getParameter("costo");
+		    String duracion = requestt.getParameter("duracion");
+		    String url = requestt.getParameter("url");
+		    String imagen = requestt.getParameter("imagen");
+		    Set<String> cats = new HashSet<String>();
+		    String[] values = requestt.getParameterValues("checked");
+		    for (int i = 0; i < values.length; i++) {
+		    	  cats.add(values[i]);
+		    	}
+		    java.util.Date fechaactual = new Date();
+	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, "alcides", nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats);	    	
+	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("home");
+			dispatcher.forward(requestt, resp);
 	    }
 	    catch (Exception e) {
-			e.printStackTrace();
+			requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(requestt,resp);
 		}
 		}
 			
@@ -74,6 +73,7 @@ public class AltaEspectaculo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(request,response);
+		
 		//processRequest(request, response);
 	}
 

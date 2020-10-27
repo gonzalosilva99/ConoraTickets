@@ -18,6 +18,7 @@
 	
 	<%
 	if((String) request.getParameter("id")!=null && Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getParameter("id"))){
+		//todo el codigo de abajo
 	}
 	else{
 		//ELSE REDIRECT A ERROR PAGE
@@ -46,9 +47,10 @@
       Iterator<DtPlataforma> itr = ListaPlataformas.iterator();
 		while(itr.hasNext())
 			{
+			String aux = itr.next().getNombre();
       %>
       
-      	<option value="<%=itr.next().getNombre()%>"><%= itr.next().getNombre() %></option>
+      	<option value="<%=aux%>"><%= aux %></option>
       	<% ;} %>
       </optgroup>
         
