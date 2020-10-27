@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html"%>
-<%@ page import="java.text.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +20,18 @@
 	if((String) request.getParameter("id")==null){
 		PerfilPropio = (EstadoSesion) request.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO;}
 		//ELSE REDIRECT A ERROR PAGE
-	else if ((String) request.getParameter("id")==null){
-		if (Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getParameter("id"))){
-			EsArtista = true;
-			if(!PerfilPropio)
-				dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista((String) request.getParameter("id"));
-			else
-				dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista((String) request.getAttribute("usuario_logueado"));
-			}
-		else{
-			if(!PerfilPropio)
-				dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador((String) request.getParameter("id"));
-			else
-				dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador((String) request.getParameter("usuario_logueado"));
-			}	
+	if (Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getParameter("id"))){
+		EsArtista = true;
+		if(!PerfilPropio)
+			dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista((String) request.getParameter("id"));
+		else
+			dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista((String) request.getAttribute("usuario_logueado"));
+		}
+	else{
+		if(!PerfilPropio)
+			dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador((String) request.getParameter("id"));
+		else
+			dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador((String) request.getParameter("usuario_logueado"));
 		}
 	%>
 	<div class="wrapper">
@@ -65,7 +61,7 @@
 	 	      		<p class="mx-auto"> <% if(EsArtista){%>
 						<%= dtart.getNickname() + " / " + dtart.getEmail() %>
 		 	      		<%}else{%>
-		 	      		<%= dtesp.getNickname() + " / " + dtesp.getEmail() %>
+		 	      		<%= dtesp.getNombre() + " / " + dtesp.getApellido() %>
 		 	      			<%}%> </p>
 	 	   		</div>
 		 	    <div class="row">

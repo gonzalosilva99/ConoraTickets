@@ -18,33 +18,11 @@ public abstract class Usuario {
 	private Date Nacimiento;
 	protected HashMap<String, Usuario> Seguidores;
 	protected HashMap<String, Usuario> Siguiendo;
-	private Date UltimoIngreso;
 		public String getNickname() {
 			return Nickname;
 		}
 		public void setNickname(String nickname) {
 			Nickname = nickname;
-		}
-		public Usuario(String nickname, String nombre, String apellido, String email, String imagen, String contrasena,
-				Date nacimiento, HashMap<String, Usuario> seguidores, HashMap<String, Usuario> siguiendo,
-				Date ultimoIngreso) {
-			super();
-			Nickname = nickname;
-			Nombre = nombre;
-			Apellido = apellido;
-			Email = email;
-			Imagen = imagen;
-			Contrasena = contrasena;
-			Nacimiento = nacimiento;
-			Seguidores = seguidores;
-			Siguiendo = siguiendo;
-			UltimoIngreso = ultimoIngreso;
-		}
-		public Date getUltimoIngreso() {
-			return UltimoIngreso;
-		}
-		public void setUltimoIngreso(Date ultimoIngreso) {
-			UltimoIngreso = ultimoIngreso;
 		}
 		public String getNombre() {
 			return Nombre;

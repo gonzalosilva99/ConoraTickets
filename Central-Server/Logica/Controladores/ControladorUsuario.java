@@ -64,10 +64,6 @@ public class ControladorUsuario implements IUsuario{
 		return h;
 	}
 	
-	public void actualizarUltimoIngreso(String nickname) {
-		Manejadores.ManejadorUsuario.getInstancia().actualizarUltimoIngreso(nickname);
-	}
-	
 	public Boolean EsArtista(String nickname) {
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Boolean h = manusu.EsArtista(nickname);
