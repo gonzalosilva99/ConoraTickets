@@ -33,25 +33,14 @@ public class Registrarse extends HttpServlet {
 		
 		HttpSession objSesion = req.getSession();
 		String nombre = req.getParameter("inputNombre");
-        objSesion.setAttribute("nombre", nombre);
-        
         String apellido = req.getParameter("inputApellido");
-        objSesion.setAttribute("apellido", apellido);
-        
         String email = req.getParameter("inputEmail");
-        objSesion.setAttribute("email", email);
-        
         String nickname = req.getParameter("inputNickname");
-        objSesion.setAttribute("nickname", nickname);
-        
+        req.setAttribute("nickname", nickname);
         String password = req.getParameter("inputPassword");
-        objSesion.setAttribute("password", password);
-        
-        String confirmarPassword = req.getParameter("inputConfirmarPassword");
-        objSesion.setAttribute("confirmarPassword", confirmarPassword);
-        
-        String nacimientoString= req.getParameter("trip-start");
-        
+        req.setAttribute("password", password);        
+        String confirmarPassword = req.getParameter("inputConfirmarPassword");        
+        String nacimientoString= req.getParameter("trip-start");        
         String checkbox = req.getParameter("espectadorArtista");
         
         System.out.println("nickname:" + nickname);
@@ -88,19 +77,19 @@ public class Registrarse extends HttpServlet {
 			}
 			
 		}catch(Exception e) {
+			estadoOK = false;
 			 System.out.println("Excepcion: " + e.getMessage());
 		}
 		
-		RequestDispatcher dispatcher;
+		
 		
 		if (estadoOK) {
-			dispatcher = req.getRequestDispatcher("/login");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("login");
+			dispatcher.forward(req, resp); 
 		}else {
-			dispatcher = req.getRequestDispatcher("/home");
+			req.getRequestDispatcher("/WEB-INF/registrarse.jsp").forward(req, resp);
 		}
-		
-        dispatcher.forward(req, resp);
-                
+                 
 	}
 	
 
