@@ -16,7 +16,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-header mx-auto ml-sm-5"><a href="#">CORONATICKETS.UY</a></div>
+                        <div class="navbar-header mx-auto ml-sm-5"><a href="/home">CORONATICKETS.UY</a></div>
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
@@ -36,9 +36,13 @@
 				%>
 		    <li class="nav-item dropdown">
 		       	<a class="nav-link" style="border-radius:0.25em;" href="#" id="UsernavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		       	<img alt="" src="<% if(usuario.getImagen()!=null){ %><%= usuario.getImagen() %><%}else{ %><%= "https://woises.net/public/img/defaultpic.jpg"%><%} %>" width=32em  height=32em class="rounded-circle img-responsive img-fluid">
+		       	<div class="d-flex flex-row">
+		       	<div style="width:2em;height:2em;" class="mr-2">
+		       		<img alt="" src="<% if(usuario.getImagen()!=null){ %><%= usuario.getImagen() %><%}else{ %><%= "https://woises.net/public/img/defaultpic.jpg"%><%} %>" class="rounded-circle img-responsive h-100 w-100">
+		       	</div>
 		       	<%= usuario.getNickname() %>
 		       	<i class="fas fa-sort-down"></i>
+		       	</div>
 		       	</a>
 		    	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="UsernavbarDropdown">
 		          <a class="dropdown-item" href="/perfil">Mi Perfil</a>
@@ -46,6 +50,7 @@
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
 		        </div>
+		        
 		    </li>
 		<%
 			}

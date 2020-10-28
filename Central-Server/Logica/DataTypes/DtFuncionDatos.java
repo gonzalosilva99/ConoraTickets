@@ -9,19 +9,29 @@ private	Date Inicio;
 private	Date Alta;
 private	Set<DtArtista> Artistas;
 private	DtEspectaculo Espectaculo;	
+private String Imagen;
+private Integer Espectadores;
 	
-public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas, DtEspectaculo espectaculo) {
+public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas, DtEspectaculo espectaculo, String imagen, Integer espectadores) {
 		super();
 		Nombre = nombre;
 		Inicio = inicio;
 		Alta = alta;
 		Artistas = artistas;
 		Espectaculo = espectaculo;
+		Imagen = imagen;
+		Espectadores = espectadores;
 	}
 public DtFuncionDatos() {}
 
 public String getNombre() {
 	return Nombre;
+}
+public String getImagen() {
+	return Imagen;
+}
+public Integer getEspectadores() {
+	return Espectadores;
 }
 public Date getInicio() {
 	return Inicio;

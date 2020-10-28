@@ -20,10 +20,10 @@
 		<div class="col-md-6 col-xs-12 col-sm-12">
 			<div  style="margin-left:7em;"id="formContent">
 	    		<form action="iniciar-sesion" method="POST">
-	      			<input type="text" id="login" class="fadeIn second mt-sm-3" name="login" placeholder="Usuario" value="<%=request.getAttribute("nickname") %>">
-	      			<input type="password" id="password" class="fadeIn third" name="password" placeholder="ContraseÃ±a" value="<%=request.getAttribute("password") %>">
+	      			<input type="text" id="login" class="fadeIn second mt-sm-3" name="login" placeholder="Usuario" value="<% if((String) request.getAttribute("nickname")!=null) {%><%=(String) request.getAttribute("nickname") %><% } %>">
+	      			<input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" value="<%if((String) request.getAttribute("password")!=null) {%> <%= (String) request.getAttribute("password") %> <% } %>">
 	      			<input type="submit" class="fadeIn fourth" value="Acceder" onclick="submit()">
-	      			<a href="/signin"> Â¿No tienes cuenta? RegÃ­strate</a>
+	      			<a href="/signin"> ¿No tienes cuenta? Regístrate</a>
 				</form>
 			</div>
 		</div>

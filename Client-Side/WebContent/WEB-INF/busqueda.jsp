@@ -18,9 +18,9 @@
 <body>
 	<%
 		String search = (String) request.getParameter("s");
-		//Set<DtUsuario> UsuariosFiltrados = Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search); 
-		//Set<DtEspectaculoDatos> EspectaculosFiltrados = Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search); 
-		//Set<DtPaqueteDatos> PaquetesFiltrados = Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search); 
+		Set<DtUsuario> UsuariosFiltrados = Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search); 
+		Set<DtEspectaculoDatos> EspectaculosFiltrados = Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search); 
+		Set<DtPaqueteDatos> PaquetesFiltrados = Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search); 
 	%>
 	
 	
@@ -31,8 +31,8 @@
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			
             <h1>Resultado de Búsqueda</h1>
+            
             <br>	
-		
            	<div class="container mx-auto">
 	           	<ul class="nav nav-tabs mx-auto" id="myTab" role="tablist">
 			  		<li class="nav-item">
@@ -48,11 +48,11 @@
 				<div class="tab-content" id="myTabContent">
 					  		<div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
 		    					<%
-		    					//Set<DtUsuario> temp = new HashSet<DtUsuario>();
-		    					//Integer i=0;
-		    					//for(DtUsuario dtusu : UsuariosFiltrados){ %>
-		    					<%//if(i<4){temp.add(dtusu);%>
-		    						<%-- <br>
+		    					Set<DtUsuario> temp = new HashSet<DtUsuario>();
+		    					Integer i=0;
+		    					for(DtUsuario dtusu : UsuariosFiltrados){ %>
+		    					<%if(i<4){temp.add(dtusu);%>
+		    						<br>
 		    						<a href="/perfil?id=<%=dtusu.getNickname()%>">
 		    						<div class="media mb-sm-2">
 								 	<img src="<% if(dtusu.getImagen()!=null && !dtusu.getImagen().equals("")){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
@@ -64,7 +64,7 @@
 								</a>
 								<%i++;%>
 		    					<%}else break;}i=0;%>
-		    					<%for(DtUsuario rem : temp){UsuariosFiltrados.remove(rem);}%>--%>
+		    					<%for(DtUsuario rem : temp){UsuariosFiltrados.remove(rem);}%>
 		    					<form id="formus">
 		    						<input type="button" id="submitusu" value="Cargar Más" /> 
 		    					</form>	
@@ -72,11 +72,11 @@
 					  		
 						<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
 							<%
-									//Set<DtEspectaculoDatos> tempe = new HashSet<DtEspectaculoDatos>();
-	    							//Integer e=0;
-			    					//for(DtEspectaculoDatos dtespec : EspectaculosFiltrados){ %>
-			    					<%//if(e<4){tempe.add(dtespec);%>
-			    					<%--  <br>
+									Set<DtEspectaculoDatos> tempe = new HashSet<DtEspectaculoDatos>();
+	    							Integer e=0;
+			    					for(DtEspectaculoDatos dtespec : EspectaculosFiltrados){ %>
+			    					<%if(e<4){tempe.add(dtespec);%>
+			    					<br>
 			    					<a href="/perfil?id=<%=dtespec.getNombre() %>">
 			    						<div class="media mb-sm-2">
 									 	<img src="<% if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
@@ -93,16 +93,16 @@
 		    					<form>
 		    						<button class="btn btn-primary" style="width: 100%;" type="submit" onclick="submit()">Ver mas </button>
 		    					</form>	
-		    					<a style="color:blue;" href="#"> Ver más</a>	--%>
+		    					<a style="color:blue;" href="#"> Ver más</a>
 						</div>
 						
 						<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="espectaculos-tab">
 							<%
-									//Set<DtPaqueteDatos> tempp = new HashSet<DtPaqueteDatos>();
-									//Integer p=0;
-			    					//for(DtPaqueteDatos dtpaq : PaquetesFiltrados){ %>
-			    					<%//if(p<4){tempp.add(dtpaq);%>
-			    					<%-- <br>
+									Set<DtPaqueteDatos> tempp = new HashSet<DtPaqueteDatos>();
+									Integer p=0;
+			    					for(DtPaqueteDatos dtpaq : PaquetesFiltrados){ %>
+			    					<%if(p<4){tempp.add(dtpaq);%>
+			    					< <br>
 			    					<a href="/perfil?id=<%=dtpaq.getNombre() %>">
 			    						<div class="media mb-sm-2">
 									 	<img src="<% if(dtpaq.getImagen() != null && dtpaq.getImagen()!=""){%> <%= dtpaq.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
@@ -116,7 +116,7 @@
 			    				<%p++;%>
 		    					<%}else break;}p=0;%>
 		    					<%for(DtPaqueteDatos paqrem : tempp){PaquetesFiltrados.remove(paqrem);}%>	
-		    				<a style="color:blue;" href="#"> Ver más</a>	--%>
+		    				<a style="color:blue;" href="#"> Ver más</a>
 						</div>
 				</div>
 				

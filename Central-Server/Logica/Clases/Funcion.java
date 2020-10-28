@@ -33,7 +33,6 @@ public class Funcion {
 			return Nombre;
 		}
 		
-		
 		public Integer getEspectadores() {
 			return Espectadores;
 		}
@@ -75,7 +74,7 @@ public class Funcion {
 		}
 		
 		public DtFuncion getDtFuncion() {
-			DtFuncion dtfun = new DtFuncion(this.Nombre,this.Inicio,this.Alta);
+			DtFuncion dtfun = new DtFuncion(this.Nombre,this.Inicio,this.Alta,this.Imagen);
 			return dtfun;
 		}
 		public Map<String, Artista> getArtistasInvitado(){
@@ -89,7 +88,7 @@ public class Funcion {
 			for (Map.Entry<String,Artista> entry : ArtistasInvitados.entrySet()) {
 				DtArtistaDevolver.add(entry.getValue().getDtArtista());
 			}
-			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo);
+			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo, Imagen,Espectadores);
 		}
 
 		

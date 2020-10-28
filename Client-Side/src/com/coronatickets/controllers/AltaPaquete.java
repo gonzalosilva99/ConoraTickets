@@ -1,6 +1,9 @@
 package com.coronatickets.controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import Controladores.Fabrica;
 import DataTypes.EstadoSesion;
+import Excepciones.Identidad;
 
 /**
  * Servlet implementation class AltaPaquete
@@ -30,9 +34,33 @@ public class AltaPaquete extends HttpServlet {
 
 
 	protected void processRequest(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+            HttpServletResponse response) throws ServletException, IOException, Identidad {
 		
-		request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
+		
+		String nombre = request.getParameter("nombrepaquete");
+	    String descripcion = request.getParameter("descripcion");
+	    String  fechaini = request.getParameter("dateFechaInicio");
+	    String fechafin = request.getParameter("dateFechaFin");
+	    String porcentaje = request.getParameter("porcentaje");
+	    String imagen = request.getParameter("imagen");
+	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+		
+	
+		try {
+			Date fechaf = formato.parse(fechafin);
+			Date fechai = formato.parse(fechaini);
+			double d = Double.parseDouble(porcentaje);  
+		    java.util.Date fechaactual = new Date();
+			Fabrica.getInstancia().getIPaquete().ConfirmarAltaPaquete(nombre, descripcion, fechai, fechaf, d, fechaactual, imagen);
+			request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+		
+		
 	}
     
     
@@ -41,7 +69,8 @@ public class AltaPaquete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -49,7 +78,18 @@ public class AltaPaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			processRequest(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Identidad e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

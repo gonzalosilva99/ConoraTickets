@@ -69,7 +69,7 @@ public class Paquete {
 			Descuento = descuento;
 		}
 		public DtPaquete getDtPaquete() {
-			DtPaquete ret = new DtPaquete(this.Nombre, this.Descripcion);
+			DtPaquete ret = new DtPaquete(this.Nombre, this.Descripcion, this.Imagen, this.Descuento, this.Inicio,this.Fin);
 			return ret;
 		}
 		public Boolean tieneEspectaculo(String NombreEspectaculo) {

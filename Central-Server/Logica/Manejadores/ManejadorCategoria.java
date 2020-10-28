@@ -8,6 +8,7 @@ import java.util.Set;
 import Clases.Categoria;
 import Clases.Plataforma;
 import DataTypes.DtCategoria;
+import DataTypes.DtEspectaculo;
 import DataTypes.DtPlataforma;
 import Clases.Categoria;
 import Excepciones.Identidad;
@@ -62,5 +63,11 @@ public
 	
 	public Categoria getCategoria(String nombre) {
 		return Categorias.get(nombre);
+	}
+	public Set<DtEspectaculo> listarEspectaculosDeCategoria(String Nombre){
+		return getCategoria(Nombre).getDtEspectaculos();
+	}
+	public HashSet<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
+		return  getCategoria(nombreCat).getDtEspectaculosAceptados();
 	}
 }

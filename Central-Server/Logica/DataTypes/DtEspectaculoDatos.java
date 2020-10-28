@@ -2,12 +2,17 @@ package DataTypes;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.HashSet;
 
 
 public class DtEspectaculoDatos {
 	
 public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,
+<<<<<<< HEAD
 			String uRL, Float costo, Date registro, Set<DtFuncion> funciones, Set<DtPaquete> paquetes, DtArtista organizador,String imagen) {
+=======
+			String uRL, Float costo, Date registro, Set<DtFuncionDatos> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, HashSet<DtCategoria> categorias) {
+>>>>>>> 28de0853e8ee677f7dce0b3ffd39adb6fb4ecca9
 		super();
 		Nombre = nombre;
 		Descripcion = descripcion;
@@ -20,6 +25,10 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		Funciones = funciones;
 		Paquetes = paquetes;
 		Organizador = organizador;
+<<<<<<< HEAD
+=======
+		Categorias = categorias;
+>>>>>>> 28de0853e8ee677f7dce0b3ffd39adb6fb4ecca9
 		Imagen = imagen;
 	}
 public DtEspectaculoDatos() {
@@ -40,12 +49,16 @@ Integer CantMax;
 private
 String URL;
 private
+	HashSet<DtCategoria> Categorias;
+private
+String Imagen;
+private
 Float Costo;
 private
 Date Registro;
 private String Imagen;
 private
-Set<DtFuncion> Funciones;
+Set<DtFuncionDatos> Funciones;
 private
 Set<DtPaquete> Paquetes;
 public String getNombre() {
@@ -76,7 +89,7 @@ public Float getCosto() {
 public Date getRegistro() {
 	return Registro;
 }
-public Set<DtFuncion> getFunciones() {
+public Set<DtFuncionDatos> getFunciones() {
 	return Funciones;
 }
 public Set<DtPaquete> getPaquetes() {
@@ -84,6 +97,12 @@ public Set<DtPaquete> getPaquetes() {
 }
 public DtArtista getOrganizador() {
 	return Organizador;
+}
+public HashSet<DtCategoria> getCategorias() {
+	return Categorias;
+}
+public String getImagen() {
+	return Imagen;
 }
 
 

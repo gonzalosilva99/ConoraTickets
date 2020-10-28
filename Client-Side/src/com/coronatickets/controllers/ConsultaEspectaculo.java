@@ -2,6 +2,7 @@ package com.coronatickets.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,13 +18,13 @@ import DataTypes.EstadoSesion;
 /**
  * Servlet implementation class Home
  */
-public class Home extends HttpServlet {
+public class ConsultaEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public ConsultaEspectaculo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +35,8 @@ public class Home extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//String nombrePlataforma = (String) request.getParameter("plataforma");
-		//request.setAttribute("plat",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
+		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
+		request.setAttribute("espectaculo",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
 		request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
 	}
 	
@@ -45,7 +46,6 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
-		
 	}
 
 	/**

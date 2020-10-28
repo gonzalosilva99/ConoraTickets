@@ -45,12 +45,12 @@ public class Login extends HttpServlet {
         	if(Fabrica.getInstancia().getIUsuario().LogueoCorrecto(login, password)) {
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		if(login.contains("@")) {
-        			Fabrica.getInstancia().getIUsuario().actualizarUltimoIngreso(Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
         			request.getSession().setAttribute("usuario_logueado", Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
+        			ActualizarUltimoIngreso(request);
         		}
         		else {
         			request.getSession().setAttribute("usuario_logueado", login);
-        			Fabrica.getInstancia().getIUsuario().actualizarUltimoIngreso(login);
+        			ActualizarUltimoIngreso(request);
         		}
         	}
         	else {
@@ -87,7 +87,14 @@ public class Login extends HttpServlet {
 	
     static public void Logout(HttpServletRequest request) {
 		request.getSession().setAttribute("estado_sesion", null);
+		request.getSession().setAttribute("usuario_logueado", null);
 	}
+    
+    static public void ActualizarUltimoIngreso(HttpServletRequest request) {
+    	if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null) {
+    		Fabrica.getInstancia().getIUsuario().actualizarUltimoIngreso((String) request.getSession().getAttribute("usuario_logueado"));
+    	}
+    }
 
      /** 
      * Handles the HTTP <code>GET</code> method.
