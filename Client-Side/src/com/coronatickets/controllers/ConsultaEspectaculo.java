@@ -38,31 +38,6 @@ public class ConsultaEspectaculo extends HttpServlet {
 		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
 		request.setAttribute("espectaculo",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
 		request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
-		
-		
-//		String nickname = (String) request.getParameter("id");
-//		if(nickname==null) {
-//			if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO) {
-//				nickname = (String) request.getSession().getAttribute("usuario_logueado");
-//			}
-//			else {
-//				//LLEVAR A ERROR
-//			}
-//		}
-//		if(Fabrica.getInstancia().getIUsuario().existeNickname(nickname)) {
-//			if(Fabrica.getInstancia().getIUsuario().EsArtista(nickname)) {
-//				request.setAttribute("tipo_usuario", "Artista");
-//				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().PerfilArtista(nickname));
-//			}
-//			else {
-//				request.setAttribute("tipo_usuario", "Espectador");
-//				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().PerfilEspectador(nickname));
-//			}
-//			request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request, response);
-//		}
-//		else {
-//			//LLEVAR A ERROR
-//		}
 	}
 	
 	

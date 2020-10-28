@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Controladores.Fabrica;
+import Interfaces.IPlataforma;
 import DataTypes.EstadoSesion;
 /**
  * Servlet implementation class Home
@@ -31,9 +32,11 @@ public class Home extends HttpServlet {
 	 * Devuelve el estado de la sesión
 	 * @param request
 	 */
-	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
+	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+		//String nombrePlataforma = (String) request.getParameter("plataforma");
+		//request.setAttribute("plat",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
+		request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
 	}
 	
 	
@@ -42,6 +45,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+		
 	}
 
 	/**

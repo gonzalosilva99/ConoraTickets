@@ -1,6 +1,7 @@
 package Controladores;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 import Clases.Categoria;
 import DataTypes.DtCategoria;
@@ -22,7 +23,9 @@ public class ControladorCategoria implements ICategoria{
 		ManejadorCategoria mancat = Manejadores.ManejadorCategoria.getInstancia();
 		return mancat.getCategoria(nombre);
 	}
-	public HashSet<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){return null;}
+	public HashSet<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
+		ManejadorCategoria mancat = Manejadores.ManejadorCategoria.getInstancia();	
+		return mancat.listarEspectaculosAceptadosDeCategoria(nombreCat);}
 	public DtEspectaculoDatos mostrarDatosEspectaculoPorCategoria(String nombreEspectaulo, String nombreCat) {return null;}
 	public HashSet<DtCategoria> listarCategorias(){
 		ManejadorCategoria mancat = Manejadores.ManejadorCategoria.getInstancia();	
@@ -31,6 +34,10 @@ public class ControladorCategoria implements ICategoria{
 	public HashSet<DtFuncion> ListarFuncionesDeEspectaculoDesdeCategoria(String NombreEspectaculo, String NombreCategoria){return null;}
 	public DtFuncionDatos MostrarFuncionDesdeCategoria(String NombreFuncion,String NombreEspectaculo,String NombreCategoria){return null;}
 	public HashSet<DtFuncion> ListarFuncionesVigentesDeEspectaculoDesdeCategoria(){return null;}
+	public Set<DtEspectaculo> listarEspectaculosDeCategoria(String Nombre){
+		ManejadorCategoria mancat = Manejadores.ManejadorCategoria.getInstancia();	
+		return mancat.listarEspectaculosDeCategoria(Nombre);
+	}
 	//public void ConfirmarRegistroFuncionEspectaculoDesdeCategoria(String nombreCateogoria, String nombreEspectaculo, String nickname, String nombreFuncion,
 				//Date fecha,TipoRegistro registro, Integer Registro1, Integer Registro2, Integer Registro3, String NombrePaquete, Double costo){}
 

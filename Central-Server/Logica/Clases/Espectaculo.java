@@ -151,7 +151,7 @@ public class Espectaculo {
 			return Funciones.get(nomFuncion);
 		}
 		public DtEspectaculo getDatosEspectaculo() {
-			DtEspectaculo dte = new DtEspectaculo(Nombre, Descripcion);
+			DtEspectaculo dte = new DtEspectaculo(Nombre, Descripcion,Imagen);
 			return dte;
 		}
 		public DtFuncionDatos getDtFuncionDatos(String nombreFuncion){
@@ -168,7 +168,8 @@ public class Espectaculo {
 			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
 			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(Nombre);
 			HashSet<DtCategoria> listacategorias = listarCategorias();
-			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFunciones() , listaPaquetes, Organizador.getDtArtista(),Imagen,listacategorias); 
+			DtEspectaculo esp = new DtEspectaculo(this.Nombre,this.Descripcion, Imagen);
+			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFuncionesDatos(esp) , listaPaquetes, Organizador.getDtArtista(),Imagen,listacategorias); 
 			return ret;
 		
 		}
@@ -190,7 +191,7 @@ public class Espectaculo {
 		}
 		public DtFuncionDatos getFuncionDatos(String nombreFuncion) {
 			Funcion fun = Funciones.get(nombreFuncion);
-			DtEspectaculo datosEsp = new DtEspectaculo(Nombre, Descripcion);
+			DtEspectaculo datosEsp = new DtEspectaculo(Nombre, Descripcion, Imagen);
 			return fun.getDtFuncionDatos(datosEsp);
 		}
 		
@@ -210,6 +211,17 @@ public class Espectaculo {
 			while(iter.hasNext()) {
 				DtCategoria nueva = iter.next().getDtCategoria();
 				ret.add(nueva);
+			}
+			return ret;
+		}
+		
+		public Set<DtFuncionDatos> listarFuncionesDatos(DtEspectaculo esp){
+			HashSet<DtFuncionDatos> ret = new HashSet<DtFuncionDatos>();
+			if ( Funciones != null) {
+				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+					DtFuncionDatos nueva = entry.getValue().getDtFuncionDatos(esp);
+					ret.add(nueva);
+				}
 			}
 			return ret;
 		}

@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class DtFuncion {
 
-public DtFuncion(String nombre, Date inicio, Date alta, String imagen) {
-		super();
-		Nombre = nombre;
-		Inicio = inicio;
-		Alta = alta;
-		Imagen = imagen;
-	}
+public DtFuncion(String nombre2, Date inicio2, Date alta2, String imagen2) {
+	super();
+	Nombre = nombre2;
+	Inicio = inicio2;
+	Alta = alta2;
+	Imagen = imagen2;
+}
 private
 String Nombre;
 private

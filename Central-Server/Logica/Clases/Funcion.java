@@ -89,7 +89,7 @@ public class Funcion {
 			for (Map.Entry<String,Artista> entry : ArtistasInvitados.entrySet()) {
 				DtArtistaDevolver.add(entry.getValue().getDtArtista());
 			}
-			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo);
+			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo, Imagen,Espectadores);
 		}
 
 		

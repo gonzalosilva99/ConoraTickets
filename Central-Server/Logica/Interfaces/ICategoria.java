@@ -12,6 +12,7 @@ import Clases.Categoria;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 public interface ICategoria {
 	public void AltaCategoria(String Nombre) throws Identidad;
@@ -22,6 +23,7 @@ public interface ICategoria {
 	public HashSet<DtFuncion> ListarFuncionesDeEspectaculoDesdeCategoria(String NombreEspectaculo, String NombreCategoria);
 	public DtFuncionDatos MostrarFuncionDesdeCategoria(String NombreFuncion,String NombreEspectaculo,String NombreCategoria);
 	public HashSet<DtFuncion> ListarFuncionesVigentesDeEspectaculoDesdeCategoria();
+	public Set<DtEspectaculo> listarEspectaculosDeCategoria(String Nombre);
 	//public void ConfirmarRegistroFuncionEspectaculoDesdeCategoria(String nombreCateogoria, String nombreEspectaculo, String nickname, String nombreFuncion,
 				//Date fecha,TipoRegistro registro, Integer Registro1, Integer Registro2, Integer Registro3, String NombrePaquete, Double costo);
 }

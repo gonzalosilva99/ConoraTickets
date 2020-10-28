@@ -7,7 +7,8 @@
 	<%@page import="DataTypes.EstadoSesion" %>
 	<%@page import="DataTypes.DtCategoria" %>
 	<%@page import="DataTypes.DtPaquete" %>
-	<%@page import="DataTypes.DtFuncion" %>
+	<%@page import="DataTypes.DtArtista" %>
+	<%@page import="DataTypes.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IUsuario"%>
@@ -23,6 +24,7 @@
 		<% 
 		DtEspectaculoDatos dtesp=null;
 		dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
+		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 		%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
@@ -49,18 +51,21 @@
 			  			<p class="media-heading"><h4 id="tituloEspectaculo">Informacion sobre el espectaculo:</h4></p>
 			  			<hr>
 						<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= dtesp.getNombre() %>	</span></p>
+						<% Integer tamc = dtesp.getCategorias().size();
+				    		if(tamc>0){
+				    		tamc=0;%>
 						<p class="text-dark"><b>Categorias:</b> <span id="categoriasEspectaculo">
 						<% 
 					      Iterator<DtCategoria> itr = dtesp.getCategorias().iterator();
 							while(itr.hasNext())
-								{%>
-								<%= itr.next().getNomCategoria() %>,<% ;} %></span></p>
-								
-						
+								{tamc++;%>
+								<%= itr.next().getNomCategoria() %>
+								<% if(tamc<dtesp.getCategorias().size()) {%>,<%} %>
+								<% } %></span></p>	<% } %>				
 						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>
-						<p class="text-dark"><b>Organizador:</b> <span id="descripcionEspectaculo"><%= dtesp.getOrganizador().getNombre() %> <%= dtesp.getOrganizador().getApellido() %></span></p>
+						<a href="/perfil?id=<%= dtesp.getOrganizador().getNickname() %>"><p class="text-dark"><b>Organizador:</b> <span id="descripcionEspectaculo"><%= dtesp.getOrganizador().getNombre() %> <%= dtesp.getOrganizador().getApellido() %></span></p></a>
 						<p class="text-dark"><b>Duracion:</b> <span id="duracionEspectaculo"><%= dtesp.getDuracion() %> minutos</span></p>
-						<p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getURL() %></span></p>
+						<a href="<%= dtesp.getURL() %>"><p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getURL() %></span></p></a>
 						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores"><%= dtesp.getCantMin() %></span></p>
 					    <p class="text-dark"><b>Cantidad maxima de Espectadores:</b> <span id="cantMaxEspectadores"><%= dtesp.getCantMax() %></span></p>
 						<p class="text-dark"><b>Costo:</b> <span id="costoEspectaculo"><%= dtesp.getCosto() %></span></p>					    
@@ -71,24 +76,38 @@
 				  					<div class="panel-heading mb-sm-2">
 				  						 <p class="media-heading"><h4 id="tituloFunciones">Funciones:</h4></p>
 				  					</div>
-				  					
+				  					<% Integer tamf = dtesp.getFunciones().size();
+				    		if(tamf>0){%>
 				  					<hr>
 				  					<%
-					      Iterator<DtFuncion> itrf = dtesp.getFunciones().iterator();
+					      Iterator<DtFuncionDatos> itrf = dtesp.getFunciones().iterator();
 							while(itrf.hasNext())
 								{
-								DtFuncion auxf = itrf.next();%>
+								DtFuncionDatos auxf = itrf.next();%>
 								<div class="container-fluid media mb-sm-5">
 								<img src="<%= auxf.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
 								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxf.getNombre() %> </span></p>
-								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= auxf.getInicio().getDate() + "/" + auxf.getInicio().getMonth() + "/" + (auxf.getInicio().getYear()+1900) %></span></p>
-								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= auxf.getInicio().getHours() + ":" + (auxf.getInicio().getMinutes())%> </span></p>					
+								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(auxf.getInicio()) %></span></p>
+								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= auxf.getInicio().getHours() + ":" + (auxf.getInicio().getMinutes()/10)+(auxf.getInicio().getMinutes()%10)%> </span></p>					
+				    						 <% Integer tama = auxf.getArtistas().size();
+				    						 	if(tama>0){tama=0;%>
+				    						 <p class="text-dark"><b>Artistas Invitados:</b> <span id="artistasinvitados">
+											<%
+											
+					      					Iterator<DtArtista> itra = auxf.getArtistas().iterator();
+											while(itra.hasNext())
+											{DtArtista auxa = itra.next();tama++;%>
+											<a href="/perfil?id=<%= auxa.getNickname() %>"> <%= auxa.getNombre() + auxa.getApellido() %></a>
+											<% if(auxf.getArtistas().size()<tama) {%>,<%}%>
+											<% } %></span></p>
+											<% } %>
+											<p class="text-dark"><b>Espectadores hasta el momento:</b> <span id="fechaFuncion"><%= auxf.getEspectadores() %></span></p>
 				    				</div>
 				    				</div>
 				    				<hr> 
-				    				<% ;} %>
+				    				<% ;}} %>
 				    							    				
 				  				</div>
 							 </div>		  		
@@ -114,6 +133,7 @@
 								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= auxp.getNombre() %></span></p>
 								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= auxp.getDescripcion() %></span></p>
 								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= auxp.getDescuento() %>%</span></p>							            
+								  			 <p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin()) %></span></p>
 								  		</div>
 								  		</div>
 								  		</a>
