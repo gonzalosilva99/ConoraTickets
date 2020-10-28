@@ -5,6 +5,9 @@
 <head>
 	<%@page import="DataTypes.DtEspectaculoDatos"%>
 	<%@page import="DataTypes.EstadoSesion" %>
+	<%@page import="DataTypes.DtCategoria" %>
+	<%@page import="DataTypes.DtPaquete" %>
+	<%@page import="DataTypes.DtFuncion" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IUsuario"%>
@@ -23,7 +26,7 @@
 		%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-	            <img src="dtesp.getImagen()" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
+	            <img src="<%= dtesp.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtesp.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>        
@@ -45,14 +48,22 @@
 			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="espectaculo" role="tabpanel" aria-labelledby="espectaculo-tab">
 			  			<p class="media-heading"><h4 id="tituloEspectaculo">Informacion sobre el espectaculo:</h4></p>
 			  			<hr>
-						<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo">Bien de Familia	</span></p>
-						<p class="text-dark"><b>Categorias:</b> <span id="categoriasEspectaculo">Musica</span></p>
-						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo">Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Burn to Run. </span></p>
-						<p class="text-dark"><b>Duracion:</b> <span id="duracionEspectaculo">150 minutos</span></p>
-						<p class="text-dark"><b>Url:</b> <span id="urlEspectaculo">https://twitter.com/PimpinelaNet</span></p>
-						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores">10</span></p>
-					    <p class="text-dark"><b>Cantidad maxima de Espectadores:</b> <span id="cantMaxEspectadores">500</span></p>
-						<p class="text-dark"><b>Costo:</b> <span id="costoEspectaculo">500</span></p>					    
+						<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= dtesp.getNombre() %>	</span></p>
+						<p class="text-dark"><b>Categorias:</b> <span id="categoriasEspectaculo">
+						<% 
+					      Iterator<DtCategoria> itr = dtesp.getCategorias().iterator();
+							while(itr.hasNext())
+								{%>
+								<%= itr.next().getNomCategoria() %>,<% ;} %></span></p>
+								
+						
+						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>
+						<p class="text-dark"><b>Organizador:</b> <span id="descripcionEspectaculo"><%= dtesp.getOrganizador().getNombre() %> <%= dtesp.getOrganizador().getApellido() %></span></p>
+						<p class="text-dark"><b>Duracion:</b> <span id="duracionEspectaculo"><%= dtesp.getDuracion() %> minutos</span></p>
+						<p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getURL() %></span></p>
+						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores"><%= dtesp.getCantMin() %></span></p>
+					    <p class="text-dark"><b>Cantidad maxima de Espectadores:</b> <span id="cantMaxEspectadores"><%= dtesp.getCantMax() %></span></p>
+						<p class="text-dark"><b>Costo:</b> <span id="costoEspectaculo"><%= dtesp.getCosto() %></span></p>					    
 					</div>
 			  		<div class="tab-pane fade ml-sm-5 mt-sm-5" id="funciones" role="tabpanel" aria-labelledby="funciones-tab">	 
 				  			 <div class="panel-group container-fluid">
@@ -60,30 +71,25 @@
 				  					<div class="panel-heading mb-sm-2">
 				  						 <p class="media-heading"><h4 id="tituloFunciones">Funciones:</h4></p>
 				  					</div>
+				  					
 				  					<hr>
-				    				<div class="panel-body">		    							  				
-								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Bien de Familia - A </span></p>
-								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">25/09/20</span></p>
-								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">19:00</span></p>
-								  			 <p class="text-dark"><b>Artistas invitados:</b> <span id="artistasInvitadosFuncion"> Alcides Violeta</span></p>
-								  			 <p class="text-dark"><b>Costo:</b> <span id="costoFuncion">$500</span></p>						
+				  					<%
+					      Iterator<DtFuncion> itrf = dtesp.getFunciones().iterator();
+							while(itrf.hasNext())
+								{
+								DtFuncion auxf = itrf.next();%>
+								<div class="container-fluid media mb-sm-5">
+								<img src="<%= auxf.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
+				    				<div class="panel-body">
+				    							    							  				
+								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxf.getNombre() %> </span></p>
+								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= auxf.getInicio().getDate() + "/" + auxf.getInicio().getMonth() + "/" + (auxf.getInicio().getYear()+1900) %></span></p>
+								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= auxf.getInicio().getHours() + ":" + (auxf.getInicio().getMinutes())%> </span></p>					
+				    				</div>
 				    				</div>
 				    				<hr> 
-				    				<div class="panel-body">			    								  				
-							  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Bien de Familia - B</span></p>
-							  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">25/10/20</span></p>
-							  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">18:30</span></p>
-							  			 <p class="text-dark"><b>Artistas invitados:</b> <span id="artistasInvitadosFuncion"> La Triple Nelson</span></p>
-							  			 <p class="text-dark"><b>Costo:</b> <span id="costoFuncion">$500</span></p>						
-				    				</div>		
-				    				<hr> 
-				    				<div class="panel-body">			    								  				
-							  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Bien de Familia - C</span></p>
-							  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">25/11/20</span></p>
-							  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">17:45 </span></p>
-							  			 <p class="text-dark"><b>Artistas invitados:</b> <span id="artistasInvitadosFuncion"> ...</span></p>
-							  			 <p class="text-dark"><b>Costo:</b> <span id="costoFuncion">$500</span></p>						
-				    				</div>						    				
+				    				<% ;} %>
+				    							    				
 				  				</div>
 							 </div>		  		
 			  		</div>
@@ -94,17 +100,26 @@
 				  						 <p class="media-heading"><h4 id="tituloFunciones">Paquetes:</h4></p>
 				  					</div>
 				  					<hr>
+				  					<%
+					      Iterator<DtPaquete> itrp = dtesp.getPaquetes().iterator();
+							while(itrp.hasNext())
+								{
+								DtPaquete auxp = itrp.next();%>
 				    				<div class="container-fluid media mb-sm-5">
 				    				<a href="ConsultaPaquete.html">
-				    					 <img src="https://images-platform.99static.com//nErsv2I3Mbjoc_IsYm4-hefSSHw=/0x0:1200x1200/fit-in/500x500/99designs-contests-attachments/89/89846/attachment_89846410" id="imgPaquete" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
+				    				<div class="container-fluid media mb-sm-5">
+				    					 <img src="<%= auxp.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 
 										 <div class="media-body ml-sm-4">		
-								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete">Paquete de Latino.</span></p>
-								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete">15%</span></p>							            
+								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= auxp.getNombre() %></span></p>
+								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= auxp.getDescripcion() %></span></p>
+								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= auxp.getDescuento() %>%</span></p>							            
+								  		</div>
 								  		</div>
 								  		</a>
             						</div>
-				    				<hr>				    				
+				    				<hr>
+				    				<% ;} %>				    				
 				  				</div>
 							 </div>				
 			  		</div>

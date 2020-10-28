@@ -2,12 +2,13 @@ package DataTypes;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.HashSet;
 
 
 public class DtEspectaculoDatos {
 	
 public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,
-			String uRL, Float costo, Date registro, Set<DtFuncion> funciones, Set<DtPaquete> paquetes, DtArtista organizador) {
+			String uRL, Float costo, Date registro, Set<DtFuncion> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, HashSet<DtCategoria> categorias) {
 		super();
 		Nombre = nombre;
 		Descripcion = descripcion;
@@ -20,6 +21,8 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		Funciones = funciones;
 		Paquetes = paquetes;
 		Organizador = organizador;
+		Categorias = categorias;
+		Imagen = imagen;
 	}
 public DtEspectaculoDatos() {
 	
@@ -38,6 +41,10 @@ private
 Integer CantMax;
 private
 String URL;
+private
+	HashSet<DtCategoria> Categorias;
+private
+String Imagen;
 private
 Float Costo;
 private
@@ -78,6 +85,12 @@ public Set<DtPaquete> getPaquetes() {
 }
 public DtArtista getOrganizador() {
 	return Organizador;
+}
+public HashSet<DtCategoria> getCategorias() {
+	return Categorias;
+}
+public String getImagen() {
+	return Imagen;
 }
 
 

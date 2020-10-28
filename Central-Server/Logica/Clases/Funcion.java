@@ -75,7 +75,7 @@ public class Funcion {
 		}
 		
 		public DtFuncion getDtFuncion() {
-			DtFuncion dtfun = new DtFuncion(this.Nombre,this.Inicio,this.Alta);
+			DtFuncion dtfun = new DtFuncion(this.Nombre,this.Inicio,this.Alta,this.Imagen);
 			return dtfun;
 		}
 		public Map<String, Artista> getArtistasInvitado(){
