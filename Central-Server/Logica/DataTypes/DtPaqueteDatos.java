@@ -51,6 +51,12 @@ public Date getInicio() {
 public Date getFin() {
 	return Fin;
 }
+
+public String getImagen(){
+	return Imagen;
+	
+}
+
 public Double getDescuento() {
 	return Descuento;
 }
