@@ -1,11 +1,12 @@
 package com.coronatickets.controllers;
 import java.util.LinkedHashMap; 
+import DataTypes.DtUsuario;
 import java.util.Map; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +58,18 @@ public class Busqueda extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+		System.out.print("LLego al servlet");
+		response.setContentType( "text/html; charset=iso-8859-1" );
+		PrintWriter out = response.getWriter();
+		String search = request.getParameter("Search");
+		System.out.print("search: " + search);
+		Set<DtUsuario> UsuariosFiltrados = Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search); 
+		System.out.print("tamanio: " + UsuariosFiltrados.size());
+		for(DtUsuario dtusu : UsuariosFiltrados) {
+			System.out.print("llego al for");
+			out.println("<h1>Nombre: " + dtusu.getNickname() + "</h1>");
+		}
+		
 	}
 
 }
