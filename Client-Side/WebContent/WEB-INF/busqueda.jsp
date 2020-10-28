@@ -65,8 +65,8 @@
     						<div class="media mb-sm-2">
 						 	<img src="<%= dtespec.getImagen() %>" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario"><%= d%> <%=dtusu.getApellido()%></h4>
-						    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
+						    	<h4 class="mt-0" id="nombreapellidoUsuario"></h4>
+						    	
 						  	</div>
 						</div>
 						</a>

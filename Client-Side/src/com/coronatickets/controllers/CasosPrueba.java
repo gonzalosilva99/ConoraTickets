@@ -413,6 +413,8 @@ public class CasosPrueba extends HttpServlet {
 			iusuario.comprarPaquete("lachiqui", "Paquete de Bandas", compa);
 			compa = formato.parse("09/08/2020");
 			iusuario.comprarPaquete("costas", "Paquete Latino", compa);
+			compa = formato.parse("14/08/2020");
+			iusuario.comprarPaquete("waston", "Paquete Latino", compa);
 			compa = formato.parse("16/08/2020");
 			iusuario.comprarPaquete("eleven11", "Paquete Solistas", compa);
 			compa = formato.parse("26/08/2020");
