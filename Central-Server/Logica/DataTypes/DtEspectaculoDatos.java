@@ -7,7 +7,7 @@ import java.util.Set;
 public class DtEspectaculoDatos {
 	
 public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,
-			String uRL, Float costo, Date registro, Set<DtFuncion> funciones, Set<DtPaquete> paquetes, DtArtista organizador) {
+			String uRL, Float costo, Date registro, Set<DtFuncion> funciones, Set<DtPaquete> paquetes, DtArtista organizador,String imagen) {
 		super();
 		Nombre = nombre;
 		Descripcion = descripcion;
@@ -20,6 +20,7 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		Funciones = funciones;
 		Paquetes = paquetes;
 		Organizador = organizador;
+		Imagen = imagen;
 	}
 public DtEspectaculoDatos() {
 	
@@ -42,12 +43,17 @@ private
 Float Costo;
 private
 Date Registro;
+private String Imagen;
 private
 Set<DtFuncion> Funciones;
 private
 Set<DtPaquete> Paquetes;
 public String getNombre() {
 	return Nombre;
+}
+
+public String getImagen() {
+	return Imagen;
 }
 public String getDescripcion() {
 	return Descripcion;

@@ -28,8 +28,10 @@
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			
             <h1>Resultado de Búsqueda</h1>
-            <br>
-            <ul class="nav nav-tabs mx-auto" id="myTab" role="tablist">
+            <br>	
+		
+           	<div class="container mx-auto">
+	           	<ul class="nav nav-tabs mx-auto" id="myTab" role="tablist">
 			  		<li class="nav-item">
 			  			<a class="nav-link active" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="general" aria-selected="true">Usuarios</a>
 			  		</li>
@@ -39,43 +41,79 @@
 					<li class="nav-item">
 						<a class="nav-link" id="paquetes-tab" data-toggle="tab" href="#paquetes" role="tab" aria-controls="registros" aria-selected="false">Paquetes</a>
 					</li>
-			</ul>
-			
-			
-			<div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
-				<p>Largo: <%=UsuariosFiltrados.size()%>  <%=EspectaculosFiltrados.size()%> <%=PaquetesFiltrados.size()%></p>
-    					<%
-    					for(DtUsuario dtusu : UsuariosFiltrados){ %>
-    					<a href="/perfil?id=<%=dtusu.getNickname()%>">
-    						<div class="media mb-sm-2">
-						 	<img src="<%=dtusu.getImagen()%>" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
-						    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
-						  	</div>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					  		<div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
+		    					<%
+		    					Set<DtUsuario> temp = new HashSet<DtUsuario>();
+		    					Integer i=0;
+		    					for(DtUsuario dtusu : UsuariosFiltrados){ %>
+		    					<%if(i<4){temp.add(dtusu);%>
+		    					<a href="/perfil?id=<%=dtusu.getNickname()%>">
+		    						<br>
+		    						<div class="media mb-sm-2">
+								 	<img src="<% if(dtusu.getImagen() != null){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+								  	<div class="media-body">
+								    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
+								    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
+								  	</div>
+								</div>
+								</a>
+								<%i++;%>
+		    					<%}else break;}i=0;%>
+		    					<%for(DtUsuario rem : temp){UsuariosFiltrados.remove(rem);}%>
+		    					<a style="color:blue;" href="#"> Ver más</a>	
+							</div>
+					  		
+						<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
+							<%
+									Set<DtEspectaculoDatos> tempe = new HashSet<DtEspectaculoDatos>();
+	    							Integer e=0;
+			    					for(DtEspectaculoDatos dtespec : EspectaculosFiltrados){ %>
+			    					<%if(e<4){tempe.add(dtespec);%>
+			    					<br>
+			    					<a href="/perfil?id=<%=dtespec.getNombre() %>">
+			    						<div class="media mb-sm-2">
+									 	<img src="<% if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+									  	<div class="media-body">
+									    	<h4 class="mt-0" id="nombreespectaculo"><%= dtespec.getNombre()%></h4>
+									    	<%=dtespec.getDescripcion() %>
+									    	Espectadores: <%= dtespec.getCantMin() %> / <%= dtespec.getCantMax() %>  
+									  	</div>
+									</div>
+									</a>
+								<%e++;%>
+		    					<%}else break;}e=0;%>
+		    					<%for(DtEspectaculoDatos esprem : tempe){EspectaculosFiltrados.remove(esprem);}%>	
+		    					<a style="color:blue;" href="#"> Ver más</a>	
 						</div>
-						</a>
-    					<%}%>	
-			</div>
-			
-			<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
-				<%
-    					for(DtEspectaculoDatos dtespec : EspectaculosFiltrados){ %>
-    					<a href="/perfil?id=<%=dtespec.getNombre() %>">
-    						<div class="media mb-sm-2">
-						 	<img src="<%= dtespec.getImagen() %>" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
-						  	<div class="media-body">
-						    	<h4 class="mt-0" id="nombreapellidoUsuario"><%= d%> <%=dtusu.getApellido()%></h4>
-						    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
-						  	</div>
+						
+						<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="espectaculos-tab">
+							<%
+									Set<DtPaqueteDatos> tempp = new HashSet<DtPaqueteDatos>();
+									Integer p=0;
+			    					for(DtPaqueteDatos dtpaq : PaquetesFiltrados){ %>
+			    					<%if(p<4){tempp.add(dtpaq);%>
+			    					<br>
+			    					<a href="/perfil?id=<%=dtpaq.getNombre() %>">
+			    						<div class="media mb-sm-2">
+									 	<img src="<% if(dtpaq.getImagen() != null && dtpaq.getImagen()!=""){%> <%= dtpaq.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+									  	<div class="media-body">
+									    	<h4 class="mt-0" id="nombreespectaculo"><%= dtpaq.getNombre()%></h4>
+									    	<%=dtpaq.getDescripcion() %>
+									    	Fechas: <%= dtpaq.getInicio() %> / <%= dtpaq.getFin()%>  
+									  	</div>
+									</div>
+									</a>
+			    				<%p++;%>
+		    					<%}else break;}p=0;%>
+		    					<%for(DtPaqueteDatos paqrem : tempp){PaquetesFiltrados.remove(paqrem);}%>	
+		    				<a style="color:blue;" href="#"> Ver más</a>	
 						</div>
-						</a>
-    			<%}%>	
+				</div>
+				
 			</div>
-			
-			
-			
-			
+	 	    
 			
 			
 			<%-- 

@@ -167,7 +167,7 @@ public class Espectaculo {
 		public DtEspectaculoDatos getDtEspectaculoDatos() {
 			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
 			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(Nombre);
-			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFunciones() , listaPaquetes, Organizador.getDtArtista()); 
+			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFunciones() , listaPaquetes, Organizador.getDtArtista(),Imagen); 
 			return ret;
 		
 		}
