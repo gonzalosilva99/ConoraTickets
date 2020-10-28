@@ -26,6 +26,14 @@
         <url-pattern>/perfil</url-pattern>
   	</servlet-mapping>
   	<servlet>
+        <servlet-name>Consulta Espectaculo</servlet-name>
+        <servlet-class>com.coronatickets.controllers.ConsultaEspectaculo</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Consulta Espectaculo</servlet-name>
+        <url-pattern>/consultaespectaculo</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
         <servlet-name>Servlet Home</servlet-name>
         <servlet-class>com.coronatickets.controllers.Home</servlet-class>
   	</servlet>
