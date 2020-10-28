@@ -7,8 +7,7 @@ import java.util.HashSet;
 
 public class DtEspectaculoDatos {
 	
-public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,
-			String uRL, Float costo, Date registro, Set<DtFuncionDatos> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, HashSet<DtCategoria> categorias) {
+public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,String uRL, Float costo, Date registro, Set<DtFuncionDatos> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, HashSet<DtCategoria> categorias) {
 		super();
 		Nombre = nombre;
 		Descripcion = descripcion;
@@ -44,17 +43,20 @@ String URL;
 private
 	HashSet<DtCategoria> Categorias;
 private
-String Imagen;
-private
 Float Costo;
 private
 Date Registro;
+private String Imagen;
 private
 Set<DtFuncionDatos> Funciones;
 private
 Set<DtPaquete> Paquetes;
 public String getNombre() {
 	return Nombre;
+}
+
+public String getImagen() {
+	return Imagen;
 }
 public String getDescripcion() {
 	return Descripcion;
@@ -88,9 +90,6 @@ public DtArtista getOrganizador() {
 }
 public HashSet<DtCategoria> getCategorias() {
 	return Categorias;
-}
-public String getImagen() {
-	return Imagen;
 }
 
 

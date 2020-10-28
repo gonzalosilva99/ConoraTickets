@@ -237,6 +237,15 @@ public class CasosPrueba extends HttpServlet {
 			iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
 			iplataforma.AceptarEspectaculo("Springsteen on Broadway");
 			
+			fechaAltaEspectaculo = formato.parse("07/06/2020");
+			cat.add("Rock en Ingles");
+			iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Prueba Recordar Borrar","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
+			iplataforma.RechazarEspectaculo("Prueba Recordar Borrar");
+			
+			fechaAltaEspectaculo = formato.parse("07/06/2020");
+			cat.add("Rock en Ingles");
+			iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Prueba 2 Recordar Borrar","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
+			
 			fechaAltaEspectaculo = formato.parse("08/07/2020");
 			cat.add("Bandas Latinas");
 			iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150, "", cat);
