@@ -61,15 +61,12 @@ public class Login extends HttpServlet {
         	nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
         }
         objSesion.setAttribute("estado_sesion", nuevoEstado);
-        RequestDispatcher dispatcher;
         if(nuevoEstado==EstadoSesion.LOGIN_CORRECTO) {
-        	dispatcher = request.getRequestDispatcher("/home");
+        	response.sendRedirect("/home");
         }
         else {
-        	dispatcher = request.getRequestDispatcher("/login");
+        	response.sendRedirect("/login");;
         }
-        
-        dispatcher.forward(request, response);
     } 
 	
 	/**

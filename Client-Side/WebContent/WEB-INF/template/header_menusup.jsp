@@ -36,12 +36,12 @@
 				%>
 		    <li class="nav-item dropdown">
 		       	<a class="nav-link" style="border-radius:0.25em;" href="#" id="UsernavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		       	<img alt="" src="<%= usuario.getImagen() %>" width=32em class="rounded-circle img-responsive img-fluid">
+		       	<img alt="" src="<% if(usuario.getImagen()!=null){ %><%= usuario.getImagen() %><%}else{ %><%= "https://woises.net/public/img/defaultpic.jpg"%><%} %>" width=32em  height=32em class="rounded-circle img-responsive img-fluid">
 		       	<%= usuario.getNickname() %>
 		       	<i class="fas fa-sort-down"></i>
 		       	</a>
 		    	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="UsernavbarDropdown">
-		          <a class="dropdown-item" href="PerfilUsuario.html">Mi Perfil</a>
+		          <a class="dropdown-item" href="/perfil">Mi Perfil</a>
 		          <a class="dropdown-item" href="#">Configuración</a>
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
