@@ -117,18 +117,18 @@
 	
 	<h1 class="text-center">Crea un Paquete de Espectáculos</h1>
             
-   	<form class="needs-validation mt-5 " novalidate>
+   	<form class="needs-validation mt-5 " novalidate action="altapaquete" method="POST">
    	
    	
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
-      <input type="text" class="form-control" id="validationNombre" placeholder="Nombre del Paquete" required>
+      <input type="text" name="nombrepaquete" class="form-control" id="validationNombre" placeholder="Nombre del Paquete" required>
       <div class="valid-feedback">
         Bien!
       </div>
     </div>
 
     <div class="form-row col-md-5  mb-4 mx-auto">
-      <textarea class="form-control row-md-3" rows=5 id="Descripcion" placeholder="Descripción"></textarea>
+      <textarea class="form-control row-md-3" rows=5 name="descripcion" id="Descripcion" placeholder="Descripción"></textarea>
     </div>
     
     <div class="form-row col-md-5 mx-auto">
@@ -149,11 +149,11 @@
     		<div class="input-group-prepend">
     			<span class="input-group-text">%</span>
     		</div>
-    		<input type="number" class="form-control" id="inputPorcentajeDescuento" placeholder="25.55" required>
+    		<input type="number" name = "porcentaje" class="form-control" id="inputPorcentajeDescuento" placeholder="25.55" required>
     	</div>
     </div>
     <div class="form-row col-md-5 mb-4 mx-auto">
-  		<input type="file" class="custom-file-input" id="customFileLang" lang="es">
+  		<input type="file" class="custom-file-input" name= "imagen" id="customFileLang" lang="es">
   		<label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
 	</div>
 	
