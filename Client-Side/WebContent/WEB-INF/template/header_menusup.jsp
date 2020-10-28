@@ -20,9 +20,9 @@
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
-      		<input class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
+      		<input id="tosearch" class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
       		<!--<a class="rounded-circle btn btn-outline-success my-2 mr-sm-2" href="../Client-Side/HTMLs/busqueda.html">-->
-     		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="location.href='HTMLs/busqueda.html'" type="button"> 
+     		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="InvocarBusqueda()" type="button"> 
       		<i class="fas fa-search"></i>
      		</button> 
       	<!--  	</a> -->
@@ -80,6 +80,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
+	
+	
+		function InvocarBusqueda(){
+			var busq = document.getElementById("tosearch").value;
+			window.location.href = "/busqueda?s=" + busq;
+			
+		}
+	
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');

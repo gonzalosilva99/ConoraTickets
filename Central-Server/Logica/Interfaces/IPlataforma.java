@@ -41,4 +41,5 @@ public interface IPlataforma {
 		public HashSet<DtEspectaculo> ListarEspectaculosIngresados();
 		public void AceptarEspectaculo(String nomEspectaculo);
 		public void RechazarEspectaculo(String nomEspectaculo);
+		public Set<DtEspectaculoDatos> filtrarEspectaculos(String search);
 }

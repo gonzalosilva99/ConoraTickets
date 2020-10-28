@@ -24,4 +24,5 @@ public interface IPaquete {
 	public HashSet<DtCategoria> ListarCategorias(String Paquete);
 	public Set<DtPaquete> ListarPaquetesVigentes();
 	public Paquete getPaquete(String nombrePaquete);
+	public Set<DtPaqueteDatos> filtrarPaquetes(String search); 
 }

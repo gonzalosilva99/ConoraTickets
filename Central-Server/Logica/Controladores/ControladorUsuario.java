@@ -53,6 +53,12 @@ public class ControladorUsuario implements IUsuario{
 		return manusu.listarRegistrosSinCanjeaer(nickname);
 	}
 	
+	public Set<DtUsuario> filtrarUsuarios(String search){
+		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
+		return manusu.filtrarUsuarios(search);
+	}
+	
+	
 	public Set<DtUsuario> listarUsuarios(){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();
 		Set<DtUsuario> h = manusu.listarUsuarios();

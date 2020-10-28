@@ -41,6 +41,13 @@ public class ControladorPaquete implements IPaquete{
 		
 	}
 	
+
+	public Set<DtPaqueteDatos> filtrarPaquetes(String search){
+		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
+		return manpaq.filtrarPaquetes(search);
+	}
+	
+	
 	public HashSet<DtCategoria> ListarCategorias(String Paquete){
 		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
 		return manpaq.ListarCategorias(Paquete);
