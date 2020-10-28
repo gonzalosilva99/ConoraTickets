@@ -33,7 +33,6 @@ public class Funcion {
 			return Nombre;
 		}
 		
-		
 		public Integer getEspectadores() {
 			return Espectadores;
 		}

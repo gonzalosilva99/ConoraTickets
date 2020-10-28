@@ -7,6 +7,7 @@
 	<%@page import="DataTypes.DtArtistaPerfil"%>
 	<%@page import="DataTypes.EstadoSesion" %>
 	<%@page import="DataTypes.DtPaqueteDatos" %>
+	<%@page import="DataTypes.DtEspectaculo" %>
 	<%@page import="DataTypes.DtFuncion" %>	
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
@@ -24,6 +25,7 @@
 	DtArtistaPerfil dtart=null;
 	DateFormat fechaCompleta = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
+	DateFormat horaFecha = new SimpleDateFormat("hh:mm");
 	DtEspectadorPerfil dtesp=null;
 	boolean EsArtista =((String) request.getAttribute("tipo_usuario"))=="Artista";
 	if(EsArtista){
@@ -89,11 +91,13 @@
 			  		<li class="nav-item">
 			  			<a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">GENERAL</a>
 			  		</li>
+			  		<% if(!EsArtista){ %>
+			  			<li class="nav-item">
+							<a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="false">REGISTROS</a>
+						</li>
+			  		<% } %>
 					<% if(PerfilPropio){ %>
 					<%if(!EsArtista){ %>
-					<li class="nav-item">
-						<a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="false">REGISTROS</a>
-					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="paquetes-tab" data-toggle="tab" href="#paquetes" role="tab" aria-controls="paquetes" aria-selected="false">PAQUETES</a>
 					</li>
@@ -105,8 +109,7 @@
 					<li class="nav-item">
 						<a class="nav-link" id="funciones-tab" data-toggle="tab" href="#funciones" role="tab" aria-controls="funciones" aria-selected="false">FUNCIONES INVITADO</a>
 					</li>
-					<% } %>
-					<%} %>
+					<% }}%>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -121,21 +124,39 @@
 						<p class="text-dark"><b>URL:</b> <span id="urlUsuario"><a href="<%= dtart.getLink() %>"><%= dtart.getLink() %></a></span></p>
 						<%} %>
 					</div>
+					<% if(!EsArtista){%>
+						<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">
+			  			<div class="container mt-5">
+				  			<% 	Iterator<DtFuncion> itrfunc = dtesp.getFunciones().iterator();
+				  				while(itrfunc.hasNext()){
+				  					DtFuncion nuevo = itrfunc.next();
+				  			%>
+					    		<div class="container-fluid media mb-sm-3">
+				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
+				    			<div class="container-fluid media">
+				    				<img src="<%= nuevo.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
+										<div class="media-body ml-sm-4">	
+											<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
+									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
+									  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
+								        </div>
+								</div>
+								</a>
+            					</div>
+								<hr>
+				  			<%		
+				  				}
+				  			%>
+			  			</div>
+			  		</div>
+					<%}%>
+					<% if(EsArtista && !PerfilPropio){
+						//MOSTRAR ESPECTACULOS ACEPTADOS
+					%>
+					
+					<% } %>
 					<% if(PerfilPropio){ %>
 			  		<% if(!EsArtista){ %>
-			  		<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">
-			  			<% 	Iterator<DtFuncion> itrfunc = dtesp.getFunciones().iterator();
-			  				while(itrfunc.hasNext()){
-			  					DtFuncion nuevo = itrfunc.next();
-			  			%>
-			  			
-			  			
-			  			
-			  			
-			  			<%		
-			  				}
-			  			%>
-			  		</div>
 			  		<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="paquetes-tab">
 				  		<div class="container mt-5">
 				  		<% Iterator<DtPaqueteDatos> itrpaq = dtesp.getPaquetesComprados().iterator();
@@ -161,13 +182,15 @@
 			  		</div>
 			  		<% }%>			  		
 					<% if(EsArtista){ %>
-					<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">
+					<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
+						<% Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
+						while(itresp.hasNext()) {
+							DtEspectaculo nuevo = itresp.next(); %>
+					</div>
+					<div class="tab-pane fade" id="funcionesinvitado" role="tabpanel" aria-labelledby="funcionesinvitado-tab">
 					...
 					</div>
-					<div class="tab-pane fade" id="funciones" role="tabpanel" aria-labelledby="funciones-tab">
-					...
-					</div>
-					<%}}%>
+					<%}}}%>
 				</div>
 			</div>
        </div>
