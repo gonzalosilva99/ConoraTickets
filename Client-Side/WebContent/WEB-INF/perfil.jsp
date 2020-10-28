@@ -9,6 +9,7 @@
 	<%@page import="DataTypes.DtPaqueteDatos" %>
 	<%@page import="DataTypes.DtEspectaculo" %>
 	<%@page import="DataTypes.DtFuncion" %>	
+	<%@page import="DataTypes.EstadoEspectaculo" %>	
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IUsuario"%>
@@ -46,7 +47,7 @@
             <div class="container-fluid">
             	<div class="mb-sm-4 container-fluid"></div>
 	            <div class="row">
-		            <img src="<% if(EsArtista){if(dtart.getImagen()!=null){%><%= dtart.getImagen() %> <%}else{%><%= "https://woises.net/public/img/defaultpic.jpg" %><%}}else{ if(dtesp.getImagen()!=null){%><%= dtesp.getImagen() %><%}else{%><%= "https://woises.net/public/img/defaultpic.jpg" %><% }} %>" class="shadow mx-auto rounded-circle" width=150em height=150em>
+		            <img src="<% if(EsArtista){if(dtart.getImagen()!=null && dtart.getImagen()!=""){%><%= dtart.getImagen() %> <%}else{%><%= "img/defaultpic.jpg" %><%}}else{ if(dtesp.getImagen()!=null && dtesp.getImagen()!=""){%><%= dtesp.getImagen() %><%}else{%><%= "img/defaultpic.jpg" %><% }} %>" class="shadow mx-auto rounded-circle" width=150em height=150em>
 		        </div >
 		        <div class="row">
 		 	      	<h1 class="mx-auto" style="margin-top:0.5em"> <% if(EsArtista){%>
@@ -96,6 +97,11 @@
 							<a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="false">REGISTROS</a>
 						</li>
 			  		<% } %>
+			  		<% if(EsArtista){ %>
+			  			<li class="nav-item">
+							<a class="nav-link" id="espectaculos-tab" data-toggle="tab" href="#espectaculos" role="tab" aria-controls="espectaculos" aria-selected="false">ESPECTACULOS</a>
+						</li>
+			  		<%} %>
 					<% if(PerfilPropio){ %>
 					<%if(!EsArtista){ %>
 					<li class="nav-item">
@@ -103,9 +109,6 @@
 					</li>
 					<%} %>
 					<% if(EsArtista){ %>
-					<li class="nav-item">
-						<a class="nav-link" id="espectaculos-tab" data-toggle="tab" href="#espectaculos" role="tab" aria-controls="espectaculos" aria-selected="false">ESPECTACULOS</a>
-					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="funciones-tab" data-toggle="tab" href="#funciones" role="tab" aria-controls="funciones" aria-selected="false">FUNCIONES INVITADO</a>
 					</li>
@@ -150,11 +153,37 @@
 			  			</div>
 			  		</div>
 					<%}%>
-					<% if(EsArtista && !PerfilPropio){
-						//MOSTRAR ESPECTACULOS ACEPTADOS
+					<%	if(EsArtista && !PerfilPropio){%>
+					<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
+						<div class="container mt-5">
+					<%	//MOSTRAR ESPECTACULOS ACEPTADOS DE ARTISTA 
+							Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
+							while(itresp.hasNext()) {
+								DtEspectaculo nuevo = itresp.next();
+								if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){
+					%>
+							<div class="container-fluid media mb-sm-3">
+				    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
+					    			<div class="container-fluid media">
+					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
+											<div class="media-body ml-sm-4">		
+									         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
+									         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
+												<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= nuevo.getDescripcion().substring(0, 50) %>...</span></p>									  					            
+									  		</div>
+									</div>
+								</a>
+            				</div>
+				    			<hr>
+					
+					<%				
+								}
 					%>
 					
 					<% } %>
+						</div>
+					</div>
+					<%} %>
 					<% if(PerfilPropio){ %>
 			  		<% if(!EsArtista){ %>
 			  		<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="paquetes-tab">
@@ -165,17 +194,17 @@
 						%>
 							<div class="container-fluid media mb-sm-3">
 				    			<a href="ConsultaPaquete.html">
-				    			<div class="container-fluid media">
-				    				<img src="<%= nuevo.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
-										<div class="media-body ml-sm-4">		
-								         	<p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= nuevo.getNombre() %></span></p>
-											<p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= nuevo.getDescripcion() %></span></p>
-								  			<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= nuevo.getDescuento() %>%</span></p>	
-								  			<p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(nuevo.getInicio()) + " - " + fechaIncompleta.format(nuevo.getFin()) %></span></p>							            
-								  		</div>
-								</div>
+					    			<div class="container-fluid media">
+					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
+											<div class="media-body ml-sm-4">		
+									         	<p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= nuevo.getNombre() %></span></p>
+												<p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= nuevo.getDescripcion() %></span></p>
+									  			<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= nuevo.getDescuento() %>%</span></p>	
+									  			<p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(nuevo.getInicio()) + " - " + fechaIncompleta.format(nuevo.getFin()) %></span></p>							            
+									  		</div>
+									</div>
 								</a>
-            					</div>
+            				</div>
 				    			<hr>
 						<% } %>
 				  		</div>
@@ -186,11 +215,33 @@
 						<% Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
 						while(itresp.hasNext()) {
 							DtEspectaculo nuevo = itresp.next(); %>
+						
+							<div class="container-fluid media mb-sm-3">
+				    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
+					    			<div class="container-fluid media">
+					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
+											<div class="media-body ml-sm-4">		
+									         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
+									         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
+												<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= nuevo.getDescripcion()%>...</span></p>									  					            
+									  			<%if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){%>
+									  				<p class="text-success"><b>Aceptado</b></p>
+									  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Rechazado){ %>
+									  				<p class="text-danger"><b>Rechazado</b></p>
+									  			<%}else{ %>
+									  				<p class="text-warning"><b>Ingresado</b></p>
+									  			<%}%>
+										</div>
+									</div>
+								</a>
+            				</div>
+				    		<hr>
+						<%} %>
 					</div>
 					<div class="tab-pane fade" id="funcionesinvitado" role="tabpanel" aria-labelledby="funcionesinvitado-tab">
 					...
 					</div>
-					<%}}}%>
+					<%}}%>
 				</div>
 			</div>
        </div>
