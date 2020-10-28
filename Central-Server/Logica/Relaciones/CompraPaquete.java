@@ -4,6 +4,7 @@ import java.util.Date;
 import Clases.Espectador;
 import Clases.Paquete;
 import DataTypes.DtPaquete;
+import DataTypes.DtPaqueteDatos;
 
 public class CompraPaquete {
 	private Integer Codigo;
@@ -33,5 +34,8 @@ public class CompraPaquete {
 	
 	public DtPaquete getDtPaquete() {
 		return Paquete.getDtPaquete();
+	}
+	public DtPaqueteDatos getDtPaqueteDatos() {
+		return Paquete.getDtPaqueteDatos();
 	}
 }

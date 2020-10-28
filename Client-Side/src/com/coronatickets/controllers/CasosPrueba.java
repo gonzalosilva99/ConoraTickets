@@ -43,9 +43,9 @@ public class CasosPrueba extends HttpServlet {
 			Date fechaNac;
 			// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
 			fechaNac = formato.parse("31/12/1971");
-			iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, null, "lkj34df");
+			iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, "", "lkj34df");
 			fechaNac = formato.parse("15/11/1983");
-			iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, null, "poke579");
+			iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, "", "poke579");
 			fechaNac = formato.parse("15/4/1990");
 			iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac, "https://bit.ly/3jrashA", "mkji648");
 			fechaNac = formato.parse("15/5/1959");
@@ -57,9 +57,9 @@ public class CasosPrueba extends HttpServlet {
 			fechaNac = formato.parse("14/02/1955");
 			iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac, "https://bit.ly/3cS2bkh", "mny101");
 			fechaNac = formato.parse("23/02/1927");
-			iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, null, "1o1vbm");
+			iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, "", "1o1vbm");
 			fechaNac = formato.parse("08/05/1937");
-			iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, null, "ultraton01");
+			iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, "", "ultraton01");
 			
 			//Cargar Artista
 			fechaNac = formato.parse("1/1/1977");
@@ -406,7 +406,17 @@ public class CasosPrueba extends HttpServlet {
 			alta = formato.parse("1/8/2020");
 			ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta, "https://bit.ly/2HSF4e0/3ndBhIw");
 
-			
+			//Compra paquetes
+			Date compa = formato.parse("01/05/2020");
+			iusuario.comprarPaquete("tonyp", "Paquete de Bandas", compa);
+			compa = formato.parse("20/05/2020");
+			iusuario.comprarPaquete("lachiqui", "Paquete de Bandas", compa);
+			compa = formato.parse("09/08/2020");
+			iusuario.comprarPaquete("costas", "Paquete Latino", compa);
+			compa = formato.parse("16/08/2020");
+			iusuario.comprarPaquete("eleven11", "Paquete Solistas", compa);
+			compa = formato.parse("26/08/2020");
+			iusuario.comprarPaquete("waston", "Paquete Solistas", compa);
 
 			//REGISTRO A FUNCIONES(NombrePlataforma, NombreEspectaculo, Nickname, NombreFuncion, Fecha, TipoRegistro, IntRegistro1, IntRegistro2, IntRegistro3, NombrePaquete, Costo)
 			//TipoRegistro: Tipo_1 : No importa lo que vaya en IntRegistros ni en NombrePaquete, costo del espectaculo.
@@ -452,7 +462,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R10
 			FechaRegistro = formato.parse("20/05/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "lachiqui", "Los Village Volvieron - 3", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "lachiqui", "Los Village Volvieron - 3", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete de Bandas", 550.0);
 			
 			//R11
 			FechaRegistro = formato.parse("05/05/2020");
@@ -466,7 +476,7 @@ public class CasosPrueba extends HttpServlet {
 			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "sergiop", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
 			//R14
 			FechaRegistro = formato.parse("20/05/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "tonyp", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "tonyp", "Global Spirit (I)", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete de Bandas", 750.0);
 			//R15
 			FechaRegistro = formato.parse("08/06/2020");
 			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "house", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
@@ -475,7 +485,7 @@ public class CasosPrueba extends HttpServlet {
 			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "waston", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
 			//R17
 			FechaRegistro = formato.parse("25/06/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "lachiqui", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "lachiqui", "Global Spirit (II)", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete de Bandas", 750.0);
 			//R18
 			FechaRegistro = formato.parse("05/07/2020");
 			iusuario.confirmarRegistroFuncionEspectaculo("Facebook Watch", "Global Spirit", "cbochinche", "Global Spirit (III)", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 750.0);
@@ -492,7 +502,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R22
 			FechaRegistro = formato.parse("17/08/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "eleven11", "Memphis Blues World - B", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 800.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "eleven11", "Memphis Blues World - B", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete Solistas", 800.0);
 			
 			//R23
 			FechaRegistro = formato.parse("20/08/2020");
@@ -508,7 +518,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R26
 			FechaRegistro = formato.parse("26/08/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "waston", "Memphis Blues World - C", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 800.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Memphis Blues World", "waston", "Memphis Blues World - C", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete Solistas", 800.0);
 			
 			//R27
 			FechaRegistro = formato.parse("19/07/2020");
@@ -533,7 +543,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R32
 			FechaRegistro = formato.parse("16/08/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "eleven11", "Springsteen on Broadway - ii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "eleven11", "Springsteen on Broadway - ii", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete Solistas", 980.0);
 			
 			//R33
 			FechaRegistro = formato.parse("16/08/2020");
@@ -541,7 +551,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R34
 			FechaRegistro = formato.parse("01/09/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "waston", "Springsteen on Broadway - iii", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 980.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Youtube", "Springsteen on Broadway", "waston", "Springsteen on Broadway - iii", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete Solistas", 980.0);
 			
 			//R35
 			FechaRegistro = formato.parse("05/09/2020");
@@ -565,7 +575,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R40
 			FechaRegistro = formato.parse("01/09/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "costas", "Bien de Familia - C", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 500.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "costas", "Bien de Familia - C", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete Latino", 500.0);
 			
 			//R41
 			FechaRegistro = formato.parse("16/08/2020");
@@ -589,7 +599,7 @@ public class CasosPrueba extends HttpServlet {
 			
 			//R46
 			FechaRegistro = formato.parse("02/09/2020");
-			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "costas", "30 años - 2", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 450.0);
+			iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "30 años", "costas", "30 años - 2", FechaRegistro, TipoRegistro.Tipo_3, 0, 0, 0, "Paquete Latino", 450.0);
 			
 			//Espectaculos que integran paquetes
 			
@@ -599,6 +609,7 @@ public class CasosPrueba extends HttpServlet {
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Solistas","Youtube", "Springsteen on Broadway");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
+			
         	}
     		catch(Exception e) {}
     	response.sendRedirect("/home");
