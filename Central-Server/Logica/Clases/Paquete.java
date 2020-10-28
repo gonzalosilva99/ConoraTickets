@@ -113,7 +113,7 @@ public class Paquete {
 				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
-			DtPaqueteDatos ret = new DtPaqueteDatos(Nombre, Descripcion, Inicio, Fin, Descuento,esp,cat); 
+			DtPaqueteDatos ret = new DtPaqueteDatos(Nombre, Descripcion, Inicio, Fin, Descuento,esp,cat,Imagen); 
 			return ret;
 		}
 		

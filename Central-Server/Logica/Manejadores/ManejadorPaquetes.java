@@ -33,6 +33,16 @@ public class ManejadorPaquetes {
 			return Paquetes;
 		}
 
+		
+		public Set<DtPaqueteDatos> filtrarPaquetes(String search){
+			HashSet<DtPaqueteDatos> ret = new HashSet<DtPaqueteDatos>();
+			for (Map.Entry<String, Paquete> entry : Paquetes.entrySet()) {
+				DtPaqueteDatos nuevo = entry.getValue().getDtPaqueteDatos();
+				if(nuevo.getNombre().contains(search))
+					ret.add(nuevo);
+			}
+			return ret;
+		}
 		void setPaquetes(HashMap<String, Paquete> paquetes) {
 			Paquetes = paquetes;
 		}

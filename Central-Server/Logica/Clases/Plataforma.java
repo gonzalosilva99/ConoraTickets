@@ -44,6 +44,16 @@ public class Plataforma {
 		public String getUrl() {
 			return Url;
 		}
+		
+		public void filtrarEspectaculos(HashSet<DtEspectaculoDatos> especs, String search) {
+			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				DtEspectaculoDatos espec = entry.getValue().getDtEspectaculoDatos();
+				if(espec.getNombre().contains(search))
+					especs.add(espec);
+			}
+		}
+		
+		
 		public void setUrl(String url) {
 			Url = url;
 		}

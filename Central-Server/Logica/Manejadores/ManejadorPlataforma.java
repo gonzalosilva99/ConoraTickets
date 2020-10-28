@@ -15,7 +15,6 @@ import Interfaces.IUsuario;
 import javax.swing.JOptionPane;
 
 import DataTypes.*;
-
 public class ManejadorPlataforma {
 	private 
 		static ManejadorPlataforma instancia;
@@ -75,6 +74,14 @@ public class ManejadorPlataforma {
 		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
 			Plataforma plat = Plataformas.get(NombrePlat);
 			return plat.listarFuncionesDeEspectaculo(NombreEsp);
+		}
+		
+		public Set<DtEspectaculoDatos> filtrarEspectaculos(String search){
+			HashSet<DtEspectaculoDatos> ret = new HashSet<DtEspectaculoDatos>();
+			for (Map.Entry<String, Plataforma> entry : Plataformas.entrySet()) {
+	            entry.getValue().filtrarEspectaculos(ret, search);         
+			}
+			return ret;
 		}
 		
 		public DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun) {

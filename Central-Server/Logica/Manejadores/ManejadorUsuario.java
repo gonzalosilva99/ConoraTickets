@@ -39,6 +39,9 @@ public class ManejadorUsuario {
 			return instancia;
 		}
 	
+	
+	
+	
 	public	Boolean LogueoCorrecto(String login, String password) {
 			if(login.contains("@")) {
 				DtUsuario useremail = this.getUsuarioEmail(login);
@@ -195,6 +198,21 @@ public class ManejadorUsuario {
 			for (Map.Entry<String, Artista> entry : Artistas.entrySet()) {
 	            DtArtista nuevo = entry.getValue().getDtArtista();
 	            ret.add(nuevo);            
+			}
+			return ret;
+		}
+		
+		public Set<DtUsuario> filtrarUsuarios(String search){
+			HashSet<DtUsuario> ret = new HashSet<DtUsuario>();
+			for (Map.Entry<String, Artista> entry : Artistas.entrySet()) {
+	            DtUsuario nuevo = entry.getValue().getDtUsuario();
+	            if(nuevo.getNickname().contains(search))
+	            	ret.add(nuevo);            
+			}
+			for (Map.Entry<String, Espectador> entry : Espectadores.entrySet()) {
+	            DtUsuario nuevo = entry.getValue().getDtUsuario();
+	            if(nuevo.getNickname().contains(search))
+	            	ret.add(nuevo);            
 			}
 			return ret;
 		}

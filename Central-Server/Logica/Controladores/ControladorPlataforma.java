@@ -24,6 +24,7 @@ import Clases.Plataforma;
 
 
 
+
 public class ControladorPlataforma implements IPlataforma{
 
 	public Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre) {
@@ -48,6 +49,11 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.AltaPlataforma(nombre, Descripcion, Url);
 	};
 	
+	
+	public Set<DtEspectaculoDatos> filtrarEspectaculos(String search){
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.filtrarEspectaculos(search);
+	}
 	public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat){
 		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarFuncionesVigentesEspectaculo(nombreEsp, nombrePlat);
