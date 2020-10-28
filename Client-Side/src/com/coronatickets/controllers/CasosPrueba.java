@@ -34,8 +34,6 @@ public class CasosPrueba extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-    	PrintWriter writer = response.getWriter();
-        writer.println("La hora es: " + new Date().toString() + " PRUEBA12");
     	try {
     		Fabrica fab = Fabrica.getInstancia();
 			IUsuario iusuario = fab.getIUsuario();
@@ -45,9 +43,9 @@ public class CasosPrueba extends HttpServlet {
 			Date fechaNac;
 			// ESPECTADORES (Nickname, Nombre, Apellido, Email, Fecha_Nac)
 			fechaNac = formato.parse("31/12/1971");
-			iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, "", "lkj34df");
+			iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac, null, "lkj34df");
 			fechaNac = formato.parse("15/11/1983");
-			iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, "", "poke579");
+			iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac, null, "poke579");
 			fechaNac = formato.parse("15/4/1990");
 			iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac, "https://bit.ly/3jrashA", "mkji648");
 			fechaNac = formato.parse("15/5/1959");
@@ -59,9 +57,9 @@ public class CasosPrueba extends HttpServlet {
 			fechaNac = formato.parse("14/02/1955");
 			iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac, "https://bit.ly/3cS2bkh", "mny101");
 			fechaNac = formato.parse("23/02/1927");
-			iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, "", "1o1vbm");
+			iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", fechaNac, null, "1o1vbm");
 			fechaNac = formato.parse("08/05/1937");
-			iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, "", "ultraton01");
+			iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", fechaNac, null, "ultraton01");
 			
 			//Cargar Artista
 			fechaNac = formato.parse("1/1/1977");
@@ -601,10 +599,9 @@ public class CasosPrueba extends HttpServlet {
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Solistas","Youtube", "Springsteen on Broadway");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
-    		
-			writer.println("DATOS CARGADOS");
-    	}
+        	}
     		catch(Exception e) {}
+    	response.sendRedirect("/home");
     } 
 	
 	/**
