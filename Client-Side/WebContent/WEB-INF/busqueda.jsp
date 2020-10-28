@@ -20,7 +20,7 @@
 		String search = (String) request.getParameter("s");;
 		Set<DtUsuario> UsuariosFiltrados = Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search); 
 		Set<DtEspectaculoDatos> EspectaculosFiltrados = Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search); 
-		Set<DtPaqueteDatos> PaquetesFiltrados = Fabrica.getInstancia().getIUsuario().filtrarPaquetes(search); 
+		Set<DtPaqueteDatos> PaquetesFiltrados = Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search); 
 	%>
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>

@@ -57,7 +57,6 @@ public class Perfil extends HttpServlet {
 		else {
 			//LLEVAR A ERROR
 		}
-		//request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request,response);
 	}
 	
 	

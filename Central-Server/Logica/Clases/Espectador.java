@@ -10,6 +10,7 @@ import DataTypes.DtEspectadorPerfil;
 import DataTypes.DtUsuario;
 import DataTypes.DtFuncion;
 import DataTypes.DtPaquete;
+import DataTypes.DtPaqueteDatos;
 import DataTypes.DtRegistro;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -99,9 +100,9 @@ public class Espectador extends Usuario{
 				siguiendo.add(nuevo);
 		}
 		
-		HashSet<DtPaquete> paq = new HashSet<DtPaquete>();
+		HashSet<DtPaqueteDatos> paq = new HashSet<DtPaqueteDatos>();
 		for(Map.Entry<Integer, CompraPaquete> entry : CompraPaquetes.entrySet()) {
-			DtPaquete nuevo = entry.getValue().getDtPaquete();
+			DtPaqueteDatos nuevo = entry.getValue().getDtPaqueteDatos();
 			paq.add(nuevo);
 		}
 		
