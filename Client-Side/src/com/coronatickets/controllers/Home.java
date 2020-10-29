@@ -36,10 +36,6 @@ public class Home extends HttpServlet {
 			throws ServletException, IOException {
 		//String nombrePlataforma = (String) request.getParameter("plataforma");
 		//request.setAttribute("plat",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
-<<<<<<< HEAD
-		System.out.print("AVER");
-=======
->>>>>>> e0d7d1643b3ce54777e8290349bbbd192ace602f
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 	
