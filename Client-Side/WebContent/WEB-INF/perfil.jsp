@@ -79,16 +79,83 @@
 		 	      			<%}}%></p>
 		 	    </div>
 		 	    <div class="row">
-	 	      		<p class="mx-auto" id="seguidores"> <% if(EsArtista){%>
+	 	      		<p class="mx-auto" id="seguidores"><a href="#" data-toggle="modal" data-target="#ModalSeguidores"><% if(EsArtista){%>
 						<%= dtart.getSeguidores().size() %>
 		 	      		<%}else{%>
 		 	      		<%= dtesp.getSeguidores().size() %>
-		 	      			<%}%> seguidores - <% if(EsArtista){%>
+		 	      			<%}%> seguidores</a> - <a href="#" data-toggle="modal" data-target="#ModalSeguidos"><% if(EsArtista){%>
 						<%= dtart.getSiguiendo().size() %>
 		 	      		<%}else{%>
 		 	      		<%= dtesp.getSiguiendo().size() %>
-		 	      			<%}%> seguidos</p>
+		 	      			<%}%> seguidos</a></p>
 	 	   		</div>
+	 	   		<!-- MODAL SEGUIDOS -->
+				<div class="modal fade" id="ModalSeguidos" tabindex="-1" role="dialog" aria-labelledby="ModalSeguidos" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle">Seguidos</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body" >
+				      	<%
+				      	Iterator<DtUsuario> Seguidos=null;
+				      	if(EsArtista){Seguidos=dtart.getSiguiendo().iterator();}
+				      	else{Seguidos=dtesp.getSiguiendo().iterator();}
+				      	
+						while(Seguidos.hasNext()){
+							DtUsuario nuevo = Seguidos.next();
+				      	%>
+				      	<a href="/perfil?id=<%= nuevo.getNickname() %>">
+				         <div class="row" > 
+				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="<%if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%=nuevo.getImagen()%><%}else{%><%= "img/defaultpic.jpg" %><%}%>" height=32em width=32em ></div>
+				         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
+				         </div>
+				         </a>
+				         <br>
+				        <%}%>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</div>
+				<!-- MODAL SEGUIDORES -->
+				<div class="modal fade" id="ModalSeguidores" tabindex="-1" role="dialog" aria-labelledby="ModalSeguidores" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Seguidores</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+				      		</div>
+							<div class="modal-body" >
+						<%
+						Iterator<DtUsuario> Seguidores=null;
+						if(EsArtista){Seguidores=dtart.getSeguidores().iterator();}
+						else{Seguidores=dtesp.getSeguidores().iterator();}
+						while(Seguidores.hasNext()){
+							DtUsuario nuevo = Seguidores.next();
+				      	%>
+						<a href="/perfil?id=<%= nuevo.getNickname() %>">
+							<div class="row" >
+				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="<%if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%=nuevo.getImagen()%><%}else{%><%= "img/defaultpic.jpg" %><%}%>" height=32em width=32em ></div>
+				         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
+							</div>
+						</a>
+						<br>
+				        <%}%>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 	 	   		<% if(!PerfilPropio){ %>
 	 	   			<%
 	 	   			boolean Siguiendo = false;
@@ -285,14 +352,14 @@
 				  			%>
 					    		<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
-				    			<div class="container-fluid media">
-				    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
-										<div class="media-body ml-sm-4">	
-											<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
-									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
-									  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
-								        </div>
-								</div>
+					    			<div class="container-fluid media">
+					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
+											<div class="media-body ml-sm-4">	
+												<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
+										  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
+										  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
+									        </div>
+									</div>
 								</a>
             					</div>
 								<hr>
@@ -313,13 +380,14 @@
 		xhr.onreadystatechange = function() {
 	        if (xhr.readyState == 4) {
 	            var data = xhr.responseText;
-	            alert(data);
 	        }
 	    }
 		function SeguirUsuario(){
 			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=follow", true);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 			xhr.send(null);
+			location.reload();
+			return false;
 		}	
 		function DejarSeguirUsuario(){
 			alert("Aun no se puede.");

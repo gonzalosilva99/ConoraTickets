@@ -6,6 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Central-Server"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/lodretuisk/git/tpgr05/Client-Side/lib/logica.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mgonzalez/eclipse-workspace/tpgr05/Client-Side/lib/logica.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
