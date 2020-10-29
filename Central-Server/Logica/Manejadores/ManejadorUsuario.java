@@ -319,5 +319,16 @@ public class ManejadorUsuario {
 			return Artistas.containsKey(nickname) || Espectadores.containsKey(nickname);
 		}
 		
-		
+		public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir) {
+			if (Artistas.containsKey(NickSeguidor)) {
+				Artistas.get(NickSeguidor).eliminarSeguido(NickDejarSeguir);
+			}else if (Espectadores.containsKey(NickSeguidor)) {
+				Espectadores.get(NickSeguidor).eliminarSeguido(NickDejarSeguir);
+			}
+			if (Artistas.containsKey(NickDejarSeguir)) {
+				Artistas.get(NickDejarSeguir).eliminarSeguidor(NickSeguidor);
+			}else if (Espectadores.containsKey(NickSeguidor)) {
+				Espectadores.get(NickDejarSeguir).eliminarSeguidor(NickSeguidor);
+			}
+		}
 }
