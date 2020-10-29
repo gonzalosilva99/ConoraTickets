@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@page import="DataTypes.DtEspectadorPerfil"%>
-	<%@page import="DataTypes.DtArtistaPerfil"%>
+	  <%@page import="java.util.Set" %>
+	  <%@page import="java.util.Iterator" %>
+    <%@page import="DataTypes.DtPlataforma" %>
 	<%@page import="DataTypes.EstadoSesion" %>
 	<%@page import="DataTypes.DtPaqueteDatos" %>
 	<%@page import="DataTypes.DtEspectaculo" %>
@@ -32,10 +33,19 @@
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
       <select class="custom-select" id="inlineFormCustomSelect" >
       <option value="" selected>Elija la plataforma</option>
-      <optgroup label="Plataformas disponibles">
-      	<option value="1">Opcion1</option>
+      	<%
+				DtUsuario usuario = Login.getUsuarioLogueado(request);
+				if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
+					Set<DtPlataforma> plataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
+					Iterator<DtPlataforma> itrp = plataformas.iterator();
+					while(itrp.hasNext()){
+						DtPlataforma auxp = itrp.next();
+						System.out.println(auxp.getNombre());
+		%>			
+      	<option value="<%=auxp.getNombre()%>"> <%=auxp.getNombre()%> </option>
       </optgroup>
-        
+        <%} %>
+        <%} %>
       </select>
    </div>
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	

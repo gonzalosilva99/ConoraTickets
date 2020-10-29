@@ -56,7 +56,11 @@ public class AltaFuncion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
-		request.getRequestDispatcher("/WEB-INF/altafuncion.jsp").forward(request,response);
+		if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
+			request.getRequestDispatcher("/WEB-INF/altafuncion.jsp").forward(request,response);
+		}else {
+			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request,response);
+		}
 	}
 
 	/**
