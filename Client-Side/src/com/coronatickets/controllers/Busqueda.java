@@ -58,7 +58,7 @@ public class Busqueda extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
-		System.out.print("LLego al servlet");
+		/*System.out.print("LLego al servlet");
 		response.setContentType( "text/html; charset=iso-8859-1" );
 		PrintWriter out = response.getWriter();
 		String search = request.getParameter("Search");
@@ -69,7 +69,7 @@ public class Busqueda extends HttpServlet {
 			System.out.print("llego al for");
 			out.println("<h1>Nombre: " + dtusu.getNickname() + "</h1>");
 		}
-		
+		*/
 	}
 
 }
