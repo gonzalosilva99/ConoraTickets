@@ -623,7 +623,6 @@ public class CasosPrueba extends HttpServlet {
 			
         	}
     		catch(Exception e) {}
-    	response.sendRedirect("/home");
     } 
 	
 	/**

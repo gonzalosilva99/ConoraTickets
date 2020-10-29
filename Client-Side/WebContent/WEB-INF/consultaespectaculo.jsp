@@ -25,7 +25,7 @@
 		DtEspectaculoDatos dtesp=null;
 		dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
 		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
-		%>
+		if(dtesp!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
 	            <img src="<%= dtesp.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
@@ -139,7 +139,7 @@
 								  		</a>
             						</div>
 				    				<hr>
-				    				<% ;} %>				    				
+				    				<% }} %>				    				
 				  				</div>
 							 </div>				
 			  		</div>

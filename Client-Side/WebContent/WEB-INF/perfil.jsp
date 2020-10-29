@@ -9,6 +9,7 @@
 	<%@page import="DataTypes.DtPaqueteDatos" %>
 	<%@page import="DataTypes.DtEspectaculo" %>
 	<%@page import="DataTypes.DtFuncion" %>	
+	<%@page import="DataTypes.DtUsuario" %>	
 	<%@page import="DataTypes.EstadoEspectaculo" %>	
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
@@ -23,6 +24,8 @@
 	
 	<%
 	boolean PerfilPropio = false;
+	boolean Logueado = ((EstadoSesion) request.getSession().getAttribute("estado_sesion"))==EstadoSesion.LOGIN_CORRECTO;
+	String idUsuario = (String) request.getSession().getAttribute("usuario_logueado");
 	DtArtistaPerfil dtart=null;
 	DateFormat fechaCompleta = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
@@ -86,6 +89,35 @@
 		 	      		<%= dtesp.getSiguiendo().size() %>
 		 	      			<%}%> seguidos</p>
 	 	   		</div>
+	 	   		<% if(!PerfilPropio){ %>
+	 	   			<%
+	 	   			boolean Siguiendo = false;
+	 	   			Set<DtUsuario> seguidores = new HashSet<DtUsuario>();
+	 	   			if(Logueado){
+	 	   			if(EsArtista){seguidores = dtart.getSeguidores();}
+	 	   			else{seguidores = dtesp.getSeguidores();}
+	 	   			Iterator<DtUsuario> itrseguidores = seguidores.iterator();
+	 	   			while(itrseguidores.hasNext()){
+	 	   				DtUsuario nuevo = itrseguidores.next();
+	 	   				if(nuevo.getNickname().equals(idUsuario)){
+	 	   					Siguiendo = true;
+	 	   				}
+	 	   			}
+	 	   			if(!Siguiendo){
+	 	   			%>
+	 	   			<div class="row">
+	 	      			<button id="buttonFollow" type="button" onclick="SeguirUsuario()" name="seguir" value="seguir" class="mx-auto btn btn-success">
+                        <i class="fas fa-user-plus"></i> Seguir
+                 		</button>
+                 	</div>
+	 	   			<%}else{ %>  
+					<div class="row">
+	 	      			<button id="buttonFollow" type="button" onclick="DejarSeguirUsuario()" name="dejar-seguir" value="dejar-seguir" class="mx-auto btn btn-danger">
+                        <i class="fas fa-user-minus"></i> Siguiendo
+                 		</button>
+                 	</div>
+                 <%}}} %>
+	 	    
             </div>
            	<div class="container mx-auto">
 	           	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -274,5 +306,25 @@
 			</div>
        </div>
 	</div>
+	<script>
+		var usuarioLogueado = "<%= idUsuario %>";
+		var usuarioPerfil = "<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>"
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+	        if (xhr.readyState == 4) {
+	            var data = xhr.responseText;
+	            alert(data);
+	        }
+	    }
+		function SeguirUsuario(){
+			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=follow", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			xhr.send(null);
+		}	
+		function DejarSeguirUsuario(){
+			alert("Aun no se puede.");
+			
+		}
+	</script>
 </body>
 </html>
