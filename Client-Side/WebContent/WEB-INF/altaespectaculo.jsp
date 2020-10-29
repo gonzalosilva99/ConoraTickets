@@ -4,6 +4,7 @@
 	<%@page import="DataTypes.DtPlataforma"%>
 	<%@page import="DataTypes.DtCategoria"%>
 	<%@page import="DataTypes.EstadoSesion" %>
+	<%@page import="DataTypes.DtUsuario" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IPlataforma"%>
@@ -17,16 +18,15 @@
 <body>
 	
 	<%
-	if((String) request.getParameter("id")!=null && Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getParameter("id"))){
-		//todo el codigo de abajo
-	}
-	else{
-		//ELSE REDIRECT A ERROR PAGE
-	}
-	
-	%>
-	
-	
+	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
+		DtUsuario usuario = Login.getUsuarioLogueado(request);
+		System.out.print(usuario.getNickname());
+	if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
+		
+		if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){ System.out.print("bien");
+	%>	
+	 	<script type="text/javascript"> alert("Enviado. Esperando a ser aceptado"); </script>
+				<% } else {System.out.print(request.getAttribute("aceptado"));}%>
 	<div class="wrapper">
         <jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
         <!-- Page Content  -->
@@ -34,7 +34,7 @@
 		<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			<h1 class="text-center">Alta de Espectaculo</h1>
             
-   	<form class="needs-validation mt-5 " action="altaespectaculo" method="POST" novalidate>
+   	<form class="needs-validation mt-5 " action="altaespectaculo?id=<%= (String) request.getParameter("id") %>" method="POST" novalidate>
    	
     
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
@@ -126,10 +126,12 @@
 	</div>
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
-  		<button class="btn btn-primary" style="width: 100%;" type="submit" value="Acceder" onclick="submit()">Crear Espectaculo!</button>
+  		<button class="btn btn-primary" style="width: 100%;" type="submit" value="Acceder" onclick="if(document.getElementByClassName('was-validated')){submit()}">Crear Espectaculo!</button>
    </div>
+   
 </form>
 
+				
 
 
 <script>
@@ -153,6 +155,17 @@
 })();
 </script>
         </div>
-	</div>
+	</div>	
+		
+	<%
+	}}
+	else{
+		//ELSE REDIRECT A ERROR PAGE
+	}
+	
+	%>
+	
+	
+	
 </body>
 </html>
