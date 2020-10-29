@@ -64,6 +64,7 @@ public class Perfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Login.ActualizarUltimoIngreso(request);
 		processRequest(request, response);
 	}
 
@@ -71,7 +72,23 @@ public class Perfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
+		Login.ActualizarUltimoIngreso(request);
+		System.out.println("ENTRO AL SERVLET EL POST");
+		String usuarioLogueado = request.getParameter("userlogged");
+		String usuarioPerfil = request.getParameter("userprofile");
+		String tipo = request.getParameter("tipo");
+		System.out.println("SEGUIR: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
+		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
+			if(tipo.equals("follow")) {
+				System.out.println("Va a seguir");
+				Fabrica.getInstancia().getIUsuario().SeguirUsuario(usuarioLogueado, usuarioPerfil);
+				System.out.println("SEGUIDO: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
+			}
+			else if(tipo.equals("unfollow")) {
+				System.out.println("DEJAR DE SEGUIR");
+				Fabrica.getInstancia().getIUsuario().DejarSeguirUsuario(usuarioLogueado, usuarioPerfil);		
+			}
+		}
 	}
 
 }

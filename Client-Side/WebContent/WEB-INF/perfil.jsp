@@ -9,6 +9,7 @@
 	<%@page import="DataTypes.DtPaqueteDatos" %>
 	<%@page import="DataTypes.DtEspectaculo" %>
 	<%@page import="DataTypes.DtFuncion" %>	
+	<%@page import="DataTypes.DtUsuario" %>	
 	<%@page import="DataTypes.EstadoEspectaculo" %>	
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
@@ -23,6 +24,8 @@
 	
 	<%
 	boolean PerfilPropio = false;
+	boolean Logueado = ((EstadoSesion) request.getSession().getAttribute("estado_sesion"))==EstadoSesion.LOGIN_CORRECTO;
+	String idUsuario = (String) request.getSession().getAttribute("usuario_logueado");
 	DtArtistaPerfil dtart=null;
 	DateFormat fechaCompleta = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
@@ -76,16 +79,112 @@
 		 	      			<%}}%></p>
 		 	    </div>
 		 	    <div class="row">
-	 	      		<p class="mx-auto" id="seguidores"> <% if(EsArtista){%>
+	 	      		<p class="mx-auto" id="seguidores"><a href="#" data-toggle="modal" data-target="#ModalSeguidores"><% if(EsArtista){%>
 						<%= dtart.getSeguidores().size() %>
 		 	      		<%}else{%>
 		 	      		<%= dtesp.getSeguidores().size() %>
-		 	      			<%}%> seguidores - <% if(EsArtista){%>
+		 	      			<%}%> seguidores</a> - <a href="#" data-toggle="modal" data-target="#ModalSeguidos"><% if(EsArtista){%>
 						<%= dtart.getSiguiendo().size() %>
 		 	      		<%}else{%>
 		 	      		<%= dtesp.getSiguiendo().size() %>
-		 	      			<%}%> seguidos</p>
+		 	      			<%}%> seguidos</a></p>
 	 	   		</div>
+	 	   		<!-- MODAL SEGUIDOS -->
+				<div class="modal fade" id="ModalSeguidos" tabindex="-1" role="dialog" aria-labelledby="ModalSeguidos" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle">Seguidos</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body" >
+				      	<%
+				      	Iterator<DtUsuario> Seguidos=null;
+				      	if(EsArtista){Seguidos=dtart.getSiguiendo().iterator();}
+				      	else{Seguidos=dtesp.getSiguiendo().iterator();}
+				      	
+						while(Seguidos.hasNext()){
+							DtUsuario nuevo = Seguidos.next();
+				      	%>
+				      	<a href="/perfil?id=<%= nuevo.getNickname() %>">
+				         <div class="row" > 
+				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="<%if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%=nuevo.getImagen()%><%}else{%><%= "img/defaultpic.jpg" %><%}%>" height=32em width=32em ></div>
+				         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
+				         </div>
+				         </a>
+				         <br>
+				        <%}%>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</div>
+				<!-- MODAL SEGUIDORES -->
+				<div class="modal fade" id="ModalSeguidores" tabindex="-1" role="dialog" aria-labelledby="ModalSeguidores" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Seguidores</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+				      		</div>
+							<div class="modal-body" >
+						<%
+						Iterator<DtUsuario> Seguidores=null;
+						if(EsArtista){Seguidores=dtart.getSeguidores().iterator();}
+						else{Seguidores=dtesp.getSeguidores().iterator();}
+						while(Seguidores.hasNext()){
+							DtUsuario nuevo = Seguidores.next();
+				      	%>
+						<a href="/perfil?id=<%= nuevo.getNickname() %>">
+							<div class="row" >
+				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="<%if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%=nuevo.getImagen()%><%}else{%><%= "img/defaultpic.jpg" %><%}%>" height=32em width=32em ></div>
+				         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
+							</div>
+						</a>
+						<br>
+				        <%}%>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+	 	   		<% if(!PerfilPropio){ %>
+	 	   			<%
+	 	   			boolean Siguiendo = false;
+	 	   			Set<DtUsuario> seguidores = new HashSet<DtUsuario>();
+	 	   			if(Logueado){
+	 	   			if(EsArtista){seguidores = dtart.getSeguidores();}
+	 	   			else{seguidores = dtesp.getSeguidores();}
+	 	   			Iterator<DtUsuario> itrseguidores = seguidores.iterator();
+	 	   			while(itrseguidores.hasNext()){
+	 	   				DtUsuario nuevo = itrseguidores.next();
+	 	   				if(nuevo.getNickname().equals(idUsuario)){
+	 	   					Siguiendo = true;
+	 	   				}
+	 	   			}
+	 	   			if(!Siguiendo){
+	 	   			%>
+	 	   			<div class="row">
+	 	      			<button id="buttonFollow" type="button" onclick="SeguirUsuario()" name="seguir" value="seguir" class="mx-auto btn btn-success">
+                        <i class="fas fa-user-plus"></i> Seguir
+                 		</button>
+                 	</div>
+	 	   			<%}else{ %>  
+					<div class="row">
+	 	      			<button id="buttonFollow" type="button" onclick="DejarSeguirUsuario()" name="dejar-seguir" value="dejar-seguir" class="mx-auto btn btn-danger">
+                        <i class="fas fa-user-minus"></i> Siguiendo
+                 		</button>
+                 	</div>
+                 <%}}} %>
+	 	    
             </div>
            	<div class="container mx-auto">
 	           	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -110,7 +209,7 @@
 					<%} %>
 					<% if(EsArtista){ %>
 					<li class="nav-item">
-						<a class="nav-link" id="funciones-tab" data-toggle="tab" href="#funciones" role="tab" aria-controls="funciones" aria-selected="false">FUNCIONES INVITADO</a>
+						<a class="nav-link" id="funciones-tab" data-toggle="tab" href="#funcionesinvitado" role="tab" aria-controls="funcionesinvitado" aria-selected="false">FUNCIONES INVITADO</a>
 					</li>
 					<% }}%>
 				</ul>
@@ -128,6 +227,7 @@
 						<%} %>
 					</div>
 					<% if(!EsArtista){%>
+					<!-- MOSTRAMOS LOS REGISTROS A FUNCIONES DEL ESPECTADOR -->
 						<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">
 			  			<div class="container mt-5">
 				  			<% 	Iterator<DtFuncion> itrfunc = dtesp.getFunciones().iterator();
@@ -137,7 +237,7 @@
 					    		<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
 				    			<div class="container-fluid media">
-				    				<img src="<%= nuevo.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
+				    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
 										<div class="media-body ml-sm-4">	
 											<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
 									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
@@ -154,9 +254,10 @@
 			  		</div>
 					<%}%>
 					<%	if(EsArtista && !PerfilPropio){%>
+					<!-- MOSTRAMOS LOS ESPECTACULOS DEL ARTISTA DEL QUE SE CONSULTO EL PERFIL -->
 					<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
 						<div class="container mt-5">
-					<%	//MOSTRAR ESPECTACULOS ACEPTADOS DE ARTISTA 
+					<%	
 							Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
 							while(itresp.hasNext()) {
 								DtEspectaculo nuevo = itresp.next();
@@ -169,7 +270,7 @@
 											<div class="media-body ml-sm-4">		
 									         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
 									         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
-												<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= nuevo.getDescripcion().substring(0, 50) %>...</span></p>									  					            
+												<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><% try{ %><%= nuevo.getDescripcion().substring(0, 50) + "..."%><%}catch(Exception e){%><%= nuevo.getDescripcion()%>  <%}%>  </span></p>									  					            
 									  		</div>
 									</div>
 								</a>
@@ -186,6 +287,7 @@
 					<%} %>
 					<% if(PerfilPropio){ %>
 			  		<% if(!EsArtista){ %>
+			  		<!-- CARGAMOS LOS PAQUETES DEL ESPECTADOR -->
 			  		<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="paquetes-tab">
 				  		<div class="container mt-5">
 				  		<% Iterator<DtPaqueteDatos> itrpaq = dtesp.getPaquetesComprados().iterator();
@@ -211,40 +313,89 @@
 			  		</div>
 			  		<% }%>			  		
 					<% if(EsArtista){ %>
+					<!-- CARGAMOS LOS ESPECTACULOS QUE ORGANIZA EL ARTISTA DUEÑO DE LA CUENTA -->
 					<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
-						<% Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
-						while(itresp.hasNext()) {
-							DtEspectaculo nuevo = itresp.next(); %>
-						
-							<div class="container-fluid media mb-sm-3">
-				    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
-					    			<div class="container-fluid media">
-					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
-											<div class="media-body ml-sm-4">		
-									         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
-									         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
-												<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= nuevo.getDescripcion()%>...</span></p>									  					            
-									  			<%if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){%>
-									  				<p class="text-success"><b>Aceptado</b></p>
-									  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Rechazado){ %>
-									  				<p class="text-danger"><b>Rechazado</b></p>
-									  			<%}else{ %>
-									  				<p class="text-warning"><b>Ingresado</b></p>
-									  			<%}%>
+						<div class="container mt-5">
+							<% Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
+							while(itresp.hasNext()) {
+								DtEspectaculo nuevo = itresp.next(); %>
+							
+								<div class="container-fluid media mb-sm-3">
+					    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
+						    			<div class="container-fluid media">
+						    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
+												<div class="media-body ml-sm-4">		
+										         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
+										         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
+													<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%try{ %><%= nuevo.getDescripcion().substring(0, 50) + "..."%><%}catch(Exception e){%><%= nuevo.getDescripcion()%>  <%}%> </span></p>									  					            
+										  			<%if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){%>
+										  				<p class="text-success"><b>Aceptado</b></p>
+										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Rechazado){ %>
+										  				<p class="text-danger"><b>Rechazado</b></p>
+										  			<%}else{ %>
+										  				<p class="text-warning"><b>Ingresado</b></p>
+										  			<%}%>
+											</div>
 										</div>
+									</a>
+	            				</div>
+					    		<hr>
+							<%} %>
+						</div>
+					</div>
+					<!-- MOSTRAMOS LAS FUNCIONES A LAS QUE FUE INVITADO -->
+					<div class="tab-pane fade" id="funcionesinvitado" role="tabpanel" aria-labelledby="funcionesinvitado-tab">
+						<div class="container mt-5">
+				  			<% 	Iterator<DtFuncion> itrfunc2 = dtart.getFuncionesInvitado().iterator();
+				  				while(itrfunc2.hasNext()){
+				  					DtFuncion nuevo = itrfunc2.next();
+				  			%>
+					    		<div class="container-fluid media mb-sm-3">
+				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
+					    			<div class="container-fluid media">
+					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
+											<div class="media-body ml-sm-4">	
+												<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
+										  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
+										  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
+									        </div>
 									</div>
 								</a>
-            				</div>
-				    		<hr>
-						<%} %>
-					</div>
-					<div class="tab-pane fade" id="funcionesinvitado" role="tabpanel" aria-labelledby="funcionesinvitado-tab">
-					...
+            					</div>
+								<hr>
+				  			<%		
+				  				}
+				  			%>
+			  			</div>
 					</div>
 					<%}}%>
 				</div>
 			</div>
        </div>
 	</div>
+	<script>
+		var usuarioLogueado = "<%= idUsuario %>";
+		var usuarioPerfil = "<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>"
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+	        if (xhr.readyState == 4) {
+	            var data = xhr.responseText;
+	        }
+	    }
+		function SeguirUsuario(){
+			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=follow", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			xhr.send(null);
+			location.reload();
+			return false;
+		}	
+		function DejarSeguirUsuario(){
+			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=unfollow", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			xhr.send(null);
+			location.reload();
+			return false;
+		}
+	</script>
 </body>
 </html>

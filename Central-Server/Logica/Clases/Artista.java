@@ -5,6 +5,8 @@ import DataTypes.DtUsuario;
 import DataTypes.EstadoEspectaculo;
 import DataTypes.DtArtista;
 import DataTypes.DtEspectaculo;
+import DataTypes.DtFuncion;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -51,7 +53,12 @@ public class Artista extends Usuario{
 		public void setURL(String uRL) {
 			URL = uRL;
 		}
-		
+		public HashSet<Funcion> getFuncionesInvitado() {
+			return FuncionesInvitado;
+		}
+		public void setFuncionesInvitado(HashSet<Funcion> funcionesInvitado) {
+			FuncionesInvitado = funcionesInvitado;
+		}
 		public HashSet<Espectaculo> getEspectaculos() {
 			return Espectaculos;
 		}
@@ -91,7 +98,14 @@ public class Artista extends Usuario{
 				DtEspectaculo nuevo = itr.next().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
-			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo,espna, this.getUltimoIngreso());
+			
+			HashSet<DtFuncion> fun = new HashSet<DtFuncion>();
+			Iterator<Funcion> itrf = this.FuncionesInvitado.iterator();
+			while(itrf.hasNext()) {
+				DtFuncion nuevo = itrf.next().getDtFuncion();
+				fun.add(nuevo);
+			}
+			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo,espna, this.getUltimoIngreso(), fun);
 			return ret;
 		}
 		

@@ -4,6 +4,7 @@
   <%@page import="DataTypes.EstadoSesion" %>
   <%@page import="com.coronatickets.controllers.Login" %>
   <%@page import="DataTypes.DtUsuario" %>
+
   
 <!-- INICIO MENU ARRIBA -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menuSuperior">
@@ -38,7 +39,7 @@
 		       	<a class="nav-link" style="border-radius:0.25em;" href="#" id="UsernavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		       	<div class="d-flex flex-row">
 		       	<div style="width:2em;height:2em;" class="mr-2">
-		       		<img alt="" src="<% if(usuario.getImagen()!=null){ %><%= usuario.getImagen() %><%}else{ %><%= "https://woises.net/public/img/defaultpic.jpg"%><%} %>" class="rounded-circle img-responsive h-100 w-100">
+		       		<img alt="" src="<% if(usuario.getImagen()!=null && usuario.getImagen()!=""){ %><%= usuario.getImagen() %><%}else{ %><%= "/img/defaultpic.jpg"%><%} %>" class="rounded-circle img-responsive h-100 w-100">
 		       	</div>
 		       	<%= usuario.getNickname() %>
 		       	<i class="fas fa-sort-down"></i>

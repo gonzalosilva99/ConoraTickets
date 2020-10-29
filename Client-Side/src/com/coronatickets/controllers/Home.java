@@ -36,7 +36,7 @@ public class Home extends HttpServlet {
 			throws ServletException, IOException {
 		//String nombrePlataforma = (String) request.getParameter("plataforma");
 		//request.setAttribute("plat",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
-		request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 	
 	
@@ -44,6 +44,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Login.ActualizarUltimoIngreso(request);
 		processRequest(request, response);
 		
 	}
@@ -52,6 +53,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Login.ActualizarUltimoIngreso(request);
 		processRequest(request, response);
 	}
 

@@ -69,6 +69,7 @@ public class AltaPaquete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Login.ActualizarUltimoIngreso(request);
 		request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
 		
 	}
@@ -78,6 +79,7 @@ public class AltaPaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Login.ActualizarUltimoIngreso(request);
 		try {
 			processRequest(request, response);
 		} catch (ServletException e) {

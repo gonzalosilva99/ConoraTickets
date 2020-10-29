@@ -52,7 +52,8 @@ public class Logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+    	Login.ActualizarUltimoIngreso(request);
+    	processRequest(request, response);
     } 
 
     /** 
@@ -65,6 +66,7 @@ public class Logout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+    	Login.ActualizarUltimoIngreso(request);
+    	processRequest(request, response);
     }
 }
