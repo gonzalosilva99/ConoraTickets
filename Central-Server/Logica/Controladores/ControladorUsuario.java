@@ -198,4 +198,7 @@ public class ControladorUsuario implements IUsuario{
 	public Boolean existeNickname(String nickname) {
 		return ManejadorUsuario.getInstancia().existeNickname(nickname);
 	}
+	public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir) {
+		ManejadorUsuario.getInstancia().DejarSeguirUsuario(NickSeguidor, NickDejarSeguir);
+	}
 }

@@ -36,7 +36,7 @@ public class Home extends HttpServlet {
 			throws ServletException, IOException {
 		//String nombrePlataforma = (String) request.getParameter("plataforma");
 		//request.setAttribute("plat",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
-		request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 	
 	

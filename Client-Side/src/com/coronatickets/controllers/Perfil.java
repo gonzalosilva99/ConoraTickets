@@ -86,6 +86,7 @@ public class Perfil extends HttpServlet {
 			}
 			else if(tipo.equals("unfollow")) {
 				System.out.println("DEJAR DE SEGUIR");
+				Fabrica.getInstancia().getIUsuario().DejarSeguirUsuario(usuarioLogueado, usuarioPerfil);		
 			}
 		}
 	}

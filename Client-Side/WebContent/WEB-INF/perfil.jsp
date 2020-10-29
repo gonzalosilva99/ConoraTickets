@@ -390,8 +390,11 @@
 			return false;
 		}	
 		function DejarSeguirUsuario(){
-			alert("Aun no se puede.");
-			
+			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=unfollow", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			xhr.send(null);
+			location.reload();
+			return false;
 		}
 	</script>
 </body>

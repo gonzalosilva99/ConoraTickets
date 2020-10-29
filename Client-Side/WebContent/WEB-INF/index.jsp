@@ -4,6 +4,7 @@
     <%@page import="DataTypes.DtEspectaculo"%>
     <%@page import="java.util.Set"%>
     <%@page import="java.util.Iterator"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +14,12 @@
 <body>
 
 <div class="wrapper">
-		<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
+		 <jsp:include page="/WEB-INF/template/header_menulateral.jsp"/> 
+
         <!-- Page Content  -->
         <div id="content">
-		<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
+        	
+			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/> 
 			<% 
 			String nomPlataforma = (String) request.getParameter("plataforma");
 			String nomCategoria = (String) request.getParameter("categoria");

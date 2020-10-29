@@ -120,6 +120,13 @@ public abstract class Usuario {
 			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido(),this.getContrasena(),this.getEmail(), this.getImagen(),this.getNacimiento());
 			return ret;
 		}
+		public void eliminarSeguido(String nickname){
+			Siguiendo.remove(nickname);
+		}
+		public void eliminarSeguidor(String nickname) {
+			Seguidores.remove(nickname);
+		}
+		
 		
 		
 		
