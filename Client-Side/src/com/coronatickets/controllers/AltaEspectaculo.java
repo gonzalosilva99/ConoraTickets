@@ -72,8 +72,8 @@ public class AltaEspectaculo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Login.ActualizarUltimoIngreso(request);
 		request.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(request,response);
-		
 		//processRequest(request, response);
 	}
 
@@ -81,6 +81,7 @@ public class AltaEspectaculo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Login.ActualizarUltimoIngreso(request);
 		processRequest(request, response);
 	}
 

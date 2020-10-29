@@ -96,6 +96,7 @@ public class Registrarse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+    	Login.ActualizarUltimoIngreso(request);
     	request.getRequestDispatcher("/WEB-INF/registrarse.jsp").forward(request, response);
     } 
 
@@ -103,6 +104,7 @@ public class Registrarse extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+    	Login.ActualizarUltimoIngreso(request);
+    	processRequest(request, response);
     }
 }
