@@ -30,7 +30,7 @@
                         <li>
                             <a href="#">Alta Paquete</a>
                             <a href="/altaespectaculo">Alta Espectaculo</a>
-                            <a href="#">Alta Funcion</a>
+                            <a href="/altafuncion" ">Alta Funcion</a>
                             <a href="#">Agregar Espectaculo a Paquete</a>
                         </li>
                     </ul>

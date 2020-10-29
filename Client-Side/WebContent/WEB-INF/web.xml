@@ -89,6 +89,14 @@
         <servlet-name>Registrarse</servlet-name>
         <url-pattern>/signin</url-pattern>
   	</servlet-mapping>
+  	<servlet>
+        <servlet-name>AltaFuncion</servlet-name>
+        <servlet-class>com.coronatickets.controllers.AltaFuncion</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>AltaFuncion</servlet-name>
+        <url-pattern>/altafuncion</url-pattern>
+  	</servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
