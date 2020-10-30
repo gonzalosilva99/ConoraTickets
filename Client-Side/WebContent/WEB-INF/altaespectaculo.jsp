@@ -20,13 +20,13 @@
 	<%
 	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
 		DtUsuario usuario = Login.getUsuarioLogueado(request);
-		System.out.print(usuario.getNickname());
+		//System.out.print(usuario.getNickname());
 	if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
 		
-		if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){ System.out.print("bien");
+		if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){System.out.print("acep");
 	%>	
 	 	<script type="text/javascript"> alert("Enviado. Esperando a ser aceptado"); </script>
-				<% } else {System.out.print(request.getAttribute("aceptado"));}%>
+				<% } else if((String) request.getAttribute("aceptado")!=null && !((String) request.getAttribute("aceptado")).equals("true")){System.out.print((String) request.getAttribute("aceptado"));%> <script type="text/javascript"> alert("<%= (String) request.getAttribute("aceptado") %>"); </script> <%}%>
 	<div class="wrapper">
         <jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
         <!-- Page Content  -->
@@ -39,8 +39,8 @@
     
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
 <!--       <label class="mr-sm-2" for="inlineFormCustomSelect">Plataforma</label> -->
-      <select class="custom-select" id="plat" name="plat">
-      <option value="" selected>Elije la plataforma</option>
+      <select class="custom-select" id="plat" name="plat" required>
+      <option value="" id="elijeplat" selected>Elije la plataforma</option>
       <optgroup label="Plataformas:">
       <%
       Set<DtPlataforma> ListaPlataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
@@ -132,10 +132,23 @@
 </form>
 
 				
+<script type="text/javascript">
+function ShowSelected()
+{
 
+var ret = false;
+var combo = document.getElementById("plat");
+var selected = combo.options[combo.selectedIndex].text;
+if(selected=="Elije la plataforma"){
+combo.classList.add('invalid');
+alert(selected);
+ret=true;
+}
+return ret;
+}
+</script>
 
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
   'use strict';
   window.addEventListener('load', function() {
@@ -144,7 +157,7 @@
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
       form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() == false || ShowSelected()) {
           event.preventDefault();
           event.stopPropagation();
         }

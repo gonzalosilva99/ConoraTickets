@@ -55,15 +55,18 @@ public class AltaEspectaculo extends HttpServlet {
 		    	  cats.add(values[i]);
 		    	}
 		    java.util.Date fechaactual = new Date();
+		    
 	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats);	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
+	    	System.out.print("tamo aca"+(String) requestt.getSession().getAttribute("usuario_logueado"));
 	    	requestt.setAttribute("aceptado", "true");
-	    	//resp.sendRedirect("/altaespectaculo?id="+(String) requestt.getParameter("id"));
-	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/altaespectaculo");
+	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");
 			dispatcher.forward(requestt, resp);
 	    }
 	    catch (Exception e) {
-			requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(requestt,resp);
+	    	requestt.setAttribute("aceptado", e.getMessage());
+	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");
+			dispatcher.forward(requestt, resp);
 		}
 		}
 			
