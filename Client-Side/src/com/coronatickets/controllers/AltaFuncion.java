@@ -2,6 +2,7 @@ package com.coronatickets.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import Controladores.Fabrica;
 import Interfaces.IPlataforma;
-import DataTypes.DtCategoria;
+import DataTypes.DtEspectaculo;
 import DataTypes.EstadoSesion;
 import Excepciones.Identidad;
 /**
@@ -68,7 +69,35 @@ public class AltaFuncion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
-		processRequest(request, response);
+		System.out.println("ENTRO AL SERVLET EL POST");
+		String usuarioLogueado = request.getParameter("userlogged");
+		String plataforma = request.getParameter("plataforma");
+		if(usuarioLogueado!=null && plataforma!=null) {
+			  if (request.getParameter("actualizar").equals("true")) 
+			  { 
+				  Set<DtEspectaculo> espectaculosAceptados = Fabrica.getInstancia().getIPlataforma().
+				  listarEspectaculosAceptadosDePlataforma(plataforma);
+				  request.getSession().setAttribute("espectaculosAceptados", espectaculosAceptados); 
+				  request.getSession().setAttribute("plataforma", plataforma); 
+			  }
+			  else 
+			  {
+				  
+				  try {
+					  SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+					  Date fechaFuncion = formato.parse(request.getParameter("fecha"));
+					  Date fechaAlta = new Date();
+					  Fabrica.getInstancia().getIPlataforma().ConfirmarAltaFuncionEspectaculo(request.getParameter("plataforma"), 
+							  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, null , fechaAlta, "imagen");
+					  request.getSession().setAttribute("exito", true); 
+				  }catch (Exception e) {  
+					  request.getSession().setAttribute("exito", false);
+					  System.out.println("EXCEPCION ALTAFUNCION.JAVA LINEA 92 " + e.getMessage());
+				  }
+			}
+			 
+		}
+		
 	}
 
 }

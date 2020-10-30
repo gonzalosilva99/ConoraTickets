@@ -155,16 +155,20 @@ public class ManejadorPlataforma {
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);
 		}
 
-		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta, String imagen) {
+		public void ConfirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, 
+				Set<String> artistas, Date alta, String imagen) {
 			Plataforma Plat = Plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);
-			Espec.AnadirFuncion(nombre, inicio, alta, imagen);
-			Fabrica fab = Controladores.Fabrica.getInstancia();
-			IUsuario iusuario = fab.getIUsuario();
-			Iterator<String> iterArtistas = artistas.iterator();
-			while(iterArtistas.hasNext()) {
-				iusuario.RelacionarArtistaFuncion(iterArtistas.next(), Espec.ObtenerFuncion(nombre));
+			Espec.AnadirFuncion(nombre, inicio, alta, imagen);	
+			if (artistas != null) {
+				Fabrica fab = Controladores.Fabrica.getInstancia();
+				IUsuario iusuario = fab.getIUsuario();
+				Iterator<String> iterArtistas = artistas.iterator();
+				while(iterArtistas.hasNext()) {
+					iusuario.RelacionarArtistaFuncion(iterArtistas.next(), Espec.ObtenerFuncion(nombre));
+				}
 			}
+			
 		}
 
 		public Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre){
