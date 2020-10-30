@@ -97,6 +97,17 @@ public class Plataforma {
 			return ret;
 		}
 		
+		public Set<DtEspectaculo> listarEspectaculosAceptadosDePlataforma(){
+			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+					if(entry.getValue().getEstado()==EstadoEspectaculo.Aceptado) {
+					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+					ret.add(nuevo);
+					}
+			}
+			return ret;
+		}
+		
 		public Set<DtEspectaculo> listarEspectaculosIngresadosDePlataforma(){
 			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {

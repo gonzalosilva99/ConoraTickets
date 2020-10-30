@@ -28,7 +28,7 @@
 		if(dtesp!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-	            <img src="<%= dtesp.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
+	            <img src="<% if(dtesp.getImagen()!=""){%><%= dtesp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtesp.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>        
@@ -85,7 +85,7 @@
 								{
 								DtFuncionDatos auxf = itrf.next();%>
 								<div class="container-fluid media mb-sm-5">
-								<img src="<%= auxf.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
+								<img src="<% if(auxf.getImagen()!=""){%><%= auxf.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
 								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxf.getNombre() %> </span></p>
@@ -127,7 +127,7 @@
 				    				<div class="container-fluid media mb-sm-5">
 				    				<a href="ConsultaPaquete.html">
 				    				<div class="container-fluid media mb-sm-5">
-				    					 <img src="<%= auxp.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
+				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 
 										 <div class="media-body ml-sm-4">		
 								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= auxp.getNombre() %></span></p>

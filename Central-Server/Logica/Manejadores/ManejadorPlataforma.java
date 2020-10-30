@@ -66,6 +66,11 @@ public class ManejadorPlataforma {
 			return plat.listarEspectaculosDePlataforma();
 		}
 		
+		public Set<DtEspectaculo>  listarEspectaculosAceptadosDePlataforma(String Nombre){
+			Plataforma plat = Plataformas.get(Nombre);
+			return plat.listarEspectaculosAceptadosDePlataforma();
+		}
+		
 		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
 			Plataforma plat = Plataformas.get(Plataforma);
 			return plat.ListarCategoriasDeEspectaculo(Espectaculo);
