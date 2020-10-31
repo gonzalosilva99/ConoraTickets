@@ -20,13 +20,12 @@
 	<%
 	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
 		DtUsuario usuario = Login.getUsuarioLogueado(request);
-		System.out.print(usuario.getNickname());
 	if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
-		
-		if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){ System.out.print("bien");
+		System.out.print("jsp2 "+(String) request.getAttribute("aceptado"));
+		if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){
 	%>	
 	 	<script type="text/javascript"> alert("Enviado. Esperando a ser aceptado"); </script>
-				<% } else {System.out.print(request.getAttribute("aceptado"));}%>
+				<% } else if((String) request.getAttribute("aceptado")!=null && !((String) request.getAttribute("aceptado")).equals("true")){%> <script type="text/javascript"> alert("<%= (String) request.getAttribute("aceptado") %>"); </script> <%}%>
 	<div class="wrapper">
         <jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
         <!-- Page Content  -->
@@ -34,13 +33,13 @@
 		<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			<h1 class="text-center">Alta de Espectaculo</h1>
             
-   	<form class="needs-validation mt-5 " action="altaespectaculo?id=<%= (String) request.getParameter("id") %>" method="POST" novalidate>
+   	<form class="needs-validation mt-5 " action="altaespectaculo" method="POST" novalidate>
    	
     
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
 <!--       <label class="mr-sm-2" for="inlineFormCustomSelect">Plataforma</label> -->
-      <select class="custom-select" id="plat" name="plat">
-      <option value="" selected>Elije la plataforma</option>
+      <select class="custom-select" id="plat" name="plat" required>
+      <option value="" id="elijeplat" selected>Elije la plataforma</option>
       <optgroup label="Plataformas:">
       <%
       Set<DtPlataforma> ListaPlataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
@@ -120,10 +119,9 @@
     <% ;} %>	
   </ul>
    </div> 
-    <div class="form-row col-md-5 mb-4 mx-auto">
-  		<input type="file" class="custom-file-input" id="customFileLang" lang="es" name="imagen">
-  		<label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-	</div>
+    <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
+      <input type="url" class="form-control" id="imagen" placeholder="Link Imagen del Espectaculo" name="imagen">
+    </div>
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
   		<button class="btn btn-primary" style="width: 100%;" type="submit" value="Acceder" onclick="if(document.getElementByClassName('was-validated')){submit()}">Crear Espectaculo!</button>
@@ -132,10 +130,23 @@
 </form>
 
 				
+<script type="text/javascript">
+function ShowSelected()
+{
 
+var ret = false;
+var combo = document.getElementById("plat");
+var selected = combo.options[combo.selectedIndex].text;
+if(selected=="Elije la plataforma"){
+combo.classList.add('invalid');
+alert(selected);
+ret=true;
+}
+return ret;
+}
+</script>
 
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
   'use strict';
   window.addEventListener('load', function() {
@@ -144,7 +155,7 @@
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
       form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() == false || ShowSelected()) {
           event.preventDefault();
           event.stopPropagation();
         }

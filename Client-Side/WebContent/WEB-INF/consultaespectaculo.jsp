@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
-<!DOCTYPE html>
-<html>
-<head>
-	<%@page import="DataTypes.DtEspectaculoDatos"%>
+<%@page import="DataTypes.DtEspectaculoDatos"%>
 	<%@page import="DataTypes.EstadoSesion" %>
 	<%@page import="DataTypes.DtCategoria" %>
 	<%@page import="DataTypes.DtPaquete" %>
@@ -12,15 +10,21 @@
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IUsuario"%>
+	
+<!DOCTYPE html>
+<html>
+<head>	
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Consulta Espectaculo</title>
 </head>
 <body>
 <div class="wrapper">
-	<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
+	<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/> 
+
         <!-- Page Content  -->
-    	<div id="content">
-		<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
+        <div id="content">
+        	
+			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<% 
 		DtEspectaculoDatos dtesp=null;
 		dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
@@ -34,6 +38,7 @@
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>        
 	            </div>
             </div>
+            
            	<div class="container-fluid">
 	           	<ul class="nav nav-tabs" id="myTab" role="tablist">
 			  		<li class="nav-item">
@@ -129,7 +134,9 @@
 								{
 								DtPaquete auxp = itrp.next();%>
 				    				<div class="container-fluid media mb-sm-5">
+
 				    				<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
+
 				    				<div class="container-fluid media mb-sm-5">
 				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 
@@ -152,12 +159,16 @@
        </div>
 </div>
 
+<<<<<<< HEAD
 	<script type="text/javascript">
 		function ComprarFuncion(funcion){
 			var espectaculo = "<%=dtesp.getNombre()%>";
 			window.location.replace("/registrofuncion?nomespectaculo="+espectaculo+"&funcion="+funcion);
 		}
 	</script>
+=======
+
+>>>>>>> 5a7d1a6104dc6c0c3df5d875bc6bd5a4feb927e2
 	<script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {

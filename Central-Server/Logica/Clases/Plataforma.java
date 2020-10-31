@@ -138,7 +138,7 @@ public class Plataforma {
 			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
 			nuevo.setEstado(EstadoEspectaculo.Ingresado);
-			if(categorias!=null) {
+			if(categorias.size()>0) {
 			Iterator<String> itercat = categorias.iterator();
 			while(itercat.hasNext()) {
 				Categoria aux = icat.getCategoria(itercat.next());
