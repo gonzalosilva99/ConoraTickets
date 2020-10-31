@@ -18,6 +18,14 @@
         <url-pattern>/altaespectaculo</url-pattern>
   	</servlet-mapping>
   	<servlet>
+        <servlet-name>Servlet Registro a Funcion</servlet-name>
+        <servlet-class>com.coronatickets.controllers.RegistroAFuncion</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Registro a Funcion</servlet-name>
+        <url-pattern>/registrofuncion</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
         <servlet-name>Perfil Usuario</servlet-name>
         <servlet-class>com.coronatickets.controllers.Perfil</servlet-class>
   	</servlet>

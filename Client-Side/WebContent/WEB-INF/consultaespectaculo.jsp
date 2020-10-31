@@ -85,6 +85,7 @@
 								{
 								DtFuncionDatos auxf = itrf.next();%>
 								<div class="container-fluid media mb-sm-5">
+								
 								<img src="<% if(auxf.getImagen()!=""){%><%= auxf.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
@@ -104,7 +105,10 @@
 											<% } %></span></p>
 											<% } %>
 											<p class="text-dark"><b>Espectadores hasta el momento:</b> <span id="fechaFuncion"><%= auxf.getEspectadores() %></span></p>
-				    				</div>
+				    						<% if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado"))){ %>
+				    							<button type="submit" class="btn btn-primary" onclick="ComprarFuncion('<%=auxf.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
+				    						<%} %>
+				    					</div>
 				    				</div>
 				    				<hr> 
 				    				<% ;}} %>
@@ -125,7 +129,7 @@
 								{
 								DtPaquete auxp = itrp.next();%>
 				    				<div class="container-fluid media mb-sm-5">
-				    				<a href="ConsultaPaquete.html">
+				    				<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
 				    				<div class="container-fluid media mb-sm-5">
 				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 
@@ -148,13 +152,12 @@
        </div>
 </div>
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-	
+	<script type="text/javascript">
+		function ComprarFuncion(funcion){
+			var espectaculo = "<%=dtesp.getNombre()%>";
+			window.location.replace("/registrofuncion?nomespectaculo="+espectaculo+"&funcion="+funcion);
+		}
+	</script>
 	<script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
