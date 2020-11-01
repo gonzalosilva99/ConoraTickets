@@ -105,6 +105,17 @@ public class Plataforma {
 			return ret;
 		}
 		
+		public Set<DtEspectaculo> listarEspectaculosAceptadosDePlataforma(){
+			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+					if(entry.getValue().getEstado()==EstadoEspectaculo.Aceptado) {
+					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
+					ret.add(nuevo);
+					}
+			}
+			return ret;
+		}
+		
 		public Set<DtEspectaculo> listarEspectaculosIngresadosDePlataforma(){
 			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
@@ -135,7 +146,7 @@ public class Plataforma {
 			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
 			nuevo.setEstado(EstadoEspectaculo.Ingresado);
-			if(categorias!=null) {
+			if(categorias.size()>0) {
 			Iterator<String> itercat = categorias.iterator();
 			while(itercat.hasNext()) {
 				Categoria aux = icat.getCategoria(itercat.next());

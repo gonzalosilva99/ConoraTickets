@@ -331,4 +331,9 @@ public class ManejadorUsuario {
 				Espectadores.get(NickDejarSeguir).eliminarSeguidor(NickSeguidor);
 			}
 		}
+		
+		public Boolean ExisteCompraPaquete(String nickname, String nombrePaquete) {
+			Espectador espec = Espectadores.get(nickname);
+			return espec.ExisteCompraPaquete(nombrePaquete);
+		}
 }

@@ -3,7 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <jsp:include page="/WEB-INF/template/head.jsp"/>
+  	<%@page import="DataTypes.DtPlataforma"%>
+	<%@page import="DataTypes.DtCategoria"%>
+	<%@page import="DataTypes.EstadoSesion" %>
+	<%@page import="DataTypes.DtUsuario" %>
+	<%@page import="com.coronatickets.controllers.Login" %>
+	<%@page import="Controladores.Fabrica"%>
+	<%@page import="Interfaces.IPlataforma"%>
+	<%@page import="Interfaces.ICategoria"%>
+	<%@page import="java.util.Iterator" %>
+	<%@page import="java.util.Set"%>
+	<%@page import="java.util.HashSet"%>
+	<jsp:include page="/WEB-INF/template/head.jsp"/>
 <title>CoronaTickets UY - Registrarse</title>
 </head>
 <body>
@@ -117,7 +128,7 @@
 	
 	<h1 class="text-center">Crea un Paquete de Espectáculos</h1>
             
-   	<form class="needs-validation mt-5 " novalidate action="altapaquete" method="POST">
+   	<form class="needs-validation mt-5 " novalidate action="altapaquete?id=<%= (String) request.getParameter("id") %>" method="POST">
    	
    	
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">

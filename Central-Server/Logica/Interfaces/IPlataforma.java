@@ -18,6 +18,7 @@ import Excepciones.Identidad;
 public interface IPlataforma {
 	public 
 		Set<DtEspectaculo> listarEspectaculosDePlataforma(String Nombre);
+		public Set<DtEspectaculo> listarEspectaculosAceptadosDePlataforma(String Nombre);
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp);
 		DtFuncionDatos MostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun);
 		DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
