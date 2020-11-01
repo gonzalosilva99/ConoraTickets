@@ -28,7 +28,7 @@
             	<a href="#accionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ACCIONES</a>
                     <ul class="collapse list-unstyled" id="accionesSubmenu">
                         <li>
-                            <a href="#">Alta Paquete</a>
+                            <a href="/altapaquete">Alta Paquete</a>
                             <a href="/altaespectaculo">Alta Espectaculo</a>
                             <a href="#">Alta Funcion</a>
                             <a href="#">Agregar Espectaculo a Paquete</a>

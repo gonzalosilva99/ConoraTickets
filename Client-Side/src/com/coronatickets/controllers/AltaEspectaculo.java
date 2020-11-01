@@ -58,7 +58,7 @@ public class AltaEspectaculo extends HttpServlet {
 		    
 	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats);	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
-	    	System.out.print("tamo aca"+(String) requestt.getSession().getAttribute("usuario_logueado"));
+	    	
 	    	requestt.setAttribute("aceptado", "true");
 	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");
 			dispatcher.forward(requestt, resp);
@@ -79,7 +79,7 @@ public class AltaEspectaculo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
-		request.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(request,response);
+		 request.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp").forward(request,response);
 		//processRequest(request, response);
 	}
 
