@@ -42,4 +42,5 @@ public interface IPlataforma {
 		public void AceptarEspectaculo(String nomEspectaculo);
 		public void RechazarEspectaculo(String nomEspectaculo);
 		public Set<DtEspectaculoDatos> filtrarEspectaculos(String search);
+		public Boolean EspectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo);
 }

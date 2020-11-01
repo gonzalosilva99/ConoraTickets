@@ -206,12 +206,12 @@ public class ManejadorUsuario {
 			HashSet<DtUsuario> ret = new HashSet<DtUsuario>();
 			for (Map.Entry<String, Artista> entry : Artistas.entrySet()) {
 	            DtUsuario nuevo = entry.getValue().getDtUsuario();
-	            if(nuevo.getNickname().contains(search))
+	            if(nuevo.getNickname().toLowerCase().contains(search))
 	            	ret.add(nuevo);            
 			}
 			for (Map.Entry<String, Espectador> entry : Espectadores.entrySet()) {
 	            DtUsuario nuevo = entry.getValue().getDtUsuario();
-	            if(nuevo.getNickname().contains(search))
+	            if(nuevo.getNickname().toLowerCase().contains(search))
 	            	ret.add(nuevo);            
 			}
 			return ret;

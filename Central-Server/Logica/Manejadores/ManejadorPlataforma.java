@@ -111,6 +111,12 @@ public class ManejadorPlataforma {
 			}
 			return ret;
 		}
+		
+		public Boolean EspectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo) {
+			Plataforma Plat = Plataformas.get(nombrePlataforma);
+			return Plat.EspectaculoinPlataforma(nombreEspectaculo);
+		}
+		
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma){
 			Plataforma plat = Plataformas.get(nombrePlataforma);
 			return plat.listarEspectaculos();

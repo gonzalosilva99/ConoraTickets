@@ -38,7 +38,7 @@ public class ManejadorPaquetes {
 			HashSet<DtPaqueteDatos> ret = new HashSet<DtPaqueteDatos>();
 			for (Map.Entry<String, Paquete> entry : Paquetes.entrySet()) {
 				DtPaqueteDatos nuevo = entry.getValue().getDtPaqueteDatos();
-				if(nuevo.getNombre().contains(search))
+				if(nuevo.getNombre().toLowerCase().contains(search.toLowerCase()))
 					ret.add(nuevo);
 			}
 			return ret;
