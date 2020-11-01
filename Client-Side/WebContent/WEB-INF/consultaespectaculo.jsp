@@ -139,12 +139,17 @@
 
 				    				<div class="container-fluid media mb-sm-5">
 				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
-										 
+										 <% Date todayDate = new Date(); %>
 										 <div class="media-body ml-sm-4">		
 								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= auxp.getNombre() %></span></p>
 								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= auxp.getDescripcion() %></span></p>
 								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= auxp.getDescuento() %>%</span></p>							            
-								  			 <p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin()) %></span></p>
+								  			 <p class="text-dark red"><b <% if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin()) %></span></p>
+								  			 <% 
+								  			 
+								  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado")) && todayDate.after(auxp.getInicio()) && todayDate.before(auxp.getFin()) ){ %>
+				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=auxp.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
+				    						<%} %>
 								  		</div>
 								  		</div>
 								  		</a>
@@ -159,16 +164,20 @@
        </div>
 </div>
 
-<<<<<<< HEAD
+
 	<script type="text/javascript">
 		function ComprarFuncion(funcion){
 			var espectaculo = "<%=dtesp.getNombre()%>";
 			window.location.replace("/registrofuncion?nomespectaculo="+espectaculo+"&funcion="+funcion);
 		}
 	</script>
-=======
+	
+	<script type="text/javascript">
+		function ComprarPaquete(paquete){
+			window.location.replace("/comprarpaquete?nompaquete="+paquete);
+		}
+	</script>
 
->>>>>>> 5a7d1a6104dc6c0c3df5d875bc6bd5a4feb927e2
 	<script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {

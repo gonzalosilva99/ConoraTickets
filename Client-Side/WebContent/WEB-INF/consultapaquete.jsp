@@ -36,6 +36,10 @@
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtpaq.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>        
+		            <% 				  		Date hoy = new Date();	 
+								  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio()) && hoy.before(dtpaq.getFin()) ){ %>
+				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=dtpaq.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
+				    						<%} %>
 	            </div>
             </div>
            	<div class="container-fluid">
@@ -57,6 +61,7 @@
 				    		tamc=0;%>
 						<p class="text-dark"><b>Categorias:</b> <span id="categoriasEspectaculo">
 						<% 
+						
 					      Iterator<DtCategoria> itr = dtpaq.getCategorias().iterator();
 							while(itr.hasNext())
 								{tamc++;%>
@@ -65,7 +70,7 @@
 								<% } %></span></p>	<% } %>				
 						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>
 						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= dtpaq.getDescuento() %>%</span></p>							            
-						<p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>					    
+						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>					    
 					</div>
 			  		<div class="tab-pane fade ml-sm-5 mt-sm-5" id="espectaculos" role="tabpanel" aria-labelledby="funciones-tab">	 
 				  			 <div class="panel-group container-fluid">
@@ -102,6 +107,12 @@
 			</div>
        </div>
 </div>
+	
+		<script type="text/javascript">
+		function ComprarPaquete(paquete){
+			window.location.replace("/comprarpaquete?nompaquete="+paquete);
+		}
+	</script>
 	
 	<script type="text/javascript">
         $(document).ready(function () {

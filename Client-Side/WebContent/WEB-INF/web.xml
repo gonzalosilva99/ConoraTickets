@@ -25,6 +25,14 @@
         <servlet-name>Servlet Registro a Funcion</servlet-name>
         <url-pattern>/registrofuncion</url-pattern>
   	</servlet-mapping>
+  	  	<servlet>
+        <servlet-name>Servlet Comprar Paquete</servlet-name>
+        <servlet-class>com.coronatickets.controllers.ComprarPaquete</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Comprar Paquete</servlet-name>
+        <url-pattern>/comprarpaquete</url-pattern>
+  	</servlet-mapping>
   	<servlet>
         <servlet-name>Perfil Usuario</servlet-name>
         <servlet-class>com.coronatickets.controllers.Perfil</servlet-class>

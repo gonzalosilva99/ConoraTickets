@@ -201,4 +201,8 @@ public class ControladorUsuario implements IUsuario{
 	public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir) {
 		ManejadorUsuario.getInstancia().DejarSeguirUsuario(NickSeguidor, NickDejarSeguir);
 	}
+	
+	public Boolean ExisteCompraPaquete(String nickname, String nombrePaquete) {
+		return ManejadorUsuario.getInstancia().ExisteCompraPaquete(nickname,nombrePaquete);
+	}
 }
