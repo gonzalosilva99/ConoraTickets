@@ -237,15 +237,6 @@ public class CasosPrueba extends HttpServlet {
 			iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
 			iplataforma.AceptarEspectaculo("Springsteen on Broadway");
 			
-			fechaAltaEspectaculo = formato.parse("07/06/2020");
-			cat.add("Rock en Ingles");
-			iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Prueba Recordar Borrar","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
-			iplataforma.RechazarEspectaculo("Prueba Recordar Borrar");
-			
-			fechaAltaEspectaculo = formato.parse("07/06/2020");
-			cat.add("Rock en Ingles");
-			iplataforma.altaEspectaculo("Youtube","bruceTheBoss","Prueba 2 Recordar Borrar","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.",100,1500,"https://www.youtube.com/BruceSpringsteen",980,fechaAltaEspectaculo,100, "", cat);
-			
 			fechaAltaEspectaculo = formato.parse("08/07/2020");
 			cat.add("Bandas Latinas");
 			iplataforma.altaEspectaculo("Twitter Live","lospimpi","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",10,500,"https://twitter.com/PimpinelaNet",500,fechaAltaEspectaculo,150, "", cat);
@@ -361,13 +352,19 @@ public class CasosPrueba extends HttpServlet {
 			fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
 			iplataforma.ConfirmarAltaFuncionEspectaculo("Youtube","Springsteen on Broadway", "Springsteen on Broadway - iii", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 			
+			//F18
+			artistas.clear();
+			fechaInicioFuncion = FormatoInicio.parse("2020-11-15 21:00:00");
+			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 3", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+			
 			//F17
 			artistas.clear();
 			artistas.add("lospimpi");
 			artistas.add("dyangounchained");
 			fechaInicioFuncion = FormatoInicio.parse("2020-10-01 19:00:00");
 			fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
-			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+			iplataforma.ConfirmarAltaFuncionEspectaculo("Twitter Live","30 años", "30 años - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
 		
 			//F16
 			artistas.clear();
@@ -411,7 +408,7 @@ public class CasosPrueba extends HttpServlet {
 			ipaquete.ConfirmarAltaPaquete("Paquete Solistas", "Paquete de solistas." , inicio, fin, 30.0, alta, "https://bit.ly/2HSF4e0");
 			
 			inicio = formato.parse("15/08/2020");
-			fin = formato.parse("15/11/2020");
+			fin = formato.parse("25/11/2020");
 			alta = formato.parse("1/8/2020");
 			ipaquete.ConfirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos." , inicio, fin, 15.0, alta, "https://bit.ly/2HSF4e0/3ndBhIw");
 
@@ -621,6 +618,7 @@ public class CasosPrueba extends HttpServlet {
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
 			ipaquete.ConfirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
 			
+			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
         	}
     		catch(Exception e) {}
     } 

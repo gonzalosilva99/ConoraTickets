@@ -15,7 +15,6 @@
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IUsuario"%>
 	<%@page import="java.time.Month"%>
-	<%@page import="java.time.LocalDate"%>
 	<%@page import="java.util.Date"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Perfil</title>
