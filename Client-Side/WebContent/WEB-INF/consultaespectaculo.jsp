@@ -26,8 +26,11 @@
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<% 
+		String usuario = (String) request.getSession().getAttribute("usuario_logueado");
 		DtEspectaculoDatos dtesp=null;
 		dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
+		Set<DtPaquete> dtpaqesp = dtesp.getPaquetes();
+		Set<DtPaquete> dtpaq = Fabrica.getInstancia().getIPaquete().ListarPaquetes();
 		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 		if(dtesp!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
@@ -134,9 +137,7 @@
 								{
 								DtPaquete auxp = itrp.next();%>
 				    				<div class="container-fluid media mb-sm-5">
-
 				    				<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
-
 				    				<div class="container-fluid media mb-sm-5">
 				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 <% Date todayDate = new Date(); %>
@@ -155,7 +156,60 @@
 								  		</a>
             						</div>
 				    				<hr>
-				    				<% }} %>				    				
+				    				<% }} %>
+				    				<% if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<div class="container-fluid">
+				    					<p class="mx-auto" id="anadirpaquetes"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirPaquete"><i class="far fa-folder-plus"></i> Añadir Paquete</button></p>
+				    				</div>	
+				    				<!-- MODAL ANADIR PAQUETES -->
+				    				<div class="modal fade" id="ModalAnadirPaquete" tabindex="-1" role="dialog" aria-labelledby="ModalAnadirPaquete" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLongTitle">Seguidores</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+									      		</div>
+												<div class="modal-body" >
+												<form action="consultaespectaculo" method="POST" class="form" id="formAnadirPaquetes">
+													<%
+													Iterator<DtPaquete> itrdtpaq = dtpaq.iterator();
+													while(itrdtpaq.hasNext()){
+														DtPaquete nuevo = itrdtpaq.next();
+														boolean anadir = true;
+														Iterator<DtPaquete> itrdtpaqesp = dtpaqesp.iterator();
+														while(itrdtpaqesp.hasNext()){
+															DtPaquete auxnuevo = itrdtpaqesp.next();
+															if(nuevo.getNombre().equals(auxnuevo.getNombre())){
+																anadir=false;
+															}
+														}
+														if(anadir){
+															
+														
+											      	%>
+														<div class="form-check">
+															<label class="form-check-label">
+																<input type="checkbox" name="checkbox" class="form-check-input" value="<%=nuevo.getNombre()%>"><%= nuevo.getNombre() %>
+															</label>
+														</div>
+													<%} else{%>
+														<span class="form-check text-info"><i class="fas fa-check form-check-input"></i> <%= nuevo.getNombre() %></span>
+												<% 
+												}}
+												%>											
+									      <div class="modal-footer">
+									        <button type="submit" class="btn btn-secondary" id="botonModalPaquete">Confirmar</button>
+									      </div>
+									      <div id="MensajePaquetesAnadidos">
+									      </div>
+									      </form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+				    				<%} %>		    				
 				  				</div>
 							 </div>				
 			  		</div>
@@ -184,6 +238,53 @@
                 $('#sidebar').toggleClass('active');
             });
         });
+    </script>
+    
+    <script type="text/javascript">
+    $("#formAnadirPaquetes").submit(function( event ) {
+    	event.preventDefault();
+    	var rbs = document.getElementsByName("checkbox");
+    	var $form = $( this );
+    	var valorBoton = document.getElementById("botonModalPaquete").innerHTML;
+    	if(valorBoton === "Confirmar"){
+		for (var i=0;i<rbs.length;i++){
+			if(rbs[i].checked){
+				var result;
+				console.log(rbs[i].value);
+				var data = {
+			    		espectaculo:'<%= dtesp.getNombre()%>',
+			    		paquete:rbs[i].value};
+			    console.log(data);
+			    console.log(i);
+			    console.log(rbs[i].value);
+			    $.ajax({
+			        type: $form.attr('method'),
+			        url:  $form.attr('action'),
+			        data: data,
+			        async: false,
+			        success: function (data) {
+			            console.log(data);
+						var paquete_fin = document.getElementById("MensajePaquetesAnadidos")
+			            if(data === "SUCCESS") {
+			            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Se ha añadido el paquete: ' + rbs[i].value + 'con éxito al espectáculo <%= dtesp.getNombre() %></div>');
+			            	document.getElementsByClassName("form-check-label")[i].innerHTML='<span class="text-info"><i class="fas fa-check form-check-input"></i>'+rbs[i].value+'</span>';
+			            	//document.getElementById('metododecompra').setAttribute('style',"pointer-events:none;");
+			            	//$('#funcionyacomprada').show();
+			            }
+			            else{
+			            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>    Algo ha fallado, por favor intentalo más tarde.'+data+'</div>')
+			            }
+			        }
+			    });
+			}
+		}
+		document.getElementById("botonModalPaquete").innerHTML="Recargar";
+		}
+		else if(valorBoton == "Recargar"){
+			$("#ModalAnadirPaquete").modal("hide");
+			window.location.reload();
+		}
+    });
     </script>
 </body>
 </html>
