@@ -31,7 +31,6 @@
 		DtPaqueteDatos dtpaq=null;
 		dtpaq = (DtPaqueteDatos) request.getAttribute("paquete");
 		Set<DtEspectaculoDatos> dtesp = Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos("");
-		System.out.println("Cant Espectaculos en total: " + dtesp.size());
 		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 		if(dtpaq!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
@@ -104,7 +103,7 @@
 				    				<hr> 
 				    				<% ;}}} %>
 				    					
-				    				<% if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<% if(usuario != null && Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
 				    				<div class="container-fluid">
 				    					<p class="mx-auto" id="anadirespectaculo"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirEspectaculo"><i class="far fa-folder-plus"></i> Añadir Espectaculo</button></p>
 				    				</div>	

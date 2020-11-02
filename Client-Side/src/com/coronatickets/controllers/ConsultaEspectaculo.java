@@ -36,7 +36,7 @@ public class ConsultaEspectaculo extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
-		if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && nombreEspectaculo!=null) {
+		if(nombreEspectaculo!=null) {
 			request.setAttribute("espectaculo",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
 			request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
 		}
