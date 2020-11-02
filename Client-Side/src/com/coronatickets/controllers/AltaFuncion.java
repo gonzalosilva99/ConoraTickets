@@ -16,10 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Clases.Espectaculo;
+
+import java.util.Arrays;
+
 import Controladores.Fabrica;
 import Interfaces.IPlataforma;
 import DataTypes.DtEspectaculo;
 import DataTypes.EstadoSesion;
+import DataTypes.DtArtista;
+import DataTypes.DtUsuario;
 import Excepciones.Identidad;
 /**
  * Servlet implementation class Home
@@ -37,15 +43,57 @@ public class AltaFuncion extends HttpServlet {
 	 * Devuelve el estado de la sesión
 	 * @param request
 	 */
-	private void processRequest(HttpServletRequest requestt, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-	    try {
-
-	    }
-	    catch (Exception e) {
-	    	System.out.println(e.getMessage());
+	private Boolean espectaculoEsDelArtista(String nickname, DtEspectaculo espectaculo) {
+		System.out.println("ENTRA A espectaculoEsDelArtista");
+		Set<DtEspectaculo> espectaculosArtista = Fabrica.getInstancia().getIUsuario().getDtArtistaNickname(nickname).getEspectaculosArtista();
+		Iterator<DtEspectaculo> itr = espectaculosArtista.iterator();
+		while(itr.hasNext()) {
+			System.out.println("ITERA: "+ itr.next().getNombre());
+			if (itr.next().getNombre().equals(espectaculo.getNombre())) {
+				System.out.println("RETORNO TTRUEEE **********/");
+				return true;
+			}
 		}
+		return false;
+	}
+	private void actualizarEspectaculos(HttpServletRequest request, HttpServletResponse resp, String plataforma, String nickname)
+			throws ServletException, IOException {
+		  Set<DtEspectaculo> espectaculosAceptados = Fabrica.getInstancia().getIPlataforma().
+		  listarEspectaculosAceptadosDePlataforma(plataforma);
+		  Set<DtEspectaculo> espectaculosAceptadosDelArtista = new HashSet<>();
+		  Iterator<DtEspectaculo> itr = espectaculosAceptados.iterator();
+			while(itr.hasNext()) {
+				if (espectaculoEsDelArtista(nickname, itr.next())) {
+					System.out.println("ESPECTACULO LISTO: " + itr.next().getNombre());
+					espectaculosAceptadosDelArtista.add(itr.next());
+				}
+			}	
+		  request.getSession().setAttribute("espectaculosAceptados", espectaculosAceptados); 
+		  request.getSession().setAttribute("plataforma", plataforma);
+	}
+	private void confirmarAltaFuncionEspectaculo(HttpServletRequest request, HttpServletResponse response, String plataforma)
+			throws ServletException, IOException {
+		 try {
+			  SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			  Date fechaFuncion = formato.parse(request.getParameter("fecha"));
+			  Date fechaAlta = new Date();
+			  System.out.println("Plataforma: "+ request.getParameter("inputPrueba"));
+			  System.out.println("Espectaculo: "+ request.getParameter("espectaculo"));
+			  System.out.println("Funcion: "+ request.getParameter("funcion"));
+			  System.out.println("Fecha: "+ request.getParameter("fecha"));
+			  String[] invitados = request.getParameterValues("invitados[]");
+			  Set<String> invitadosSet = new HashSet<>(Arrays.asList(invitados));
+			  Iterator<String> iter = invitadosSet.iterator();
+				while(iter.hasNext()){
+					System.out.println("invitados: " + iter.next()); 
+				}
+			  Fabrica.getInstancia().getIPlataforma().ConfirmarAltaFuncionEspectaculo(request.getParameter("inputPrueba"), 
+					  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, invitadosSet, fechaAlta, "imagen");
+			  request.getSession().setAttribute("exito", true); 
+		  }catch (Exception e) {  
+			  request.getSession().setAttribute("exito", false);
+			  System.out.println("EXCEPCION confirmarAltaFuncionEspectaculo " + e.getMessage());
+		  }
 	}
 			
 	
@@ -68,36 +116,20 @@ public class AltaFuncion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.ActualizarUltimoIngreso(request);
-		System.out.println("ENTRO AL SERVLET EL POST");
-		String usuarioLogueado = request.getParameter("userlogged");
-		String plataforma = request.getParameter("plataforma");
-		if(usuarioLogueado!=null && plataforma!=null) {
-			  if (request.getParameter("actualizar").equals("true")) 
-			  { 
-				  Set<DtEspectaculo> espectaculosAceptados = Fabrica.getInstancia().getIPlataforma().
-				  listarEspectaculosAceptadosDePlataforma(plataforma);
-				  request.getSession().setAttribute("espectaculosAceptados", espectaculosAceptados); 
-				  request.getSession().setAttribute("plataforma", plataforma); 
-			  }
-			  else 
-			  {
-				  
-				  try {
-					  SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-					  Date fechaFuncion = formato.parse(request.getParameter("fecha"));
-					  Date fechaAlta = new Date();
-					  Fabrica.getInstancia().getIPlataforma().ConfirmarAltaFuncionEspectaculo(request.getParameter("plataforma"), 
-							  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, null , fechaAlta, "imagen");
-					  request.getSession().setAttribute("exito", true); 
-				  }catch (Exception e) {  
-					  request.getSession().setAttribute("exito", false);
-					  System.out.println("EXCEPCION ALTAFUNCION.JAVA LINEA 92 " + e.getMessage());
-				  }
-			}
-			 
-		}
-		
+		  Login.ActualizarUltimoIngreso(request);
+		  System.out.println("ENTRO AL SERVLET EL POST");
+	      String plataforma = request.getParameter("plataforma");
+		  if (request.getParameter("actualizar") != null && request.getParameter("actualizar").equals("true")) 
+		  { 
+			  System.out.println("ACTUALIZAR ES TRUEEE");
+			  String nickname = (String)request.getSession().getAttribute("usuario_logueado");
+			  actualizarEspectaculos(request, response, plataforma, nickname);
+		  }
+		  else if (request.getParameter("actualizar")== null) 
+		  {  
+			  confirmarAltaFuncionEspectaculo(request, response, plataforma);
+			  request.getRequestDispatcher("/WEB-INF/altafuncion.jsp").forward(request,response);
+		  } 
 	}
-
+	
 }

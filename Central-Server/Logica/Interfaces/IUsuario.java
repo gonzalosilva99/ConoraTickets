@@ -44,4 +44,5 @@ public interface IUsuario {
 	public Boolean existeNickname(String nickname);
 	public Set<DtUsuario> filtrarUsuarios(String search);
 	public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir);
+	public DtArtista getDtArtistaNickname(String nickname);
 }

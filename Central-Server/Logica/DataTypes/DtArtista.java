@@ -1,9 +1,11 @@
 package DataTypes;
 import java.util.Date;
+import java.util.Set;
+import java.util.Iterator;
 
 public class DtArtista {
 	public DtArtista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descgeneral,
-			String biografia, String link) {
+			String biografia, String link, Set<DtEspectaculo> espectaculos) {
 		super();
 		Nickname = nickname;
 		Nombre = nombre;
@@ -13,6 +15,7 @@ public class DtArtista {
 		Descgeneral = descgeneral;
 		Biografia = biografia;
 		this.link = link;
+		Espectaculos = espectaculos;
 	}
 	private
 	String Nickname;
@@ -28,6 +31,8 @@ public class DtArtista {
 	String Descgeneral;
 	private
 	String Biografia;
+	private
+	Set<DtEspectaculo> Espectaculos;
 	private
 	String link;
 	
@@ -54,6 +59,9 @@ public class DtArtista {
 	}
 	public String getLink() {
 		return link;
+	}
+	public Set<DtEspectaculo> getEspectaculosArtista(){
+		return Espectaculos;
 	}
 	
 		

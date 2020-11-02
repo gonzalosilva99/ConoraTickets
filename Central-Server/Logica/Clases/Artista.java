@@ -68,7 +68,14 @@ public class Artista extends Usuario{
 		
 		
 		public DtArtista getDtArtista() {
-			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL());
+			HashSet<DtEspectaculo> datosEspectaculos = new HashSet<DtEspectaculo>();
+			Iterator<Espectaculo> itresp = Espectaculos.iterator();
+			while(itresp.hasNext()) {
+				Espectaculo nuevo = itresp.next();
+				if(nuevo.getEstado()!=EstadoEspectaculo.Aceptado)
+					datosEspectaculos.add(nuevo.getDatosEspectaculo());
+			}
+			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(), datosEspectaculos);
 			return ret;
 		}
 		

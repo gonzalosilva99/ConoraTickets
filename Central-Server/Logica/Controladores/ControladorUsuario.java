@@ -201,4 +201,8 @@ public class ControladorUsuario implements IUsuario{
 	public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir) {
 		ManejadorUsuario.getInstancia().DejarSeguirUsuario(NickSeguidor, NickDejarSeguir);
 	}
+	public DtArtista getDtArtistaNickname(String nickname) {
+		Artista artista = ManejadorUsuario.getInstancia().getArtista(nickname);
+		return artista.getDtArtista();
+	}
 }
