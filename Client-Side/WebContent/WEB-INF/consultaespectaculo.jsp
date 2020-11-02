@@ -157,7 +157,7 @@
             						</div>
 				    				<hr>
 				    				<% }} %>
-				    				<% if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<% if(usuario!=null && Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
 				    				<div class="container-fluid">
 				    					<p class="mx-auto" id="anadirpaquetes"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirPaquete"><i class="far fa-folder-plus"></i> Añadir Paquete</button></p>
 				    				</div>	
