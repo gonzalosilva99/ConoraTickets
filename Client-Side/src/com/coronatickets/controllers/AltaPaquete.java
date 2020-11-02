@@ -51,14 +51,17 @@ public class AltaPaquete extends HttpServlet {
 			Date fechai = formato.parse(fechaini);
 			double d = Double.parseDouble(porcentaje);  
 		    java.util.Date fechaactual = new Date();
-			Fabrica.getInstancia().getIPaquete().ConfirmarAltaPaquete(nombre, descripcion, fechai, fechaf, d, fechaactual, imagen);
-			System.out.print("tamo aca");
-	    	request.setAttribute("aceptado", "true");
+			if (fechai.before(fechaf)) {Fabrica.getInstancia().getIPaquete().ConfirmarAltaPaquete(nombre, descripcion, fechai, fechaf, d, fechaactual, imagen); 
+			request.setAttribute("aceptado", "true");}
+			
+			else request.setAttribute("fechainvalida", "true");
+	    
+	    	
 	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/altapaquete.jsp");
 			dispatcher.forward(request, response);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			request.setAttribute("aceptado", e.getMessage());
+			request.setAttribute("si", "true");
 	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/altapaquete.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -77,7 +80,8 @@ public class AltaPaquete extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Login.ActualizarUltimoIngreso(request);
-		
+		request.setAttribute("aceptado", "false");
+		request.setAttribute("si", "false");
 		if (Fabrica.getInstancia().getIUsuario().existeNickname((String) request.getSession().getAttribute("usuario_logueado")) && Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getSession().getAttribute("usuario_logueado"))) request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
 		
 	}

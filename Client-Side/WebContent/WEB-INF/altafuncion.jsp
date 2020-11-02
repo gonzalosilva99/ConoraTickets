@@ -101,7 +101,9 @@
 
 	<div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
       <input type="text" class="form-control" name="funcion" id="nombreFuncion" placeholder="Nombre de la función" required>
-	<!--  <h7  style="color:red;"> Ya existe una funcion con ese nombre!</h7>  --> 
+      <% if((Integer)request.getSession().getAttribute("exito")!=null && (Integer)request.getSession().getAttribute("exito") == 2 ){ %>
+	  <h7  style="color:red;"> Ya existe una funcion con ese nombre!</h7>  
+	  <%} %>
     </div>
     
     <div class="form-row col-md-5 mx-auto">
@@ -127,7 +129,7 @@
    <input type="text" name="inputPrueba" value="algunvalor" id="inputPrueba" hidden>
 </form>
 	<% try{ %>
-	<h3 class="text-center"> <% if((Boolean)request.getSession().getAttribute("exito")!=null && (Boolean)request.getSession().getAttribute("exito")){%> Funcion registrada con exito! <%}else if ((Boolean)request.getSession().getAttribute("exito")!= null && !(Boolean)request.getSession().getAttribute("exito")){ %> Ocurrio un error, intente nuevamente <%} %></h3>
+	<h3 class="text-center"> <% if((Integer)request.getSession().getAttribute("exito")!=null && (Integer)request.getSession().getAttribute("exito")== 0){%> Funcion registrada con exito! <%}else if ((Integer)request.getSession().getAttribute("exito")!= null && (Integer)request.getSession().getAttribute("exito") == 1){ %> Ocurrio un error, intente nuevamente <%} %></h3>
 	
 	<%}catch(Exception e){ System.out.println("ERROR EN CARTELITO H3"+ e.getMessage());} %>
 
