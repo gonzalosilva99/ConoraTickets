@@ -47,7 +47,7 @@
 		       	</a>
 		    	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="UsernavbarDropdown">
 		          <a class="dropdown-item" href="/perfil">Mi Perfil</a>
-		          <a class="dropdown-item" href="#">Configuración</a>
+		          <a class="dropdown-item" href="/configuracion">Configuración</a>
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
 		        </div>

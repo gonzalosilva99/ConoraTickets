@@ -15,7 +15,7 @@
 	<%@page import="Interfaces.IUsuario"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
+	<title>Busqueda</title>
 </head>
 <body onload="Onload()">
 	<%
@@ -173,7 +173,7 @@
 									if(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0){
 									for(DtEspectaculoDatos dtespec : EspectaculosFiltrados){if(j==1){%></div><div <%if(r>3){%>style="display:none;"<%}%> id="espec<%=r%>" class="col-md-6 col-lg-6"><%j=0;}%>
 			    					<br>
-			    					<a href="/perfil?id=<%=dtespec.getNombre() %>">
+			    					<a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>">
 			    						<div class="media mb-sm-2">
 									 	<img src="<% if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">

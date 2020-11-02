@@ -4,6 +4,8 @@ import DataTypes.DtUsuario;
 import java.util.Map; 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
@@ -52,7 +54,10 @@ public class Configuracion extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/configuracion.jsp").forward(request, response);
+		if(Login.getUsuarioLogueado(request) != null)
+			request.getRequestDispatcher("/WEB-INF/configuracion.jsp").forward(request, response);
+		else 
+			response.sendRedirect("/home");
 	}
 	
 
@@ -71,5 +76,46 @@ public class Configuracion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
+		try {
+
+			DtUsuario usuario = Login.getUsuarioLogueado(request);
+			Boolean esartista = false; 
+			if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname()))
+				esartista=true;
+			
+				String nombre = request.getParameter("inputNombre");
+				String apellido = request.getParameter("inputApellido");
+				String nickname = request.getParameter("inputNickname");
+				String Email = request.getParameter("inputEmail");  
+		        String nacimientoString= request.getParameter("inputNacimiento");       
+		        String Imagen = request.getParameter("imagen");
+		        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+				Date fechaNac = null ;
+				try {
+					fechaNac = formato.parse(nacimientoString);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.print("Nombre: " + nombre + " Apellido: " + apellido + " Nick: " + nickname + " Email: " + Email);
+				if(esartista) {
+					String Descripcion = request.getParameter("descgeneral");
+					String Biografia = request.getParameter("biografia");
+					String Url = request.getParameter("url");
+					Fabrica.getInstancia().getIUsuario().modificarArtistaCompleto(nickname, nombre, apellido, fechaNac, Descripcion, Biografia, Url,Imagen);
+					System.out.print("entro al artista");
+				}
+				else {
+					Fabrica.getInstancia().getIUsuario().modificarEspectadorCompleto(nickname, nombre, apellido, fechaNac,Imagen);
+					System.out.print("entro al espectador");
+				}
+				DtUsuario nuevousuario = Fabrica.getInstancia().getIUsuario().getUsuarioNickname(nickname);
+				request.setAttribute("usuario_logueado", nuevousuario);
+				response.sendRedirect("/home");
+		}catch(Exception e ) {
+			response.sendRedirect("/configuracion?t=e");
+		}
+			
+		
 	}
 }

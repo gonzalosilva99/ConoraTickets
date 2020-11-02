@@ -58,6 +58,25 @@ public class ControladorUsuario implements IUsuario{
 		return manusu.filtrarUsuarios(search);
 	}
 	
+	public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link, String Imagen) {
+		try {
+			ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+			manusu.modificarArtistaCompleto(Nickname,Nombre,Apellido,Nacimiento,Descripcion,Biografia,Link,Imagen);
+			}
+			catch(Exception e) {
+				
+			}
+	}
+
+	public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Imagen) {
+		try {
+			ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();	
+			manusu.modificarEspectadorCompleto(Nickname,Nombre,Apellido,Nacimiento,Imagen);
+			}
+			catch(Exception e) {
+			}
+	}
+	
 	
 	public Set<DtUsuario> listarUsuarios(){
 		ManejadorUsuario manusu = Manejadores.ManejadorUsuario.getInstancia();

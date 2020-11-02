@@ -45,4 +45,6 @@ public interface IUsuario {
 	public Boolean existeNickname(String nickname);
 	public Set<DtUsuario> filtrarUsuarios(String search);
 	public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir);
+	public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link, String Imagen);
+	public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Imagen);
 }

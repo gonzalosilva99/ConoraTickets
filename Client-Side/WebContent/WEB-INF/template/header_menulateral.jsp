@@ -14,7 +14,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h4>CORONATICKETS</h4>
+                <h4><a href="/home">CORONATICKETS</a></h4>
             </div>
 
             <ul class="list-unstyled components">

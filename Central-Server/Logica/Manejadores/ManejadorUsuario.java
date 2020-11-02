@@ -247,13 +247,30 @@ public class ManejadorUsuario {
 			mod.setURL(Link);
 		}
 		
+		public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link,String Imagen) {
+			Artista mod = Artistas.get(Nickname);
+			mod.setNombre(Nombre);
+			mod.setApellido(Apellido);
+			mod.setNacimiento(Nacimiento);
+			mod.setDescripcionGeneral(Descripcion);
+			mod.setBiografia(Biografia);
+			mod.setURL(Link);
+			mod.setImagen(Imagen);
+		}
 		public void ModificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento) {
 			Espectador mod = Espectadores.get(Nickname);
 			mod.setNombre(Nombre);
 			mod.setApellido(Apellido);
 			mod.setNacimiento(Nacimiento);
 		}
-		
+
+		public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento,String Imagen) {
+			Espectador mod = Espectadores.get(Nickname);
+			mod.setNombre(Nombre);
+			mod.setApellido(Apellido);
+			mod.setNacimiento(Nacimiento);
+			mod.setImagen(Imagen);
+		}
 		public void RelacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo) {
 			Artista Organizador = Artistas.get(nickArtista);
 			nuevo.setOrganizador(Organizador);
