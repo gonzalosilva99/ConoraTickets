@@ -41,8 +41,12 @@ public interface IUsuario {
 	public DtUsuario getUsuarioEmail(String email);
 	public Boolean LogueoCorrecto(String login, String password);
 	public void comprarPaquete(String nickname, String nombrePaquete, Date fecha);
+	public Boolean ExisteCompraPaquete(String nickname, String nombrePaquete);
 	public Boolean existeNickname(String nickname);
 	public Set<DtUsuario> filtrarUsuarios(String search);
 	public void DejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir);
 	public DtArtista getDtArtistaNickname(String nickname);
+	public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link, String Imagen);
+	public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Imagen);
+
 }

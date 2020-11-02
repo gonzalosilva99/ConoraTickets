@@ -32,7 +32,7 @@
    
 		<%
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
-		
+			
 				DtUsuario usuario = Login.getUsuarioLogueado(request);
 				%>
 		    <li class="nav-item dropdown">
@@ -47,7 +47,7 @@
 		       	</a>
 		    	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="UsernavbarDropdown">
 		          <a class="dropdown-item" href="/perfil">Mi Perfil</a>
-		          <a class="dropdown-item" href="#">Configuración</a>
+		          <a class="dropdown-item" href="/configuracion">Configuración</a>
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
 		        </div>

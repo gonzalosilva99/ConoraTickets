@@ -37,59 +37,40 @@ public class Registrarse extends HttpServlet {
         String email = req.getParameter("inputEmail");
         String nickname = req.getParameter("inputNickname");
         req.setAttribute("nickname", nickname);
-        String password = req.getParameter("inputPassword");
-        req.setAttribute("password", password);        
+        String password = req.getParameter("inputPassword");        
         String confirmarPassword = req.getParameter("inputConfirmarPassword");        
         String nacimientoString= req.getParameter("trip-start");        
         String checkbox = req.getParameter("espectadorArtista");
-        
-        System.out.println("nickname:" + nickname);
-        System.out.println("nombre:" + nombre);
-        System.out.println("apellido:" + apellido);
-        System.out.println("email:" + email);
-        System.out.println("PASS :" + password);
-        System.out.println("confirmar Pass:" + confirmarPassword);
-        System.out.println("nacimiento:" + nacimientoString);
-        System.out.println("CheckBox:" + checkbox);
+        String descgeneral = req.getParameter("descgeneral");
+        String biografia = req.getParameter("biografia");
+        String link = req.getParameter("url");
+        String imagen = req.getParameter("imgaen");
         
         
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 		Date fechaNac;
-		Boolean estadoOK = false;
 		try {
 			fechaNac = formato.parse(nacimientoString);
-			if (!Fabrica.getInstancia().getIUsuario().existeNickname(nickname) && password.equals(confirmarPassword) ) {
-				estadoOK = true;
+			if (password.equals(confirmarPassword) ) {
 				if (checkbox.equals("espectador")) {
 					System.out.println("nuevo Espectador");
-					Fabrica.getInstancia().getIUsuario().confirmarAltaEspectador(nickname, nombre, apellido, email, fechaNac, "", password);
+					Fabrica.getInstancia().getIUsuario().confirmarAltaEspectador(nickname, nombre, apellido, email, fechaNac, imagen, password);
 				}else if (checkbox.equals("artista")) {
 					System.out.println("nuevo Artista");
-					Fabrica.getInstancia().getIUsuario().confirmarAltaArtista(nickname, nombre, apellido, email, fechaNac, "", password, "","", "");
+					Fabrica.getInstancia().getIUsuario().confirmarAltaArtista(nickname, nombre, apellido, email, fechaNac, imagen, password, descgeneral,biografia, link);
 				}
+					req.setAttribute("alta", "true");
+					req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 			}else { 
-				if (Fabrica.getInstancia().getIUsuario().existeNickname(nickname)) {
-					System.out.println("YA EXISTE NICK");
+					req.setAttribute("alta", "difieren");
+					req.getRequestDispatcher("/WEB-INF/registrarse.jsp").forward(req, resp);
 				}
-				if (!password.equals(confirmarPassword)) {
-					System.out.println("DIFIEREN LAS PASSWORD");
-				}
-			}
 			
 		}catch(Exception e) {
-			estadoOK = false;
-			 System.out.println("Excepcion: " + e.getMessage());
-		}
-		
-		
-		
-		if (estadoOK) {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("login");
-			dispatcher.forward(req, resp); 
-		}else {
+			req.setAttribute("alta", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/registrarse.jsp").forward(req, resp);
 		}
-                 
+              
 	}
 	
 

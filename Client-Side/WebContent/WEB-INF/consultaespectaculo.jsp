@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
-<!DOCTYPE html>
-<html>
-<head>
-	<%@page import="DataTypes.DtEspectaculoDatos"%>
+<%@page import="DataTypes.DtEspectaculoDatos"%>
 	<%@page import="DataTypes.EstadoSesion" %>
 	<%@page import="DataTypes.DtCategoria" %>
 	<%@page import="DataTypes.DtPaquete" %>
@@ -12,18 +10,27 @@
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="Controladores.Fabrica"%>
 	<%@page import="Interfaces.IUsuario"%>
+	
+<!DOCTYPE html>
+<html>
+<head>	
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Consulta Espectaculo</title>
 </head>
 <body>
 <div class="wrapper">
-	<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
+	<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/> 
+
         <!-- Page Content  -->
-    	<div id="content">
-		<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
+        <div id="content">
+        	
+			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<% 
+		String usuario = (String) request.getSession().getAttribute("usuario_logueado");
 		DtEspectaculoDatos dtesp=null;
 		dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
+		Set<DtPaquete> dtpaqesp = dtesp.getPaquetes();
+		Set<DtPaquete> dtpaq = Fabrica.getInstancia().getIPaquete().ListarPaquetes();
 		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 		if(dtesp!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
@@ -34,6 +41,7 @@
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>        
 	            </div>
             </div>
+            
            	<div class="container-fluid">
 	           	<ul class="nav nav-tabs" id="myTab" role="tablist">
 			  		<li class="nav-item">
@@ -85,6 +93,7 @@
 								{
 								DtFuncionDatos auxf = itrf.next();%>
 								<div class="container-fluid media mb-sm-5">
+								
 								<img src="<% if(auxf.getImagen()!=""){%><%= auxf.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
@@ -104,7 +113,10 @@
 											<% } %></span></p>
 											<% } %>
 											<p class="text-dark"><b>Espectadores hasta el momento:</b> <span id="fechaFuncion"><%= auxf.getEspectadores() %></span></p>
-				    				</div>
+				    						<% if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado"))){ %>
+				    							<button type="submit" class="btn btn-primary" onclick="ComprarFuncion('<%=auxf.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
+				    						<%} %>
+				    					</div>
 				    				</div>
 				    				<hr> 
 				    				<% ;}} %>
@@ -125,21 +137,84 @@
 								{
 								DtPaquete auxp = itrp.next();%>
 				    				<div class="container-fluid media mb-sm-5">
-				    				<a href="ConsultaPaquete.html">
-				    				<div class="container-fluid media mb-sm-5">
+				    					<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
+				    						<div class="container-fluid media mb-sm-5">
 				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
-										 
+										 <% Date todayDate = new Date(); %>
 										 <div class="media-body ml-sm-4">		
 								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= auxp.getNombre() %></span></p>
 								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= auxp.getDescripcion() %></span></p>
 								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= auxp.getDescuento() %>%</span></p>							            
-								  			 <p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin()) %></span></p>
+								  			 <p class="text-dark red"><b <% if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin()) %></span></p>
+								  			 <% 
+								  			 
+								  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado")) && todayDate.after(auxp.getInicio()) && todayDate.before(auxp.getFin()) ){ %>
+				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=auxp.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
+				    						<%} %>
 								  		</div>
 								  		</div>
 								  		</a>
             						</div>
 				    				<hr>
-				    				<% }} %>				    				
+				    				<% }} %>
+				    				<% if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<div class="container-fluid">
+				    					<p class="mx-auto" id="anadirpaquetes"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirPaquete"><i class="far fa-folder-plus"></i> Añadir Paquete</button></p>
+				    				</div>	
+				    				<!-- MODAL ANADIR PAQUETES -->
+				    				<div class="modal fade" id="ModalAnadirPaquete" tabindex="-1" role="dialog" aria-labelledby="ModalAnadirPaquete" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLongTitle">Seguidores</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+									      		</div>
+												<div class="modal-body" >
+												<form action="consultaespectaculo" method="POST" class="form" id="formAnadirPaquetes">
+													<%
+													Set<DtPaquete> dtpaqultimos = new HashSet<DtPaquete>();
+													Iterator<DtPaquete> itrdtpaq = dtpaq.iterator();
+													while(itrdtpaq.hasNext()){
+														DtPaquete nuevo = itrdtpaq.next();
+														boolean anadir = true;
+														Iterator<DtPaquete> itrdtpaqesp = dtpaqesp.iterator();
+														while(itrdtpaqesp.hasNext()){
+															DtPaquete auxnuevo = itrdtpaqesp.next();
+															if(nuevo.getNombre().equals(auxnuevo.getNombre())){
+																anadir=false;
+															}
+														}
+														if(anadir){
+															
+														
+											      	%>
+														<div class="form-check">
+															<label class="form-check-label">
+																<input type="checkbox" name="checkbox" class="form-check-input" value="<%=nuevo.getNombre()%>"><%= nuevo.getNombre() %>
+															</label>
+														</div>
+													<%} else{ 
+														dtpaqultimos.add(nuevo);
+														}}
+													Iterator<DtPaquete> itrdtpaqultimos = dtpaqultimos.iterator();
+													while(itrdtpaqultimos.hasNext()){
+														DtPaquete nuevo=itrdtpaqultimos.next();
+													%>								
+														<span class="form-check text-info"><i class="fas fa-check form-check-input"></i> <%= nuevo.getNombre() %></span>
+													<%} %>
+									      <div class="modal-footer">
+									        <button type="submit" class="btn btn-secondary" id="botonModalPaquete">Confirmar</button>
+									      </div>
+									      <div id="MensajePaquetesAnadidos">
+									      </div>
+									      </form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+				    				<%} %>		    				
 				  				</div>
 							 </div>				
 			  		</div>
@@ -148,19 +223,80 @@
        </div>
 </div>
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		function ComprarFuncion(funcion){
+			var espectaculo = "<%=dtesp.getNombre()%>";
+			window.location.replace("/registrofuncion?nomespectaculo="+espectaculo+"&funcion="+funcion);
+		}
+	</script>
 	
+	<script type="text/javascript">
+		function ComprarPaquete(paquete){
+			window.location.replace("/comprarpaquete?nompaquete="+paquete);
+		}
+	</script>
+
 	<script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
         });
+    </script>
+    
+    <script type="text/javascript">
+    $("#formAnadirPaquetes").submit(function( event ) {
+    	event.preventDefault();
+    	var rbs = document.getElementsByName("checkbox");
+    	var $form = $( this );
+    	var valorBoton = document.getElementById("botonModalPaquete").innerHTML;
+    	if(valorBoton === "Confirmar"){
+    		var valoresIngresados = new Array();
+    		var indicesIngresados = new Array();
+			for (var i=0;i<rbs.length;i++){
+				if(rbs[i].checked){
+					var result;
+					indicesIngresados.push(i);
+					valoresIngresados.push(rbs[i].value);
+					//console.log(rbs[i].value);
+					var data = {
+				    		espectaculo:'<%= dtesp.getNombre()%>',
+				    		paquete:rbs[i].value};
+				    //console.log(data);
+				    //console.log(i);
+				    //console.log(rbs[i].value);
+			    	$.ajax({
+				        type: $form.attr('method'),
+				        url:  $form.attr('action'),
+				        data: data,
+				        async: false,
+				        success: function (data) {
+				            //console.log(data);
+							var paquete_fin = document.getElementById("MensajePaquetesAnadidos")
+				            if(data === "SUCCESS") {
+				            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Se ha añadido el paquete: ' + rbs[i].value + ' con éxito al espectáculo <%= dtesp.getNombre() %></div>');
+				            	//document.getElementsByClassName("form-check-label")[i].innerHTML='<span class="text-info"><i class="fas fa-check form-check-input"></i>'+rbs[i].value+'</span>';
+				            	//document.getElementById('metododecompra').setAttribute('style',"pointer-events:none;");
+				            	//$('#funcionyacomprada').show();
+				            }
+				            else{
+				            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>    Algo ha fallado, por favor intentalo más tarde. '+data+'</div>')
+							}
+						}
+					});
+				}
+			}
+			for(i=0; i<indicesIngresados.length;i++){
+				document.getElementsByClassName("form-check-label")[indicesIngresados[i]].innerHTML='<span class="text-info"><i class="fas fa-check form-check-input"></i>'+valoresIngresados[i]+'</span>';
+			}
+			document.getElementById("botonModalPaquete").innerHTML="Recargar";
+		}
+		else if(valorBoton == "Recargar"){
+			$("#ModalAnadirPaquete").modal("hide");
+			window.location.reload();
+		}
+    });
     </script>
 </body>
 </html>

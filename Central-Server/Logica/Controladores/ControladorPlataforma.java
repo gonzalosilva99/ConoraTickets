@@ -152,6 +152,11 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.RechazarEspectaculo(nomEspectaculo);
 	}
 
+	public Boolean EspectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo) {
+		ManejadorPlataforma manplat = Manejadores.ManejadorPlataforma.getInstancia();
+		return manplat.EspectaculoinPlataforma(nombrePlataforma,nombreEspectaculo);
+	}
+
 }
 
 

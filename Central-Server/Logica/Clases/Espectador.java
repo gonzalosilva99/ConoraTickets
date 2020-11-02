@@ -152,6 +152,14 @@ public class Espectador extends Usuario{
 		
 	}
 	
+	public Boolean ExisteCompraPaquete(String nombrePaquete) {
+		for(Map.Entry<Integer, CompraPaquete> entry: CompraPaquetes.entrySet() ) {
+			if(entry.getValue().getDtPaquete().getNombre().equals(nombrePaquete))
+				return true;
+		}
+		return false;
+	}
+	
 }
 
 

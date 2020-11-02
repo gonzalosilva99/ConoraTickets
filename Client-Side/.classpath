@@ -10,7 +10,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/logica.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/logica.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
-

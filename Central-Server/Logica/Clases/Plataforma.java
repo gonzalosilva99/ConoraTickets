@@ -48,11 +48,19 @@ public class Plataforma {
 		public void filtrarEspectaculos(HashSet<DtEspectaculoDatos> especs, String search) {
 			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
 				DtEspectaculoDatos espec = entry.getValue().getDtEspectaculoDatos();
-				if(espec.getNombre().contains(search))
+				if(espec.getNombre().toLowerCase().contains(search.toLowerCase()))
 					especs.add(espec);
 			}
 		}
 		
+		public Boolean EspectaculoinPlataforma(String nombreEspectaculo) {
+			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+				if(entry.getValue().getNombre().equalsIgnoreCase(nombreEspectaculo))
+					return true;
+			}
+			return false;
+		}
+			
 		
 		public void setUrl(String url) {
 			Url = url;
@@ -138,7 +146,7 @@ public class Plataforma {
 			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
 			nuevo.setEstado(EstadoEspectaculo.Ingresado);
-			if(categorias!=null) {
+			if(categorias.size()>0) {
 			Iterator<String> itercat = categorias.iterator();
 			while(itercat.hasNext()) {
 				Categoria aux = icat.getCategoria(itercat.next());

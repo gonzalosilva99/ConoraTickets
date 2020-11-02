@@ -18,13 +18,13 @@ import DataTypes.EstadoSesion;
 /**
  * Servlet implementation class Home
  */
-public class ConsultaEspectaculo extends HttpServlet {
+public class ConsultaPaquete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConsultaEspectaculo() {
+    public ConsultaPaquete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,11 +35,9 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
-		if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && nombreEspectaculo!=null) {
-			request.setAttribute("espectaculo",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
-			request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
-		}
+		String nombrePaquete = (String) request.getParameter("nompaquete");
+		request.setAttribute("paquete",Fabrica.getInstancia().getIPaquete().getPaqueteDatos(nombrePaquete));	
+		request.getRequestDispatcher("/WEB-INF/consultapaquete.jsp").forward(request, response);
 	}
 	
 	
@@ -56,7 +54,6 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
-		//processRequest(request, response);
 		try {
 			String usuario =  (String) request.getSession().getAttribute("usuario_logueado");
 			String paquete = (String) request.getParameter("paquete");

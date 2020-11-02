@@ -68,38 +68,38 @@
 <% }} else { %> 
 	<h2>Espectáculos destacados</h2><br>
             <div class="mb-sm-4 container-fluid"></div>
+            <a href="/consultaespectaculo?nomespectaculo=30 años" class="media-heading">
             <div class="container-fluid media mb-sm-5">
-            <a href="#" class="pull-left">
-            	<img src="https://www.revistamoi.com/wp-content/uploads/2016/08/cuando-cumples-30-an%CC%83os.jpg" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
-            </a>
+            	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
             <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>30 años</h4></a>
-            <p>Espectáculo conmemorando los 30 años de Violeta. <u><a href="#">Leer más</a></u></p>
+            <h4>30 años</h4>
+            <p>Espectáculo conmemorando los 30 años de Violeta. <u>Leer más</u></p>
             </div>
             </div>
+            </a>
             
-            <div class="container-fluid media mb-sm-5">
-            <a href="#" class="pull-left">
-            	<img src="https://bit.ly/2FWyB0B" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>
-            </a>
+            <a href="/consultaespectaculo?nomespectaculo=Bien de Familia" class="pull-left">
+            <div class="container-fluid media mb-sm-5">           
+            	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>          
             <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Bien de Familia</h4></a>
-            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <u><a href="#">Leer más</a></u></p>
+           <h4>Bien de Familia</h4>
+            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <u>Leer más</u></p>
             </div>
             </div>
+            </a>
             
+            <a href="/consultaespectaculo?nomespectaculo=Memphis Blues World" class="pull-left">
             <div class="container-fluid media mb-sm-5">
-            <a href="#" class="pull-left">
-            	<img src="https://www.memphisbluesbbq.com/wp-content/uploads/2019/05/Colour.png" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>
-            </a>
+            	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>      
             <div class="media-body ml-sm-4">
-            <a href="#" class="media-heading"><h4>Memphis Blues World</h4></a>
-            <p> Espectáculo promoviendo álbum Memphis Blues. <u><a href="#">Leer más</a></u></p> 
+            <h4>Memphis Blues World</h4>
+            <p> Espectáculo promoviendo álbum Memphis Blues. <u>Leer más</u></p> 
             </div>
             </div>
+            </a>
+            
 	<% } %>  
         </div>
-    </div>
 
 
 	

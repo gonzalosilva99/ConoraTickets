@@ -18,6 +18,22 @@
         <url-pattern>/altaespectaculo</url-pattern>
   	</servlet-mapping>
   	<servlet>
+        <servlet-name>Servlet Registro a Funcion</servlet-name>
+        <servlet-class>com.coronatickets.controllers.RegistroAFuncion</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Registro a Funcion</servlet-name>
+        <url-pattern>/registrofuncion</url-pattern>
+  	</servlet-mapping>
+  	  	<servlet>
+        <servlet-name>Servlet Comprar Paquete</servlet-name>
+        <servlet-class>com.coronatickets.controllers.ComprarPaquete</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Comprar Paquete</servlet-name>
+        <url-pattern>/comprarpaquete</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
         <servlet-name>Perfil Usuario</servlet-name>
         <servlet-class>com.coronatickets.controllers.Perfil</servlet-class>
   	</servlet>
@@ -32,6 +48,14 @@
   	<servlet-mapping>
         <servlet-name>Consulta Espectaculo</servlet-name>
         <url-pattern>/consultaespectaculo</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Consulta Paquete</servlet-name>
+        <servlet-class>com.coronatickets.controllers.ConsultaPaquete</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Consulta Paquete</servlet-name>
+        <url-pattern>/consultapaquete</url-pattern>
   	</servlet-mapping>
   	<servlet>
         <servlet-name>Servlet Home</servlet-name>
@@ -49,6 +73,15 @@
         <servlet-name>Servlet Login</servlet-name>
         <url-pattern>/iniciar-sesion</url-pattern>
   	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Servlet Configuracion</servlet-name>
+        <servlet-class>com.coronatickets.controllers.Configuracion</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Configuracion</servlet-name>
+        <url-pattern>/configuracion</url-pattern>
+  	</servlet-mapping>
+  	
   		<servlet>
         <servlet-name>Servlet Alta Paquete</servlet-name>
         <servlet-class>com.coronatickets.controllers.AltaPaquete</servlet-class>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Interfaces.IUsuario;
 import Controladores.Fabrica;
 import DataTypes.EstadoSesion;
 /**
@@ -73,16 +74,16 @@ public class Perfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
-		System.out.println("ENTRO AL SERVLET EL POST");
+		//System.out.println("ENTRO AL SERVLET EL POST");
 		String usuarioLogueado = request.getParameter("userlogged");
 		String usuarioPerfil = request.getParameter("userprofile");
 		String tipo = request.getParameter("tipo");
-		System.out.println("SEGUIR: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
+		//System.out.println("SEGUIR: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
 		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
 			if(tipo.equals("follow")) {
-				System.out.println("Va a seguir");
+				//System.out.println("Va a seguir");
 				Fabrica.getInstancia().getIUsuario().SeguirUsuario(usuarioLogueado, usuarioPerfil);
-				System.out.println("SEGUIDO: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
+				//System.out.println("SEGUIDO: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
 			}
 			else if(tipo.equals("unfollow")) {
 				System.out.println("DEJAR DE SEGUIR");
