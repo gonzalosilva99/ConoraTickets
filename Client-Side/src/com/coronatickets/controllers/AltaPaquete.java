@@ -82,6 +82,7 @@ public class AltaPaquete extends HttpServlet {
 		Login.ActualizarUltimoIngreso(request);
 		request.setAttribute("aceptado", "false");
 		request.setAttribute("si", "false");
+		request.setAttribute("fechainvalida", "false");
 		if (Fabrica.getInstancia().getIUsuario().existeNickname((String) request.getSession().getAttribute("usuario_logueado")) && Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getSession().getAttribute("usuario_logueado"))) request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
 		
 	}
