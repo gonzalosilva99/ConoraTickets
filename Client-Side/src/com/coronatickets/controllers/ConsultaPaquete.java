@@ -54,7 +54,23 @@ public class ConsultaPaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
-		processRequest(request, response);
+		try {
+			String usuario =  (String) request.getSession().getAttribute("usuario_logueado");
+			String paquete = (String) request.getParameter("paquete");
+			String espectaculo = (String) request.getParameter("espectaculo");
+			String plataforma = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(espectaculo);
+			//System.out.println(usuario + " " + paquete + " " + espectaculo + " " + plataforma);
+			if((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && paquete != null && espectaculo!=null) {
+				Fabrica.getInstancia().getIPaquete().ConfirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
+				response.getWriter().write("SUCCESS");
+			}
+			else {
+				response.getWriter().write("Fail, verificar que su sesión esta iniciada, y el espectáculo o el paquete aún existen");
+			}
+		}
+		catch(Exception e) {
+			response.getWriter().write("ERROR. "+e.getMessage());
+		}
 	}
 
 }
