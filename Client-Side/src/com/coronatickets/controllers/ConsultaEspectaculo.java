@@ -62,7 +62,7 @@ public class ConsultaEspectaculo extends HttpServlet {
 			String paquete = (String) request.getParameter("paquete");
 			String espectaculo = (String) request.getParameter("espectaculo");
 			String plataforma = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(espectaculo);
-			System.out.println(usuario + " " + paquete + " " + espectaculo + " " + plataforma);
+			//System.out.println(usuario + " " + paquete + " " + espectaculo + " " + plataforma);
 			if((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && paquete != null && espectaculo!=null) {
 				Fabrica.getInstancia().getIPaquete().ConfirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
 				response.getWriter().write("SUCCESS");
