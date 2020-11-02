@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="images/favicon/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="style.css">
+	<!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="../media/styles/menu.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<title>CoronaTickets UY</title>
+</head>
+<body>
+<div class="wrapper">
+	
+<div id="content">
+            <div class="mb-sm-4 container-fluid"></div>
+            <div class="row">
+	            <img src="https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/11/07/14785256260398.jpg" class="shadow mx-auto rounded-circle" height=150em width=150em>
+	        </div >
+	        <div class="row">
+	 	      	<h1 class="mx-auto" style="margin-top:0.5em"> Emma Watson </h1><br>
+	 	    </div>
+	 	    <div class="row">
+	 	      	<p class="mx-auto" id="usuariocorreo">waston / e.watson@gmail.com</p> 
+	 	    </div>
+	 	    <div class="row">
+	 	      	<p class="mx-auto" id="seguidores"> <a href="#" data-toggle="modal" data-target="#ModalSeguidores"> 3 seguidores</a> - <a href="#" data-toggle="modal" data-target="#ModalSeguidos"> 4 seguidos </a> </p>
+	 	    </div>
+	 	    <div class="row">
+	 	      	<button type="button" class="mx-auto btn btn-info">
+                        <i class="fas fa-user-plus"></i> Seguir
+                 </button>
+	 	    </div>
+	 	    
+           	<div class="container mx-auto">
+	           	<ul class="nav nav-tabs mx-auto" id="myTab" role="tablist">
+			  		<li class="nav-item">
+			  			<a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">GENERAL</a>
+			  		</li>
+					<li class="nav-item">
+						<a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="false">REGISTROS</a>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="general" role="tabpanel" aria-labelledby="general-tab">
+						<p class="text-dark"><b>Nickname:</b> <span id="nicknameUsuario">@waston</span></p>
+						<p class="text-dark"><b>Nombre:</b> <span id="nombreUsuario">Emma</span></p>
+						<p class="text-dark"><b>Apellido:</b> <span id="apellidoUsuario">Watson</span></p>
+						<p class="text-dark"><b>Correo Electrónico:</b> <span id="correoUsuario">e.watson@gmail.com</span></p>
+						<p class="text-dark"><b>Fecha de Nacimiento:</b> <span id="nacimientoUsuario">15/04/1990</span></p>
+						
+					</div>
+			  		<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">
+						<div class="panel-group container-fluid">
+				  				<div class="panel panel-default">
+				  					<div class="panel-heading mb-sm-2">
+				  						 <p class="media-heading"><h4 id="tituloFunciones">Funciones:</h4></p>
+				  					</div>
+				  					<hr>
+				    				<div class="panel-body">		    							  				
+								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Global Spirit - I</span></p>
+								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">10/06/20</span></p>
+								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">19:00</span></p>				
+				    				</div>
+				    				<hr> 
+				    				<div class="panel-body">			    								  				
+							  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Global Spirit - II </span></p>
+							  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">10/07/20 </span></p>
+							  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">20:00</span></p>				
+				    				</div>	
+				    				<hr> 
+				    				<div class="panel-body">			    								  				
+							  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Memphis Blues World - C </span></p>
+							  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">30/09/20 </span></p>
+							  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">20:00</span></p>				
+				    				</div>	
+				    				<hr> 	
+				    				<div class="panel-body">			    								  				
+							  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion">Springsteen on Broadway - iii </span></p>
+							  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion">15/10/20 </span></p>
+							  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion">20:00</span></p>				
+				    				</div>							    				
+				  				</div>
+							 </div>		  
+
+
+					</div>
+
+				</div>
+				
+			</div>
+	 	    
+	 	    
+	 	      	
+
+            
+       </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Seguidores</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://ep01.epimg.net/elpais/imagenes/2017/11/29/tentaciones/1511967608_735359_1511973491_noticia_normal_recorte1.jpg" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Depeche Mode -</label> <label style="color:grey;" >@dmode</label></div><br>
+         </div>
+         <br>
+         <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://www.duna.cl/media/2019/06/CyndiLauper-1920x1280.jpg" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Cyndi Lauper -</label> <label style="color:grey;">@clauper</label></div><br>
+         </div>
+         <br>
+         <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://static.wikia.nocookie.net/dr-house/images/b/bc/House.jpg/revision/latest?cb=20090927231310&path-prefix=es" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Bruce Springsteen - </label> <label style="color:grey;">@bruceTheBoss</label></div><br>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalSeguidos" tabindex="-1" role="dialog" aria-labelledby="ModalSeguidos" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Seguidos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+         <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://ep01.epimg.net/elpais/imagenes/2017/11/29/tentaciones/1511967608_735359_1511973491_noticia_normal_recorte1.jpg" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Depeche Mode -</label> <label style="color:grey;" >@dmode</label></div><br>
+         </div>
+         <br>
+         <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://www.duna.cl/media/2019/06/CyndiLauper-1920x1280.jpg" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Cyndi Lauper -</label> <label style="color:grey;">@clauper</label></div><br>
+         </div>
+         <br>
+         <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://bit.ly/34hFwde" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Bruce Springsteen - </label> <label style="color:grey;">@bruceTheBoss</label></div><br>
+         </div>
+         <br>
+         <div class="row" > 
+         	<div class="col-md-2"> <img class="float-right rounded-circle img-responsive " src="https://static.wikia.nocookie.net/dr-house/images/b/bc/House.jpg/revision/latest?cb=20090927231310&path-prefix=es" height=32em width=32em ></div>
+         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left">Gregory House - </label><label style="color:grey;">@house</label></div><br>
+         </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+	<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+</html>

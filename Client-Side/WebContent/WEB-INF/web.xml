@@ -73,6 +73,15 @@
         <servlet-name>Servlet Login</servlet-name>
         <url-pattern>/iniciar-sesion</url-pattern>
   	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Servlet Configuracion</servlet-name>
+        <servlet-class>com.coronatickets.controllers.Configuracion</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Configuracion</servlet-name>
+        <url-pattern>/configuracion</url-pattern>
+  	</servlet-mapping>
+  	
   		<servlet>
         <servlet-name>Servlet Alta Paquete</servlet-name>
         <servlet-class>com.coronatickets.controllers.AltaPaquete</servlet-class>
