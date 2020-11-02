@@ -5,6 +5,7 @@
 	<%@page import="DataTypes.EstadoSesion" %>
 	<%@page import="DataTypes.DtCategoria" %>
 	<%@page import="DataTypes.DtEspectaculo" %>
+	<%@page import="DataTypes.DtEspectaculoDatos"%>
 	<%@page import="DataTypes.DtPaquete" %>
 	<%@page import="DataTypes.DtArtista" %>
 	<%@page import="DataTypes.DtFuncionDatos" %>
@@ -26,8 +27,11 @@
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<% 
+		String usuario=(String) request.getSession().getAttribute("usuario_logueado");
 		DtPaqueteDatos dtpaq=null;
 		dtpaq = (DtPaqueteDatos) request.getAttribute("paquete");
+		Set<DtEspectaculoDatos> dtesp = Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos("");
+		System.out.println("Cant Espectaculos en total: " + dtesp.size());
 		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 		if(dtpaq!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
@@ -99,6 +103,63 @@
 				    			</a>
 				    				<hr> 
 				    				<% ;}}} %>
+				    					
+				    				<% if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<div class="container-fluid">
+				    					<p class="mx-auto" id="anadirespectaculo"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirEspectaculo"><i class="far fa-folder-plus"></i> Añadir Espectaculo</button></p>
+				    				</div>	
+				    				<!-- MODAL ANADIR PAQUETES -->
+				    				<div class="modal fade" id="ModalAnadirEspectaculo" tabindex="-1" role="dialog" aria-labelledby="ModalAnadirEspectaculo" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLongTitle">Añadir Espectaculos a <%= dtpaq.getNombre() %></h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+									      		</div>
+												<div class="modal-body" >
+												<form action="consultaespectaculo" method="POST" class="form" id="formAnadirEspectaculos">
+													<%
+													
+													Iterator<DtEspectaculoDatos> itrdtesp = dtesp.iterator();
+													while(itrdtesp.hasNext()){
+														DtEspectaculoDatos nuevo = itrdtesp.next();
+														boolean anadir = true;
+														Iterator<DtEspectaculo> itrdtesppaq = dtpaq.getEspectaculos().iterator();
+														while(itrdtesppaq.hasNext()){
+															DtEspectaculo auxnuevo = itrdtesppaq.next();
+															if(nuevo.getNombre().equals(auxnuevo.getNombre())){
+																anadir=false;
+															}
+														}
+														if(anadir){
+															
+														
+											      	%>
+														<div class="form-check">
+															<label class="form-check-label">
+																<input type="checkbox" name="checkbox" class="form-check-input" value="<%=nuevo.getNombre()%>"><%= nuevo.getNombre() %>
+															</label>
+														</div>
+													<%} else{%>
+														<span class="form-check text-info"><i class="fas fa-check form-check-input"></i> <%= nuevo.getNombre() %></span>
+												<% 
+												}}
+												%>											
+									      <div class="modal-footer">
+									        <button type="submit" class="btn btn-secondary" id="botonModalEspectaculo">Confirmar</button>
+									      </div>
+									      <div id="MensajeEspectaculosAnadidos">
+									      </div>
+									      </form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+				    				<%} %>	
+				    					
+				    					
 				    							    				
 				  				</div>
 							 </div>		  		
@@ -120,6 +181,53 @@
                 $('#sidebar').toggleClass('active');
             });
         });
+    </script>
+    
+    <script>
+    $("#formAnadirEspectaculos").submit(function( event ) {
+    	event.preventDefault();
+    	var rbs = document.getElementsByName("checkbox");
+    	var $form = $( this );
+    	var valorBoton = document.getElementById("botonModalEspectaculo").innerHTML;
+    	if(valorBoton === "Confirmar"){
+		for (var i=0;i<rbs.length;i++){
+			if(rbs[i].checked){
+				var result;
+				console.log(rbs[i].value);
+				var data = {
+			    		paquete:'<%= dtpaq.getNombre()%>',
+			    		espectaculo:rbs[i].value};
+			    console.log(data);
+			    console.log(i);
+			    console.log(rbs[i].value);
+			    $.ajax({
+			        type: $form.attr('method'),
+			        url:  $form.attr('action'),
+			        data: data,
+			        async: false,
+			        success: function (data) {
+			            console.log(data);
+						var paquete_fin = document.getElementById("MensajePaquetesAnadidos")
+			            if(data === "SUCCESS") {
+			            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Se ha añadido el paquete: ' + rbs[i].value + 'con éxito al espectáculo <%= dtpaq.getNombre() %></div>');
+			            	document.getElementsByClassName("form-check-label")[i].innerHTML='<span class="text-info"><i class="fas fa-check form-check-input"></i>'+rbs[i].value+'</span>';
+			            	//document.getElementById('metododecompra').setAttribute('style',"pointer-events:none;");
+			            	//$('#funcionyacomprada').show();
+			            }
+			            else{
+			            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>    Algo ha fallado, por favor intentalo más tarde.'+data+'</div>')
+			            }
+			        }
+			    });
+			}
+		}
+		document.getElementById("botonModalPaquete").innerHTML="Recargar";
+		}
+		else if(valorBoton == "Recargar"){
+			$("#ModalAnadirPaquete").modal("hide");
+			window.location.reload();
+		}
+    });
     </script>
 </body>
 </html>
