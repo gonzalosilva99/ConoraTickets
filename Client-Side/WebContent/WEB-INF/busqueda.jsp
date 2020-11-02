@@ -200,7 +200,7 @@
 									//Iterator<DtPaqueteDatos> iterpaq = PaquetesFiltrados.iterator();
 			    					for(DtPaqueteDatos dtpaq : PaquetesFiltrados){if(k==1){%></div><div  <%if(q>3){%>style="display:none;"<%}%> id="paq<%=q%>" class="col-md-6 col-lg-6"><%k=0;}%>
 			    					<br>
-			    					<a href="/perfil?id=<%=dtpaq.getNombre() %>">
+			    					<a href="/consultapaquete?nompaquete=<%=dtpaq.getNombre() %>">
 			    						<div class="media mb-sm-2">
 									 	<img src="<% if(dtpaq.getImagen() != null && dtpaq.getImagen()!=""){%> <%= dtpaq.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">
