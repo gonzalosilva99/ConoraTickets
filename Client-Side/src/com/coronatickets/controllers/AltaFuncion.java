@@ -89,9 +89,9 @@ public class AltaFuncion extends HttpServlet {
 				}
 			  Fabrica.getInstancia().getIPlataforma().ConfirmarAltaFuncionEspectaculo(request.getParameter("inputPrueba"), 
 					  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, invitadosSet, fechaAlta, "imagen");
-			  request.getSession().setAttribute("exito", true); 
+			  request.getSession().setAttribute("exito", new Integer(0)); //exito
 		  }catch (Exception e) {  
-			  request.getSession().setAttribute("exito", false);
+			  request.getSession().setAttribute("exito", new Integer(1)); //error
 			  System.out.println("EXCEPCION confirmarAltaFuncionEspectaculo " + e.getMessage());
 		  }
 	}
@@ -127,7 +127,12 @@ public class AltaFuncion extends HttpServlet {
 		  }
 		  else if (request.getParameter("actualizar")== null) 
 		  {  
+			  if (!Fabrica.getInstancia().getIPlataforma().existeFuncion(request.getParameter("funcion"))) {
 			  confirmarAltaFuncionEspectaculo(request, response, plataforma);
+			  }else {
+				  
+				  request.getSession().setAttribute("exito", new Integer(2)); //existe funcion con ese nombre
+			  }
 			  request.getRequestDispatcher("/WEB-INF/altafuncion.jsp").forward(request,response);
 		  } 
 	}
