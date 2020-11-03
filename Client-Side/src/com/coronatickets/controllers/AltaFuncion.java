@@ -48,11 +48,8 @@ public class AltaFuncion extends HttpServlet {
 	private Boolean espectaculoEsDelArtista(String nickname, DtEspectaculo espectaculo) {
 		Set<DtEspectaculo> espectaculosArtista = Fabrica.getInstancia().getIUsuario().getDtArtistaNickname(nickname)
 				.getEspectaculosArtista();
-		Iterator<DtEspectaculo> itr = espectaculosArtista.iterator();
-		while (itr.hasNext()) {
-			if (itr.next().getNombre().equals(espectaculo.getNombre())) {
-				return true;
-			}
+		if (espectaculosArtista.contains(espectaculo)) {
+			return true;
 		}
 		return false;
 	}
@@ -113,6 +110,7 @@ public class AltaFuncion extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
