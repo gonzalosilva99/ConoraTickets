@@ -11,39 +11,37 @@ import DataTypes.DtEspectaculo;
 import DataTypes.EstadoEspectaculo;
 
 public class Categoria {
-	private String NomCategoria;
-	private HashSet<Espectaculo> Espectaculos;
+	private String nomcategoria;
+	private HashSet<Espectaculo> espectaculos;
 	public Categoria(String nomCategoria) {
 		super();
-		NomCategoria = nomCategoria;
-		Espectaculos = new HashSet<Espectaculo>();
+		this.nomcategoria = nomCategoria;
+		this.espectaculos = new HashSet<Espectaculo>();
 	}
 	public String getNomCategoria() {
-		return NomCategoria;
+		return nomcategoria;
 	}
 	public void setNomCategoria(String nomCategoria) {
-		NomCategoria = nomCategoria;
+		nomcategoria = nomCategoria;
 	}
 	public HashSet<Espectaculo> getEspectaculos() {
-		return Espectaculos;
+		return espectaculos;
 	}
 	public void setEspectaculos(HashSet<Espectaculo> espectaculos) {
-		Espectaculos = espectaculos;
+		this.espectaculos = espectaculos;
 	}
 	
-	public DtCategoria getDtCategoria()
-	{
-		DtCategoria ret = new DtCategoria(NomCategoria);
-		return ret;
-	}
+	public DtCategoria getDtCategoria(){
+		DtCategoria ret = new DtCategoria(nomcategoria);
+		return ret; }
 	
 	public void anadirEspectaculo(Espectaculo e) {
-		Espectaculos.add(e);
+		espectaculos.add(e);
 	}
 	public Set<DtEspectaculo> getDtEspectaculos(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-		Iterator<Espectaculo> esp = Espectaculos.iterator();
-		while(esp.hasNext()) {
+		Iterator<Espectaculo> esp = espectaculos.iterator();
+		while (esp.hasNext()) {
 				DtEspectaculo nuevo = esp.next().getDatosEspectaculo();
 				ret.add(nuevo);
 		}
@@ -52,10 +50,10 @@ public class Categoria {
 	
 	public HashSet<DtEspectaculo> getDtEspectaculosAceptados(){
 		HashSet<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-		Iterator<Espectaculo> esp = Espectaculos.iterator();
-		while(esp.hasNext()) {
+		Iterator<Espectaculo> esp = espectaculos.iterator();
+		while (esp.hasNext()) {
 			Espectaculo aux = esp.next();
-			if(aux.getEstado()==EstadoEspectaculo.Aceptado) {
+			if (aux.getEstado()==EstadoEspectaculo.Aceptado) {
 				DtEspectaculo nuevo = aux.getDatosEspectaculo();
 				ret.add(nuevo);
 			}

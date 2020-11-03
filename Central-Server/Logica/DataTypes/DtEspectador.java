@@ -5,36 +5,36 @@ import java.util.Date;
 public class DtEspectador {
 	public DtEspectador(String nickname, String nombre, String apellido, String email, Date nacimiento) {
 		super();
-		Nickname = nickname;
-		Nombre = nombre;
-		Apellido = apellido;
-		Email = email;
-		Nacimiento = nacimiento;
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.nacimiento = nacimiento;
 	}
 	private
-	String Nickname;
+	String nickname;
 	private
-	String Nombre;
+	String nombre;
 	private
-	String Apellido;
+	String apellido;
 	private
-	String Email;
+	String email;
 	private
-	Date Nacimiento;
+	Date nacimiento;
 	public String getNickname() {
-		return Nickname;
+		return nickname;
 	}
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public String getApellido() {
-		return Apellido;
+		return apellido;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public Date getNacimiento() {
-		return Nacimiento;
+		return nacimiento;
 	}
 
 

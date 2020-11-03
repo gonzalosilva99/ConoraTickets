@@ -1,15 +1,15 @@
 package DataTypes;
 
 public class DtCategoria {
-	private String NomCategoria;
+	private String nomCategoria;
 
 	public DtCategoria(String nomCategoria) {
 		super();
-		NomCategoria = nomCategoria;
+		this.nomCategoria = nomCategoria;
 	}
 
 	public String getNomCategoria() {
-		return NomCategoria;
+		return nomCategoria;
 	}
 	
 	

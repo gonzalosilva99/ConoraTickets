@@ -7,61 +7,61 @@ public class DtArtista {
 	public DtArtista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descgeneral,
 			String biografia, String link, Set<DtEspectaculo> espectaculos) {
 		super();
-		Nickname = nickname;
-		Nombre = nombre;
-		Apellido = apellido;
-		Email = email;
-		Nacimiento = nacimiento;
-		Descgeneral = descgeneral;
-		Biografia = biografia;
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.nacimiento = nacimiento;
+		this.descgeneral = descgeneral;
+		this.biografia = biografia;
 		this.link = link;
-		Espectaculos = espectaculos;
+		this.espectaculos = espectaculos;
 	}
 	private
-	String Nickname;
+	String nickname;
 	private
-	String Nombre;
+	String nombre;
 	private
-	String Apellido;
+	String apellido;
 	private
-	String Email;
+	String email;
 	private
-	Date Nacimiento;
+	Date nacimiento;
 	private
-	String Descgeneral;
+	String descgeneral;
 	private
-	String Biografia;
+	String biografia;
 	private
-	Set<DtEspectaculo> Espectaculos;
+	Set<DtEspectaculo> espectaculos;
 	private
 	String link;
 	
 	public String getNickname() {
-		return Nickname;
+		return nickname;
 	}
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public String getApellido() {
-		return Apellido;
+		return apellido;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public Date getNacimiento() {
-		return Nacimiento;
+		return nacimiento;
 	}
 	public String getDescgeneral() {
-		return Descgeneral;
+		return descgeneral;
 	}
 	public String getBiografia() {
-		return Biografia;
+		return biografia;
 	}
 	public String getLink() {
 		return link;
 	}
 	public Set<DtEspectaculo> getEspectaculosArtista(){
-		return Espectaculos;
+		return espectaculos;
 	}
 	
 		

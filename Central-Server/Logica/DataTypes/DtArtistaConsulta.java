@@ -1,90 +1,90 @@
 package DataTypes;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.Set;
 
 public class DtArtistaConsulta {
 	public DtArtistaConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena,
-			String descgeneral, String biografia, String link, HashSet<DtEspectaculo> espectaculos, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo) {
+			String descgeneral, String biografia, String link, Set<DtEspectaculo> espectaculos, Set<DtUsuario> seguidores, Set<DtUsuario> siguiendo) {
 		super();
-		Nickname = nickname;
-		Nombre = nombre;
-		Apellido = apellido;
-		Email = email;
-		Nacimiento = nacimiento;
-		Descgeneral = descgeneral;
-		Biografia = biografia;
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.nacimiento = nacimiento;
+		this.descgeneral = descgeneral;
+		this.biografia = biografia;
 		this.link = link;
-		Espectaculos = espectaculos;
-		Siguiendo = siguiendo;
-		Seguidores = seguidores;
-		Imagen = imagen;
-		Contrasena = contrasena;
+		this.espectaculos = espectaculos;
+		this.siguiendo = siguiendo;
+		this.seguidores = seguidores;
+		this.imagen = imagen;
+		this.contrasena = contrasena;
 	}
 	private
-	String Nickname;
+	String nickname;
 	private
-	String Nombre;
+	String nombre;
 	private
-	String Apellido;
+	String apellido;
 	private
-	String Email;
+	String email;
 	private
-	Date Nacimiento;
+	Date nacimiento;
 	private
-	String Descgeneral;
+	String descgeneral;
 	private
-	String Biografia;
+	String biografia;
 	private
 	String link;
 	private
-	String Imagen;
+	String imagen;
 	private
-	String Contrasena;
+	String contrasena;
 	private
-	HashSet<DtEspectaculo> Espectaculos;
+	Set<DtEspectaculo> espectaculos;
 	private
-	HashSet<DtUsuario> Seguidores;
+	Set<DtUsuario> seguidores;
 	private
-	HashSet<DtUsuario> Siguiendo;
+	Set<DtUsuario> siguiendo;
 	public String getNickname() {
-		return Nickname;
+		return nickname;
 	}
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public String getApellido() {
-		return Apellido;
+		return apellido;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public Date getNacimiento() {
-		return Nacimiento;
+		return nacimiento;
 	}
 	public String getDescgeneral() {
-		return Descgeneral;
+		return descgeneral;
 	}
 	public String getBiografia() {
-		return Biografia;
+		return biografia;
 	}
 	public String getLink() {
 		return link;
 	}
-	public HashSet<DtEspectaculo> getEspectaculos() {
-		return Espectaculos;
+	public Set<DtEspectaculo> getEspectaculos() {
+		return espectaculos;
 	}
-	public HashSet<DtUsuario> getSeguidores() {
-		return Seguidores;
+	public Set<DtUsuario> getSeguidores() {
+		return seguidores;
 	}
-	public HashSet<DtUsuario> getSiguiendo() {
-		return Siguiendo;
+	public Set<DtUsuario> getSiguiendo() {
+		return siguiendo;
 	}
 	public String getImagen() {
-		return Imagen;
+		return imagen;
 	}
 	public String getContrasena() {
-		return Contrasena;
+		return contrasena;
 	}
 	
 

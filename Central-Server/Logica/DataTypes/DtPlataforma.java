@@ -2,26 +2,26 @@ package DataTypes;
 
 public class DtPlataforma {
 	
-public DtPlataforma(String nombre, String descripcion, String uRL) {
+public DtPlataforma(String nombre, String descripcion, String url) {
 		super();
-		Nombre = nombre;
-		Descripcion = descripcion;
-		URL = uRL;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.url = url;
 	}
 private
-String Nombre;
+String nombre;
 private
-String Descripcion;
+String descripcion;
 private
-String URL;
+String url;
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 public String getDescripcion() {
-	return Descripcion;
+	return descripcion;
 }
 public String getURL() {
-	return URL;
+	return url;
 }
 
 }

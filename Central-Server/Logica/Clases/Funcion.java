@@ -14,81 +14,81 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Funcion {
-	private String Nombre;
-	private Date Inicio;
-	private Date Alta;
-	private String Imagen;
-	private Map<String, Artista> ArtistasInvitados;
-	private Integer Espectadores;
+	private String nombre;
+	private Date inicio;
+	private Date alta;
+	private String imagen;
+	private Map<String, Artista> artistasinvitados;
+	private Integer espectadores;
 		public Funcion(String nombre, Date inicio, Date alta, String imagen) {
 			super();
-			Nombre = nombre;
-			Inicio = inicio;
-			Alta = alta;
-			Imagen = imagen;
-			ArtistasInvitados = new HashMap<String, Artista>();
-			Espectadores = 0;
+			this.nombre = nombre;
+			this.inicio = inicio;
+			this.alta = alta;
+			this.imagen = imagen;
+			this.artistasinvitados = new HashMap<String, Artista>();
+			this.espectadores = 0;
 		}
 		public String getNombre() {
-			return Nombre;
+			return nombre;
 		}
 		
 		public Integer getEspectadores() {
-			return Espectadores;
+			return espectadores;
 		}
 		
 		public void IncrementarEspectadores() {
-			Espectadores++;
+			espectadores++;
 		}
 		public void setEspectadores(Integer espec) {
-			Espectadores = espec;
+			espectadores = espec;
 		}
 		public void setNombre(String nombre) {
-			Nombre = nombre;
+			this.nombre = nombre;
 		}
 		public Date getInicio() {
-			return Inicio;
+			return inicio;
 		}
 		public void setInicio(Date inicio) {
-			Inicio = inicio;
+			this.inicio = inicio;
 		}
 		public Boolean estaVigente() {
 			Date today = Calendar.getInstance().getTime();
-			if(today.compareTo(Inicio) > 0)
+			if (today.compareTo(inicio) > 0)
 				return false;
 			else return true;
 		}
 		
 		public String getImagen() {
-			return Imagen;
+			return imagen;
 		}
 		public void setImagen(String imagen) {
-			Imagen = imagen;
+			this.imagen = imagen;
 		}
 		
 		public Date getAlta() {
-			return Alta;
+			return alta;
 		}
 		public void setAlta(Date alta) {
-			Alta = alta;
+			this.alta = alta;
 		}
 		
 		public DtFuncion getDtFuncion() {
-			DtFuncion dtfun = new DtFuncion(this.Nombre,this.Inicio,this.Alta,this.Imagen);
+			DtFuncion dtfun = new DtFuncion(this.nombre, this.inicio, this.alta, this.imagen);
 			return dtfun;
 		}
 		public Map<String, Artista> getArtistasInvitado(){
-			return ArtistasInvitados;
+			return artistasinvitados;
 		}
 		public void anadirArtista(Artista artista, String nick) {
-			ArtistasInvitados.put(nick, artista);	
+			artistasinvitados.put(nick, artista);	
 		}
 		public DtFuncionDatos getDtFuncionDatos(DtEspectaculo Espectaculo) {
 			Set<DtArtista> DtArtistaDevolver = new HashSet<DtArtista>();
-			for (Map.Entry<String,Artista> entry : ArtistasInvitados.entrySet()) {
+			for (Map.Entry<String, Artista> entry : artistasinvitados.entrySet()) {
 				DtArtistaDevolver.add(entry.getValue().getDtArtista());
 			}
-			return new DtFuncionDatos(this.Nombre, this.Inicio, this.Alta, DtArtistaDevolver, Espectaculo, Imagen,Espectadores);
+			return new DtFuncionDatos(this.nombre, this.inicio, this.alta, DtArtistaDevolver, Espectaculo, imagen, espectadores);
 		}
 
 		

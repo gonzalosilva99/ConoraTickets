@@ -7,89 +7,89 @@ import java.util.HashSet;
 
 public class DtEspectaculoDatos {
 	
-public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantMin, Integer cantMax,String uRL, Float costo, Date registro, Set<DtFuncionDatos> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, HashSet<DtCategoria> categorias) {
+public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantmin, Integer cantmax, String url, Float costo, Date registro, Set<DtFuncionDatos> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, HashSet<DtCategoria> categorias) {
 		super();
-		Nombre = nombre;
-		Descripcion = descripcion;
-		Duracion = duracion;
-		CantMin = cantMin;
-		CantMax = cantMax;
-		URL = uRL;
-		Costo = costo;
-		Registro = registro;
-		Funciones = funciones;
-		Paquetes = paquetes;
-		Organizador = organizador;
-		Categorias = categorias;
-		Imagen = imagen;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.duracion = duracion;
+		this.cantmin = cantmin;
+		this.cantmax = cantmax;
+		this.url = url;
+		this.costo = costo;
+		this.registro = registro;
+		this.funciones = funciones;
+		this.paquetes = paquetes;
+		this.organizador = organizador;
+		this.categorias = categorias;
+		this.imagen = imagen;
 	}
 public DtEspectaculoDatos() {
 	
 }
 private
-	String Nombre;
+	String nombre;
 private
-	DtArtista Organizador;
+	DtArtista organizador;
 private
-	String Descripcion;
+	String descripcion;
 private
-	Integer Duracion;
+	Integer duracion;
 private
-	Integer CantMin;
+	Integer cantmin;
 private
-Integer CantMax;
+Integer cantmax;
 private
-String URL;
+String url;
 private
-	HashSet<DtCategoria> Categorias;
+	HashSet<DtCategoria> categorias;
 private
-Float Costo;
+Float costo;
 private
-Date Registro;
-private String Imagen;
+Date registro;
+private String imagen;
 private
-Set<DtFuncionDatos> Funciones;
+Set<DtFuncionDatos> funciones;
 private
-Set<DtPaquete> Paquetes;
+Set<DtPaquete> paquetes;
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 
 public String getImagen() {
-	return Imagen;
+	return imagen;
 }
 public String getDescripcion() {
-	return Descripcion;
+	return descripcion;
 }
 public Integer getDuracion() {
-	return Duracion;
+	return duracion;
 }
 public Integer getCantMin() {
-	return CantMin;
+	return cantmin;
 }
 public Integer getCantMax() {
-	return CantMax;
+	return cantmax;
 }
 public String getURL() {
-	return URL;
+	return url;
 }
 public Float getCosto() {
-	return Costo;
+	return costo;
 }
 public Date getRegistro() {
-	return Registro;
+	return registro;
 }
 public Set<DtFuncionDatos> getFunciones() {
-	return Funciones;
+	return funciones;
 }
 public Set<DtPaquete> getPaquetes() {
-	return Paquetes;
+	return paquetes;
 }
 public DtArtista getOrganizador() {
-	return Organizador;
+	return organizador;
 }
 public HashSet<DtCategoria> getCategorias() {
-	return Categorias;
+	return categorias;
 }
 
 

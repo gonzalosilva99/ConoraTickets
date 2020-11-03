@@ -23,102 +23,102 @@ import Relaciones.CompraPaquete;
 
 public class Espectador extends Usuario{
 
-	private HashMap<Integer,RegistroFuncion> RegistroFunciones;
-	private HashMap<Integer,CompraPaquete> CompraPaquetes;
+	private Map<Integer, RegistroFuncion> registroFunciones;
+	private Map<Integer, CompraPaquete> compraPaquetes;
 	
 	public Espectador(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena) {
-		super(nickname,nombre, apellido, email,nacimiento,imagen,contrasena);
-		RegistroFunciones = new HashMap<Integer,RegistroFuncion>();
-		CompraPaquetes = new HashMap<Integer,CompraPaquete>();
+		super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena);
+		registroFunciones = new HashMap<Integer, RegistroFuncion>();
+		compraPaquetes = new HashMap<Integer, CompraPaquete>();
 	}
 	
 	public void agregarRegistroFuncion(RegistroFuncion registrofuncion) {
-		RegistroFunciones.put(RegistroFunciones.size() + 1, registrofuncion);
+		registroFunciones.put(registroFunciones.size() + 1, registrofuncion);
 	}
 	
-	public void MarcarRegistrosUsados(Integer Registro1,Integer Registro2,Integer Registro3 ) {
-		RegistroFuncion reg1 = RegistroFunciones.get(Registro1);
-		RegistroFuncion reg2 = RegistroFunciones.get(Registro2);
-		RegistroFuncion reg3 = RegistroFunciones.get(Registro3);
+	public void MarcarRegistrosUsados(Integer Registro1, Integer Registro2, Integer Registro3 ) {
+		RegistroFuncion reg1 = registroFunciones.get(Registro1);
+		RegistroFuncion reg2 = registroFunciones.get(Registro2);
+		RegistroFuncion reg3 = registroFunciones.get(Registro3);
 		reg1.setCanjeable(false);
 		reg2.setCanjeable(false);
 		reg3.setCanjeable(false);
 	}
 	
 	public Integer getUltimoCodigo() {
-		if(RegistroFunciones!= null)
-			return RegistroFunciones.size();
+		if (registroFunciones!= null)
+			return registroFunciones.size();
 		else return 0;
 	}
 
 	
 	public DtEspectador getDtEspectador() {
-		DtEspectador ret = new DtEspectador(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento());
+		DtEspectador ret = new DtEspectador(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento());
 		return ret;
 	}
 	
-	public HashMap<Integer,RegistroFuncion> getRegistroFunciones() {
-		return RegistroFunciones;
+	public Map<Integer, RegistroFuncion> getRegistroFunciones() {
+		return registroFunciones;
 	}
 
-	public void setFunciones(HashMap<Integer,RegistroFuncion> regfunciones) {
-		RegistroFunciones = regfunciones;
+	public void setFunciones(Map<Integer, RegistroFuncion> regfunciones) {
+		registroFunciones = regfunciones;
 	}
 
 	public DtEspectadorConsulta getDtEspectadorConsulta() {
-		HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
-		for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+		HashSet<DtUsuario> seguidore = new HashSet<DtUsuario>();
+		for (Map.Entry<String, Usuario> entry : seguidores.entrySet()) {
 				DtUsuario nuevo = entry.getValue().getDtUsuario();
-				seguidores.add(nuevo);
+				seguidore.add(nuevo);
 		}
 		
-		HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
-		for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+		HashSet<DtUsuario> siguiend = new HashSet<DtUsuario>();
+		for (Map.Entry<String, Usuario> entry : siguiendo.entrySet()) {
 				DtUsuario nuevo = entry.getValue().getDtUsuario();
-				siguiendo.add(nuevo);
+				siguiend.add(nuevo);
 		}
 		
 		HashSet<DtFuncion> esp = new HashSet<DtFuncion>();
-		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
+		for (Map.Entry<Integer, RegistroFuncion> entry : registroFunciones.entrySet()) {
 			DtFuncion nuevo = entry.getValue().getDtFuncion();
 			esp.add(nuevo);
 		}
-		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),esp,seguidores,siguiendo);
+		DtEspectadorConsulta ret = new DtEspectadorConsulta(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento(), this.getImagen(), this.getContrasena(), esp, seguidores, siguiendo);
 		return ret;
 	}
 	
 	public DtEspectadorPerfil getDtEspectadorPerfil() {
-		HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
-		for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+		HashSet<DtUsuario> seguidore = new HashSet<DtUsuario>();
+		for (Map.Entry<String, Usuario> entry : seguidores.entrySet()) {
 				DtUsuario nuevo = entry.getValue().getDtUsuario();
-				seguidores.add(nuevo);
+				seguidore.add(nuevo);
 		}
 		
-		HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
-		for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+		HashSet<DtUsuario> siguiend = new HashSet<DtUsuario>();
+		for (Map.Entry<String, Usuario> entry : siguiendo.entrySet()) {
 				DtUsuario nuevo = entry.getValue().getDtUsuario();
-				siguiendo.add(nuevo);
+				siguiend.add(nuevo);
 		}
 		
 		HashSet<DtPaqueteDatos> paq = new HashSet<DtPaqueteDatos>();
-		for(Map.Entry<Integer, CompraPaquete> entry : CompraPaquetes.entrySet()) {
+		for (Map.Entry<Integer, CompraPaquete> entry : compraPaquetes.entrySet()) {
 			DtPaqueteDatos nuevo = entry.getValue().getDtPaqueteDatos();
 			paq.add(nuevo);
 		}
 		
 		HashSet<DtFuncion> esp = new HashSet<DtFuncion>();
-		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
+		for (Map.Entry<Integer, RegistroFuncion> entry : registroFunciones.entrySet()) {
 			DtFuncion nuevo = entry.getValue().getDtFuncion();
 			esp.add(nuevo);
 		}
-		DtEspectadorPerfil ret = new DtEspectadorPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),esp,seguidores,siguiendo, paq, this.getUltimoIngreso());
+		DtEspectadorPerfil ret = new DtEspectadorPerfil(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento(), this.getImagen(), this.getContrasena(), esp, seguidores, siguiendo, paq, this.getUltimoIngreso());
 		return ret;
 	}
 	
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(){
 		Set<DtRegistro> ret = new HashSet<DtRegistro>();
-		for(Map.Entry<Integer, RegistroFuncion> entry : RegistroFunciones.entrySet()) {
-			if(entry.getValue().getCanjeable()) {
+		for (Map.Entry<Integer, RegistroFuncion> entry : registroFunciones.entrySet()) {
+			if (entry.getValue().getCanjeable()) {
 				DtRegistro nuevo = entry.getValue().getDtRegistro();
 				ret.add(nuevo);
 			}
@@ -128,8 +128,8 @@ public class Espectador extends Usuario{
 	
 	public Set<DtPaquete> listarPaquetesCanjeables(String nombreEspectaculo){
 		HashSet<DtPaquete> ret = new HashSet<DtPaquete>();
-		for(Map.Entry<Integer, CompraPaquete> entry : CompraPaquetes.entrySet()) {
-			if(entry.getValue().TieneEspectaculo(nombreEspectaculo)) {
+		for (Map.Entry<Integer, CompraPaquete> entry : compraPaquetes.entrySet()) {
+			if (entry.getValue().TieneEspectaculo(nombreEspectaculo)) {
 				DtPaquete dtpaq = entry.getValue().getDtPaquete();
 				ret.add(dtpaq);
 				
@@ -139,8 +139,8 @@ public class Espectador extends Usuario{
 	}
 	
 	public Boolean ExisteRegistroaFuncion(String nombreFuncion) {
-		for(Map.Entry<Integer, RegistroFuncion> entry: RegistroFunciones.entrySet() ) {
-			if(entry.getValue().getDtFuncion().getNombre().equals(nombreFuncion))
+		for (Map.Entry<Integer, RegistroFuncion> entry: registroFunciones.entrySet() ) {
+			if (entry.getValue().getDtFuncion().getNombre().equals(nombreFuncion))
 				return true;
 		}
 		return false;
@@ -148,13 +148,13 @@ public class Espectador extends Usuario{
 	
 	public void anadirPaquete(Paquete paquete, Date fecha) {
 		CompraPaquete compraPaquete = new CompraPaquete(fecha, this, paquete);
-		CompraPaquetes.put(CompraPaquetes.size()+1, compraPaquete);
+		compraPaquetes.put(compraPaquetes.size()+1, compraPaquete);
 		
 	}
 	
 	public Boolean ExisteCompraPaquete(String nombrePaquete) {
-		for(Map.Entry<Integer, CompraPaquete> entry: CompraPaquetes.entrySet() ) {
-			if(entry.getValue().getDtPaquete().getNombre().equals(nombrePaquete))
+		for (Map.Entry<Integer, CompraPaquete> entry: compraPaquetes.entrySet() ) {
+			if (entry.getValue().getDtPaquete().getNombre().equals(nombrePaquete))
 				return true;
 		}
 		return false;
