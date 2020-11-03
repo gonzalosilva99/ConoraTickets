@@ -1,18 +1,15 @@
 package controladores;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import clases.Paquete;
-import clases.Plataforma;
 import datatypes.DtCategoria;
 import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
 import excepciones.Identidad;
 import interfaces.IPaquete;
 import manejadores.ManejadorPaquetes;
-import manejadores.ManejadorPlataforma;
 
 public class ControladorPaquete implements IPaquete{
 	
@@ -48,7 +45,7 @@ public class ControladorPaquete implements IPaquete{
 	}
 	
 	
-	public HashSet<DtCategoria> listarCategorias(String Paquete){
+	public Set<DtCategoria> listarCategorias(String Paquete){
 		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
 		return manpaq.listarCategorias(Paquete);
 	}

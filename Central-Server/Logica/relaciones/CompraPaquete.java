@@ -8,9 +8,9 @@ import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
 
 public class CompraPaquete {
-	private Integer codigo;
+	public Integer codigo;
 	private Date fecha;
-	private Espectador espectador;
+	public Espectador espectador;
 	private Paquete paquete;
 
 	public Date getFecha() {

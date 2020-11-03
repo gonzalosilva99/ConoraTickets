@@ -7,16 +7,14 @@ import java.util.Set;
 
 import manejadores.ManejadorCategoria;
 import clases.Categoria;
-import clases.Plataforma;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
-import datatypes.DtPlataforma;
 import excepciones.Identidad;
 
 public class ManejadorCategoria {
 	private 
 	static ManejadorCategoria instancia;
-	HashMap<String, Categoria> categorias;
+	Map<String, Categoria> categorias;
 public 
 	static ManejadorCategoria getInstancia() {
 		if (instancia==null)
@@ -29,7 +27,7 @@ public
 		categorias = new HashMap<String, Categoria>();
 	}
 
-	ManejadorCategoria(HashMap<String, Categoria> Cats){
+	ManejadorCategoria(Map<String, Categoria> Cats){
 		super();
 		categorias = Cats;
 	}
@@ -52,7 +50,7 @@ public
 		return false;
 	}
 	
-	public HashSet<DtCategoria> listarCategorias(){
+	public Set<DtCategoria> listarCategorias(){
 		HashSet<DtCategoria> ret = new HashSet<DtCategoria>();		
 		for (Map.Entry<String, Categoria> entry : categorias.entrySet()) {
             DtCategoria nueva = entry.getValue().getDtCategoria();
@@ -67,7 +65,7 @@ public
 	public Set<DtEspectaculo> listarEspectaculosDeCategoria(String Nombre){
 		return getCategoria(Nombre).getDtEspectaculos();
 	}
-	public HashSet<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
+	public Set<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
 		return  getCategoria(nombreCat).getDtEspectaculosAceptados();
 	}
 }

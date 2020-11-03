@@ -18,8 +18,6 @@ import interfaces.ICategoria;
 import interfaces.IUsuario;
 import manejadores.ManejadorPaquetes;
 
-import javax.swing.JOptionPane;
-
 import clases.Categoria;
 import clases.Espectaculo;
 import clases.Funcion;
@@ -29,7 +27,7 @@ public class Plataforma {
 	private String nombre;
 	private String descripcion;
 	private String url;
-	private HashMap<String, Espectaculo> espectaculos;
+	private Map<String, Espectaculo> espectaculos;
 
 		public Plataforma(String nombre, String descripcion, String url) {
 			super();
@@ -48,7 +46,7 @@ public class Plataforma {
 			return url;
 		}
 		
-		public void filtrarEspectaculos(HashSet<DtEspectaculoDatos> especs, String search) {
+		public void filtrarEspectaculos(Set<DtEspectaculoDatos> especs, String search) {
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculoDatos espec = entry.getValue().getDtEspectaculoDatos();
 				if (espec.getNombre().toLowerCase().contains(search.toLowerCase()))
@@ -71,7 +69,7 @@ public class Plataforma {
 		public Map<String, Espectaculo> getEspectaculos() {
 			return espectaculos;
 		}
-		public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
+		public void setEspectaculos(Map<String, Espectaculo> espectaculos) {
 			this.espectaculos = espectaculos;
 		}
 		public String getNombre() {
@@ -186,12 +184,12 @@ public class Plataforma {
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete){
 			
 			ManejadorPaquetes manpaq = manejadores.ManejadorPaquetes.getInstancia();
-			Paquete p = manpaq.getPaquete(NombrePaquete);
+			Paquete paq = manpaq.getPaquete(NombrePaquete);
 			
 			Set<DtEspectaculo> set = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
-				if (!p.tieneEspectaculo(entry.getValue().getNombre())) set.add(nuevo);
+				if (!paq.tieneEspectaculo(entry.getValue().getNombre())) set.add(nuevo);
 				
 			}
 			return set;
@@ -229,7 +227,7 @@ public class Plataforma {
 			return espec.puedeAgregarEspectadores(nombreFuncion);
 		}
 		
-		public HashSet<DtCategoria> listarCategoriasDeEspectaculo(String Espectaculo) {
+		public Set<DtCategoria> listarCategoriasDeEspectaculo(String Espectaculo) {
 			Espectaculo espec = espectaculos.get(Espectaculo);
 			return espec.listarCategorias();
 		}

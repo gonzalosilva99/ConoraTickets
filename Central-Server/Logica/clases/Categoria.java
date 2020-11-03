@@ -1,8 +1,6 @@
 package clases;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import clases.Espectaculo;
@@ -14,7 +12,7 @@ import java.util.Iterator;
 
 public class Categoria {
 	private String nomcategoria;
-	private HashSet<Espectaculo> espectaculos;
+	private Set<Espectaculo> espectaculos;
 	public Categoria(String nomCategoria) {
 		super();
 		this.nomcategoria = nomCategoria;
@@ -26,10 +24,10 @@ public class Categoria {
 	public void setNomCategoria(String nomCategoria) {
 		nomcategoria = nomCategoria;
 	}
-	public HashSet<Espectaculo> getEspectaculos() {
+	public Set<Espectaculo> getEspectaculos() {
 		return espectaculos;
 	}
-	public void setEspectaculos(HashSet<Espectaculo> espectaculos) {
+	public void setEspectaculos(Set<Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 	
@@ -37,8 +35,8 @@ public class Categoria {
 		DtCategoria ret = new DtCategoria(nomcategoria);
 		return ret; }
 	
-	public void anadirEspectaculo(Espectaculo e) {
-		espectaculos.add(e);
+	public void anadirEspectaculo(Espectaculo eve) {
+		espectaculos.add(eve);
 	}
 	public Set<DtEspectaculo> getDtEspectaculos(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
@@ -50,7 +48,7 @@ public class Categoria {
 		return ret;
 	}
 	
-	public HashSet<DtEspectaculo> getDtEspectaculosAceptados(){
+	public Set<DtEspectaculo> getDtEspectaculosAceptados(){
 		HashSet<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 		Iterator<Espectaculo> esp = espectaculos.iterator();
 		while (esp.hasNext()) {

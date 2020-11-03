@@ -1,22 +1,21 @@
 package manejadores;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-import manejadores.ManejadorPaquetes;
-import clases.Espectador;
 import clases.Paquete;
-import clases.Plataforma;
 import datatypes.DtCategoria;
-import datatypes.DtEspectador;
 import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
-import datatypes.DtPlataforma;
 import excepciones.Identidad;
 
 
 public class ManejadorPaquetes {
 	private 
 		static ManejadorPaquetes instancia;
-		HashMap<String, Paquete> paquetes;
+		Map<String, Paquete> paquetes;
 	public 
 		static ManejadorPaquetes getInstancia(){
 			if (instancia==null) {
@@ -44,13 +43,13 @@ public class ManejadorPaquetes {
 			}
 			return ret;
 		}
-		void setPaquetes(HashMap<String, Paquete> paquetes) {
+		void setPaquetes(Map<String, Paquete> paquetes) {
 			this.paquetes = paquetes;
 		}
 		
 		public DtPaqueteDatos mostrarPaquete(String NombrePaquete) {
-			Paquete p = paquetes.get(NombrePaquete);
-			return p.getDtPaqueteDatos();
+			Paquete paq = paquetes.get(NombrePaquete);
+			return paq.getDtPaqueteDatos();
 		}
 		
 		public Paquete getPaquete(String NombrePaquete) {
@@ -104,7 +103,7 @@ public class ManejadorPaquetes {
 			return paquete.getDtPaquete();
 		}
 		
-		public HashSet<DtCategoria> listarCategorias(String Paquete){
+		public Set<DtCategoria> listarCategorias(String Paquete){
 			Paquete paquete = paquetes.get(Paquete);
 			return paquete.listarCategorias();
 		}

@@ -2,17 +2,15 @@ package clases;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import clases.Artista;
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
-
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class Funcion {
 	private String nombre;

@@ -1,7 +1,6 @@
 package datatypes;
 import java.util.Date;
 import java.util.Set;
-import java.util.Iterator;
 
 public class DtArtista {
 	public DtArtista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descgeneral,

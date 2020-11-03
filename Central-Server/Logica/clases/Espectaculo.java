@@ -1,19 +1,12 @@
 package clases;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
-
-import clases.Artista;
-import clases.Categoria;
-import clases.Funcion;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Date;
 
-import datatypes.DtArtista;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
 import datatypes.DtEspectaculoDatos;
@@ -22,7 +15,6 @@ import datatypes.DtFuncionDatos;
 import datatypes.DtPaquete;
 import datatypes.EstadoEspectaculo;
 import manejadores.ManejadorPaquetes;
-import manejadores.ManejadorPlataforma;
 
 
 public class Espectaculo {
@@ -38,7 +30,7 @@ public class Espectaculo {
 	private String imagen;
 	private EstadoEspectaculo estado;
 	private Map<String, Funcion> funciones;
-	private HashSet<Categoria> categorias;
+	private Set<Categoria> categorias;
 	
 	
 	
@@ -109,7 +101,7 @@ public class Espectaculo {
 		public Set<Categoria> getCategorias() {
 			return categorias;
 		}
-		public void setCategorias(HashSet<Categoria> categorias) {
+		public void setCategorias(Set<Categoria> categorias) {
 			this.categorias = categorias;
 		}
 		public Artista getOrganizador() {
@@ -172,7 +164,7 @@ public class Espectaculo {
 		public DtEspectaculoDatos getDtEspectaculoDatos() {
 			ManejadorPaquetes manpaq = manejadores.ManejadorPaquetes.getInstancia();
 			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(nombre);
-			HashSet<DtCategoria> listacategorias = listarCategorias();
+			Set<DtCategoria> listacategorias = listarCategorias();
 			DtEspectaculo esp = new DtEspectaculo(this.nombre, this.descripcion, imagen, this.estado, this.costo);
 			DtEspectaculoDatos ret = new DtEspectaculoDatos(nombre, descripcion, duracion, cantmin, cantmax, url, costo.floatValue(), registro, this.listarFuncionesDatos(esp) , listaPaquetes, organizador.getDtArtista(), imagen, listacategorias); 
 			return ret;
@@ -203,14 +195,14 @@ public class Espectaculo {
 		public Boolean puedeAgregarEspectadores(String nombreFuncion){
 			Funcion fun = funciones.get(nombreFuncion);
 			Integer espec = fun.getEspectadores();
-			return (espec<cantmax);
+			return espec<cantmax;
 		}
 		
-		public void anadirCategoria(Categoria c) {
-			categorias.add(c);
+		public void anadirCategoria(Categoria cat) {
+			categorias.add(cat);
 		}
 		
-		public HashSet<DtCategoria> listarCategorias() {
+		public Set<DtCategoria> listarCategorias() {
 			HashSet<DtCategoria> ret = new HashSet<DtCategoria>();
 			Iterator<Categoria> iter = categorias.iterator();
 			while (iter.hasNext()) {

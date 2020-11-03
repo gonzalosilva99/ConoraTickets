@@ -1,16 +1,9 @@
 package controladores;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
-import clases.Categoria;
-import clases.Espectaculo;
 import clases.Funcion;
-import clases.Paquete;
-import clases.Plataforma;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
 import datatypes.DtEspectaculoDatos;
@@ -19,9 +12,7 @@ import datatypes.DtFuncionDatos;
 import datatypes.DtPlataforma;
 import excepciones.Identidad;
 import interfaces.IPlataforma;
-import manejadores.ManejadorPaquetes;
 import manejadores.ManejadorPlataforma;
-import manejadores.ManejadorUsuario;
 
 
 
@@ -85,7 +76,7 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.listarEspectaculos(nombrePlataforma);
 	}
 	
-	public HashSet<DtEspectaculo> listarEspectaculosIngresados(){
+	public Set<DtEspectaculo> listarEspectaculosIngresados(){
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarEspectaculosIngresados();
 	}
@@ -138,7 +129,7 @@ public class ControladorPlataforma implements IPlataforma{
 		return manplat.puedeAgregarEspectadores(nombrePlataforma, nombreEspectaculo, nombreFuncion);
 	}
 	
-	public HashSet<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
+	public Set<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarCategoriasDeEspectaculo(Plataforma, Espectaculo);
 	}

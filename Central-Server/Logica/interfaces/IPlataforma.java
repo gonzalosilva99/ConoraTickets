@@ -1,11 +1,8 @@
 package interfaces;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.Map;
 
-import clases.Categoria;
 import clases.Funcion;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
@@ -38,8 +35,8 @@ public interface IPlataforma {
 		public DtFuncionDatos getFuncionDatos(String nombrePlat, String nombreEspectaculo, String nombreFuncion);
 		public DtFuncionDatos findDatosFuncion(String nombre);
 		public Boolean puedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
-		public HashSet<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo);
-		public HashSet<DtEspectaculo> listarEspectaculosIngresados();
+		public Set<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo);
+		public Set<DtEspectaculo> listarEspectaculosIngresados();
 		public void aceptarEspectaculo(String nomEspectaculo);
 		public void rechazarEspectaculo(String nomEspectaculo);
 		public Set<DtEspectaculoDatos> filtrarEspectaculos(String search);

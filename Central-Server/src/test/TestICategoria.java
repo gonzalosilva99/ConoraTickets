@@ -1,8 +1,6 @@
 package test;
 
-import static org.junit.Assert.*;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,24 +8,12 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import clases.Categoria;
-import clases.Espectador;
-import clases.Paquete;
 import controladores.Fabrica;
-import datatypes.DtArtista;
-import datatypes.DtArtistaConsulta;
-import datatypes.DtCategoria;
-import datatypes.DtEspectaculo;
-import datatypes.DtEspectaculoDatos;
-import datatypes.DtFuncion;
-import datatypes.DtFuncionDatos;
 import datatypes.TipoRegistro;
-import excepciones.Identidad;
 import interfaces.ICategoria;
 import interfaces.IPaquete;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
-import relaciones.CompraPaquete;
 
 public class TestICategoria {
 

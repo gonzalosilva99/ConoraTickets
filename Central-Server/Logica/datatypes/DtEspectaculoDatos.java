@@ -2,7 +2,6 @@ package datatypes;
 
 import java.util.Date;
 import java.util.Set;
-import java.util.HashSet;
 
 
 public class DtEspectaculoDatos {

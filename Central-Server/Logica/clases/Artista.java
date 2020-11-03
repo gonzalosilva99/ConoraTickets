@@ -1,13 +1,11 @@
 package clases;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.JOptionPane;
 
 import clases.Espectaculo;
 import clases.Funcion;
@@ -58,13 +56,13 @@ public class Artista extends Usuario{
 		public Set<Funcion> getFuncionesInvitado() {
 			return funcionesinvitado;
 		}
-		public void setFuncionesInvitado(HashSet<Funcion> funcionesinvitado) {
+		public void setFuncionesInvitado(Set<Funcion> funcionesinvitado) {
 			this.funcionesinvitado = funcionesinvitado;
 		}
 		public Set<Espectaculo> getEspectaculos() {
 			return espectaculos;
 		}
-		public void setEspectaculos(HashSet<Espectaculo> espectaculos) {
+		public void setEspectaculos(Set<Espectaculo> espectaculos) {
 			this.espectaculos = espectaculos;
 		}
 		
@@ -141,8 +139,8 @@ public class Artista extends Usuario{
 			return ret;
 		}
 		
-		public void anadirEspectaculo(Espectaculo e) {
-			espectaculos.add(e);
+		public void anadirEspectaculo(Espectaculo eve) {
+			espectaculos.add(eve);
 		}
 		public void anadirFuncion(Funcion funcion) {
 			funcion.anadirArtista(this, this.getNickname());
@@ -156,5 +154,6 @@ public class Artista extends Usuario{
 				}
 			return false;
 		}
+		protected void abstracta() {};
 	
 }

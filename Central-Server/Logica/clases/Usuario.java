@@ -2,9 +2,7 @@ package clases;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import clases.Usuario;
 import datatypes.DtUsuario;
@@ -17,9 +15,10 @@ public abstract class Usuario {
 	private String imagen;
 	private String contrasena;
 	private Date nacimiento;
-	protected HashMap<String, Usuario> seguidores;
-	protected HashMap<String, Usuario> siguiendo;
+	protected Map<String, Usuario> seguidores;
+	protected Map<String, Usuario> siguiendo;
 	private Date ultimoIngreso;
+		abstract protected void abstracta();
 		public String getNickname() {
 			return nickname;
 		}
@@ -27,7 +26,7 @@ public abstract class Usuario {
 			this.nickname = nickname;
 		}
 		public Usuario(String nickname, String nombre, String apellido, String email, String imagen, String contrasena,
-				Date nacimiento, HashMap<String, Usuario> seguidores, HashMap<String, Usuario> siguiendo,
+				Date nacimiento, Map<String, Usuario> seguidores, Map<String, Usuario> siguiendo,
 				Date ultimoIngreso) {
 			super();
 			this.nickname = nickname;
@@ -104,16 +103,16 @@ public abstract class Usuario {
 		public void agregarSeguidor(String nick, Usuario usu) {
 			seguidores.put(nick, usu);
 		}
-		public HashMap<String, Usuario> getSeguidores() {
+		public Map<String, Usuario> getSeguidores() {
 			return seguidores;
 		}
-		public void setSeguidores(HashMap<String, Usuario> seguidores) {
+		public void setSeguidores(Map<String, Usuario> seguidores) {
 			this.seguidores = seguidores;
 		}
-		public HashMap<String, Usuario> getSiguiendo() {
+		public Map<String, Usuario> getSiguiendo() {
 			return siguiendo;
 		}
-		public void setSiguiendo(HashMap<String, Usuario> siguiendo) {
+		public void setSiguiendo(Map<String, Usuario> siguiendo) {
 			this.siguiendo = siguiendo;
 		}
 		

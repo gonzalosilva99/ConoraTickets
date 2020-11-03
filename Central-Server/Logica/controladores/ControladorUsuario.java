@@ -1,13 +1,8 @@
 package controladores;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
-import javax.swing.JOptionPane;
-
-import controladores.Fabrica;
 import clases.Artista;
 import clases.Espectaculo;
 import clases.Espectador;
@@ -19,14 +14,12 @@ import datatypes.DtArtistaPerfil;
 import datatypes.DtEspectador;
 import datatypes.DtEspectadorConsulta;
 import datatypes.DtEspectadorPerfil;
-import datatypes.DtFuncion;
 import datatypes.DtPaquete;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import datatypes.TipoRegistro;
 import excepciones.Identidad;
 import interfaces.IUsuario;
-import manejadores.ManejadorPaquetes;
 import manejadores.ManejadorPlataforma;
 import manejadores.ManejadorUsuario;
 import relaciones.RegistroFuncion;
@@ -82,13 +75,13 @@ public class ControladorUsuario implements IUsuario{
 	
 	public Set<DtUsuario> listarUsuarios(){
 		ManejadorUsuario manusu = manejadores.ManejadorUsuario.getInstancia();
-		Set<DtUsuario> h = manusu.listarUsuarios();
-		return h;
+		Set<DtUsuario> usu = manusu.listarUsuarios();
+		return usu;
 	}
 	public Set<DtArtista> listarArtistas(){
 		ManejadorUsuario manusu = manejadores.ManejadorUsuario.getInstancia();
-		Set<DtArtista> h = manusu.listarArtistas();
-		return h;
+		Set<DtArtista> art = manusu.listarArtistas();
+		return art;
 	}
 	
 	public void actualizarUltimoIngreso(String nickname) {
@@ -97,8 +90,8 @@ public class ControladorUsuario implements IUsuario{
 	
 	public Boolean esArtista(String nickname) {
 		ManejadorUsuario manusu = manejadores.ManejadorUsuario.getInstancia();
-		Boolean h = manusu.esArtista(nickname);
-		return h;
+		Boolean hbol= manusu.esArtista(nickname);
+		return hbol;
 	}
 	
 	public DtArtistaPerfil perfilArtista(String nickname) {
@@ -110,14 +103,14 @@ public class ControladorUsuario implements IUsuario{
 	
 	public DtArtistaConsulta mostrarArtista(String nickname) {
 		ManejadorUsuario manusu = manejadores.ManejadorUsuario.getInstancia();
-		DtArtistaConsulta h = manusu.mostrarArtista(nickname);
-		return h;
+		DtArtistaConsulta art = manusu.mostrarArtista(nickname);
+		return art;
 	}
 	
 	public DtEspectadorConsulta mostrarEspectador(String nickname) {
 		ManejadorUsuario manusu = manejadores.ManejadorUsuario.getInstancia();
-		DtEspectadorConsulta h = manusu.mostrarEspectador(nickname);
-		return h;
+		DtEspectadorConsulta art = manusu.mostrarEspectador(nickname);
+		return art;
 	}
 	
 	public void modificarArtista(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link) {
@@ -147,8 +140,8 @@ public class ControladorUsuario implements IUsuario{
 	}
 	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo){
 		ManejadorUsuario manusu = manejadores.ManejadorUsuario.getInstancia();
-		Set<DtArtista> h = manusu.listarArtistasNoEspectaculo(nombreEspectaculo);
-		return h;
+		Set<DtArtista> art = manusu.listarArtistasNoEspectaculo(nombreEspectaculo);
+		return art;
 	}
 	
 	public void relacionarArtistaFuncion(String nickArtista, Funcion funcion) {

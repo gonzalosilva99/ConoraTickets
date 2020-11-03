@@ -1,25 +1,28 @@
 package manejadores;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import clases.Artista;
-import clases.Categoria;
 import clases.Espectaculo;
-import clases.Espectador;
 import clases.Funcion;
-import clases.Paquete;
 import clases.Plataforma;
 import controladores.Fabrica;
-import datatypes.*;
+import datatypes.DtCategoria;
+import datatypes.DtEspectaculo;
+import datatypes.DtEspectaculoDatos;
+import datatypes.DtFuncion;
+import datatypes.DtFuncionDatos;
+import datatypes.DtPlataforma;
+import datatypes.EstadoEspectaculo;
 import excepciones.Identidad;
 import interfaces.IUsuario;
-
-import javax.swing.JOptionPane;
-
-import manejadores.ManejadorPlataforma;
 public class ManejadorPlataforma {
 	private 
 		static ManejadorPlataforma instancia;
-		HashMap<String, Plataforma> plataformas;
+		Map<String, Plataforma> plataformas;
 	public 
 		static ManejadorPlataforma getInstancia() {
 			if (instancia==null)
@@ -32,7 +35,7 @@ public class ManejadorPlataforma {
 			plataformas = new HashMap<String, Plataforma>();
 		}
 
-		ManejadorPlataforma(HashMap<String, Plataforma> Plats){
+		ManejadorPlataforma(Map<String, Plataforma> Plats){
 			super();
 			plataformas = Plats;
 		}
@@ -41,7 +44,7 @@ public class ManejadorPlataforma {
 			return plataformas;
 		}
 
-		void setPlataformas(HashMap<String, Plataforma> plataformas) {
+		void setPlataformas(Map<String, Plataforma> plataformas) {
 			this.plataformas = plataformas;
 		}
 		
@@ -72,7 +75,7 @@ public class ManejadorPlataforma {
 			return plat.listarEspectaculosAceptadosDePlataforma();
 		}
 		
-		public HashSet<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
+		public Set<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
 			Plataforma plat = plataformas.get(Plataforma);
 			return plat.listarCategoriasDeEspectaculo(Espectaculo);
 		}
@@ -208,13 +211,13 @@ public class ManejadorPlataforma {
 			return ret;
 		}
 		
-		public HashSet<DtEspectaculo> listarEspectaculosIngresados(){
+		public Set<DtEspectaculo> listarEspectaculosIngresados(){
 			HashSet<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
 				Set<DtEspectaculo> aux = entry.getValue().listarEspectaculosIngresadosDePlataforma();
-				Iterator<DtEspectaculo> it = aux.iterator();
-				while (it.hasNext()) {
-					ret.add(it.next());
+				Iterator<DtEspectaculo> ite = aux.iterator();
+				while (ite.hasNext()) {
+					ret.add(ite.next());
 				}
 			}
 			return ret;

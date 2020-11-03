@@ -1,6 +1,4 @@
 package controladores;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import clases.Categoria;
@@ -9,11 +7,9 @@ import datatypes.DtEspectaculo;
 import datatypes.DtEspectaculoDatos;
 import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
-import datatypes.TipoRegistro;
 import excepciones.Identidad;
 import interfaces.ICategoria;
 import manejadores.ManejadorCategoria;
-import manejadores.ManejadorPlataforma;
 public class ControladorCategoria implements ICategoria{
 	public void altaCategoria(String Nombre) throws Identidad{		
 		ManejadorCategoria mancat = manejadores.ManejadorCategoria.getInstancia();
@@ -23,20 +19,20 @@ public class ControladorCategoria implements ICategoria{
 		ManejadorCategoria mancat = manejadores.ManejadorCategoria.getInstancia();
 		return mancat.getCategoria(nombre);
 	}
-	public HashSet<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
+	public Set<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
 		ManejadorCategoria mancat = manejadores.ManejadorCategoria.getInstancia();	
 		return mancat.listarEspectaculosAceptadosDeCategoria(nombreCat); }
 	public DtEspectaculoDatos mostrarDatosEspectaculoPorCategoria(String nombreEspectaulo, String nombreCat) {
 		return null; }
-	public HashSet<DtCategoria> listarCategorias(){
+	public Set<DtCategoria> listarCategorias(){
 		ManejadorCategoria mancat = manejadores.ManejadorCategoria.getInstancia();	
 		return mancat.listarCategorias();
 	}
-	public HashSet<DtFuncion> listarFuncionesDeEspectaculoDesdeCategoria(String NombreEspectaculo, String NombreCategoria){
+	public Set<DtFuncion> listarFuncionesDeEspectaculoDesdeCategoria(String NombreEspectaculo, String NombreCategoria){
 		return null; }
 	public DtFuncionDatos mostrarFuncionDesdeCategoria(String NombreFuncion, String NombreEspectaculo, String NombreCategoria){
 		return null; }
-	public HashSet<DtFuncion> listarFuncionesVigentesDeEspectaculoDesdeCategoria(){
+	public Set<DtFuncion> listarFuncionesVigentesDeEspectaculoDesdeCategoria(){
 		return null; }
 	public Set<DtEspectaculo> listarEspectaculosDeCategoria(String Nombre){
 		ManejadorCategoria mancat = manejadores.ManejadorCategoria.getInstancia();	

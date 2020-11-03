@@ -1,14 +1,11 @@
 package clases;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Date;
 
-import datatypes.DtEspectaculo;
 import datatypes.DtEspectador;
 import datatypes.DtEspectadorConsulta;
 import datatypes.DtEspectadorPerfil;
@@ -19,11 +16,6 @@ import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import relaciones.CompraPaquete;
 import relaciones.RegistroFuncion;
-
-import javax.swing.JOptionPane;
-
-import clases.Paquete;
-import clases.Usuario;
 
 public class Espectador extends Usuario{
 
@@ -163,6 +155,7 @@ public class Espectador extends Usuario{
 		}
 		return false;
 	}
+	protected void abstracta() {};
 	
 }
 

@@ -4,8 +4,14 @@ import controladores.ControladorPaquete;
 import controladores.ControladorPlataforma;
 import controladores.ControladorUsuario;
 import controladores.Fabrica;
-import interfaces.*;
-import controladores.*;
+import interfaces.ICategoria;
+import interfaces.IPaquete;
+import interfaces.IPlataforma;
+import interfaces.IUsuario;
+import controladores.ControladorCategoria;
+import controladores.ControladorPaquete;
+import controladores.ControladorPlataforma;
+import controladores.ControladorUsuario;
 
 public class Fabrica {
 	

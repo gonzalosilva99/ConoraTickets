@@ -1,5 +1,9 @@
 	package manejadores;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import clases.Artista;
 import clases.Espectaculo;
@@ -13,20 +17,15 @@ import datatypes.DtArtistaPerfil;
 import datatypes.DtEspectador;
 import datatypes.DtEspectadorConsulta;
 import datatypes.DtEspectadorPerfil;
-import datatypes.DtFuncion;
 import datatypes.DtPaquete;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import excepciones.Identidad;
-
-import javax.swing.JOptionPane;
-
-import manejadores.ManejadorUsuario;
 public class ManejadorUsuario {
 	private 
 		static ManejadorUsuario instancia;
-		HashMap<String, Artista> artistas;
-		HashMap<String, Espectador> espectadores;
+		Map<String, Artista> artistas;
+		Map<String, Espectador> espectadores;
 		private ManejadorUsuario() {
 			artistas = new HashMap<String, Artista>();
 			espectadores = new HashMap<String, Espectador>();
@@ -99,13 +98,13 @@ public class ManejadorUsuario {
 		Map<String, Artista> getArtistas() {
 			return artistas;
 		}
-		void setArtistas(HashMap<String, Artista> artistas) {
+		void setArtistas(Map<String, Artista> artistas) {
 			this.artistas = artistas;
 		}
 		Map<String, Espectador> getEspectadores() {
 			return espectadores;
 		}
-		void setEspectadores(HashMap<String, Espectador> espectadores) {
+		void setEspectadores(Map<String, Espectador> espectadores) {
 			this.espectadores = espectadores;
 		}
 			
@@ -181,7 +180,7 @@ public class ManejadorUsuario {
 				espectadores.put(Nickname, nuevo);			
 			}
 		}
-		public HashSet<DtUsuario> listarUsuarios(){
+		public Set<DtUsuario> listarUsuarios(){
 			HashSet<DtUsuario> ret = new HashSet<DtUsuario>();
 			for (Map.Entry<String, Artista> entry : artistas.entrySet()) {
 	            DtUsuario nuevo = entry.getValue().getDtUsuario();

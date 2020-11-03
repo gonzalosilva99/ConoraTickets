@@ -5,15 +5,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-
-import clases.Espectaculo;
-import clases.Plataforma;
+import java.util.Set;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
-import datatypes.DtEspectaculoDatos;
 import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
-import manejadores.ManejadorPaquetes;
 import manejadores.ManejadorPlataforma;
 
 public class Paquete {
@@ -23,7 +19,7 @@ public class Paquete {
 	private Date fin;
 	private Date alta;
 	private String imagen;
-	private HashMap<String, Espectaculo> espectaculos;
+	private Map<String, Espectaculo> espectaculos;
 	
 	public Paquete() {
 		super();
@@ -77,14 +73,14 @@ public class Paquete {
 		public Boolean tieneEspectaculo(String NombreEspectaculo) {
 			return espectaculos.containsKey(NombreEspectaculo);
 		}
-		public void agregarEspectaculo(Espectaculo e) {
-			espectaculos.put(e.getNombre(), e);
+		public void agregarEspectaculo(Espectaculo eve) {
+			espectaculos.put(eve.getNombre(), eve);
 		}
 		public void confirmarAgregarEspectaculoPaquete(String NombrePaquete, String NombrePlataforma, String NombreEspectaculo) {
 			ManejadorPlataforma manplat = ManejadorPlataforma.getInstancia();
-			Plataforma p = manplat.getPlataforma(NombrePlataforma);
-			Espectaculo s = p.getEspectaculo(NombreEspectaculo);
-			this.agregarEspectaculo(s);
+			Plataforma pla = manplat.getPlataforma(NombrePlataforma);
+			Espectaculo esp = pla.getEspectaculo(NombreEspectaculo);
+			this.agregarEspectaculo(esp);
 			
 			
 			
@@ -109,7 +105,7 @@ public class Paquete {
 			
 		}
 		public DtPaqueteDatos getDtPaqueteDatos() {
-			HashSet<DtCategoria> cat = this.listarCategorias();
+			Set<DtCategoria> cat = this.listarCategorias();
 			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
 			for (HashMap.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
@@ -119,29 +115,29 @@ public class Paquete {
 			return ret;
 		}
 		
-		public boolean perteneceDtCategoria(DtCategoria a, HashSet<DtCategoria> ret) {
-			boolean r = false;
+		public boolean perteneceDtCategoria(DtCategoria cat, Set<DtCategoria> ret) {
+			boolean rett = false;
 			Iterator<DtCategoria> iter = ret.iterator();
 			while (iter.hasNext()){
-				if (iter.next().getNomCategoria().equals(a.getNomCategoria())) {
-					r = true;
+				if (iter.next().getNomCategoria().equals(cat.getNomCategoria())) {
+					rett = true;
 					break;
 				}
 			}
-			return r;
+			return rett;
 		}
 		
-		public HashSet<DtCategoria> listarCategorias(){
+		public Set<DtCategoria> listarCategorias(){
 			HashSet<DtCategoria> ret = new HashSet<DtCategoria>();
 			
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				
-				HashSet<DtCategoria> nueva = entry.getValue().listarCategorias();
+				Set<DtCategoria> nueva = entry.getValue().listarCategorias();
 				Iterator<DtCategoria> iter = nueva.iterator();
 				while (iter.hasNext()){
-					DtCategoria a = iter.next();
-					if (!perteneceDtCategoria(a, ret)) {
-						ret.add(a);
+					DtCategoria cat = iter.next();
+					if (!perteneceDtCategoria(cat, ret)) {
+						ret.add(cat);
 					}
 					
 				}

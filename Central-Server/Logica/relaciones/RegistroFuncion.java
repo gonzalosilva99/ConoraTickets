@@ -76,8 +76,24 @@ public class RegistroFuncion {
 	public DtFuncion getDtFuncion() {
 		return this.funcion.getDtFuncion();
 	}
-	public void canjearPaquete(Paquete pa) {
-		setPaquete(pa);
+	public void canjearPaquete(Paquete paq) {
+		setPaquete(paq);
+	}
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public Funcion getFuncion() {
+		return funcion;
+	}
+
+	public Espectador getEspectador() {
+		return espectador;
+	}
+
+	public Paquete getPaquete() {
+		return paquete;
 	}
 	
 }

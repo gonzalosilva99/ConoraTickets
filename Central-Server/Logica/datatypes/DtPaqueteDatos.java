@@ -1,12 +1,12 @@
 package datatypes;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.Set;
 
 public class DtPaqueteDatos {
 	
 public DtPaqueteDatos(String nombre, String descripcion, Date inicio, Date fin, Double descuento,
-			HashSet<DtEspectaculo> espectaculos, HashSet<DtCategoria> categorias, String imagen) {
+			Set<DtEspectaculo> espectaculos, Set<DtCategoria> categorias, String imagen) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -32,9 +32,9 @@ Date fin;
 private
 Double descuento;
 private
-HashSet<DtEspectaculo> espectaculos;
+Set<DtEspectaculo> espectaculos;
 private
-HashSet<DtCategoria> categorias;
+Set<DtCategoria> categorias;
 
 private String imagen;
 
@@ -60,10 +60,10 @@ public String getImagen(){
 public Double getDescuento() {
 	return descuento;
 }
-public HashSet<DtEspectaculo> getEspectaculos() {
+public Set<DtEspectaculo> getEspectaculos() {
 	return espectaculos;
 }
-public HashSet<DtCategoria> getCategorias() {
+public Set<DtCategoria> getCategorias() {
 	return categorias;
 }
 

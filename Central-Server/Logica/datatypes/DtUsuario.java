@@ -1,7 +1,6 @@
 package datatypes;
 
 import java.util.Date;
-import java.util.HashSet;
 
 public class DtUsuario {
 	private
