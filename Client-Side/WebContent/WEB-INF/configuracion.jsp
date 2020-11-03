@@ -51,7 +51,7 @@
 						<label for="validationCustom01">Nombre:</label>
 				    	</div>
 				    	<div class="col-md-9">
-				    		<input type="text" style="margin-left:5%;display:inline;width:60%;"  class="form-control" name="inputNombre" id="inputNombre" value="<%=usuario.getNombre()%>" required>
+				    		<input type="text" style="margin-left:5%;display:inline;width:60%;"  class="form-control" name="inputNombre" id="inputNombre" value="<%=usuario.getNombre()%>" title="Ingrese solo letras" required pattern="([A-Z]|[a-z])+">
 					    </div>
 				    </div>
 				    <br>
@@ -60,7 +60,7 @@
 				    		<label for="validationCustom02">Apellido:</label>
 				    	</div>
 				    	<div class="col-md-9">
-					      <input type="text" style="margin-left:5%;display:inline;width:60%;"  class="form-control" value="<%=usuario.getApellido()%>" name="inputApellido" id="inputApellido" placeholder="Apellido" required>
+					      <input type="text" style="margin-left:5%;display:inline;width:60%;"  class="form-control" value="<%=usuario.getApellido()%>" name="inputApellido" id="inputApellido"  title="Ingrese solo letras" placeholder="Apellido" required pattern="([A-Z]|[a-z])+">
 					    </div>
 				    </div>
 				    <br>

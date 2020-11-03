@@ -617,8 +617,8 @@ public class CasosPrueba extends HttpServlet {
 			ipaquete.confirmarAgregarEspectaculoPaquete("Paquete Solistas","Youtube", "Springsteen on Broadway");
 			ipaquete.confirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "Bien de Familia");
 			ipaquete.confirmarAgregarEspectaculoPaquete("Paquete Latino","Twitter Live", "30 años");
-			
-			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+
+			response.sendRedirect("/home");
         	}
     		catch(Exception e) {}
     } 
