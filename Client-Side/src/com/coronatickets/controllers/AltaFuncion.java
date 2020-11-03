@@ -56,6 +56,7 @@ public class AltaFuncion extends HttpServlet {
 
 	private void actualizarEspectaculos(HttpServletRequest request, HttpServletResponse resp, String plataforma,
 			String nickname) throws ServletException, IOException {
+		request.getSession().setAttribute("exito", null);
 		Set<DtEspectaculo> espectaculosAceptados = Fabrica.getInstancia().getIPlataforma()
 				.listarEspectaculosAceptadosDePlataforma(plataforma);
 		Set<DtEspectaculo> espectaculosAceptadosDelArtista = new HashSet<>();
@@ -101,6 +102,7 @@ public class AltaFuncion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.getSession().setAttribute("exito", null);
 		Login.ActualizarUltimoIngreso(request);
 		if (request.getSession().getAttribute("usuario_logueado") != null
 				&& request.getSession().getAttribute("estado_sesion") != null
