@@ -612,10 +612,11 @@ public class TestICategoria {
 			icategoria.getCategoria("Solistas");
 			icategoria.listarCategorias();
 			icategoria.listarFuncionesDeEspectaculoDesdeCategoria("", "");
-			icategoria.listarEspectaculosAceptadosDeCategoria("");
+			icategoria.listarEspectaculosAceptadosDeCategoria("Rock en Ingles");
 			icategoria.mostrarFuncionDesdeCategoria("", "", "");
 			icategoria.listarFuncionesVigentesDeEspectaculoDesdeCategoria();
 			icategoria.mostrarDatosEspectaculoPorCategoria("", "");
+			icategoria.listarEspectaculosDeCategoria("");
 		
 		}
 			catch(Exception e) {

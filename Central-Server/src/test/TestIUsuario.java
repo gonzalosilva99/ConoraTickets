@@ -8,13 +8,20 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import clases.Artista;
 import controladores.Fabrica;
+import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
+import datatypes.DtArtistaPerfil;
+import datatypes.DtEspectaculo;
+import datatypes.DtFuncion;
+import datatypes.DtUsuario;
 import datatypes.TipoRegistro;
 import interfaces.ICategoria;
 import interfaces.IPaquete;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
+import manejadores.ManejadorUsuario;
 
 public class TestIUsuario {
 
@@ -629,8 +636,27 @@ public class TestIUsuario {
 		Date FechaNacimientoPruebas = formato.parse("22/6/1953");
 		iusuario.modificarArtista("clauper", "Cyndi", "Lauper", FechaNacimientoPruebas, "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.", "Cynthia Ann Stephanie Lauper (Brooklyn, Nueva York; 22 de junio de 1953).", "cyndilauper.com");
 		iusuario.modificarEspectador("waston", "Cyndi", "Lauper", FechaNacimientoPruebas);
-	
-	}
+		iusuario.filtrarUsuarios("");
+		iusuario.modificarArtistaCompleto("", "", "", FechaNacimientoPruebas, "", "", "", "");
+		iusuario.modificarEspectadorCompleto("", "", "", FechaNacimientoPruebas, "");
+		iusuario.actualizarUltimoIngreso("");
+		iusuario.getUsuarioNickname("");
+		iusuario.getUsuarioEmail("");
+		iusuario.logueoCorrecto("", "");
+		iusuario.existeNickname("");
+		iusuario.dejarSeguirUsuario("", "");
+		iusuario.getDtArtistaNickname("lospimpi");	
+		iusuario.existeCompraPaquete("eleven11", "");
+		DtArtistaPerfil aux2 = new DtArtistaPerfil("", "", "", "", new Date(), "", "",
+				"", "", "", null, null, null,
+				null, new Date(), null);
+		aux2.getUltimoIngreso();
+		aux2.getEspectaculosNOaceptados();
+		aux2.getFuncionesInvitado();
+		iusuario.perfilArtista("lospimpi");
+		iusuario.perfilEspectador("eleven11");
+		
+		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

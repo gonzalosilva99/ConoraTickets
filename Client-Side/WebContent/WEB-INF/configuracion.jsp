@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <%@page import="com.coronatickets.controllers.Login" %>
   <%@page import="controladores.Fabrica" %>
@@ -71,7 +72,7 @@
 				    	<div class="col-md-9">
 					        <input type="text" readonly style="margin-left:5%;display:inline;width:60%;"  class="form-control" value="<%=usuario.getEmail()%>" name="inputEmail" id="inputEmail"  placeholder="Email" aria-describedby="inputGroupPrepend" required>
 					        <div class="invalid-feedback">
-					          Email inv·lido.
+					          Email inv√°lido.
 					        </div>
 					    </div>
 				    </div>
@@ -83,7 +84,7 @@
 				    	<div class="col-md-9">
 						      <input type="text" readonly style="margin-left:5%;display:inline;width:60%;" class="form-control" value="<%=usuario.getNickname()%>" id="inputNickname" placeholder="Nickname" name="inputNickname" required>
 						      <div class="invalid-feedback">
-						        Nickname inv·lido.
+						        Nickname inv√°lido.
 						      </div>
 				   		 </div>
 				    </div>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
   <%@page import="controladores.Fabrica" %>
   <%@page import="datatypes.EstadoSesion" %>
   <%@page import="com.coronatickets.controllers.Login" %>
@@ -21,7 +21,7 @@
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
-      		<input id="tosearch" class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
+      		<input id="tosearch" class="form-control mr-sm-2" type="search" placeholder="Nickname, EspectÃ¡culo..." aria-label="Search">
       		<!--<a class="rounded-circle btn btn-outline-success my-2 mr-sm-2" href="../Client-Side/HTMLs/busqueda.html">-->
      		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="InvocarBusqueda()" type="button"> 
       		<i class="fas fa-search"></i>
@@ -47,9 +47,9 @@
 		       	</a>
 		    	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="UsernavbarDropdown">
 		          <a class="dropdown-item" href="/perfil">Mi Perfil</a>
-		          <a class="dropdown-item" href="/configuracion">Configuración</a>
+		          <a class="dropdown-item" href="/configuracion">ConfiguraciÃ³n</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+		          <a class="dropdown-item" href="/logout">Cerrar SesiÃ³n</a>
 		        </div>
 		        
 		    </li>
@@ -59,7 +59,7 @@
 		
 		%>
 		<li class="nav-item">
-		<a href="/login">Iniciar Sesión</a>
+		<a href="/login">Iniciar SesiÃ³n</a>
 		</li>
 		<li class="nav-item">/</li>
 		<li class="nav-item">

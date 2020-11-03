@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -67,7 +68,7 @@
 		 	      			<%}%></p>
 	 	   		</div>
 		 	    <div class="row">
-		 	    	<p class="mx-auto"><b>Último Ingreso: </b><% if(EsArtista){if(dtart.getUltimoIngreso()!=null){%>
+		 	    	<p class="mx-auto"><b>Ãšltimo Ingreso: </b><% if(EsArtista){if(dtart.getUltimoIngreso()!=null){%>
 						<%= fechaCompleta.format(dtart.getUltimoIngreso())%>
 		 	      		<%}else{%>
 		 	      			<%= "Nunca" %>
@@ -217,11 +218,11 @@
 						<p class="disabled"><b>Nickname:</b> <span id="nicknameUsuario"><% if(EsArtista){%>	<%= dtart.getNickname() %><%}else{%><%= dtesp.getNickname() %><%}%></span></p>
 						<p class="text-dark"><b>Nombre:</b> <span id="nombreUsuario"><% if(EsArtista){%>	<%= dtart.getNombre() %><%}else{%><%= dtesp.getNombre() %><%}%></span></p>
 						<p class="text-dark"><b>Apellido:</b> <span id="apellidoUsuario"><% if(EsArtista){%>	<%= dtart.getApellido() %><%}else{%><%= dtesp.getApellido() %><%}%></span></p>
-						<p class="disabled"><b>Correo Electrónico:</b> <span id="correoUsuario"><% if(EsArtista){%>	<%= dtart.getEmail() %><%}else{%><%= dtesp.getEmail() %><%}%></span></p>
+						<p class="disabled"><b>Correo ElectrÃ³nico:</b> <span id="correoUsuario"><% if(EsArtista){%>	<%= dtart.getEmail() %><%}else{%><%= dtesp.getEmail() %><%}%></span></p>
 						<p class="text-dark"><b>Fecha de Nacimiento:</b> <span id="nacimientoUsuario"><% if(EsArtista){%> <%= fechaIncompleta.format(dtart.getNacimiento()) %> <%}else{ %> <%= fechaIncompleta.format(dtesp.getNacimiento())  %> <%}%></span></p>
 						<% if(EsArtista){ %>
 						<p class="text-dark"><b>Desc. General:</b> <span id="descGeneralUsuario"><%= dtart.getDescgeneral() %></span></p>
-						<p class="text-dark"><b>Biografía:</b> <span id="biografiaUsuario"><%= dtart.getBiografia() %></span></p>
+						<p class="text-dark"><b>BiografÃ­a:</b> <span id="biografiaUsuario"><%= dtart.getBiografia() %></span></p>
 						<p class="text-dark"><b>URL:</b> <span id="urlUsuario"><a href="<%= dtart.getLink() %>"><%= dtart.getLink() %></a></span></p>
 						<%} %>
 					</div>
@@ -312,7 +313,7 @@
 			  		</div>
 			  		<% }%>			  		
 					<% if(EsArtista){ %>
-					<!-- CARGAMOS LOS ESPECTACULOS QUE ORGANIZA EL ARTISTA DUEÑO DE LA CUENTA -->
+					<!-- CARGAMOS LOS ESPECTACULOS QUE ORGANIZA EL ARTISTA DUEÃ‘O DE LA CUENTA -->
 					<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
 						<div class="container mt-5">
 							<% Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();

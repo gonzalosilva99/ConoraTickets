@@ -49,7 +49,7 @@
 						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= dtpaq.getDescuento() %>%</span></p>							            
 						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>	    
 	            		 <%
-	    	            		 	if(!Fabrica.getInstancia().getIUsuario().existeCompraPaquete(usuario,dtpaq.getNombre())){System.out.print("sii"+dtpaq.getNombre());
+	    	            		 	if(!Fabrica.getInstancia().getIUsuario().existeCompraPaquete(usuario,dtpaq.getNombre())){
 	    	            		 %>
 				<div class="container-fluid" id="compraNormal">
 					<form action="comprarpaquete" method="POST" class="form" id="formNormal">
@@ -62,11 +62,11 @@
 				
 				<!-- CANJEAR POR FUNCIONES -->
 				
-				
-				</div>
 				<div id="resultado-compra" class="mt-sm-5 ml-sm-5">
 				</div>
-				<%}else {System.out.print("noo"+dtpaq.getNombre());%>
+				</div>
+				
+				<%}else {%>
 				<div class="container-fluid mt-sm-5 ml-sm-5">
 					<p class="text-muted"><h1>YA HAS COMPRADO ESTE PAQUETE</h1></p>
 				</div>

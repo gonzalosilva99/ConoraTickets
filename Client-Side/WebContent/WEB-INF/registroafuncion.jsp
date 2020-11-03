@@ -154,7 +154,6 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 				break;
 			}
 		}
-		alert(selectedValue);
 	    var $form = $( this );
 	    var data = {
 	    		plataforma:'<%=Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre())%>',
@@ -226,7 +225,6 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 			}
 		}
 		if(cont==3){
-		alert(cont + " " + selectedValue[0] + " " + selectedValue[1] + " " + selectedValue[2]);
 	    var $form = $( this );
 	    var data = {
 	    		plataforma:'<%=Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre())%>',

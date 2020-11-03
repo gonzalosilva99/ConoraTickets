@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<%@page import="datatypes.DtPlataforma"%>
 	<%@page import="datatypes.DtCategoria"%>
 	<%@page import="datatypes.EstadoSesion" %>

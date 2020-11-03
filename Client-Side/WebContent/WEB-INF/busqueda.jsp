@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -39,7 +39,7 @@
         <div id="content">
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			
-            <h1>Resultado de B˙squeda</h1>
+            <h1>Resultado de B√∫squeda</h1>
             
            <div class="panel panel-info">
            		 <div class="panel-heading btn btn-primary" style="background-color:transparent;color:grey;border:none;">
@@ -80,7 +80,7 @@
 	            			<div class="col-md-4 col-lg-4">
 	            				<div class="form-group">
 	            				
-		                    	<p>CategorÌa: </p>
+		                    	<p>Categor√≠a: </p>
 	                        	<ul  name="categorias">
 							  	<%
 							  	HashSet<DtCategoria> Categorias = Fabrica.getInstancia().getICategoria().listarCategorias();
@@ -107,7 +107,7 @@
 	            					   <p>Ordenar por: </p>
 			                           <select  style="width: 70%;" class="custom-select" id="orden" name="orden">
 										      <option value="" selected>Elige el orden</option>
-										      <option value="alf">Orden alfabÈtico (asc.)</option>
+										      <option value="alf">Orden alfab√©tico (asc.)</option>
 										      <option value="date">Orden por fecha (desc.)</option>
 								      </select>
  									</div>	
@@ -115,7 +115,7 @@
 	                			</div>
 	            			
 	            		</div>
-	            		<p><b>Nota:</b> Los filtros ser·n aplicados a los espect·culos</p>
+	            		<p><b>Nota:</b> Los filtros ser√°n aplicados a los espect√°culos</p>
 	            		<button class="btn btn-primary" style="width: 15%;background-color:#148ea1;border:none;" type="submit" value="Acceder" onclick="submit()">Filtrar</button>
 	            		</form>
 	            	</div>  
@@ -139,7 +139,7 @@
 				</ul>
 				<div class="tab-content" id="myTabContent">
 							<%if( !(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0) && !(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0) && !(PaquetesFiltrados != null && PaquetesFiltrados.size() != 0)){%> 
-							<h3>No hay resultados para tu b˙squeda</h3><%}%>
+							<h3>No hay resultados para tu b√∫squeda</h3><%}%>
 	           		  		<%if(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0){ %>
 					  		<div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
 		    					<div class="row">
@@ -161,7 +161,7 @@
 		    					<%i++;p++;}}%>
 		    					<%if(i>0){%></div><%}%>
 							</div><br>
-							<button class="btn btn-primary btn-sm" style="<%if(p<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarusuarios" onclick="AddUsers()">Ver m·s</button>
+							<button class="btn btn-primary btn-sm" style="<%if(p<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarusuarios" onclick="AddUsers()">Ver m√°s</button>
 					  		</div>
 					  		<%}%>
 					  	<%if(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0){ %>
@@ -186,7 +186,7 @@
 		    					<%j++;r++;}}%>
 		    					<%if(j>0){%></div><%}%>
 		    					</div><br>
-		    					<button class="btn btn-primary btn-sm" style="<%if(r<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarespectaculos" onclick="AddEspecs()">Ver m·s</button>
+		    					<button class="btn btn-primary btn-sm" style="<%if(r<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarespectaculos" onclick="AddEspecs()">Ver m√°s</button>
 					  		
 						</div>	
 						<%}%>
@@ -213,7 +213,7 @@
 		    					<%k++;q++;}}%>
 		    					<%if(k>0){%></div><%}%>
 		    					</div><br>
-		    					<button class="btn btn-primary btn-sm" style="<%if(q<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarpaquetes" onclick="AddPaqs()">Ver m·s</button>
+		    					<button class="btn btn-primary btn-sm" style="<%if(q<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarpaquetes" onclick="AddPaqs()">Ver m√°s</button>
 				   		</div>
 				   		<%} %>
 				</div>

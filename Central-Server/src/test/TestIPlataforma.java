@@ -628,6 +628,9 @@ public class TestIPlataforma {
 		iplataforma.listarCategoriasDeEspectaculo("Youtube", "Springsteen on Broadway");
 		iplataforma.listarEspectaculosIngresados();
 		iplataforma.puedeAgregarEspectadores("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - i");
+		iplataforma.listarEspectaculosAceptadosDePlataforma("Youtube");
+		iplataforma.filtrarEspectaculos("a");
+		iplataforma.espectaculoinPlataforma("Youtube", "");
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());

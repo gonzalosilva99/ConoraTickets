@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 	  <%@page import="java.util.Set" %>
 	  <%@page import="java.util.Iterator" %>
     <%@page import="datatypes.DtPlataforma" %>
@@ -115,7 +117,7 @@
    </div>
 
 	<div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
-      <input type="text" class="form-control" name="funcion" id="nombreFuncion" placeholder="Nombre de la función" required>
+      <input type="text" class="form-control" name="funcion" id="nombreFuncion" placeholder="Nombre de la funciÃ³n" required>
       <% if((Integer)request.getSession().getAttribute("exito")!=null && (Integer)request.getSession().getAttribute("exito") == 2 ){ %>
 	  <h7  style="color:red;"> Ya existe una funcion con ese nombre!</h7>  
 	  <%} %>
