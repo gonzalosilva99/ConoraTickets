@@ -31,7 +31,6 @@
                             <a href="/altapaquete">Alta Paquete</a>
                             <a href="/altaespectaculo">Alta Espectaculo</a>
                             <a href="/altafuncion" ">Alta Funcion</a>
-                            <a href="#">Agregar Espectaculo a Paquete</a>
                         </li>
                     </ul>
             	</li>

@@ -82,8 +82,8 @@
       	%>
       	<%
       		} catch(Exception e){
-      	      		System.out.println("CATCH DEL LISTAR ESPECTACULOS");
-      	      	}
+      	      	      		System.out.println("CATCH DEL LISTAR ESPECTACULOS");
+      		}
       	%>
       	
 
