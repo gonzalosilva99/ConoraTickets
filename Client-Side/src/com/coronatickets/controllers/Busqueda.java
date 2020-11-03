@@ -61,37 +61,8 @@ public class Busqueda extends HttpServlet {
 				search = (String) request.getParameter("search");
 				usufilt = new LinkedList<DtUsuario>(Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search));
 				especfilt = new LinkedList<DtEspectaculoDatos>(Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search));
-				paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search));
-				Boolean FiltroCategorias = request.getParameterValues("checked") != null;
-				Boolean FiltroPlataforma = request.getParameter("plat") != null && request.getParameter("plat") != "";
-				if(FiltroPlataforma) {
-					String Plat = (String) request.getParameter("plat");
-					List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
-					for(DtEspectaculoDatos dtespecd : copiaespecs) {
-						if(!Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespecd.getNombre()).equalsIgnoreCase(Plat))
-							especfilt.remove(dtespecd);
-					}
+				paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search));	
 				}
-				if(FiltroCategorias) {
-					System.out.print("Filtro categorias");
-					Set<String> cats = new HashSet<String>();
-				    String[] values = request.getParameterValues("checked");
-				    for (int i = 0; i < values.length; i++) {
-				    	  cats.add(values[i]);
-				    }
-				    List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
-				    for(DtEspectaculoDatos dtespec : copiaespecs) {
-						String nombreplat = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespec.getNombre());
-						HashSet<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().ListarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
-						for(DtCategoria cat : categoriasespec) {
-							if(!cats.contains(cat.getNomCategoria())) {
-								especfilt.remove(dtespec);
-								break;
-							}
-						}
-					}
-				}
-			}
 			else {
 				usufilt = new LinkedList<DtUsuario>(Fabrica.getInstancia().getIUsuario().filtrarUsuarios(""));
 				especfilt = new LinkedList<DtEspectaculoDatos>(Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(""));
@@ -105,6 +76,50 @@ public class Busqueda extends HttpServlet {
 			paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search));
 		}
 
+
+		//Filtros
+		Boolean FiltroCategorias = request.getParameterValues("checked") != null;
+		Boolean FiltroPlataforma = request.getParameter("plat") != null && request.getParameter("plat") != "";
+		if(FiltroPlataforma) {
+			String Plat = (String) request.getParameter("plat");
+			List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
+			for(DtEspectaculoDatos dtespecd : copiaespecs) {
+				if(!Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespecd.getNombre()).equalsIgnoreCase(Plat))
+					especfilt.remove(dtespecd);
+			}
+		}
+		System.out.print("Despues de salir de fplat es " + especfilt.size());
+		
+		if(FiltroCategorias) {
+			System.out.print("Filtro categorias");
+			Set<String> cats = new HashSet<String>();
+		    String[] values = request.getParameterValues("checked");
+		    for (int i = 0; i < values.length; i++) {
+		    	  cats.add(values[i]);
+		    	  System.out.println(values[i]);
+		    }
+		    System.out.println("El largo de las cateogiras es " + cats.size());
+		    List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
+		    for(DtEspectaculoDatos dtespec : copiaespecs) {
+				String nombreplat = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespec.getNombre());
+				HashSet<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().ListarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
+				for(String cat : cats) {
+					DtCategoria dtcat = Fabrica.getInstancia().getICategoria().getCategoria(cat).getDtCategoria();
+					System.out.println("la categoria es " + dtcat.getNomCategoria());
+					Boolean tiene = false;
+					for(DtCategoria aux : categoriasespec) {
+						if(aux.getNomCategoria().equalsIgnoreCase(dtcat.getNomCategoria())) {
+							tiene=true;
+							break;	
+						}
+					}
+					if(!tiene)
+						especfilt.remove(dtespec);
+				}
+			}
+		}
+		
+		
 		//Si pidieron orden
 		if(request.getParameter("orden") != null) {
 			String orden = (String) request.getParameter("orden");
@@ -116,9 +131,13 @@ public class Busqueda extends HttpServlet {
 				usufilt.sort((x, y) -> x.getNombre().compareToIgnoreCase(y.getNombre()));
 			}
 			else if(orden.equalsIgnoreCase("date")) {
+				especfilt.sort((x,y) -> y.getRegistro().compareTo(x.getRegistro()));
+				paqfilt.sort((x,y) -> y.getInicio().compareTo(x.getInicio()));
+				usufilt.sort((x,y) -> y.getNacimiento().compareTo(x.getNacimiento()));
 			}
 		}
-		System.out.print("El largo de los paquetes es: " + paqfilt.size());
+		
+		System.out.println("El largo de los paquetes es: " + paqfilt.size());
 		request.setAttribute("UsuariosFiltrados", usufilt);
 		request.setAttribute("EspectaculosFiltrados", especfilt);
 		request.setAttribute("PaquetesFiltrados", paqfilt);
