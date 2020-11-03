@@ -223,7 +223,6 @@ $(document).ready(function () {
 			return false;
 		}
 		document.getElementById("botonEnviar").onclick = function () { 
-			alert("FALTA AGREGAR QUE LOS ESPECTACULOS SEAN DEL ARTISTA, no se xq no anda eso ");
 			var e = document.getElementById("selectPlataformas");
 			var plataforma = e.options[e.selectedIndex].text;
 			document.getElementById("inputPrueba").value = plataforma
