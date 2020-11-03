@@ -21,108 +21,108 @@ import Manejadores.ManejadorPaquetes;
 
 
 public class Espectaculo {
-	private String Nombre;
-	private Date Registro;
-	private Integer Costo;
-	private String URL;
-	private Integer CantMax;
-	private Integer CantMin;
-	private Integer Duracion;
-	private String Descripcion;
-	private Artista Organizador;
-	private String Imagen;
-	private EstadoEspectaculo Estado;
-	private Map<String, Funcion> Funciones;
-	private HashSet<Categoria> Categorias;
+	private String nombre;
+	private Date registro;
+	private Integer costo;
+	private String url;
+	private Integer cantmax;
+	private Integer cantmin;
+	private Integer duracion;
+	private String descripcion;
+	private Artista organizador;
+	private String imagen;
+	private EstadoEspectaculo estado;
+	private Map<String, Funcion> funciones;
+	private HashSet<Categoria> categorias;
 	
 	
 	
-		public Espectaculo(String nombre, Date registro, Integer costo, String uRL, Integer cantMax, Integer cantMin, Integer duracion, String descripcion, String imagen) {
+		public Espectaculo(String nombre, Date registro, Integer costo, String url, Integer cantmax, Integer cantmin, Integer duracion, String descripcion, String imagen) {
 			super();
-			Nombre = nombre;
-			Registro = registro;
-			Costo = costo;
-			URL = uRL; 
-			CantMax = cantMax;
-			CantMin = cantMin;
-			Duracion = duracion;
-			Descripcion = descripcion;
-			Imagen = imagen;
-			Funciones = new HashMap<String,Funcion>();
-			Estado = EstadoEspectaculo.Ingresado;
-			Categorias = new HashSet<Categoria>();
+			this.nombre = nombre;
+			this.registro = registro;
+			this.costo = costo;
+			this.url = url; 
+			this.cantmax = cantmax;
+			this.cantmin = cantmin;
+			this.duracion = duracion;
+			this.descripcion = descripcion;
+			this.imagen = imagen;
+			this.funciones = new HashMap<String, Funcion>();
+			this.estado = EstadoEspectaculo.Ingresado;
+			this.categorias = new HashSet<Categoria>();
 		}
 		public String getNombre() {
-			return Nombre;
+			return nombre;
 		}
 		public void setNombre(String nombre) {
-			Nombre = nombre;
+			this.nombre = nombre;
 		}
 		public Date getRegistro() {
-			return Registro;
+			return registro;
 		}
 		public void setRegistro(Date registro) {
-			Registro = registro;
+			this.registro = registro;
 		}
 		public Integer getCosto() {
-			return Costo;
+			return costo;
 		}
 		
 		public void setCosto(Integer costo) {
-			Costo = costo;
+			this.costo = costo;
 		}
 		public String getURL() {
-			return URL;
+			return url;
 		}
-		public void setURL(String uRL) {
-			URL = uRL;
+		public void setURL(String url) {
+			this.url = url;
 		}
 		public Integer getCantMax() {
-			return CantMax;
+			return cantmax;
 		}
-		public void setCantMax(Integer cantMax) {
-			CantMax = cantMax;
+		public void setCantMax(Integer cantmax) {
+			this.cantmax = cantmax;
 		}
 		public Integer getCantMin() {
-			return CantMin;
+			return cantmin;
 		}
 		
 		
 		public EstadoEspectaculo getEstado() {
-			return Estado;
+			return estado;
 		}
 		public void setEstado(EstadoEspectaculo estado) {
-			Estado = estado;
+			this.estado = estado;
 		}
 		public String getImagen() {
-			return Imagen;
+			return imagen;
 		}
 		public void setImagen(String imagen) {
-			Imagen = imagen;
+			this.imagen = imagen;
 		}
 
 		public Set<Categoria> getCategorias() {
-			return Categorias;
+			return categorias;
 		}
 		public void setCategorias(HashSet<Categoria> categorias) {
-			Categorias = categorias;
+			this.categorias = categorias;
 		}
 		public Artista getOrganizador() {
-			return Organizador;
+			return organizador;
 		}
 		public void setOrganizador(Artista organizador) {
-			Organizador = organizador;
+			this.organizador = organizador;
 		}
 		public Map<String, Funcion> getFunciones() {
-			return Funciones;
+			return funciones;
 		}
 		public void setFunciones(Map<String, Funcion> funciones) {
-			Funciones = funciones;
+			this.funciones = funciones;
 		}
 		public Set<DtFuncion> getFuncionesVigentes(){
 			Set<DtFuncion> ret = new HashSet<DtFuncion>();
-			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
-				if(entry.getValue().estaVigente()) {
+			for (Map.Entry<String, Funcion> entry : funciones.entrySet()) {
+				if (entry.getValue().estaVigente()) {
 					DtFuncion nueva = entry.getValue().getDtFuncion();
 					ret.add(nueva);  
 				}				
@@ -132,83 +132,83 @@ public class Espectaculo {
 		 
 		
 		
-		public void setCantMin(Integer cantMin) {
-			CantMin = cantMin;
+		public void setCantMin(Integer cantmin) {
+			this.cantmin = cantmin;
 		}
 		public Integer getDuracion() {
-			return Duracion;
+			return duracion;
 		}
 		public void setDuracion(Integer duracion) {
-			Duracion = duracion;
+			this.duracion = duracion;
 		}
 		public String getDescripcion() {
-			return Descripcion;
+			return descripcion;
 		}
 		public void setDescripcion(String descripcion) {
-			Descripcion = descripcion;
+			this.descripcion = descripcion;
 		}
 		public Funcion getFuncion(String nomFuncion) {
-			return Funciones.get(nomFuncion);
+			return funciones.get(nomFuncion);
 		}
 		public DtEspectaculo getDatosEspectaculo() {
-			DtEspectaculo dte = new DtEspectaculo(Nombre, Descripcion,Imagen, Estado, Costo);
+			DtEspectaculo dte = new DtEspectaculo(nombre, descripcion, imagen, estado, costo);
 			return dte;
 		}
 		public DtFuncionDatos getDtFuncionDatos(String nombreFuncion){
-			return Funciones.get(nombreFuncion).getDtFuncionDatos(this.getDatosEspectaculo());
+			return funciones.get(nombreFuncion).getDtFuncionDatos(this.getDatosEspectaculo());
 		}
 		
 		
 		public DtFuncionDatos mostrarFuncion(String NombreFun) {
-			Funcion fun = Funciones.get(NombreFun);
+			Funcion fun = funciones.get(NombreFun);
 			DtFuncionDatos dtfun = new DtFuncionDatos();
 			return dtfun;
 		}
 		public DtEspectaculoDatos getDtEspectaculoDatos() {
 			ManejadorPaquetes manpaq = Manejadores.ManejadorPaquetes.getInstancia();
-			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(Nombre);
+			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(nombre);
 			HashSet<DtCategoria> listacategorias = listarCategorias();
-			DtEspectaculo esp = new DtEspectaculo(this.Nombre,this.Descripcion, Imagen, this.Estado, this.Costo);
-			DtEspectaculoDatos ret = new DtEspectaculoDatos(Nombre, Descripcion, Duracion, CantMin, CantMax, URL, Costo.floatValue(), Registro, this.listarFuncionesDatos(esp) , listaPaquetes, Organizador.getDtArtista(),Imagen,listacategorias); 
+			DtEspectaculo esp = new DtEspectaculo(this.nombre, this.descripcion, imagen, this.estado, this.costo);
+			DtEspectaculoDatos ret = new DtEspectaculoDatos(nombre, descripcion, duracion, cantmin, cantmax, url, costo.floatValue(), registro, this.listarFuncionesDatos(esp) , listaPaquetes, organizador.getDtArtista(), imagen, listacategorias); 
 			return ret;
 		
 		}
 		public void AnadirFuncion(String nombre, Date inicio, Date alta, String imagen) {
 			Funcion ret = new Funcion(nombre, inicio, alta, imagen);
-			Funciones.put(nombre, ret);
+			funciones.put(nombre, ret);
 		}
 		public Funcion ObtenerFuncion(String nombre) {
-			return Funciones.get(nombre);
+			return funciones.get(nombre);
 		}
 		
 		public boolean existeFuncion(String nombreFuncion) {
-			for (Map.Entry<String,Funcion> entry : Funciones.entrySet()) {
-	            if(entry.getValue().getNombre().equalsIgnoreCase(nombreFuncion)) {
+			for (Map.Entry<String, Funcion> entry : funciones.entrySet()) {
+	            if (entry.getValue().getNombre().equalsIgnoreCase(nombreFuncion)) {
 	            	return true;
 	            }           
 			}
 			return false;	
 		}
 		public DtFuncionDatos getFuncionDatos(String nombreFuncion) {
-			Funcion fun = Funciones.get(nombreFuncion);
-			DtEspectaculo datosEsp = new DtEspectaculo(Nombre, Descripcion, Imagen, Estado, Costo);
+			Funcion fun = funciones.get(nombreFuncion);
+			DtEspectaculo datosEsp = new DtEspectaculo(nombre, descripcion, imagen, estado, costo);
 			return fun.getDtFuncionDatos(datosEsp);
 		}
 		
 		public Boolean PuedeAgregarEspectadores(String nombreFuncion){
-			Funcion fun = Funciones.get(nombreFuncion);
+			Funcion fun = funciones.get(nombreFuncion);
 			Integer espec = fun.getEspectadores();
-			return (espec<CantMax);
+			return (espec<cantmax);
 		}
 		
 		public void AnadirCategoria(Categoria c) {
-			Categorias.add(c);
+			categorias.add(c);
 		}
 		
 		public HashSet<DtCategoria> listarCategorias() {
 			HashSet<DtCategoria> ret = new HashSet<DtCategoria>();
-			Iterator<Categoria> iter = Categorias.iterator();
-			while(iter.hasNext()) {
+			Iterator<Categoria> iter = categorias.iterator();
+			while (iter.hasNext()) {
 				DtCategoria nueva = iter.next().getDtCategoria();
 				ret.add(nueva);
 			}
@@ -217,8 +217,8 @@ public class Espectaculo {
 		
 		public Set<DtFuncionDatos> listarFuncionesDatos(DtEspectaculo esp){
 			HashSet<DtFuncionDatos> ret = new HashSet<DtFuncionDatos>();
-			if ( Funciones != null) {
-				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+			if (funciones != null) {
+				for (Map.Entry<String, Funcion> entry : funciones.entrySet()) {
 					DtFuncionDatos nueva = entry.getValue().getDtFuncionDatos(esp);
 					ret.add(nueva);
 				}
@@ -228,8 +228,8 @@ public class Espectaculo {
 		
 		public Set<DtFuncion> listarFunciones(){
 			HashSet<DtFuncion> ret = new HashSet<DtFuncion>();
-			if ( Funciones != null) {
-				for(Map.Entry<String, Funcion> entry : Funciones.entrySet()) {
+			if (funciones != null) {
+				for (Map.Entry<String, Funcion> entry : funciones.entrySet()) {
 					DtFuncion nueva = entry.getValue().getDtFuncion();
 					ret.add(nueva);
 				}

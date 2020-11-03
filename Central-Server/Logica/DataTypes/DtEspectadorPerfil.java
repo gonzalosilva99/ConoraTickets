@@ -1,26 +1,26 @@
 package DataTypes;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.Set;
 
 public class DtEspectadorPerfil extends DtEspectadorConsulta{
 	private
-	HashSet<DtPaqueteDatos> PaquetesComprados;
-	Date UltimoIngreso;
+	Set<DtPaqueteDatos> paquetesComprados;
+	Date ultimoIngreso;
 
 	public DtEspectadorPerfil(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena,
-			HashSet<DtFuncion> funciones, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo, HashSet<DtPaqueteDatos> paquetesComprados, Date UltimoIngreso) {
-		super(nickname, nombre, apellido, email, nacimiento,imagen,contrasena, funciones,seguidores,siguiendo);
-		PaquetesComprados = paquetesComprados;
-		this.UltimoIngreso=UltimoIngreso;
+			Set<DtFuncion> funciones, Set<DtUsuario> seguidores, Set<DtUsuario> siguiendo, Set<DtPaqueteDatos> paquetesComprados, Date ultimoIngreso) {
+		super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena, funciones, seguidores, siguiendo);
+		this.paquetesComprados = paquetesComprados;
+		this.ultimoIngreso=ultimoIngreso;
 	}
 
 	public Date getUltimoIngreso() {
-		return UltimoIngreso;
+		return ultimoIngreso;
 	}
 	
-	public HashSet<DtPaqueteDatos> getPaquetesComprados() {
-		return PaquetesComprados;
+	public Set<DtPaqueteDatos> getPaquetesComprados() {
+		return paquetesComprados;
 	}
 
 }

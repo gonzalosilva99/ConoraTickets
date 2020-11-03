@@ -8,63 +8,63 @@ public class DtPaqueteDatos {
 public DtPaqueteDatos(String nombre, String descripcion, Date inicio, Date fin, Double descuento,
 			HashSet<DtEspectaculo> espectaculos, HashSet<DtCategoria> categorias, String imagen) {
 		super();
-		Nombre = nombre;
-		Descripcion = descripcion;
-		Inicio = inicio;
-		Fin = fin;
-		Descuento = descuento;
-		Espectaculos = espectaculos;
-		Categorias = categorias;
-		Imagen = imagen;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.inicio = inicio;
+		this.fin = fin;
+		this.descuento = descuento;
+		this.espectaculos = espectaculos;
+		this.categorias = categorias;
+		this.imagen = imagen;
 	}
 private
-String Nombre;
+String nombre;
 private
-String Descripcion;
+String descripcion;
 private
-Date Inicio;
+Date inicio;
 
 public DtPaqueteDatos() {
 	super();
 }
 private
-Date Fin;
+Date fin;
 private
-Double Descuento;
+Double descuento;
 private
-HashSet<DtEspectaculo> Espectaculos;
+HashSet<DtEspectaculo> espectaculos;
 private
-HashSet<DtCategoria> Categorias;
+HashSet<DtCategoria> categorias;
 
-private String Imagen;
+private String imagen;
 
 
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 public String getDescripcion() {
-	return Descripcion;
+	return descripcion;
 }
 public Date getInicio() {
-	return Inicio;
+	return inicio;
 }
 public Date getFin() {
-	return Fin;
+	return fin;
 }
 
 public String getImagen(){
-	return Imagen;
+	return imagen;
 	
 }
 
 public Double getDescuento() {
-	return Descuento;
+	return descuento;
 }
 public HashSet<DtEspectaculo> getEspectaculos() {
-	return Espectaculos;
+	return espectaculos;
 }
 public HashSet<DtCategoria> getCategorias() {
-	return Categorias;
+	return categorias;
 }
 
 }

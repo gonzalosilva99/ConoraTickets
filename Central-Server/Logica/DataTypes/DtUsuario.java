@@ -5,52 +5,52 @@ import java.util.HashSet;
 
 public class DtUsuario {
 	private
-		String Nickname;
-		String Nombre;
-		String Apellido;
-		String Contrasena;
-		String Email;
-		String Imagen;
-		Date Nacimiento;
+		String nickname;
+		String nombre;
+		String apellido;
+		String contrasena;
+		String email;
+		String imagen;
+		Date nacimiento;
 		
 		public DtUsuario(String nickname, String nombre, String apellido, String contrasena, String email,
 				String imagen, Date nacimiento) {
 			super();
-			Nickname = nickname;
-			Nombre = nombre;
-			Apellido = apellido;
-			Contrasena = contrasena;
-			Email = email;
-			Imagen = imagen;
-			Nacimiento = nacimiento;
+			this.nickname = nickname;
+			this.nombre = nombre;
+			this.apellido = apellido;
+			this.contrasena = contrasena;
+			this.email = email;
+			this.imagen = imagen;
+			this.nacimiento = nacimiento;
 		}
 
 		public String getNickname() {
-			return Nickname;
+			return nickname;
 		}
 
 		public String getNombre() {
-			return Nombre;
+			return nombre;
 		}
 
 		public String getApellido() {
-			return Apellido;
+			return apellido;
 		}
 
 		public String getContrasena() {
-			return Contrasena;
+			return contrasena;
 		}
 
 		public String getEmail() {
-			return Email;
+			return email;
 		}
 
 		public String getImagen() {
-			return Imagen;
+			return imagen;
 		}
 
 		public Date getNacimiento() {
-			return Nacimiento;
+			return nacimiento;
 		}
 		
 		

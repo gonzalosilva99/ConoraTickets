@@ -4,35 +4,35 @@ public class DtEspectaculo {
 	
 public DtEspectaculo(String nombre, String descripcion, String imagen, EstadoEspectaculo estado, Integer costo) {
 		super();
-		Nombre = nombre;
-		Descripcion = descripcion;
-		Imagen = imagen;
-		Costo= costo;
-		Estado = estado;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.imagen = imagen;
+		this.costo= costo;
+		estado = estado;
 	}
-private EstadoEspectaculo Estado;
-private Integer Costo;
+private EstadoEspectaculo estado;
+private Integer costo;
 private
-String Nombre;
+String nombre;
 private
-String Descripcion;
+String descripcion;
 private
-String Imagen;
+String imagen;
 
 public EstadoEspectaculo getEstado() {
-	return Estado;
+	return estado;
 }
 public Integer getCosto() {
-	return Costo;
+	return costo;
 }
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 public String getDescripcion() {
-	return Descripcion;
+	return descripcion;
 }
 public String getImagen() {
-	return Imagen;
+	return imagen;
 }
 
 }

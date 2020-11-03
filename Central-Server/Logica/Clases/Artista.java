@@ -21,134 +21,134 @@ import DataTypes.DtArtistaPerfil;
 
 public class Artista extends Usuario{
 	private
-		String DescripcionGeneral;
-		String Biografia;
-		String URL;
-		HashSet<Espectaculo> Espectaculos;
-		HashSet<Funcion> FuncionesInvitado;
+		String descripcionGeneral;
+		String biografia;
+		String url;
+		Set<Espectaculo> espectaculos;
+		Set<Funcion> funcionesinvitado;
 		
-		public Artista(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena, String descripcionGeneral, String biografia, String uRL) {
-			super(nickname,nombre, apellido, email,nacimiento,imagen,contrasena);
-			DescripcionGeneral = descripcionGeneral;
-			Biografia = biografia;
-			URL = uRL;
-			Espectaculos = new HashSet<Espectaculo>();
-			FuncionesInvitado = new HashSet<Funcion>();
+		public Artista(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena, String descripcionGeneral, String biografia, String url) {
+			super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena);
+			this.descripcionGeneral = descripcionGeneral;
+			this.biografia = biografia;
+			this.url = url;
+			this.espectaculos = new HashSet<Espectaculo>();
+			this.funcionesinvitado = new HashSet<Funcion>();
 		}
 		public String getDescripcionGeneral() {
-			return DescripcionGeneral;
+			return descripcionGeneral;
 		}
 		public void setDescripcionGeneral(String descripcionGeneral) {
-			DescripcionGeneral = descripcionGeneral;
+			this.descripcionGeneral = descripcionGeneral;
 		}
 		public String getBiografia() {
-			return Biografia;
+			return biografia;
 		}
 		public void setBiografia(String biografia) {
-			Biografia = biografia;
+			this.biografia = biografia;
 		}
 		public String getURL() {
-			return URL;
+			return url;
 		}
-		public void setURL(String uRL) {
-			URL = uRL;
+		public void setURL(String url) {
+			this.url = url;
 		}
-		public HashSet<Funcion> getFuncionesInvitado() {
-			return FuncionesInvitado;
+		public Set<Funcion> getFuncionesInvitado() {
+			return funcionesinvitado;
 		}
-		public void setFuncionesInvitado(HashSet<Funcion> funcionesInvitado) {
-			FuncionesInvitado = funcionesInvitado;
+		public void setFuncionesInvitado(HashSet<Funcion> funcionesinvitado) {
+			this.funcionesinvitado = funcionesinvitado;
 		}
-		public HashSet<Espectaculo> getEspectaculos() {
-			return Espectaculos;
+		public Set<Espectaculo> getEspectaculos() {
+			return espectaculos;
 		}
 		public void setEspectaculos(HashSet<Espectaculo> espectaculos) {
-			Espectaculos = espectaculos;
+			this.espectaculos = espectaculos;
 		}
 		
 		
 		public DtArtista getDtArtista() {
 			HashSet<DtEspectaculo> datosEspectaculos = new HashSet<DtEspectaculo>();
-			Iterator<Espectaculo> itresp = Espectaculos.iterator();
-			while(itresp.hasNext()) {
+			Iterator<Espectaculo> itresp = espectaculos.iterator();
+			while (itresp.hasNext()) {
 				Espectaculo nuevo = itresp.next();
-				if(nuevo.getEstado()!=EstadoEspectaculo.Aceptado)
+				if (nuevo.getEstado()!=EstadoEspectaculo.Aceptado)
 					datosEspectaculos.add(nuevo.getDatosEspectaculo());
 			}
-			DtArtista ret = new DtArtista(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(), datosEspectaculos);
+			DtArtista ret = new DtArtista(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento(), this.getDescripcionGeneral(), this.getBiografia(), this.getURL(), datosEspectaculos);
 			return ret;
 		}
 		
 		public DtArtistaPerfil getDtArtistaPerfil() {
-			HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
-			for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+			Set<DtUsuario> seguidore = new HashSet<DtUsuario>();
+			for (Map.Entry<String, Usuario> entry : seguidores.entrySet()) {
 					DtUsuario nuevo = entry.getValue().getDtUsuario();
-					seguidores.add(nuevo);
+					seguidore.add(nuevo);
 			}
 			
-			HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
-			for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+			Set<DtUsuario> siguiend = new HashSet<DtUsuario>();
+			for (Map.Entry<String, Usuario> entry : siguiendo.entrySet()) {
 					DtUsuario nuevo = entry.getValue().getDtUsuario();
-					siguiendo.add(nuevo);
+					siguiend.add(nuevo);
 			}
-			HashSet<DtEspectaculo> espna = new HashSet<DtEspectaculo>();
-			Iterator<Espectaculo> itresp = Espectaculos.iterator();
-			while(itresp.hasNext()) {
+			Set<DtEspectaculo> espna = new HashSet<DtEspectaculo>();
+			Iterator<Espectaculo> itresp = espectaculos.iterator();
+			while (itresp.hasNext()) {
 				Espectaculo nuevo = itresp.next();
-				if(nuevo.getEstado()!=EstadoEspectaculo.Aceptado)
+				if (nuevo.getEstado()!=EstadoEspectaculo.Aceptado)
 					espna.add(nuevo.getDatosEspectaculo());
 			}
 			
-			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
-			Iterator<Espectaculo> itr = Espectaculos.iterator();
-			while(itr.hasNext()) {
+			Set<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
+			Iterator<Espectaculo> itr = espectaculos.iterator();
+			while (itr.hasNext()) {
 				DtEspectaculo nuevo = itr.next().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
 			
-			HashSet<DtFuncion> fun = new HashSet<DtFuncion>();
-			Iterator<Funcion> itrf = this.FuncionesInvitado.iterator();
-			while(itrf.hasNext()) {
+			Set<DtFuncion> fun = new HashSet<DtFuncion>();
+			Iterator<Funcion> itrf = this.funcionesinvitado.iterator();
+			while (itrf.hasNext()) {
 				DtFuncion nuevo = itrf.next().getDtFuncion();
 				fun.add(nuevo);
 			}
-			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo,espna, this.getUltimoIngreso(), fun);
+			DtArtistaPerfil ret = new DtArtistaPerfil(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento(), this.getImagen(), this.getContrasena(), this.getDescripcionGeneral(), this.getBiografia(), this.getURL(), esp, seguidore, siguiend, espna, this.getUltimoIngreso(), fun);
 			return ret;
 		}
 		
 		public DtArtistaConsulta getDtArtistaConsulta() {
-			HashSet<DtUsuario> seguidores = new HashSet<DtUsuario>();
-			for (Map.Entry<String,Usuario> entry : Seguidores.entrySet()) {
+			HashSet<DtUsuario> seguidore = new HashSet<DtUsuario>();
+			for (Map.Entry<String, Usuario> entry : seguidores.entrySet()) {
 					DtUsuario nuevo = entry.getValue().getDtUsuario();
-					seguidores.add(nuevo);
+					seguidore.add(nuevo);
 			}
 			
-			HashSet<DtUsuario> siguiendo = new HashSet<DtUsuario>();
-			for (Map.Entry<String,Usuario> entry : Siguiendo.entrySet()) {
+			HashSet<DtUsuario> siguiend = new HashSet<DtUsuario>();
+			for (Map.Entry<String, Usuario> entry : siguiendo.entrySet()) {
 					DtUsuario nuevo = entry.getValue().getDtUsuario();
-					siguiendo.add(nuevo);
+					siguiend.add(nuevo);
 			}
 			
 			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
-			Iterator<Espectaculo> itr = Espectaculos.iterator();
-			while(itr.hasNext()) {
+			Iterator<Espectaculo> itr = espectaculos.iterator();
+			while (itr.hasNext()) {
 				DtEspectaculo nuevo = itr.next().getDatosEspectaculo();
 				esp.add(nuevo);
 			}
-			DtArtistaConsulta ret = new DtArtistaConsulta(this.getNickname(),this.getNombre(),this.getApellido(),this.getEmail(),this.getNacimiento(),this.getImagen(),this.getContrasena(),this.getDescripcionGeneral(),this.getBiografia(),this.getURL(),esp,seguidores,siguiendo);
+			DtArtistaConsulta ret = new DtArtistaConsulta(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getNacimiento(), this.getImagen(), this.getContrasena(), this.getDescripcionGeneral(), this.getBiografia(), this.getURL(), esp, seguidore, siguiend);
 			return ret;
 		}
 		
 		public void AnadirEspectaculo(Espectaculo e) {
-			Espectaculos.add(e);
+			espectaculos.add(e);
 		}
 		public void anadirFuncion(Funcion funcion) {
-			funcion.anadirArtista(this,this.getNickname());
-			FuncionesInvitado.add(funcion);
+			funcion.anadirArtista(this, this.getNickname());
+			funcionesinvitado.add(funcion);
 		}
 		public boolean participaEspectaculo(String nombreEspectaculo) {
-			Iterator<Espectaculo> itr = Espectaculos.iterator();
-			while(itr.hasNext()) {
+			Iterator<Espectaculo> itr = espectaculos.iterator();
+			while (itr.hasNext()) {
 				if (itr.next().getNombre() == nombreEspectaculo)
 					return true;	
 				}

@@ -4,47 +4,47 @@ import java.util.Date;
 import java.util.Set;
 
 public class DtFuncionDatos {
-private String Nombre;
-private	Date Inicio;
-private	Date Alta;
-private	Set<DtArtista> Artistas;
-private	DtEspectaculo Espectaculo;	
-private String Imagen;
-private Integer Espectadores;
+private String nombre;
+private	Date inicio;
+private	Date alta;
+private	Set<DtArtista> artistas;
+private	DtEspectaculo espectaculo;	
+private String imagen;
+private Integer espectadores;
 	
 public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas, DtEspectaculo espectaculo, String imagen, Integer espectadores) {
 		super();
-		Nombre = nombre;
-		Inicio = inicio;
-		Alta = alta;
-		Artistas = artistas;
-		Espectaculo = espectaculo;
-		Imagen = imagen;
-		Espectadores = espectadores;
+		this.nombre = nombre;
+		this.inicio = inicio;
+		this.alta = alta;
+		this.artistas = artistas;
+		this.espectaculo = espectaculo;
+		this.imagen = imagen;
+		this.espectadores = espectadores;
 	}
 public DtFuncionDatos() {}
 
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 public String getImagen() {
-	return Imagen;
+	return imagen;
 }
 public Integer getEspectadores() {
-	return Espectadores;
+	return espectadores;
 }
 public Date getInicio() {
-	return Inicio;
+	return inicio;
 }
 public Date getAlta() {
-	return Alta;
+	return alta;
 }
 public Set<DtArtista> getArtistas() {
-	return Artistas;
+	return artistas;
 }
 public DtEspectaculo getEspectaculo() {
 
-	return Espectaculo;
+	return espectaculo;
 }
 
 }

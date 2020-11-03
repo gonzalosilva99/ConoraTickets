@@ -6,41 +6,41 @@ public class DtPaquete {
 
 
 private
-String Nombre;
+String nombre;
 private
-String Descripcion;
+String descripcion;
 private
-String Imagen;
+String imagen;
 private
-Double Descuento;
+Double descuento;
 private
-Date Inicio;
+Date inicio;
 private
-Date Fin;
+Date fin;
 public DtPaquete(String nombre, String descripcion, String imagen, Double descuento, Date inicio, Date fin) {
-	Nombre = nombre;
-	Descripcion = descripcion;
-	Descuento = descuento;
-	Imagen = imagen;
-	Inicio = inicio;
-	Fin = fin;
+	this.nombre = nombre;
+	this.descripcion = descripcion;
+	this.descuento = descuento;
+	this.imagen = imagen;
+	this.inicio = inicio;
+	this.fin = fin;
 }
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 public String getDescripcion() {
-	return Descripcion;
+	return descripcion;
 }
 public String getImagen() {
-	return Imagen;
+	return imagen;
 }
 public Double getDescuento() {
-	return Descuento;
+	return descuento;
 }
 public Date getInicio() {
-	return Inicio;
+	return inicio;
 }
 public Date getFin() {
-	return Fin;
+	return fin;
 }
 }

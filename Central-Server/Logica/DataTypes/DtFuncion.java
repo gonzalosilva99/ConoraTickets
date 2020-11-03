@@ -6,30 +6,30 @@ public class DtFuncion {
 
 public DtFuncion(String nombre2, Date inicio2, Date alta2, String imagen2) {
 	super();
-	Nombre = nombre2;
-	Inicio = inicio2;
-	Alta = alta2;
-	Imagen = imagen2;
+	nombre = nombre2;
+	inicio = inicio2;
+	alta = alta2;
+	imagen = imagen2;
 }
 private
-String Nombre;
+String nombre;
 private
-Date Inicio;
+Date inicio;
 private
-Date Alta;
+Date alta;
 private
-String Imagen;
+String imagen;
 public String getNombre() {
-	return Nombre;
+	return nombre;
 }
 public String getImagen() {
-	return Imagen;
+	return imagen;
 }
 public Date getInicio() {
-	return Inicio;
+	return inicio;
 }
 public Date getAlta() {
-	return Alta;
+	return alta;
 }
 
 }

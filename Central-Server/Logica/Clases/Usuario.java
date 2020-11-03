@@ -9,122 +9,122 @@ import java.util.Set;
 import DataTypes.DtUsuario;
 
 public abstract class Usuario {
-	private String Nickname;
-	private String Nombre;
-	private String Apellido;
-	private String Email;
-	private String Imagen;
-	private String Contrasena;
-	private Date Nacimiento;
-	protected HashMap<String, Usuario> Seguidores;
-	protected HashMap<String, Usuario> Siguiendo;
-	private Date UltimoIngreso;
+	private String nickname;
+	private String nombre;
+	private String apellido;
+	private String email;
+	private String imagen;
+	private String contrasena;
+	private Date nacimiento;
+	protected HashMap<String, Usuario> seguidores;
+	protected HashMap<String, Usuario> siguiendo;
+	private Date ultimoIngreso;
 		public String getNickname() {
-			return Nickname;
+			return nickname;
 		}
 		public void setNickname(String nickname) {
-			Nickname = nickname;
+			this.nickname = nickname;
 		}
 		public Usuario(String nickname, String nombre, String apellido, String email, String imagen, String contrasena,
 				Date nacimiento, HashMap<String, Usuario> seguidores, HashMap<String, Usuario> siguiendo,
 				Date ultimoIngreso) {
 			super();
-			Nickname = nickname;
-			Nombre = nombre;
-			Apellido = apellido;
-			Email = email;
-			Imagen = imagen;
-			Contrasena = contrasena;
-			Nacimiento = nacimiento;
-			Seguidores = seguidores;
-			Siguiendo = siguiendo;
-			UltimoIngreso = ultimoIngreso;
+			this.nickname = nickname;
+			this.nombre = nombre;
+			this.apellido = apellido;
+			this.email = email;
+			this.imagen = imagen;
+			this.contrasena = contrasena;
+			this.nacimiento = nacimiento;
+			this.seguidores = seguidores;
+			this.siguiendo = siguiendo;
+			this.ultimoIngreso = ultimoIngreso;
 		}
 		public Date getUltimoIngreso() {
-			return UltimoIngreso;
+			return ultimoIngreso;
 		}
 		public void setUltimoIngreso(Date ultimoIngreso) {
-			UltimoIngreso = ultimoIngreso;
+			this.ultimoIngreso = ultimoIngreso;
 		}
 		public String getNombre() {
-			return Nombre;
+			return nombre;
 		}
 		public void setNombre(String nombre) {
-			Nombre = nombre;
+			this.nombre = nombre;
 		}
 		public String getApellido() {
-			return Apellido;
+			return apellido;
 		}
 		public void setApellido(String apellido) {
-			Apellido = apellido;
+			this.apellido = apellido;
 		}
 		public String getEmail() {
-			return Email;
+			return email;
 		}
 		public void setEmail(String email) {
-			Email = email;
+			this.email = email;
 		}
 		public Date getNacimiento() {
-			return Nacimiento;
+			return nacimiento;
 		}
 		public void setNacimiento(Date nacimiento) {
-			Nacimiento = nacimiento;
+			this.nacimiento = nacimiento;
 		}
 		
 		public String getImagen() {
-			return Imagen;
+			return imagen;
 		}
 		public void setImagen(String imagen) {
-			Imagen = imagen;
+			this.imagen = imagen;
 		}
 		public String getContrasena() {
-			return Contrasena;
+			return contrasena;
 		}
 		public void setContrasena(String contrasena) {
-			Contrasena = contrasena;
+			this.contrasena = contrasena;
 		}
 		public Usuario(String nickname, String nombre, String apellido, String email,
 				Date nacimiento, String imagen, String contrasena) {
 			super();
-			Nickname = nickname;
-			Nombre = nombre;
-			Apellido = apellido;
-			Email = email;
-			Imagen = imagen;
-			Contrasena = contrasena;
-			Nacimiento = nacimiento;
-			Seguidores = new HashMap<String, Usuario>();
-			Siguiendo = new HashMap<String, Usuario>();
+			this.nickname = nickname;
+			this.nombre = nombre;
+			this.apellido = apellido;
+			this.email = email;
+			this.imagen = imagen;
+			this.contrasena = contrasena;
+			this.nacimiento = nacimiento;
+			this.seguidores = new HashMap<String, Usuario>();
+			this.siguiendo = new HashMap<String, Usuario>();
 		}
-		public void AgregarSeguido(String nick,Usuario usu) {
-			Siguiendo.put(nick, usu);
+		public void AgregarSeguido(String nick, Usuario usu) {
+			siguiendo.put(nick, usu);
 		}
 		
-		public void AgregarSeguidor(String nick,Usuario usu) {
-			Seguidores.put(nick, usu);
+		public void AgregarSeguidor(String nick, Usuario usu) {
+			seguidores.put(nick, usu);
 		}
 		public HashMap<String, Usuario> getSeguidores() {
-			return Seguidores;
+			return seguidores;
 		}
 		public void setSeguidores(HashMap<String, Usuario> seguidores) {
-			Seguidores = seguidores;
+			this.seguidores = seguidores;
 		}
 		public HashMap<String, Usuario> getSiguiendo() {
-			return Siguiendo;
+			return siguiendo;
 		}
 		public void setSiguiendo(HashMap<String, Usuario> siguiendo) {
-			Siguiendo = siguiendo;
+			this.siguiendo = siguiendo;
 		}
 		
 		public DtUsuario getDtUsuario() {
-			DtUsuario ret = new DtUsuario(this.getNickname(),this.getNombre(),this.getApellido(),this.getContrasena(),this.getEmail(), this.getImagen(),this.getNacimiento());
+			DtUsuario ret = new DtUsuario(this.getNickname(), this.getNombre(), this.getApellido(), this.getContrasena(), this.getEmail(), this.getImagen(), this.getNacimiento());
 			return ret;
 		}
 		public void eliminarSeguido(String nickname){
-			Siguiendo.remove(nickname);
+			siguiendo.remove(nickname);
 		}
 		public void eliminarSeguidor(String nickname) {
-			Seguidores.remove(nickname);
+			seguidores.remove(nickname);
 		}
 		
 		

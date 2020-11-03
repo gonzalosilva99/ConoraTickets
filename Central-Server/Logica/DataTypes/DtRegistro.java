@@ -9,19 +9,19 @@ public class DtRegistro {
 	private
 	Double costo;
 	private
-	String NombreFuncion;
-	private String NicknameEspectador;
+	String nombrefuncion;
+	private String nicknameespectador;
 	public DtRegistro(Integer codigo, Date fecha, Double costo, String nombreFuncion, String nickname) {
 			super();
 			this.codigo = codigo;
 			this.fecha = fecha;
 			this.costo = costo;
-			NombreFuncion = nombreFuncion;
-			NicknameEspectador = nickname;
+			this.nombrefuncion = nombreFuncion;
+			this.nicknameespectador = nickname;
 	}
 
 	public String getNicknameEspectador() {
-		return NicknameEspectador;
+		return nicknameespectador;
 	}
 	
 	public Integer getCodigo() {
@@ -34,7 +34,7 @@ public class DtRegistro {
 		return costo;
 	}
 	public String getNombreFuncion() {
-		return NombreFuncion;
+		return nombrefuncion;
 	}
 
 }

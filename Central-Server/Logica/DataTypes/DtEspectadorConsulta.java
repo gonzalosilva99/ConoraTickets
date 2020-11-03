@@ -1,71 +1,71 @@
 package DataTypes;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.Set;
 
 public class DtEspectadorConsulta {
-	public DtEspectadorConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena, HashSet<DtFuncion> funciones, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo) {
+	public DtEspectadorConsulta(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena, Set<DtFuncion> funciones, Set<DtUsuario> seguidores, Set<DtUsuario> siguiendo) {
 		super();
-		Nickname = nickname;
-		Nombre = nombre;
-		Apellido = apellido;
-		Email = email;
-		Nacimiento = nacimiento;
-		Funciones = funciones;
-		Siguiendo= siguiendo;
-		Seguidores = seguidores;
-		Imagen = imagen;
-		Contrasena = contrasena;
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.nacimiento = nacimiento;
+		this.funciones = funciones;
+		this.siguiendo= siguiendo;
+		this.seguidores = seguidores;
+		this.imagen = imagen;
+		this.contrasena = contrasena;
 	}
 	private
-	String Imagen;
+	String imagen;
 	private
-	String Contrasena;
+	String contrasena;
 	private
-	String Nickname;
+	String nickname;
 	private
-	String Nombre;
+	String nombre;
 	private
-	String Apellido;
+	String apellido;
 	private
-	String Email;
+	String email;
 	private
-	Date Nacimiento;
+	Date nacimiento;
 	private
-	HashSet<DtFuncion> Funciones;
+	Set<DtFuncion> funciones;
 	private
-	HashSet<DtUsuario> Seguidores;
+	Set<DtUsuario> seguidores;
 	private
-	HashSet<DtUsuario> Siguiendo;
+	Set<DtUsuario> siguiendo;
 	public String getNickname() {
-		return Nickname;
+		return nickname;
 	}
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public String getApellido() {
-		return Apellido;
+		return apellido;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public Date getNacimiento() {
-		return Nacimiento;
+		return nacimiento;
 	}
-	public HashSet<DtFuncion> getFunciones() {
-		return Funciones;
+	public Set<DtFuncion> getFunciones() {
+		return funciones;
 	}
-	public HashSet<DtUsuario> getSeguidores() {
-		return Seguidores;
+	public Set<DtUsuario> getSeguidores() {
+		return seguidores;
 	}
-	public HashSet<DtUsuario> getSiguiendo() {
-		return Siguiendo;
+	public Set<DtUsuario> getSiguiendo() {
+		return siguiendo;
 	}
 	public String getImagen() {
-		return Imagen;
+		return imagen;
 	}
 	public String getContrasena() {
-		return Contrasena;
+		return contrasena;
 	}
 	
 	

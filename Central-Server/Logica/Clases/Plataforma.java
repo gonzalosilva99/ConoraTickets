@@ -23,39 +23,39 @@ import Interfaces.IUsuario;
 import Interfaces.ICategoria;
 
 public class Plataforma {
-	private String Nombre;
-	private String Descripcion;
-	private String Url;
-	private HashMap<String,Espectaculo> Espectaculos;
+	private String nombre;
+	private String descripcion;
+	private String url;
+	private HashMap<String, Espectaculo> espectaculos;
 
-		public Plataforma(String nombre, String descripcion, String Url) {
+		public Plataforma(String nombre, String descripcion, String url) {
 			super();
-			Nombre = nombre;
-			Descripcion = descripcion;
-			Espectaculos = new HashMap<String,Espectaculo>();
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.espectaculos = new HashMap<String, Espectaculo>();
 		}
 		public Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp){
 			Set<DtFuncion> ret = new HashSet<DtFuncion>();
-			Espectaculo espec = Espectaculos.get(nombreEsp);
-			if(espec != null)
+			Espectaculo espec = espectaculos.get(nombreEsp);
+			if (espec != null)
 				return espec.getFuncionesVigentes();
 			else return ret;
 		}
 		public String getUrl() {
-			return Url;
+			return url;
 		}
 		
 		public void filtrarEspectaculos(HashSet<DtEspectaculoDatos> especs, String search) {
-			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculoDatos espec = entry.getValue().getDtEspectaculoDatos();
-				if(espec.getNombre().toLowerCase().contains(search.toLowerCase()))
+				if (espec.getNombre().toLowerCase().contains(search.toLowerCase()))
 					especs.add(espec);
 			}
 		}
 		
 		public Boolean EspectaculoinPlataforma(String nombreEspectaculo) {
-			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
-				if(entry.getValue().getNombre().equalsIgnoreCase(nombreEspectaculo))
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
+				if (entry.getValue().getNombre().equalsIgnoreCase(nombreEspectaculo))
 					return true;
 			}
 			return false;
@@ -63,42 +63,42 @@ public class Plataforma {
 			
 		
 		public void setUrl(String url) {
-			Url = url;
+			this.url = url;
 		}
 		public Map<String, Espectaculo> getEspectaculos() {
-			return Espectaculos;
+			return espectaculos;
 		}
 		public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
-			Espectaculos = espectaculos;
+			this.espectaculos = espectaculos;
 		}
 		public String getNombre() {
-			return Nombre;
+			return nombre;
 		}
 		public void setNombre(String nombre) {
-			Nombre = nombre;
+			this.nombre = nombre;
 		}
 		public String getDescripcion() {
-			return Descripcion;
+			return descripcion;
 		}
 		public void setDescripcion(String descripcion) {
-			Descripcion = descripcion;
+			this.descripcion = descripcion;
 		}
 		public Funcion getFuncion(String nombreEspectaculo, String nomFuncion) {
-			Espectaculo esp = Espectaculos.get(nombreEspectaculo);
+			Espectaculo esp = espectaculos.get(nombreEspectaculo);
 			return esp.getFuncion(nomFuncion);
 		}
 		public DtFuncionDatos mostrarFuncion(String NombreEsp, String NombreFun) {
-			Espectaculo esp = Espectaculos.get(NombreEsp);
+			Espectaculo esp = espectaculos.get(NombreEsp);
 			return esp.mostrarFuncion(NombreFun);
 		}
 		public DtPlataforma getDtPlataforma() {
-			DtPlataforma dtplat = new DtPlataforma(Nombre, Descripcion, Url);
+			DtPlataforma dtplat = new DtPlataforma(nombre, descripcion, url);
 			return dtplat;
 		}
 		
 		public Set<DtEspectaculo> listarEspectaculosDePlataforma(){
 			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
 					ret.add(nuevo);
 			}
@@ -107,8 +107,8 @@ public class Plataforma {
 		
 		public Set<DtEspectaculo> listarEspectaculosAceptadosDePlataforma(){
 			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
-					if(entry.getValue().getEstado()==EstadoEspectaculo.Aceptado) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
+					if (entry.getValue().getEstado()==EstadoEspectaculo.Aceptado) {
 					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
 					ret.add(nuevo);
 					}
@@ -118,8 +118,8 @@ public class Plataforma {
 		
 		public Set<DtEspectaculo> listarEspectaculosIngresadosDePlataforma(){
 			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
-				if(entry.getValue().getEstado().toString().equals("Ingresado")) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
+				if (entry.getValue().getEstado().toString().equals("Ingresado")) {
 					DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
 					ret.add(nuevo);
 			}
@@ -129,14 +129,14 @@ public class Plataforma {
 
 		public Set<DtEspectaculo> listarEspectaculos(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();		
-		for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+		for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 			DtEspectaculo nueva = entry.getValue().getDatosEspectaculo();
 			ret.add(nueva);            
 		}
 		return ret;
 		}	
 		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombreEsp){
-			Espectaculo espec = Espectaculos.get(NombreEsp);
+			Espectaculo espec = espectaculos.get(NombreEsp);
 			return espec.listarFunciones();
 		}
 		
@@ -146,26 +146,26 @@ public class Plataforma {
 			IUsuario iusuario = fabric.getIUsuario();
 			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
 			nuevo.setEstado(EstadoEspectaculo.Ingresado);
-			if(categorias.size()>0) {
+			if (categorias.size()>0) {
 			Iterator<String> itercat = categorias.iterator();
-			while(itercat.hasNext()) {
+			while (itercat.hasNext()) {
 				Categoria aux = icat.getCategoria(itercat.next());
 				nuevo.AnadirCategoria(aux);
 				aux.anadirEspectaculo(nuevo);
 			}
 			}
-			Espectaculos.put(nomEspectaculo, nuevo);
-			iusuario.RelacionarArtistaEspectaculo(nickArtista,nuevo);
+			espectaculos.put(nomEspectaculo, nuevo);
+			iusuario.RelacionarArtistaEspectaculo(nickArtista, nuevo);
 		}
 		public DtEspectaculoDatos getDtEspectaculoDatos(String NombreEspectaculo) {
-			Espectaculo esp = Espectaculos.get(NombreEspectaculo);
+			Espectaculo esp = espectaculos.get(NombreEspectaculo);
 			return esp.getDtEspectaculoDatos();
 		}
 		public Boolean existeFuncion(String nombreFuncion) {
 			boolean ret = false;
-			for(Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				ret = entry.getValue().existeFuncion(nombreFuncion);
-				if(ret){
+				if (ret){
 					return ret;
 				}
 			}
@@ -173,8 +173,8 @@ public class Plataforma {
 		}
 
 		public Boolean ExisteEspectaculo(String nomEspectaculo) {
-			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
-	            if(entry.getValue().getNombre().equalsIgnoreCase(nomEspectaculo)) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
+	            if (entry.getValue().getNombre().equalsIgnoreCase(nomEspectaculo)) {
 	            	return true;
 	            }           
 			}
@@ -186,7 +186,7 @@ public class Plataforma {
 			Paquete p = manpaq.getPaquete(NombrePaquete);
 			
 			Set<DtEspectaculo> set = new HashSet<DtEspectaculo>();
-			for (Map.Entry<String,Espectaculo> entry : Espectaculos.entrySet()) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
 				if (!p.tieneEspectaculo(entry.getValue().getNombre())) set.add(nuevo);
 				
@@ -194,12 +194,12 @@ public class Plataforma {
 			return set;
 		}
 		public Espectaculo getEspectaculo(String NombreEspectaculo) {
-			return Espectaculos.get(NombreEspectaculo);
+			return espectaculos.get(NombreEspectaculo);
 		}
 		
 		public Set<DtEspectaculoDatos> listarEspectaculoDatos(){
 			Set<DtEspectaculoDatos> ret = new HashSet<DtEspectaculoDatos>();		
-			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculoDatos nueva = entry.getValue().getDtEspectaculoDatos();
 				ret.add(nueva);            
 			}
@@ -207,13 +207,13 @@ public class Plataforma {
 		}
 		public DtFuncionDatos getFuncionDatos(String nombreEspectaculo, String nombreFuncion) {
 			
-			return Espectaculos.get(nombreEspectaculo).getFuncionDatos(nombreFuncion);
+			return espectaculos.get(nombreEspectaculo).getFuncionDatos(nombreFuncion);
 		}
 		
 		public String ExisteEspectaculoDeFuncion(String nombreFuncion){
 			String ret = "";
-			for (Map.Entry<String, Espectaculo> entry : Espectaculos.entrySet()) {
-				if(entry.getValue().existeFuncion(nombreFuncion)) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
+				if (entry.getValue().existeFuncion(nombreFuncion)) {
 					ret = entry.getValue().getNombre();
 					break;
 				}           
@@ -221,13 +221,13 @@ public class Plataforma {
 			return ret;
 		}
 		
-		public Boolean PuedeAgregarEspectadores(String nombreEspectaculo,String nombreFuncion){
-			Espectaculo espec = Espectaculos.get(nombreEspectaculo);
+		public Boolean PuedeAgregarEspectadores(String nombreEspectaculo, String nombreFuncion){
+			Espectaculo espec = espectaculos.get(nombreEspectaculo);
 			return espec.PuedeAgregarEspectadores(nombreFuncion);
 		}
 		
 		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Espectaculo) {
-			Espectaculo espec = Espectaculos.get(Espectaculo);
+			Espectaculo espec = espectaculos.get(Espectaculo);
 			return espec.listarCategorias();
 		}
 		

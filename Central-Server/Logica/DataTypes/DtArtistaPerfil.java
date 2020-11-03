@@ -1,32 +1,32 @@
 package DataTypes;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.Set;
 
 public class DtArtistaPerfil extends DtArtistaConsulta{
 	private
-		HashSet<DtEspectaculo> EspectaculosNOaceptados;
-		Date UltimoIngreso;
-		HashSet<DtFuncion> FuncionesInvitado;
+		Set<DtEspectaculo> espectaculosNOaceptados;
+		Date ultimoIngreso;
+		Set<DtFuncion> funcionesinvitado;
 	public DtArtistaPerfil(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena,
-			String descgeneral, String biografia, String link, HashSet<DtEspectaculo> espectaculos, HashSet<DtUsuario> seguidores, HashSet<DtUsuario> siguiendo,
-			HashSet<DtEspectaculo> espectaculosNOaceptados, Date UltimoIngreso, HashSet<DtFuncion> funcionesinvitado) {
-		super(nickname, nombre, apellido, email, nacimiento,imagen,contrasena, descgeneral, biografia, link, espectaculos,seguidores,siguiendo);
-		EspectaculosNOaceptados = espectaculosNOaceptados;
-		this.UltimoIngreso=UltimoIngreso;
-		this.FuncionesInvitado = funcionesinvitado;
+			String descgeneral, String biografia, String link, Set<DtEspectaculo> espectaculos, Set<DtUsuario> seguidores, Set<DtUsuario> siguiendo,
+			Set<DtEspectaculo> espectaculosNOaceptados, Date ultimoIngreso, Set<DtFuncion> funcionesinvitado) {
+		super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena, descgeneral, biografia, link, espectaculos, seguidores, siguiendo);
+		this.espectaculosNOaceptados = espectaculosNOaceptados;
+		this.ultimoIngreso=ultimoIngreso;
+		this.funcionesinvitado = funcionesinvitado;
 	}
 
 	public Date getUltimoIngreso() {
-		return UltimoIngreso;
+		return ultimoIngreso;
 	}
 	
-	public HashSet<DtFuncion> getFuncionesInvitado() {
-		return FuncionesInvitado;
+	public Set<DtFuncion> getFuncionesInvitado() {
+		return funcionesinvitado;
 	}
 
-	public HashSet<DtEspectaculo> getEspectaculosNOaceptados() {
-		return EspectaculosNOaceptados;
+	public Set<DtEspectaculo> getEspectaculosNOaceptados() {
+		return espectaculosNOaceptados;
 	}
 	
 	
