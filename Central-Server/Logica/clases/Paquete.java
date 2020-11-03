@@ -80,7 +80,7 @@ public class Paquete {
 		public void agregarEspectaculo(Espectaculo e) {
 			espectaculos.put(e.getNombre(), e);
 		}
-		public void ConfirmarAgregarEspectaculoPaquete(String NombrePaquete, String NombrePlataforma, String NombreEspectaculo) {
+		public void confirmarAgregarEspectaculoPaquete(String NombrePaquete, String NombrePlataforma, String NombreEspectaculo) {
 			ManejadorPlataforma manplat = ManejadorPlataforma.getInstancia();
 			Plataforma p = manplat.getPlataforma(NombrePlataforma);
 			Espectaculo s = p.getEspectaculo(NombreEspectaculo);
@@ -105,11 +105,11 @@ public class Paquete {
 		public boolean hayEspectaculo(String nombreEsp) {
 			return espectaculos.containsKey(nombreEsp);
 		}
-		public void ConfirmarAltaPaquete(String NombrePaquete, String descripcion, Date inicio, Date fin, String descuento) {
+		public void confirmarAltaPaquete(String NombrePaquete, String descripcion, Date inicio, Date fin, String descuento) {
 			
 		}
 		public DtPaqueteDatos getDtPaqueteDatos() {
-			HashSet<DtCategoria> cat = this.ListarCategorias();
+			HashSet<DtCategoria> cat = this.listarCategorias();
 			HashSet<DtEspectaculo> esp = new HashSet<DtEspectaculo>();
 			for (HashMap.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculo nuevo = entry.getValue().getDatosEspectaculo();
@@ -119,7 +119,7 @@ public class Paquete {
 			return ret;
 		}
 		
-		public boolean PerteneceDtCategoria(DtCategoria a, HashSet<DtCategoria> ret) {
+		public boolean perteneceDtCategoria(DtCategoria a, HashSet<DtCategoria> ret) {
 			boolean r = false;
 			Iterator<DtCategoria> iter = ret.iterator();
 			while (iter.hasNext()){
@@ -131,7 +131,7 @@ public class Paquete {
 			return r;
 		}
 		
-		public HashSet<DtCategoria> ListarCategorias(){
+		public HashSet<DtCategoria> listarCategorias(){
 			HashSet<DtCategoria> ret = new HashSet<DtCategoria>();
 			
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
@@ -140,7 +140,7 @@ public class Paquete {
 				Iterator<DtCategoria> iter = nueva.iterator();
 				while (iter.hasNext()){
 					DtCategoria a = iter.next();
-					if (!PerteneceDtCategoria(a, ret)) {
+					if (!perteneceDtCategoria(a, ret)) {
 						ret.add(a);
 					}
 					

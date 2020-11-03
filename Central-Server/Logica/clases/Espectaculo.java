@@ -178,11 +178,11 @@ public class Espectaculo {
 			return ret;
 		
 		}
-		public void AnadirFuncion(String nombre, Date inicio, Date alta, String imagen) {
+		public void anadirFuncion(String nombre, Date inicio, Date alta, String imagen) {
 			Funcion ret = new Funcion(nombre, inicio, alta, imagen);
 			funciones.put(nombre, ret);
 		}
-		public Funcion ObtenerFuncion(String nombre) {
+		public Funcion obtenerFuncion(String nombre) {
 			return funciones.get(nombre);
 		}
 		
@@ -200,13 +200,13 @@ public class Espectaculo {
 			return fun.getDtFuncionDatos(datosEsp);
 		}
 		
-		public Boolean PuedeAgregarEspectadores(String nombreFuncion){
+		public Boolean puedeAgregarEspectadores(String nombreFuncion){
 			Funcion fun = funciones.get(nombreFuncion);
 			Integer espec = fun.getEspectadores();
 			return (espec<cantmax);
 		}
 		
-		public void AnadirCategoria(Categoria c) {
+		public void anadirCategoria(Categoria c) {
 			categorias.add(c);
 		}
 		

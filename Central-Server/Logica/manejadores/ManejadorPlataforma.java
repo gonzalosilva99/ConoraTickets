@@ -74,7 +74,7 @@ public class ManejadorPlataforma {
 		
 		public HashSet<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo) {
 			Plataforma plat = plataformas.get(Plataforma);
-			return plat.ListarCategoriasDeEspectaculo(Espectaculo);
+			return plat.listarCategoriasDeEspectaculo(Espectaculo);
 		}
 		
 		public Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp){
@@ -120,7 +120,7 @@ public class ManejadorPlataforma {
 		
 		public Boolean espectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo) {
 			Plataforma Plat = plataformas.get(nombrePlataforma);
-			return Plat.EspectaculoinPlataforma(nombreEspectaculo);
+			return Plat.espectaculoinPlataforma(nombreEspectaculo);
 		}
 		
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma){
@@ -131,7 +131,7 @@ public class ManejadorPlataforma {
 		public Boolean existeEspectaculo(String nomEspectaculo) {
 			Boolean ret = false;
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-	            ret = entry.getValue().ExisteEspectaculo(nomEspectaculo);
+	            ret = entry.getValue().existeEspectaculo(nomEspectaculo);
 	            if (ret) return true;           
 			}
 			return false;
@@ -166,13 +166,13 @@ public class ManejadorPlataforma {
 				Set<String> artistas, Date alta, String imagen) {
 			Plataforma Plat = plataformas.get(nombrePlataforma);
 			Espectaculo Espec = Plat.getEspectaculo(nombreEspectaculo);
-			Espec.AnadirFuncion(nombre, inicio, alta, imagen);	
+			Espec.anadirFuncion(nombre, inicio, alta, imagen);	
 			if (artistas != null) {
 				Fabrica fab = controladores.Fabrica.getInstancia();
 				IUsuario iusuario = fab.getIUsuario();
 				Iterator<String> iterArtistas = artistas.iterator();
 				while (iterArtistas.hasNext()) {
-					iusuario.relacionarArtistaFuncion(iterArtistas.next(), Espec.ObtenerFuncion(nombre));
+					iusuario.relacionarArtistaFuncion(iterArtistas.next(), Espec.obtenerFuncion(nombre));
 				}
 			}
 			
@@ -200,7 +200,7 @@ public class ManejadorPlataforma {
 		public DtEspectaculoDatos findDatosEspectaculo(String nombreEspectaculo){
 			DtEspectaculoDatos ret = null;
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-				if (entry.getValue().ExisteEspectaculo(nombreEspectaculo)) {
+				if (entry.getValue().existeEspectaculo(nombreEspectaculo)) {
 					ret = entry.getValue().getDtEspectaculoDatos(nombreEspectaculo);
 					break;
 				}
@@ -223,7 +223,7 @@ public class ManejadorPlataforma {
 		public String getPlataformaDeEspectaculo(String esp) {
 			String ret = "";
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-				if (entry.getValue().ExisteEspectaculo(esp)) {
+				if (entry.getValue().existeEspectaculo(esp)) {
 					ret = entry.getValue().getNombre();
 					break;
 				}
@@ -239,7 +239,7 @@ public class ManejadorPlataforma {
 			DtFuncionDatos ret = null;
 			
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-				String esp = entry.getValue().ExisteEspectaculoDeFuncion(nombreFuncion);
+				String esp = entry.getValue().existeEspectaculoDeFuncion(nombreFuncion);
 				if (!esp.equals("")) {
 					ret = entry.getValue().getFuncionDatos(esp, nombreFuncion);
 					break;
@@ -250,12 +250,12 @@ public class ManejadorPlataforma {
 		
 		public Boolean puedeAgregarEspectadores(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
 			Plataforma plat = plataformas.get(nombrePlataforma);
-			return plat.PuedeAgregarEspectadores(nombreEspectaculo, nombreFuncion);
+			return plat.puedeAgregarEspectadores(nombreEspectaculo, nombreFuncion);
 		}
 		
 		public void aceptarEspectaculo(String nomEspectaculo) {
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-				if (entry.getValue().ExisteEspectaculo(nomEspectaculo)) {
+				if (entry.getValue().existeEspectaculo(nomEspectaculo)) {
 					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Aceptado);
 					break;
 				}
@@ -264,7 +264,7 @@ public class ManejadorPlataforma {
 		
 		public void rechazarEspectaculo(String nomEspectaculo) {
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-				if (entry.getValue().ExisteEspectaculo(nomEspectaculo)) {
+				if (entry.getValue().existeEspectaculo(nomEspectaculo)) {
 					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Rechazado);
 					break;
 				}

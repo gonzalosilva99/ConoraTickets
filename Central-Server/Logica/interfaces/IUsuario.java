@@ -30,13 +30,13 @@ public interface IUsuario {
 	public void modificarEspectador(String Nickname, String Nombre, String Apellido, Date Nacimiento);
 	public Set<DtEspectador> listarEspectadores();
 	public void actualizarUltimoIngreso(String nickname);
-	public void relacionarArtistaEspectaculo(String nickArtista,Espectaculo nuevo);
+	public void relacionarArtistaEspectaculo(String nickArtista, Espectaculo nuevo);
 	public void relacionarArtistaFuncion(String nickArtista, Funcion funcion);
 	public Set<DtArtista> listarArtistasNoEspectaculo(String nombreEspectaculo);
 	public Set<DtRegistro> listarRegistrosSinCanjeaer(String nickname);
 	public Set<DtPaquete> listarPaquetesCanjeables(String nickname, String nombreEspectaculo);
-	public void confirmarRegistroFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nickname, String nombreFuncion,Date fecha,TipoRegistro registro, Integer Registro1, Integer Registro2,Integer Registro3,String NombrePaquete,Double costo);
-	public Boolean existeRegistroaFuncion(String nickname,String nombreFuncion);
+	public void confirmarRegistroFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nickname, String nombreFuncion, Date fecha, TipoRegistro registro, Integer Registro1, Integer Registro2, Integer Registro3, String NombrePaquete, Double costo);
+	public Boolean existeRegistroaFuncion(String nickname, String nombreFuncion);
 	public void seguirUsuario(String NickSeguidor, String NickASeguir);
 	public DtUsuario getUsuarioNickname(String nickname);
 	public DtUsuario getUsuarioEmail(String email);

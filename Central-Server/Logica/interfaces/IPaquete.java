@@ -16,7 +16,7 @@ public interface IPaquete {
 	public Set<DtPaquete> listarPaquetesEspectaculo(String nomEsp);
 	public 	DtPaqueteDatos mostrarPaquete(String NombrePaquete);
 	public void confirmarAgregarEspectaculoPaquete(String NombrePaquete, String NombrePlataforma, String NombreEspectaculo);
-	public void confirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, Double Descuento, Date alta,String imagen) throws Identidad;
+	public void confirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, Double Descuento, Date alta, String imagen) throws Identidad;
 	public DtPaqueteDatos getPaqueteDatos(String nombrePaquete);
 	public DtPaquete getDtPaquete(String nombrePaquete);
 	public HashSet<DtCategoria> listarCategorias(String Paquete);

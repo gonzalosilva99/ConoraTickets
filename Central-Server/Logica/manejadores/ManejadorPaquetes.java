@@ -106,7 +106,7 @@ public class ManejadorPaquetes {
 		
 		public HashSet<DtCategoria> listarCategorias(String Paquete){
 			Paquete paquete = paquetes.get(Paquete);
-			return paquete.ListarCategorias();
+			return paquete.listarCategorias();
 		}
 		public Set<DtPaquete> listarPaquetesVigentes(){
 			Set<DtPaquete> ret = new HashSet<DtPaquete>();		

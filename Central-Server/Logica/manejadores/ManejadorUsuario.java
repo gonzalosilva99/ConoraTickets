@@ -274,7 +274,7 @@ public class ManejadorUsuario {
 		public void relacionarArtistaEspectaculo(String nickArtista, Espectaculo nuevo) {
 			Artista Organizador = artistas.get(nickArtista);
 			nuevo.setOrganizador(Organizador);
-			Organizador.AnadirEspectaculo(nuevo);
+			Organizador.anadirEspectaculo(nuevo);
 		}
 		public Artista getArtista(String nickname) {
 			return artistas.get(nickname);
@@ -305,7 +305,7 @@ public class ManejadorUsuario {
 		
 		public Boolean existeRegistroaFuncion(String nickname, String nombreFuncion) {
 			Espectador espec = espectadores.get(nickname);
-			return espec.ExisteRegistroaFuncion(nombreFuncion);
+			return espec.existeRegistroaFuncion(nombreFuncion);
 		}
 		public void comprarPaquete(String nickname, String nombrePaquete, Date fecha) {
 			Espectador espec = espectadores.get(nickname);
@@ -329,8 +329,8 @@ public class ManejadorUsuario {
 			else {
 				aseguir = espectadores.get(NickASeguir);
 			}
-			seguidor.AgregarSeguido(NickASeguir, aseguir);
-			aseguir.AgregarSeguidor(NickSeguidor, seguidor);
+			seguidor.agregarSeguido(NickASeguir, aseguir);
+			aseguir.agregarSeguidor(NickSeguidor, seguidor);
 		}
 		public Boolean existeNickname(String nickname) {
 			return artistas.containsKey(nickname) || espectadores.containsKey(nickname);
@@ -351,6 +351,6 @@ public class ManejadorUsuario {
 		
 		public Boolean existeCompraPaquete(String nickname, String nombrePaquete) {
 			Espectador espec = espectadores.get(nickname);
-			return espec.ExisteCompraPaquete(nombrePaquete);
+			return espec.existeCompraPaquete(nombrePaquete);
 		}
 }

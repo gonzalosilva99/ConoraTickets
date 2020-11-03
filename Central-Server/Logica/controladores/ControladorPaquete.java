@@ -36,7 +36,7 @@ public class ControladorPaquete implements IPaquete{
 		ManejadorPaquetes manpaq = ManejadorPaquetes.getInstancia();
 		Paquete paq = manpaq.getPaquete(NombrePaquete);
 		
-		paq.ConfirmarAgregarEspectaculoPaquete(NombrePaquete, NombrePlataforma, NombreEspectaculo);
+		paq.confirmarAgregarEspectaculoPaquete(NombrePaquete, NombrePlataforma, NombreEspectaculo);
 		
 		
 	}

@@ -40,7 +40,7 @@ public class Espectador extends Usuario{
 		registroFunciones.put(registroFunciones.size() + 1, registrofuncion);
 	}
 	
-	public void MarcarRegistrosUsados(Integer Registro1, Integer Registro2, Integer Registro3 ) {
+	public void marcarRegistrosUsados(Integer Registro1, Integer Registro2, Integer Registro3) {
 		RegistroFuncion reg1 = registroFunciones.get(Registro1);
 		RegistroFuncion reg2 = registroFunciones.get(Registro2);
 		RegistroFuncion reg3 = registroFunciones.get(Registro3);
@@ -142,8 +142,8 @@ public class Espectador extends Usuario{
 		return ret;
 	}
 	
-	public Boolean ExisteRegistroaFuncion(String nombreFuncion) {
-		for (Map.Entry<Integer, RegistroFuncion> entry: registroFunciones.entrySet() ) {
+	public Boolean existeRegistroaFuncion(String nombreFuncion) {
+		for (Map.Entry<Integer, RegistroFuncion> entry: registroFunciones.entrySet()) {
 			if (entry.getValue().getDtFuncion().getNombre().equals(nombreFuncion))
 				return true;
 		}
@@ -156,8 +156,8 @@ public class Espectador extends Usuario{
 		
 	}
 	
-	public Boolean ExisteCompraPaquete(String nombrePaquete) {
-		for (Map.Entry<Integer, CompraPaquete> entry: compraPaquetes.entrySet() ) {
+	public Boolean existeCompraPaquete(String nombrePaquete) {
+		for (Map.Entry<Integer, CompraPaquete> entry: compraPaquetes.entrySet()) {
 			if (entry.getValue().getDtPaquete().getNombre().equals(nombrePaquete))
 				return true;
 		}

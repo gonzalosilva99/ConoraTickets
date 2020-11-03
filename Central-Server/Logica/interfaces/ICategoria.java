@@ -21,7 +21,7 @@ public interface ICategoria {
 	public DtEspectaculoDatos mostrarDatosEspectaculoPorCategoria(String nombreEspectaulo, String nombreCat);
 	public HashSet<DtCategoria> listarCategorias();
 	public HashSet<DtFuncion> listarFuncionesDeEspectaculoDesdeCategoria(String NombreEspectaculo, String NombreCategoria);
-	public DtFuncionDatos mostrarFuncionDesdeCategoria(String NombreFuncion,String NombreEspectaculo,String NombreCategoria);
+	public DtFuncionDatos mostrarFuncionDesdeCategoria(String NombreFuncion, String NombreEspectaculo, String NombreCategoria);
 	public HashSet<DtFuncion> listarFuncionesVigentesDeEspectaculoDesdeCategoria();
 	public Set<DtEspectaculo> listarEspectaculosDeCategoria(String Nombre);
 	//public void ConfirmarRegistroFuncionEspectaculoDesdeCategoria(String nombreCateogoria, String nombreEspectaculo, String nickname, String nombreFuncion,

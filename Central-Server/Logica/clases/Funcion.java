@@ -38,7 +38,7 @@ public class Funcion {
 			return espectadores;
 		}
 		
-		public void IncrementarEspectadores() {
+		public void incrementarEspectadores() {
 			espectadores++;
 		}
 		public void setEspectadores(Integer espec) {

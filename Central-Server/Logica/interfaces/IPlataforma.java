@@ -22,13 +22,13 @@ public interface IPlataforma {
 		Set<DtFuncion> listarFuncionesDeEspectaculo(String NombrePlat, String NombreEsp);
 		DtFuncionDatos mostrarFuncion(String NombrePlat, String NombreEsp, String NombreFun);
 		DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
-		void altaPlataforma(String nombre, String Descripcion,String Url) throws Identidad;
-		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp,String nombrePlat);
+		void altaPlataforma(String nombre, String Descripcion, String Url) throws Identidad;
+		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat);
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) throws Identidad;
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen);
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);
-		void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio,Set<String> artistas, Date alta, String imagen);		
+		void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta, String imagen);		
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma);
 		Set<DtEspectaculoDatos> listarEspectaculoDatosDePlataforma(String Nombre);
 		public boolean existeFuncion(String nombreFuncion);

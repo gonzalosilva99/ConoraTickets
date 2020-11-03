@@ -25,7 +25,7 @@ public class RegistroFuncion {
 		this.canjeable = canjeable;
 		this.espectador = espec;
 		this.funcion = fun;
-		fun.IncrementarEspectadores();
+		fun.incrementarEspectadores();
 		this.paquete = null;
 	}
 	
@@ -36,7 +36,7 @@ public class RegistroFuncion {
 		this.registro = registro;
 		this.espectador = espec;
 		this.funcion = fun;
-		fun.IncrementarEspectadores();
+		fun.incrementarEspectadores();
 	}
 	
 	public void setPaquete(Paquete paq) {

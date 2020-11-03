@@ -170,7 +170,7 @@ public class ControladorUsuario implements IUsuario{
 		RegistroFuncion regfun = new RegistroFuncion(espec.getUltimoCodigo() + 1, fecha, registro, fun, espec);
 		espec.agregarRegistroFuncion(regfun);
 		if (registro == TipoRegistro.Tipo_2) {
-			espec.MarcarRegistrosUsados(Registro1, Registro2, Registro3);					
+			espec.marcarRegistrosUsados(Registro1, Registro2, Registro3);					
 		}
 		
 		

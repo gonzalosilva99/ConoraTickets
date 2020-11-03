@@ -141,7 +141,7 @@ public class Artista extends Usuario{
 			return ret;
 		}
 		
-		public void AnadirEspectaculo(Espectaculo e) {
+		public void anadirEspectaculo(Espectaculo e) {
 			espectaculos.add(e);
 		}
 		public void anadirFuncion(Funcion funcion) {

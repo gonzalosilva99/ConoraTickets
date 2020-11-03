@@ -97,11 +97,11 @@ public abstract class Usuario {
 			this.seguidores = new HashMap<String, Usuario>();
 			this.siguiendo = new HashMap<String, Usuario>();
 		}
-		public void AgregarSeguido(String nick, Usuario usu) {
+		public void agregarSeguido(String nick, Usuario usu) {
 			siguiendo.put(nick, usu);
 		}
 		
-		public void AgregarSeguidor(String nick, Usuario usu) {
+		public void agregarSeguidor(String nick, Usuario usu) {
 			seguidores.put(nick, usu);
 		}
 		public HashMap<String, Usuario> getSeguidores() {

@@ -56,7 +56,7 @@ public class Plataforma {
 			}
 		}
 		
-		public Boolean EspectaculoinPlataforma(String nombreEspectaculo) {
+		public Boolean espectaculoinPlataforma(String nombreEspectaculo) {
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				if (entry.getValue().getNombre().equalsIgnoreCase(nombreEspectaculo))
 					return true;
@@ -153,7 +153,7 @@ public class Plataforma {
 			Iterator<String> itercat = categorias.iterator();
 			while (itercat.hasNext()) {
 				Categoria aux = icat.getCategoria(itercat.next());
-				nuevo.AnadirCategoria(aux);
+				nuevo.anadirCategoria(aux);
 				aux.anadirEspectaculo(nuevo);
 			}
 			}
@@ -175,7 +175,7 @@ public class Plataforma {
 			return ret;
 		}
 
-		public Boolean ExisteEspectaculo(String nomEspectaculo) {
+		public Boolean existeEspectaculo(String nomEspectaculo) {
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 	            if (entry.getValue().getNombre().equalsIgnoreCase(nomEspectaculo)) {
 	            	return true;
@@ -213,7 +213,7 @@ public class Plataforma {
 			return espectaculos.get(nombreEspectaculo).getFuncionDatos(nombreFuncion);
 		}
 		
-		public String ExisteEspectaculoDeFuncion(String nombreFuncion){
+		public String existeEspectaculoDeFuncion(String nombreFuncion){
 			String ret = "";
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				if (entry.getValue().existeFuncion(nombreFuncion)) {
@@ -224,12 +224,12 @@ public class Plataforma {
 			return ret;
 		}
 		
-		public Boolean PuedeAgregarEspectadores(String nombreEspectaculo, String nombreFuncion){
+		public Boolean puedeAgregarEspectadores(String nombreEspectaculo, String nombreFuncion){
 			Espectaculo espec = espectaculos.get(nombreEspectaculo);
-			return espec.PuedeAgregarEspectadores(nombreFuncion);
+			return espec.puedeAgregarEspectadores(nombreFuncion);
 		}
 		
-		public HashSet<DtCategoria> ListarCategoriasDeEspectaculo(String Espectaculo) {
+		public HashSet<DtCategoria> listarCategoriasDeEspectaculo(String Espectaculo) {
 			Espectaculo espec = espectaculos.get(Espectaculo);
 			return espec.listarCategorias();
 		}
