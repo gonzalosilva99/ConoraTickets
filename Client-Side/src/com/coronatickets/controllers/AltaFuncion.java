@@ -44,13 +44,10 @@ public class AltaFuncion extends HttpServlet {
 	 * @param request
 	 */
 	private Boolean espectaculoEsDelArtista(String nickname, DtEspectaculo espectaculo) {
-		System.out.println("ENTRA A espectaculoEsDelArtista");
 		Set<DtEspectaculo> espectaculosArtista = Fabrica.getInstancia().getIUsuario().getDtArtistaNickname(nickname).getEspectaculosArtista();
 		Iterator<DtEspectaculo> itr = espectaculosArtista.iterator();
 		while(itr.hasNext()) {
-			System.out.println("ITERA: "+ itr.next().getNombre());
 			if (itr.next().getNombre().equals(espectaculo.getNombre())) {
-				System.out.println("RETORNO TTRUEEE **********/");
 				return true;
 			}
 		}
@@ -64,7 +61,6 @@ public class AltaFuncion extends HttpServlet {
 		  Iterator<DtEspectaculo> itr = espectaculosAceptados.iterator();
 			while(itr.hasNext()) {
 				if (espectaculoEsDelArtista(nickname, itr.next())) {
-					System.out.println("ESPECTACULO LISTO: " + itr.next().getNombre());
 					espectaculosAceptadosDelArtista.add(itr.next());
 				}
 			}	
@@ -88,7 +84,7 @@ public class AltaFuncion extends HttpServlet {
 					System.out.println("invitados: " + iter.next()); 
 				}
 			  Fabrica.getInstancia().getIPlataforma().confirmarAltaFuncionEspectaculo(request.getParameter("inputPrueba"), 
-					  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, invitadosSet, fechaAlta, "imagen");
+					  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, invitadosSet, fechaAlta, request.getParameter("img"));
 			  request.getSession().setAttribute("exito", new Integer(0)); //exito
 		  }catch (Exception e) {  
 			  request.getSession().setAttribute("exito", new Integer(1)); //error
@@ -116,12 +112,10 @@ public class AltaFuncion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  Login.ActualizarUltimoIngreso(request);
-		  System.out.println("ENTRO AL SERVLET EL POST");
+		  Login.ActualizarUltimoIngreso(request);  
 	      String plataforma = request.getParameter("plataforma");
 		  if (request.getParameter("actualizar") != null && request.getParameter("actualizar").equals("true")) 
 		  { 
-			  System.out.println("ACTUALIZAR ES TRUEEE");
 			  String nickname = (String)request.getSession().getAttribute("usuario_logueado");
 			  actualizarEspectaculos(request, response, plataforma, nickname);
 		  }

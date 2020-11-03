@@ -134,8 +134,7 @@
     </div>
     
     <div class="form-row col-md-5 mb-4 mx-auto">
-  		<input type="file" class="custom-file-input" id="customFileLang" lang="es">
-  		<label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+  		<input type="url" class="form-control" id="img" name="img" style="width: 100%;" placeholder="Imagen de la funcion">
 	</div>
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
