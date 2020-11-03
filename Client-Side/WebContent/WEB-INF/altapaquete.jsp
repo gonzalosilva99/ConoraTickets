@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,10 +73,10 @@
     		<input type="number" name = "porcentaje" class="form-control" id="inputPorcentajeDescuento" placeholder="25.55" required>
     	</div>
     </div>
-    <div class="form-row col-md-5 mb-4 mx-auto">
-  		<input type="file" class="custom-file-input" name= "imagen" id="customFileLang" lang="es">
-  		<label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+          <div class="form-row col-md-5 mb-4 mx-auto">
+  		<input type="url" class="form-control" id="imagen" name="imagen" style="width: 100%;" placeholder="Imagen de la funcion">
 	</div>
+	
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
   		<button class="btn btn-primary" style="width: 100%;" type="submit" onclick="submit()">Crear Paquete!</button>
