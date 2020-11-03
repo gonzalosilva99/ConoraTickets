@@ -1,6 +1,6 @@
 package com.coronatickets.controllers;
 import java.util.LinkedHashMap; 
-import DataTypes.DtUsuario;
+import datatypes.DtUsuario;
 import java.util.Map; 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,12 +23,12 @@ import javax.servlet.http.HttpSession;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
-import DataTypes.DtUsuario;
-import DataTypes.DtCategoria;
-import DataTypes.DtEspectaculoDatos;
-import DataTypes.DtPaqueteDatos;
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
+import datatypes.DtUsuario;
+import datatypes.DtCategoria;
+import datatypes.DtEspectaculoDatos;
+import datatypes.DtPaqueteDatos;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
 
 /**
  * Servlet implementation class Home
@@ -80,7 +80,7 @@ public class Configuracion extends HttpServlet {
 
 			DtUsuario usuario = Login.getUsuarioLogueado(request);
 			Boolean esartista = false; 
-			if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname()))
+			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname()))
 				esartista=true;
 			
 				String nombre = request.getParameter("inputNombre");

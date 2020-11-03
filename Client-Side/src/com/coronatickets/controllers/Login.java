@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Controladores.Fabrica;
-import DataTypes.DtUsuario;
-import DataTypes.EstadoSesion;
-import Manejadores.ManejadorUsuario;
+import controladores.Fabrica;
+import datatypes.DtUsuario;
+import datatypes.EstadoSesion;
+import manejadores.ManejadorUsuario;
 
 
 
@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         EstadoSesion nuevoEstado=null;
         try {
-        	if(Fabrica.getInstancia().getIUsuario().LogueoCorrecto(login, password)) {
+        	if(Fabrica.getInstancia().getIUsuario().logueoCorrecto(login, password)) {
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		if(login.contains("@")) {
         			request.getSession().setAttribute("usuario_logueado", Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());

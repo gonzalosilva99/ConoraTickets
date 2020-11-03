@@ -5,15 +5,15 @@
 <head>
 	<meta charset="UTF-8">
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
-	<%@page import="DataTypes.DtFuncionDatos"%>
-	<%@page import="DataTypes.DtPaqueteDatos"%>
-	<%@page import="DataTypes.DtArtista"%>
-	<%@page import="DataTypes.DtRegistro"%>
-	<%@page import="DataTypes.DtCategoria"%>
-	<%@page import="DataTypes.DtEspectaculoDatos"%>
-	<%@page import="DataTypes.DtPaquete"%>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IPlataforma"%>
+	<%@page import="datatypes.DtFuncionDatos"%>
+	<%@page import="datatypes.DtPaqueteDatos"%>
+	<%@page import="datatypes.DtArtista"%>
+	<%@page import="datatypes.DtRegistro"%>
+	<%@page import="datatypes.DtCategoria"%>
+	<%@page import="datatypes.DtEspectaculoDatos"%>
+	<%@page import="datatypes.DtPaquete"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IPlataforma"%>
 	<title>CoronaTickets UY - Comprar Paquete</title>
 </head>
 <body>
@@ -49,7 +49,8 @@
 						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= dtpaq.getDescuento() %>%</span></p>							            
 						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>	    
 	            		 <%
-            if(!Fabrica.getInstancia().getIUsuario().ExisteCompraPaquete(usuario,dtpaq.getNombre())){System.out.print("sii"+dtpaq.getNombre()); %>
+	    	            		 	if(!Fabrica.getInstancia().getIUsuario().existeCompraPaquete(usuario,dtpaq.getNombre())){System.out.print("sii"+dtpaq.getNombre());
+	    	            		 %>
 				<div class="container-fluid" id="compraNormal">
 					<form action="comprarpaquete" method="POST" class="form" id="formNormal">
 						<div class="button">

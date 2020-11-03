@@ -4,15 +4,15 @@
 <html>
 <head>
 	
-	<%@page import="DataTypes.DtCategoria"%>
-	<%@page import="DataTypes.DtPlataforma"%>
-	<%@page import="DataTypes.DtEspectadorPerfil"%>
-	<%@page import="DataTypes.DtUsuario"%>
-	<%@page import="DataTypes.DtPaqueteDatos" %>
-	<%@page import="DataTypes.DtEspectaculoDatos" %>
+	<%@page import="datatypes.DtCategoria"%>
+	<%@page import="datatypes.DtPlataforma"%>
+	<%@page import="datatypes.DtEspectadorPerfil"%>
+	<%@page import="datatypes.DtUsuario"%>
+	<%@page import="datatypes.DtPaqueteDatos" %>
+	<%@page import="datatypes.DtEspectaculoDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IUsuario"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IUsuario"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<meta charset="ISO-8859-1">
 	<title>Busqueda</title>

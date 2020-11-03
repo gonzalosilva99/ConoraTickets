@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Controladores.Fabrica;
-import Interfaces.IPlataforma;
-import DataTypes.EstadoSesion;
+import controladores.Fabrica;
+import interfaces.IPlataforma;
+import datatypes.EstadoSesion;
 /**
  * Servlet implementation class Home
  */
@@ -64,7 +64,7 @@ public class ConsultaEspectaculo extends HttpServlet {
 			String plataforma = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(espectaculo);
 			//System.out.println(usuario + " " + paquete + " " + espectaculo + " " + plataforma);
 			if((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && paquete != null && espectaculo!=null) {
-				Fabrica.getInstancia().getIPaquete().ConfirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
+				Fabrica.getInstancia().getIPaquete().confirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
 				response.getWriter().write("SUCCESS");
 			}
 			else {

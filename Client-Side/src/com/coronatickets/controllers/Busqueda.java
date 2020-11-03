@@ -1,6 +1,6 @@
 package com.coronatickets.controllers;
 import java.util.LinkedHashMap; 
-import DataTypes.DtUsuario;
+import datatypes.DtUsuario;
 import java.util.Map; 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,11 +21,11 @@ import javax.servlet.http.HttpSession;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
-import DataTypes.DtUsuario;import DataTypes.DtCategoria;
-import DataTypes.DtEspectaculoDatos;
-import DataTypes.DtPaqueteDatos;
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
+import datatypes.DtUsuario;import datatypes.DtCategoria;
+import datatypes.DtEspectaculoDatos;
+import datatypes.DtPaqueteDatos;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
 
 /**
  * Servlet implementation class Home
@@ -82,7 +82,7 @@ public class Busqueda extends HttpServlet {
 				    List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
 				    for(DtEspectaculoDatos dtespec : copiaespecs) {
 						String nombreplat = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespec.getNombre());
-						HashSet<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().ListarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
+						HashSet<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().listarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
 						for(DtCategoria cat : categoriasespec) {
 							if(!cats.contains(cat.getNomCategoria())) {
 								especfilt.remove(dtespec);

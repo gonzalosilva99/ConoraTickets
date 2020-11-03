@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.text.*,java.util.*" %>
 <%@page import="com.coronatickets.controllers.Login" %>
-  <%@page import="Controladores.Fabrica" %>
+  <%@page import="controladores.Fabrica" %>
 
-<%@page import="DataTypes.DtUsuario"%>
-<%@page import="DataTypes.DtEspectadorPerfil"%>
-<%@page import="DataTypes.DtArtistaPerfil"%>
-<%@page import="DataTypes.EstadoSesion" %>
+<%@page import="datatypes.DtUsuario"%>
+<%@page import="datatypes.DtEspectadorPerfil"%>
+<%@page import="datatypes.DtArtistaPerfil"%>
+<%@page import="datatypes.EstadoSesion" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,19 +16,19 @@
 </head>
 <body>
 	<%
-	try{
-		DtUsuario usuario = Login.getUsuarioLogueado(request);
+		try{
+			DtUsuario usuario = Login.getUsuarioLogueado(request);
 
-		DtArtistaPerfil dtart = null;
-		DtEspectadorPerfil dtesp=null;
-		if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())) {
-			dtart = Fabrica.getInstancia().getIUsuario().PerfilArtista(usuario.getNickname());
-		}
-		else{
-			dtesp = Fabrica.getInstancia().getIUsuario().PerfilEspectador(usuario.getNickname());
-		}
-		Date aux = usuario.getNacimiento();	
-		String fecha_nac = (aux.getYear() + 1900)  + "-" + (aux.getMonth() + 1) + "-" + aux.getDate();
+			DtArtistaPerfil dtart = null;
+			DtEspectadorPerfil dtesp=null;
+			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())) {
+		dtart = Fabrica.getInstancia().getIUsuario().perfilArtista(usuario.getNickname());
+			}
+			else{
+		dtesp = Fabrica.getInstancia().getIUsuario().perfilEspectador(usuario.getNickname());
+			}
+			Date aux = usuario.getNacimiento();	
+			String fecha_nac = (aux.getYear() + 1900)  + "-" + (aux.getMonth() + 1) + "-" + aux.getDate();
 	%>
 	<div class="wrapper">
 	

@@ -3,18 +3,18 @@
 <head>
 	  <%@page import="java.util.Set" %>
 	  <%@page import="java.util.Iterator" %>
-    <%@page import="DataTypes.DtPlataforma" %>
-        <%@page import="DataTypes.DtArtista" %>
-	<%@page import="DataTypes.EstadoSesion" %>
-	<%@page import="DataTypes.DtPaqueteDatos" %>
-	<%@page import="DataTypes.DtEspectaculo" %>
-	<%@page import="DataTypes.DtFuncion" %>	
-	<%@page import="DataTypes.DtUsuario" %>	
-	<%@page import="DataTypes.EstadoEspectaculo" %>	
+    <%@page import="datatypes.DtPlataforma" %>
+        <%@page import="datatypes.DtArtista" %>
+	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="datatypes.DtPaqueteDatos" %>
+	<%@page import="datatypes.DtEspectaculo" %>
+	<%@page import="datatypes.DtFuncion" %>	
+	<%@page import="datatypes.DtUsuario" %>	
+	<%@page import="datatypes.EstadoEspectaculo" %>	
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="com.coronatickets.controllers.AltaFuncion" %>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IUsuario"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IUsuario"%>
 	<%@page import="java.time.Month"%>
 	<%@page import="java.time.LocalDate"%>
 	<%@page import="java.util.Date"%>
@@ -37,39 +37,54 @@
       <select class="custom-select" id="selectPlataformas" onChange="obtenerEspectaculos()"   >    
       <option value="" selected><% if (plataformaSeleccionada == null){%> Elija la plataforma <%}else{%> <%=plataformaSeleccionada%> <%} %></option>
       	<%
-				DtUsuario usuario = Login.getUsuarioLogueado(request);
-				if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
-					Set<DtPlataforma> plataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
-					Iterator<DtPlataforma> itrp = plataformas.iterator();
-					while(itrp.hasNext()){
-						DtPlataforma auxp = itrp.next();
-		%>			
-      	<option value="<%=auxp.getNombre() %>"><%=auxp.getNombre() %></option>
+      		DtUsuario usuario = Login.getUsuarioLogueado(request);
+      			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
+      				Set<DtPlataforma> plataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
+      				Iterator<DtPlataforma> itrp = plataformas.iterator();
+      				while(itrp.hasNext()){
+      					DtPlataforma auxp = itrp.next();
+      	%>			
+      	<option value="<%=auxp.getNombre()%>"><%=auxp.getNombre()%></option>
 		             	
-        <%} %>
-        <%} %>
+        <%
+		             	        	}
+		             	        %>
+        <%
+        	}
+        %>
       </optgroup>
      
       </select>
      
 
    </div>
-    <%Set<DtEspectaculo> espectaculosActivados = (Set<DtEspectaculo>) request.getSession().getAttribute("espectaculosAceptados"); %>
+    <%
+    	Set<DtEspectaculo> espectaculosActivados = (Set<DtEspectaculo>) request.getSession().getAttribute("espectaculosAceptados");
+    %>
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
       <select class="custom-select" id="selectEspectaculos" name="espectaculo" >
-      <option value="" selected><% if (espectaculosActivados == null){%> No hay espectaculos disponibles en la plataforma <%}else{%> Elija el espectaculo <%} %></option>
+      <option value="" selected><%
+      	if (espectaculosActivados == null){
+      %> No hay espectaculos disponibles en la plataforma <%
+      	}else{
+      %> Elija el espectaculo <%
+      	}
+      %></option>
       <%
       	try{
-	      	Iterator<DtEspectaculo> iterEspectaculos= espectaculosActivados.iterator();
-			while(iterEspectaculos.hasNext()){
-				DtEspectaculo dtespec = iterEspectaculos.next(); 
-		
-		%>
-      	<option value="<%=dtespec.getNombre() %>"><%=dtespec.getNombre() %></option>
-      	<%} %>
-      	<%} catch(Exception e){
-      		System.out.println("CATCH DEL LISTAR ESPECTACULOS");
-      	}%>
+      	      	Iterator<DtEspectaculo> iterEspectaculos= espectaculosActivados.iterator();
+      	while(iterEspectaculos.hasNext()){
+      		DtEspectaculo dtespec = iterEspectaculos.next();
+      %>
+      	<option value="<%=dtespec.getNombre()%>"><%=dtespec.getNombre()%></option>
+      	<%
+      		}
+      	%>
+      	<%
+      		} catch(Exception e){
+      	      		System.out.println("CATCH DEL LISTAR ESPECTACULOS");
+      	      	}
+      	%>
       	
 
         
@@ -80,13 +95,13 @@
       <select class="custom-select" id="selectArtistas" name="invitados[]"  multiple>    
       <option value="" selected>Elija artistas invitados</option>
       	<%
-				if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
-					Set<DtArtista> artistasInvitados = Fabrica.getInstancia().getIUsuario().listarArtistas();
-					Iterator<DtArtista> iterArtista = artistasInvitados.iterator();
-					while(iterArtista.hasNext()){
-						//if (!iterArtista.next().getNickname().equals(usuario.getNickname())){
-							DtArtista artista = iterArtista.next();
-		%>			
+      		if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
+      				Set<DtArtista> artistasInvitados = Fabrica.getInstancia().getIUsuario().listarArtistas();
+      				Iterator<DtArtista> iterArtista = artistasInvitados.iterator();
+      				while(iterArtista.hasNext()){
+      					//if (!iterArtista.next().getNickname().equals(usuario.getNickname())){
+      						DtArtista artista = iterArtista.next();
+      	%>			
       	<option value="<%=artista.getNickname() %>"><%=artista.getNombre() %>  <%=artista.getApellido() %></option>
           	
         <%//} %>

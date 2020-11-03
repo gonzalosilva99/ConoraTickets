@@ -10,18 +10,18 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import Clases.Espectador;
-import Clases.Paquete;
-import Controladores.Fabrica;
-import DataTypes.DtArtista;
-import DataTypes.DtArtistaConsulta;
-import DataTypes.DtFuncionDatos;
-import DataTypes.TipoRegistro;
-import Excepciones.Identidad;
-import Interfaces.IPaquete;
-import Interfaces.IPlataforma;
-import Interfaces.IUsuario;
-import Relaciones.CompraPaquete;
+import clases.Espectador;
+import clases.Paquete;
+import controladores.Fabrica;
+import datatypes.DtArtista;
+import datatypes.DtArtistaConsulta;
+import datatypes.DtFuncionDatos;
+import datatypes.TipoRegistro;
+import excepciones.Identidad;
+import interfaces.IPaquete;
+import interfaces.IPlataforma;
+import interfaces.IUsuario;
+import relaciones.CompraPaquete;
 
 public class TestCompraPaquete {
 
@@ -29,10 +29,10 @@ public class TestCompraPaquete {
 	public void test() {
 		try {	
 			//CompraPaquete
-			Espectador espectador = new Espectador(null,null,null,null,null, "", "");
-			Paquete paquete = new Paquete(null,null,null,null,null,null, "");
-			CompraPaquete comprapaquete = new CompraPaquete(null,null,null);
-			comprapaquete.TieneEspectaculo("");
+			Espectador espectador = new Espectador(null, null, null, null, null, "", "");
+			Paquete paquete = new Paquete(null, null, null, null, null, null, "");
+			CompraPaquete comprapaquete = new CompraPaquete(null, null, null);
+			comprapaquete.tieneEspectaculo("");
 			DtFuncionDatos dtfuncion = new DtFuncionDatos();
 			dtfuncion.getAlta();
 			dtfuncion.getArtistas();
@@ -41,6 +41,7 @@ public class TestCompraPaquete {
 			dtfuncion.getNombre();
 		}
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 }
 	}

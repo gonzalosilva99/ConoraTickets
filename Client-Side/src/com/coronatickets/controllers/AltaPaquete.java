@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
-import Excepciones.Identidad;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
+import excepciones.Identidad;
 
 /**
  * Servlet implementation class AltaPaquete
@@ -51,7 +51,7 @@ public class AltaPaquete extends HttpServlet {
 			Date fechai = formato.parse(fechaini);
 			double d = Double.parseDouble(porcentaje);  
 		    java.util.Date fechaactual = new Date();
-			if (fechai.before(fechaf)) {Fabrica.getInstancia().getIPaquete().ConfirmarAltaPaquete(nombre, descripcion, fechai, fechaf, d, fechaactual, imagen); 
+			if (fechai.before(fechaf)) {Fabrica.getInstancia().getIPaquete().confirmarAltaPaquete(nombre, descripcion, fechai, fechaf, d, fechaactual, imagen); 
 			request.setAttribute("aceptado", "true");}
 			
 			else request.setAttribute("fechainvalida", "true");
@@ -83,7 +83,7 @@ public class AltaPaquete extends HttpServlet {
 		request.setAttribute("aceptado", "false");
 		request.setAttribute("si", "false");
 		request.setAttribute("fechainvalida", "false");
-		if (Fabrica.getInstancia().getIUsuario().existeNickname((String) request.getSession().getAttribute("usuario_logueado")) && Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getSession().getAttribute("usuario_logueado"))) request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
+		if (Fabrica.getInstancia().getIUsuario().existeNickname((String) request.getSession().getAttribute("usuario_logueado")) && Fabrica.getInstancia().getIUsuario().esArtista((String) request.getSession().getAttribute("usuario_logueado"))) request.getRequestDispatcher("/WEB-INF/altapaquete.jsp").forward(request, response);
 		
 	}
 

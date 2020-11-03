@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
 /**
  * Servlet implementation class Home
  */

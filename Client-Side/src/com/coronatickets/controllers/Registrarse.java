@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
-import DataTypes.TipoRegistro;
-import Excepciones.Identidad;
-import Interfaces.ICategoria;
-import Interfaces.IPaquete;
-import Interfaces.IPlataforma;
-import Interfaces.IUsuario;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
+import datatypes.TipoRegistro;
+import excepciones.Identidad;
+import interfaces.ICategoria;
+import interfaces.IPaquete;
+import interfaces.IPlataforma;
+import interfaces.IUsuario;
 
 
 

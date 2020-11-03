@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@page import="DataTypes.DtPlataforma"%>
-	<%@page import="DataTypes.DtCategoria"%>
-	<%@page import="DataTypes.EstadoSesion" %>
-	<%@page import="DataTypes.DtUsuario" %>
+	<%@page import="datatypes.DtPlataforma"%>
+	<%@page import="datatypes.DtCategoria"%>
+	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="datatypes.DtUsuario" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IPlataforma"%>
-	<%@page import="Interfaces.ICategoria"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IPlataforma"%>
+	<%@page import="interfaces.ICategoria"%>
 	<%@page import="java.util.Iterator" %>
 	<%@page import="java.util.Set"%>
 	<%@page import="java.util.HashSet"%>
@@ -18,12 +18,12 @@
 <body>
 	
 	<%
-	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
-		DtUsuario usuario = Login.getUsuarioLogueado(request);
-	if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
-		System.out.print("jsp2 "+(String) request.getAttribute("aceptado"));
-		if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){
-	%>	
+			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
+				DtUsuario usuario = Login.getUsuarioLogueado(request);
+			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
+				System.out.print("jsp2 "+(String) request.getAttribute("aceptado"));
+				if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){
+		%>	
 	 	<script type="text/javascript"> alert("Enviado. Esperando a ser aceptado"); </script>
 				<% } else if((String) request.getAttribute("aceptado")!=null && !((String) request.getAttribute("aceptado")).equals("true")){%> <script type="text/javascript"> alert("<%= (String) request.getAttribute("aceptado") %>"); </script> <%}%>
 	<div class="wrapper">

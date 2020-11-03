@@ -3,17 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@page import="DataTypes.DtEspectadorPerfil"%>
-	<%@page import="DataTypes.DtArtistaPerfil"%>
-	<%@page import="DataTypes.EstadoSesion" %>
-	<%@page import="DataTypes.DtPaqueteDatos" %>
-	<%@page import="DataTypes.DtEspectaculo" %>
-	<%@page import="DataTypes.DtFuncion" %>	
-	<%@page import="DataTypes.DtUsuario" %>	
-	<%@page import="DataTypes.EstadoEspectaculo" %>	
+	<%@page import="datatypes.DtEspectadorPerfil"%>
+	<%@page import="datatypes.DtArtistaPerfil"%>
+	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="datatypes.DtPaqueteDatos" %>
+	<%@page import="datatypes.DtEspectaculo" %>
+	<%@page import="datatypes.DtFuncion" %>	
+	<%@page import="datatypes.DtUsuario" %>	
+	<%@page import="datatypes.EstadoEspectaculo" %>	
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IUsuario"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IUsuario"%>
 	<%@page import="java.time.Month"%>
 	<%@page import="java.util.Date"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>

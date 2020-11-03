@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
-<%@page import="DataTypes.DtEspectaculoDatos"%>
-	<%@page import="DataTypes.EstadoSesion" %>
-	<%@page import="DataTypes.DtCategoria" %>
-	<%@page import="DataTypes.DtPaquete" %>
-	<%@page import="DataTypes.DtArtista" %>
-	<%@page import="DataTypes.DtFuncionDatos" %>
+<%@page import="datatypes.DtEspectaculoDatos"%>
+	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="datatypes.DtCategoria" %>
+	<%@page import="datatypes.DtPaquete" %>
+	<%@page import="datatypes.DtArtista" %>
+	<%@page import="datatypes.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IUsuario"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IUsuario"%>
 	
 <!DOCTYPE html>
 <html>
@@ -25,14 +25,15 @@
         <div id="content">
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
-		<% 
-		String usuario = (String) request.getSession().getAttribute("usuario_logueado");
-		DtEspectaculoDatos dtesp=null;
-		dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
-		Set<DtPaquete> dtpaqesp = dtesp.getPaquetes();
-		Set<DtPaquete> dtpaq = Fabrica.getInstancia().getIPaquete().ListarPaquetes();
-		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
-		if(dtesp!=null){%>
+		<%
+			String usuario = (String) request.getSession().getAttribute("usuario_logueado");
+				DtEspectaculoDatos dtesp=null;
+				dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
+				Set<DtPaquete> dtpaqesp = dtesp.getPaquetes();
+				Set<DtPaquete> dtpaq = Fabrica.getInstancia().getIPaquete().listarPaquetes();
+				DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
+				if(dtesp!=null){
+		%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
 	            <img src="<% if(dtesp.getImagen()!=""){%><%= dtesp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
@@ -113,13 +114,19 @@
 											<% } %></span></p>
 											<% } %>
 											<p class="text-dark"><b>Espectadores hasta el momento:</b> <span id="fechaFuncion"><%= auxf.getEspectadores() %></span></p>
-				    						<% if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado"))){ %>
+				    						<%
+				    							if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String)request.getSession().getAttribute("usuario_logueado"))){
+				    						%>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarFuncion('<%=auxf.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
-				    						<%} %>
+				    						<%
+				    							}
+				    						%>
 				    					</div>
 				    				</div>
 				    				<hr> 
-				    				<% ;}} %>
+				    				<%
+ 				    					;}}
+ 				    				%>
 				    							    				
 				  				</div>
 							 </div>		  		
@@ -132,32 +139,41 @@
 				  					</div>
 				  					<hr>
 				  					<%
-					      Iterator<DtPaquete> itrp = dtesp.getPaquetes().iterator();
-							while(itrp.hasNext())
-								{
-								DtPaquete auxp = itrp.next();%>
+				  						Iterator<DtPaquete> itrp = dtesp.getPaquetes().iterator();
+				  										while(itrp.hasNext())
+				  											{
+				  											DtPaquete auxp = itrp.next();
+				  					%>
 				    				<div class="container-fluid media mb-sm-5">
 				    					<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
 				    						<div class="container-fluid media mb-sm-5">
-				    					 <img src="<% if(auxp.getImagen()!=""){%><%= auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
-										 <% Date todayDate = new Date(); %>
+				    					 <img src="<%if(auxp.getImagen()!=""){%><%=auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
+										 <%
+ 										 	Date todayDate = new Date();
+ 										 %>
 										 <div class="media-body ml-sm-4">		
-								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= auxp.getNombre() %></span></p>
-								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= auxp.getDescripcion() %></span></p>
-								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= auxp.getDescuento() %>%</span></p>							            
-								  			 <p class="text-dark red"><b <% if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin()) %></span></p>
-								  			 <% 
-								  			 
-								  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado")) && todayDate.after(auxp.getInicio()) && todayDate.before(auxp.getFin()) ){ %>
+								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%=auxp.getNombre()%></span></p>
+								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%=auxp.getDescripcion()%></span></p>
+								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%=auxp.getDescuento()%>%</span></p>							            
+								  			 <p class="text-dark red"><b <%if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<%}%>>Validez: </b> <span id="validezPaquete" <%if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<%}%>><%=fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin())%></span></p>
+								  			 <%
+								  			 	if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String)request.getSession().getAttribute("usuario_logueado")) && todayDate.after(auxp.getInicio()) && todayDate.before(auxp.getFin()) ){
+								  			 %>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=auxp.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
-				    						<%} %>
+				    						<%
+				    							}
+				    						%>
 								  		</div>
 								  		</div>
 								  		</a>
             						</div>
 				    				<hr>
-				    				<% }} %>
-				    				<% if(usuario!=null && Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<%
+				    					}}
+				    				%>
+				    				<%
+				    					if(usuario!=null && Fabrica.getInstancia().getIUsuario().esArtista(usuario)){
+				    				%>
 				    				<div class="container-fluid">
 				    					<p class="mx-auto" id="anadirpaquetes"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirPaquete"><i class="far fa-folder-plus"></i> Añadir Paquete</button></p>
 				    				</div>	

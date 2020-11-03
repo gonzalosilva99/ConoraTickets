@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
-	<%@page import="DataTypes.DtPaqueteDatos"%>
-	<%@page import="DataTypes.EstadoSesion" %>
-	<%@page import="DataTypes.DtCategoria" %>
-	<%@page import="DataTypes.DtEspectaculo" %>
-	<%@page import="DataTypes.DtEspectaculoDatos"%>
-	<%@page import="DataTypes.DtPaquete" %>
-	<%@page import="DataTypes.DtArtista" %>
-	<%@page import="DataTypes.DtFuncionDatos" %>
+	<%@page import="datatypes.DtPaqueteDatos"%>
+	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="datatypes.DtCategoria" %>
+	<%@page import="datatypes.DtEspectaculo" %>
+	<%@page import="datatypes.DtEspectaculoDatos"%>
+	<%@page import="datatypes.DtPaquete" %>
+	<%@page import="datatypes.DtArtista" %>
+	<%@page import="datatypes.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IUsuario"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IUsuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,10 +39,14 @@
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtpaq.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>        
-		            <% 				  		Date hoy = new Date();	 
-								  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio()) && hoy.before(dtpaq.getFin()) ){ %>
+		            <%
+        		            	Date hoy = new Date();	 
+        		            						  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio()) && hoy.before(dtpaq.getFin()) ){
+        		            %>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=dtpaq.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
-				    						<%} %>
+				    						<%
+				    							}
+				    						%>
 	            </div>
             </div>
            	<div class="container-fluid">
@@ -58,22 +62,32 @@
 			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="paquete" role="tabpanel" aria-labelledby="espectaculo-tab">
 			  			<p class="media-heading"><h4 id="tituloEspectaculo">Informacion sobre el paquete:</h4></p>
 			  			<hr>
-						<p class="text-dark"><b>Nombre del paquete:</b> <span id="nombreEspectaculo"><%= dtpaq.getNombre() %>	</span></p>
-						<% Integer tamc = dtpaq.getCategorias().size();
-				    		if(tamc>0){
-				    		tamc=0;%>
+						<p class="text-dark"><b>Nombre del paquete:</b> <span id="nombreEspectaculo"><%=dtpaq.getNombre()%>	</span></p>
+						<%
+							Integer tamc = dtpaq.getCategorias().size();
+								    		if(tamc>0){
+								    		tamc=0;
+						%>
 						<p class="text-dark"><b>Categorias:</b> <span id="categoriasEspectaculo">
-						<% 
-						
-					      Iterator<DtCategoria> itr = dtpaq.getCategorias().iterator();
-							while(itr.hasNext())
-								{tamc++;%>
-								<%= itr.next().getNomCategoria() %>
-								<% if(tamc<dtpaq.getCategorias().size()) {%>,<%} %>
-								<% } %></span></p>	<% } %>				
-						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>
-						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= dtpaq.getDescuento() %>%</span></p>							            
-						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>					    
+						<%
+							Iterator<DtCategoria> itr = dtpaq.getCategorias().iterator();
+											while(itr.hasNext())
+												{tamc++;
+						%>
+								<%=itr.next().getNomCategoria()%>
+								<%
+									if(tamc<dtpaq.getCategorias().size()) {
+								%>,<%
+									}
+								%>
+								<%
+									}
+								%></span></p>	<%
+		}
+	%>				
+						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%=dtpaq.getDescripcion()%> </span></p>
+						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%=dtpaq.getDescuento()%>%</span></p>							            
+						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<%}%>>Validez: </b> <span id="validezPaquete" <%if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<%}%>><%=fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin())%></span></p>					    
 					</div>
 			  		<div class="tab-pane fade ml-sm-5 mt-sm-5" id="espectaculos" role="tabpanel" aria-labelledby="funciones-tab">	 
 				  			 <div class="panel-group container-fluid">
@@ -81,29 +95,36 @@
 				  					<div class="panel-heading mb-sm-2">
 				  						 <p class="media-heading"><h4 id="tituloFunciones">Espectaculos:</h4></p>
 				  					</div>
-				  					<% Integer tame = dtpaq.getEspectaculos().size();
-				    		if(tame>0){%>
+				  					<%
+				  						Integer tame = dtpaq.getEspectaculos().size();
+				  							    		if(tame>0){
+				  					%>
 				  					<hr>
 				  					<%
-					      Iterator<DtEspectaculo> itre = dtpaq.getEspectaculos().iterator();
-							while(itre.hasNext())
-								{
-								DtEspectaculo auxe = itre.next();%>
-								<a href="/consultaespectaculo?nomespectaculo=<%= auxe.getNombre() %>">
+				  						Iterator<DtEspectaculo> itre = dtpaq.getEspectaculos().iterator();
+				  										while(itre.hasNext())
+				  											{
+				  											DtEspectaculo auxe = itre.next();
+				  					%>
+								<a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre()%>">
 								<div class="container-fluid media mb-sm-5">
-								<img src="<% if(auxe.getImagen()!=""){%><%= auxe.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
+								<img src="<%if(auxe.getImagen()!=""){%><%=auxe.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
-								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxe.getNombre() %> </span></p>
-								  			 <p class="text-dark"><b>Descripcion:</b> <span id="fechaFuncion"><%= auxe.getDescripcion() %></span></p>
-								  			 <p class="text-dark"><b>Costo:</b> <span id="fechaFuncion"><%= auxe.getCosto() %></span></p>					
+								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%=auxe.getNombre()%> </span></p>
+								  			 <p class="text-dark"><b>Descripcion:</b> <span id="fechaFuncion"><%=auxe.getDescripcion()%></span></p>
+								  			 <p class="text-dark"><b>Costo:</b> <span id="fechaFuncion"><%=auxe.getCosto()%></span></p>					
 				    				</div>
 				    			</div>
 				    			</a>
 				    				<hr> 
-				    				<% ;}}} %>
+				    				<%
+ 				    					;}}}
+ 				    				%>
 				    					
-				    				<% if(usuario != null && Fabrica.getInstancia().getIUsuario().EsArtista(usuario)){ %>
+				    				<%
+				    									    					if(usuario != null && Fabrica.getInstancia().getIUsuario().esArtista(usuario)){
+				    									    				%>
 				    				<div class="container-fluid">
 				    					<p class="mx-auto" id="anadirespectaculo"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirEspectaculo"><i class="far fa-folder-plus"></i> Añadir Espectaculo</button></p>
 				    				</div>	

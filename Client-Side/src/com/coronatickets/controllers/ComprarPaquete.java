@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Interfaces.IUsuario;
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
-import DataTypes.TipoRegistro;
+import interfaces.IUsuario;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
+import datatypes.TipoRegistro;
 /**
  * Servlet implementation class Home
  */
@@ -36,7 +36,7 @@ public class ComprarPaquete extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().EsArtista((String) request.getSession().getAttribute("usuario_logueado"))
+		if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String) request.getSession().getAttribute("usuario_logueado"))
 				/*&& request.getAttribute("nomespectaculo")!=null && request.getAttribute("funcion")!=null*/) {
 			request.getRequestDispatcher("/WEB-INF/comprarpaquete.jsp").forward(request, response);
 		}

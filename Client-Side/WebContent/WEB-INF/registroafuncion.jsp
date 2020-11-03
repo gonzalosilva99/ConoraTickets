@@ -5,14 +5,14 @@
 <head>
 	<meta charset="UTF-8">
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
-	<%@page import="DataTypes.DtFuncionDatos"%>
-	<%@page import="DataTypes.DtPaqueteDatos"%>
-	<%@page import="DataTypes.DtArtista"%>
-	<%@page import="DataTypes.DtRegistro"%>
-	<%@page import="DataTypes.DtEspectaculoDatos"%>
-	<%@page import="DataTypes.DtPaquete"%>
-	<%@page import="Controladores.Fabrica"%>
-	<%@page import="Interfaces.IPlataforma"%>
+	<%@page import="datatypes.DtFuncionDatos"%>
+	<%@page import="datatypes.DtPaqueteDatos"%>
+	<%@page import="datatypes.DtArtista"%>
+	<%@page import="datatypes.DtRegistro"%>
+	<%@page import="datatypes.DtEspectaculoDatos"%>
+	<%@page import="datatypes.DtPaquete"%>
+	<%@page import="controladores.Fabrica"%>
+	<%@page import="interfaces.IPlataforma"%>
 	<title>CoronaTickets UY - Registro a Funcion</title>
 </head>
 <body>
@@ -24,12 +24,12 @@
 			<!-- COMIENZO CODIGO -->
 			<%
 				DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
-				DateFormat horaFecha = new SimpleDateFormat("hh:mm");
-				String usuario = (String) request.getSession().getAttribute("usuario_logueado");
-				DtEspectaculoDatos dtesp = Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(request.getParameter("nomespectaculo"));
-				Set<DtPaqueteDatos> dtpaquetesdisponibles = Fabrica.getInstancia().getIUsuario().PerfilEspectador(usuario).getPaquetesComprados();
-				DtFuncionDatos dtfuncdatos = Fabrica.getInstancia().getIPlataforma().findDatosFuncion(request.getParameter("funcion"));
-				Set<DtRegistro> registroscanjeables = Fabrica.getInstancia().getIUsuario().listarRegistrosSinCanjeaer(usuario);
+					DateFormat horaFecha = new SimpleDateFormat("hh:mm");
+					String usuario = (String) request.getSession().getAttribute("usuario_logueado");
+					DtEspectaculoDatos dtesp = Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(request.getParameter("nomespectaculo"));
+					Set<DtPaqueteDatos> dtpaquetesdisponibles = Fabrica.getInstancia().getIUsuario().perfilEspectador(usuario).getPaquetesComprados();
+					DtFuncionDatos dtfuncdatos = Fabrica.getInstancia().getIPlataforma().findDatosFuncion(request.getParameter("funcion"));
+					Set<DtRegistro> registroscanjeables = Fabrica.getInstancia().getIUsuario().listarRegistrosSinCanjeaer(usuario);
 			%>
 			<div class="container-fluid media mb-sm-5">
 	            <img src="<%if(dtfuncdatos.getImagen()!=null && dtfuncdatos.getImagen()!=""){%><%= dtfuncdatos.getImagen()%><%}else{%><%="img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 
@@ -47,7 +47,9 @@
 		            <p>	<span id="costoFuncion"><span class="text-dark">Costo: </span><%= dtesp.getCosto() %></span></p>     
 	            </div>
             </div>
-            <% if(!Fabrica.getInstancia().getIUsuario().ExisteRegistroaFuncion(usuario, dtfuncdatos.getNombre())){ %>
+            <%
+            	if(!Fabrica.getInstancia().getIUsuario().existeRegistroaFuncion(usuario, dtfuncdatos.getNombre())){
+            %>
             <div id="metododecompra">
             <div class="container-fluid">
             	<h3>Método de Compra:</h3>
@@ -126,7 +128,9 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 				</div>
 				<div id="resultado-compra" class="mt-sm-5 ml-sm-5">
 				</div>
-				<%}else if(Fabrica.getInstancia().getIPlataforma().PuedeAgregarEspectadores(Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre()), dtesp.getNombre(), dtfuncdatos.getNombre())){%>
+				<%
+					}else if(Fabrica.getInstancia().getIPlataforma().puedeAgregarEspectadores(Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre()), dtesp.getNombre(), dtfuncdatos.getNombre())){
+				%>
 				<div class="container-fluid mt-sm-5 ml-sm-5">
 					<p class="text-muted"><h1>YA HAS COMPRADO ESTE PAQUETE</h1></p>
 				</div>

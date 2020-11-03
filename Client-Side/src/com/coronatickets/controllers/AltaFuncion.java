@@ -16,17 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Clases.Espectaculo;
+import clases.Espectaculo;
 
 import java.util.Arrays;
 
-import Controladores.Fabrica;
-import Interfaces.IPlataforma;
-import DataTypes.DtEspectaculo;
-import DataTypes.EstadoSesion;
-import DataTypes.DtArtista;
-import DataTypes.DtUsuario;
-import Excepciones.Identidad;
+import controladores.Fabrica;
+import interfaces.IPlataforma;
+import datatypes.DtEspectaculo;
+import datatypes.EstadoSesion;
+import datatypes.DtArtista;
+import datatypes.DtUsuario;
+import excepciones.Identidad;
 /**
  * Servlet implementation class Home
  */
@@ -87,7 +87,7 @@ public class AltaFuncion extends HttpServlet {
 				while(iter.hasNext()){
 					System.out.println("invitados: " + iter.next()); 
 				}
-			  Fabrica.getInstancia().getIPlataforma().ConfirmarAltaFuncionEspectaculo(request.getParameter("inputPrueba"), 
+			  Fabrica.getInstancia().getIPlataforma().confirmarAltaFuncionEspectaculo(request.getParameter("inputPrueba"), 
 					  request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, invitadosSet, fechaAlta, "imagen");
 			  request.getSession().setAttribute("exito", new Integer(0)); //exito
 		  }catch (Exception e) {  

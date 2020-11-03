@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="Controladores.Fabrica"%>
-    <%@page import="DataTypes.DtEspectaculo"%>
+    <%@page import="controladores.Fabrica"%>
+    <%@page import="datatypes.DtEspectaculo"%>
     <%@page import="java.util.Set"%>
     <%@page import="java.util.Iterator"%>
 

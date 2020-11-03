@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Interfaces.IUsuario;
-import Controladores.Fabrica;
-import DataTypes.EstadoSesion;
+import interfaces.IUsuario;
+import controladores.Fabrica;
+import datatypes.EstadoSesion;
 /**
  * Servlet implementation class Home
  */
@@ -45,13 +45,13 @@ public class Perfil extends HttpServlet {
 			}
 		}
 		if(Fabrica.getInstancia().getIUsuario().existeNickname(nickname)) {
-			if(Fabrica.getInstancia().getIUsuario().EsArtista(nickname)) {
+			if(Fabrica.getInstancia().getIUsuario().esArtista(nickname)) {
 				request.setAttribute("tipo_usuario", "Artista");
-				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().PerfilArtista(nickname));
+				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().perfilArtista(nickname));
 			}
 			else {
 				request.setAttribute("tipo_usuario", "Espectador");
-				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().PerfilEspectador(nickname));
+				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().perfilEspectador(nickname));
 			}
 			request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request, response);
 		}
@@ -82,12 +82,12 @@ public class Perfil extends HttpServlet {
 		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
 			if(tipo.equals("follow")) {
 				//System.out.println("Va a seguir");
-				Fabrica.getInstancia().getIUsuario().SeguirUsuario(usuarioLogueado, usuarioPerfil);
+				Fabrica.getInstancia().getIUsuario().seguirUsuario(usuarioLogueado, usuarioPerfil);
 				//System.out.println("SEGUIDO: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
 			}
 			else if(tipo.equals("unfollow")) {
 				System.out.println("DEJAR DE SEGUIR");
-				Fabrica.getInstancia().getIUsuario().DejarSeguirUsuario(usuarioLogueado, usuarioPerfil);		
+				Fabrica.getInstancia().getIUsuario().dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);		
 			}
 		}
 	}

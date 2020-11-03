@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="Controladores.Fabrica" %>
+  <%@page import="controladores.Fabrica" %>
   <%@page import="com.coronatickets.controllers.Login" %>
-  <%@page import="DataTypes.DtUsuario" %>
-  <%@page import="DataTypes.DtPlataforma" %>
-  <%@page import="DataTypes.DtCategoria" %>
-  <%@page import="Controladores.Fabrica" %>
+  <%@page import="datatypes.DtUsuario" %>
+  <%@page import="datatypes.DtPlataforma" %>
+  <%@page import="datatypes.DtCategoria" %>
+  <%@page import="controladores.Fabrica" %>
   <%@page import="java.util.Set" %>
   <%@page import="java.util.Iterator" %>
-  <%@page import="DataTypes.EstadoSesion" %>
+  <%@page import="datatypes.EstadoSesion" %>
   <%@page import="com.coronatickets.controllers.Login" %>
 <!-- INICIO MENU LATERAL -->
         <!-- Sidebar  -->
@@ -19,11 +19,11 @@
 
             <ul class="list-unstyled components">
             <%
-			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
-		
-				DtUsuario usuario = Login.getUsuarioLogueado(request);
-				if(Fabrica.getInstancia().getIUsuario().EsArtista(usuario.getNickname())){
-				%>
+            	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
+            		
+            		DtUsuario usuario = Login.getUsuarioLogueado(request);
+            		if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
+            %>
             	<li>
             	<a href="#accionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ACCIONES</a>
                     <ul class="collapse list-unstyled" id="accionesSubmenu">

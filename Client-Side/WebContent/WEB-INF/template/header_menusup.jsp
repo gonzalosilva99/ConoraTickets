@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="Controladores.Fabrica" %>
-  <%@page import="DataTypes.EstadoSesion" %>
+  <%@page import="controladores.Fabrica" %>
+  <%@page import="datatypes.EstadoSesion" %>
   <%@page import="com.coronatickets.controllers.Login" %>
-  <%@page import="DataTypes.DtUsuario" %>
+  <%@page import="datatypes.DtUsuario" %>
 
   
 <!-- INICIO MENU ARRIBA -->
