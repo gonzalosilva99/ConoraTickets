@@ -94,8 +94,9 @@
       <textarea type="text" class="form-control" id="validationCustom07" name="biografia" placeholder="Biografia"></textarea>
     </div>
     <div class="mb-4 md-1" style="width: 100%;">
-      <input type="url" class="form-control" id="validationCustom08" name="url" style="width: 100%;" placeholder="Sitio Web">
-    </div>
+								<input type="url" class="form-control" id="validationCustom08"
+									name="url" style="width: 100%;" placeholder="Sitio Web">
+							</div>
     </div>
     <div class="col mb-4"">
   		<button class="btn btn-primary" style="width: 100%;" type="submit" onclick="if(document.getElementByClassName('was-validated')){submit()}">Registrate</button>
