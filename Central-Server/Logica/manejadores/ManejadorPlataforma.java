@@ -260,6 +260,7 @@ public class ManejadorPlataforma {
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
 				if (entry.getValue().existeEspectaculo(nomEspectaculo)) {
 					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Aceptado);
+					
 					break;
 				}
 			}

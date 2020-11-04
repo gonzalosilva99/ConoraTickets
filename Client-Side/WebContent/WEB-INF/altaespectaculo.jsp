@@ -103,7 +103,7 @@
   <ul class="list-group list-group-flush" style="" name="categorias">
   <label>Categorías:</label>
   	<%
-  	HashSet<DtCategoria> Categorias = Fabrica.getInstancia().getICategoria().listarCategorias();
+  	Set<DtCategoria> Categorias = Fabrica.getInstancia().getICategoria().listarCategorias();
     Iterator<DtCategoria> itrc = Categorias.iterator();
 		while(itrc.hasNext())
 			{ 	

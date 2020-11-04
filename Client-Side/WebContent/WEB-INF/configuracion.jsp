@@ -11,13 +11,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<title>Configuracion</title>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 </head>
 <body>
 	<%
 		try{
+			DateFormat fechaIncompleta = new SimpleDateFormat("yyyy-MM-dd");
 			DtUsuario usuario = Login.getUsuarioLogueado(request);
 
 			DtArtistaPerfil dtart = null;
@@ -29,7 +30,7 @@
 		dtesp = Fabrica.getInstancia().getIUsuario().perfilEspectador(usuario.getNickname());
 			}
 			Date aux = usuario.getNacimiento();	
-			String fecha_nac = (aux.getYear() + 1900)  + "-" + (aux.getMonth() + 1) + "-" + aux.getDate();
+			String fecha_nac = fechaIncompleta.format(usuario.getNacimiento());
 	%>
 	<div class="wrapper">
 	
@@ -91,7 +92,7 @@
 				    <br>
 				    <div class="row">
 				    	<div class="col-md-3"> 
-				    		<label for="validationCustom02">Fecha nacimiento :</label>
+				    		<label for="validationCustom02">Nacimiento:</label>
 				    	</div>
 				    	<div class="col-md-9">
 				    		<input type="date" name="inputNacimiento"  style="margin-left:5%;display:inline;width:60%;" placeholder="Nacimiento" class="form-control"  value="<%=fecha_nac%>" id="inputNacimiento" placeholder="Nacimiento" required>
@@ -100,7 +101,7 @@
 				    <br>
 				    <div class="row">
 				    	<div class="col-md-3"> 
-				    		<label for="validationCustom02">Link imagen de perfil:</label>
+				    		<label for="validationCustom02">Imagen:</label>
 				    	</div>
 				    	<div class="col-md-9">
 							 <input type="text"  style="margin-left:5%;display:inline;width:60%;" value="<%=usuario.getImagen()%>" class="form-control" id="inputNickname" placeholder="Link imagen de perfil" name="imagen">

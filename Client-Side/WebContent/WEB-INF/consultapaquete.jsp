@@ -198,14 +198,6 @@
 			window.location.replace("/comprarpaquete?nompaquete="+paquete);
 		}
 	</script>
-	
-	<script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
     
     <script>
     $("#formAnadirEspectaculos").submit(function( event ) {

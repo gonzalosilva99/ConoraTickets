@@ -132,7 +132,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 					}else if(Fabrica.getInstancia().getIPlataforma().puedeAgregarEspectadores(Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre()), dtesp.getNombre(), dtfuncdatos.getNombre())){
 				%>
 				<div class="container-fluid mt-sm-5 ml-sm-5">
-					<p class="text-muted"><h1>YA HAS COMPRADO ESTE PAQUETE</h1></p>
+					<p class="text-muted"><h1>YA HAS COMPRADO ESTA FUNCION</h1></p>
 				</div>
 				<%}else{%>
 					<div class="container-fluid mt-sm-5 ml-sm-5">
@@ -140,7 +140,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 				</div>	
 				<%} %>
 				<div id="funcionyacomprada" class="container-fluid mt-sm-5 ml-sm-5" style="display:none;">
-					<p class="text-muted"><h1>YA HAS COMPRADO ESTE PAQUETE</h1></p>
+					<p class="text-muted"><h1>YA HAS COMPRADO ESTA FUNCION</h1></p>
 				</div>
 	</div>
 	<script>
@@ -154,6 +154,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 				break;
 			}
 		}
+		if (selectedValue!=null){
 	    var $form = $( this );
 	    var data = {
 	    		plataforma:'<%=Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre())%>',
@@ -170,7 +171,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 	            console.log(data);
 				var paquete_fin = document.getElementById("resultado-compra")
 	            if(data === "SUCCESS") {
-	            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Te has registrado a la función exitosamente, no se te ha cobrado nada por realizar esta operación.</div>')
+	            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Te has registrado a la función exitosamente, se te ha aplicado el descuento a la función comprada.</div>')
 	            	//$('#metododecompra').hide();
 	            	document.getElementById('metododecompra').setAttribute('style',"pointer-events:none;");
 	            	//$('#funcionyacomprada').show();
@@ -180,6 +181,15 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 	            }
 	        }
 	    });
+	    }
+		else{
+			if(rbs.length==0){
+				alert("No tienes paquetes que incluyan un espectáculo de esta función. Por favor adquiere uno antes de realizar esta función");
+			}
+			else{
+				alert("Por favor selecciona un paquete.");
+			}
+		}
 	}); 
 	$("#formNormal").submit(function( event ) {
 		event.preventDefault();
@@ -198,7 +208,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 	            console.log(data);
 				var paquete_fin = document.getElementById("resultado-compra")
 	            if(data === "SUCCESS") {
-	            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Te has registrado a la función exitosamente, no se te ha cobrado nada por realizar esta operación.</div>')
+	            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Te has registrado a la función exitosamente, se te ha cobrado el valor $<%= dtesp.getCosto() %> por realizar esta operación.</div>')
 	            	document.getElementById('metododecompra').setAttribute('style',"pointer-events:none;");
 	            	//$('#funcionyacomprada').show();
 	            }
@@ -254,7 +264,13 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 	    });
 	    }
 		else{
-			alert('Por favor selecciona exactamente TRES registros a funciones.')
+			if(rbs.length<3){
+				alert('No tienes funciones suficientes para canjear');
+			}
+			else{
+				alert('Por favor selecciona exactamente TRES registros a funciones.');	
+			}
+			
 		}
 	});
 	</script>

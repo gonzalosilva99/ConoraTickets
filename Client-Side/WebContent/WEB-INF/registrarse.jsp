@@ -71,7 +71,7 @@
     </div>
     <div class="col-auto mb-4">
 
-      <input type="text" class="form-control" id="inputNickname" placeholder="Link imagen de perfil" name="imagen">
+      <input type="text" class="form-control" id="inputImagen" placeholder="Link imagen de perfil" name="imagen">
 
     </div>
     	<div class="form-group col-auto">
@@ -138,9 +138,6 @@
 	
 	<script type="text/javascript">
         $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
             $("#inputCheckArtista").on('change', function () {
                 $('#opcionesArtista').show();
             });
@@ -151,10 +148,5 @@
         });
     </script>
 
-<script>
-$(document).ready(function () {
-
-});
-</script>
 </body>
 </html>

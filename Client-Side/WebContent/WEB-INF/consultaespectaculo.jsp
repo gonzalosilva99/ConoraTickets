@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
-<%@page import="datatypes.DtEspectaculoDatos"%>
+
+	
+<!DOCTYPE html>
+<html>
+<head>
+	<%@page import="datatypes.DtEspectaculoDatos"%>
 	<%@page import="datatypes.EstadoSesion" %>
 	<%@page import="datatypes.DtCategoria" %>
 	<%@page import="datatypes.DtPaquete" %>
@@ -9,11 +14,7 @@
 	<%@page import="datatypes.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IUsuario"%>
-	
-<!DOCTYPE html>
-<html>
-<head>	
+	<%@page import="interfaces.IUsuario"%>	
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Consulta Espectaculo</title>
 </head>
@@ -252,14 +253,6 @@
 			window.location.replace("/comprarpaquete?nompaquete="+paquete);
 		}
 	</script>
-
-	<script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
     
     <script type="text/javascript">
     $("#formAnadirPaquetes").submit(function( event ) {

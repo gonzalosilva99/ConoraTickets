@@ -30,7 +30,6 @@ public class Registrarse extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
 		HttpSession objSesion = req.getSession();
 		String nombre = req.getParameter("inputNombre");
         String apellido = req.getParameter("inputApellido");
@@ -44,7 +43,7 @@ public class Registrarse extends HttpServlet {
         String descgeneral = req.getParameter("descgeneral");
         String biografia = req.getParameter("biografia");
         String link = req.getParameter("url");
-        String imagen = req.getParameter("imgaen");
+        String imagen = req.getParameter("imagen");
         
         
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 

@@ -328,13 +328,14 @@
 										         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
 										         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
 													<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%try{ %><%= nuevo.getDescripcion().substring(0, 50) + "..."%><%}catch(Exception e){%><%= nuevo.getDescripcion()%>  <%}%> </span></p>									  					            
-										  			<%if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){%>
+										  			<%
+										  			if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){%>
 										  				<p class="text-success"><b>Aceptado</b></p>
 										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Rechazado){ %>
 										  				<p class="text-danger"><b>Rechazado</b></p>
-										  			<%}else{ %>
+										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Ingresado){ %>
 										  				<p class="text-warning"><b>Ingresado</b></p>
-										  			<%}%>
+										  			<%}else if(nuevo.getEstado()==null){System.out.println("ES NULL LOCO");}%>
 											</div>
 										</div>
 									</a>
@@ -373,7 +374,7 @@
 			</div>
        </div>
 	</div>
-	<script>
+	<script type="text/javascript">
 		var usuarioLogueado = "<%= idUsuario %>";
 		var usuarioPerfil = "<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>"
 		var xhr = new XMLHttpRequest();
@@ -383,17 +384,49 @@
 	        }
 	    }
 		function SeguirUsuario(){
-			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=follow", true);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-			xhr.send(null);
-			location.reload();
+			event.preventDefault();
+			var data = {
+		    		userlogged:'<%= idUsuario %>',
+		    		userprofile:'<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>',
+		    		tipo:'follow'};
+		    $.ajax({
+		        type: 'POST',
+		        url:  'perfil',
+		        data: data,
+		        async: false,
+		        success: function (data) {
+		            console.log(data);
+		            if(data === "SUCCESS") {
+		   				window.location.reload();
+		            }
+		            else{
+		            	alert("Error! No puedes seguir a este usuario en este momento " + data);
+		            }
+		        }
+		    });
 			return false;
 		}	
 		function DejarSeguirUsuario(){
-			xhr.open("POST", "/perfil?userlogged="+usuarioLogueado+"&userprofile="+usuarioPerfil+"&tipo=unfollow", true);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-			xhr.send(null);
-			location.reload();
+			event.preventDefault();
+			var data = {
+		    		userlogged:'<%= idUsuario %>',
+		    		userprofile:'<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>',
+		    		tipo:'unfollow'};
+		    $.ajax({
+		        type: 'POST',
+		        url:  'perfil',
+		        data: data,
+		        async: false,
+		        success: function (data) {
+		            console.log(data);
+		            if(data === "SUCCESS") {
+		   				window.location.reload();
+		            }
+		            else{
+		            	alert("Error! No puedes dejar de seguir a este usuario en este momento " + data);
+		            }
+		        }
+		    });
 			return false;
 		}
 	</script>

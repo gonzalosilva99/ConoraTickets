@@ -101,7 +101,7 @@ public class Busqueda extends HttpServlet {
 		    List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
 		    for(DtEspectaculoDatos dtespec : copiaespecs) {
 				String nombreplat = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespec.getNombre());
-				HashSet<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().listarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
+				Set<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().listarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
 				for(String cat : cats) {
 					DtCategoria dtcat = Fabrica.getInstancia().getICategoria().getCategoria(cat).getDtCategoria();
 					System.out.println("la categoria es " + dtcat.getNomCategoria());

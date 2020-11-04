@@ -8,7 +8,7 @@ public DtEspectaculo(String nombre, String descripcion, String imagen, EstadoEsp
 		this.descripcion = descripcion;
 		this.imagen = imagen;
 		this.costo= costo;
-		estado = estado;
+		this.estado = estado;
 	}
 private EstadoEspectaculo estado;
 private Integer costo;

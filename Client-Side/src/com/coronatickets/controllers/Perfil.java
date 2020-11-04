@@ -78,16 +78,28 @@ public class Perfil extends HttpServlet {
 		String usuarioLogueado = request.getParameter("userlogged");
 		String usuarioPerfil = request.getParameter("userprofile");
 		String tipo = request.getParameter("tipo");
-		//System.out.println("SEGUIR: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
+		
 		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
 			if(tipo.equals("follow")) {
 				//System.out.println("Va a seguir");
-				Fabrica.getInstancia().getIUsuario().seguirUsuario(usuarioLogueado, usuarioPerfil);
+				try{
+					Fabrica.getInstancia().getIUsuario().seguirUsuario(usuarioLogueado, usuarioPerfil);
+					response.getWriter().write("SUCCESS");
+				}
+				catch(Exception e) {
+					response.getWriter().write("ERROR " + e.getMessage());
+				}
 				//System.out.println("SEGUIDO: "+usuarioLogueado+" "+usuarioPerfil+" "+tipo);
 			}
 			else if(tipo.equals("unfollow")) {
-				System.out.println("DEJAR DE SEGUIR");
-				Fabrica.getInstancia().getIUsuario().dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);		
+				try {
+					Fabrica.getInstancia().getIUsuario().dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);
+					response.getWriter().write("SUCCESS");
+				}
+				catch(Exception e){
+					response.getWriter().write("ERROR " + e.getMessage());
+				}
+						
 			}
 		}
 	}
