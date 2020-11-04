@@ -384,12 +384,6 @@
 	<script type="text/javascript">
 		var usuarioLogueado = "<%= idUsuario %>";
 		var usuarioPerfil = "<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>"
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-	        if (xhr.readyState == 4) {
-	            var data = xhr.responseText;
-	        }
-	    }
 		function SeguirUsuario(){
 			event.preventDefault();
 			var data = {

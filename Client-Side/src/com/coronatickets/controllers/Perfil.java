@@ -78,8 +78,9 @@ public class Perfil extends HttpServlet {
 		String usuarioLogueado = request.getParameter("userlogged");
 		String usuarioPerfil = request.getParameter("userprofile");
 		String tipo = request.getParameter("tipo");
-		
+		System.out.println("Seguidor: " + usuarioLogueado.toString() + ", Seguido: " + usuarioPerfil.toString() + ", Tipo: " + tipo.toString());
 		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
+			System.out.println("Seguidor: " + usuarioLogueado + ", Seguido: " + usuarioPerfil + ", Tipo: " + tipo);
 			if(tipo.equals("follow")) {
 				//System.out.println("Va a seguir");
 				try{
