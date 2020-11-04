@@ -124,7 +124,13 @@
     
     <div class="form-row col-md-5 mx-auto">
     	<div class="form-group col-md-8">
-    		<input class="form-control" type="datetime-local" name="fecha" id="fecha" placeholder="FechaInicio" required>
+    		<input class="form-control" type="date" name="fecha" id="fecha" placeholder="yyyy-MM-dd" required>
+    	</div>
+    </div>
+    
+    <div class="form-row col-md-5 mx-auto">
+    	<div class="form-group col-md-8">
+    		<input class="form-control" type="time" name="hora" id="hora" placeholder="hh:mm" required>
     	</div>
     </div>
      
@@ -176,23 +182,24 @@
 
 
 <script >
-	
-	
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-	        if (xhr.readyState == 4 && http.status == 200) {
-	        	alert(http.responseText);
-	        }
-	    }
-		
-		var usuario = "<%= usuario.getNickname() %>";   
 		function obtenerEspectaculos(){
+			event.preventDefault();
 			var e = document.getElementById("selectPlataformas");
 			var plataforma = e.options[e.selectedIndex].text;
-			xhr.open("POST", "/altafuncion", true);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");											  
-			xhr.send('userlogged='+usuario+'&plataforma=' + plataforma + '&actualizar=true');
-			location.reload();
+			var data = {
+					userlogged:'<%= usuario.getNickname() %>',
+					plataforma:plataforma,
+		    		actualizar:'true'};
+			$.ajax({
+		        type: 'POST',
+		        url:  'altafuncion',
+		        data: data,
+		        async: false,
+		        success: function (data) {
+		            console.log(data);
+		            window.location.reload();
+		        }
+		    });
 			return false;
 		}
 		function registrarFuncion(){
@@ -204,7 +211,9 @@
 			var funcion = document.getElementById("nombreFuncion").value;		
 			var artistasInvitados = $('#selectArtistas').val();
 			var fecha = document.getElementById("fecha").value;
+			var fecha = fecha + " " + document.getElementById("hora").value;
 			var imagen = document.getElementById("img").value;
+			if(funcion!=""){
 			var data = {
 					usuario_logueado:'<%= usuario %>',
 					plataforma: plataforma,
@@ -222,8 +231,8 @@
 		        success: function (data) {
 		            console.log(data);
 		            if(data === "SUCCESS") {
-		   				window.location.reload();
 		   				alert("Funcion registrada con exito");
+		   				window.location.replace("/altafuncion");
 		            }
 		            else if (data === "EXISTE_FUNCION"){
 		            	alert("Ya existe una funcion con ese nombre!");
@@ -234,9 +243,10 @@
 		    });
 			return false;
 		}
-
-
+			else{
+				alert("Por favor complete el campo Nombre Funcion.");
+			}
+			}
 </script>
-	
 </body>
 </html>

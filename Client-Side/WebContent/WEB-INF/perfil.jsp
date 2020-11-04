@@ -407,29 +407,34 @@
 		    });
 			return false;
 		}	
-		function DejarSeguirUsuario(){
-			event.preventDefault();
-			var data = {
-		    		userlogged:'<%= idUsuario %>',
-		    		userprofile:'<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>',
-		    		tipo:'unfollow'};
-		    $.ajax({
-		        type: 'POST',
-		        url:  'perfil',
-		        data: data,
-		        async: false,
-		        success: function (data) {
-		            console.log(data);
-		            if(data === "SUCCESS") {
-		   				window.location.reload();
-		            }
-		            else{
-		            	alert("Error! No puedes dejar de seguir a este usuario en este momento " + data);
-		            }
-		        }
-		    });
-			return false;
-		}
+	</script>
+	<script>
+	var usuarioLogueado = "<%= idUsuario %>";
+	var usuarioPerfil = "<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>"
+	function DejarSeguirUsuario(){
+		event.preventDefault();
+		var data = {
+	    		userlogged:usuarioLogueado,
+	    		userprofile:usuarioPerfil,
+	    		tipo:'unfollow'};
+	    $.ajax({
+	        type: 'POST',
+	        url:  'perfil',
+	        data: data,
+	        async: false,
+	        success: function (data) {
+	            console.log(data);
+	            if(data === "SUCCESS") {
+	            	alert("Dejaste de seguir al user");
+	   				window.location.reload();
+	            }
+	            else{
+	            	alert("Error! No puedes dejar de seguir a este usuario en este momento " + data);
+	            }
+	        }
+	    });
+		return false;
+	}
 	</script>
 </body>
 </html>

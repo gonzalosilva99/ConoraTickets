@@ -79,7 +79,7 @@ public class AltaFuncion extends HttpServlet {
 			}else {
 				String funcion = (String)request.getParameter("funcion");
 				String espectaculo = (String)request.getParameter("espectaculo");
-				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 				Date fechaFuncion = formato.parse(request.getParameter("fecha"));
 				Date fechaAlta = new Date();
 				String[] invitados = request.getParameterValues("invitados[]");	
