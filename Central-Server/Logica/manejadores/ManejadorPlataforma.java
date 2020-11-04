@@ -274,6 +274,15 @@ public class ManejadorPlataforma {
 				}
 			}
 		}
+		
+
+		public DtFuncion getDtFuncion(String nombreFuncion) {
+			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
+				if(entry.getValue().getDtFuncion(nombreFuncion) != null)
+					return entry.getValue().getDtFuncion(nombreFuncion);
+			}
+			return null;
+		}
 
 }
 

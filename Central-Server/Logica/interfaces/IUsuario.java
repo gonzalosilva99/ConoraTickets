@@ -49,5 +49,6 @@ public interface IUsuario {
 	public DtArtista getDtArtistaNickname(String nickname);
 	public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link, String Imagen);
 	public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Imagen);
+	public Set<DtRegistro> listarRegistros(String Nickname);
 
 }

@@ -352,4 +352,11 @@ public class ManejadorUsuario {
 			Espectador espec = espectadores.get(nickname);
 			return espec.existeCompraPaquete(nombrePaquete);
 		}
+		
+
+		public Set<DtRegistro> listarRegistros(String Nickname){
+			Espectador espec = espectadores.get(Nickname);
+			return espec.listarRegistros();
+		}
+
 }

@@ -49,7 +49,7 @@ public class Plataforma {
 		public void filtrarEspectaculos(Set<DtEspectaculoDatos> especs, String search) {
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				DtEspectaculoDatos espec = entry.getValue().getDtEspectaculoDatos();
-				if (espec.getNombre().toLowerCase().contains(search.toLowerCase()))
+				if (espec.getNombre().toLowerCase().contains(search.toLowerCase()) && entry.getValue().getEstado() == EstadoEspectaculo.Aceptado)
 					especs.add(espec);
 			}
 		}
@@ -230,6 +230,14 @@ public class Plataforma {
 		public Set<DtCategoria> listarCategoriasDeEspectaculo(String Espectaculo) {
 			Espectaculo espec = espectaculos.get(Espectaculo);
 			return espec.listarCategorias();
+		}
+		
+		public DtFuncion getDtFuncion(String nombreFuncion) {
+			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
+				if(entry.getValue().getDtFuncion(nombreFuncion) != null)
+					return entry.getValue().getDtFuncion(nombreFuncion);
+			}
+			return null;
 		}
 		
 		
