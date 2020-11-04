@@ -302,7 +302,7 @@
 							DtPaqueteDatos nuevo = itrpaq.next();
 						%>
 							<div class="container-fluid media mb-sm-3">
-				    			<a href="ConsultaPaquete.html">
+				    			<a href="/consultapaquete?nompaquete=<%=nuevo.getNombre()%>">
 					    			<div class="container-fluid media">
 					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 											<div class="media-body ml-sm-4">		
