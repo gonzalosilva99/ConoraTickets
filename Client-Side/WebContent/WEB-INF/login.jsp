@@ -14,7 +14,7 @@
 <% if((String) request.getAttribute("alta")!=null && ((String) request.getAttribute("alta")).equals("true")){ %> 
 <script type="text/javascript"> alert("Registrado con exito!"); </script>
 <% } %>
-}
+
 <div class="container wrapper "  >
 	<div class="row fadeInDown" >
 		<div class="col-md-6 col-xs-12 col-sm-12">

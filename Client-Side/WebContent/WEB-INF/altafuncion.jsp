@@ -32,7 +32,7 @@
 	
 	<h1 class="text-center">Ingresar nueva funcion</h1>
       
-   	<form class="needs-validation mt-5 " action="altafuncion"  method="POST" id="myForm" novalidate>
+   	<form class="needs-validation mt-5 " id="myForm" novalidate>
    	
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
     <%  String plataformaSeleccionada = (String) request.getSession().getAttribute("plataforma") ; 
@@ -97,7 +97,7 @@
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
     
       <select class="custom-select" id="selectArtistas" name="invitados[]"  multiple>    
-      <option value="" selected>Elija artistas invitados</option>
+      <option value="" disabled>Elija artistas invitados</option>
       	<%
       		if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
       				Set<DtArtista> artistasInvitados = Fabrica.getInstancia().getIUsuario().listarArtistas();
@@ -115,44 +115,28 @@
      
       </select>
      
-
+	<h7><i>Nota: mantener apretada la tecla CTRL para seleccionar varios artistas.</i> </h7>
    </div>
 
 	<div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
       <input type="text" class="form-control" name="funcion" id="nombreFuncion" placeholder="Nombre de la función" required>
-      <% if((Integer)request.getSession().getAttribute("exito")!=null && (Integer)request.getSession().getAttribute("exito") == 2 ){ %>
-	  <h7  style="color:red;"> Ya existe una funcion con ese nombre!</h7>  
-	  <%} %>
     </div>
     
     <div class="form-row col-md-5 mx-auto">
     	<div class="form-group col-md-8">
-    		<input class="form-control" type="date" name="fecha" id="fecha" placeholder="FechaInicio" required>
+    		<input class="form-control" type="datetime-local" name="fecha" id="fecha" placeholder="FechaInicio" required>
     	</div>
     </div>
-    
-    <div class="form-row col-md-5 mx-auto">
-    	<div class="form-group col-md-8">
-    		<input type="time" name="horaFuncion" placeholder="HoraInicio" id="hora" class="form-control" required>
-    	</div>
-    </div>
-    
+     
     <div class="form-row col-md-5 mb-4 mx-auto">
   		<input type="url" class="form-control" id="img" name="img" style="width: 100%;" placeholder="Imagen de la funcion">
 	</div>
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
-  		<button class="btn btn-primary" style="width: 100%;" type="submit" id="botonEnviar"  >Agregar Funcion!</button>
+  		<button class="btn btn-primary" style="width: 100%;" type="submit" id="botonEnviar" onClick="registrarFuncion()" >Agregar Funcion!</button>
    </div>
    <input type="text" name="inputPrueba" value="algunvalor" id="inputPrueba" hidden>
 </form>
-	<% try{ %>
-	<h3 class="text-center"> <% if((Integer)request.getSession().getAttribute("exito")!=null && (Integer)request.getSession().getAttribute("exito")== 0){%> Funcion registrada con exito! <%}else if ((Integer)request.getSession().getAttribute("exito")!= null && (Integer)request.getSession().getAttribute("exito") == 1){ %> Ocurrio un error, intente nuevamente <%} %></h3>
-	
-	<%}catch(Exception e){ System.out.println("ERROR EN CARTELITO H3"+ e.getMessage());} %>
-
-
-
        </div>
        <input type="text" name="inputPrueba" value="algunvalor" id="inputPrueba" hidden>
 </div>
@@ -201,7 +185,7 @@
 	        }
 	    }
 		
-		var usuario = "<%= usuario %>";   
+		var usuario = "<%= usuario.getNickname() %>";   
 		function obtenerEspectaculos(){
 			var e = document.getElementById("selectPlataformas");
 			var plataforma = e.options[e.selectedIndex].text;
@@ -211,11 +195,43 @@
 			location.reload();
 			return false;
 		}
-		document.getElementById("botonEnviar").onclick = function () { 
-			var e = document.getElementById("selectPlataformas");
-			var plataforma = e.options[e.selectedIndex].text;
-			document.getElementById("inputPrueba").value = plataforma
-			document.getElementById("myform").submit();      
+		function registrarFuncion(){
+			event.preventDefault();
+			var selectPlataformas = document.getElementById("selectPlataformas");
+			var plataforma = selectPlataformas.options[selectPlataformas.selectedIndex].text;
+			var selectEspectaculos = document.getElementById("selectEspectaculos");
+			var espectaculo = selectEspectaculos.options[selectEspectaculos.selectedIndex].text;
+			var funcion = document.getElementById("nombreFuncion").value;		
+			var artistasInvitados = $('#selectArtistas').val();
+			var fecha = document.getElementById("fecha").value;
+			var imagen = document.getElementById("img").value;
+			var data = {
+					usuario_logueado:'<%= usuario %>',
+					plataforma: plataforma,
+					espectaculo: espectaculo,
+					funcion: funcion,
+					invitados: artistasInvitados,
+					fecha: fecha,
+					imagen: imagen,
+		    		actualizar: 'false'};
+			$.ajax({
+		        type: 'POST',
+		        url:  'altafuncion',
+		        data: data,
+		        async: false,
+		        success: function (data) {
+		            console.log(data);
+		            if(data === "SUCCESS") {
+		   				window.location.reload();
+		   				alert("Funcion registrada con exito");
+		            }
+		            else if (data === "EXISTE_FUNCION"){
+		            	alert("Ya existe una funcion con ese nombre!");
+		            }else{
+		            	alert("ERROR: " + data);
+		            }
+		        }
+		    });
 			return false;
 		}
 

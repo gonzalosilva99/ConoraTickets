@@ -72,27 +72,29 @@ public class AltaFuncion extends HttpServlet {
 
 	private void confirmarAltaFuncionEspectaculo(HttpServletRequest request, HttpServletResponse response,
 			String plataforma) throws ServletException, IOException {
+		System.out.println("ENTRO CON:" + request.getParameter("funcion"));
 		try {
-			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-			Date fechaFuncion = formato.parse(request.getParameter("fecha"));
-			Date fechaAlta = new Date();
-			System.out.println("Plataforma: " + request.getParameter("inputPrueba"));
-			System.out.println("Espectaculo: " + request.getParameter("espectaculo"));
-			System.out.println("Funcion: " + request.getParameter("funcion"));
-			System.out.println("Fecha: " + request.getParameter("fecha"));
-			String[] invitados = request.getParameterValues("invitados[]");
-			Set<String> invitadosSet = new HashSet<>(Arrays.asList(invitados));
-			Iterator<String> iter = invitadosSet.iterator();
-			while (iter.hasNext()) {
-				System.out.println("invitados: " + iter.next());
-			}
-			Fabrica.getInstancia().getIPlataforma().confirmarAltaFuncionEspectaculo(request.getParameter("inputPrueba"),
-					request.getParameter("espectaculo"), request.getParameter("funcion"), fechaFuncion, invitadosSet,
-					fechaAlta, request.getParameter("img"));
-			request.getSession().setAttribute("exito", new Integer(0)); // exito
-		} catch (Exception e) {
-			request.getSession().setAttribute("exito", new Integer(1)); // error
-			System.out.println("EXCEPCION confirmarAltaFuncionEspectaculo " + e.getMessage());
+			if (Fabrica.getInstancia().getIPlataforma().existeFuncion(request.getParameter("funcion"))) {
+				response.getWriter().write("EXISTE_FUNCION");
+			}else {
+				String funcion = (String)request.getParameter("funcion");
+				String espectaculo = (String)request.getParameter("espectaculo");
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				Date fechaFuncion = formato.parse(request.getParameter("fecha"));
+				Date fechaAlta = new Date();
+				String[] invitados = request.getParameterValues("invitados[]");	
+				Set<String> invitadosSet = null;
+				if (invitados != null) {
+					invitadosSet = new HashSet<>(Arrays.asList(invitados));
+				}
+				String imagen = (String)request.getParameter("imagen");
+				Fabrica.getInstancia().getIPlataforma().confirmarAltaFuncionEspectaculo(plataforma, espectaculo, 
+							funcion, fechaFuncion, invitadosSet, fechaAlta, imagen);
+				response.getWriter().write("SUCCESS");
+			}				
+		}catch(Exception e) {
+			System.out.println("excepcioN"+ e.getMessage());
+			response.getWriter().write("ERROR " + e.getMessage());
 		}
 	}
 
@@ -120,20 +122,16 @@ public class AltaFuncion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Login.ActualizarUltimoIngreso(request);
-		String plataforma = request.getParameter("plataforma");
-		if (request.getParameter("actualizar") != null && request.getParameter("actualizar").equals("true")) {
-			String nickname = (String) request.getSession().getAttribute("usuario_logueado");
-			actualizarEspectaculos(request, response, plataforma, nickname);
-		} else if (request.getParameter("actualizar") == null) {
-			if (!Fabrica.getInstancia().getIPlataforma().existeFuncion(request.getParameter("funcion"))) {
+			Login.ActualizarUltimoIngreso(request);
+			String plataforma = request.getParameter("plataforma");
+			if (request.getParameter("actualizar") != null && request.getParameter("actualizar").equals("true")) 
+			{
+				String nickname = (String) request.getSession().getAttribute("usuario_logueado");
+				actualizarEspectaculos(request, response, plataforma, nickname);
+			}else 
+			{
 				confirmarAltaFuncionEspectaculo(request, response, plataforma);
-			} else {
-
-				request.getSession().setAttribute("exito", new Integer(2)); // existe funcion con ese nombre
 			}
-			request.getRequestDispatcher("/WEB-INF/altafuncion.jsp").forward(request, response);
-		}
 	}
-
+	
 }
