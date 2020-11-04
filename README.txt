@@ -18,10 +18,9 @@ la plataforma, los usuarios deberán registrarse.
 ## Página web
 Primero se debe crear un nuevo server con Tomcat con el puerto seteado en 8005 desde el IDE, en este caso Eclipse. Una vez creado, se debe sincronizar el servidor con "Client-Side", donde estan los datos de la aplicacion web. Luego, desde cualquier navegador se debe acceder a http://localhost:8005/
 A continuacion se muestra la ventana principal con los espectaculos de la plataforma Twitter Live.
-Arriba a la derecha se podrá iniciar sesion con algun usuario de los datos de prueba y si la sesion está iniciada se podrá cerrar sesión.
-Para ver mas información del espectáculo Bien de Familia hacer click en "Leer mas" al lado del espectáculo. Luego si se desea en la pestaña Paquetes se podrá obtener más información del Paquete Latino.
-Para poder ver los perfiles de los usuarios pedidos hacer click en la Lupa del panel superior, se listaran los usuarios lospimpi y waston pudiendo ver sus perfiles.
-En cualquier momento también se puede volver al home haciendo click en el panel lateral izquierdo en Twitter Live.
+Arriba a la derecha se podrá iniciar sesion con algun  usuario ingresado o registrarse los datos de prueba y si la sesion está iniciada se podrá cerrar sesión, configurar el perfil e ir a información del perfil.
+Para listar usuarios, espectaculos y/o paquetes basta con realizar una búsqueda, si la cadena a buscar es vacía se listarán todos.
+En cualquier momento también se puede volver al home haciendo click logo de CoronaTickets.
 
 
 ### Prerequisitos

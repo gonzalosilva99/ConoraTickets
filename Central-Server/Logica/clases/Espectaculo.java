@@ -233,6 +233,15 @@ public class Espectaculo {
 			}
 			return ret;
 		}
+		
+		public DtFuncion getDtFuncion(String nombreFuncion) {
+			for (Map.Entry<String, Funcion> entry : funciones.entrySet()) {
+				if(entry.getValue().getDtFuncion().getNombre().equals(nombreFuncion))
+					return entry.getValue().getDtFuncion();
+			}
+			return null;
+		
+		}
 }
 
 

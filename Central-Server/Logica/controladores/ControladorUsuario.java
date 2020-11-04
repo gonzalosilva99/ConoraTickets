@@ -173,7 +173,7 @@ public class ControladorUsuario implements IUsuario{
 			Paquete paq = fab.getIPaquete().getPaquete(NombrePaquete);
 			String prueba = paq.getNombre();
 			regfun.canjearPaquete(paq);
-			regfun.setCosto(costo * paq.getDescuento() / 100);
+			regfun.setCosto(costo - costo * paq.getDescuento() / 100);
 			regfun.setCanjeable(true);
 		}
 		else if (registro == TipoRegistro.Tipo_2) {
@@ -225,5 +225,10 @@ public class ControladorUsuario implements IUsuario{
 	
 	public Boolean existeCompraPaquete(String nickname, String nombrePaquete) {
 		return ManejadorUsuario.getInstancia().existeCompraPaquete(nickname, nombrePaquete);
+	}
+	
+
+	public Set<DtRegistro> listarRegistros(String Nickname){
+		return ManejadorUsuario.getInstancia().listarRegistros(Nickname);
 	}
 }

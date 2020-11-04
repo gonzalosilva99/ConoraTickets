@@ -7,6 +7,7 @@
 	<%@page import="datatypes.DtEspectadorPerfil"%>
 	<%@page import="datatypes.DtArtistaPerfil"%>
 	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="datatypes.DtRegistro" %>
 	<%@page import="datatypes.DtPaqueteDatos" %>
 	<%@page import="datatypes.DtEspectaculo" %>
 	<%@page import="datatypes.DtFuncion" %>	
@@ -230,9 +231,13 @@
 					<!-- MOSTRAMOS LOS REGISTROS A FUNCIONES DEL ESPECTADOR -->
 						<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="registros-tab">
 			  			<div class="container mt-5">
-				  			<% 	Iterator<DtFuncion> itrfunc = dtesp.getFunciones().iterator();
-				  				while(itrfunc.hasNext()){
-				  					DtFuncion nuevo = itrfunc.next();
+				  			<% 	
+				  			
+				  				Set<DtRegistro> registros = Fabrica.getInstancia().getIUsuario().listarRegistros(dtesp.getNickname());
+				  				Iterator<DtRegistro> itrreg = registros.iterator();
+				  				while(itrreg.hasNext()){
+				  					DtRegistro reg = itrreg.next();
+				  					DtFuncion nuevo = Fabrica.getInstancia().getIPlataforma().getDtFuncion(reg.getNombreFuncion());
 				  			%>
 					    		<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
@@ -242,6 +247,8 @@
 											<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
 									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
 									  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
+									  		<p class="text-dark"><b>Costo:</b> <span id="horaFuncion"><%= reg.getCosto() %> </span></p>	
+											        
 								        </div>
 								</div>
 								</a>
@@ -295,7 +302,7 @@
 							DtPaqueteDatos nuevo = itrpaq.next();
 						%>
 							<div class="container-fluid media mb-sm-3">
-				    			<a href="ConsultaPaquete.html">
+				    			<a href="/consultapaquete?nompaquete=<%=nuevo.getNombre()%>">
 					    			<div class="container-fluid media">
 					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 											<div class="media-body ml-sm-4">		

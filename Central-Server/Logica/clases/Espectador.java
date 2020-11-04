@@ -155,6 +155,16 @@ public class Espectador extends Usuario{
 		}
 		return false;
 	}
+	
+
+	public Set<DtRegistro> listarRegistros(){
+		Set<DtRegistro> setdtreg = new HashSet<DtRegistro>();
+		for (Map.Entry<Integer, RegistroFuncion> entry: registroFunciones.entrySet()) {
+			setdtreg.add(entry.getValue().getDtRegistro());
+		}
+		return setdtreg;
+	}
+	
 	protected void abstracta() {};
 	
 }

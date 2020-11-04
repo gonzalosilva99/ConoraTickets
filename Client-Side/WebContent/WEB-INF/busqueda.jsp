@@ -142,22 +142,21 @@
 							<h3>No hay resultados para tu búsqueda</h3><%}%>
 	           		  		<%if(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0){ %>
 					  		<div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
-		    					<div class="row">
-		    					<% 
+					  			<div class="row">
+		    					<%
 		    					Integer i=0,p=0;%>
 		    					<div class="col-md-6 col-lg-6"><%
 		    					if(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0){
 			    					for(DtUsuario dtusu : UsuariosFiltrados){if(i==1){%></div><div <%if(p>3){%>style="display:none;"<%}%> id="usu<%=p%>" class="col-md-6 col-lg-6"><%i=0;}%>
 			    						<br>
-			    						<a href="/perfil?id=<%=dtusu.getNickname()%>">
+			    						
 			    						<div class="media mb-sm-2">
 										 	<img src="<% if(dtusu.getImagen()!=null && !dtusu.getImagen().equals("")){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 										  	<div class="media-body">
-										    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
+										    	<h4 class="mt-0" id="nombreapellidoUsuario"><a href="/perfil?id=<%=dtusu.getNickname()%>"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></a></h4>
 										    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
 										  	</div>
 										</div>
-									</a>
 		    					<%i++;p++;}}%>
 		    					<%if(i>0){%></div><%}%>
 							</div><br>
@@ -166,25 +165,24 @@
 					  		<%}%>
 					  	<%if(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0){ %>
 						<div class="tab-pane fade" id="espectaculos" role="tabpanel" aria-labelledby="espectaculos-tab">
-									<div class="row">
+									<div class="row">		    					
 									<% 
-		    						Integer j=0,r=0;%>
+		    						Integer j=0,r=0;
+		    						Iterator<DtEspectaculoDatos> itere = EspectaculosFiltrados.iterator();%>		    							
 		    						<div class="col-md-6 col-lg-6"><%
 									if(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0){
-									for(DtEspectaculoDatos dtespec : EspectaculosFiltrados){if(j==1){%></div><div <%if(r>3){%>style="display:none;"<%}%> id="espec<%=r%>" class="col-md-6 col-lg-6"><%j=0;}%>
+									while(itere.hasNext()){%><%DtEspectaculoDatos dtespec = itere.next();%> <%if(j==1){%><div <%if(r>3){%>style="display:none;"<%}%> id="espec<%=r%>" class="col-md-6 col-lg-6"><%j=0;}%>
 			    					<br>
-			    					<a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>">
-			    						<div class="media mb-sm-2">
-									 	<img src="<% if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+			    						<div class="media">
+									 	<img src="<%if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">
-									    	<h4 class="mt-0" id="nombreespectaculo"><%= dtespec.getNombre()%></h4>
+									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
 									    	<%=dtespec.getDescripcion() %>
 									    	Espectadores: <%= dtespec.getCantMin() %> / <%= dtespec.getCantMax() %>  
 									  	</div>
 									</div>
-									</a>
+									</div>
 		    					<%j++;r++;}}%>
-		    					<%if(j>0){%></div><%}%>
 		    					</div><br>
 		    					<button class="btn btn-primary btn-sm" style="<%if(r<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarespectaculos" onclick="AddEspecs()">Ver más</button>
 					  		
@@ -200,16 +198,14 @@
 									//Iterator<DtPaqueteDatos> iterpaq = PaquetesFiltrados.iterator();
 			    					for(DtPaqueteDatos dtpaq : PaquetesFiltrados){if(k==1){%></div><div  <%if(q>3){%>style="display:none;"<%}%> id="paq<%=q%>" class="col-md-6 col-lg-6"><%k=0;}%>
 			    					<br>
-			    					<a href="/consultapaquete?nompaquete=<%=dtpaq.getNombre() %>">
-			    						<div class="media mb-sm-2">
+			    					<div class="media mb-sm-2">
 									 	<img src="<% if(dtpaq.getImagen() != null && dtpaq.getImagen()!=""){%> <%= dtpaq.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">
-									    	<h4 class="mt-0" id="nombreespectaculo"><%= dtpaq.getNombre() %></h4>
+									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultapaquete?nompaquete=<%=dtpaq.getNombre() %>"><%= dtpaq.getNombre() %></a></h4>
 									    	<%= dtpaq.getDescripcion() %>
 									    	Fechas: <%=dtpaq.getInicio() %> / <%=dtpaq.getFin() %>
 									  	</div>
 									</div>
-									</a>
 		    					<%k++;q++;}}%>
 		    					<%if(k>0){%></div><%}%>
 		    					</div><br>
@@ -227,7 +223,7 @@
 	<script type="text/javascript">
 		
 		function AddUsers(){
-			var i=5;
+			var i=4;
 			var cont=0;
 			var usu = document.getElementById("usu" + i);
 			while(usu != null && cont<4){
@@ -244,7 +240,7 @@
 		
 
 		function AddPaqs(){
-			var i=5;
+			var i=4;
 			var cont=0;
 			var paq = document.getElementById("paq" + i);
 			while(paq != null && cont<4){
@@ -260,7 +256,7 @@
 		}
 
 		function AddEspecs(){
-			var i=5;
+			var i=4;
 			var cont=0;
 			var espec = document.getElementById("espec" + i);
 			while(espec != null && cont<4){
