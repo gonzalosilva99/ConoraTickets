@@ -35,9 +35,10 @@
    	<form class="needs-validation mt-5 " action="altafuncion"  method="POST" id="myForm" novalidate>
    	
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
-    <%  String plataformaSeleccionada = (String) request.getSession().getAttribute("plataforma") ;  %>
+    <%  String plataformaSeleccionada = (String) request.getSession().getAttribute("plataforma") ; 
+    	Boolean platSel = false;%>
       <select class="custom-select" id="selectPlataformas" onChange="obtenerEspectaculos()"   >    
-      <option value="" selected><% if (plataformaSeleccionada == null){%> Elija la plataforma <%}else{%> <%=plataformaSeleccionada%> <%} %></option>
+      <option value="" selected><% if (plataformaSeleccionada == null){%> Elija la plataforma <%}else{platSel = true;%> <%=plataformaSeleccionada%> <%} %></option>
       	<%
       		DtUsuario usuario = Login.getUsuarioLogueado(request);
       			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
@@ -45,10 +46,11 @@
       				Iterator<DtPlataforma> itrp = plataformas.iterator();
       				while(itrp.hasNext()){
       					DtPlataforma auxp = itrp.next();
+      					if (platSel && !auxp.getNombre().equals(plataformaSeleccionada) || !platSel){
       	%>			
       	<option value="<%=auxp.getNombre()%>"><%=auxp.getNombre()%></option>
 		             	
-        <%
+        <%}
 		             	        	}
 		             	        %>
         <%
