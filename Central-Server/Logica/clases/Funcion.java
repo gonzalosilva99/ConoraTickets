@@ -19,6 +19,7 @@ public class Funcion {
 	private String imagen;
 	private Map<String, Artista> artistasinvitados;
 	private Integer espectadores;
+	private Date fechaSorteo;
 		public Funcion(String nombre, Date inicio, Date alta, String imagen) {
 			super();
 			this.nombre = nombre;
@@ -27,6 +28,13 @@ public class Funcion {
 			this.imagen = imagen;
 			this.artistasinvitados = new HashMap<String, Artista>();
 			this.espectadores = 0;
+			this.fechaSorteo = null;
+		}
+		public Date getFechaSorteo() {
+			return fechaSorteo;
+		}
+		public void setFechaSorteo(Date fechaSorteo) {
+			this.fechaSorteo = fechaSorteo;
 		}
 		public String getNombre() {
 			return nombre;

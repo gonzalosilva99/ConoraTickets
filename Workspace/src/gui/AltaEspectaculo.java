@@ -68,7 +68,7 @@ public class AltaEspectaculo extends JInternalFrame {
 	public AltaEspectaculo() {
 		Map<Integer, DtCategoria> listCats = new HashMap<Integer, DtCategoria>();
 		setTitle("Alta de espectaculo");
-		setBounds(100, 100, 525, 550);
+		setBounds(100, 100, 525, 750);
 		
 		JLabel lblNewLabel = new JLabel("Plataforma:");
 		SpringLayout springLayout = new SpringLayout();
@@ -144,9 +144,9 @@ public class AltaEspectaculo extends JInternalFrame {
 			}
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -53, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, panel, -422, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, lblArtista);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -157, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
@@ -370,6 +370,13 @@ public class AltaEspectaculo extends JInternalFrame {
 		categoriasADevolver.clear();
 		IndicesCategorias.clear();
 		CategoriasSeleccionadas.setText("");
+		
+		JPanel panel_1 = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -6, SpringLayout.NORTH, buttonCancelar);
+		springLayout.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, buttonAceptar);
+		getContentPane().add(panel_1);
 		DefaultListModel listaCategorias = new DefaultListModel();
 		Set<DtCategoria> listCatAux = icategoria.listarCategorias();
 		if (listCatAux!=null) {
@@ -414,7 +421,7 @@ public class AltaEspectaculo extends JInternalFrame {
 					iplataform.altaEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), nick[0] , 
 							textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText().trim(),
-							Integer.valueOf(textFieldCosto.getText()), dateChooser.getDate(), Integer.valueOf(textFieldDuracion.getText()), textFieldImagen.getText(), categoriasADevolver); 
+							Integer.valueOf(textFieldCosto.getText()), dateChooser.getDate(), Integer.valueOf(textFieldDuracion.getText()), textFieldImagen.getText(), categoriasADevolver, "urlVideo" , "premio", 0); 
 							 
 					
 					JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");

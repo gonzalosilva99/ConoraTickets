@@ -21,11 +21,15 @@ public class Espectador extends Usuario{
 
 	private Map<Integer, RegistroFuncion> registroFunciones;
 	private Map<Integer, CompraPaquete> compraPaquetes;
+	private Set<Espectaculo> espectaculosFavoritos;
+	private Set<PuntajeAsignado> puntajesAsignados;
 	
-	public Espectador(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena) {
+	public Espectador(String nickname, String nombre, String apellido, String email, 
+			Date nacimiento, String imagen, String contrasena) {
 		super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena);
 		registroFunciones = new HashMap<Integer, RegistroFuncion>();
 		compraPaquetes = new HashMap<Integer, CompraPaquete>();
+		espectaculosFavoritos = null;
 	}
 	
 	public void agregarRegistroFuncion(RegistroFuncion registrofuncion) {

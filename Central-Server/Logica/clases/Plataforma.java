@@ -141,11 +141,12 @@ public class Plataforma {
 			return espec.listarFunciones();
 		}
 		
-		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) {
+		public void altaEspectaculo(String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, 
+				Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias,  String urlVideo, String premio, int cantPremios) {
 			Fabrica fabric = controladores.Fabrica.getInstancia();
 			ICategoria icat = fabric.getICategoria();
 			IUsuario iusuario = fabric.getIUsuario();
-			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen);
+			Espectaculo nuevo = new Espectaculo(nomEspectaculo, fecha, costo, url , maxEsp, minEsp, duracion, descripcion, imagen,  urlVideo, premio, cantPremios);
 			nuevo.setEstado(EstadoEspectaculo.Ingresado);
 			if (categorias.size()>0) {
 			Iterator<String> itercat = categorias.iterator();

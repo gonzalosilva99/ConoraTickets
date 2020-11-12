@@ -268,42 +268,42 @@ public class Main {
 						
 						fechaAltaEspectaculo = formato.parse("31/03/2020");				
 						cat.add("Rock en Ingles");
-						iplataforma.altaEspectaculo("Instagram Live", "vpeople", "Los Village Volvieron", "Espectáculo de retorno de los Village People.", 10, 800, "https://www.instagram.com/realvillagepeople/", 550, fechaAltaEspectaculo, 90, "", cat);
+						iplataforma.altaEspectaculo("Instagram Live", "vpeople", "Los Village Volvieron", "Espectáculo de retorno de los Village People.", 10, 800, "https://www.instagram.com/realvillagepeople/", 550, fechaAltaEspectaculo, 90, "", cat, "","", 0);
 						iplataforma.aceptarEspectaculo("Los Village Volvieron");
 						
 						fechaAltaEspectaculo = formato.parse("20/04/2020");
 						cat.add("Rock en Ingles");
-						iplataforma.altaEspectaculo("Facebook Watch", "dmode", "Global Spirit", "Espectáculo donde se presenta el álbum Spirit.", 30, 1300, "https://es-la.facebook.com/depechemode/", 750, fechaAltaEspectaculo, 120, "", cat);
+						iplataforma.altaEspectaculo("Facebook Watch", "dmode", "Global Spirit", "Espectáculo donde se presenta el álbum Spirit.", 30, 1300, "https://es-la.facebook.com/depechemode/", 750, fechaAltaEspectaculo, 120, "", cat, "","", 0);
 						iplataforma.aceptarEspectaculo("Global Spirit");
 						
 						fechaAltaEspectaculo = formato.parse("30/05/2020");
 						cat.add("Solistas");
-						iplataforma.altaEspectaculo("Twitter Live", "clauper", "Memphis Blues World", "Espectáculo promoviendo álbum Memphis Blues.", 5, 1000, "https://twitter.com/cyndilauper", 800, fechaAltaEspectaculo, 110, "", cat);
+						iplataforma.altaEspectaculo("Twitter Live", "clauper", "Memphis Blues World", "Espectáculo promoviendo álbum Memphis Blues.", 5, 1000, "https://twitter.com/cyndilauper", 800, fechaAltaEspectaculo, 110, "", cat, "","", 0);
 						iplataforma.aceptarEspectaculo("Memphis Blues World");
 						
 						fechaAltaEspectaculo = formato.parse("07/06/2020");
 						cat.add("Rock en Ingles");
-						iplataforma.altaEspectaculo("Youtube", "bruceTheBoss", "Springsteen on Broadway", "Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.", 100, 1500, "https://www.youtube.com/BruceSpringsteen", 980, fechaAltaEspectaculo, 100, "", cat);
+						iplataforma.altaEspectaculo("Youtube", "bruceTheBoss", "Springsteen on Broadway", "Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografía de 2016, Born to Run.", 100, 1500, "https://www.youtube.com/BruceSpringsteen", 980, fechaAltaEspectaculo, 100, "", cat, "","", 0);
 						iplataforma.aceptarEspectaculo("Springsteen on Broadway");
 						
 						fechaAltaEspectaculo = formato.parse("08/07/2020");
 						cat.add("Bandas Latinas");
-						iplataforma.altaEspectaculo("Twitter Live", "lospimpi", "Bien de Familia", "El dúo estará presentando sus más sonados éxitos y también nuevas canciones.", 10, 500, "https://twitter.com/PimpinelaNet", 500, fechaAltaEspectaculo, 150, "", cat);
+						iplataforma.altaEspectaculo("Twitter Live", "lospimpi", "Bien de Familia", "El dúo estará presentando sus más sonados éxitos y también nuevas canciones.", 10, 500, "https://twitter.com/PimpinelaNet", 500, fechaAltaEspectaculo, 150, "", cat, "","", 0);
 						iplataforma.aceptarEspectaculo("Bien de Familia");
 						
 						fechaAltaEspectaculo = formato.parse("31/07/2020");
 						cat.add("Musica Tropical");
-						iplataforma.altaEspectaculo("Twitter Live", "alcides", "30 años", "Espectáculo conmemorando los 30 años de Violeta.", 30, 150, "https://twitter.com/alcides_shows", 450, fechaAltaEspectaculo, 80, "", cat);
+						iplataforma.altaEspectaculo("Twitter Live", "alcides", "30 años", "Espectáculo conmemorando los 30 años de Violeta.", 30, 150, "https://twitter.com/alcides_shows", 450, fechaAltaEspectaculo, 80, "", cat, "","", 0);
 						iplataforma.aceptarEspectaculo("30 años");
 						
 						fechaAltaEspectaculo = formato.parse("09/01/2020");
 						cat.add("Solistas");
-						iplataforma.altaEspectaculo("Youtube", "dyangounchained", "Grandes Exitos 2020", "Espectaculo de gira con los temas de siempre", 5, 1000, "https://www.youtube.com/c/dyangooficial", 550, fechaAltaEspectaculo, 120, "", cat);
+						iplataforma.altaEspectaculo("Youtube", "dyangounchained", "Grandes Exitos 2020", "Espectaculo de gira con los temas de siempre", 5, 1000, "https://www.youtube.com/c/dyangooficial", 550, fechaAltaEspectaculo, 120, "", cat, "","", 0);
 						iplataforma.rechazarEspectaculo("Grandes Exitos 2020");
 						
 						fechaAltaEspectaculo = formato.parse("20/05/2020");
 						cat.add("Bandas Latinas");
-						iplataforma.altaEspectaculo("Instagram Live", "tripleNelson", "Llego a Casa", "Primer Espectaculo con transmision por streaming", 100, 1500, "https://www.instagram.com/latriplenelson/", 400, fechaAltaEspectaculo, 100, "", cat);
+						iplataforma.altaEspectaculo("Instagram Live", "tripleNelson", "Llego a Casa", "Primer Espectaculo con transmision por streaming", 100, 1500, "https://www.instagram.com/latriplenelson/", 400, fechaAltaEspectaculo, 100, "", cat, "","", 0);
 						
 						//FUNCIONES (nombrePlataforma, nombreEspectaculo, nombre, inicio, artistas, alta)
 						SimpleDateFormat FormatoInicio = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

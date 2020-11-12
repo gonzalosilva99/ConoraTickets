@@ -30,11 +30,17 @@ public class Espectaculo {
 	private String imagen;
 	private EstadoEspectaculo estado;
 	private Map<String, Funcion> funciones;
+	private String urlVideo;
+	private String premio;
+	private int cantPremios;
 	private Set<Categoria> categorias;
+	private Set<PuntajeAsignado> puntajesAsignados;
 	
 	
 	
-		public Espectaculo(String nombre, Date registro, Integer costo, String url, Integer cantmax, Integer cantmin, Integer duracion, String descripcion, String imagen) {
+	
+		public Espectaculo(String nombre, Date registro, Integer costo, String url, Integer cantmax, 
+				Integer cantmin, Integer duracion, String descripcion, String imagen, String urlVideo, String premio, int cantPremios) {
 			super();
 			this.nombre = nombre;
 			this.registro = registro;
@@ -48,6 +54,19 @@ public class Espectaculo {
 			this.funciones = new HashMap<String, Funcion>();
 			this.estado = EstadoEspectaculo.Ingresado;
 			this.categorias = new HashSet<Categoria>();
+			this.urlVideo = urlVideo;
+			this.premio = premio;
+			this.cantPremios = cantPremios;
+			this.puntajesAsignados = null;
+		}
+		public String getUrlVideo() {
+			return urlVideo;
+		}
+		public int getCantPremios() {
+			return cantPremios;
+		}
+		public String getPremio() {
+			return premio;
 		}
 		public String getNombre() {
 			return nombre;

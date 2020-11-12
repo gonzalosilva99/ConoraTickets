@@ -21,7 +21,8 @@ public interface IPlataforma {
 		DtEspectaculoDatos listarDtEspectaculoDatos(String nomPlat, String NombreEspectaculo);
 		void altaPlataforma(String nombre, String Descripcion, String Url) throws Identidad;
 		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat);
-		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias) throws Identidad;
+		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, 
+				Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias,  String urlVideo, String premio, int cantPremios) throws Identidad;
 		Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen);
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);

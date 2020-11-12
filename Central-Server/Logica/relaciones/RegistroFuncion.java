@@ -16,6 +16,7 @@ public class RegistroFuncion {
 	private Funcion funcion;
 	private Espectador espectador;
 	private Paquete paquete;
+	private Boolean ganoPremio;
 	public RegistroFuncion(Integer codigo, Date fecha, Double costo, TipoRegistro registro, Boolean canjeable, Funcion fun, Espectador espec) {
 		super();
 		this.codigo = codigo;
@@ -27,8 +28,12 @@ public class RegistroFuncion {
 		this.funcion = fun;
 		fun.incrementarEspectadores();
 		this.paquete = null;
+		this.ganoPremio = false;
 	}
 	
+	public Boolean ganoPremio() {
+		return ganoPremio;
+	}
 	public RegistroFuncion(Integer codigo, Date fecha, TipoRegistro registro, Funcion fun, Espectador espec) {
 		super();
 		this.codigo = codigo;
