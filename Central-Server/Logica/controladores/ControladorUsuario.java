@@ -2,6 +2,7 @@ package controladores;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.Map;
 
 import clases.Artista;
 import clases.Espectaculo;
@@ -11,6 +12,8 @@ import clases.Paquete;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
 import datatypes.DtArtistaPerfil;
+import datatypes.DtEspectaculoDatos;
+import datatypes.DtEspectaculo;
 import datatypes.DtEspectador;
 import datatypes.DtEspectadorConsulta;
 import datatypes.DtEspectadorPerfil;
@@ -230,5 +233,37 @@ public class ControladorUsuario implements IUsuario{
 
 	public Set<DtRegistro> listarRegistros(String Nickname){
 		return ManejadorUsuario.getInstancia().listarRegistros(Nickname);
+	}
+	
+	public Set<DtEspectaculo> listarEspectaculosFinalizados(String nickname){
+		Artista artista = ManejadorUsuario.getInstancia().getArtista(nickname);
+		return artista.getEspectaculosFinzalizados();
+	}
+	public void marcarFavorito(String nickname, String nomEsp) {
+		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
+		Espectaculo espectaculo = ManejadorPlataforma.getInstancia().getEspectaculo(nomEsp);
+		espectaculo.aumentarFavoritos();
+		espectador.anadirFavorito(espectaculo);
+	}
+	public void desmarcarFavorito(String nickname, String nomEsp) {
+		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
+		Espectaculo espectaculo = ManejadorPlataforma.getInstancia().getEspectaculo(nomEsp);
+		espectaculo.quitarFavoritos();
+		espectador.quitarFavorito(espectaculo);
+		
+	}
+	public Map<String, DtEspectaculo> listarEspectaculosParaPuntuar(String nickname){
+		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
+		return espectador.getEspectaculosParaPuntuar();
+	}
+	
+	public void valorarEspectaculo(String nickname, String nomEsp, int valoracion) {
+		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
+		espectador.valorarespectaculo(nomEsp, valoracion);
+	}
+
+	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo) {
+		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
+		return espectador.getPuntajeEspectaculo(nomEspectaculo);
 	}
 }

@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.Map;
 
 import clases.Espectaculo;
 import clases.Funcion;
@@ -16,6 +17,7 @@ import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import datatypes.TipoRegistro;
 import excepciones.Identidad;
+import datatypes.DtEspectaculo;
 public interface IUsuario {
 	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena, String Descripcion, String Biografia, String Link) throws Identidad;
 	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena) throws Identidad;
@@ -50,5 +52,11 @@ public interface IUsuario {
 	public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link, String Imagen);
 	public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Imagen);
 	public Set<DtRegistro> listarRegistros(String Nickname);
+	public Set<DtEspectaculo> listarEspectaculosFinalizados(String nickname);
+	public void marcarFavorito(String nickname, String nomEsp);
+	public void desmarcarFavorito(String nickname, String nomEsp);
+	public Map<String, DtEspectaculo> listarEspectaculosParaPuntuar(String nickname);
+	public void valorarEspectaculo(String nickname, String nomEsp, int valoracion);
+	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo);
 
 }

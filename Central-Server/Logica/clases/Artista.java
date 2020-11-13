@@ -17,6 +17,7 @@ import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtUsuario;
 import datatypes.EstadoEspectaculo;
+import datatypes.DtEspectaculoDatos;
 
 
 public class Artista extends Usuario{
@@ -154,6 +155,19 @@ public class Artista extends Usuario{
 				}
 			return false;
 		}
+		
+		public Set<DtEspectaculo> getEspectaculosFinzalizados(){
+			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+			Iterator<Espectaculo> itr = espectaculos.iterator();
+			while (itr.hasNext()) {
+				Espectaculo aux = itr.next();
+				if (aux.getEstado()==EstadoEspectaculo.Finalizado) {
+					ret.add(aux.getDatosEspectaculo());
+				}
+				}
+			return ret;
+		}
+		
 		protected void abstracta() {};
 	
 }

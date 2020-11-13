@@ -9,7 +9,7 @@ public class DtEspectaculoDatos {
 public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantmin, 
 		Integer cantmax, String url, Float costo, Date registro, Set<DtFuncionDatos> funciones, 
 		Set<DtPaquete> paquetes, DtArtista organizador, String imagen, Set<DtCategoria> categorias, 
-		int cantPremios, double puntajePromedio, String urlVideo, String premio) {
+		int cantPremios, double puntajePromedio, String urlVideo, String premio, int cantFavoritos) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -28,6 +28,7 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		this.puntajePromedio = puntajePromedio;
 		this.urlVideo = urlVideo;
 		this.premio = premio;
+		this.cantFavoritos = cantFavoritos;
 	}
 public DtEspectaculoDatos() {
 	
@@ -42,6 +43,8 @@ private
 	Integer duracion;
 private
 	Integer cantmin;
+private
+	Integer cantFavoritos;
 private
 Integer cantmax;
 private
@@ -110,21 +113,16 @@ public Set<DtCategoria> getCategorias() {
 public String getPremio() {
 	return premio;
 }
-public void setPremio(String premio) {
-	this.premio = premio;
-}
 public int getCantPremios() {
 	return cantPremios;
-}
-public void setCantPremios(int cantPremios) {
-	this.cantPremios = cantPremios;
 }
 public double getPuntajePromedio() {
 	return puntajePromedio;
 }
-public void setPuntajePromedio(int puntajePromedio) {
-	this.puntajePromedio = puntajePromedio;
+public Integer getCantFavoritos() {
+	return cantFavoritos;
 }
+
 
 
 
