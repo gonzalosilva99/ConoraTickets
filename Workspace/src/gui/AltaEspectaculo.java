@@ -377,7 +377,7 @@ public class AltaEspectaculo extends JInternalFrame {
 		CategoriasSeleccionadas.setText("");
 		
 		JLabel lblNewLabel_1 = new JLabel("UrlVideo");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 63, SpringLayout.SOUTH, lblCategorias);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, -122, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -107, SpringLayout.SOUTH, panel);
 		panel.add(lblNewLabel_1);
 		
