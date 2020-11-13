@@ -4,8 +4,10 @@ import java.util.Date;
 import clases.Espectador;
 import clases.Funcion;
 import clases.Paquete;
+import datatypes.DtEspectador;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import datatypes.DtRegistroFuncion;
 import datatypes.TipoRegistro;
 public class RegistroFuncion {
 	private Integer codigo;
@@ -29,10 +31,14 @@ public class RegistroFuncion {
 		fun.incrementarEspectadores();
 		this.paquete = null;
 		this.ganoPremio = false;
+		funcion.setRegistro(this);
 	}
 	
 	public Boolean ganoPremio() {
 		return ganoPremio;
+	}
+	public void setGanoPremio(Boolean gano) {
+		ganoPremio = gano;
 	}
 	public RegistroFuncion(Integer codigo, Date fecha, TipoRegistro registro, Funcion fun, Espectador espec) {
 		super();
@@ -41,6 +47,7 @@ public class RegistroFuncion {
 		this.registro = registro;
 		this.espectador = espec;
 		this.funcion = fun;
+		funcion.setRegistro(this);
 		fun.incrementarEspectadores();
 	}
 	
@@ -99,6 +106,11 @@ public class RegistroFuncion {
 
 	public Paquete getPaquete() {
 		return paquete;
+	}
+	public DtRegistroFuncion getDtRegistroFuncion() {
+		Date hoy = new Date();
+		DtRegistroFuncion registro = new DtRegistroFuncion(hoy, funcion.getDtFuncion(), espectador.getDtEspectador(), this.ganoPremio);
+		return registro;
 	}
 	
 }

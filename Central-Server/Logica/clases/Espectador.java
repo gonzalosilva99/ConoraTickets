@@ -30,7 +30,7 @@ public class Espectador extends Usuario{
 		super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena);
 		registroFunciones = new HashMap<Integer, RegistroFuncion>();
 		compraPaquetes = new HashMap<Integer, CompraPaquete>();
-		espectaculosFavoritos = null;
+		setEspectaculosFavoritos(null);
 	}
 	
 	public void agregarRegistroFuncion(RegistroFuncion registrofuncion) {
@@ -170,7 +170,23 @@ public class Espectador extends Usuario{
 		return setdtreg;
 	}
 	
-	protected void abstracta() {};
+	protected void abstracta() {}
+
+	public Set<Espectaculo> getEspectaculosFavoritos() {
+		return espectaculosFavoritos;
+	}
+
+	public void setEspectaculosFavoritos(Set<Espectaculo> espectaculosFavoritos) {
+		this.espectaculosFavoritos = espectaculosFavoritos;
+	}
+
+	public Set<PuntajeAsignado> getPuntajesAsignados() {
+		return puntajesAsignados;
+	}
+
+	public void setPuntajesAsignados(Set<PuntajeAsignado> puntajesAsignados) {
+		this.puntajesAsignados = puntajesAsignados;
+	};
 	
 }
 

@@ -15,6 +15,7 @@ import datatypes.DtPlataforma;
 import excepciones.Identidad;
 import interfaces.IPlataforma;
 import manejadores.ManejadorPlataforma;
+import relaciones.RegistroFuncion;
 
 
 
@@ -158,9 +159,24 @@ public class ControladorPlataforma implements IPlataforma{
 	}
 	public Set<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
 		Set<DtEspectador> ganadores = new HashSet<>();
-		
+		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
+		DtEspectaculoDatos espectaculo = manplat.getDatosEspectaculo(nombrePlataforma, nombreEspectaculo);
+		int cantidadDeSorteos = espectaculo.getCantPremios();
+		Set<RegistroFuncion> registros = manplat.getFuncion(nombrePlataforma, nombreEspectaculo, nombreFuncion).getRegistros();
+		int cantidadEspectadores = registros.size();
+		RegistroFuncion registrosArray[] = new RegistroFuncion[cantidadEspectadores];
+		registros.toArray(registrosArray);
+		Set<Integer> numerosGanadores = new HashSet<>();
+		for (int i=0; i< cantidadDeSorteos; i++) {
+			int random = (int)(Math.random()*cantidadEspectadores) + 1;
+			while (numerosGanadores.contains(random)) {
+				random = (int)(Math.random()*cantidadEspectadores) + 1;
+			}
+			registrosArray[random].setGanoPremio(true);
+		}
+		Date hoy = new  Date();
+		manplat.getFuncion(nombrePlataforma, nombreEspectaculo, nombreFuncion).setFechaSorteo(hoy);
 		return ganadores;
-		
 	}
 
 

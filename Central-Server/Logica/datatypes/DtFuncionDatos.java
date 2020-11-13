@@ -11,8 +11,11 @@ private	Set<DtArtista> artistas;
 private	DtEspectaculo espectaculo;	
 private String imagen;
 private Integer espectadores;
+private Set<DtRegistroFuncion> registros;
+
 	
-public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas, DtEspectaculo espectaculo, String imagen, Integer espectadores) {
+public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> artistas,
+		DtEspectaculo espectaculo, String imagen, Integer espectadores, Set<DtRegistroFuncion> registros) {
 		super();
 		this.nombre = nombre;
 		this.inicio = inicio;
@@ -21,6 +24,7 @@ public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> arti
 		this.espectaculo = espectaculo;
 		this.imagen = imagen;
 		this.espectadores = espectadores;
+		this.setRegistros(registros);
 	}
 public DtFuncionDatos() {}
 
@@ -46,5 +50,12 @@ public DtEspectaculo getEspectaculo() {
 
 	return espectaculo;
 }
+public Set<DtRegistroFuncion> getRegistros() {
+	return registros;
+}
+public void setRegistros(Set<DtRegistroFuncion> registros) {
+	this.registros = registros;
+}
+
 
 }

@@ -9,14 +9,18 @@ import java.util.Set;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
+import datatypes.DtEspectador;
 import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
+import datatypes.DtRegistroFuncion;
+import relaciones.RegistroFuncion;
 
 public class Funcion {
 	private String nombre;
 	private Date inicio;
 	private Date alta;
 	private String imagen;
+	private Set<RegistroFuncion> registros;
 	private Map<String, Artista> artistasinvitados;
 	private Integer espectadores;
 	private Date fechaSorteo;
@@ -29,6 +33,7 @@ public class Funcion {
 			this.artistasinvitados = new HashMap<String, Artista>();
 			this.espectadores = 0;
 			this.fechaSorteo = null;
+			this.setRegistros(new HashSet<>());
 		}
 		public Date getFechaSorteo() {
 			return fechaSorteo;
@@ -95,7 +100,20 @@ public class Funcion {
 			for (Map.Entry<String, Artista> entry : artistasinvitados.entrySet()) {
 				DtArtistaDevolver.add(entry.getValue().getDtArtista());
 			}
-			return new DtFuncionDatos(this.nombre, this.inicio, this.alta, DtArtistaDevolver, Espectaculo, imagen, espectadores);
+			Set<DtRegistroFuncion> datosRegistros = new HashSet<>();
+			for(RegistroFuncion registro: this.registros) {
+				datosRegistros.add(registro.getDtRegistroFuncion());
+			}
+			return new DtFuncionDatos(this.nombre, this.inicio, this.alta, DtArtistaDevolver, Espectaculo, imagen, espectadores, datosRegistros);
+		}
+		public Set<RegistroFuncion> getRegistros() {
+			return registros;
+		}
+		public void setRegistros(Set<RegistroFuncion> registros) {
+			this.registros = registros;
+		}
+		public void setRegistro(RegistroFuncion registro) {
+			this.registros.add(registro);
 		}
 
 		

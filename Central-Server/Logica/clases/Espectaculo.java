@@ -58,7 +58,7 @@ public class Espectaculo {
 			this.urlVideo = urlVideo;
 			this.premio = premio;
 			this.cantPremios = cantPremios;
-			this.puntajesAsignados = null;
+			this.puntajesAsignados = new HashSet<>();
 		}
 		public String getUrlVideo() {
 			return urlVideo;
@@ -214,11 +214,16 @@ public class Espectaculo {
 		}
 		private double obtenerPromedio() {
 			int cantPuntajes = puntajesAsignados.size();
-			int total = 0;
-			for (PuntajeAsignado puntaje: puntajesAsignados) {
-				total += puntaje.getPuntaje();
+			if (cantPuntajes > 0) {
+				int total = 0;
+				for (PuntajeAsignado puntaje: puntajesAsignados) {
+					total += puntaje.getPuntaje();
+				}
+				return total/ (double)cantPuntajes;	
+			}else {
+				return 0;
 			}
-			return total/ (double)cantPuntajes;
+
 		}
 		public DtFuncionDatos getFuncionDatos(String nombreFuncion) {
 			double puntajePromedio = obtenerPromedio();
