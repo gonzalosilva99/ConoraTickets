@@ -65,7 +65,7 @@ public class Main {
 		frmMainWindow = new JFrame();
 		frmMainWindow.setResizable(false);
 		frmMainWindow.setTitle("Main Window");
-		frmMainWindow.setBounds(100, 100, 550, 650);
+		frmMainWindow.setBounds(100, 100, 550, 850);
 		frmMainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMainWindow.getContentPane().setLayout(new BorderLayout(0, 0));
 		

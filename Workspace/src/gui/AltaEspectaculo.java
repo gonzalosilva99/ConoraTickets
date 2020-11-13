@@ -35,6 +35,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldNombre;
@@ -46,6 +48,9 @@ public class AltaEspectaculo extends JInternalFrame {
 	private JTextField textFieldDuracion;
 	private JTextField textFieldImagen;
 	private Set<String> categoriasADevolver;
+	private JTextField textField_urlVideo;
+	private JTextField textField_premio;
+	private JTextField textField_cantidadPremios;
 	/**
 	 * Launch the application.
 	 */
@@ -68,7 +73,7 @@ public class AltaEspectaculo extends JInternalFrame {
 	public AltaEspectaculo() {
 		Map<Integer, DtCategoria> listCats = new HashMap<Integer, DtCategoria>();
 		setTitle("Alta de espectaculo");
-		setBounds(100, 100, 525, 750);
+		setBounds(100, 100, 530, 751);
 		
 		JLabel lblNewLabel = new JLabel("Plataforma:");
 		SpringLayout springLayout = new SpringLayout();
@@ -144,9 +149,9 @@ public class AltaEspectaculo extends JInternalFrame {
 			}
 		
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, lblArtista);
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 2, SpringLayout.SOUTH, comboBoxArtista);
 		springLayout.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -157, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -81, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
@@ -328,32 +333,32 @@ public class AltaEspectaculo extends JInternalFrame {
 		panel.add(textFieldImagen);
 		
 		JLabel lblCategorias = new JLabel("Categorias:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblCategorias, 15, SpringLayout.SOUTH, lblDuracion);
 		sl_panel.putConstraint(SpringLayout.WEST, lblCategorias, 0, SpringLayout.WEST, lblNombre);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblCategorias, -10, SpringLayout.SOUTH, panel);
 		panel.add(lblCategorias);
 		JList list = new JList();
 		JScrollPane scrollPane = new JScrollPane();
 		sl_panel.putConstraint(SpringLayout.NORTH, scrollPane, 8, SpringLayout.SOUTH, textFieldDuracion);
-		sl_panel.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, textFieldNombre);
-		sl_panel.putConstraint(SpringLayout.SOUTH, scrollPane, 10, SpringLayout.SOUTH, lblCategorias);
-		sl_panel.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.SOUTH, scrollPane, -131, SpringLayout.SOUTH, panel);
 		panel.add(scrollPane);
 		scrollPane.setViewportView(list);
 		
 		Button buttonAnadir = new Button("+");
+		sl_panel.putConstraint(SpringLayout.WEST, scrollPane, -209, SpringLayout.WEST, buttonAnadir);
+		sl_panel.putConstraint(SpringLayout.EAST, scrollPane, -12, SpringLayout.WEST, buttonAnadir);
+		sl_panel.putConstraint(SpringLayout.WEST, buttonAnadir, 371, SpringLayout.WEST, panel);
 		scrollPane.setViewportView(list);
 		
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonAnadir, 346, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, buttonAnadir, 12, SpringLayout.EAST, scrollPane);
 		sl_panel.putConstraint(SpringLayout.SOUTH, buttonAnadir, 369, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, buttonAnadir, -105, SpringLayout.EAST, panel);
 		panel.add(buttonAnadir);
 		
 		Button buttonQuitar = new Button("-");
+		sl_panel.putConstraint(SpringLayout.WEST, buttonQuitar, 401, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, buttonAnadir, -6, SpringLayout.WEST, buttonQuitar);
 		
 		sl_panel.putConstraint(SpringLayout.NORTH, buttonQuitar, 346, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, buttonQuitar, 6, SpringLayout.EAST, buttonAnadir);
-		sl_panel.putConstraint(SpringLayout.SOUTH, buttonQuitar, 0, SpringLayout.SOUTH, scrollPane);
+		sl_panel.putConstraint(SpringLayout.SOUTH, buttonQuitar, 0, SpringLayout.SOUTH, buttonAnadir);
 		sl_panel.putConstraint(SpringLayout.EAST, buttonQuitar, -75, SpringLayout.EAST, panel);
 		panel.add(buttonQuitar);
 		
@@ -371,12 +376,47 @@ public class AltaEspectaculo extends JInternalFrame {
 		IndicesCategorias.clear();
 		CategoriasSeleccionadas.setText("");
 		
-		JPanel panel_1 = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -6, SpringLayout.NORTH, buttonCancelar);
-		springLayout.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, buttonAceptar);
-		getContentPane().add(panel_1);
+		JLabel lblNewLabel_1 = new JLabel("UrlVideo");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 63, SpringLayout.SOUTH, lblCategorias);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -107, SpringLayout.SOUTH, panel);
+		panel.add(lblNewLabel_1);
+		
+		textField_urlVideo = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_urlVideo, 6, SpringLayout.SOUTH, scrollPane);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, -152, SpringLayout.WEST, textField_urlVideo);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_1, -92, SpringLayout.WEST, textField_urlVideo);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_urlVideo, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_urlVideo, 0, SpringLayout.EAST, textFieldNombre);
+		panel.add(textField_urlVideo);
+		textField_urlVideo.setColumns(10);
+		
+		JLabel label_premio = new JLabel("Premio");
+		sl_panel.putConstraint(SpringLayout.NORTH, label_premio, -101, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, label_premio, -86, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, label_premio, 0, SpringLayout.EAST, lblCategorias);
+		panel.add(label_premio);
+		
+		textField_premio = new JTextField();
+		sl_panel.putConstraint(SpringLayout.WEST, label_premio, -152, SpringLayout.WEST, textField_premio);
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_premio, 6, SpringLayout.SOUTH, textField_urlVideo);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_premio, 0, SpringLayout.WEST, textFieldNombre);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_premio, 0, SpringLayout.EAST, textFieldNombre);
+		panel.add(textField_premio);
+		textField_premio.setColumns(10);
+		
+		JLabel lblCantidadDePremios = new JLabel("Cantidad de Premios:");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblCantidadDePremios, 6, SpringLayout.SOUTH, label_premio);
+		sl_panel.putConstraint(SpringLayout.WEST, lblCantidadDePremios, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblCantidadDePremios, -65, SpringLayout.SOUTH, panel);
+		panel.add(lblCantidadDePremios);
+		
+		textField_cantidadPremios = new JTextField();
+		sl_panel.putConstraint(SpringLayout.EAST, lblCantidadDePremios, -6, SpringLayout.WEST, textField_cantidadPremios);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_cantidadPremios, 162, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_cantidadPremios, -141, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_cantidadPremios, 6, SpringLayout.SOUTH, textField_premio);
+		panel.add(textField_cantidadPremios);
+		textField_cantidadPremios.setColumns(10);
 		DefaultListModel listaCategorias = new DefaultListModel();
 		Set<DtCategoria> listCatAux = icategoria.listarCategorias();
 		if (listCatAux!=null) {
@@ -421,7 +461,7 @@ public class AltaEspectaculo extends JInternalFrame {
 					iplataform.altaEspectaculo(comboBoxPlataforma.getSelectedItem().toString(), nick[0] , 
 							textFieldNombre.getText().trim(), textFieldDescripcion.getText().trim(),
 							Integer.valueOf(textFieldEspectMin.getText()), Integer.valueOf(textFieldEspectMax.getText()), textFieldURL.getText().trim(),
-							Integer.valueOf(textFieldCosto.getText()), dateChooser.getDate(), Integer.valueOf(textFieldDuracion.getText()), textFieldImagen.getText(), categoriasADevolver, "urlVideo" , "premio", 0); 
+							Integer.valueOf(textFieldCosto.getText()), dateChooser.getDate(), Integer.valueOf(textFieldDuracion.getText()), textFieldImagen.getText(), categoriasADevolver, textField_urlVideo.getText() , textField_premio.getText(), Integer.valueOf(textField_cantidadPremios.getText())); 
 							 
 					
 					JOptionPane.showMessageDialog(null, "Espectaculo dado de alta con exito.");
