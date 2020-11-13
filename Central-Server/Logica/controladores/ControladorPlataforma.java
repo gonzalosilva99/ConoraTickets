@@ -1,12 +1,14 @@
 package controladores;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import clases.Funcion;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
 import datatypes.DtEspectaculoDatos;
+import datatypes.DtEspectador;
 import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
 import datatypes.DtPlataforma;
@@ -154,6 +156,13 @@ public class ControladorPlataforma implements IPlataforma{
 	public DtFuncion getDtFuncion(String nombreFuncion) {
 		return ManejadorPlataforma.getInstancia().getDtFuncion(nombreFuncion);
 	}
+	public Set<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
+		Set<DtEspectador> ganadores = new HashSet<>();
+		
+		return ganadores;
+		
+	}
+
 
 }
 

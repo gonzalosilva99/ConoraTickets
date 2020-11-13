@@ -7,6 +7,7 @@ import clases.Funcion;
 import datatypes.DtCategoria;
 import datatypes.DtEspectaculo;
 import datatypes.DtEspectaculoDatos;
+import datatypes.DtEspectador;
 import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
 import datatypes.DtPlataforma;
@@ -43,4 +44,5 @@ public interface IPlataforma {
 		public Set<DtEspectaculoDatos> filtrarEspectaculos(String search);
 		public Boolean espectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo);
 		public DtFuncion getDtFuncion(String nombreFuncion);
+		public Set<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
 }

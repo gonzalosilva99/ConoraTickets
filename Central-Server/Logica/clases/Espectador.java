@@ -15,6 +15,7 @@ import datatypes.DtPaqueteDatos;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import relaciones.CompraPaquete;
+import relaciones.PuntajeAsignado;
 import relaciones.RegistroFuncion;
 
 public class Espectador extends Usuario{

@@ -6,7 +6,10 @@ import java.util.Set;
 
 public class DtEspectaculoDatos {
 	
-public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantmin, Integer cantmax, String url, Float costo, Date registro, Set<DtFuncionDatos> funciones, Set<DtPaquete> paquetes, DtArtista organizador, String imagen, Set<DtCategoria> categorias) {
+public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, Integer cantmin, 
+		Integer cantmax, String url, Float costo, Date registro, Set<DtFuncionDatos> funciones, 
+		Set<DtPaquete> paquetes, DtArtista organizador, String imagen, Set<DtCategoria> categorias, 
+		int cantPremios, double puntajePromedio, String urlVideo, String premio) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -21,6 +24,10 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		this.organizador = organizador;
 		this.categorias = categorias;
 		this.imagen = imagen;
+		this.cantPremios = cantPremios;
+		this.puntajePromedio = puntajePromedio;
+		this.urlVideo = urlVideo;
+		this.premio = premio;
 	}
 public DtEspectaculoDatos() {
 	
@@ -50,6 +57,16 @@ private
 Set<DtFuncionDatos> funciones;
 private
 Set<DtPaquete> paquetes;
+private String urlVideo;
+public String getUrlVideo() {
+	return urlVideo;
+}
+public void setUrlVideo(String urlVideo) {
+	this.urlVideo = urlVideo;
+}
+private String premio;
+private int cantPremios;
+private double puntajePromedio;
 public String getNombre() {
 	return nombre;
 }
@@ -89,6 +106,24 @@ public DtArtista getOrganizador() {
 }
 public Set<DtCategoria> getCategorias() {
 	return categorias;
+}
+public String getPremio() {
+	return premio;
+}
+public void setPremio(String premio) {
+	this.premio = premio;
+}
+public int getCantPremios() {
+	return cantPremios;
+}
+public void setCantPremios(int cantPremios) {
+	this.cantPremios = cantPremios;
+}
+public double getPuntajePromedio() {
+	return puntajePromedio;
+}
+public void setPuntajePromedio(int puntajePromedio) {
+	this.puntajePromedio = puntajePromedio;
 }
 
 
