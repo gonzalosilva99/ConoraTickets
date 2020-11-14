@@ -13,6 +13,7 @@ import datatypes.DtEspectador;
 import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
 import datatypes.DtRegistroFuncion;
+import datatypes.DtUsuario;
 import relaciones.RegistroFuncion;
 
 public class Funcion {
@@ -104,7 +105,7 @@ public class Funcion {
 			for(RegistroFuncion registro: this.registros) {
 				datosRegistros.add(registro.getDtRegistroFuncion());
 			}
-			return new DtFuncionDatos(this.nombre, this.inicio, this.alta, DtArtistaDevolver, Espectaculo, imagen, espectadores, datosRegistros);
+			return new DtFuncionDatos(this.nombre, this.inicio, this.alta, DtArtistaDevolver, Espectaculo, imagen, espectadores, datosRegistros, fechaSorteo, obtenerGanadoresSorteo());
 		}
 		public Set<RegistroFuncion> getRegistros() {
 			return registros;
@@ -115,6 +116,16 @@ public class Funcion {
 		public void setRegistro(RegistroFuncion registro) {
 			this.registros.add(registro);
 		}
-
+		public Set<DtEspectador> obtenerGanadoresSorteo(){
+			Set<DtEspectador> ret = new HashSet<DtEspectador>();
+			if (this.fechaSorteo!=null) {
+				for(RegistroFuncion registro: this.registros) {
+					if (registro.ganoPremio()) {
+						ret.add(registro.getEspectador().getDtEspectador());
+					}
+				}
+			}
+			return ret;
+		}
 		
 }

@@ -11,9 +11,11 @@
 	<%@page import="datatypes.DtCategoria" %>
 	<%@page import="datatypes.DtPaquete" %>
 	<%@page import="datatypes.DtArtista" %>
+	<%@page import="datatypes.DtEspectador" %>
 	<%@page import="datatypes.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="controladores.Fabrica"%>
+	<%@page import="datatypes.DtRegistroFuncion"%>
 	<%@page import="interfaces.IUsuario"%>	
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Consulta Espectaculo</title>
@@ -27,9 +29,10 @@
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<%
-			String usuario = (String) request.getSession().getAttribute("usuario_logueado");
+				String usuario = (String) request.getSession().getAttribute("usuario_logueado");
 				DtEspectaculoDatos dtesp=null;
 				dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
+				String plataformaesp = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre());
 				Set<DtPaquete> dtpaqesp = dtesp.getPaquetes();
 				Set<DtPaquete> dtpaq = Fabrica.getInstancia().getIPaquete().listarPaquetes();
 				DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
@@ -121,6 +124,61 @@
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarFuncion('<%=auxf.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
 				    						<%
 				    							}
+				    							else if (dtesp.getOrganizador().getNickname().equals(usuario) && request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && Fabrica.getInstancia().getIUsuario().esArtista(usuario)){
+				    								if (new Date().after(auxf.getInicio()) && auxf.getFechaSorteo()==null){
+				    						%>
+				    							<button type="submit" class="btn btn-info" data-toggle="modal" data-target="#ModalSorteo<%= auxf.getNombre().replace(" ","") %>" onclick=""><i class="fas fa-dice"></i>Realizar Sorteo</button>
+				    							<!-- MODAL SORTEAR -->
+												<div class="modal fade" id="ModalSorteo<%= auxf.getNombre().replace(" ","") %>" tabindex="-1" role="dialog" aria-labelledby="ModalSorteo<%= auxf.getNombre().replace(" ","") %>" aria-hidden="true">
+												  <div class="modal-dialog modal-dialog-centered" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="exampleModalLongTitle">Participantes del Sorteo: </h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <div class="modal-body" >
+												      	<%
+												      	Iterator<DtRegistroFuncion> participantes=auxf.getRegistros().iterator();												      	
+														while(participantes.hasNext()){
+															DtEspectador nuevo = participantes.next().getEspectador();
+												      	%>
+												      	<a href="/perfil?id=<%= nuevo.getNickname() %>" target="_blank">
+												         <div class="row ml-sm-2" > 
+												         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
+												         </div>
+												         </a>
+												        <%}%>
+												      <div class="modal-footer">
+												      	<button type="button" class="btn btn-primary" onclick="sortearPremios('<%= plataformaesp %>','<%= dtesp.getNombre() %>','<%= auxf.getNombre() %>')">Sortear</button>
+												        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												      </div>
+												    </div>
+												  </div>
+												</div>
+												</div>
+												<!-- FIN MODAL SORTEAR -->
+				    						<% 
+				    							
+				    								}//FIN IF NO SE HA REALIZADO EL SORTEO
+				    								else if (auxf.getFechaSorteo()!=null){
+				    						%>
+				    									<p class="text-dark"><b>Ganadores del Sorteo:</b></p>
+				    						<%
+				    									Iterator<DtEspectador> itrganadores = auxf.getGanadoresSorteo().iterator();
+				    									while (itrganadores.hasNext()){
+				    										DtEspectador nuevo = itrganadores.next();
+				    										%>
+				    										<a href="/perfil?id=<%= nuevo.getNickname() %>" target="_blank">
+													        	<div class="row ml-sm-2" > 
+													         		<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
+													        	</div>
+															</a>				
+				    						<% 
+				    									}//FIN WHILE ITRGANADORES
+				    								}//FIN IF SE REALIZO EL SORTEO
+				    							}//FIN IF ESTA LOGUEADO EL DUEÑO DEL ESPECTACULO
 				    						%>
 				    					</div>
 				    				</div>
@@ -183,7 +241,7 @@
 										<div class="modal-dialog modal-dialog-centered" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLongTitle">Seguidores</h5>
+													<h5 class="modal-title" id="exampleModalLongTitle">Añadir Paquetes: </h5>
 													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
@@ -255,6 +313,36 @@
 	</script>
     
     <script type="text/javascript">
+    	function sortearPremios(plataforma, espectaculo, funcion){
+    		event.preventDefault();
+    					//console.log(rbs[i].value);
+    					var data = {
+    							tipoPost:'sortearPremios',
+    							plataforma:plataforma,
+    				    		espectaculo:espectaculo,
+    				    		funcion:funcion};
+    				    console.log(data);
+    				    //console.log(i);
+    				    //console.log(rbs[i].value);
+    			    	$.ajax({
+    				        type: 'POST',
+    				        url:  'consultaespectaculo',
+    				        data: data,
+    				        async: false,
+    				        success: function (data) {
+    				            //console.log(data);
+    				            	console.log(data);
+    				            	alert(data);
+    				            	//paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Hecho!</strong>    Se ha añadido el paquete: ' + rbs[i].value + ' con éxito al espectáculo <%= dtesp.getNombre() %></div>');
+    				            	//document.getElementsByClassName("form-check-label")[i].innerHTML='<span class="text-info"><i class="fas fa-check form-check-input"></i>'+rbs[i].value+'</span>';
+    				            	//document.getElementById('metododecompra').setAttribute('style',"pointer-events:none;");
+    				            	//$('#funcionyacomprada').show();
+    						}
+    					});
+    	}
+    </script>
+    
+    <script type="text/javascript">
     $("#formAnadirPaquetes").submit(function( event ) {
     	event.preventDefault();
     	var rbs = document.getElementsByName("checkbox");
@@ -270,6 +358,7 @@
 					valoresIngresados.push(rbs[i].value);
 					//console.log(rbs[i].value);
 					var data = {
+							tipoPost:'anadirPaquetes',
 				    		espectaculo:'<%= dtesp.getNombre()%>',
 				    		paquete:rbs[i].value};
 				    //console.log(data);

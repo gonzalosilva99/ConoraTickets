@@ -160,21 +160,28 @@ public class ControladorPlataforma implements IPlataforma{
 	public Set<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
 		Set<DtEspectador> ganadores = new HashSet<>();
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
+		System.out.println("LLEGA 1");
 		DtEspectaculoDatos espectaculo = manplat.getDatosEspectaculo(nombrePlataforma, nombreEspectaculo);
 		int cantidadDeSorteos = espectaculo.getCantPremios();
 		Set<RegistroFuncion> registros = manplat.getFuncion(nombrePlataforma, nombreEspectaculo, nombreFuncion).getRegistros();
+		System.out.println("LLEGA 2 CantPremios: " + cantidadDeSorteos);
 		int cantidadEspectadores = registros.size();
+		System.out.println("LLEGA 3 cantEspectadores: " + cantidadEspectadores);
 		RegistroFuncion registrosArray[] = new RegistroFuncion[cantidadEspectadores];
 		registros.toArray(registrosArray);
+		System.out.println("LLEGA 4");
 		Set<Integer> numerosGanadores = new HashSet<>();
+		System.out.println("LLEGA 5");
 		for (int i=0; i< cantidadDeSorteos; i++) {
 			int random = (int)(Math.random()*cantidadEspectadores) + 1;
+			System.out.println("LLEGA 6 random"+i + " randomvalor: "+random);
 			while (numerosGanadores.contains(random)) {
 				random = (int)(Math.random()*cantidadEspectadores) + 1;
 			}
 			registrosArray[random].setGanoPremio(true);
+			ganadores.add(registrosArray[random].getEspectador().getDtEspectador());
 		}
-		Date hoy = new  Date();
+		Date hoy = new Date();
 		manplat.getFuncion(nombrePlataforma, nombreEspectaculo, nombreFuncion).setFechaSorteo(hoy);
 		return ganadores;
 	}

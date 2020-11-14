@@ -56,7 +56,7 @@ public class AltaEspectaculo extends HttpServlet {
 		    }
 		    }
 		    java.util.Date fechaactual = new Date();
-	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats);	    		    	
+	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats, "", "", 0);	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
 	    	requestt.setAttribute("aceptado", "true");
 	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");
