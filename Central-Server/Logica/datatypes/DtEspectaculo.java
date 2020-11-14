@@ -3,7 +3,7 @@ package datatypes;
 public class DtEspectaculo {
 	
 public DtEspectaculo(String nombre, String descripcion, String imagen, EstadoEspectaculo estado, Integer costo, String urlVideo,
-		String premio, int cantPremios, double puntajePromedio) {
+		String premio, int cantPremios, double puntajePromedio, int cantFavoritos, int duracion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -14,10 +14,14 @@ public DtEspectaculo(String nombre, String descripcion, String imagen, EstadoEsp
 		this.puntajePromedio = puntajePromedio;
 		this.urlVideo = urlVideo;
 		this.premio = premio;
+		this.cantFavoritos = cantFavoritos;
+		this.duracion = duracion;
 		
 	}
 private EstadoEspectaculo estado;
 private Integer costo;
+private Integer duracion;
+private Integer cantFavoritos;
 private
 String nombre;
 private
@@ -53,20 +57,17 @@ public String getImagen() {
 public String getPremio() {
 	return premio;
 }
-public void setPremio(String premio) {
-	this.premio = premio;
-}
 public int getCantPremios() {
 	return cantPremios;
-}
-public void setCantPremios(int cantPremios) {
-	this.cantPremios = cantPremios;
 }
 public double getPuntajePromedio() {
 	return puntajePromedio;
 }
-public void setPuntajePromedio(int puntajePromedio) {
-	this.puntajePromedio = puntajePromedio;
+public Integer getCantFavoritos() {
+	return cantFavoritos;
+}
+public Integer getDuracion() {
+	return duracion;
 }
 
 }

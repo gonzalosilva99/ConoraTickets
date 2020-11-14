@@ -212,11 +212,11 @@ public class Plataforma {
 			return espectaculos.get(nombreEspectaculo).getFuncionDatos(nombreFuncion);
 		}
 		
-		public String existeEspectaculoDeFuncion(String nombreFuncion){
-			String ret = "";
+		public DtEspectaculo existeEspectaculoDeFuncion(String nombreFuncion){
+			DtEspectaculo ret = null;
 			for (Map.Entry<String, Espectaculo> entry : espectaculos.entrySet()) {
 				if (entry.getValue().existeFuncion(nombreFuncion)) {
-					ret = entry.getValue().getNombre();
+					ret = entry.getValue().getDatosEspectaculo();
 					break;
 				}           
 			}

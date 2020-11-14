@@ -67,7 +67,7 @@ public class RegistroFuncion {
 	}
 	
 	public DtRegistro getDtRegistro() {
-		DtRegistro dtret = new DtRegistro(this.codigo, this.fecha, this.costo, this.funcion.getNombre(), this.espectador.getNickname());
+		DtRegistro dtret = new DtRegistro(this.codigo, this.fecha, this.costo, this.funcion.getNombre(), this.espectador.getNickname(), this.ganoPremio);
 		return dtret;
 	}
 	public void setCosto(Double costo) {

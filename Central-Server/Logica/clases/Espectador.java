@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Iterator;
+import java.util.Calendar;
 import java.util.Date;
 
+import datatypes.DtEspectaculo;
 import datatypes.DtEspectador;
 import datatypes.DtEspectadorConsulta;
 import datatypes.DtEspectadorPerfil;
@@ -14,6 +17,7 @@ import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
+import manejadores.ManejadorPlataforma;
 import relaciones.CompraPaquete;
 import relaciones.PuntajeAsignado;
 import relaciones.RegistroFuncion;
@@ -22,7 +26,7 @@ public class Espectador extends Usuario{
 
 	private Map<Integer, RegistroFuncion> registroFunciones;
 	private Map<Integer, CompraPaquete> compraPaquetes;
-	private Set<Espectaculo> espectaculosFavoritos;
+	private Map<String, Espectaculo> espectaculosFavoritos;
 	private Set<PuntajeAsignado> puntajesAsignados;
 	
 	public Espectador(String nickname, String nombre, String apellido, String email, 
@@ -30,7 +34,9 @@ public class Espectador extends Usuario{
 		super(nickname, nombre, apellido, email, nacimiento, imagen, contrasena);
 		registroFunciones = new HashMap<Integer, RegistroFuncion>();
 		compraPaquetes = new HashMap<Integer, CompraPaquete>();
-		setEspectaculosFavoritos(null);
+		espectaculosFavoritos = new HashMap<String, Espectaculo>();
+		puntajesAsignados = new HashSet<PuntajeAsignado>();
+		
 	}
 	
 	public void agregarRegistroFuncion(RegistroFuncion registrofuncion) {
@@ -172,11 +178,11 @@ public class Espectador extends Usuario{
 	
 	protected void abstracta() {}
 
-	public Set<Espectaculo> getEspectaculosFavoritos() {
+	public Map<String, Espectaculo> getEspectaculosFavoritos() {
 		return espectaculosFavoritos;
 	}
 
-	public void setEspectaculosFavoritos(Set<Espectaculo> espectaculosFavoritos) {
+	public void setEspectaculosFavoritos(Map<String, Espectaculo> espectaculosFavoritos) {
 		this.espectaculosFavoritos = espectaculosFavoritos;
 	}
 
@@ -188,6 +194,50 @@ public class Espectador extends Usuario{
 		this.puntajesAsignados = puntajesAsignados;
 	};
 	
+	public void anadirFavorito(Espectaculo esp) {
+		espectaculosFavoritos.put(esp.getNombre(), esp);
+	}
+	
+	public void quitarFavorito(Espectaculo esp) {
+		espectaculosFavoritos.remove(esp);
+	}
+	public Map<String, DtEspectaculo> getEspectaculosParaPuntuar(){
+		Map<String, DtEspectaculo> ret = new HashMap<String, DtEspectaculo>();
+		for (Map.Entry<Integer, RegistroFuncion> entry: registroFunciones.entrySet()) {
+			DtFuncion aux = entry.getValue().getDtFuncion();
+			Date iniciofun = aux.getInicio();
+			DtEspectaculo esp = ManejadorPlataforma.getInstancia().getEspectaculoDeFuncion(aux.getNombre());
+			int duracion  = esp.getDuracion();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(iniciofun);
+			cal.add(cal.MINUTE, duracion);
+			Date fechafin = cal.getTime();
+			Date hoy = new Date();
+			if (!ret.containsKey(esp.getNombre()) && hoy.after(fechafin))
+				ret.put(esp.getNombre(), esp);
+		}
+		return ret;
+	}
+	
+	public void valorarespectaculo(String nomEsp, int valoracion){
+		Espectaculo espectaculo = ManejadorPlataforma.getInstancia().getEspectaculo(nomEsp);
+		PuntajeAsignado nuevo = new PuntajeAsignado(this,espectaculo,valoracion);
+		this.puntajesAsignados.add(nuevo);
+		espectaculo.anadirPuntaje(nuevo);		
+	}
+	
+	public int getPuntajeEspectaculo(String nomEsp) {
+		int ret = 0;
+		Iterator<PuntajeAsignado> itr = puntajesAsignados.iterator();
+		while(itr.hasNext()) {
+			PuntajeAsignado pun = itr.next();
+			if(pun.getEspectaculo().getNombre().equals(nomEsp)) {
+				ret=pun.getPuntaje();
+				break;
+			}
+		}
+		return ret;
+	}
 }
 
 

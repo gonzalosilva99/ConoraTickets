@@ -213,6 +213,17 @@ public class ManejadorPlataforma {
 			return ret;
 		}
 		
+		public Espectaculo getEspectaculo(String nombreEspectaculo){
+			Espectaculo ret = null;
+			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
+				if (entry.getValue().existeEspectaculo(nombreEspectaculo)) {
+					ret = entry.getValue().getEspectaculo(nombreEspectaculo);
+					break;
+				}
+			}
+			return ret;
+		}
+		
 		public Set<DtEspectaculo> listarEspectaculosIngresados(){
 			HashSet<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
@@ -241,12 +252,22 @@ public class ManejadorPlataforma {
 		}
 		
 		public DtFuncionDatos findFuncionDatos(String nombreFuncion) {
-			DtFuncionDatos ret = null;
-			
+			DtFuncionDatos ret = null;			
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
-				String esp = entry.getValue().existeEspectaculoDeFuncion(nombreFuncion);
-				if (!esp.equals("")) {
-					ret = entry.getValue().getFuncionDatos(esp, nombreFuncion);
+				DtEspectaculo esp = entry.getValue().existeEspectaculoDeFuncion(nombreFuncion);
+				if (!esp.getNombre().equals("")) {
+					ret = entry.getValue().getFuncionDatos(esp.getNombre(), nombreFuncion);
+					break;
+				}
+			}
+			return ret;
+		}
+		
+		public DtEspectaculo getEspectaculoDeFuncion(String nombreFuncion) {
+			DtEspectaculo ret = null;		
+			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
+				ret = entry.getValue().existeEspectaculoDeFuncion(nombreFuncion);
+				if (ret!=null) {				
 					break;
 				}
 			}
@@ -262,6 +283,16 @@ public class ManejadorPlataforma {
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
 				if (entry.getValue().existeEspectaculo(nomEspectaculo)) {
 					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Aceptado);
+					
+					break;
+				}
+			}
+		}
+		
+		public void finalizarEspectaculo(String nomEspectaculo) {
+			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
+				if (entry.getValue().existeEspectaculo(nomEspectaculo)) {
+					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Finalizado);
 					
 					break;
 				}

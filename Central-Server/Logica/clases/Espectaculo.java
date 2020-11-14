@@ -36,6 +36,7 @@ public class Espectaculo {
 	private int cantPremios;
 	private Set<Categoria> categorias;
 	private Set<PuntajeAsignado> puntajesAsignados;
+	private int cantFavoritos;
 	
 	
 	
@@ -59,6 +60,7 @@ public class Espectaculo {
 			this.premio = premio;
 			this.cantPremios = cantPremios;
 			this.puntajesAsignados = new HashSet<>();
+			this.cantFavoritos=0;
 		}
 		public String getUrlVideo() {
 			return urlVideo;
@@ -170,7 +172,7 @@ public class Espectaculo {
 		public DtEspectaculo getDatosEspectaculo() {
 			double puntajePromedio = obtenerPromedio();
 			DtEspectaculo dte = new DtEspectaculo(nombre, descripcion, imagen, estado, costo, 
-					urlVideo, premio, cantPremios, puntajePromedio);
+					urlVideo, premio, cantPremios, puntajePromedio, this.cantFavoritos, this.duracion);
 			return dte;
 		}
 		public DtFuncionDatos getDtFuncionDatos(String nombreFuncion){
@@ -188,11 +190,11 @@ public class Espectaculo {
 			ManejadorPaquetes manpaq = manejadores.ManejadorPaquetes.getInstancia();
 			Set<DtPaquete> listaPaquetes = manpaq.listarPaquetesEspectaculo(nombre);
 			Set<DtCategoria> listacategorias = listarCategorias();
-			DtEspectaculo esp = new DtEspectaculo(this.nombre, this.descripcion, imagen, this.estado, this.costo, urlVideo, premio, cantPremios, puntajePromedio);
+			DtEspectaculo esp = new DtEspectaculo(this.nombre, this.descripcion, imagen, this.estado, this.costo, urlVideo, premio, cantPremios, puntajePromedio, this.cantFavoritos, this.duracion);
 			DtEspectaculoDatos ret = new DtEspectaculoDatos(nombre, descripcion, duracion, 
 					cantmin, cantmax, url, costo.floatValue(), registro, this.listarFuncionesDatos(esp) , 
 					listaPaquetes, organizador.getDtArtista(), imagen, listacategorias, cantPremios, 
-					puntajePromedio, urlVideo, premio); 
+					puntajePromedio, urlVideo, premio, this.cantFavoritos); 
 			return ret;
 		
 		}
@@ -228,7 +230,7 @@ public class Espectaculo {
 		public DtFuncionDatos getFuncionDatos(String nombreFuncion) {
 			double puntajePromedio = obtenerPromedio();
 			Funcion fun = funciones.get(nombreFuncion);
-			DtEspectaculo datosEsp = new DtEspectaculo(nombre, descripcion, imagen, estado, costo, urlVideo, premio, cantPremios, puntajePromedio);
+			DtEspectaculo datosEsp = new DtEspectaculo(nombre, descripcion, imagen, estado, costo, urlVideo, premio, cantPremios, puntajePromedio, this.cantFavoritos, this.duracion);
 			return fun.getDtFuncionDatos(datosEsp);
 		}
 		
@@ -281,6 +283,40 @@ public class Espectaculo {
 			}
 			return null;
 		
+		}
+
+		public Set<PuntajeAsignado> getPuntajesAsignados() {
+			return puntajesAsignados;
+		}
+		public void setPuntajesAsignados(Set<PuntajeAsignado> puntajesAsignados) {
+			this.puntajesAsignados = puntajesAsignados;
+		}
+		public int getCantFavoritos() {
+			return cantFavoritos;
+		}
+		public void setCantFavoritos(int cantFavoritos) {
+			this.cantFavoritos = cantFavoritos;
+		}
+		public void setUrlVideo(String urlVideo) {
+			this.urlVideo = urlVideo;
+		}
+		public void setPremio(String premio) {
+			this.premio = premio;
+		}
+		public void setCantPremios(int cantPremios) {
+			this.cantPremios = cantPremios;
+		}
+		
+		public void aumentarFavoritos() {
+			this.cantFavoritos++;
+		}
+		
+		public void quitarFavoritos() {
+			this.cantFavoritos--;
+		}
+		
+		public void anadirPuntaje(PuntajeAsignado pun) {
+			this.puntajesAsignados.add(pun);
 		}
 }
 

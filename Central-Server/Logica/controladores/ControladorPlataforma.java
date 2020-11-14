@@ -142,6 +142,11 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
 		manplat.aceptarEspectaculo(nomEspectaculo);
 	}
+
+	public void finzalizarEspectaculo(String nomEspectaculo) {
+		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
+		manplat.finalizarEspectaculo(nomEspectaculo);
+	}
 	
 	public void rechazarEspectaculo(String nomEspectaculo) {
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();

@@ -11,13 +11,15 @@ public class DtRegistro {
 	private
 	String nombrefuncion;
 	private String nicknameespectador;
-	public DtRegistro(Integer codigo, Date fecha, Double costo, String nombreFuncion, String nickname) {
+	private Boolean ganoPremio;
+	public DtRegistro(Integer codigo, Date fecha, Double costo, String nombreFuncion, String nickname, Boolean ganoPremio) {
 			super();
 			this.codigo = codigo;
 			this.fecha = fecha;
 			this.costo = costo;
 			this.nombrefuncion = nombreFuncion;
 			this.nicknameespectador = nickname;
+			this.ganoPremio = ganoPremio;
 	}
 
 	public String getNicknameEspectador() {
@@ -36,5 +38,10 @@ public class DtRegistro {
 	public String getNombreFuncion() {
 		return nombrefuncion;
 	}
+
+	public Boolean getGanoPremio() {
+		return ganoPremio;
+	}
+	
 
 }

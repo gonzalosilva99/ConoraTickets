@@ -41,6 +41,7 @@ public interface IPlataforma {
 		public Set<DtEspectaculo> listarEspectaculosIngresados();
 		public void aceptarEspectaculo(String nomEspectaculo);
 		public void rechazarEspectaculo(String nomEspectaculo);
+		public void finzalizarEspectaculo(String nomEspectaculo);
 		public Set<DtEspectaculoDatos> filtrarEspectaculos(String search);
 		public Boolean espectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo);
 		public DtFuncion getDtFuncion(String nombreFuncion);

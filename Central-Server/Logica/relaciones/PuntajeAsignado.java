@@ -9,6 +9,12 @@ public class PuntajeAsignado {
 	private int puntaje;
 	
 	
+	public PuntajeAsignado(Espectador espectador, Espectaculo espectaculo, int puntaje) {
+		super();
+		this.espectador = espectador;
+		this.espectaculo = espectaculo;
+		this.puntaje = puntaje;
+	}
 	public Espectador getEspectador() {
 		return espectador;
 	}
