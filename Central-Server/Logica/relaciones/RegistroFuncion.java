@@ -49,6 +49,9 @@ public class RegistroFuncion {
 		this.funcion = fun;
 		funcion.setRegistro(this);
 		fun.incrementarEspectadores();
+		this.paquete = null;
+		this.ganoPremio = false;
+		funcion.setRegistro(this);
 	}
 	
 	public void setPaquete(Paquete paq) {
