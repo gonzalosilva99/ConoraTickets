@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import controladores.Fabrica;
 import datatypes.EstadoSesion;
@@ -47,11 +50,21 @@ public class AltaPaquete extends HttpServlet {
 		
 	
 		try {
+			GregorianCalendar aux = new GregorianCalendar();
 			Date fechaf = formato.parse(fechafin);
+			aux.setTime(fechaf);
+			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
 			Date fechai = formato.parse(fechaini);
+			aux.setTime(fechai);
+		    XMLGregorianCalendar fei = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
 			double d = Double.parseDouble(porcentaje);  
 		    java.util.Date fechaactual = new Date();
-			if (fechai.before(fechaf)) {Fabrica.getInstancia().getIPaquete().confirmarAltaPaquete(nombre, descripcion, fechai, fechaf, d, fechaactual, imagen); 
+		    aux.setTime(fechaactual);
+		    XMLGregorianCalendar fea = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
+		    webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
+	    	
+			if (fechai.before(fechaf)) {port.confirmarAltaPaquete(nombre, descripcion, fei, fef, d, fea, imagen); 
 			request.setAttribute("aceptado", "true");}
 			
 			else request.setAttribute("fechainvalida", "true");

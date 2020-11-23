@@ -252,7 +252,7 @@ public class ControladorUsuario implements IUsuario{
 		espectador.quitarFavorito(espectaculo);
 		
 	}
-	public Map<String, DtEspectaculo> listarEspectaculosParaPuntuar(String nickname){
+	public Set<DtEspectaculo> listarEspectaculosParaPuntuar(String nickname){
 		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
 		return espectador.getEspectaculosParaPuntuar();
 	}

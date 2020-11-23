@@ -201,8 +201,9 @@ public class Espectador extends Usuario{
 	public void quitarFavorito(Espectaculo esp) {
 		espectaculosFavoritos.remove(esp);
 	}
-	public Map<String, DtEspectaculo> getEspectaculosParaPuntuar(){
-		Map<String, DtEspectaculo> ret = new HashMap<String, DtEspectaculo>();
+	public Set<DtEspectaculo> getEspectaculosParaPuntuar(){
+		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
+		Map<String, DtEspectaculo> ret2 = new HashMap<String, DtEspectaculo>();
 		for (Map.Entry<Integer, RegistroFuncion> entry: registroFunciones.entrySet()) {
 			DtFuncion aux = entry.getValue().getDtFuncion();
 			Date iniciofun = aux.getInicio();
@@ -213,8 +214,11 @@ public class Espectador extends Usuario{
 			cal.add(cal.MINUTE, duracion);
 			Date fechafin = cal.getTime();
 			Date hoy = new Date();
-			if (!ret.containsKey(esp.getNombre()) && hoy.after(fechafin))
-				ret.put(esp.getNombre(), esp);
+			if (!ret2.containsKey(esp.getNombre()) && hoy.after(fechafin))
+				ret2.put(esp.getNombre(), esp);
+		}
+		for (Map.Entry<String, DtEspectaculo> entry: ret2.entrySet()) {
+			ret.add(entry.getValue());
 		}
 		return ret;
 	}

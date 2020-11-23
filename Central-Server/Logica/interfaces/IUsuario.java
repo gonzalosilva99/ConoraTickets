@@ -55,7 +55,7 @@ public interface IUsuario {
 	public Set<DtEspectaculo> listarEspectaculosFinalizados(String nickname);
 	public void marcarFavorito(String nickname, String nomEsp);
 	public void desmarcarFavorito(String nickname, String nomEsp);
-	public Map<String, DtEspectaculo> listarEspectaculosParaPuntuar(String nickname);
+	public Set<DtEspectaculo> listarEspectaculosParaPuntuar(String nickname);
 	public void valorarEspectaculo(String nickname, String nomEsp, int valoracion);
 	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo);
 

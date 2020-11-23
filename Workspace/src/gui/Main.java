@@ -15,6 +15,7 @@ import interfaces.ICategoria;
 import interfaces.IPaquete;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
+import webservices.publicador;
 
 import java.util.Date;
 import java.util.Set;
@@ -39,6 +40,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					publicador p = new publicador();
+					p.publicar();
 					Main window = new Main();
 					window.frmMainWindow.setVisible(true);
 				} catch (Exception e) {
