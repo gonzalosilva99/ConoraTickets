@@ -35,6 +35,8 @@ public class CasosPrueba extends HttpServlet {
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
     	try {
+    		webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
     		Fabrica fab = Fabrica.getInstancia();
 			IUsuario iusuario = fab.getIUsuario();
 			IPlataforma iplataforma = fab.getIPlataforma();
@@ -197,13 +199,13 @@ public class CasosPrueba extends HttpServlet {
 			
 			
 			// PLATAFORMAS (Nombre, Descripcion, URL)
-						iplataforma.altaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
+						port.altaPlataforma("Instagram Live", "Funcionalidad de la red social Instagram, con la que\n" + 
 								"los usuarios pueden transmitir vídeos en vivo.", "https://www.instagram.com/liveoficial");
-						iplataforma.altaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
+						port.altaPlataforma("Facebook Watch","Servicio de video bajo demanda operado por\n" + 
 								"Facebook.","https://www.facebook.com/watch/");
-						iplataforma.altaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
+						port.altaPlataforma("Twitter Live","Aplicación de Twitter para la transmisión de video\n" + 
 								"en directo (streaming).","https://twitter.com/");
-						iplataforma.altaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
+						port.altaPlataforma("Youtube","Sitio web de origen estadounidense dedicado a\n" + 
 								"compartir videos.","https://www.youtube.com/");
 					
 			//Alta  Categorias

@@ -5,6 +5,7 @@
 
 package webservices;
 import controladores.Fabrica;
+import datatypes.ArrayPlataformas;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
 import datatypes.DtArtistaPerfil;
@@ -114,9 +115,10 @@ public class publicador {
     }
     
     @WebMethod   
-    public ArrayList<DtPlataforma> listarPlataformas(){
+    public ArrayPlataformas listarPlataformas(){
     	ArrayList<DtPlataforma> set = new ArrayList<DtPlataforma>(iplataforma.listarPlataformas());
-    	return set;
+    	ArrayPlataformas ret = new ArrayPlataformas(set);
+    	return ret;
     }
     
     @WebMethod

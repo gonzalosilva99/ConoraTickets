@@ -9,7 +9,6 @@ import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Action;
-import net.java.dev.jaxb.array.StringArray;
 
 
 /**
@@ -21,8 +20,7 @@ import net.java.dev.jaxb.array.StringArray;
 @WebService(name = "publicador", targetNamespace = "http://webservices/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    webservices.ObjectFactory.class,
-    net.java.dev.jaxb.array.ObjectFactory.class
+    ObjectFactory.class
 })
 public interface Publicador {
 
@@ -84,7 +82,7 @@ public interface Publicador {
         @WebParam(name = "arg10", partName = "arg10")
         String arg10,
         @WebParam(name = "arg11", partName = "arg11")
-        StringArray arg11,
+        ArrayList arg11,
         @WebParam(name = "arg12", partName = "arg12")
         String arg12,
         @WebParam(name = "arg13", partName = "arg13")
@@ -137,12 +135,12 @@ public interface Publicador {
     /**
      * 
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayPlataformas
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarPlataformasRequest", output = "http://webservices/publicador/listarPlataformasResponse")
-    public ArrayList listarPlataformas();
+    public ArrayPlataformas listarPlataformas();
 
     /**
      * 

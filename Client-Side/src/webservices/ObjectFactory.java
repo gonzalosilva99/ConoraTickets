@@ -118,6 +118,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayPlataformas }
+     * 
+     */
+    public ArrayPlataformas createArrayPlataformas() {
+        return new ArrayPlataformas();
+    }
+
+    /**
      * Create an instance of {@link DtFuncion }
      * 
      */
@@ -219,6 +227,14 @@ public class ObjectFactory {
      */
     public DtUsuario createDtUsuario() {
         return new DtUsuario();
+    }
+
+    /**
+     * Create an instance of {@link DtPlataforma }
+     * 
+     */
+    public DtPlataforma createDtPlataforma() {
+        return new DtPlataforma();
     }
 
     /**

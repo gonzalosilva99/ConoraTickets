@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import interfaces.IUsuario;
+import webservices.DtEspectaculoDatos;
 import controladores.Fabrica;
 import datatypes.EstadoSesion;
 /**
@@ -35,6 +36,10 @@ public class Perfil extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		 webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
+	    	DtEspectaculoDatos ret = port.getDatosEspectaculo("Twitter Live", "Bien de Familia");
+	    	System.out.print("sadasdsa");
 		String nickname = (String) request.getParameter("id");
 		if(nickname==null) {
 			if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO) {
