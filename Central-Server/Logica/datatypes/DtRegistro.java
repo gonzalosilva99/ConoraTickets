@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class DtRegistro {
 	private Integer codigo;
+	
+
 	private
 	Date fecha;
 	private
@@ -42,6 +44,36 @@ public class DtRegistro {
 	public Boolean getGanoPremio() {
 		return ganoPremio;
 	}
-	
+	public String getNombrefuncion() {
+		return nombrefuncion;
+	}
+
+	public void setNombrefuncion(String nombrefuncion) {
+		this.nombrefuncion = nombrefuncion;
+	}
+
+	public String getNicknameespectador() {
+		return nicknameespectador;
+	}
+
+	public void setNicknameespectador(String nicknameespectador) {
+		this.nicknameespectador = nicknameespectador;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setCosto(Double costo) {
+		this.costo = costo;
+	}
+
+	public void setGanoPremio(Boolean ganoPremio) {
+		this.ganoPremio = ganoPremio;
+	}
 
 }

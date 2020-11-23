@@ -5,6 +5,7 @@
 
 package webservices;
 import controladores.Fabrica;
+
 import datatypes.ArrayPlataformas;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
@@ -22,6 +23,9 @@ import datatypes.DtPaqueteDatos;
 import datatypes.DtPlataforma;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
+import datatypes.SetEspectaculos;
+import datatypes.SetUsuarios;
+import datatypes.SetPaquetes;
 import datatypes.TipoRegistro;
 import excepciones.Identidad;
 import interfaces.ICategoria;
@@ -159,11 +163,6 @@ public class publicador {
     	iplataforma.aceptarEspectaculo(nomEspectaculo);
     }
     @WebMethod
-	public ArrayList<DtEspectaculoDatos> filtrarEspectaculos(String search){
-    	ArrayList<DtEspectaculoDatos> ret = new ArrayList<DtEspectaculoDatos>(iplataforma.filtrarEspectaculos(search));
-    	return ret;
-    }
-    @WebMethod
 	public DtFuncion getDtFuncion(String nombreFuncion) {
     	return iplataforma.getDtFuncion(nombreFuncion);
     }
@@ -248,11 +247,6 @@ public class publicador {
     @WebMethod
 	public Boolean existeNickname(String nickname) {
     	return iusuario.existeNickname(nickname);
-    }
-    @WebMethod
-	public ArrayList<DtUsuario> filtrarUsuarios(String search){
-    	ArrayList<DtUsuario> ret = new ArrayList<DtUsuario>(iusuario.filtrarUsuarios(search));
-    	return ret;
     }
     @WebMethod
 	public void dejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir) {
@@ -346,9 +340,26 @@ public class publicador {
     	return ipaquete.getPaquete(nombrePaquete);
     }
     @WebMethod
-	public ArrayList<DtPaqueteDatos> filtrarPaquetes(String search){
-    	ArrayList<DtPaqueteDatos> ret = new ArrayList<DtPaqueteDatos>(ipaquete.filtrarPaquetes(search));
+	public SetPaquetes filtrarPaquetes(String search){
+    	SetPaquetes ret = new SetPaquetes();
+    	ret.setPaqs(ipaquete.filtrarPaquetes(search));
     	return ret;
     }
+
+    @WebMethod
+    public SetEspectaculos filtrarEspectaculos(String search){
+    	SetEspectaculos ret = new SetEspectaculos();
+    	ret.setEspecs(iplataforma.filtrarEspectaculos(search));
+    	return ret;
+    }
+    
+
+    @WebMethod
+    public SetUsuarios filtrarUsuarios(String search){
+    	SetUsuarios ret = new SetUsuarios();
+    	ret.setUsuarios(iusuario.filtrarUsuarios(search));
+    	return ret;
+    }
+    
 
 }

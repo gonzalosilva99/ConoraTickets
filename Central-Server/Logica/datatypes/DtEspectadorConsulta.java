@@ -21,6 +21,36 @@ public class DtEspectadorConsulta {
 	}
 	private
 	String imagen;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+	public void setFunciones(Set<DtFuncion> funciones) {
+		this.funciones = funciones;
+	}
+	public void setSeguidores(Set<DtUsuario> seguidores) {
+		this.seguidores = seguidores;
+	}
+	public void setSiguiendo(Set<DtUsuario> siguiendo) {
+		this.siguiendo = siguiendo;
+	}
 	private
 	String contrasena;
 	private

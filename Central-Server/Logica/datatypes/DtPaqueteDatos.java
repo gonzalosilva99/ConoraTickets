@@ -19,6 +19,7 @@ public DtPaqueteDatos(String nombre, String descripcion, Date inicio, Date fin, 
 	}
 private
 String nombre;
+
 private
 String descripcion;
 private
@@ -65,6 +66,30 @@ public Set<DtEspectaculo> getEspectaculos() {
 }
 public Set<DtCategoria> getCategorias() {
 	return categorias;
+}
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+public void setDescripcion(String descripcion) {
+	this.descripcion = descripcion;
+}
+public void setInicio(Date inicio) {
+	this.inicio = inicio;
+}
+public void setFin(Date fin) {
+	this.fin = fin;
+}
+public void setDescuento(Double descuento) {
+	this.descuento = descuento;
+}
+public void setEspectaculos(Set<DtEspectaculo> espectaculos) {
+	this.espectaculos = espectaculos;
+}
+public void setCategorias(Set<DtCategoria> categorias) {
+	this.categorias = categorias;
+}
+public void setImagen(String imagen) {
+	this.imagen = imagen;
 }
 
 }

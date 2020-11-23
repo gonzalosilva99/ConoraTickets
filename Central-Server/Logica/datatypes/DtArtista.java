@@ -16,6 +16,36 @@ public class DtArtista {
 		this.link = link;
 		this.espectaculos = espectaculos;
 	}
+	public Set<DtEspectaculo> getEspectaculos() {
+		return espectaculos;
+	}
+	public void setEspectaculos(Set<DtEspectaculo> espectaculos) {
+		this.espectaculos = espectaculos;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+	public void setDescgeneral(String descgeneral) {
+		this.descgeneral = descgeneral;
+	}
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
 	private
 	String nickname;
 	private

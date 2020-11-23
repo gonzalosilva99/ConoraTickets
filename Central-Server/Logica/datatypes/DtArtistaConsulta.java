@@ -25,8 +25,7 @@ public class DtArtistaConsulta {
 	}
 	private
 	String nickname;
-	private
-	String nombre;
+	
 	private
 	String apellido;
 	private
@@ -88,6 +87,46 @@ public class DtArtistaConsulta {
 	public String getContrasena() {
 		return contrasena;
 	}
-	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	private
+	String nombre;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+	public void setDescgeneral(String descgeneral) {
+		this.descgeneral = descgeneral;
+	}
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	public void setEspectaculos(Set<DtEspectaculo> espectaculos) {
+		this.espectaculos = espectaculos;
+	}
+	public void setSeguidores(Set<DtUsuario> seguidores) {
+		this.seguidores = seguidores;
+	}
+	public void setSiguiendo(Set<DtUsuario> siguiendo) {
+		this.siguiendo = siguiendo;
+	}
 
 }
