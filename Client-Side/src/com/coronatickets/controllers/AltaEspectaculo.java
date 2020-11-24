@@ -3,6 +3,7 @@ package com.coronatickets.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import controladores.Fabrica;
 import interfaces.IPlataforma;
@@ -39,6 +42,9 @@ public class AltaEspectaculo extends HttpServlet {
 	private void processRequest(HttpServletRequest requestt, HttpServletResponse resp)
 			throws ServletException, IOException {
 	    try {
+	    	GregorianCalendar aux = new GregorianCalendar();
+	    	webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
 	    	String nombre = requestt.getParameter("Nombre");
 			String plat = requestt.getParameter("plat");
 		    String descripcion = requestt.getParameter("descripcion");
@@ -55,8 +61,11 @@ public class AltaEspectaculo extends HttpServlet {
 		    	  cats.add(values[i]);
 		    }
 		    }
+		    ArrayList<String> cate = ArrayList<String>(cats);
 		    java.util.Date fechaactual = new Date();
-	    	Fabrica.getInstancia().getIPlataforma().altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fechaactual, Integer.parseInt(duracion), imagen, cats, "", "", 0);	    		    	
+		    aux.setTime(fechaactual);
+			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
+	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cats, "", "", 0);	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
 	    	requestt.setAttribute("aceptado", "true");
 	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");
