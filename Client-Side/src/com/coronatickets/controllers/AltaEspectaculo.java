@@ -2,11 +2,13 @@ package com.coronatickets.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,18 +56,21 @@ public class AltaEspectaculo extends HttpServlet {
 		    String duracion = requestt.getParameter("duracion");
 		    String url = requestt.getParameter("url");
 		    String imagen = requestt.getParameter("imagen");
-		    Set<String> cats = new HashSet<String>();
+		    List<webservices.DtCategoria> lcat = new ArrayList<webservices.DtCategoria>();
 		    String[] values = requestt.getParameterValues("checked");
 		    if(values!=null) {
 		    for (int i = 0; i < values.length; i++) {
-		    	  cats.add(values[i]);
+		    	  webservices.DtCategoria auxx = new webservices.DtCategoria();
+		    	  auxx.setNomCategoria(values[i]);
+		    	  lcat.add(auxx);
 		    }
 		    }
-		    ArrayList<String> cate = ArrayList<String>(cats);
+		   
+		    webservices.ArrayCategorias cate = new webservices.ArrayCategorias(lcat);
 		    java.util.Date fechaactual = new Date();
 		    aux.setTime(fechaactual);
 			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
-	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cats, "", "", 0);	    		    	
+	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cate, "", "", 0);	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
 	    	requestt.setAttribute("aceptado", "true");
 	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");

@@ -36,6 +36,7 @@ import interfaces.IPaquete;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,9 +82,13 @@ public class publicador {
     }
 
     @WebMethod
-    public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, ArrayList<String> categorias,  String urlVideo, String premio, int cantPremios) {
+    public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, ArrayCategorias categorias,  String urlVideo, String premio, int cantPremios) {
     	try {
-    	Set<String> cat = new HashSet<String>(categorias);
+    	Set<String> cat = new HashSet<String>();
+    	Iterator<DtCategoria> itr = categorias.getCategorias().iterator();
+    	while(itr.hasNext()) {
+    		cat.add(itr.next().getNomCategoria());
+    	}
         iplataforma.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen, cat, urlVideo, premio, cantPremios);
     	}
     	catch(Exception e) {
