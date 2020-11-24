@@ -67,6 +67,7 @@ public class AltaEspectaculo extends HttpServlet {
 		    }
 		   
 		    webservices.ArrayCategorias cate = new webservices.ArrayCategorias();
+		    cate.getCategorias().addAll(lcat);
 		    java.util.Date fechaactual = new Date();
 		    aux.setTime(fechaactual);
 			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);

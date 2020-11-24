@@ -1,8 +1,8 @@
 <!DOCTYPE html>
+<%@page import="webservices.DtPlataforma"%>
 <html>
 <head>
 
-	<%@page import="datatypes.DtPlataforma"%>
 	<%@page import="datatypes.DtCategoria"%>
 	<%@page import="datatypes.EstadoSesion" %>
 	<%@page import="datatypes.DtUsuario" %>
@@ -12,13 +12,14 @@
 	<%@page import="interfaces.ICategoria"%>
 	<%@page import="java.util.Iterator" %>
 	<%@page import="java.util.Set"%>
+	<%@page import="java.util.List"%>
 	<%@page import="java.util.HashSet"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Alta Espectaculo</title>
 </head>
 <body>
 	
-	<%
+	<%		
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
 				DtUsuario usuario = Login.getUsuarioLogueado(request);
 			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
@@ -43,7 +44,10 @@
       <option value="" id="elijeplat" selected>Elije la plataforma</option>
       <optgroup label="Plataformas:">
       <%
-      Set<DtPlataforma> ListaPlataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
+      webservices.PublicadorService service = new webservices.PublicadorService();
+	  webservices.Publicador port = service.getPublicadorPort();
+	  webservices.ArrayPlataformas plat = port.listarPlataformas();
+      List<DtPlataforma> ListaPlataformas = port.listarPlataformas().getPlats();
       Iterator<DtPlataforma> itr = ListaPlataformas.iterator();
 		while(itr.hasNext())
 			{
