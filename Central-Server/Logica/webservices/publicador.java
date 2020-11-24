@@ -5,7 +5,7 @@
 
 package webservices;
 import controladores.Fabrica;
-
+import datatypes.ArrayCategorias;
 import datatypes.ArrayPlataformas;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
@@ -154,9 +154,11 @@ public class publicador {
     	return iplataforma.puedeAgregarEspectadores(nombrePlataforma, nombreEspectaculo, nombreFuncion);
     }
     @WebMethod
-	public ArrayList<DtCategoria> listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo){
-    	ArrayList<DtCategoria> set = new ArrayList<DtCategoria>(iplataforma.listarCategoriasDeEspectaculo(Plataforma, Espectaculo));
-    	return set;
+	public ArrayCategorias listarCategoriasDeEspectaculo(String Plataforma, String Espectaculo){
+    	ArrayCategorias arrcat = new ArrayCategorias();
+    	List<DtCategoria> lcat = new ArrayList<DtCategoria>(iplataforma.listarCategoriasDeEspectaculo(Plataforma, Espectaculo));
+    	arrcat.setCategorias(lcat);
+    	return arrcat;
     }
     @WebMethod
 	public void aceptarEspectaculo(String nomEspectaculo) {
@@ -299,10 +301,17 @@ public class publicador {
     		
     	}
     }
+    
+
+    @WebMethod
+	public DtCategoria getDtCategoria(String nombre){
+    	return icategoria.getCategoria(nombre).getDtCategoria();
+    }
+    
     @WebMethod
 	public Categoria getCategoria(String nombre){
     	return icategoria.getCategoria(nombre);
-}
+    }
     @WebMethod
 	public ArrayList<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
     	ArrayList<DtEspectaculo> ret = new ArrayList<DtEspectaculo>(icategoria.listarEspectaculosAceptadosDeCategoria(nombreCat));
@@ -339,6 +348,7 @@ public class publicador {
 	public Paquete getPaquete(String nombrePaquete) {
     	return ipaquete.getPaquete(nombrePaquete);
     }
+    
     @WebMethod
 	public SetPaquetes filtrarPaquetes(String search){
     	SetPaquetes ret = new SetPaquetes();
