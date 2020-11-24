@@ -70,4 +70,35 @@ public Integer getDuracion() {
 	return duracion;
 }
 
+public void setEstado(EstadoEspectaculo estado) {
+	this.estado = estado;
+}
+public void setCosto(Integer costo) {
+	this.costo = costo;
+}
+public void setDuracion(Integer duracion) {
+	this.duracion = duracion;
+}
+public void setCantFavoritos(Integer cantFavoritos) {
+	this.cantFavoritos = cantFavoritos;
+}
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+public void setDescripcion(String descripcion) {
+	this.descripcion = descripcion;
+}
+public void setImagen(String imagen) {
+	this.imagen = imagen;
+}
+public void setPremio(String premio) {
+	this.premio = premio;
+}
+public void setCantPremios(int cantPremios) {
+	this.cantPremios = cantPremios;
+}
+public void setPuntajePromedio(double puntajePromedio) {
+	this.puntajePromedio = puntajePromedio;
+}
+
 }

@@ -25,5 +25,12 @@ public class DtEspectadorPerfil extends DtEspectadorConsulta{
 	public Set<DtPaqueteDatos> getPaquetesComprados() {
 		return paquetesComprados;
 	}
+	public void setPaquetesComprados(Set<DtPaqueteDatos> paquetesComprados) {
+		this.paquetesComprados = paquetesComprados;
+	}
+
+	public void setUltimoIngreso(Date ultimoIngreso) {
+		this.ultimoIngreso = ultimoIngreso;
+	}
 
 }

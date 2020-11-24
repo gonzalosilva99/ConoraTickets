@@ -30,9 +30,6 @@ public DtEspectaculoDatos(String nombre, String descripcion, Integer duracion, I
 		this.premio = premio;
 		this.cantFavoritos = cantFavoritos;
 	}
-public DtEspectaculoDatos() {
-	
-}
 private
 	String nombre;
 private
@@ -123,6 +120,69 @@ public Integer getCantFavoritos() {
 	return cantFavoritos;
 }
 
+public Integer getCantmin() {
+	return cantmin;
+}
+public void setCantmin(Integer cantmin) {
+	this.cantmin = cantmin;
+}
+public Integer getCantmax() {
+	return cantmax;
+}
+public void setCantmax(Integer cantmax) {
+	this.cantmax = cantmax;
+}
+public String getUrl() {
+	return url;
+}
+public void setUrl(String url) {
+	this.url = url;
+}
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+public void setOrganizador(DtArtista organizador) {
+	this.organizador = organizador;
+}
+public void setDescripcion(String descripcion) {
+	this.descripcion = descripcion;
+}
+public void setDuracion(Integer duracion) {
+	this.duracion = duracion;
+}
+public void setCantFavoritos(Integer cantFavoritos) {
+	this.cantFavoritos = cantFavoritos;
+}
+public void setCategorias(Set<DtCategoria> categorias) {
+	this.categorias = categorias;
+}
+public void setCosto(Float costo) {
+	this.costo = costo;
+}
+public void setRegistro(Date registro) {
+	this.registro = registro;
+}
+public void setImagen(String imagen) {
+	this.imagen = imagen;
+}
+public void setFunciones(Set<DtFuncionDatos> funciones) {
+	this.funciones = funciones;
+}
+public void setPaquetes(Set<DtPaquete> paquetes) {
+	this.paquetes = paquetes;
+}
+public void setPremio(String premio) {
+	this.premio = premio;
+}
+public void setCantPremios(int cantPremios) {
+	this.cantPremios = cantPremios;
+}
+public void setPuntajePromedio(double puntajePromedio) {
+	this.puntajePromedio = puntajePromedio;
+}
+public DtEspectaculoDatos() {
+	
+}
 
 
 

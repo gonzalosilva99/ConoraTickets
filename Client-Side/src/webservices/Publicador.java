@@ -271,19 +271,6 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/filtrarEspectaculosRequest", output = "http://webservices/publicador/filtrarEspectaculosResponse")
-    public ArrayList filtrarEspectaculos(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns webservices.DtFuncion
      */
     @WebMethod
@@ -597,19 +584,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns webservices.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/filtrarUsuariosRequest", output = "http://webservices/publicador/filtrarUsuariosResponse")
-    public ArrayList filtrarUsuarios(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
      * @param arg1
      * @param arg0
      */
@@ -901,12 +875,38 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.SetPaquetes
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/filtrarPaquetesRequest", output = "http://webservices/publicador/filtrarPaquetesResponse")
-    public ArrayList filtrarPaquetes(
+    public SetPaquetes filtrarPaquetes(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.SetEspectaculos
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/filtrarEspectaculosRequest", output = "http://webservices/publicador/filtrarEspectaculosResponse")
+    public SetEspectaculos filtrarEspectaculos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.SetUsuarios
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/filtrarUsuariosRequest", output = "http://webservices/publicador/filtrarUsuariosResponse")
+    public SetUsuarios filtrarUsuarios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

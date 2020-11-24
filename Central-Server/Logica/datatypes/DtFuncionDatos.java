@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class DtFuncionDatos {
 private String nombre;
+
 private	Date inicio;
 private	Date alta;
 private	Set<DtArtista> artistas;
@@ -67,5 +68,31 @@ public void setRegistros(Set<DtRegistroFuncion> registros) {
 	this.registros = registros;
 }
 
-
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+public void setInicio(Date inicio) {
+	this.inicio = inicio;
+}
+public void setAlta(Date alta) {
+	this.alta = alta;
+}
+public void setArtistas(Set<DtArtista> artistas) {
+	this.artistas = artistas;
+}
+public void setEspectaculo(DtEspectaculo espectaculo) {
+	this.espectaculo = espectaculo;
+}
+public void setImagen(String imagen) {
+	this.imagen = imagen;
+}
+public void setEspectadores(Integer espectadores) {
+	this.espectadores = espectadores;
+}
+public void setFechaSorteo(Date fechaSorteo) {
+	this.fechaSorteo = fechaSorteo;
+}
+public void setGanadoresSorteo(Set<DtEspectador> ganadoresSorteo) {
+	this.ganadoresSorteo = ganadoresSorteo;
+}
 }

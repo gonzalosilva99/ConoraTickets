@@ -94,6 +94,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtEspectaculo }
+     * 
+     */
+    public DtEspectaculo createDtEspectaculo() {
+        return new DtEspectaculo();
+    }
+
+    /**
      * Create an instance of {@link DtEspectaculoDatos }
      * 
      */
@@ -174,11 +182,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtPaquete }
+     * 
+     */
+    public DtPaquete createDtPaquete() {
+        return new DtPaquete();
+    }
+
+    /**
      * Create an instance of {@link Funcion }
      * 
      */
     public Funcion createFuncion() {
         return new Funcion();
+    }
+
+    /**
+     * Create an instance of {@link SetUsuarios }
+     * 
+     */
+    public SetUsuarios createSetUsuarios() {
+        return new SetUsuarios();
     }
 
     /**
@@ -214,6 +238,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtCategoria }
+     * 
+     */
+    public DtCategoria createDtCategoria() {
+        return new DtCategoria();
+    }
+
+    /**
      * Create an instance of {@link DtEspectador }
      * 
      */
@@ -235,6 +267,22 @@ public class ObjectFactory {
      */
     public DtPlataforma createDtPlataforma() {
         return new DtPlataforma();
+    }
+
+    /**
+     * Create an instance of {@link SetPaquetes }
+     * 
+     */
+    public SetPaquetes createSetPaquetes() {
+        return new SetPaquetes();
+    }
+
+    /**
+     * Create an instance of {@link SetEspectaculos }
+     * 
+     */
+    public SetEspectaculos createSetEspectaculos() {
+        return new SetEspectaculos();
     }
 
     /**

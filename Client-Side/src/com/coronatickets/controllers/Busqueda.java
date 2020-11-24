@@ -58,6 +58,10 @@ public class Busqueda extends HttpServlet {
 		if(request.getParameter("s") == null) {
 			if(request.getParameter("search") != null) {
 				search = (String) request.getParameter("search");
+				webservices.PublicadorService service = new webservices.PublicadorService();
+    	    	webservices.Publicador port = service.getPublicadorPort();
+    	    	webservices.ArrayPlataformas plataformasaux = port.listarPlataformas();
+    	    	
 				usufilt = new LinkedList<DtUsuario>(Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search));
 				especfilt = new LinkedList<DtEspectaculoDatos>(Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search));
 				paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search));	

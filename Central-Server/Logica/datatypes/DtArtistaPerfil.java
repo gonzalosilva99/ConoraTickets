@@ -9,6 +9,10 @@ import datatypes.DtUsuario;
 public class DtArtistaPerfil extends DtArtistaConsulta{
 	private
 		Set<DtEspectaculo> espectaculosNOaceptados;
+		public Set<DtFuncion> getFuncionesinvitado() {
+		return funcionesinvitado;
+	}
+
 		Date ultimoIngreso;
 		Set<DtFuncion> funcionesinvitado;
 	public DtArtistaPerfil(String nickname, String nombre, String apellido, String email, Date nacimiento, String imagen, String contrasena,
@@ -31,6 +35,18 @@ public class DtArtistaPerfil extends DtArtistaConsulta{
 	public Set<DtEspectaculo> getEspectaculosNOaceptados() {
 		return espectaculosNOaceptados;
 	}
-	
+
+	public void setFuncionesinvitado(Set<DtFuncion> funcionesinvitado) {
+		this.funcionesinvitado = funcionesinvitado;
+	}
+
+	public void setEspectaculosNOaceptados(Set<DtEspectaculo> espectaculosNOaceptados) {
+		this.espectaculosNOaceptados = espectaculosNOaceptados;
+	}
+
+	public void setUltimoIngreso(Date ultimoIngreso) {
+		this.ultimoIngreso = ultimoIngreso;
+	}
+
 	
 }
