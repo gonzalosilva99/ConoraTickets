@@ -174,6 +174,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayCategorias }
+     * 
+     */
+    public ArrayCategorias createArrayCategorias() {
+        return new ArrayCategorias();
+    }
+
+    /**
      * Create an instance of {@link ArrayList }
      * 
      */

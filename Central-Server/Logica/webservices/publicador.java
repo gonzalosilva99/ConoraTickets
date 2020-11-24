@@ -322,10 +322,13 @@ public class publicador {
     	ArrayList<DtEspectaculo> ret = new ArrayList<DtEspectaculo>(icategoria.listarEspectaculosAceptadosDeCategoria(nombreCat));
     	return ret;
     }
+    
     @WebMethod
-	public ArrayList<DtCategoria> listarCategorias(){
-    	ArrayList<DtCategoria> ret = new ArrayList<DtCategoria>(icategoria.listarCategorias());
-    	return ret;
+	public ArrayCategorias listarCategorias(){
+    	ArrayCategorias arrcats = new ArrayCategorias();
+    	List<DtCategoria> listcataux = new ArrayList<DtCategoria>(icategoria.listarCategorias());
+    	arrcats.setCategorias(listcataux);
+    	return arrcats;
     }
     @WebMethod	
 	public ArrayList<DtPaquete> listarPaquetes(){
