@@ -3,23 +3,15 @@
 <head>
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	  <%@page import="java.util.Set" %>
-	  <%@page import="java.util.Iterator" %>
-    <%@page import="datatypes.DtPlataforma" %>
-        <%@page import="datatypes.DtArtista" %>
-	<%@page import="datatypes.EstadoSesion" %>
-	<%@page import="datatypes.DtPaqueteDatos" %>
-	<%@page import="datatypes.DtEspectaculo" %>
-	<%@page import="datatypes.DtFuncion" %>	
-	<%@page import="datatypes.DtUsuario" %>	
-	<%@page import="datatypes.EstadoEspectaculo" %>	
+    <%@page import="webservices.*"%>
+	<%@page import="java.util.Set" %>
+	<%@page import="java.util.Iterator" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="com.coronatickets.controllers.AltaFuncion" %>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IUsuario"%>
 	<%@page import="java.time.Month"%>
 	<%@page import="java.time.LocalDate"%>
 	<%@page import="java.util.Date"%>
+	<%@page import="java.util.ArrayList"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Alta de funcion</title>
 </head>
@@ -40,12 +32,14 @@
       <select class="custom-select" id="selectPlataformas" onChange="obtenerEspectaculos()"   >    
       <option value="" selected><% if (plataformaSeleccionada == null){%> Elija la plataforma <%}else{platSel = true;%> <%=plataformaSeleccionada%> <%} %></option>
       	<%
-      		DtUsuario usuario = Login.getUsuarioLogueado(request);
-      			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
-      				Set<DtPlataforma> plataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
-      				Iterator<DtPlataforma> itrp = plataformas.iterator();
+      			DtUsuario usuario = Login.getUsuarioLogueado(request);
+		      	webservices.PublicadorService service = new webservices.PublicadorService();                    
+		    	webservices.Publicador port = service.getPublicadorPort();
+      			if(port.esArtista(usuario.getNickname())){
+      				webservices.ArrayPlataformas plataformas = port.listarPlataformas();
+      				Iterator<webservices.DtPlataforma> itrp = plataformas.getPlats().iterator();
       				while(itrp.hasNext()){
-      					DtPlataforma auxp = itrp.next();
+      					webservices.DtPlataforma auxp = itrp.next();
       					if (platSel && !auxp.getNombre().equals(plataformaSeleccionada) || !platSel){
       	%>			
       	<option value="<%=auxp.getNombre()%>"><%=auxp.getNombre()%></option>
@@ -99,12 +93,11 @@
       <select class="custom-select" id="selectArtistas" name="invitados[]"  multiple>    
       <option value="" disabled>Elija artistas invitados</option>
       	<%
-      		if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
-      				Set<DtArtista> artistasInvitados = Fabrica.getInstancia().getIUsuario().listarArtistas();
-      				Iterator<DtArtista> iterArtista = artistasInvitados.iterator();
+      		if(port.esArtista(usuario.getNickname())){
+      				ArrayArtistas artistasInvitados = port.listarArtistas();
+      				Iterator<DtArtista> iterArtista = artistasInvitados.getArtistas().iterator();
       				while(iterArtista.hasNext()){
-      					//if (!iterArtista.next().getNickname().equals(usuario.getNickname())){
-      						DtArtista artista = iterArtista.next();
+      					DtArtista artista = iterArtista.next();
       	%>			
       	<option value="<%=artista.getNickname() %>"><%=artista.getNombre() %>  <%=artista.getApellido() %></option>
           	

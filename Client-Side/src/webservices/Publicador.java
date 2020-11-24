@@ -29,12 +29,16 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayEspectaculos
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarEspectaculosAceptadosDePlataformaRequest", output = "http://webservices/publicador/listarEspectaculosAceptadosDePlataformaResponse")
+<<<<<<< HEAD
     public ArrayList listarEspectaculosAceptadosDePlataforma(
+=======
+    public ArrayEspectaculos listarEspectaculosAceptadosDePlataforma(
+>>>>>>> 08ef5bc7da1b2f6601e8a0d24f03e5b714f2a2b6
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -374,6 +378,35 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/esArtistaRequest", output = "http://webservices/publicador/esArtistaResponse")
     public boolean esArtista(
+<<<<<<< HEAD
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtArtistaPerfil
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/perfilArtistaRequest", output = "http://webservices/publicador/perfilArtistaResponse")
+    public DtArtistaPerfil perfilArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtEspectadorPerfil
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/perfilEspectadorRequest", output = "http://webservices/publicador/perfilEspectadorResponse")
+    public DtEspectadorPerfil perfilEspectador(
+=======
+>>>>>>> 08ef5bc7da1b2f6601e8a0d24f03e5b714f2a2b6
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -406,12 +439,12 @@ public interface Publicador {
     /**
      * 
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayArtistas
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarArtistasRequest", output = "http://webservices/publicador/listarArtistasResponse")
-    public ArrayList listarArtistas();
+    public ArrayArtistas listarArtistas();
 
     /**
      * 
@@ -922,5 +955,18 @@ public interface Publicador {
     public SetUsuarios filtrarUsuarios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+<<<<<<< HEAD
+=======
+
+    /**
+     * 
+     * @return
+     *     returns webservices.EstadoSesion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/paraQueAndeEstadoSesionRequest", output = "http://webservices/publicador/paraQueAndeEstadoSesionResponse")
+    public EstadoSesion paraQueAndeEstadoSesion();
+>>>>>>> 08ef5bc7da1b2f6601e8a0d24f03e5b714f2a2b6
 
 }
