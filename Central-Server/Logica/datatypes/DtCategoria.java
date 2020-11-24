@@ -3,6 +3,10 @@ package datatypes;
 public class DtCategoria {
 	private String nomCategoria;
 
+	public DtCategoria() {
+		super();
+	}
+
 	public void setNomCategoria(String nomCategoria) {
 		this.nomCategoria = nomCategoria;
 	}

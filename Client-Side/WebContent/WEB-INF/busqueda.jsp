@@ -4,32 +4,34 @@
 <html>
 <head>
 	
-	<%@page import="datatypes.DtCategoria"%>
-	<%@page import="datatypes.DtPlataforma"%>
-	<%@page import="datatypes.DtEspectadorPerfil"%>
-	<%@page import="datatypes.DtUsuario"%>
-	<%@page import="datatypes.DtPaqueteDatos" %>
-	<%@page import="datatypes.DtEspectaculoDatos" %>
-	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IUsuario"%>
+	<%@page import="webservices.DtPlataforma"%>
+	<%@page import="webservices.DtEspectadorPerfil"%>
+	<%@page import="webservices.DtUsuario"%>
+	<%@page import="webservices.DtPaqueteDatos" %>
+	<%@page import="webservices.DtEspectaculoDatos" %>
+	<%@page import="webservices.DtCategoria" %>
+	<%@page import="webservices.ArrayCategorias" %>
+	
+	
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<meta charset="ISO-8859-1">
 	<title>Busqueda</title>
 </head>
 <body onload="Onload()">
 	<%
+		webservices.PublicadorService service = new webservices.PublicadorService();
+		webservices.Publicador port = service.getPublicadorPort();
 		String search;
 	
 		if(request.getParameter("s") != null)
 			search = request.getParameter("s");
 		else 
 			search = "";
-		List<DtUsuario> UsuariosFiltrados = (LinkedList<DtUsuario>) request.getAttribute("UsuariosFiltrados");
+		List<DtUsuario> UsuariosFiltrados = (ArrayList<DtUsuario>) request.getAttribute("UsuariosFiltrados");
 		System.out.print("Tamanio usu:::" + UsuariosFiltrados.size());
-		List<DtEspectaculoDatos> EspectaculosFiltrados = (LinkedList<DtEspectaculoDatos>) request.getAttribute("EspectaculosFiltrados");
+		List<DtEspectaculoDatos> EspectaculosFiltrados = (ArrayList<DtEspectaculoDatos>) request.getAttribute("EspectaculosFiltrados");
 		System.out.print("Tamanio esp:::" + EspectaculosFiltrados.size()); 
-		List<DtPaqueteDatos> PaquetesFiltrados =(LinkedList<DtPaqueteDatos>) request.getAttribute("PaquetesFiltrados"); 
+		List<DtPaqueteDatos> PaquetesFiltrados =(ArrayList<DtPaqueteDatos>) request.getAttribute("PaquetesFiltrados"); 
 		System.out.print("Tamanio paq:::" + PaquetesFiltrados.size());
 	%>
 	
@@ -61,7 +63,7 @@
 										      <option value="" selected>Elije la plataforma</option>
 										      <optgroup label="Plataformas:">
 										      <%
-										      Set<DtPlataforma> ListaPlataformas = Fabrica.getInstancia().getIPlataforma().listarPlataformas();
+										      List<DtPlataforma> ListaPlataformas = port.listarPlataformas().getPlats();
 										      Iterator<DtPlataforma> itr = ListaPlataformas.iterator();
 												while(itr.hasNext())
 													{
@@ -83,8 +85,8 @@
 		                    	<p>Categoría: </p>
 	                        	<ul  name="categorias">
 							  	<%
-							  	Set<DtCategoria> Categorias = Fabrica.getInstancia().getICategoria().listarCategorias();
-							    Iterator<DtCategoria> itrc = Categorias.iterator();
+								List<DtCategoria> lstcats = port.listarCategorias().getCategorias();
+							    Iterator<DtCategoria> itrc = lstcats.iterator();
 									while(itrc.hasNext())
 										{ 	
 							  		String aux = itrc.next().getNomCategoria();
@@ -178,7 +180,7 @@
 									  	<div class="media-body">
 									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
 									    	<%=dtespec.getDescripcion() %>
-									    	Espectadores: <%= dtespec.getCantMin() %> / <%= dtespec.getCantMax() %>  
+									    	Espectadores: <%= dtespec.getCantmin() %> / <%= dtespec.getCantmax() %>  
 									  	</div>
 									</div>
 									</div>

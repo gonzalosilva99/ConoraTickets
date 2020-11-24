@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="espectaculos" type="{http://webservices/}espectaculo" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="nomCategoria" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="nomcategoria" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,13 +33,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "categoria", propOrder = {
     "espectaculos",
-    "nomCategoria"
+    "nomCategoria",
+    "nomcategoria"
 })
 public class Categoria {
 
     @XmlElement(nillable = true)
     protected List<Espectaculo> espectaculos;
     protected String nomCategoria;
+    protected String nomcategoria;
 
     /**
      * Gets the value of the espectaculos property.
@@ -91,6 +94,30 @@ public class Categoria {
      */
     public void setNomCategoria(String value) {
         this.nomCategoria = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad nomcategoria.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNomcategoria() {
+        return nomcategoria;
+    }
+
+    /**
+     * Define el valor de la propiedad nomcategoria.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNomcategoria(String value) {
+        this.nomcategoria = value;
     }
 
 }

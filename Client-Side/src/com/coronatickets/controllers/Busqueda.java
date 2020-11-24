@@ -19,13 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import datatypes.DtUsuario;import datatypes.DtCategoria;
-import datatypes.DtEspectaculoDatos;
-import datatypes.DtPaqueteDatos;
-import controladores.Fabrica;
-import datatypes.EstadoSesion;
-
+import webservices.*;
 /**
  * Servlet implementation class Home
  */
@@ -50,33 +44,33 @@ public class Busqueda extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
+		
 		String search;
-		LinkedList<DtUsuario> usufilt;
-		LinkedList<DtEspectaculoDatos> especfilt;
-		LinkedList<DtPaqueteDatos> paqfilt;
+		List<webservices.DtUsuario> usufilt;
+		List<DtEspectaculoDatos> especfilt;
+		List<DtPaqueteDatos> paqfilt;
 		
 		if(request.getParameter("s") == null) {
 			if(request.getParameter("search") != null) {
-				search = (String) request.getParameter("search");
-				webservices.PublicadorService service = new webservices.PublicadorService();
-    	    	webservices.Publicador port = service.getPublicadorPort();
-    	    	webservices.ArrayPlataformas plataformasaux = port.listarPlataformas();
-    	    	
-				usufilt = new LinkedList<DtUsuario>(Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search));
-				especfilt = new LinkedList<DtEspectaculoDatos>(Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search));
-				paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search));	
+				search = request.getParameter("search");
+				usufilt = port.filtrarUsuarios(search).getUsuarios();
+				especfilt = port.filtrarEspectaculos(search).getEspecs();
+				paqfilt = port.filtrarPaquetes(search).getPaqs();	
 				}
 			else {
-				usufilt = new LinkedList<DtUsuario>(Fabrica.getInstancia().getIUsuario().filtrarUsuarios(""));
-				especfilt = new LinkedList<DtEspectaculoDatos>(Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(""));
-				paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(""));
+				usufilt = port.filtrarUsuarios("").getUsuarios();
+				especfilt = port.filtrarEspectaculos("").getEspecs();
+				paqfilt = port.filtrarPaquetes("").getPaqs();
 			}
 		}
 		else {
 			search = (String) request.getParameter("s");
-			usufilt = new LinkedList<DtUsuario>(Fabrica.getInstancia().getIUsuario().filtrarUsuarios(search));
-			especfilt = new LinkedList<DtEspectaculoDatos>(Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos(search));
-			paqfilt = new LinkedList<DtPaqueteDatos>(Fabrica.getInstancia().getIPaquete().filtrarPaquetes(search));
+			usufilt = port.filtrarUsuarios(search).getUsuarios();
+			especfilt = port.filtrarEspectaculos(search).getEspecs();
+			paqfilt = port.filtrarPaquetes(search).getPaqs();
 		}
 
 
@@ -87,7 +81,7 @@ public class Busqueda extends HttpServlet {
 			String Plat = (String) request.getParameter("plat");
 			List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
 			for(DtEspectaculoDatos dtespecd : copiaespecs) {
-				if(!Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespecd.getNombre()).equalsIgnoreCase(Plat))
+				if(!port.getPlataformaDeEspectaculo(dtespecd.getNombre()).equalsIgnoreCase(Plat))
 					especfilt.remove(dtespecd);
 			}
 		}
@@ -104,10 +98,11 @@ public class Busqueda extends HttpServlet {
 		    System.out.println("El largo de las cateogiras es " + cats.size());
 		    List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
 		    for(DtEspectaculoDatos dtespec : copiaespecs) {
-				String nombreplat = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtespec.getNombre());
-				Set<DtCategoria> categoriasespec =  Fabrica.getInstancia().getIPlataforma().listarCategoriasDeEspectaculo(nombreplat,dtespec.getNombre());
+				String nombreplat = port.getPlataformaDeEspectaculo(dtespec.getNombre());
+				List<DtCategoria> listauxcat = port.listarCategoriasDeEspectaculo(nombreplat, dtespec.getNombre()).getCategorias(); 
+				Set<DtCategoria> categoriasespec =  new HashSet<DtCategoria>(listauxcat);
 				for(String cat : cats) {
-					DtCategoria dtcat = Fabrica.getInstancia().getICategoria().getCategoria(cat).getDtCategoria();
+					DtCategoria dtcat = port.getDtCategoria(cat);
 					System.out.println("la categoria es " + dtcat.getNomCategoria());
 					Boolean tiene = false;
 					for(DtCategoria aux : categoriasespec) {
@@ -134,9 +129,9 @@ public class Busqueda extends HttpServlet {
 				usufilt.sort((x, y) -> x.getNombre().compareToIgnoreCase(y.getNombre()));
 			}
 			else if(orden.equalsIgnoreCase("date")) {
-				especfilt.sort((x,y) -> y.getRegistro().compareTo(x.getRegistro()));
-				paqfilt.sort((x,y) -> y.getInicio().compareTo(x.getInicio()));
-				usufilt.sort((x,y) -> y.getNacimiento().compareTo(x.getNacimiento()));
+				especfilt.sort((x,y) -> y.getRegistro().compare(x.getRegistro()));
+				paqfilt.sort((x,y) -> y.getInicio().compare(x.getInicio()));
+				usufilt.sort((x,y) -> y.getNacimiento().compare(x.getNacimiento()));
 			}
 		}
 		
