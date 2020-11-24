@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <%@page import="com.coronatickets.controllers.Login" %>
-  <%@page import="controladores.Fabrica" %>
 
-<%@page import="datatypes.DtUsuario"%>
-<%@page import="datatypes.DtEspectadorPerfil"%>
-<%@page import="datatypes.DtArtistaPerfil"%>
-<%@page import="datatypes.EstadoSesion" %>
+<%@page import="webservices.DtUsuario"%>
+<%@page import="webservices.DtEspectadorPerfil"%>
+<%@page import="webservices.DtArtistaPerfil"%>
+<%@page import="webservices.EstadoSesion" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,16 +17,18 @@
 <body>
 	<%
 		try{
+			 webservices.PublicadorService service = new webservices.PublicadorService();
+	 		 webservices.Publicador port = service.getPublicadorPort();
 			DateFormat fechaIncompleta = new SimpleDateFormat("yyyy-MM-dd");
 			webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
 
 			DtArtistaPerfil dtart = null;
 			DtEspectadorPerfil dtesp=null;
-			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())) {
-		dtart = Fabrica.getInstancia().getIUsuario().perfilArtista(usuario.getNickname());
+			if(port.esArtista(usuario.getNickname())) {
+		dtart = port.perfilArtista(usuario.getNickname());
 			}
 			else{
-		dtesp = Fabrica.getInstancia().getIUsuario().perfilEspectador(usuario.getNickname());
+		dtesp = port.perfilEspectador(usuario.getNickname());
 			}
 			Date aux = usuario.getNacimiento().toGregorianCalendar().getTime();	
 			String fecha_nac = fechaIncompleta.format(usuario.getNacimiento());

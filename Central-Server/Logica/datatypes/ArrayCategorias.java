@@ -1,6 +1,7 @@
 package datatypes;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class ArrayCategorias {
 	
@@ -16,6 +17,7 @@ public class ArrayCategorias {
 
 	public ArrayCategorias() {
 		super();
+		Categorias = new ArrayList<DtCategoria>();
 	}
 	
 	public List<DtCategoria> getCategorias() {

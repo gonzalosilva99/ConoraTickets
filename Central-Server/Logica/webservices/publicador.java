@@ -91,10 +91,10 @@ public class publicador {
     }
 
     @WebMethod
-    public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, ArrayCategorias categorias,  String urlVideo, String premio, int cantPremios) {
+    public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, ArrayCategorias categorias,  String urlVideo, String premio, int cantPremios) throws Identidad {
     	try {
     	Set<String> cat = new HashSet<String>();
-    	if (categorias.getCategorias() == null) {
+    	if (categorias.getCategorias().size()>0) {
     	Iterator<DtCategoria> itr = categorias.getCategorias().iterator();
     	while(itr.hasNext()) {
     		cat.add(itr.next().getNomCategoria());
@@ -103,7 +103,7 @@ public class publicador {
         iplataforma.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen, cat, urlVideo, premio, cantPremios);
     	}
     	catch(Exception e) {
-    		
+    		throw e;
     	}
     	
     }
@@ -191,22 +191,22 @@ public class publicador {
     	return ret;
     }
     @WebMethod    
-	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena, String Descripcion, String Biografia, String Link) {
+	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena, String Descripcion, String Biografia, String Link) throws Identidad{
     	try {
     		iusuario.confirmarAltaArtista(Nickname, Nombre, Apellido, Email, Nacimiento, imagen, contrasena, Descripcion, Biografia, Link);
     	}
     	catch(Exception e) {
-    		
+    		throw e;
     	}
     }
     
     @WebMethod
-	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena){
+	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena) throws Identidad{
     	try {
     		iusuario.confirmarAltaEspectador(Nickname, Nombre, Apellido, Email, Nacimiento, imagen, contrasena);
     	}
     	catch(Exception e) {
-    		
+    		throw e;
     	}
     }
     @WebMethod

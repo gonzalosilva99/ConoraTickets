@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import controladores.Fabrica;
 import datatypes.EstadoSesion;
@@ -49,14 +52,19 @@ public class Registrarse extends HttpServlet {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 		Date fechaNac;
 		try {
+			webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
+	    	GregorianCalendar aux = new GregorianCalendar();
 			fechaNac = formato.parse(nacimientoString);
+			aux.setTime(fechaNac);
+			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
 			if (password.equals(confirmarPassword) ) {
 				if (checkbox.equals("espectador")) {
 					System.out.println("nuevo Espectador");
-					Fabrica.getInstancia().getIUsuario().confirmarAltaEspectador(nickname, nombre, apellido, email, fechaNac, imagen, password);
+					port.confirmarAltaEspectador(nickname, nombre, apellido, email, fef, imagen, password);
 				}else if (checkbox.equals("artista")) {
 					System.out.println("nuevo Artista");
-					Fabrica.getInstancia().getIUsuario().confirmarAltaArtista(nickname, nombre, apellido, email, fechaNac, imagen, password, descgeneral,biografia, link);
+					port.confirmarAltaArtista(nickname, nombre, apellido, email, fef, imagen, password, descgeneral,biografia, link);
 				}
 					req.setAttribute("alta", "true");
 					req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
