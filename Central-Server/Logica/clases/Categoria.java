@@ -12,11 +12,16 @@ import java.util.Iterator;
 
 public class Categoria {
 	private String nomcategoria;
+
 	private Set<Espectaculo> espectaculos;
+
 	public Categoria(String nomCategoria) {
 		super();
 		this.nomcategoria = nomCategoria;
 		this.espectaculos = new HashSet<Espectaculo>();
+	}
+	public Categoria() {
+		super();
 	}
 	public String getNomCategoria() {
 		return nomcategoria;
@@ -33,7 +38,8 @@ public class Categoria {
 	
 	public DtCategoria getDtCategoria(){
 		DtCategoria ret = new DtCategoria(nomcategoria);
-		return ret; }
+		return ret;
+	}
 	
 	public void anadirEspectaculo(Espectaculo eve) {
 		espectaculos.add(eve);
@@ -59,6 +65,13 @@ public class Categoria {
 			}
 		}
 		return ret;
+	}
+
+	public String getNomcategoria() {
+		return nomcategoria;
+	}
+	public void setNomcategoria(String nomcategoria) {
+		this.nomcategoria = nomcategoria;
 	}
 	
 }

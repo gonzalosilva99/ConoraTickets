@@ -246,12 +246,12 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayCategorias
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarCategoriasDeEspectaculoRequest", output = "http://webservices/publicador/listarCategoriasDeEspectaculoResponse")
-    public ArrayList listarCategoriasDeEspectaculo(
+    public ArrayCategorias listarCategoriasDeEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -759,6 +759,19 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
+     *     returns webservices.DtCategoria
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getDtCategoriaRequest", output = "http://webservices/publicador/getDtCategoriaResponse")
+    public DtCategoria getDtCategoria(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns webservices.Categoria
      */
     @WebMethod
@@ -784,12 +797,12 @@ public interface Publicador {
     /**
      * 
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayCategorias
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarCategoriasRequest", output = "http://webservices/publicador/listarCategoriasResponse")
-    public ArrayList listarCategorias();
+    public ArrayCategorias listarCategorias();
 
     /**
      * 
