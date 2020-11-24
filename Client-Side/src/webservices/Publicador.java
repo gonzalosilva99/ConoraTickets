@@ -27,37 +27,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
-     * @param arg7
-     * @param arg6
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/modificarArtistaCompletoRequest", output = "http://webservices/publicador/modificarArtistaCompletoResponse")
-    public void modificarArtistaCompleto(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        XMLGregorianCalendar arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7);
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns webservices.ArrayList
@@ -71,53 +40,25 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/aceptarEspectaculoRequest", output = "http://webservices/publicador/aceptarEspectaculoResponse")
-    public void aceptarEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns webservices.ArrayPlataformas
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarPlataformasRequest", output = "http://webservices/publicador/listarPlataformasResponse")
-    public ArrayPlataformas listarPlataformas();
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns webservices.ArrayCategorias
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarCategoriasDeEspectaculoRequest", output = "http://webservices/publicador/listarCategoriasDeEspectaculoResponse")
-    public ArrayCategorias listarCategoriasDeEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
+     * @param arg7
+     * @param arg6
+     * @param arg9
+     * @param arg8
      * @param arg3
      * @param arg2
      * @param arg5
      * @param arg4
+     * @param arg13
+     * @param arg14
      * @param arg1
      * @param arg0
-     * @param arg6
+     * @param arg10
+     * @param arg11
+     * @param arg12
      */
     @WebMethod
-    @Action(input = "http://webservices/publicador/confirmarAltaEspectadorRequest", output = "http://webservices/publicador/confirmarAltaEspectadorResponse")
-    public void confirmarAltaEspectador(
+    @Action(input = "http://webservices/publicador/altaEspectaculoRequest", output = "http://webservices/publicador/altaEspectaculoResponse")
+    public void altaEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -127,22 +68,35 @@ public interface Publicador {
         @WebParam(name = "arg3", partName = "arg3")
         String arg3,
         @WebParam(name = "arg4", partName = "arg4")
-        XMLGregorianCalendar arg4,
+        int arg4,
         @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
+        int arg5,
         @WebParam(name = "arg6", partName = "arg6")
-        String arg6);
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        int arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        XMLGregorianCalendar arg8,
+        @WebParam(name = "arg9", partName = "arg9")
+        int arg9,
+        @WebParam(name = "arg10", partName = "arg10")
+        String arg10,
+        @WebParam(name = "arg11", partName = "arg11")
+        ArrayCategorias arg11,
+        @WebParam(name = "arg12", partName = "arg12")
+        String arg12,
+        @WebParam(name = "arg13", partName = "arg13")
+        String arg13,
+        @WebParam(name = "arg14", partName = "arg14")
+        int arg14);
 
     /**
      * 
      * @param arg0
-     * @return
-     *     returns webservices.DtArtista
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getDtArtistaNicknameRequest", output = "http://webservices/publicador/getDtArtistaNicknameResponse")
-    public DtArtista getDtArtistaNickname(
+    @Action(input = "http://webservices/publicador/actualizarUltimoIngresoRequest", output = "http://webservices/publicador/actualizarUltimoIngresoResponse")
+    public void actualizarUltimoIngreso(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -164,6 +118,113 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/altaPlataformaRequest", output = "http://webservices/publicador/altaPlataformaResponse")
+    public void altaPlataforma(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
+     * @return
+     *     returns webservices.ArrayPlataformas
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarPlataformasRequest", output = "http://webservices/publicador/listarPlataformasResponse")
+    public ArrayPlataformas listarPlataformas();
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg6
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/confirmarAltaFuncionEspectaculoRequest", output = "http://webservices/publicador/confirmarAltaFuncionEspectaculoResponse")
+    public void confirmarAltaFuncionEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        XMLGregorianCalendar arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        ArrayList arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        XMLGregorianCalendar arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/existeFuncionRequest", output = "http://webservices/publicador/existeFuncionResponse")
+    public boolean existeFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtEspectaculoDatos
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/findDatosEspectaculoRequest", output = "http://webservices/publicador/findDatosEspectaculoResponse")
+    public DtEspectaculoDatos findDatosEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getPlataformaDeEspectaculoRequest", output = "http://webservices/publicador/getPlataformaDeEspectaculoResponse")
+    public String getPlataformaDeEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtFuncionDatos
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/findDatosFuncionRequest", output = "http://webservices/publicador/findDatosFuncionResponse")
+    public DtFuncionDatos findDatosFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg2
      * @param arg1
      * @param arg0
      * @return
@@ -171,12 +232,72 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/existeCompraPaqueteRequest", output = "http://webservices/publicador/existeCompraPaqueteResponse")
-    public boolean existeCompraPaquete(
+    @Action(input = "http://webservices/publicador/puedeAgregarEspectadoresRequest", output = "http://webservices/publicador/puedeAgregarEspectadoresResponse")
+    public boolean puedeAgregarEspectadores(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayCategorias
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarCategoriasDeEspectaculoRequest", output = "http://webservices/publicador/listarCategoriasDeEspectaculoResponse")
+    public ArrayCategorias listarCategoriasDeEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/aceptarEspectaculoRequest", output = "http://webservices/publicador/aceptarEspectaculoResponse")
+    public void aceptarEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtFuncion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getDtFuncionRequest", output = "http://webservices/publicador/getDtFuncionResponse")
+    public DtFuncion getDtFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/sortearPremiosRequest", output = "http://webservices/publicador/sortearPremiosResponse")
+    public ArrayList sortearPremios(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
 
     /**
      * 
@@ -226,170 +347,8 @@ public interface Publicador {
      * @param arg6
      */
     @WebMethod
-    @Action(input = "http://webservices/publicador/confirmarAltaFuncionEspectaculoRequest", output = "http://webservices/publicador/confirmarAltaFuncionEspectaculoResponse")
-    public void confirmarAltaFuncionEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        XMLGregorianCalendar arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        ArrayList arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        XMLGregorianCalendar arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.DtEspectaculoDatos
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/findDatosEspectaculoRequest", output = "http://webservices/publicador/findDatosEspectaculoResponse")
-    public DtEspectaculoDatos findDatosEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/dejarSeguirUsuarioRequest", output = "http://webservices/publicador/dejarSeguirUsuarioResponse")
-    public void dejarSeguirUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/actualizarUltimoIngresoRequest", output = "http://webservices/publicador/actualizarUltimoIngresoResponse")
-    public void actualizarUltimoIngreso(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarRegistrosSinCanjeaerRequest", output = "http://webservices/publicador/listarRegistrosSinCanjeaerResponse")
-    public ArrayList listarRegistrosSinCanjeaer(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/existeRegistroaFuncionRequest", output = "http://webservices/publicador/existeRegistroaFuncionResponse")
-    public boolean existeRegistroaFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getPlataformaDeEspectaculoRequest", output = "http://webservices/publicador/getPlataformaDeEspectaculoResponse")
-    public String getPlataformaDeEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/puedeAgregarEspectadoresRequest", output = "http://webservices/publicador/puedeAgregarEspectadoresResponse")
-    public boolean puedeAgregarEspectadores(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.DtUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getUsuarioNicknameRequest", output = "http://webservices/publicador/getUsuarioNicknameResponse")
-    public DtUsuario getUsuarioNickname(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/altaPlataformaRequest", output = "http://webservices/publicador/altaPlataformaResponse")
-    public void altaPlataforma(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
-     * @param arg7
-     * @param arg6
-     * @param arg9
-     * @param arg8
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg13
-     * @param arg14
-     * @param arg1
-     * @param arg0
-     * @param arg10
-     * @param arg11
-     * @param arg12
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/altaEspectaculoRequest", output = "http://webservices/publicador/altaEspectaculoResponse")
-    public void altaEspectaculo(
+    @Action(input = "http://webservices/publicador/confirmarAltaEspectadorRequest", output = "http://webservices/publicador/confirmarAltaEspectadorResponse")
+    public void confirmarAltaEspectador(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -399,38 +358,22 @@ public interface Publicador {
         @WebParam(name = "arg3", partName = "arg3")
         String arg3,
         @WebParam(name = "arg4", partName = "arg4")
-        int arg4,
+        XMLGregorianCalendar arg4,
         @WebParam(name = "arg5", partName = "arg5")
-        int arg5,
+        String arg5,
         @WebParam(name = "arg6", partName = "arg6")
-        String arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        int arg7,
-        @WebParam(name = "arg8", partName = "arg8")
-        XMLGregorianCalendar arg8,
-        @WebParam(name = "arg9", partName = "arg9")
-        int arg9,
-        @WebParam(name = "arg10", partName = "arg10")
-        String arg10,
-        @WebParam(name = "arg11", partName = "arg11")
-        ArrayList arg11,
-        @WebParam(name = "arg12", partName = "arg12")
-        String arg12,
-        @WebParam(name = "arg13", partName = "arg13")
-        String arg13,
-        @WebParam(name = "arg14", partName = "arg14")
-        int arg14);
+        String arg6);
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns webservices.DtEspectadorPerfil
+     *     returns boolean
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/perfilEspectadorRequest", output = "http://webservices/publicador/perfilEspectadorResponse")
-    public DtEspectadorPerfil perfilEspectador(
+    @Action(input = "http://webservices/publicador/esArtistaRequest", output = "http://webservices/publicador/esArtistaResponse")
+    public boolean esArtista(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -451,132 +394,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns webservices.DtEspectadorPerfil
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/existeFuncionRequest", output = "http://webservices/publicador/existeFuncionResponse")
-    public boolean existeFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.DtFuncion
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getDtFuncionRequest", output = "http://webservices/publicador/getDtFuncionResponse")
-    public DtFuncion getDtFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/logueoCorrectoRequest", output = "http://webservices/publicador/logueoCorrectoResponse")
-    public boolean logueoCorrecto(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/comprarPaqueteRequest", output = "http://webservices/publicador/comprarPaqueteResponse")
-    public void comprarPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        XMLGregorianCalendar arg2);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/esArtistaRequest", output = "http://webservices/publicador/esArtistaResponse")
-    public boolean esArtista(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/altaCategoriaRequest", output = "http://webservices/publicador/altaCategoriaResponse")
-    public void altaCategoria(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/marcarFavoritoRequest", output = "http://webservices/publicador/marcarFavoritoResponse")
-    public void marcarFavorito(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.DtCategoria
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getDtCategoriaRequest", output = "http://webservices/publicador/getDtCategoriaResponse")
-    public DtCategoria getDtCategoria(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarRegistrosRequest", output = "http://webservices/publicador/listarRegistrosResponse")
-    public ArrayList listarRegistros(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.DtUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getUsuarioEmailRequest", output = "http://webservices/publicador/getUsuarioEmailResponse")
-    public DtUsuario getUsuarioEmail(
+    @Action(input = "http://webservices/publicador/perfilEspectadorRequest", output = "http://webservices/publicador/perfilEspectadorResponse")
+    public DtEspectadorPerfil perfilEspectador(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -594,119 +417,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/existeNicknameRequest", output = "http://webservices/publicador/existeNicknameResponse")
-    public boolean existeNickname(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
      *     returns webservices.ArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarPaquetesRequest", output = "http://webservices/publicador/listarPaquetesResponse")
-    public ArrayList listarPaquetes();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.Categoria
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getCategoriaRequest", output = "http://webservices/publicador/getCategoriaResponse")
-    public Categoria getCategoria(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/seguirUsuarioRequest", output = "http://webservices/publicador/seguirUsuarioResponse")
-    public void seguirUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.DtFuncionDatos
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/findDatosFuncionRequest", output = "http://webservices/publicador/findDatosFuncionResponse")
-    public DtFuncionDatos findDatosFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns webservices.ArrayCategorias
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarCategoriasRequest", output = "http://webservices/publicador/listarCategoriasResponse")
-    public ArrayCategorias listarCategorias();
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns webservices.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/sortearPremiosRequest", output = "http://webservices/publicador/sortearPremiosResponse")
-    public ArrayList sortearPremios(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/confirmarAgregarEspectaculoPaqueteRequest", output = "http://webservices/publicador/confirmarAgregarEspectaculoPaqueteResponse")
-    public void confirmarAgregarEspectaculoPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns webservices.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/listarEspectaculosAceptadosDeCategoriaRequest", output = "http://webservices/publicador/listarEspectaculosAceptadosDeCategoriaResponse")
-    public ArrayList listarEspectaculosAceptadosDeCategoria(
+    @Action(input = "http://webservices/publicador/listarRegistrosSinCanjeaerRequest", output = "http://webservices/publicador/listarRegistrosSinCanjeaerResponse")
+    public ArrayList listarRegistrosSinCanjeaer(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -752,6 +468,179 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/existeRegistroaFuncionRequest", output = "http://webservices/publicador/existeRegistroaFuncionResponse")
+    public boolean existeRegistroaFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/seguirUsuarioRequest", output = "http://webservices/publicador/seguirUsuarioResponse")
+    public void seguirUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getUsuarioNicknameRequest", output = "http://webservices/publicador/getUsuarioNicknameResponse")
+    public DtUsuario getUsuarioNickname(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getUsuarioEmailRequest", output = "http://webservices/publicador/getUsuarioEmailResponse")
+    public DtUsuario getUsuarioEmail(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/logueoCorrectoRequest", output = "http://webservices/publicador/logueoCorrectoResponse")
+    public boolean logueoCorrecto(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/comprarPaqueteRequest", output = "http://webservices/publicador/comprarPaqueteResponse")
+    public void comprarPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        XMLGregorianCalendar arg2);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/existeCompraPaqueteRequest", output = "http://webservices/publicador/existeCompraPaqueteResponse")
+    public boolean existeCompraPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/existeNicknameRequest", output = "http://webservices/publicador/existeNicknameResponse")
+    public boolean existeNickname(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/dejarSeguirUsuarioRequest", output = "http://webservices/publicador/dejarSeguirUsuarioResponse")
+    public void dejarSeguirUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtArtista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getDtArtistaNicknameRequest", output = "http://webservices/publicador/getDtArtistaNicknameResponse")
+    public DtArtista getDtArtistaNickname(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg7
+     * @param arg6
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/modificarArtistaCompletoRequest", output = "http://webservices/publicador/modificarArtistaCompletoResponse")
+    public void modificarArtistaCompleto(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        XMLGregorianCalendar arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7);
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg4
@@ -774,15 +663,38 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg1
      * @param arg0
      * @return
-     *     returns int
+     *     returns webservices.ArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getPuntajeEspectaculoRequest", output = "http://webservices/publicador/getPuntajeEspectaculoResponse")
-    public int getPuntajeEspectaculo(
+    @Action(input = "http://webservices/publicador/listarRegistrosRequest", output = "http://webservices/publicador/listarRegistrosResponse")
+    public ArrayList listarRegistros(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/marcarFavoritoRequest", output = "http://webservices/publicador/marcarFavoritoResponse")
+    public void marcarFavorito(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/desmarcarFavoritoRequest", output = "http://webservices/publicador/desmarcarFavoritoResponse")
+    public void desmarcarFavorito(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -803,29 +715,120 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
      * @param arg0
-     * @return
-     *     returns webservices.SetEspectaculos
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/filtrarEspectaculosRequest", output = "http://webservices/publicador/filtrarEspectaculosResponse")
-    public SetEspectaculos filtrarEspectaculos(
+    @Action(input = "http://webservices/publicador/valorarEspectaculoRequest", output = "http://webservices/publicador/valorarEspectaculoResponse")
+    public void valorarEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2);
 
     /**
      * 
      * @param arg1
      * @param arg0
+     * @return
+     *     returns int
      */
     @WebMethod
-    @Action(input = "http://webservices/publicador/desmarcarFavoritoRequest", output = "http://webservices/publicador/desmarcarFavoritoResponse")
-    public void desmarcarFavorito(
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getPuntajeEspectaculoRequest", output = "http://webservices/publicador/getPuntajeEspectaculoResponse")
+    public int getPuntajeEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/altaCategoriaRequest", output = "http://webservices/publicador/altaCategoriaResponse")
+    public void altaCategoria(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.DtCategoria
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getDtCategoriaRequest", output = "http://webservices/publicador/getDtCategoriaResponse")
+    public DtCategoria getDtCategoria(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.Categoria
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getCategoriaRequest", output = "http://webservices/publicador/getCategoriaResponse")
+    public Categoria getCategoria(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarEspectaculosAceptadosDeCategoriaRequest", output = "http://webservices/publicador/listarEspectaculosAceptadosDeCategoriaResponse")
+    public ArrayList listarEspectaculosAceptadosDeCategoria(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns webservices.ArrayCategorias
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarCategoriasRequest", output = "http://webservices/publicador/listarCategoriasResponse")
+    public ArrayCategorias listarCategorias();
+
+    /**
+     * 
+     * @return
+     *     returns webservices.ArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarPaquetesRequest", output = "http://webservices/publicador/listarPaquetesResponse")
+    public ArrayList listarPaquetes();
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://webservices/publicador/confirmarAgregarEspectaculoPaqueteRequest", output = "http://webservices/publicador/confirmarAgregarEspectaculoPaqueteResponse")
+    public void confirmarAgregarEspectaculoPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
 
     /**
      * 
@@ -857,22 +860,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://webservices/publicador/valorarEspectaculoRequest", output = "http://webservices/publicador/valorarEspectaculoResponse")
-    public void valorarEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        int arg2);
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns webservices.DtPaqueteDatos
@@ -881,6 +868,19 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/getPaqueteDatosRequest", output = "http://webservices/publicador/getPaqueteDatosResponse")
     public DtPaqueteDatos getPaqueteDatos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.Paquete
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getPaqueteRequest", output = "http://webservices/publicador/getPaqueteResponse")
+    public Paquete getPaquete(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -901,12 +901,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.SetUsuarios
+     *     returns webservices.SetEspectaculos
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/filtrarUsuariosRequest", output = "http://webservices/publicador/filtrarUsuariosResponse")
-    public SetUsuarios filtrarUsuarios(
+    @Action(input = "http://webservices/publicador/filtrarEspectaculosRequest", output = "http://webservices/publicador/filtrarEspectaculosResponse")
+    public SetEspectaculos filtrarEspectaculos(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -914,12 +914,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.Paquete
+     *     returns webservices.SetUsuarios
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://webservices/publicador/getPaqueteRequest", output = "http://webservices/publicador/getPaqueteResponse")
-    public Paquete getPaquete(
+    @Action(input = "http://webservices/publicador/filtrarUsuariosRequest", output = "http://webservices/publicador/filtrarUsuariosResponse")
+    public SetUsuarios filtrarUsuarios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
