@@ -166,6 +166,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayArtistas }
+     * 
+     */
+    public ArrayArtistas createArrayArtistas() {
+        return new ArrayArtistas();
+    }
+
+    /**
      * Create an instance of {@link DtArtistaPerfil }
      * 
      */
@@ -291,6 +299,14 @@ public class ObjectFactory {
      */
     public DtFuncionDatos createDtFuncionDatos() {
         return new DtFuncionDatos();
+    }
+
+    /**
+     * Create an instance of {@link ArrayEspectaculos }
+     * 
+     */
+    public ArrayEspectaculos createArrayEspectaculos() {
+        return new ArrayEspectaculos();
     }
 
     /**

@@ -29,12 +29,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayEspectaculos
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarEspectaculosAceptadosDePlataformaRequest", output = "http://webservices/publicador/listarEspectaculosAceptadosDePlataformaResponse")
-    public ArrayList listarEspectaculosAceptadosDePlataforma(
+    public ArrayEspectaculos listarEspectaculosAceptadosDePlataforma(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -406,12 +406,12 @@ public interface Publicador {
     /**
      * 
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayArtistas
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarArtistasRequest", output = "http://webservices/publicador/listarArtistasResponse")
-    public ArrayList listarArtistas();
+    public ArrayArtistas listarArtistas();
 
     /**
      * 
@@ -909,5 +909,15 @@ public interface Publicador {
     public SetUsuarios filtrarUsuarios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns webservices.EstadoSesion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/paraQueAndeEstadoSesionRequest", output = "http://webservices/publicador/paraQueAndeEstadoSesionResponse")
+    public EstadoSesion paraQueAndeEstadoSesion();
 
 }

@@ -4,9 +4,11 @@
  */
 
 package webservices;
-import controladores.Fabrica;
 
+import controladores.Fabrica;
+import datatypes.ArrayEspectaculos;
 import datatypes.ArrayPlataformas;
+import datatypes.ArrayArtistas;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
 import datatypes.DtArtistaPerfil;
@@ -27,11 +29,15 @@ import datatypes.SetEspectaculos;
 import datatypes.SetUsuarios;
 import datatypes.SetPaquetes;
 import datatypes.TipoRegistro;
+import datatypes.EstadoEspectaculo;
+import datatypes.EstadoRegistro;
+import datatypes.EstadoSesion;
 import excepciones.Identidad;
 import interfaces.ICategoria;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
 import interfaces.IPaquete;
+
 
 import java.util.Date;
 import java.util.Set;
@@ -102,9 +108,10 @@ public class publicador {
     }
     
     @WebMethod
-	public ArrayList<DtEspectaculo> listarEspectaculosAceptadosDePlataforma(String Nombre){
+	public ArrayEspectaculos listarEspectaculosAceptadosDePlataforma(String Nombre){
     	ArrayList<DtEspectaculo> set = new ArrayList<DtEspectaculo>(iplataforma.listarEspectaculosAceptadosDePlataforma(Nombre));
-    	return set;
+    	ArrayEspectaculos ret = new ArrayEspectaculos(set);
+    	return ret;
     }
     
     @WebMethod
@@ -203,8 +210,9 @@ public class publicador {
     	return iusuario.perfilEspectador(nickname);
     }
     @WebMethod
-	public ArrayList<DtArtista> listarArtistas(){
-    	ArrayList<DtArtista> ret = new ArrayList<DtArtista>(iusuario.listarArtistas());
+	public ArrayArtistas listarArtistas(){
+    	ArrayList<DtArtista> artistas = new ArrayList<DtArtista>(iusuario.listarArtistas());
+    	ArrayArtistas ret = new ArrayArtistas(artistas);
     	return ret;
     }
     @WebMethod
@@ -359,6 +367,11 @@ public class publicador {
     	SetUsuarios ret = new SetUsuarios();
     	ret.setUsuarios(iusuario.filtrarUsuarios(search));
     	return ret;
+    }
+    
+    @WebMethod public EstadoSesion paraQueAndeEstadoSesion() {
+    	EstadoSesion estado = null;
+    	return estado;
     }
     
 

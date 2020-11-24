@@ -1,20 +1,15 @@
 package com.coronatickets.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controladores.Fabrica;
-import datatypes.DtUsuario;
-import datatypes.EstadoSesion;
-import manejadores.ManejadorUsuario;
+import webservices.*;
+
+
 
 
 
@@ -37,15 +32,17 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+    	webservices.PublicadorService service = new webservices.PublicadorService();                    
+    	webservices.Publicador port = service.getPublicadorPort();
         HttpSession objSesion = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         EstadoSesion nuevoEstado=null;
         try {
-        	if(Fabrica.getInstancia().getIUsuario().logueoCorrecto(login, password)) {
+        	if(port.logueoCorrecto(login, password)) {
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		if(login.contains("@")) {
-        			request.getSession().setAttribute("usuario_logueado", Fabrica.getInstancia().getIUsuario().getUsuarioEmail(login).getNickname());
+        			request.getSession().setAttribute("usuario_logueado", port.getUsuarioEmail(login).getNickname());
         			ActualizarUltimoIngreso(request);
         		}
         		else {
@@ -76,7 +73,9 @@ public class Login extends HttpServlet {
 	 */
 	
     static public DtUsuario getUsuarioLogueado(HttpServletRequest request) {
-		return Fabrica.getInstancia().getIUsuario().getUsuarioNickname((String) request.getSession().getAttribute("usuario_logueado"));
+    	webservices.PublicadorService service = new webservices.PublicadorService();                    
+    	webservices.Publicador port = service.getPublicadorPort();
+		return port.getUsuarioNickname((String) request.getSession().getAttribute("usuario_logueado"));
 	}
     
     /**
@@ -91,8 +90,10 @@ public class Login extends HttpServlet {
 	}
     
     static public void ActualizarUltimoIngreso(HttpServletRequest request) {
+    	webservices.PublicadorService service = new webservices.PublicadorService();                    
+    	webservices.Publicador port = service.getPublicadorPort();
     	if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null) {
-    		Fabrica.getInstancia().getIUsuario().actualizarUltimoIngreso((String) request.getSession().getAttribute("usuario_logueado"));
+    		port.actualizarUltimoIngreso((String) request.getSession().getAttribute("usuario_logueado"));
     	}
     }
 

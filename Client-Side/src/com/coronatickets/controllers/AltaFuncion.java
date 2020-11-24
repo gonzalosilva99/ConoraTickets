@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -15,18 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import clases.Espectaculo;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.util.Arrays;
-
-import controladores.Fabrica;
-import interfaces.IPlataforma;
-import datatypes.DtEspectaculo;
-import datatypes.EstadoSesion;
-import datatypes.DtArtista;
-import datatypes.DtUsuario;
+import java.util.ArrayList;
 import excepciones.Identidad;
+import webservices.*;
 
 /**
  * Servlet implementation class Home
@@ -45,9 +41,10 @@ public class AltaFuncion extends HttpServlet {
 	 * 
 	 * @param request
 	 */
-	private Boolean espectaculoEsDelArtista(String nickname, DtEspectaculo espectaculo) {
-		Set<DtEspectaculo> espectaculosArtista = Fabrica.getInstancia().getIUsuario().getDtArtistaNickname(nickname)
-				.getEspectaculosArtista();
+	private Boolean espectaculoEsDelArtista(String nickname, webservices.DtEspectaculo espectaculo) {
+		webservices.PublicadorService service = new webservices.PublicadorService();                    
+    	webservices.Publicador port = service.getPublicadorPort();
+		ArrayList<webservices.DtEspectaculo> espectaculosArtista = (ArrayList) port.getDtArtistaNickname(nickname).getEspectaculos();
 		if (espectaculosArtista.contains(espectaculo)) {
 			return true;
 		}
@@ -56,9 +53,10 @@ public class AltaFuncion extends HttpServlet {
 
 	private void actualizarEspectaculos(HttpServletRequest request, HttpServletResponse resp, String plataforma,
 			String nickname) throws ServletException, IOException {
+		webservices.PublicadorService service = new webservices.PublicadorService();                    
+    	webservices.Publicador port = service.getPublicadorPort();
 		request.getSession().setAttribute("exito", null);
-		Set<DtEspectaculo> espectaculosAceptados = Fabrica.getInstancia().getIPlataforma()
-				.listarEspectaculosAceptadosDePlataforma(plataforma);
+		ArrayList<DtEspectaculo> espectaculosAceptados = (ArrayList)port.listarEspectaculosAceptadosDePlataforma(plataforma).getEspectaculos();  
 		Set<DtEspectaculo> espectaculosAceptadosDelArtista = new HashSet<>();
 		Iterator<DtEspectaculo> itr = espectaculosAceptados.iterator();
 		while (itr.hasNext()) {
@@ -72,9 +70,11 @@ public class AltaFuncion extends HttpServlet {
 
 	private void confirmarAltaFuncionEspectaculo(HttpServletRequest request, HttpServletResponse response,
 			String plataforma) throws ServletException, IOException {
+		webservices.PublicadorService service = new webservices.PublicadorService();                    
+    	webservices.Publicador port = service.getPublicadorPort();
 		System.out.println("ENTRO CON:" + request.getParameter("funcion"));
 		try {
-			if (Fabrica.getInstancia().getIPlataforma().existeFuncion(request.getParameter("funcion"))) {
+			if (port.existeFuncion(request.getParameter("funcion"))) {
 				response.getWriter().write("EXISTE_FUNCION");
 			}else {
 				String funcion = (String)request.getParameter("funcion");
@@ -87,9 +87,14 @@ public class AltaFuncion extends HttpServlet {
 				if (invitados != null) {
 					invitadosSet = new HashSet<>(Arrays.asList(invitados));
 				}
+				ArrayList<String> invitadosList = new ArrayList<>(invitadosSet);
+				GregorianCalendar c = new GregorianCalendar();
+				c.setTime(fechaFuncion);
+				XMLGregorianCalendar fechaFuncionGregorian = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+				c.setTime(fechaAlta);
+				XMLGregorianCalendar fechaAltaGregorian = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 				String imagen = (String)request.getParameter("imagen");
-				Fabrica.getInstancia().getIPlataforma().confirmarAltaFuncionEspectaculo(plataforma, espectaculo, 
-							funcion, fechaFuncion, invitadosSet, fechaAlta, imagen);
+				port.confirmarAltaFuncionEspectaculo(plataforma, espectaculo, funcion, fechaFuncionGregorian, invitadosList, fechaAltaGregorian, imagen);
 				response.getWriter().write("SUCCESS");
 			}				
 		}catch(Exception e) {

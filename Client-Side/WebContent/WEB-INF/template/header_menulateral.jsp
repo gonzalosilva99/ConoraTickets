@@ -43,7 +43,7 @@
                     <a href="#plataformasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">PLATAFORMAS</a>
                     <ul class="collapse list-unstyled" id="plataformasSubmenu">
                     <% 
-                    webservices.PublicadorService service = new webservices.PublicadorService();
+                    webservices.PublicadorService service = new webservices.PublicadorService();                    
         	    	webservices.Publicador port = service.getPublicadorPort();
         	    	webservices.ArrayPlataformas plataformasaux = port.listarPlataformas();
                     Iterator<webservices.DtPlataforma> itrp = plataformasaux.getPlats().iterator();
