@@ -1,6 +1,5 @@
 package com.coronatickets.controllers;
-import java.util.LinkedHashMap; 
-import datatypes.DtUsuario;
+import java.util.LinkedHashMap;
 import java.util.Map; 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +48,7 @@ public class Busqueda extends HttpServlet {
     	webservices.Publicador port = service.getPublicadorPort();
 		
 		String search;
-		List<webservices.DtUsuario> usufilt;
+		List<DtUsuario> usufilt;
 		List<DtEspectaculoDatos> especfilt;
 		List<DtPaqueteDatos> paqfilt;
 		
@@ -72,7 +71,7 @@ public class Busqueda extends HttpServlet {
 			especfilt = port.filtrarEspectaculos(search).getEspecs();
 			paqfilt = port.filtrarPaquetes(search).getPaqs();
 		}
-
+		System.out.print("el largo de los paqs es " + paqfilt.size() );
 
 		//Filtros
 		Boolean FiltroCategorias = request.getParameterValues("checked") != null;
@@ -85,17 +84,13 @@ public class Busqueda extends HttpServlet {
 					especfilt.remove(dtespecd);
 			}
 		}
-		System.out.print("Despues de salir de fplat es " + especfilt.size());
 		
 		if(FiltroCategorias) {
-			System.out.print("Filtro categorias");
 			Set<String> cats = new HashSet<String>();
 		    String[] values = request.getParameterValues("checked");
 		    for (int i = 0; i < values.length; i++) {
 		    	  cats.add(values[i]);
-		    	  System.out.println(values[i]);
 		    }
-		    System.out.println("El largo de las cateogiras es " + cats.size());
 		    List<DtEspectaculoDatos> copiaespecs = new LinkedList<DtEspectaculoDatos>(especfilt);
 		    for(DtEspectaculoDatos dtespec : copiaespecs) {
 				String nombreplat = port.getPlataformaDeEspectaculo(dtespec.getNombre());
@@ -103,7 +98,6 @@ public class Busqueda extends HttpServlet {
 				Set<DtCategoria> categoriasespec =  new HashSet<DtCategoria>(listauxcat);
 				for(String cat : cats) {
 					DtCategoria dtcat = port.getDtCategoria(cat);
-					System.out.println("la categoria es " + dtcat.getNomCategoria());
 					Boolean tiene = false;
 					for(DtCategoria aux : categoriasespec) {
 						if(aux.getNomCategoria().equalsIgnoreCase(dtcat.getNomCategoria())) {
@@ -122,8 +116,6 @@ public class Busqueda extends HttpServlet {
 		if(request.getParameter("orden") != null) {
 			String orden = (String) request.getParameter("orden");
 			if(orden.equalsIgnoreCase("alf")) {
-
-				System.out.println("Vino a ordenar");
 				especfilt.sort((x, y) -> x.getNombre().compareToIgnoreCase(y.getNombre()));
 				paqfilt.sort((x, y) -> x.getNombre().compareToIgnoreCase(y.getNombre()));
 				usufilt.sort((x, y) -> x.getNombre().compareToIgnoreCase(y.getNombre()));
@@ -135,7 +127,6 @@ public class Busqueda extends HttpServlet {
 			}
 		}
 		
-		System.out.println("El largo de los paquetes es: " + paqfilt.size());
 		request.setAttribute("UsuariosFiltrados", usufilt);
 		request.setAttribute("EspectaculosFiltrados", especfilt);
 		request.setAttribute("PaquetesFiltrados", paqfilt);

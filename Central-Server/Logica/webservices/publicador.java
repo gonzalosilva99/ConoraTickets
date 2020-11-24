@@ -361,6 +361,7 @@ public class publicador {
 	public SetPaquetes filtrarPaquetes(String search){
     	SetPaquetes ret = new SetPaquetes();
     	ret.setPaqs(ipaquete.filtrarPaquetes(search));
+    	System.out.print("El tamanio de los paquetes antes de ir es " + ret.getPaqs().size() + " " );
     	return ret;
     }
 
