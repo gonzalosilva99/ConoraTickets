@@ -1,7 +1,6 @@
+<%@page import="webservices.EstadoSesion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@page import="controladores.Fabrica" %>
-  <%@page import="datatypes.EstadoSesion" %>
   <%@page import="com.coronatickets.controllers.Login" %>
   <%@page import="datatypes.DtUsuario" %>
 
@@ -33,7 +32,7 @@
 		<%
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
 			
-				DtUsuario usuario = Login.getUsuarioLogueado(request);
+				webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
 				%>
 		    <li class="nav-item dropdown">
 		       	<a class="nav-link" style="border-radius:0.25em;" href="#" id="UsernavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -1,17 +1,15 @@
+<%@page import="webservices.EstadoSesion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    
-  <%@page import="controladores.Fabrica" %>
   <%@page import="com.coronatickets.controllers.Login" %>
   <%@page import="datatypes.DtUsuario" %>
   <%@page import="datatypes.DtPlataforma" %>
-  <%@page import="datatypes.DtCategoria" %>
-  <%@page import="controladores.Fabrica" %>
+  <%@page import="webservices.DtCategoria" %>
   <%@page import="java.util.Set" %>
   <%@page import="java.util.List" %>
   <%@page import="java.util.HashSet" %>
   <%@page import="java.util.Iterator" %>
-  <%@page import="datatypes.EstadoSesion" %>
   <%@page import="com.coronatickets.controllers.Login" %>
   <%@page import="webservices.ArrayList" %>
 <!-- INICIO MENU LATERAL -->
@@ -23,10 +21,12 @@
 
             <ul class="list-unstyled components">
             <%
+            webservices.PublicadorService service = new webservices.PublicadorService();                    
+	    	webservices.Publicador port = service.getPublicadorPort();
             	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
             		
-            		DtUsuario usuario = Login.getUsuarioLogueado(request);
-            		if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
+            		webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
+            		if(port.esArtista(usuario.getNickname())){
             %>
             	<li>
             	<a href="#accionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ACCIONES</a>
@@ -43,8 +43,7 @@
                     <a href="#plataformasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">PLATAFORMAS</a>
                     <ul class="collapse list-unstyled" id="plataformasSubmenu">
                     <% 
-                    webservices.PublicadorService service = new webservices.PublicadorService();                    
-        	    	webservices.Publicador port = service.getPublicadorPort();
+                    
         	    	webservices.ArrayPlataformas plataformasaux = port.listarPlataformas();
                     Iterator<webservices.DtPlataforma> itrp = plataformasaux.getPlats().iterator();
                     System.out.print(plataformasaux.getPlats().size());
@@ -59,8 +58,9 @@
                 <li>
                     <a href="#categoriasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">CATEGORIAS</a>
                     <ul class="collapse list-unstyled" id="categoriasSubmenu">
-                        <% Set<DtCategoria> categorias = Fabrica.getInstancia().getICategoria().listarCategorias();
-                    Iterator<DtCategoria> itrc = categorias.iterator();
+                        <% 
+                        List<DtCategoria> lstcats = port.listarCategorias().getCategorias();
+                        Iterator<DtCategoria> itrc = lstcats.iterator();
 							while(itrc.hasNext())
 								{DtCategoria auxc = itrc.next();%>
                         <li>

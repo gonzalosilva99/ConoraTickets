@@ -19,7 +19,7 @@
 	<%
 		try{
 			DateFormat fechaIncompleta = new SimpleDateFormat("yyyy-MM-dd");
-			DtUsuario usuario = Login.getUsuarioLogueado(request);
+			webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
 
 			DtArtistaPerfil dtart = null;
 			DtEspectadorPerfil dtesp=null;
@@ -29,7 +29,7 @@
 			else{
 		dtesp = Fabrica.getInstancia().getIUsuario().perfilEspectador(usuario.getNickname());
 			}
-			Date aux = usuario.getNacimiento();	
+			Date aux = usuario.getNacimiento().toGregorianCalendar().getTime();	
 			String fecha_nac = fechaIncompleta.format(usuario.getNacimiento());
 	%>
 	<div class="wrapper">

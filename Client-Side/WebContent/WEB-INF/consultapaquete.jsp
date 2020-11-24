@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 	<%@page import="datatypes.DtPaqueteDatos"%>
-	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="webservices.EstadoSesion" %>
 	<%@page import="datatypes.DtCategoria" %>
 	<%@page import="datatypes.DtEspectaculo" %>
 	<%@page import="datatypes.DtEspectaculoDatos"%>

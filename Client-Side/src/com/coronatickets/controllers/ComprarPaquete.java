@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import interfaces.IUsuario;
 import controladores.Fabrica;
-import datatypes.EstadoSesion;
+import webservices.EstadoSesion;
 import datatypes.TipoRegistro;
 /**
  * Servlet implementation class Home

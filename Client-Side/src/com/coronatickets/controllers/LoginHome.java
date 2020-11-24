@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controladores.Fabrica;
-import datatypes.EstadoSesion;
+import webservices.EstadoSesion;
 /**
  * Servlet implementation class Home
  */

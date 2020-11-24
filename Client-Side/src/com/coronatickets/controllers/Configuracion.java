@@ -76,7 +76,7 @@ public class Configuracion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
 		try {
-			DtUsuario usuario = Login.getUsuarioLogueado(request);
+			webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
 			Boolean esartista = false; 
 			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname()))
 				esartista=true;

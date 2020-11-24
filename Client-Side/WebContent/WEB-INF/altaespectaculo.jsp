@@ -1,13 +1,12 @@
 <!DOCTYPE html>
+<%@page import="webservices.EstadoSesion"%>
 <%@page import="webservices.DtPlataforma"%>
 <html>
 <head>
 
-	<%@page import="datatypes.DtCategoria"%>
-	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="webservices.DtCategoria"%>
 	<%@page import="datatypes.DtUsuario" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="controladores.Fabrica"%>
 	<%@page import="interfaces.IPlataforma"%>
 	<%@page import="interfaces.ICategoria"%>
 	<%@page import="java.util.Iterator" %>
@@ -20,9 +19,11 @@
 <body>
 	
 	<%		
+			 webservices.PublicadorService service = new webservices.PublicadorService();
+	 		 webservices.Publicador port = service.getPublicadorPort();
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
-				DtUsuario usuario = Login.getUsuarioLogueado(request);
-			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname())){
+				webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
+			if(port.esArtista(usuario.getNickname())){
 				System.out.print("jsp2 "+(String) request.getAttribute("aceptado"));
 				if((String) request.getAttribute("aceptado")!=null && ((String) request.getAttribute("aceptado")).equals("true")){
 		%>	
@@ -44,8 +45,7 @@
       <option value="" id="elijeplat" selected>Elije la plataforma</option>
       <optgroup label="Plataformas:">
       <%
-      webservices.PublicadorService service = new webservices.PublicadorService();
-	  webservices.Publicador port = service.getPublicadorPort();
+     
 	  webservices.ArrayPlataformas plat = port.listarPlataformas();
       List<DtPlataforma> ListaPlataformas = port.listarPlataformas().getPlats();
       Iterator<DtPlataforma> itr = ListaPlataformas.iterator();
@@ -107,8 +107,8 @@
   <ul class="list-group list-group-flush" style="" name="categorias">
   <label>Categorías:</label>
   	<%
-  	Set<DtCategoria> Categorias = Fabrica.getInstancia().getICategoria().listarCategorias();
-    Iterator<DtCategoria> itrc = Categorias.iterator();
+  	List<DtCategoria> lstcats = port.listarCategorias().getCategorias();
+    Iterator<DtCategoria> itrc = lstcats.iterator();
 		while(itrc.hasNext())
 			{ 	
   		String aux = itrc.next().getNomCategoria();

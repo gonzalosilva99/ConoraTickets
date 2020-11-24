@@ -17,7 +17,7 @@ import controladores.Fabrica;
 import java.util.Set;
 import interfaces.IPlataforma;
 import datatypes.DtEspectador;
-import datatypes.EstadoSesion;
+import webservices.EstadoSesion;
 /**
  * Servlet implementation class Home
  */

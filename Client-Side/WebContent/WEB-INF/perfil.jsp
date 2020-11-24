@@ -6,7 +6,7 @@
 <head>
 	<%@page import="datatypes.DtEspectadorPerfil"%>
 	<%@page import="datatypes.DtArtistaPerfil"%>
-	<%@page import="datatypes.EstadoSesion" %>
+	<%@page import="webservices.EstadoSesion" %>
 	<%@page import="datatypes.DtRegistro" %>
 	<%@page import="datatypes.DtPaqueteDatos" %>
 	<%@page import="datatypes.DtEspectaculo" %>

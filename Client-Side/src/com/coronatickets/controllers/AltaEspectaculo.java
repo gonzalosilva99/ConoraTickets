@@ -23,7 +23,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import controladores.Fabrica;
 import interfaces.IPlataforma;
 import datatypes.DtCategoria;
-import datatypes.EstadoSesion;
+import webservices.EstadoSesion;
 import excepciones.Identidad;
 /**
  * Servlet implementation class Home
@@ -56,6 +56,7 @@ public class AltaEspectaculo extends HttpServlet {
 		    String duracion = requestt.getParameter("duracion");
 		    String url = requestt.getParameter("url");
 		    String imagen = requestt.getParameter("imagen");
+		    webservices.ArrayCategorias cate = new webservices.ArrayCategorias();
 		    List<webservices.DtCategoria> lcat = new ArrayList<webservices.DtCategoria>();
 		    String[] values = requestt.getParameterValues("checked");
 		    if(values!=null) {
@@ -65,12 +66,12 @@ public class AltaEspectaculo extends HttpServlet {
 		    	  lcat.add(auxx);
 		    }
 		    }
-		   
-		    webservices.ArrayCategorias cate = new webservices.ArrayCategorias();
+		    else lcat=null;
 		    cate.getCategorias().addAll(lcat);
 		    java.util.Date fechaactual = new Date();
 		    aux.setTime(fechaactual);
 			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
+			System.out.print( (String) requestt.getSession().getAttribute("usuario_logueado"));
 	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cate, "", "", 0);	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
 	    	requestt.setAttribute("aceptado", "true");
