@@ -3,6 +3,7 @@ package com.coronatickets.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import interfaces.IUsuario;
 import controladores.Fabrica;
@@ -36,7 +39,9 @@ public class ComprarPaquete extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String) request.getSession().getAttribute("usuario_logueado"))
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
+		if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !port.esArtista((String) request.getSession().getAttribute("usuario_logueado"))
 				/*&& request.getAttribute("nomespectaculo")!=null && request.getAttribute("funcion")!=null*/) {
 			request.getRequestDispatcher("/WEB-INF/comprarpaquete.jsp").forward(request, response);
 		}
@@ -58,17 +63,21 @@ public class ComprarPaquete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
 		Login.ActualizarUltimoIngreso(request);
 		response.setContentType("text/plain"); // Using text/plain for example
 		   response.setCharacterEncoding("UTF-8");
 		   try {
 			   String usuario = (String) request.getSession().getAttribute("usuario_logueado");
 			   String paquete = (String) request.getParameter("paquete");
+			   GregorianCalendar aux = new GregorianCalendar();
 			   Date fecha = new Date();
-			   
+				aux.setTime(fecha);
+				XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);	   
 			   if(paquete != null  && usuario != null) {
 				   System.out.print("que carajos pasa");
-				   Fabrica.getInstancia().getIUsuario().comprarPaquete(usuario, paquete, fecha);				  
+				   port.comprarPaquete(usuario, paquete, fef);				  
 			   }
 			   response.getWriter().write("SUCCESS");
 		   }

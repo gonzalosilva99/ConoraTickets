@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import controladores.Fabrica;
 import interfaces.IPlataforma;
-import datatypes.DtCategoria;
+import webservices.DtCategoria;
 import webservices.EstadoSesion;
 import excepciones.Identidad;
 /**
@@ -66,7 +66,6 @@ public class AltaEspectaculo extends HttpServlet {
 		    	  lcat.add(auxx);
 		    }
 		    }
-		    else lcat=null;
 		    cate.getCategorias().addAll(lcat);
 		    java.util.Date fechaactual = new Date();
 		    aux.setTime(fechaactual);

@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -20,7 +21,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import datatypes.DtUsuario;
 import datatypes.DtCategoria;
@@ -76,9 +78,11 @@ public class Configuracion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
 		try {
+			webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
 			webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
 			Boolean esartista = false; 
-			if(Fabrica.getInstancia().getIUsuario().esArtista(usuario.getNickname()))
+			if(port.esArtista(usuario.getNickname()))
 				esartista=true;
 			
 				String nombre = request.getParameter("inputNombre");
@@ -88,9 +92,13 @@ public class Configuracion extends HttpServlet {
 		        String nacimientoString= request.getParameter("inputNacimiento");       
 		        String Imagen = request.getParameter("imagen");
 		        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+		        GregorianCalendar aux = new GregorianCalendar();
+		        XMLGregorianCalendar fef = null;				
 				Date fechaNac = null ;
 				try {
 					fechaNac = formato.parse(nacimientoString);
+					aux.setTime(fechaNac);
+					fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -100,14 +108,14 @@ public class Configuracion extends HttpServlet {
 					String Descripcion = request.getParameter("descgeneral");
 					String Biografia = request.getParameter("biografia");
 					String Url = request.getParameter("url");
-					Fabrica.getInstancia().getIUsuario().modificarArtistaCompleto(nickname, nombre, apellido, fechaNac, Descripcion, Biografia, Url,Imagen);
+					port.modificarArtistaCompleto(nickname, nombre, apellido, fef, Descripcion, Biografia, Url,Imagen);
 					System.out.print("entro al artista");
 				}
 				else {
-					Fabrica.getInstancia().getIUsuario().modificarEspectadorCompleto(nickname, nombre, apellido, fechaNac,Imagen);
+					port.modificarEspectadorCompleto(nickname, nombre, apellido, fef,Imagen);
 					System.out.print("entro al espectador");
 				}
-				DtUsuario nuevousuario = Fabrica.getInstancia().getIUsuario().getUsuarioNickname(nickname);
+				webservices.DtUsuario nuevousuario = port.getUsuarioNickname(nickname);
 				request.setAttribute("usuario_logueado", nuevousuario);
 				response.sendRedirect("/home");
 		}catch(Exception e ) {

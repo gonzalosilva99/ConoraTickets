@@ -5,15 +5,12 @@
 <head>
 	<meta charset="UTF-8">
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
-	<%@page import="datatypes.DtFuncionDatos"%>
-	<%@page import="datatypes.DtPaqueteDatos"%>
-	<%@page import="datatypes.DtArtista"%>
-	<%@page import="datatypes.DtRegistro"%>
-	<%@page import="datatypes.DtCategoria"%>
-	<%@page import="datatypes.DtEspectaculoDatos"%>
-	<%@page import="datatypes.DtPaquete"%>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IPlataforma"%>
+	<%@page import="webservices.DtFuncionDatos"%>
+	<%@page import="webservices.DtPaqueteDatos"%>
+	<%@page import="webservices.DtArtista"%>
+	<%@page import="webservices.DtCategoria"%>
+	<%@page import="webservices.DtEspectaculoDatos"%>
+	<%@page import="webservices.DtPaquete"%>
 	<title>CoronaTickets UY - Comprar Paquete</title>
 </head>
 <body>
@@ -24,9 +21,11 @@
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			<!-- COMIENZO CODIGO -->
 			<%
+				webservices.PublicadorService service = new webservices.PublicadorService();
+	    		webservices.Publicador port = service.getPublicadorPort();
 				DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 				DateFormat horaFecha = new SimpleDateFormat("hh:mm");
-				DtPaqueteDatos dtpaq = Fabrica.getInstancia().getIPaquete().getPaqueteDatos(request.getParameter("nompaquete"));
+				DtPaqueteDatos dtpaq = port.getPaqueteDatos(request.getParameter("nompaquete"));
 				String usuario = (String) request.getSession().getAttribute("usuario_logueado");
 			%>
 			<div class="container-fluid media mb-sm-5">
@@ -47,9 +46,9 @@
 								<% } %></span></p>	<% } %>				
 						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>
 						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= dtpaq.getDescuento() %>%</span></p>							            
-						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>	    
+						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio().toGregorianCalendar().getTime()) || !todayDate.before(dtpaq.getFin().toGregorianCalendar().getTime())) {%>style="color:red;"<% } %>>Validez: </b> <span id="validezPaquete" <% if(!todayDate.after(dtpaq.getInicio().toGregorianCalendar().getTime()) || !todayDate.before(dtpaq.getFin().toGregorianCalendar().getTime())) {%>style="color:red;"<% } %>><%=  fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin()) %></span></p>	    
 	            		 <%
-	    	            		 	if(!Fabrica.getInstancia().getIUsuario().existeCompraPaquete(usuario,dtpaq.getNombre())){
+	    	            		 	if(!port.existeCompraPaquete(usuario,dtpaq.getNombre())){
 	    	            		 %>
 				<div class="container-fluid" id="compraNormal">
 					<form action="comprarpaquete" method="POST" class="form" id="formNormal">

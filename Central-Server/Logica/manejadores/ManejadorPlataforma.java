@@ -255,7 +255,7 @@ public class ManejadorPlataforma {
 			DtFuncionDatos ret = null;			
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
 				DtEspectaculo esp = entry.getValue().existeEspectaculoDeFuncion(nombreFuncion);
-				if (!esp.getNombre().equals("")) {
+				if (esp!=null && !esp.getNombre().equals("")) {
 					ret = entry.getValue().getFuncionDatos(esp.getNombre(), nombreFuncion);
 					break;
 				}

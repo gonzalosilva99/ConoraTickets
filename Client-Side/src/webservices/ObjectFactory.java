@@ -1,7 +1,10 @@
 
 package webservices;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -21,6 +24,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _Identidad_QNAME = new QName("http://webservices/", "Identidad");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: webservices
@@ -78,6 +82,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Identidad }
+     * 
+     */
+    public Identidad createIdentidad() {
+        return new Identidad();
+    }
+
+    /**
      * Create an instance of {@link DtArtistaConsulta }
      * 
      */
@@ -115,6 +127,14 @@ public class ObjectFactory {
      */
     public DtPaqueteDatos createDtPaqueteDatos() {
         return new DtPaqueteDatos();
+    }
+
+    /**
+     * Create an instance of {@link DtRegistro }
+     * 
+     */
+    public DtRegistro createDtRegistro() {
+        return new DtRegistro();
     }
 
     /**
@@ -262,6 +282,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayDtRegistros }
+     * 
+     */
+    public ArrayDtRegistros createArrayDtRegistros() {
+        return new ArrayDtRegistros();
+    }
+
+    /**
      * Create an instance of {@link DtEspectador }
      * 
      */
@@ -347,6 +375,15 @@ public class ObjectFactory {
      */
     public Espectaculo.Funciones.Entry createEspectaculoFuncionesEntry() {
         return new Espectaculo.Funciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Identidad }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservices/", name = "Identidad")
+    public JAXBElement<Identidad> createIdentidad(Identidad value) {
+        return new JAXBElement<Identidad>(_Identidad_QNAME, Identidad.class, null, value);
     }
 
 }

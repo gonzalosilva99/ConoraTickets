@@ -9,6 +9,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 
 
 /**
@@ -55,9 +56,12 @@ public interface Publicador {
      * @param arg10
      * @param arg11
      * @param arg12
+     * @throws Identidad_Exception
      */
     @WebMethod
-    @Action(input = "http://webservices/publicador/altaEspectaculoRequest", output = "http://webservices/publicador/altaEspectaculoResponse")
+    @Action(input = "http://webservices/publicador/altaEspectaculoRequest", output = "http://webservices/publicador/altaEspectaculoResponse", fault = {
+        @FaultAction(className = Identidad_Exception.class, value = "http://webservices/publicador/altaEspectaculo/Fault/Identidad")
+    })
     public void altaEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
@@ -88,7 +92,9 @@ public interface Publicador {
         @WebParam(name = "arg13", partName = "arg13")
         String arg13,
         @WebParam(name = "arg14", partName = "arg14")
-        int arg14);
+        int arg14)
+        throws Identidad_Exception
+    ;
 
     /**
      * 
@@ -311,9 +317,12 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
+     * @throws Identidad_Exception
      */
     @WebMethod
-    @Action(input = "http://webservices/publicador/confirmarAltaArtistaRequest", output = "http://webservices/publicador/confirmarAltaArtistaResponse")
+    @Action(input = "http://webservices/publicador/confirmarAltaArtistaRequest", output = "http://webservices/publicador/confirmarAltaArtistaResponse", fault = {
+        @FaultAction(className = Identidad_Exception.class, value = "http://webservices/publicador/confirmarAltaArtista/Fault/Identidad")
+    })
     public void confirmarAltaArtista(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
@@ -334,7 +343,9 @@ public interface Publicador {
         @WebParam(name = "arg8", partName = "arg8")
         String arg8,
         @WebParam(name = "arg9", partName = "arg9")
-        String arg9);
+        String arg9)
+        throws Identidad_Exception
+    ;
 
     /**
      * 
@@ -345,9 +356,12 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
+     * @throws Identidad_Exception
      */
     @WebMethod
-    @Action(input = "http://webservices/publicador/confirmarAltaEspectadorRequest", output = "http://webservices/publicador/confirmarAltaEspectadorResponse")
+    @Action(input = "http://webservices/publicador/confirmarAltaEspectadorRequest", output = "http://webservices/publicador/confirmarAltaEspectadorResponse", fault = {
+        @FaultAction(className = Identidad_Exception.class, value = "http://webservices/publicador/confirmarAltaEspectador/Fault/Identidad")
+    })
     public void confirmarAltaEspectador(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
@@ -362,7 +376,9 @@ public interface Publicador {
         @WebParam(name = "arg5", partName = "arg5")
         String arg5,
         @WebParam(name = "arg6", partName = "arg6")
-        String arg6);
+        String arg6)
+        throws Identidad_Exception
+    ;
 
     /**
      * 
@@ -665,12 +681,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayDtRegistros
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarRegistrosRequest", output = "http://webservices/publicador/listarRegistrosResponse")
-    public ArrayList listarRegistros(
+    public ArrayDtRegistros listarRegistros(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
