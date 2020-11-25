@@ -4,18 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@page import="datatypes.DtEspectadorPerfil"%>
-	<%@page import="datatypes.DtArtistaPerfil"%>
+	<%@page import="webservices.DtEspectadorPerfil"%>
+	<%@page import="webservices.DtArtistaPerfil"%>
+	<%@page import="webservices.DtRegistro" %>
+	<%@page import="webservices.DtPaqueteDatos" %>
+	<%@page import="webservices.DtEspectaculo" %>
+	<%@page import="webservices.DtFuncion" %>	
+	<%@page import="webservices.DtUsuario" %>
+	<%@page import="webservices.DtFuncionDatos" %>	
+	<%@page import="webservices.EstadoEspectaculo" %>
 	<%@page import="webservices.EstadoSesion" %>
-	<%@page import="datatypes.DtRegistro" %>
-	<%@page import="datatypes.DtPaqueteDatos" %>
-	<%@page import="datatypes.DtEspectaculo" %>
-	<%@page import="datatypes.DtFuncion" %>	
-	<%@page import="datatypes.DtUsuario" %>	
-	<%@page import="datatypes.EstadoEspectaculo" %>	
-	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IUsuario"%>
 	<%@page import="java.time.Month"%>
 	<%@page import="java.util.Date"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
@@ -24,14 +22,16 @@
 <body>
 	
 	<%
+	webservices.PublicadorService service = new webservices.PublicadorService();
+	webservices.Publicador port = service.getPublicadorPort();
 	boolean PerfilPropio = false;
-	boolean Logueado = ((EstadoSesion) request.getSession().getAttribute("estado_sesion"))==EstadoSesion.LOGIN_CORRECTO;
+	boolean Logueado = ((webservices.EstadoSesion) request.getSession().getAttribute("estado_sesion"))==webservices.EstadoSesion.LOGIN_CORRECTO;
 	String idUsuario = (String) request.getSession().getAttribute("usuario_logueado");
-	DtArtistaPerfil dtart=null;
+	webservices.DtArtistaPerfil dtart=null;
 	DateFormat fechaCompleta = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 	DateFormat horaFecha = new SimpleDateFormat("hh:mm");
-	DtEspectadorPerfil dtesp=null;
+	webservices.DtEspectadorPerfil dtesp=null;
 	boolean EsArtista =((String) request.getAttribute("tipo_usuario"))=="Artista";
 	if(EsArtista){
 		dtart = (DtArtistaPerfil) request.getAttribute("usuario_perfil");
@@ -70,11 +70,11 @@
 	 	   		</div>
 		 	    <div class="row">
 		 	    	<p class="mx-auto"><b>Último Ingreso: </b><% if(EsArtista){if(dtart.getUltimoIngreso()!=null){%>
-						<%= fechaCompleta.format(dtart.getUltimoIngreso())%>
+						<%= fechaCompleta.format(dtart.getUltimoIngreso().toGregorianCalendar().getTime())%>
 		 	      		<%}else{%>
 		 	      			<%= "Nunca" %>
 		 	      		<% }}else{if(dtesp.getUltimoIngreso()!=null){ %>
-		 	      		<%= fechaCompleta.format(dtesp.getUltimoIngreso()) %>
+		 	      		<%= fechaCompleta.format(dtesp.getUltimoIngreso().toGregorianCalendar().getTime()) %>
 		 	      		<%}else{ %>
 		 	      			<%= "Nunca" %>
 		 	      			<%}}%></p>
@@ -136,11 +136,11 @@
 				      		</div>
 							<div class="modal-body" >
 						<%
-						Iterator<DtUsuario> Seguidores=null;
+						Iterator<webservices.DtUsuario> Seguidores=null;
 						if(EsArtista){Seguidores=dtart.getSeguidores().iterator();}
 						else{Seguidores=dtesp.getSeguidores().iterator();}
 						while(Seguidores.hasNext()){
-							DtUsuario nuevo = Seguidores.next();
+							webservices.DtUsuario nuevo = Seguidores.next();
 				      	%>
 						<a href="/perfil?id=<%= nuevo.getNickname() %>">
 							<div class="row" >
@@ -160,13 +160,13 @@
 	 	   		<% if(!PerfilPropio){ %>
 	 	   			<%
 	 	   			boolean Siguiendo = false;
-	 	   			Set<DtUsuario> seguidores = new HashSet<DtUsuario>();
+	 	   			List<webservices.DtUsuario> seguidores = new ArrayList<webservices.DtUsuario>();
 	 	   			if(Logueado){
 	 	   			if(EsArtista){seguidores = dtart.getSeguidores();}
 	 	   			else{seguidores = dtesp.getSeguidores();}
-	 	   			Iterator<DtUsuario> itrseguidores = seguidores.iterator();
+	 	   			Iterator<webservices.DtUsuario> itrseguidores = seguidores.iterator();
 	 	   			while(itrseguidores.hasNext()){
-	 	   				DtUsuario nuevo = itrseguidores.next();
+	 	   			webservices.DtUsuario nuevo = itrseguidores.next();
 	 	   				if(nuevo.getNickname().equals(idUsuario)){
 	 	   					Siguiendo = true;
 	 	   				}
@@ -220,7 +220,7 @@
 						<p class="text-dark"><b>Nombre:</b> <span id="nombreUsuario"><% if(EsArtista){%>	<%= dtart.getNombre() %><%}else{%><%= dtesp.getNombre() %><%}%></span></p>
 						<p class="text-dark"><b>Apellido:</b> <span id="apellidoUsuario"><% if(EsArtista){%>	<%= dtart.getApellido() %><%}else{%><%= dtesp.getApellido() %><%}%></span></p>
 						<p class="disabled"><b>Correo Electrónico:</b> <span id="correoUsuario"><% if(EsArtista){%>	<%= dtart.getEmail() %><%}else{%><%= dtesp.getEmail() %><%}%></span></p>
-						<p class="text-dark"><b>Fecha de Nacimiento:</b> <span id="nacimientoUsuario"><% if(EsArtista){%> <%= fechaIncompleta.format(dtart.getNacimiento()) %> <%}else{ %> <%= fechaIncompleta.format(dtesp.getNacimiento())  %> <%}%></span></p>
+						<p class="text-dark"><b>Fecha de Nacimiento:</b> <span id="nacimientoUsuario"><% if(EsArtista){%> <%= fechaIncompleta.format(dtart.getNacimiento().toGregorianCalendar().getTime()) %> <%}else{ %> <%= fechaIncompleta.format(dtesp.getNacimiento().toGregorianCalendar().getTime())  %> <%}%></span></p>
 						<% if(EsArtista){ %>
 						<p class="text-dark"><b>Desc. General:</b> <span id="descGeneralUsuario"><%= dtart.getDescgeneral() %></span></p>
 						<p class="text-dark"><b>Biografía:</b> <span id="biografiaUsuario"><%= dtart.getBiografia() %></span></p>
@@ -233,21 +233,22 @@
 			  			<div class="container mt-5">
 				  			<% 	
 				  			
-				  				Set<DtRegistro> registros = Fabrica.getInstancia().getIUsuario().listarRegistros(dtesp.getNickname());
-				  				Iterator<DtRegistro> itrreg = registros.iterator();
+				  				List<webservices.DtRegistro> registros = port.listarRegistros(dtesp.getNickname()).getRegistros();
+				  				Iterator<webservices.DtRegistro> itrreg = registros.iterator();
 				  				while(itrreg.hasNext()){
-				  					DtRegistro reg = itrreg.next();
-				  					DtFuncion nuevo = Fabrica.getInstancia().getIPlataforma().getDtFuncion(reg.getNombreFuncion());
+				  					webservices.DtRegistro reg = itrreg.next();
+				  					webservices.DtFuncion nuevo = port.getDtFuncion(reg.getNombrefuncion());
+				  					
 				  			%>
 					    		<div class="container-fluid media mb-sm-3">
-				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
+				    			<a href="/consultaespectaculo?nomespectaculo=<%= port.findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
 				    			<div class="container-fluid media">
 				    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
 										<div class="media-body ml-sm-4">	
 											<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
-									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
-									  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
-									  		<p class="text-dark"><b>Costo:</b> <span id="horaFuncion"><%= reg.getCosto() %> </span></p>	
+									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio().toGregorianCalendar().getTime()) %></span></p>
+									  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio().toGregorianCalendar().getTime()) %> </span></p>	
+									  		<p class="text-dark"><b>Costo:</b> <span id="horaFuncion"><%= reg.getCosto() %> </span></p>
 											        
 								        </div>
 								</div>
@@ -268,7 +269,7 @@
 							Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
 							while(itresp.hasNext()) {
 								DtEspectaculo nuevo = itresp.next();
-								if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){
+								if(nuevo.getEstado()==EstadoEspectaculo.ACEPTADO){
 					%>
 							<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
@@ -309,7 +310,7 @@
 									         	<p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= nuevo.getNombre() %></span></p>
 												<p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= nuevo.getDescripcion() %></span></p>
 									  			<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%= nuevo.getDescuento() %>%</span></p>	
-									  			<p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(nuevo.getInicio()) + " - " + fechaIncompleta.format(nuevo.getFin()) %></span></p>							            
+									  			<p class="text-dark"><b>Validez: </b> <span id="validezPaquete"><%=  fechaIncompleta.format(nuevo.getInicio().toGregorianCalendar().getTime()) + " - " + fechaIncompleta.format(nuevo.getFin().toGregorianCalendar().getTime()) %></span></p>							            
 									  		</div>
 									</div>
 								</a>
@@ -336,11 +337,11 @@
 										         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
 													<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%try{ %><%= nuevo.getDescripcion().substring(0, 50) + "..."%><%}catch(Exception e){%><%= nuevo.getDescripcion()%>  <%}%> </span></p>									  					            
 										  			<%
-										  			if(nuevo.getEstado()==EstadoEspectaculo.Aceptado){%>
+										  			if(nuevo.getEstado()==EstadoEspectaculo.ACEPTADO){%>
 										  				<p class="text-success"><b>Aceptado</b></p>
-										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Rechazado){ %>
+										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.RECHAZADO){ %>
 										  				<p class="text-danger"><b>Rechazado</b></p>
-										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.Ingresado){ %>
+										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.INGRESADO){ %>
 										  				<p class="text-warning"><b>Ingresado</b></p>
 										  			<%}else if(nuevo.getEstado()==null){System.out.println("ES NULL LOCO");}%>
 											</div>
@@ -354,18 +355,19 @@
 					<!-- MOSTRAMOS LAS FUNCIONES A LAS QUE FUE INVITADO -->
 					<div class="tab-pane fade" id="funcionesinvitado" role="tabpanel" aria-labelledby="funcionesinvitado-tab">
 						<div class="container mt-5">
-				  			<% 	Iterator<DtFuncion> itrfunc2 = dtart.getFuncionesInvitado().iterator();
+				  			<% 	Iterator<DtFuncion> itrfunc2 = dtart.getFuncionesinvitado().iterator();
 				  				while(itrfunc2.hasNext()){
 				  					DtFuncion nuevo = itrfunc2.next();
+				  					System.out.println("AAA "+nuevo.getNombre() + " " + nuevo.getAlta() + " " + nuevo.getImagen());
 				  			%>
 					    		<div class="container-fluid media mb-sm-3">
-				    			<a href="/consultaespectaculo?nomespectaculo=<%= Fabrica.getInstancia().getIPlataforma().findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
+				    			<a href="/consultaespectaculo?nomespectaculo=<%= port.findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
 					    			<div class="container-fluid media">
 					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
 											<div class="media-body ml-sm-4">	
 												<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
-										  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio()) %></span></p>
-										  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio()) %> </span></p>	
+										  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio().toGregorianCalendar().getTime()) %></span></p>
+										  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio().toGregorianCalendar().getTime()) %> </span></p>	
 									        </div>
 									</div>
 								</a>

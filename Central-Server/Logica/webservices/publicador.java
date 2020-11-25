@@ -10,6 +10,7 @@ import controladores.Fabrica;
 import datatypes.ArrayEspectaculos;
 import controladores.Fabrica;
 import datatypes.ArrayCategorias;
+import datatypes.ArrayDtRegistros;
 import datatypes.ArrayPlataformas;
 import datatypes.ArrayArtistas;
 import datatypes.DtArtista;
@@ -285,8 +286,9 @@ public class publicador {
     	iusuario.modificarEspectadorCompleto(Nickname, Nombre, Apellido, Nacimiento, Imagen);
     }
     @WebMethod
-	public ArrayList<DtRegistro> listarRegistros(String Nickname){
-    	ArrayList<DtRegistro> ret = new ArrayList<DtRegistro>(iusuario.listarRegistros(Nickname));
+    public ArrayDtRegistros listarRegistros(String Nickname){
+    	ArrayDtRegistros ret = new ArrayDtRegistros();
+    	ret.setRegistros(new ArrayList<DtRegistro>(iusuario.listarRegistros(Nickname)));
     	return ret;
     }
     @WebMethod

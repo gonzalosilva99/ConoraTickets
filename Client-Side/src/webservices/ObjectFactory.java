@@ -130,6 +130,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtRegistro }
+     * 
+     */
+    public DtRegistro createDtRegistro() {
+        return new DtRegistro();
+    }
+
+    /**
      * Create an instance of {@link Paquete }
      * 
      */
@@ -271,6 +279,14 @@ public class ObjectFactory {
      */
     public DtCategoria createDtCategoria() {
         return new DtCategoria();
+    }
+
+    /**
+     * Create an instance of {@link ArrayDtRegistros }
+     * 
+     */
+    public ArrayDtRegistros createArrayDtRegistros() {
+        return new ArrayDtRegistros();
     }
 
     /**

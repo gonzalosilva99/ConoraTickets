@@ -681,12 +681,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayDtRegistros
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarRegistrosRequest", output = "http://webservices/publicador/listarRegistrosResponse")
-    public ArrayList listarRegistros(
+    public ArrayDtRegistros listarRegistros(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

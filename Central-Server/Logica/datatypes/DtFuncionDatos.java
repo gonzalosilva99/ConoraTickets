@@ -1,11 +1,11 @@
 package datatypes;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 public class DtFuncionDatos {
 private String nombre;
-
 private	Date inicio;
 private	Date alta;
 private	Set<DtArtista> artistas;
@@ -27,11 +27,15 @@ public DtFuncionDatos(String nombre, Date inicio, Date alta, Set<DtArtista> arti
 		this.espectaculo = espectaculo;
 		this.imagen = imagen;
 		this.espectadores = espectadores;
-		this.setRegistros(registros);
+		this.registros = registros;
 		this.fechaSorteo = fechaSorteo;
 		this.ganadoresSorteo = ganadoresSorteo;
 	}
-public DtFuncionDatos() {}
+public DtFuncionDatos() {
+	registros = new HashSet<DtRegistroFuncion>();
+	ganadoresSorteo = new HashSet<DtEspectador>();
+	artistas = new HashSet<DtArtista>();
+}
 
 public String getNombre() {
 	return nombre;
