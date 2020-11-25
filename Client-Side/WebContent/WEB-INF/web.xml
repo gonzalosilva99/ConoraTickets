@@ -18,6 +18,30 @@
         <url-pattern>/altaespectaculo</url-pattern>
   	</servlet-mapping>
   	<servlet>
+        <servlet-name>Mobile Login Home</servlet-name>
+        <servlet-class>com.coronatickets.controllers.MobileLoginHome</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Mobile Login Home</servlet-name>
+        <url-pattern>/mobilesingin</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Servlet Login Mobile</servlet-name>
+        <servlet-class>com.coronatickets.controllers.MobileLogin</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Login Mobile</servlet-name>
+        <url-pattern>/mobilelogin</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Mobile Home</servlet-name>
+        <servlet-class>com.coronatickets.controllers.MobileHome</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Mobile Home</servlet-name>
+        <url-pattern>/mobilehome</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
         <servlet-name>Servlet Registro a Funcion</servlet-name>
         <servlet-class>com.coronatickets.controllers.RegistroAFuncion</servlet-class>
   	</servlet>
