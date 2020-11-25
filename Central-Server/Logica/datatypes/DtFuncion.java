@@ -3,7 +3,7 @@ package datatypes;
 import java.util.Date;
 
 public class DtFuncion {
-
+public DtFuncion() {}
 public DtFuncion(String nombre2, Date inicio2, Date alta2, String imagen2) {
 	super();
 	nombre = nombre2;

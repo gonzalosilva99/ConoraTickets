@@ -143,8 +143,12 @@ public class publicador {
     }
     
     @WebMethod
-	public void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, ArrayList<String> artistas, Date alta, String imagen) {
-    	Set<String> art = new HashSet<String>(artistas);
+	public void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, ArrayArtistas artistas, Date alta, String imagen) {
+    	ArrayList<String> listaArtistas = new ArrayList<>();
+    	for (DtArtista artista: artistas.getArtistas()) {
+    		listaArtistas.add(artista.getNickname());
+    	}
+    	Set<String> art = new HashSet<String>(listaArtistas);
     	iplataforma.confirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, art, alta, imagen);
     }
 
@@ -397,6 +401,11 @@ public class publicador {
     	EstadoSesion estado = null;
     	return estado;
     }
-    
+    @WebMethod 
+    public ArrayEspectaculos listarEspectaculosAceptadosArtistaPlataforma(String nickname, String nombrePlataforma){
+    	ArrayEspectaculos espectaculos = new ArrayEspectaculos();
+    	espectaculos.setEspectaculos(new ArrayList<>(iusuario.listarEspectaculosAceptadosArtistaPlataforma(nickname, nombrePlataforma)));
+    	return espectaculos;
+    }
 
 }

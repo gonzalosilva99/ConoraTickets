@@ -2,6 +2,8 @@ package datatypes;
 
 public class DtEspectaculo {
 	
+public DtEspectaculo() {}
+	
 public DtEspectaculo(String nombre, String descripcion, String imagen, EstadoEspectaculo estado, Integer costo, String urlVideo,
 		String premio, int cantPremios, double puntajePromedio, int cantFavoritos, int duracion) {
 		super();

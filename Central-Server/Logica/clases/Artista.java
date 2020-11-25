@@ -17,6 +17,7 @@ import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtUsuario;
 import datatypes.EstadoEspectaculo;
+import manejadores.ManejadorUsuario;
 import datatypes.DtEspectaculoDatos;
 
 
@@ -169,5 +170,12 @@ public class Artista extends Usuario{
 		}
 		
 		protected void abstracta() {};
-	
+		
+		public Set<DtEspectaculo> listarEspectaculos(){
+			Set<DtEspectaculo> ret = new HashSet<>();
+			for(Espectaculo espectaculo: espectaculos) {
+				ret.add(espectaculo.getDatosEspectaculo());
+			}
+			return ret;
+		}
 }

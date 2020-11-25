@@ -3,9 +3,8 @@
 <head>
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.text.*,java.util.*" %>
     <%@page import="webservices.*"%>
-	<%@page import="java.util.Set" %>
-	<%@page import="java.util.Iterator" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
 	<%@page import="com.coronatickets.controllers.AltaFuncion" %>
 	<%@page import="java.time.Month"%>
@@ -57,7 +56,11 @@
 
    </div>
     <%
-    	Set<DtEspectaculo> espectaculosActivados = (Set<DtEspectaculo>) request.getSession().getAttribute("espectaculosAceptados");
+    	if (plataformaSeleccionada == null){
+    		plataformaSeleccionada = "";
+    	}
+    	List<DtEspectaculo> espectaculosActivados = (ArrayList<DtEspectaculo>) port.listarEspectaculosAceptadosArtistaPlataforma(usuario.getNickname(), plataformaSeleccionada).getEspectaculos();
+
     %>
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto"> 	
       <select class="custom-select" id="selectEspectaculos" name="espectaculo" >

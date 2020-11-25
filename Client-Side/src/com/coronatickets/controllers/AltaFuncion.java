@@ -87,14 +87,19 @@ public class AltaFuncion extends HttpServlet {
 				if (invitados != null) {
 					invitadosSet = new HashSet<>(Arrays.asList(invitados));
 				}
-				ArrayList<String> invitadosList = new ArrayList<>(invitadosSet);
+				webservices.ArrayArtistas arrayInvitados = new ArrayArtistas();
+				for (String invitado: invitadosSet) {
+					DtArtista artista = new DtArtista();
+					artista.setNickname(invitado);
+					arrayInvitados.getArtistas().add(artista);
+				}
 				GregorianCalendar c = new GregorianCalendar();
 				c.setTime(fechaFuncion);
 				XMLGregorianCalendar fechaFuncionGregorian = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 				c.setTime(fechaAlta);
 				XMLGregorianCalendar fechaAltaGregorian = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 				String imagen = (String)request.getParameter("imagen");
-				port.confirmarAltaFuncionEspectaculo(plataforma, espectaculo, funcion, fechaFuncionGregorian, invitadosList, fechaAltaGregorian, imagen);
+				port.confirmarAltaFuncionEspectaculo(plataforma, espectaculo, funcion, fechaFuncionGregorian, arrayInvitados, fechaAltaGregorian, imagen);
 				response.getWriter().write("SUCCESS");
 			}				
 		}catch(Exception e) {

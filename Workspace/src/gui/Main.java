@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import controladores.Fabrica;
+import datatypes.DtEspectaculo;
 import datatypes.TipoRegistro;
 import interfaces.ICategoria;
 import interfaces.IPaquete;
