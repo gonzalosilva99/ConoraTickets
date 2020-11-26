@@ -11,13 +11,13 @@ import javax.xml.bind.annotation.XmlType;
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
  * <pre>
- * &lt;simpleType name="estadoSesion">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="NO_LOGIN"/>
- *     &lt;enumeration value="LOGIN_CORRECTO"/>
- *     &lt;enumeration value="LOGIN_INCORRECTO"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="estadoSesion"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *     &lt;enumeration value="NO_LOGIN"/&gt;
+ *     &lt;enumeration value="LOGIN_CORRECTO"/&gt;
+ *     &lt;enumeration value="LOGIN_INCORRECTO"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
  * 
  */

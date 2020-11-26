@@ -8,15 +8,14 @@
 <head>
 	<%@page import="datatypes.DtEspectaculoDatos"%>
 	<%@page import="webservices.EstadoSesion" %>
-	<%@page import="datatypes.DtCategoria" %>
-	<%@page import="datatypes.DtPaquete" %>
-	<%@page import="datatypes.DtArtista" %>
-	<%@page import="datatypes.DtEspectador" %>
-	<%@page import="datatypes.DtFuncionDatos" %>
+	<%@page import="webservices.DtCategoria" %>
+	<%@page import="webservices.DtPaquete" %>
+	<%@page import="webservices.DtArtista" %>
+	<%@page import="webservices.DtEspectador" %>
+	<%@page import="webservices.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="datatypes.DtRegistroFuncion"%>
-	<%@page import="interfaces.IUsuario"%>	
+	<%@page import="webservices.DtRegistroFuncion"%>
+	<%@page import="webservices.ArrayPaquetes"%>	
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	<title>CoronaTickets UY - Consulta Espectaculo</title>
 </head>
@@ -29,12 +28,14 @@
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<%
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
 				String usuario = (String) request.getSession().getAttribute("usuario_logueado");
-				DtEspectaculoDatos dtesp=null;
-				dtesp = (DtEspectaculoDatos) request.getAttribute("espectaculo");
-				String plataformaesp = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre());
-				Set<DtPaquete> dtpaqesp = dtesp.getPaquetes();
-				Set<DtPaquete> dtpaq = Fabrica.getInstancia().getIPaquete().listarPaquetes();
+				webservices.DtEspectaculoDatos dtesp=null;
+				dtesp = (webservices.DtEspectaculoDatos) request.getAttribute("espectaculo");
+				String plataformaesp = port.getPlataformaDeEspectaculo(dtesp.getNombre());
+				List<webservices.DtPaquete> dtpaqesp = dtesp.getPaquetes();
+				ArrayPaquetes dtpaq = port.listarPaquetes();
 				DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 				if(dtesp!=null){
 		%>
@@ -78,9 +79,9 @@
 						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>
 						<a href="/perfil?id=<%= dtesp.getOrganizador().getNickname() %>"><p class="text-dark"><b>Organizador:</b> <span id="descripcionEspectaculo"><%= dtesp.getOrganizador().getNombre() %> <%= dtesp.getOrganizador().getApellido() %></span></p></a>
 						<p class="text-dark"><b>Duracion:</b> <span id="duracionEspectaculo"><%= dtesp.getDuracion() %> minutos</span></p>
-						<a href="<%= dtesp.getURL() %>"><p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getURL() %></span></p></a>
-						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores"><%= dtesp.getCantMin() %></span></p>
-					    <p class="text-dark"><b>Cantidad maxima de Espectadores:</b> <span id="cantMaxEspectadores"><%= dtesp.getCantMax() %></span></p>
+						<a href="<%= dtesp.getUrl() %>"><p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getUrl() %></span></p></a>
+						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores"><%= dtesp.getCantmin() %></span></p>
+					    <p class="text-dark"><b>Cantidad maxima de Espectadores:</b> <span id="cantMaxEspectadores"><%= dtesp.getCantmax() %></span></p>
 						<p class="text-dark"><b>Costo:</b> <span id="costoEspectaculo"><%= dtesp.getCosto() %></span></p>					    
 					</div>
 			  		<div class="tab-pane fade ml-sm-5 mt-sm-5" id="funciones" role="tabpanel" aria-labelledby="funciones-tab">	 
@@ -103,8 +104,8 @@
 				    				<div class="panel-body">
 				    							    							  				
 								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxf.getNombre() %> </span></p>
-								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(auxf.getInicio()) %></span></p>
-								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= auxf.getInicio().getHours() + ":" + (auxf.getInicio().getMinutes()/10)+(auxf.getInicio().getMinutes()%10)%> </span></p>					
+								  			 <p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(auxf.getInicio().toGregorianCalendar().getTime()) %></span></p>
+								  			 <p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= auxf.getInicio().toGregorianCalendar().getTime().getHours() + ":" + (auxf.getInicio().toGregorianCalendar().getTime().getMinutes()/10)+(auxf.getInicio().toGregorianCalendar().getTime().getMinutes()%10)%> </span></p>					
 				    						 <% Integer tama = auxf.getArtistas().size();
 				    						 	if(tama>0){tama=0;%>
 				    						 <p class="text-dark"><b>Artistas Invitados:</b> <span id="artistasinvitados">
@@ -119,13 +120,13 @@
 											<% } %>
 											<p class="text-dark"><b>Espectadores hasta el momento:</b> <span id="fechaFuncion"><%= auxf.getEspectadores() %></span></p>
 				    						<%
-				    							if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String)request.getSession().getAttribute("usuario_logueado"))){
+				    							if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !port.esArtista((String)request.getSession().getAttribute("usuario_logueado"))){
 				    						%>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarFuncion('<%=auxf.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
 				    						<%
 				    							}
-				    							else if (dtesp.getOrganizador().getNickname().equals(usuario) && request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && Fabrica.getInstancia().getIUsuario().esArtista(usuario)){
-				    								if (new Date().after(auxf.getInicio()) && auxf.getFechaSorteo()==null){
+				    							else if (dtesp.getOrganizador().getNickname().equals(usuario) && request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && port.esArtista(usuario)){
+				    								if (new Date().after(auxf.getInicio().toGregorianCalendar().getTime()) && auxf.getFechaSorteo()==null){
 				    						%>
 				    							<button type="submit" class="btn btn-info" data-toggle="modal" data-target="#ModalSorteo<%= auxf.getNombre().replace(" ","") %>" onclick=""><i class="fas fa-dice"></i>Realizar Sorteo</button>
 				    							<!-- MODAL SORTEAR -->
@@ -214,9 +215,9 @@
 								             <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%=auxp.getNombre()%></span></p>
 								             <p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%=auxp.getDescripcion()%></span></p>
 								  			 <p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%=auxp.getDescuento()%>%</span></p>							            
-								  			 <p class="text-dark red"><b <%if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<%}%>>Validez: </b> <span id="validezPaquete" <%if(!todayDate.after(auxp.getInicio()) || !todayDate.before(auxp.getFin())) {%>style="color:red;"<%}%>><%=fechaIncompleta.format(auxp.getInicio()) + " - " + fechaIncompleta.format(auxp.getFin())%></span></p>
+								  			 <p class="text-dark red"><b <%if(!todayDate.after(auxp.getInicio().toGregorianCalendar().getTime()) || !todayDate.before(auxp.getFin().toGregorianCalendar().getTime())) {%>style="color:red;"<%}%>>Validez: </b> <span id="validezPaquete" <%if(!todayDate.after(auxp.getInicio().toGregorianCalendar().getTime()) || !todayDate.before(auxp.getFin().toGregorianCalendar().getTime())) {%>style="color:red;"<%}%>><%=fechaIncompleta.format(auxp.getInicio().toGregorianCalendar().getTime()) + " - " + fechaIncompleta.format(auxp.getFin().toGregorianCalendar().getTime())%></span></p>
 								  			 <%
-								  			 	if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String)request.getSession().getAttribute("usuario_logueado")) && todayDate.after(auxp.getInicio()) && todayDate.before(auxp.getFin()) ){
+								  			 	if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !port.esArtista((String)request.getSession().getAttribute("usuario_logueado")) && todayDate.after(auxp.getInicio().toGregorianCalendar().getTime()) && todayDate.before(auxp.getFin().toGregorianCalendar().getTime()) ){
 								  			 %>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=auxp.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
 				    						<%
@@ -231,7 +232,7 @@
 				    					}}
 				    				%>
 				    				<%
-				    					if(usuario!=null && Fabrica.getInstancia().getIUsuario().esArtista(usuario)){
+				    					if(usuario!=null && port.esArtista(usuario)){
 				    				%>
 				    				<div class="container-fluid">
 				    					<p class="mx-auto" id="anadirpaquetes"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirPaquete"><i class="far fa-folder-plus"></i> Añadir Paquete</button></p>
@@ -250,7 +251,7 @@
 												<form action="consultaespectaculo" method="POST" class="form" id="formAnadirPaquetes">
 													<%
 													Set<DtPaquete> dtpaqultimos = new HashSet<DtPaquete>();
-													Iterator<DtPaquete> itrdtpaq = dtpaq.iterator();
+													Iterator<DtPaquete> itrdtpaq = dtpaq.getPaquetes().iterator();
 													while(itrdtpaq.hasNext()){
 														DtPaquete nuevo = itrdtpaq.next();
 														boolean anadir = true;

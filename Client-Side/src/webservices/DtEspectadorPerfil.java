@@ -17,16 +17,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="dtEspectadorPerfil">
- *   &lt;complexContent>
- *     &lt;extension base="{http://webservices/}dtEspectadorConsulta">
- *       &lt;sequence>
- *         &lt;element name="paquetesComprados" type="{http://webservices/}dtPaqueteDatos" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="ultimoIngreso" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/extension>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dtEspectadorPerfil"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;extension base="{http://webservices/}dtEspectadorConsulta"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="paquetesComprados" type="{http://webservices/}dtPaqueteDatos" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="ultimoIngreso" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 

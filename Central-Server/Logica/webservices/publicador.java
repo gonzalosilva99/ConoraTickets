@@ -41,6 +41,8 @@ import interfaces.ICategoria;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
 import interfaces.IPaquete;
+import datatypes.ArrayEspectadores;
+import datatypes.ArrayPaquetes;
 
 
 import java.util.Date;
@@ -191,8 +193,9 @@ public class publicador {
     	return iplataforma.getDtFuncion(nombreFuncion);
     }
     @WebMethod
-	public ArrayList<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
-    	ArrayList<DtEspectador> ret = new ArrayList<DtEspectador>(iplataforma.sortearPremios(nombrePlataforma, nombreEspectaculo, nombreFuncion));
+	public ArrayEspectadores sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
+    	ArrayList<DtEspectador> set = new ArrayList<DtEspectador>(iplataforma.sortearPremios(nombrePlataforma, nombreEspectaculo, nombreFuncion));
+    	ArrayEspectadores ret = new ArrayEspectadores(set);
     	return ret;
     }
     @WebMethod    
@@ -350,8 +353,9 @@ public class publicador {
     	return arrcats;
     }
     @WebMethod	
-	public ArrayList<DtPaquete> listarPaquetes(){
-    	ArrayList<DtPaquete> ret = new ArrayList<DtPaquete>(ipaquete.listarPaquetes());
+	public ArrayPaquetes listarPaquetes(){
+    	ArrayList<DtPaquete> set = new ArrayList<DtPaquete>(ipaquete.listarPaquetes());
+    	ArrayPaquetes ret = new ArrayPaquetes(set);
     	return ret;
     }
     @WebMethod

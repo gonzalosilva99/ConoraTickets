@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para arrayArtistas complex type.
+ * <p>Clase Java para arrayEspectadores complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="arrayArtistas"&gt;
+ * &lt;complexType name="arrayEspectadores"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="artistas" type="{http://webservices/}dtArtista" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="espectaculos" type="{http://webservices/}dtEspectador" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "arrayArtistas", propOrder = {
-    "artistas"
+@XmlType(name = "arrayEspectadores", propOrder = {
+    "espectaculos"
 })
-public class ArrayArtistas {
+public class ArrayEspectadores {
 
     @XmlElement(nillable = true)
-    protected List<DtArtista> artistas;
+    protected List<DtEspectador> espectaculos;
 
     /**
-     * Gets the value of the artistas property.
+     * Gets the value of the espectaculos property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the artistas property.
+     * This is why there is not a <CODE>set</CODE> method for the espectaculos property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getArtistas().add(newItem);
+     *    getEspectaculos().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DtArtista }
+     * {@link DtEspectador }
      * 
      * 
      */
-    public List<DtArtista> getArtistas() {
-        if (artistas == null) {
-            artistas = new ArrayList<DtArtista>();
+    public List<DtEspectador> getEspectaculos() {
+        if (espectaculos == null) {
+            espectaculos = new ArrayList<DtEspectador>();
         }
-        return this.artistas;
+        return this.espectaculos;
     }
 
 }

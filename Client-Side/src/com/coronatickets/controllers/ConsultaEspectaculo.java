@@ -2,8 +2,10 @@ package com.coronatickets.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,8 +18,13 @@ import javax.servlet.http.HttpSession;
 import controladores.Fabrica;
 import java.util.Set;
 import interfaces.IPlataforma;
-import datatypes.DtEspectador;
+import webservices.ArrayEspectadores;
+import webservices.DtEspectador;
 import webservices.EstadoSesion;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.LinkedHashMap;
+
 /**
  * Servlet implementation class Home
  */
@@ -40,7 +47,9 @@ public class ConsultaEspectaculo extends HttpServlet {
 			throws ServletException, IOException {
 		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
 		if(nombreEspectaculo!=null) {
-			request.setAttribute("espectaculo",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
+			webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
+			request.setAttribute("espectaculo",port.findDatosEspectaculo(nombreEspectaculo));	
 			request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
 		}
 	}
@@ -61,15 +70,17 @@ public class ConsultaEspectaculo extends HttpServlet {
 		Login.ActualizarUltimoIngreso(request);
 		//processRequest(request, response);
 		try {
+			webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
 			String tipoPost = (String) request.getParameter("tipoPost");
 			String usuario =  (String) request.getSession().getAttribute("usuario_logueado");
 			if(tipoPost.equals("anadirPaquetes")) {
 				String paquete = (String) request.getParameter("paquete");
 				String espectaculo = (String) request.getParameter("espectaculo");
-				String plataforma = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(espectaculo);
+				String plataforma = port.getPlataformaDeEspectaculo(espectaculo);
 				//System.out.println(usuario + " " + paquete + " " + espectaculo + " " + plataforma);
 				if((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && paquete != null && espectaculo!=null) {
-					Fabrica.getInstancia().getIPaquete().confirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
+					port.confirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
 					response.getWriter().write("SUCCESS");
 				}
 				else {
@@ -82,9 +93,9 @@ public class ConsultaEspectaculo extends HttpServlet {
 				String funcion = (String) request.getParameter("funcion");
 				if(funcion != null && espectaculo != null && plataforma != null) {
 					System.out.println(plataforma + " " + espectaculo + " " + funcion);
-					Set<DtEspectador> ganadoresPremio = Fabrica.getInstancia().getIPlataforma().sortearPremios(plataforma, espectaculo, funcion);
+					ArrayEspectadores ganadoresPremio = port.sortearPremios(plataforma, espectaculo, funcion);
 					String ganadores = "";
-					Iterator<DtEspectador> itrespectadores = ganadoresPremio.iterator();
+					Iterator<DtEspectador> itrespectadores = ganadoresPremio.getEspectaculos().iterator();
 					while (itrespectadores.hasNext()) {
 						DtEspectador nuevo = itrespectadores.next();
 						ganadores = ganadores + "\t" + nuevo.getNickname() + "\t" + nuevo.getNombre() + " " + nuevo.getApellido() + "\n";
