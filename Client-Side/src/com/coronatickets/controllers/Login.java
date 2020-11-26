@@ -10,9 +10,6 @@ import javax.servlet.http.HttpSession;
 import webservices.*;
 
 
-
-
-
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

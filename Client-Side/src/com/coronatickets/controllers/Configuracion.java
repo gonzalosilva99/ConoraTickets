@@ -1,6 +1,5 @@
 package com.coronatickets.controllers;
 import java.util.LinkedHashMap; 
-import datatypes.DtUsuario;
 import java.util.Map; 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,12 +23,11 @@ import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import datatypes.DtUsuario;
-import datatypes.DtCategoria;
-import datatypes.DtEspectaculoDatos;
-import datatypes.DtPaqueteDatos;
-import controladores.Fabrica;
-import datatypes.EstadoSesion;
+import webservices.DtUsuario;
+import webservices.DtCategoria;
+import webservices.DtEspectaculoDatos;
+import webservices.DtPaqueteDatos;
+import webservices.EstadoSesion;
 
 /**
  * Servlet implementation class Home

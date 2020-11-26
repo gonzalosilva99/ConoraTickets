@@ -427,7 +427,7 @@
 	        success: function (data) {
 	            console.log(data);
 	            if(data === "SUCCESS") {
-	            	alert("Dejaste de seguir al user");
+	            	//alert("Dejaste de seguir al user");
 	   				window.location.reload();
 	            }
 	            else{

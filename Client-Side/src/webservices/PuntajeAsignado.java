@@ -12,17 +12,17 @@ import javax.xml.bind.annotation.XmlType;
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="puntajeAsignado"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="espectaculo" type="{http://webservices/}espectaculo" minOccurs="0"/&gt;
- *         &lt;element name="espectador" type="{http://webservices/}espectador" minOccurs="0"/&gt;
- *         &lt;element name="puntaje" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;complexType name="puntajeAsignado">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="espectaculo" type="{http://webservices/}espectaculo" minOccurs="0"/>
+ *         &lt;element name="espectador" type="{http://webservices/}espectador" minOccurs="0"/>
+ *         &lt;element name="puntaje" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
  * </pre>
  * 
  * 

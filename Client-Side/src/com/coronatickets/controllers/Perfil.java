@@ -75,13 +75,15 @@ public class Perfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ENTRO AL SERVLET EL POST");
 		Login.ActualizarUltimoIngreso(request);
 		webservices.PublicadorService service = new webservices.PublicadorService();
     	webservices.Publicador port = service.getPublicadorPort();
-		//System.out.println("ENTRO AL SERVLET EL POST");
+		
 		String usuarioLogueado = request.getParameter("userlogged");
 		String usuarioPerfil = request.getParameter("userprofile");
 		String tipo = request.getParameter("tipo");
+		
 		System.out.println("Seguidor: " + usuarioLogueado.toString() + ", Seguido: " + usuarioPerfil.toString() + ", Tipo: " + tipo.toString());
 		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
 			System.out.println("Seguidor: " + usuarioLogueado + ", Seguido: " + usuarioPerfil + ", Tipo: " + tipo);
@@ -98,6 +100,7 @@ public class Perfil extends HttpServlet {
 			}
 			else if(tipo.equals("unfollow")) {
 				try {
+					System.out.println("ENTRA A UNFOLLOW");
 					port.dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);
 					response.getWriter().write("SUCCESS");
 				}

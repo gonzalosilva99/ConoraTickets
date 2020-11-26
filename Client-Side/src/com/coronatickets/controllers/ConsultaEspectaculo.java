@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controladores.Fabrica;
-import java.util.Set;
-import interfaces.IPlataforma;
 import webservices.ArrayEspectadores;
 import webservices.DtEspectador;
 import webservices.EstadoSesion;

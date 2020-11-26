@@ -5,10 +5,7 @@
 <head>
 
 	<%@page import="webservices.DtCategoria"%>
-	<%@page import="datatypes.DtUsuario" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="interfaces.IPlataforma"%>
-	<%@page import="interfaces.ICategoria"%>
 	<%@page import="java.util.Iterator" %>
 	<%@page import="java.util.Set"%>
 	<%@page import="java.util.List"%>

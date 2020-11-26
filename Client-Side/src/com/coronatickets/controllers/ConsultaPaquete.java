@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controladores.Fabrica;
-import interfaces.IPlataforma;
 import webservices.EstadoSesion;
 /**
  * Servlet implementation class Home
@@ -35,8 +33,10 @@ public class ConsultaPaquete extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
 		String nombrePaquete = (String) request.getParameter("nompaquete");
-		request.setAttribute("paquete",Fabrica.getInstancia().getIPaquete().getPaqueteDatos(nombrePaquete));	
+		request.setAttribute("paquete",port.getPaqueteDatos(nombrePaquete));	
 		request.getRequestDispatcher("/WEB-INF/consultapaquete.jsp").forward(request, response);
 	}
 	
@@ -54,14 +54,16 @@ public class ConsultaPaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.ActualizarUltimoIngreso(request);
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
 		try {
 			String usuario =  (String) request.getSession().getAttribute("usuario_logueado");
 			String paquete = (String) request.getParameter("paquete");
 			String espectaculo = (String) request.getParameter("espectaculo");
-			String plataforma = Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(espectaculo);
+			String plataforma = port.getPlataformaDeEspectaculo(espectaculo);
 			//System.out.println(usuario + " " + paquete + " " + espectaculo + " " + plataforma);
 			if((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && paquete != null && espectaculo!=null) {
-				Fabrica.getInstancia().getIPaquete().confirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
+				port.confirmarAgregarEspectaculoPaquete(paquete, plataforma, espectaculo);
 				response.getWriter().write("SUCCESS");
 			}
 			else {

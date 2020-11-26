@@ -1,3 +1,4 @@
+<%@page import="webservices.ArrayDtRegistros"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <!DOCTYPE html>
@@ -5,14 +6,12 @@
 <head>
 	<meta charset="UTF-8">
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
-	<%@page import="datatypes.DtFuncionDatos"%>
-	<%@page import="datatypes.DtPaqueteDatos"%>
-	<%@page import="datatypes.DtArtista"%>
-	<%@page import="datatypes.DtRegistro"%>
-	<%@page import="datatypes.DtEspectaculoDatos"%>
-	<%@page import="datatypes.DtPaquete"%>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IPlataforma"%>
+	<%@page import="webservices.DtFuncionDatos"%>
+	<%@page import="webservices.DtPaqueteDatos"%>
+	<%@page import="webservices.DtArtista"%>
+	<%@page import="webservices.DtRegistro"%>
+	<%@page import="webservices.DtEspectaculoDatos"%>
+	<%@page import="webservices.DtPaquete"%>
 	<title>CoronaTickets UY - Registro a Funcion</title>
 </head>
 <body>
@@ -23,20 +22,23 @@
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 			<!-- COMIENZO CODIGO -->
 			<%
+			webservices.PublicadorService service = new webservices.PublicadorService();
+			webservices.Publicador port = service.getPublicadorPort();
 				DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 					DateFormat horaFecha = new SimpleDateFormat("hh:mm");
 					String usuario = (String) request.getSession().getAttribute("usuario_logueado");
-					DtEspectaculoDatos dtesp = Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(request.getParameter("nomespectaculo"));
-					Set<DtPaqueteDatos> dtpaquetesdisponibles = Fabrica.getInstancia().getIUsuario().perfilEspectador(usuario).getPaquetesComprados();
-					DtFuncionDatos dtfuncdatos = Fabrica.getInstancia().getIPlataforma().findDatosFuncion(request.getParameter("funcion"));
-					Set<DtRegistro> registroscanjeables = Fabrica.getInstancia().getIUsuario().listarRegistrosSinCanjeaer(usuario);
+					DtEspectaculoDatos dtesp = port.findDatosEspectaculo(request.getParameter("nomespectaculo"));
+					List<DtPaqueteDatos> dtpaquetesdisponibles = port.perfilEspectador(usuario).getPaquetesComprados();
+					DtFuncionDatos dtfuncdatos = port.findDatosFuncion(request.getParameter("funcion"));
+					webservices.ArrayDtRegistros arrregistroscanjeables = port.listarRegistrosSinCanjeaer(usuario);
+					List<webservices.DtRegistro> registroscanjeables = arrregistroscanjeables.getRegistros();
 			%>
 			<div class="container-fluid media mb-sm-5">
 	            <img src="<%if(dtfuncdatos.getImagen()!=null && dtfuncdatos.getImagen()!=""){%><%= dtfuncdatos.getImagen()%><%}else{%><%="img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtfuncdatos.getNombre() %></h4></p>
-		            <p> <span id="fechaFuncion"><span class="text-dark">Fecha:</span> <%= fechaIncompleta.format(dtfuncdatos.getInicio()) %></span></p>
-		            <p> <span id="horaFuncion"><span class="text-dark">Hora:</span> <%= horaFecha.format(dtfuncdatos.getInicio()) %></span></p>
+		            <p> <span id="fechaFuncion"><span class="text-dark">Fecha:</span> <%= fechaIncompleta.format(dtfuncdatos.getInicio().toGregorianCalendar().getTime()) %></span></p>
+		            <p> <span id="horaFuncion"><span class="text-dark">Hora:</span> <%= horaFecha.format(dtfuncdatos.getInicio().toGregorianCalendar().getTime()) %></span></p>
 		            <p> <span id="artistasFuncion"><span class="text-dark">Artistas:</span> <%
 		            	Iterator<DtArtista> itrart = dtfuncdatos.getArtistas().iterator();
 		            	while(itrart.hasNext()){
@@ -48,7 +50,7 @@
 	            </div>
             </div>
             <%
-            	if(!Fabrica.getInstancia().getIUsuario().existeRegistroaFuncion(usuario, dtfuncdatos.getNombre())){
+            	if(!port.existeRegistroaFuncion(usuario, dtfuncdatos.getNombre())){
             %>
             <div id="metododecompra">
             <div class="container-fluid">
@@ -112,7 +114,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 					%>
 						<div class="form-check mt-sm-2">
 							<label class="form-check-label">
-								<input type="checkbox" name="checkbox" class="form-check-input" value="<%= nuevo.getCodigo() %>"><%= nuevo.getNombreFuncion() %>
+								<input type="checkbox" name="checkbox" class="form-check-input" value="<%= nuevo.getCodigo() %>"><%= nuevo.getNombrefuncion() %>
 							</label>
 						</div>
 						
@@ -129,7 +131,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 				<div id="resultado-compra" class="mt-sm-5 ml-sm-5">
 				</div>
 				<%
-					}else if(Fabrica.getInstancia().getIPlataforma().puedeAgregarEspectadores(Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre()), dtesp.getNombre(), dtfuncdatos.getNombre())){
+					}else if(port.puedeAgregarEspectadores(port.getPlataformaDeEspectaculo(dtesp.getNombre()), dtesp.getNombre(), dtfuncdatos.getNombre())){
 				%>
 				<div class="container-fluid mt-sm-5 ml-sm-5">
 					<p class="text-muted"><h1>YA HAS COMPRADO ESTA FUNCION</h1></p>
@@ -157,7 +159,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 		if (selectedValue!=null){
 	    var $form = $( this );
 	    var data = {
-	    		plataforma:'<%=Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre())%>',
+	    		plataforma:'<%=port.getPlataformaDeEspectaculo(dtesp.getNombre())%>',
 	    		espectaculo:'<%=dtesp.getNombre()%>',
 	    		funcion:'<%=dtfuncdatos.getNombre()%>',
 	    		paquete:selectedValue,
@@ -195,7 +197,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 		event.preventDefault();
 	    var $form = $( this );
 	    var data = {
-	    		plataforma:'<%=Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre())%>',
+	    		plataforma:'<%=port.getPlataformaDeEspectaculo(dtesp.getNombre())%>',
 	    		espectaculo:'<%=dtesp.getNombre()%>',
 	    		funcion:'<%=dtfuncdatos.getNombre()%>',
 	    		tiporegistro:'1'};
@@ -237,7 +239,7 @@ Usar Tres Registros: Cambiarás Tres Registros previamente realizados por una fu
 		if(cont==3){
 	    var $form = $( this );
 	    var data = {
-	    		plataforma:'<%=Fabrica.getInstancia().getIPlataforma().getPlataformaDeEspectaculo(dtesp.getNombre())%>',
+	    		plataforma:'<%=port.getPlataformaDeEspectaculo(dtesp.getNombre())%>',
 	    		espectaculo:'<%=dtesp.getNombre()%>',
 	    		funcion:'<%=dtfuncdatos.getNombre()%>',
 	    		valor1:selectedValue[0],

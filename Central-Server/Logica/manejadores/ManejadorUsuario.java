@@ -338,12 +338,14 @@ public class ManejadorUsuario {
 		public void dejarSeguirUsuario(String NickSeguidor, String NickDejarSeguir) {
 			if (artistas.containsKey(NickSeguidor)) {
 				artistas.get(NickSeguidor).eliminarSeguido(NickDejarSeguir);
-			}else if (espectadores.containsKey(NickSeguidor)) {
+			}
+			if (espectadores.containsKey(NickSeguidor)) {
 				espectadores.get(NickSeguidor).eliminarSeguido(NickDejarSeguir);
 			}
 			if (artistas.containsKey(NickDejarSeguir)) {
 				artistas.get(NickDejarSeguir).eliminarSeguidor(NickSeguidor);
-			}else if (espectadores.containsKey(NickSeguidor)) {
+			}
+			if (espectadores.containsKey(NickDejarSeguir)) {
 				espectadores.get(NickDejarSeguir).eliminarSeguidor(NickSeguidor);
 			}
 		}

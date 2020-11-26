@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import controladores.Fabrica;
-import datatypes.EstadoSesion;
-import excepciones.Identidad;
+import webservices.EstadoSesion;
+import webservices.Identidad;
+import webservices.Identidad_Exception;
 
 /**
  * Servlet implementation class AltaPaquete
@@ -37,7 +37,7 @@ public class AltaPaquete extends HttpServlet {
 
 
 	protected void processRequest(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException, Identidad {
+            HttpServletResponse response) throws ServletException, IOException, Identidad_Exception {
 		
 		
 		String nombre = request.getParameter("nombrepaquete");
@@ -116,7 +116,7 @@ public class AltaPaquete extends HttpServlet {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (Identidad e) {
+		} catch (webservices.Identidad_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

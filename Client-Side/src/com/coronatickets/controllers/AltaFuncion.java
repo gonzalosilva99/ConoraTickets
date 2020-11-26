@@ -21,7 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.util.Arrays;
 import java.util.ArrayList;
-import excepciones.Identidad;
+import webservices.Identidad;
 import webservices.*;
 
 /**

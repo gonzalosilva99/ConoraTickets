@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@page import="datatypes.DtEspectaculoDatos"%>
+	<%@page import="webservices.DtEspectaculoDatos"%>
 	<%@page import="webservices.EstadoSesion" %>
 	<%@page import="webservices.DtCategoria" %>
 	<%@page import="webservices.DtPaquete" %>

@@ -236,8 +236,9 @@ public class publicador {
     	return ret;
     }
     @WebMethod
-	public ArrayList<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
-    	ArrayList<DtRegistro> ret = new ArrayList<DtRegistro>(iusuario.listarRegistrosSinCanjeaer(nickname));
+	public ArrayDtRegistros listarRegistrosSinCanjeaer(String nickname){
+    	ArrayList<DtRegistro> set = new ArrayList<DtRegistro>(iusuario.listarRegistrosSinCanjeaer(nickname));
+    	ArrayDtRegistros ret = new ArrayDtRegistros(set);
     	return ret;
     }
     @WebMethod
@@ -340,8 +341,9 @@ public class publicador {
     	return icategoria.getCategoria(nombre);
     }
     @WebMethod
-	public ArrayList<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
-    	ArrayList<DtEspectaculo> ret = new ArrayList<DtEspectaculo>(icategoria.listarEspectaculosAceptadosDeCategoria(nombreCat));
+	public ArrayEspectaculos listarEspectaculosAceptadosDeCategoria(String nombreCat){
+    	ArrayList<DtEspectaculo> set = new ArrayList<DtEspectaculo>(icategoria.listarEspectaculosAceptadosDeCategoria(nombreCat));
+    	ArrayEspectaculos ret = new ArrayEspectaculos(set);
     	return ret;
     }
     
