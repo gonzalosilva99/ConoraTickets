@@ -56,8 +56,12 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
 
+import Persistencia.SetEspectaculoPersistencia;
 import clases.Categoria;
 import clases.Espectaculo;
 import clases.Funcion;
@@ -75,8 +79,10 @@ public class publicador {
 	ICategoria icategoria = fab.getICategoria();
 	IPaquete ipaquete = fab.getIPaquete();
     private Endpoint endpoint = null;
+    EntityManager emPub;
     //Constructor
-    public publicador(){}
+    public publicador(){
+    }
 
     //Operaciones las cuales quiero publicar
 
@@ -396,6 +402,16 @@ public class publicador {
     @WebMethod public EstadoSesion paraQueAndeEstadoSesion() {
     	EstadoSesion estado = null;
     	return estado;
+    }
+    
+    @WebMethod
+    public void finalizarEspectaculo(String nomesp, Date fechafin) {
+    	iplataforma.finzalizarEspectaculo(nomesp, fechafin);
+    }
+    
+    @WebMethod
+    public SetEspectaculoPersistencia listarEspectaculosFinalizados(String nick) {
+    	return iusuario.listarEspectaculosFinalizados(nick);
     }
     
 

@@ -143,9 +143,9 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.aceptarEspectaculo(nomEspectaculo);
 	}
 
-	public void finzalizarEspectaculo(String nomEspectaculo) {
+	public void finzalizarEspectaculo(String nomEspectaculo, Date fechafin) {
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
-		manplat.finalizarEspectaculo(nomEspectaculo);
+		manplat.finalizarEspectaculo(nomEspectaculo, fechafin);
 	}
 	
 	public void rechazarEspectaculo(String nomEspectaculo) {

@@ -4,5 +4,13 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Logica"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/eclipselink">
+		<attributes>
+			<attribute name="owner.project.facets" value="#system#;jpt.jpa"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="lib/hsqldb-2.3.8-jdk6-sources.jar"/>
+	<classpathentry kind="lib" path="lib/hsqldb-2.3.8-jdk6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

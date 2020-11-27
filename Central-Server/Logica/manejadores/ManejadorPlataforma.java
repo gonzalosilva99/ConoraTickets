@@ -1,4 +1,5 @@
 package manejadores;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -6,7 +7,22 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+
+
+import Persistencia.ArtistaPersistencia;
+import Persistencia.EspectaculoPersistencia;
+import Persistencia.EspectadorPersistencia;
+import Persistencia.FuncionPersistencia;
+import Persistencia.RegistroPersistencia;
+
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 import clases.Espectaculo;
+import clases.Espectador;
 import clases.Funcion;
 import clases.Plataforma;
 import controladores.Fabrica;
@@ -19,6 +35,7 @@ import datatypes.DtPlataforma;
 import datatypes.EstadoEspectaculo;
 import excepciones.Identidad;
 import interfaces.IUsuario;
+import relaciones.RegistroFuncion;
 public class ManejadorPlataforma {
 	private 
 		static ManejadorPlataforma instancia;
@@ -289,11 +306,122 @@ public class ManejadorPlataforma {
 			}
 		}
 		
-		public void finalizarEspectaculo(String nomEspectaculo) {
+		private void almacenarEspectaculo(String plataforma, Espectaculo esp, Date fechafin) {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspectaculosFinalizados");
+			EntityManager em = emf.createEntityManager();
+			
+			//CARGAR DATOS ORGANIZADOR
+			ArtistaPersistencia organizador = null;
+			Query canta = em.createQuery("SELECT COUNT(DISTINCT a.nickname) FROM ArtistaPersistencia a WHERE a.nickname = :nick");
+			canta.setParameter("nick", esp.getOrganizador().getNickname());
+			long resa = (long) canta.getSingleResult();
+			if(resa==0) {
+			organizador = new ArtistaPersistencia();
+			organizador.setNickname(esp.getOrganizador().getNickname());
+			organizador.setNombre(esp.getOrganizador().getNombre());
+			organizador.setApellido(esp.getOrganizador().getApellido());
+			organizador.setContrasena(esp.getOrganizador().getContrasena());
+			organizador.setEmail(esp.getOrganizador().getEmail());
+			organizador.setNacimiento(esp.getOrganizador().getNacimiento());
+			organizador.setDescripcion(esp.getOrganizador().getDescripcionGeneral());
+			organizador.setBiografia(esp.getOrganizador().getBiografia());
+			organizador.setUrl(esp.getOrganizador().getURL());
+			em.getTransaction().begin();
+			em.persist(organizador);
+			em.getTransaction().commit();
+			}
+			else {
+				TypedQuery<ArtistaPersistencia> selecta =
+						  em.createQuery("SELECT a FROM ArtistaPersistencia a WHERE a.nickname = :nom",
+								  ArtistaPersistencia.class);
+						  selecta.setParameter("nom",esp.getOrganizador().getNickname());
+						  organizador = (ArtistaPersistencia) selecta.getSingleResult();
+			}
+			
+			//CARGAR DATOS ESPECTACULO
+			EspectaculoPersistencia espectaculo = new EspectaculoPersistencia();
+			espectaculo.setNombre(esp.getNombre());
+			espectaculo.setDescripcion(esp.getDescripcion());
+			espectaculo.setDuracion(esp.getDuracion());
+			espectaculo.setUrl(esp.getURL());
+			espectaculo.setRegistro(esp.getRegistro());
+			espectaculo.setCosto(esp.getCosto());
+			espectaculo.setFechaFinalizacion(fechafin);
+			espectaculo.setPlataforma(plataforma);
+			espectaculo.setOrganizador(organizador);
+			
+			//CARGAR FUNCIONES
+			Set<FuncionPersistencia> funciones = new HashSet<FuncionPersistencia>();
+			Map<String, Funcion> funaux = esp.getFunciones();
+			for (Map.Entry<String, Funcion> entry : funaux.entrySet()) {
+				Set<RegistroPersistencia> registros = new HashSet<RegistroPersistencia>();
+				Set<RegistroFuncion> regaux = entry.getValue().getRegistros();
+				Iterator<RegistroFuncion> itrr = regaux.iterator();
+				while(itrr.hasNext()) {
+					RegistroFuncion reg=itrr.next();					
+					EspectadorPersistencia espagregar = null;
+					RegistroPersistencia regagregar = new RegistroPersistencia();
+					regagregar.setCosto((int) Math.round(reg.getCosto()));
+					regagregar.setFecha(reg.getFecha());
+					Espectador espaux = reg.getEspectador();
+					
+					
+					
+					Query cant = em.createQuery("SELECT COUNT(DISTINCT a.nickname) FROM EspectadorPersistencia a WHERE a.nickname = :nick");
+					cant.setParameter("nick", espaux.getNickname());
+					long res = (long) cant.getSingleResult();
+					if(res==0) {
+					espagregar = new EspectadorPersistencia();				
+					espagregar.setNickname(espaux.getNickname());
+					espagregar.setNombre(espaux.getNombre());
+					espagregar.setApellido(espaux.getApellido());
+					espagregar.setEmail(espaux.getEmail());
+					espagregar.setContrasena(espaux.getContrasena());
+					espagregar.setNacimiento(espaux.getNacimiento());
+					espagregar.setImagen(espaux.getImagen());
+					em.getTransaction().begin();
+					em.persist(espagregar);
+					em.getTransaction().commit();				
+					}
+					else {
+						  TypedQuery<EspectadorPersistencia> select3 =
+						  em.createQuery("SELECT a FROM EspectadorPersistencia a WHERE a.nickname = :nom",
+								  EspectadorPersistencia.class);
+						  select3.setParameter("nom",espaux.getNickname());
+						  espagregar = (EspectadorPersistencia) select3.getSingleResult();
+					}
+					regagregar.setEspectador(espagregar);
+					registros.add(regagregar);
+				}
+				FuncionPersistencia funagregar = new FuncionPersistencia();
+				funagregar.setNombre(entry.getValue().getNombre());
+				funagregar.setInicio(entry.getValue().getInicio());
+				funagregar.setAlta(entry.getValue().getAlta());
+				funagregar.setRegistros(registros);
+				funciones.add(funagregar);
+			}
+			
+			try {				
+				  em.getTransaction().begin();				 
+				  espectaculo.setFunciones(funciones);		  
+				  em.persist(espectaculo);
+				  em.getTransaction().commit();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				em.getTransaction().rollback();
+			} finally {
+				em.close();
+				emf.close();
+			}
+			
+		}
+		
+		public void finalizarEspectaculo(String nomEspectaculo, Date fechafin) {
 			for (Map.Entry<String, Plataforma> entry : plataformas.entrySet()) {
 				if (entry.getValue().existeEspectaculo(nomEspectaculo)) {
 					entry.getValue().getEspectaculo(nomEspectaculo).setEstado(EstadoEspectaculo.Finalizado);
-					
+					almacenarEspectaculo(entry.getValue().getNombre(),entry.getValue().getEspectaculo(nomEspectaculo), fechafin);
 					break;
 				}
 			}

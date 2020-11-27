@@ -1,12 +1,24 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
+import Persistencia.ArtistaPersistencia;
+import Persistencia.EspectaculoPersistencia;
+import Persistencia.FuncionPersistencia;
+import Persistencia.RegistroPersistencia;
+import Persistencia.SetEspectaculoPersistencia;
 import clases.Espectaculo;
 import clases.Funcion;
 import clases.Usuario;
@@ -156,15 +168,44 @@ public class Artista extends Usuario{
 			return false;
 		}
 		
-		public Set<DtEspectaculo> getEspectaculosFinzalizados(){
-			Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
-			Iterator<Espectaculo> itr = espectaculos.iterator();
-			while (itr.hasNext()) {
-				Espectaculo aux = itr.next();
-				if (aux.getEstado()==EstadoEspectaculo.Finalizado) {
-					ret.add(aux.getDatosEspectaculo());
+		public SetEspectaculoPersistencia getEspectaculosFinzalizados(){		
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspectaculosFinalizados");
+			EntityManager em = emf.createEntityManager();
+			ArtistaPersistencia organizador = null;
+			SetEspectaculoPersistencia ret = new SetEspectaculoPersistencia();
+			ArrayList<EspectaculoPersistencia> espaux = new ArrayList<EspectaculoPersistencia>();
+			Query canta = em.createQuery("SELECT COUNT(DISTINCT a.nickname) FROM ArtistaPersistencia a WHERE a.nickname = :nick");
+			canta.setParameter("nick", this.getNickname());
+			long resa = (long) canta.getSingleResult();
+			if(resa>0) {
+			TypedQuery<ArtistaPersistencia> selecta =
+					  em.createQuery("SELECT a FROM ArtistaPersistencia a WHERE a.nickname = :nom",
+							  ArtistaPersistencia.class);
+					  selecta.setParameter("nom",this.getNickname());
+					  organizador = (ArtistaPersistencia) selecta.getSingleResult();
+				
+			Query cons = em.createQuery("Select e from EspectaculoPersistencia e where e.organizador= :org");
+			cons.setParameter("org", organizador);
+			for (Object obj : cons.getResultList()) {
+				EspectaculoPersistencia esp = (EspectaculoPersistencia) obj;
+				System.out.println("************nombre espectaculo: " + esp.getNombre());
+				Set<FuncionPersistencia> fun = esp.getFunciones();
+				Iterator<FuncionPersistencia> itr = fun.iterator();
+				while(itr.hasNext()) {
+					
+					FuncionPersistencia f = itr.next();
+					System.out.println("************funciones: " + f.getNombre());
+					Set<RegistroPersistencia> r = f.getRegistros();
+					Iterator<RegistroPersistencia> it = r.iterator();
+					while(it.hasNext()) {
+						System.out.println("*****************espectadores: " + it.next().getEspectador().getNickname());
+					}
+					
 				}
-				}
+				espaux.add(esp);
+			}
+			ret.setEspectaculos(espaux);
+			}
 			return ret;
 		}
 		
