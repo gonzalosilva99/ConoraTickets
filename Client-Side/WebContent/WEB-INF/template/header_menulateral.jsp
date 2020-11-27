@@ -3,14 +3,13 @@
     pageEncoding="UTF-8"%>
    
   <%@page import="com.coronatickets.controllers.Login" %>
-  <%@page import="datatypes.DtUsuario" %>
-  <%@page import="datatypes.DtPlataforma" %>
+  <%@page import="webservices.DtUsuario" %>
+  <%@page import="webservices.DtPlataforma" %>
   <%@page import="webservices.DtCategoria" %>
   <%@page import="java.util.Set" %>
   <%@page import="java.util.List" %>
   <%@page import="java.util.HashSet" %>
   <%@page import="java.util.Iterator" %>
-  <%@page import="com.coronatickets.controllers.Login" %>
   <%@page import="webservices.ArrayList" %>
 <!-- INICIO MENU LATERAL -->
         <!-- Sidebar  -->

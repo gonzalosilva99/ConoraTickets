@@ -15,10 +15,8 @@ import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import interfaces.IUsuario;
-import controladores.Fabrica;
 import webservices.EstadoSesion;
-import datatypes.TipoRegistro;
+import webservices.TipoRegistro;
 /**
  * Servlet implementation class Home
  */

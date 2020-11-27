@@ -130,6 +130,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtRegistro }
+     * 
+     */
+    public DtRegistro createDtRegistro() {
+        return new DtRegistro();
+    }
+
+    /**
      * Create an instance of {@link Paquete }
      * 
      */
@@ -242,6 +250,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayEspectadores }
+     * 
+     */
+    public ArrayEspectadores createArrayEspectadores() {
+        return new ArrayEspectadores();
+    }
+
+    /**
      * Create an instance of {@link Artista }
      * 
      */
@@ -271,6 +287,14 @@ public class ObjectFactory {
      */
     public DtCategoria createDtCategoria() {
         return new DtCategoria();
+    }
+
+    /**
+     * Create an instance of {@link ArrayDtRegistros }
+     * 
+     */
+    public ArrayDtRegistros createArrayDtRegistros() {
+        return new ArrayDtRegistros();
     }
 
     /**
@@ -319,6 +343,14 @@ public class ObjectFactory {
      */
     public DtFuncionDatos createDtFuncionDatos() {
         return new DtFuncionDatos();
+    }
+
+    /**
+     * Create an instance of {@link ArrayPaquetes }
+     * 
+     */
+    public ArrayPaquetes createArrayPaquetes() {
+        return new ArrayPaquetes();
     }
 
     /**

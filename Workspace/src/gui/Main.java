@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 
 import Persistencia.SetEspectaculoPersistencia;
 import controladores.Fabrica;
+import datatypes.DtEspectaculo;
 import datatypes.TipoRegistro;
 import interfaces.ICategoria;
 import interfaces.IPaquete;

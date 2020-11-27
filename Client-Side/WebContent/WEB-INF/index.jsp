@@ -1,8 +1,8 @@
+<%@page import="webservices.ArrayEspectaculos"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="controladores.Fabrica"%>
-    <%@page import="datatypes.DtEspectaculo"%>
-    <%@page import="java.util.Set"%>
+    <%@page import="webservices.DtEspectaculo"%>
+    <%@page import="java.util.List"%>
     <%@page import="java.util.Iterator"%>
 
 <!DOCTYPE html>
@@ -21,10 +21,13 @@
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/> 
 			<% 
+			webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
 			String nomPlataforma = (String) request.getParameter("plataforma");
 			String nomCategoria = (String) request.getParameter("categoria");
 			if(nomPlataforma!=null){
-				Set<DtEspectaculo> espectaculos = Fabrica.getInstancia().getIPlataforma().listarEspectaculosAceptadosDePlataforma(nomPlataforma);
+				webservices.ArrayEspectaculos arrespectaculos = port.listarEspectaculosAceptadosDePlataforma(nomPlataforma);
+				List<webservices.DtEspectaculo> espectaculos = arrespectaculos.getEspectaculos();
 				%>
             <h2>Espectáculos disponibles en <%= nomPlataforma %></h2><br>
             <%
@@ -46,7 +49,8 @@
             <%} %>
    
             <% }else if(nomCategoria!=null){ 
-            Set<DtEspectaculo> espectaculosporc = Fabrica.getInstancia().getICategoria().listarEspectaculosAceptadosDeCategoria(nomCategoria); %>
+            webservices.ArrayEspectaculos arrespectaculosporc = port.listarEspectaculosAceptadosDeCategoria(nomCategoria);
+            List<webservices.DtEspectaculo> espectaculosporc = arrespectaculosporc.getEspectaculos();%>
             <h2>Espectáculos disponibles de <%= nomCategoria %></h2><br>   
             <%
             Iterator<DtEspectaculo> itrc = espectaculosporc.iterator();

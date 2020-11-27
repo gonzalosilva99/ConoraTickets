@@ -10,13 +10,16 @@ import javax.servlet.http.HttpSession;
 import webservices.*;
 
 
-public class Login extends HttpServlet {
+
+
+
+public class MobileLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public MobileLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -56,10 +59,10 @@ public class Login extends HttpServlet {
         }
         objSesion.setAttribute("estado_sesion", nuevoEstado);
         if(nuevoEstado==EstadoSesion.LOGIN_CORRECTO) {
-        	response.sendRedirect("/home");
+        	response.sendRedirect("/mobilehome");
         }
         else {
-        	response.sendRedirect("/login");;
+        	response.sendRedirect("/mobilelogin");;
         }
     } 
 	

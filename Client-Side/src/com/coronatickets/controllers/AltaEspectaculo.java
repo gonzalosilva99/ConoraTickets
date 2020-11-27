@@ -20,11 +20,9 @@ import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import controladores.Fabrica;
-import interfaces.IPlataforma;
 import webservices.DtCategoria;
 import webservices.EstadoSesion;
-import excepciones.Identidad;
+import webservices.Identidad;
 /**
  * Servlet implementation class Home
  */

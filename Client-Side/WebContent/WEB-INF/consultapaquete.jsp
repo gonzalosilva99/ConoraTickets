@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
-	<%@page import="datatypes.DtPaqueteDatos"%>
+	<%@page import="webservices.DtPaqueteDatos"%>
 	<%@page import="webservices.EstadoSesion" %>
-	<%@page import="datatypes.DtCategoria" %>
-	<%@page import="datatypes.DtEspectaculo" %>
-	<%@page import="datatypes.DtEspectaculoDatos"%>
-	<%@page import="datatypes.DtPaquete" %>
-	<%@page import="datatypes.DtArtista" %>
-	<%@page import="datatypes.DtFuncionDatos" %>
+	<%@page import="webservices.DtCategoria" %>
+	<%@page import="webservices.DtEspectaculo" %>
+	<%@page import="webservices.DtEspectaculoDatos"%>
+	<%@page import="webservices.DtPaquete" %>
+	<%@page import="webservices.DtArtista" %>
+	<%@page import="webservices.DtFuncionDatos" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IUsuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +25,13 @@
         	
 			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
 		<% 
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
 		String usuario=(String) request.getSession().getAttribute("usuario_logueado");
 		DtPaqueteDatos dtpaq=null;
 		dtpaq = (DtPaqueteDatos) request.getAttribute("paquete");
-		Set<DtEspectaculoDatos> dtesp = Fabrica.getInstancia().getIPlataforma().filtrarEspectaculos("");
+		webservices.SetEspectaculos dtespset = port.filtrarEspectaculos("");
+		List<webservices.DtEspectaculoDatos> dtesp = dtespset.getEspecs();
 		DateFormat fechaIncompleta = new SimpleDateFormat("dd/MM/yyyy");
 		if(dtpaq!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
@@ -41,7 +42,7 @@
 		            <p> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>        
 		            <%
         		            	Date hoy = new Date();	 
-        		            						  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !Fabrica.getInstancia().getIUsuario().esArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio()) && hoy.before(dtpaq.getFin()) ){
+        		            						  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !port.esArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio().toGregorianCalendar().getTime()) && hoy.before(dtpaq.getFin().toGregorianCalendar().getTime()) ){
         		            %>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=dtpaq.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
 				    						<%
@@ -87,7 +88,7 @@
 	%>				
 						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%=dtpaq.getDescripcion()%> </span></p>
 						<p class="text-dark"><b>Descuento:</b> <span id="descuentoPaquete"><%=dtpaq.getDescuento()%>%</span></p>							            
-						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<%}%>>Validez: </b> <span id="validezPaquete" <%if(!todayDate.after(dtpaq.getInicio()) || !todayDate.before(dtpaq.getFin())) {%>style="color:red;"<%}%>><%=fechaIncompleta.format(dtpaq.getInicio()) + " - " + fechaIncompleta.format(dtpaq.getFin())%></span></p>					    
+						<p class="text-dark red"><b <%Date todayDate = new Date(); if(!todayDate.after(dtpaq.getInicio().toGregorianCalendar().getTime()) || !todayDate.before(dtpaq.getFin().toGregorianCalendar().getTime())) {%>style="color:red;"<%}%>>Validez: </b> <span id="validezPaquete" <%if(!todayDate.after(dtpaq.getInicio().toGregorianCalendar().getTime()) || !todayDate.before(dtpaq.getFin().toGregorianCalendar().getTime())) {%>style="color:red;"<%}%>><%=fechaIncompleta.format(dtpaq.getInicio().toGregorianCalendar().getTime()) + " - " + fechaIncompleta.format(dtpaq.getFin().toGregorianCalendar().getTime())%></span></p>					    
 					</div>
 			  		<div class="tab-pane fade ml-sm-5 mt-sm-5" id="espectaculos" role="tabpanel" aria-labelledby="funciones-tab">	 
 				  			 <div class="panel-group container-fluid">
@@ -123,7 +124,7 @@
  				    				%>
 				    					
 				    				<%
-				    									    					if(usuario != null && Fabrica.getInstancia().getIUsuario().esArtista(usuario)){
+				    									    					if(usuario != null && port.esArtista(usuario)){
 				    									    				%>
 				    				<div class="container-fluid">
 				    					<p class="mx-auto" id="anadirespectaculo"><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnadirEspectaculo"><i class="far fa-folder-plus"></i> Añadir Espectaculo</button></p>
@@ -139,7 +140,7 @@
 													</button>
 									      		</div>
 												<div class="modal-body" >
-												<form action="consultaespectaculo" method="POST" class="form" id="formAnadirEspectaculos">
+												<form action="consultapaquete" method="POST" class="form" id="formAnadirEspectaculos">
 													<%
 													Set<DtEspectaculoDatos> dtespultimos = new HashSet<DtEspectaculoDatos>(); 
 													Iterator<DtEspectaculoDatos> itrdtesp = dtesp.iterator();
@@ -236,7 +237,7 @@
 				            	//$('#funcionyacomprada').show();
 				            }
 				            else{
-				            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>    Algo ha fallado, por favor intentalo más tarde.'+data+'</div>')
+				            	paquete_fin.insertAdjacentHTML('afterbegin','<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>    Algo ha fallado, por favor intentalo más tarde. '+data+'</div>')
 				            }
 				        }
 				    });

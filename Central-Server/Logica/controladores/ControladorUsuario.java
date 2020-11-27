@@ -1,6 +1,7 @@
 package controladores;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import Persistencia.SetEspectaculoPersistencia;
@@ -15,7 +16,6 @@ import clases.Paquete;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
 import datatypes.DtArtistaPerfil;
-import datatypes.DtEspectaculoDatos;
 import datatypes.DtEspectaculo;
 import datatypes.DtEspectador;
 import datatypes.DtEspectadorConsulta;
@@ -269,4 +269,50 @@ public class ControladorUsuario implements IUsuario{
 		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
 		return espectador.getPuntajeEspectaculo(nomEspectaculo);
 	}
+	public Set<DtEspectaculo> listarEspectaculosAceptadosArtistaPlataforma(String nickname, String nombrePlataforma){
+		Set<DtEspectaculo> espectaculosAceptadosArtistaPlataforma = new HashSet<>();
+		if (nombrePlataforma != null && !nombrePlataforma.equals("")) {
+			Artista artista = ManejadorUsuario.getInstancia().getArtista(nickname);
+			Set<DtEspectaculo> espectaculosArtista = artista.listarEspectaculos();
+			Set<DtEspectaculo> espectaculosAceptadosPlataforma =  Fabrica.getInstancia().getIPlataforma().listarEspectaculosAceptadosDePlataforma(nombrePlataforma);
+			try {
+				for (DtEspectaculo espectaculoArtista: espectaculosArtista) {
+					for (DtEspectaculo espectaculoAceptadoPlataforma: espectaculosAceptadosPlataforma) {
+						if (espectaculoArtista.getNombre().equals(espectaculoAceptadoPlataforma.getNombre())) {
+							espectaculosAceptadosArtistaPlataforma.add(espectaculoArtista);
+						}
+					}
+				}
+			}catch(Exception e) {
+				System.out.println("EXCEPCION: " + e.getMessage());
+			}
+
+		}
+		return espectaculosAceptadosArtistaPlataforma;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

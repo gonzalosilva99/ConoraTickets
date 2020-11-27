@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.Set;
 
 public class DtArtista {
+	public DtArtista() {}
 	public DtArtista(String nickname, String nombre, String apellido, String email, Date nacimiento, String descgeneral,
 			String biografia, String link, Set<DtEspectaculo> espectaculos) {
 		super();

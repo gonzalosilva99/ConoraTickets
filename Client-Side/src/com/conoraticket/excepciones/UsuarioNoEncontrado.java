@@ -1,4 +1,4 @@
-package com.conoraticket.exceptions;
+package com.conoraticket.excepciones;
 
 public class UsuarioNoEncontrado extends Exception {
 	/**

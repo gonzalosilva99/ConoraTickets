@@ -170,7 +170,7 @@ public interface Publicador {
         @WebParam(name = "arg3", partName = "arg3")
         XMLGregorianCalendar arg3,
         @WebParam(name = "arg4", partName = "arg4")
-        ArrayList arg4,
+        ArrayArtistas arg4,
         @WebParam(name = "arg5", partName = "arg5")
         XMLGregorianCalendar arg5,
         @WebParam(name = "arg6", partName = "arg6")
@@ -292,12 +292,12 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayEspectadores
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/sortearPremiosRequest", output = "http://webservices/publicador/sortearPremiosResponse")
-    public ArrayList sortearPremios(
+    public ArrayEspectadores sortearPremios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -433,12 +433,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayDtRegistros
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarRegistrosSinCanjeaerRequest", output = "http://webservices/publicador/listarRegistrosSinCanjeaerResponse")
-    public ArrayList listarRegistrosSinCanjeaer(
+    public ArrayDtRegistros listarRegistrosSinCanjeaer(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -681,12 +681,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayDtRegistros
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarRegistrosRequest", output = "http://webservices/publicador/listarRegistrosResponse")
-    public ArrayList listarRegistros(
+    public ArrayDtRegistros listarRegistros(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -801,12 +801,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayEspectaculos
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarEspectaculosAceptadosDeCategoriaRequest", output = "http://webservices/publicador/listarEspectaculosAceptadosDeCategoriaResponse")
-    public ArrayList listarEspectaculosAceptadosDeCategoria(
+    public ArrayEspectaculos listarEspectaculosAceptadosDeCategoria(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -823,12 +823,12 @@ public interface Publicador {
     /**
      * 
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayPaquetes
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarPaquetesRequest", output = "http://webservices/publicador/listarPaquetesResponse")
-    public ArrayList listarPaquetes();
+    public ArrayPaquetes listarPaquetes();
 
     /**
      * 
@@ -948,5 +948,21 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/paraQueAndeEstadoSesionRequest", output = "http://webservices/publicador/paraQueAndeEstadoSesionResponse")
     public EstadoSesion paraQueAndeEstadoSesion();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayEspectaculos
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarEspectaculosAceptadosArtistaPlataformaRequest", output = "http://webservices/publicador/listarEspectaculosAceptadosArtistaPlataformaResponse")
+    public ArrayEspectaculos listarEspectaculosAceptadosArtistaPlataforma(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
 }

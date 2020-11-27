@@ -15,13 +15,13 @@ import webservices.EstadoSesion;
 /**
  * Servlet implementation class Home
  */
-public class Home extends HttpServlet {
+public class MobileHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public MobileHome() {
         super();
         // TODO Auto-generated constructor stub
     }

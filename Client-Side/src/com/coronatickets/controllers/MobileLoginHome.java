@@ -15,13 +15,13 @@ import webservices.EstadoSesion;
 /**
  * Servlet implementation class Home
  */
-public class LoginHome extends HttpServlet {
+public class MobileLoginHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginHome() {
+    public MobileLoginHome() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +48,7 @@ public class LoginHome extends HttpServlet {
 		switch((EstadoSesion) req.getSession().getAttribute("estado_sesion")){
 			case NO_LOGIN:
 				// hace que se ejecute el jsp sin cambiar la url
-				req.getRequestDispatcher("/WEB-INF/login.jsp").
+				req.getRequestDispatcher("/WEB-INF/mobilelogin.jsp").
 						forward(req, resp);
 				break;
 			case LOGIN_INCORRECTO:
@@ -59,13 +59,13 @@ public class LoginHome extends HttpServlet {
 					wait(5000);
 				}
 				catch(Exception e) {}
-				req.getRequestDispatcher("/WEB-INF/login.jsp").
+				req.getRequestDispatcher("/WEB-INF/mobilelogin.jsp").
 				forward(req, resp);
 				//		forward(req, resp);
 				break;
 			case LOGIN_CORRECTO:
 				// manda una redirección a otra URL (cambia la URL)
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/mobilehome.jsp");
 		        dispatcher.forward(req, resp);
 				break;
 		}

@@ -3,14 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  	<%@page import="datatypes.DtPlataforma"%>
-	<%@page import="datatypes.DtCategoria"%>
-	<%@page import="datatypes.EstadoSesion" %>
-	<%@page import="datatypes.DtUsuario" %>
 	<%@page import="com.coronatickets.controllers.Login" %>
-	<%@page import="controladores.Fabrica"%>
-	<%@page import="interfaces.IPlataforma"%>
-	<%@page import="interfaces.ICategoria"%>
 	<%@page import="java.util.Iterator" %>
 	<%@page import="java.util.Set"%>
 	<%@page import="java.util.HashSet"%>

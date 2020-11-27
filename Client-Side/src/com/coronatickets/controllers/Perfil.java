@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import interfaces.IUsuario;
-import webservices.DtEspectaculoDatos;
-import controladores.Fabrica;
-import webservices.EstadoSesion;
+import webservices.PublicadorService;
+import webservices.Publicador;
+
 /**
  * Servlet implementation class Home
  */
@@ -36,27 +35,25 @@ public class Perfil extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 webservices.PublicadorService service = new webservices.PublicadorService();
+		 	webservices.PublicadorService service = new webservices.PublicadorService();
 	    	webservices.Publicador port = service.getPublicadorPort();
-	    	DtEspectaculoDatos ret = port.getDatosEspectaculo("Twitter Live", "Bien de Familia");
-	    	System.out.print("sadasdsa");
 		String nickname = (String) request.getParameter("id");
 		if(nickname==null) {
-			if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO) {
+			if(request.getSession().getAttribute("estado_sesion")==webservices.EstadoSesion.LOGIN_CORRECTO) {
 				nickname = (String) request.getSession().getAttribute("usuario_logueado");
 			}
 			else {
 				//LLEVAR A ERROR
 			}
 		}
-		if(Fabrica.getInstancia().getIUsuario().existeNickname(nickname)) {
-			if(Fabrica.getInstancia().getIUsuario().esArtista(nickname)) {
+		if(port.existeNickname(nickname)) {
+			if(port.esArtista(nickname)) {
 				request.setAttribute("tipo_usuario", "Artista");
-				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().perfilArtista(nickname));
+				request.setAttribute("usuario_perfil",port.perfilArtista(nickname));
 			}
 			else {
 				request.setAttribute("tipo_usuario", "Espectador");
-				request.setAttribute("usuario_perfil",Fabrica.getInstancia().getIUsuario().perfilEspectador(nickname));
+				request.setAttribute("usuario_perfil",port.perfilEspectador(nickname));
 			}
 			request.getRequestDispatcher("/WEB-INF/perfil.jsp").forward(request, response);
 		}
@@ -78,18 +75,22 @@ public class Perfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ENTRO AL SERVLET EL POST");
 		Login.ActualizarUltimoIngreso(request);
-		//System.out.println("ENTRO AL SERVLET EL POST");
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
+		
 		String usuarioLogueado = request.getParameter("userlogged");
 		String usuarioPerfil = request.getParameter("userprofile");
 		String tipo = request.getParameter("tipo");
+		
 		System.out.println("Seguidor: " + usuarioLogueado.toString() + ", Seguido: " + usuarioPerfil.toString() + ", Tipo: " + tipo.toString());
 		if(tipo!=null && usuarioLogueado!=null && usuarioPerfil!=null) {
 			System.out.println("Seguidor: " + usuarioLogueado + ", Seguido: " + usuarioPerfil + ", Tipo: " + tipo);
 			if(tipo.equals("follow")) {
 				//System.out.println("Va a seguir");
 				try{
-					Fabrica.getInstancia().getIUsuario().seguirUsuario(usuarioLogueado, usuarioPerfil);
+					port.seguirUsuario(usuarioLogueado, usuarioPerfil);
 					response.getWriter().write("SUCCESS");
 				}
 				catch(Exception e) {
@@ -99,7 +100,8 @@ public class Perfil extends HttpServlet {
 			}
 			else if(tipo.equals("unfollow")) {
 				try {
-					Fabrica.getInstancia().getIUsuario().dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);
+					System.out.println("ENTRA A UNFOLLOW");
+					port.dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);
 					response.getWriter().write("SUCCESS");
 				}
 				catch(Exception e){

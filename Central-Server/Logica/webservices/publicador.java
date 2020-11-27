@@ -10,6 +10,7 @@ import controladores.Fabrica;
 import datatypes.ArrayEspectaculos;
 import controladores.Fabrica;
 import datatypes.ArrayCategorias;
+import datatypes.ArrayDtRegistros;
 import datatypes.ArrayPlataformas;
 import datatypes.ArrayArtistas;
 import datatypes.DtArtista;
@@ -40,6 +41,8 @@ import interfaces.ICategoria;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
 import interfaces.IPaquete;
+import datatypes.ArrayEspectadores;
+import datatypes.ArrayPaquetes;
 
 
 import java.util.Date;
@@ -149,8 +152,12 @@ public class publicador {
     }
     
     @WebMethod
-	public void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, ArrayList<String> artistas, Date alta, String imagen) {
-    	Set<String> art = new HashSet<String>(artistas);
+	public void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, ArrayArtistas artistas, Date alta, String imagen) {
+    	ArrayList<String> listaArtistas = new ArrayList<>();
+    	for (DtArtista artista: artistas.getArtistas()) {
+    		listaArtistas.add(artista.getNickname());
+    	}
+    	Set<String> art = new HashSet<String>(listaArtistas);
     	iplataforma.confirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, art, alta, imagen);
     }
 
@@ -192,8 +199,9 @@ public class publicador {
     	return iplataforma.getDtFuncion(nombreFuncion);
     }
     @WebMethod
-	public ArrayList<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
-    	ArrayList<DtEspectador> ret = new ArrayList<DtEspectador>(iplataforma.sortearPremios(nombrePlataforma, nombreEspectaculo, nombreFuncion));
+	public ArrayEspectadores sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion){
+    	ArrayList<DtEspectador> set = new ArrayList<DtEspectador>(iplataforma.sortearPremios(nombrePlataforma, nombreEspectaculo, nombreFuncion));
+    	ArrayEspectadores ret = new ArrayEspectadores(set);
     	return ret;
     }
     @WebMethod    
@@ -234,8 +242,9 @@ public class publicador {
     	return ret;
     }
     @WebMethod
-	public ArrayList<DtRegistro> listarRegistrosSinCanjeaer(String nickname){
-    	ArrayList<DtRegistro> ret = new ArrayList<DtRegistro>(iusuario.listarRegistrosSinCanjeaer(nickname));
+	public ArrayDtRegistros listarRegistrosSinCanjeaer(String nickname){
+    	ArrayList<DtRegistro> set = new ArrayList<DtRegistro>(iusuario.listarRegistrosSinCanjeaer(nickname));
+    	ArrayDtRegistros ret = new ArrayDtRegistros(set);
     	return ret;
     }
     @WebMethod
@@ -291,8 +300,9 @@ public class publicador {
     	iusuario.modificarEspectadorCompleto(Nickname, Nombre, Apellido, Nacimiento, Imagen);
     }
     @WebMethod
-	public ArrayList<DtRegistro> listarRegistros(String Nickname){
-    	ArrayList<DtRegistro> ret = new ArrayList<DtRegistro>(iusuario.listarRegistros(Nickname));
+    public ArrayDtRegistros listarRegistros(String Nickname){
+    	ArrayDtRegistros ret = new ArrayDtRegistros();
+    	ret.setRegistros(new ArrayList<DtRegistro>(iusuario.listarRegistros(Nickname)));
     	return ret;
     }
     @WebMethod
@@ -337,8 +347,9 @@ public class publicador {
     	return icategoria.getCategoria(nombre);
     }
     @WebMethod
-	public ArrayList<DtEspectaculo> listarEspectaculosAceptadosDeCategoria(String nombreCat){
-    	ArrayList<DtEspectaculo> ret = new ArrayList<DtEspectaculo>(icategoria.listarEspectaculosAceptadosDeCategoria(nombreCat));
+	public ArrayEspectaculos listarEspectaculosAceptadosDeCategoria(String nombreCat){
+    	ArrayList<DtEspectaculo> set = new ArrayList<DtEspectaculo>(icategoria.listarEspectaculosAceptadosDeCategoria(nombreCat));
+    	ArrayEspectaculos ret = new ArrayEspectaculos(set);
     	return ret;
     }
     
@@ -350,8 +361,9 @@ public class publicador {
     	return arrcats;
     }
     @WebMethod	
-	public ArrayList<DtPaquete> listarPaquetes(){
-    	ArrayList<DtPaquete> ret = new ArrayList<DtPaquete>(ipaquete.listarPaquetes());
+	public ArrayPaquetes listarPaquetes(){
+    	ArrayList<DtPaquete> set = new ArrayList<DtPaquete>(ipaquete.listarPaquetes());
+    	ArrayPaquetes ret = new ArrayPaquetes(set);
     	return ret;
     }
     @WebMethod
@@ -403,6 +415,7 @@ public class publicador {
     	EstadoSesion estado = null;
     	return estado;
     }
+
     
     @WebMethod
     public void finalizarEspectaculo(String nomesp, Date fechafin) {
@@ -414,5 +427,11 @@ public class publicador {
     	return iusuario.listarEspectaculosFinalizados(nick);
     }
     
+    @WebMethod 
+    public ArrayEspectaculos listarEspectaculosAceptadosArtistaPlataforma(String nickname, String nombrePlataforma){
+    	ArrayEspectaculos espectaculos = new ArrayEspectaculos();
+    	espectaculos.setEspectaculos(new ArrayList<>(iusuario.listarEspectaculosAceptadosArtistaPlataforma(nickname, nombrePlataforma)));
+    	return espectaculos;
+    }
 
 }
