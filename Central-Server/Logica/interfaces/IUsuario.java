@@ -2,6 +2,9 @@ package interfaces;
 
 import java.util.Date;
 import java.util.Set;
+
+import Persistencia.SetEspectaculoPersistencia;
+
 import java.util.Map;
 
 import clases.Espectaculo;
@@ -52,7 +55,7 @@ public interface IUsuario {
 	public void modificarArtistaCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Descripcion, String Biografia, String Link, String Imagen);
 	public void modificarEspectadorCompleto(String Nickname, String Nombre, String Apellido, Date Nacimiento, String Imagen);
 	public Set<DtRegistro> listarRegistros(String Nickname);
-	public Set<DtEspectaculo> listarEspectaculosFinalizados(String nickname);
+	public SetEspectaculoPersistencia listarEspectaculosFinalizados(String nickname);
 	public void marcarFavorito(String nickname, String nomEsp);
 	public void desmarcarFavorito(String nickname, String nomEsp);
 	public Set<DtEspectaculo> listarEspectaculosParaPuntuar(String nickname);

@@ -13,5 +13,10 @@
 	<classpathentry kind="lib" path="../JCalendar/junit-4.6.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Central-Server"/>
 	<classpathentry kind="lib" path="lib/logica.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/eclipselink">
+		<attributes>
+			<attribute name="owner.project.facets" value="#system#;jpt.jpa"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

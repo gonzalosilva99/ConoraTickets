@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import Persistencia.SetEspectaculoPersistencia;
+
+import java.util.Map;
 
 import clases.Artista;
 import clases.Espectaculo;
@@ -235,7 +238,7 @@ public class ControladorUsuario implements IUsuario{
 		return ManejadorUsuario.getInstancia().listarRegistros(Nickname);
 	}
 	
-	public Set<DtEspectaculo> listarEspectaculosFinalizados(String nickname){
+	public SetEspectaculoPersistencia listarEspectaculosFinalizados(String nickname){
 		Artista artista = ManejadorUsuario.getInstancia().getArtista(nickname);
 		return artista.getEspectaculosFinzalizados();
 	}

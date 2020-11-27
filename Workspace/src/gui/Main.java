@@ -1,14 +1,28 @@
 package gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import javax.swing.JMenuBar;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyVetoException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import Persistencia.SetEspectaculoPersistencia;
 import controladores.Fabrica;
 import datatypes.DtEspectaculo;
 import datatypes.TipoRegistro;
@@ -17,18 +31,6 @@ import interfaces.IPaquete;
 import interfaces.IPlataforma;
 import interfaces.IUsuario;
 import webservices.publicador;
-
-import java.util.Date;
-import java.util.Set;
-import java.util.HashSet;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyVetoException;
-import java.text.SimpleDateFormat;
-
-import javax.swing.JDesktopPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Main {
 
@@ -670,6 +672,7 @@ public class Main {
 						ipaquete.confirmarAgregarEspectaculoPaquete("Paquete Solistas", "Youtube", "Springsteen on Broadway");
 						ipaquete.confirmarAgregarEspectaculoPaquete("Paquete Latino", "Twitter Live", "Bien de Familia");
 						ipaquete.confirmarAgregarEspectaculoPaquete("Paquete Latino", "Twitter Live", "30 a\u00f1os");
+						
 						
 						datosPruebaCargados = true;
 					}catch(Exception e){
