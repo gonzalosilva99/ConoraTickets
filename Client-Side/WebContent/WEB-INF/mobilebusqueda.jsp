@@ -28,18 +28,14 @@
 		else 
 			search = "";
 		List<DtUsuario> UsuariosFiltrados = (ArrayList<DtUsuario>) request.getAttribute("UsuariosFiltrados");
-		System.out.print("Tamanio usu:::" + UsuariosFiltrados.size());
 		List<DtEspectaculoDatos> EspectaculosFiltrados = (ArrayList<DtEspectaculoDatos>) request.getAttribute("EspectaculosFiltrados");
-		System.out.print("Tamanio esp:::" + EspectaculosFiltrados.size()); 
-		List<DtPaqueteDatos> PaquetesFiltrados =(ArrayList<DtPaqueteDatos>) request.getAttribute("PaquetesFiltrados"); 
-		System.out.print("Tamanio paq:::" + PaquetesFiltrados.size());
 	%>
 	
 	
 	<div class="wrapper">
-		<jsp:include page="/WEB-INF/template/header_menulateral.jsp"/>
+		<jsp:include page="/WEB-INF/template/mobile_menulateral.jsp"/>
         <div id="content">
-			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/>
+			<jsp:include page="/WEB-INF/template/mobile_menusup.jsp"/>
 			
             <h1>Resultado de Búsqueda</h1>
             
@@ -134,13 +130,9 @@
 					<li class="nav-item">
 						<a class="nav-link" id="espectaculos-tab" data-toggle="tab" href="#espectaculos" role="tab" aria-controls="registros" aria-selected="false">Espectaculos</a>
 					</li><%}%>
-					<%if(PaquetesFiltrados != null && PaquetesFiltrados.size() != 0){ %>
-					<li class="nav-item">
-						<a class="nav-link" id="paquetes-tab" data-toggle="tab" href="#paquetes" role="tab" aria-controls="registros" aria-selected="false">Paquetes</a>
-					</li><%} %>
 				</ul>
 				<div class="tab-content" id="myTabContent">
-							<%if( !(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0) && !(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0) && !(PaquetesFiltrados != null && PaquetesFiltrados.size() != 0)){%> 
+							<%if( !(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0) && !(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0)){%> 
 							<h3>No hay resultados para tu búsqueda</h3><%}%>
 	           		  		<%if(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0){ %>
 					  		<div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
@@ -155,7 +147,7 @@
 			    						<div class="media mb-sm-2">
 										 	<img src="<% if(dtusu.getImagen()!=null && !dtusu.getImagen().equals("")){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 										  	<div class="media-body">
-										    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
+										    	<h4 class="mt-0" id="nombreapellidoUsuario"><a href="/perfil?id=<%=dtusu.getNickname()%>"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></a></h4>
 										    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
 										  	</div>
 										</div>
@@ -178,7 +170,7 @@
 			    						<div class="media">
 									 	<img src="<%if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">
-									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
+									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
 									    	<%=dtespec.getDescripcion() %>
 									    	Espectadores: <%= dtespec.getCantmin() %> / <%= dtespec.getCantmax() %>  
 									  	</div>
@@ -190,30 +182,6 @@
 					  		
 						</div>	
 						<%}%>
-						<%if(PaquetesFiltrados != null && PaquetesFiltrados.size() != 0){ %>
-						<div class="tab-pane fade" id="paquetes" role="tabpanel" aria-labelledby="espectaculos-tab">
-									<div class="row">
-									<% 
-		    						Integer k=0,q=0;%>
-		    						<div class="col-md-6 col-lg-6"><%
-									if(PaquetesFiltrados != null && PaquetesFiltrados.size() != 0){
-									//Iterator<DtPaqueteDatos> iterpaq = PaquetesFiltrados.iterator();
-			    					for(DtPaqueteDatos dtpaq : PaquetesFiltrados){if(k==1){%></div><div  <%if(q>3){%>style="display:none;"<%}%> id="paq<%=q%>" class="col-md-6 col-lg-6"><%k=0;}%>
-			    					<br>
-			    					<div class="media mb-sm-2">
-									 	<img src="<% if(dtpaq.getImagen() != null && dtpaq.getImagen()!=""){%> <%= dtpaq.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
-									  	<div class="media-body">
-									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultapaquete?nompaquete=<%=dtpaq.getNombre() %>"><%= dtpaq.getNombre() %></a></h4>
-									    	<%= dtpaq.getDescripcion() %>
-									    	Fechas: <%=dtpaq.getInicio() %> / <%=dtpaq.getFin() %>
-									  	</div>
-									</div>
-		    					<%k++;q++;}}%>
-		    					<%if(k>0){%></div><%}%>
-		    					</div><br>
-		    					<button class="btn btn-primary btn-sm" style="<%if(q<4){%>display:none;<%}%>width:10%;background-color:#148ea1;border:none;margin-left:40%;" id="btnmostrarpaquetes" onclick="AddPaqs()">Ver más</button>
-				   		</div>
-				   		<%} %>
 				</div>
 				
 			</div>
@@ -241,22 +209,6 @@
 		}
 		
 
-		function AddPaqs(){
-			var i=4;
-			var cont=0;
-			var paq = document.getElementById("paq" + i);
-			while(paq != null && cont<4){
-				if(paq.style.display == 'none'){
-					paq.style.display='block';
-					cont++;
-				}
-				i++;
-				paq = document.getElementById("paq" + i);
-			}
-			if(paq == null)
-				document.getElementById("btnmostrarpaquetes").style.display = 'none';
-		}
-
 		function AddEspecs(){
 			var i=4;
 			var cont=0;
@@ -278,8 +230,6 @@
 				usuarios.click();
 			else if(document.getElementById("espectaculos-tab"))
 				document.getElementById("espectaculos-tab").click();
-			else if(document.getElementById("paquetes-tab"))
-				document.getElementById("paquetes-tab").click();
 		}
 		$(document).ready(function() {
 			$('#submitusu').click(function(event) {
