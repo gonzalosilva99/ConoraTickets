@@ -15,41 +15,23 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h4><a href="/home">CORONATICKETS</a></h4>
+                <h4><a href="/mobilehome">CORONATICKETS</a></h4>
             </div>
 
             <ul class="list-unstyled components">
-            <%
-            webservices.PublicadorService service = new webservices.PublicadorService();                    
-	    	webservices.Publicador port = service.getPublicadorPort();
-            	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
-            		
-            		webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
-            		if(port.esArtista(usuario.getNickname())){
-            %>
-            	<li>
-            	<a href="#accionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ACCIONES</a>
-                    <ul class="collapse list-unstyled" id="accionesSubmenu">
-                        <li>
-                            <a href="/altapaquete">Alta Paquete</a>
-                            <a href="/altaespectaculo">Alta Espectaculo</a>
-                            <a href="/altafuncion" ">Alta Funcion</a>
-                        </li>
-                    </ul>
-            	</li>
-            	<% }} %>
                 <li>
                     <a href="#plataformasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">PLATAFORMAS</a>
                     <ul class="collapse list-unstyled" id="plataformasSubmenu">
                     <% 
-                    
+                    webservices.PublicadorService service = new webservices.PublicadorService();                    
+        	    	webservices.Publicador port = service.getPublicadorPort();
         	    	webservices.ArrayPlataformas plataformasaux = port.listarPlataformas();
                     Iterator<webservices.DtPlataforma> itrp = plataformasaux.getPlats().iterator();
                     System.out.print(plataformasaux.getPlats().size());
 							while(itrp.hasNext())
 								{webservices.DtPlataforma auxp = itrp.next();%>
                         <li>
-                            <a href="/home?plataforma=<%= auxp.getNombre() %>"><%= auxp.getNombre() %></a>
+                            <a href="/mobilehome?plataforma=<%= auxp.getNombre() %>"><%= auxp.getNombre() %></a>
                         </li>
                         <% } %>
                     </ul>
@@ -63,7 +45,7 @@
 							while(itrc.hasNext())
 								{DtCategoria auxc = itrc.next();%>
                         <li>
-                            <a href="/home?categoria=<%= auxc.getNomCategoria() %>"><%= auxc.getNomCategoria() %></a>
+                            <a href="/mobilehome?categoria=<%= auxc.getNomCategoria() %>"><%= auxc.getNomCategoria() %></a>
                         </li>
                         <% } %>
                         

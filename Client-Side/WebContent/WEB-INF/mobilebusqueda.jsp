@@ -147,7 +147,7 @@
 			    						<div class="media mb-sm-2">
 										 	<img src="<% if(dtusu.getImagen()!=null && !dtusu.getImagen().equals("")){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 										  	<div class="media-body">
-										    	<h4 class="mt-0" id="nombreapellidoUsuario"><a href="/perfil?id=<%=dtusu.getNickname()%>"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></a></h4>
+										    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
 										    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
 										  	</div>
 										</div>
@@ -170,7 +170,7 @@
 			    						<div class="media">
 									 	<img src="<%if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">
-									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
+									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
 									    	<%=dtespec.getDescripcion() %>
 									    	Espectadores: <%= dtespec.getCantmin() %> / <%= dtespec.getCantmax() %>  
 									  	</div>
