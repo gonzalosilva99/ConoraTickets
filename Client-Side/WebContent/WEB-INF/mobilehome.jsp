@@ -13,12 +13,12 @@
 <body>
 
 <div class="wrapper">
-		 <jsp:include page="/WEB-INF/template/header_menulateral.jsp"/> 
+		 <jsp:include page="/WEB-INF/template/mobile_menulateral.jsp"/> 
 
         <!-- Page Content  -->
         <div id="content">
         	
-			<jsp:include page="/WEB-INF/template/header_menusup.jsp"/> 
+			<jsp:include page="/WEB-INF/template/mobile_menusup.jsp"/> 
 			<% 
 			webservices.PublicadorService service = new webservices.PublicadorService();
 	    	webservices.Publicador port = service.getPublicadorPort();
@@ -37,7 +37,7 @@
             %>
             <div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-            <a href="/consultaespectaculo?nomespectaculo=<%= auxe.getNombre() %>">           
+            <a href="/mobileconsultaespectaculo?nomespectaculo=<%= auxe.getNombre() %>">           
             	<img src="<% if(auxe.getImagen()!=""){%><%= auxe.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
             <div class="media-body ml-sm-4">
             <h4><%= auxe.getNombre() %></h4>
@@ -59,7 +59,7 @@
             %> 
              
             <div class="container-fluid media mb-sm-5">
-            <a href="/consultaespectaculo?nomespectaculo=<%= auxc.getNombre() %>">
+            <a href="/mobileconsultaespectaculo?nomespectaculo=<%= auxc.getNombre() %>">
             	<img src="<% if(auxc.getImagen()!=""){%><%= auxc.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>
             <div class="media-body ml-sm-4">
             <h4><%= auxc.getNombre() %></h4>
@@ -71,7 +71,7 @@
 <% }} else { %> 
 	<h2>Espectáculos destacados</h2><br>
             <div class="mb-sm-4 container-fluid"></div>
-            <a href="/consultaespectaculo?nomespectaculo=30 años" class="media-heading">
+            <a href="/mobileconsultaespectaculo?nomespectaculo=30 años" class="media-heading">
             <div class="container-fluid media mb-sm-5">
             	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
             <div class="media-body ml-sm-4">
@@ -81,7 +81,7 @@
             </div>
             </a>
             
-            <a href="/consultaespectaculo?nomespectaculo=Bien de Familia" class="pull-left">
+            <a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="pull-left">
             <div class="container-fluid media mb-sm-5">           
             	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>          
             <div class="media-body ml-sm-4">
@@ -91,7 +91,7 @@
             </div>
             </a>
             
-            <a href="/consultaespectaculo?nomespectaculo=Memphis Blues World" class="pull-left">
+            <a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World" class="pull-left">
             <div class="container-fluid media mb-sm-5">
             	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>      
             <div class="media-body ml-sm-4">

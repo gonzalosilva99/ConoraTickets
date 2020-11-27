@@ -43,7 +43,7 @@
 		
 		<div class="col-md-6 col-12 col-sm-12 fadeIn second">
 			<div  id="formContent" style="margin-left:auto;margin-right:auto;">
-			    		<form action="iniciar-sesion" method="POST">
+			    		<form action="mobileiniciar-sesion" method="POST">
 			      			<input type="text" id="login" class="fadeIn second mt-sm-3" name="login" placeholder="Usuario" value="<% if((String) request.getAttribute("nickname")!=null) {%><%=(String) request.getAttribute("nickname") %><% } %>">
 			      			<input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" value="<%if((String) request.getAttribute("password")!=null) {%> <%= (String) request.getAttribute("password") %> <% } %>">
 			      			<input type="submit" class="fadeIn fourth" value="Acceder" onclick="submit()">

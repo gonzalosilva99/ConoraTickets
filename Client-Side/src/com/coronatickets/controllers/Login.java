@@ -37,6 +37,7 @@ public class Login extends HttpServlet {
         EstadoSesion nuevoEstado=null;
         try {
         	if(port.logueoCorrecto(login, password)) {
+        		
         		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		if(login.contains("@")) {
         			request.getSession().setAttribute("usuario_logueado", port.getUsuarioEmail(login).getNickname());

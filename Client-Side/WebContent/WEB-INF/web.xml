@@ -23,7 +23,7 @@
   	</servlet>
   	<servlet-mapping>
         <servlet-name>Mobile Login Home</servlet-name>
-        <url-pattern>/mobilesingin</url-pattern>
+        <url-pattern>/mobilelogin</url-pattern>
   	</servlet-mapping>
   	<servlet>
         <servlet-name>Servlet Login Mobile</servlet-name>
@@ -31,7 +31,31 @@
   	</servlet>
   	<servlet-mapping>
         <servlet-name>Servlet Login Mobile</servlet-name>
-        <url-pattern>/mobilelogin</url-pattern>
+        <url-pattern>/mobileiniciar-sesion</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Servlet Logout Mobile</servlet-name>
+        <servlet-class>com.coronatickets.controllers.MobileLogout</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Servlet Logout Mobile</servlet-name>
+        <url-pattern>/mobilelogout</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Mobile Busqueda</servlet-name>
+        <servlet-class>com.coronatickets.controllers.MobileBusqueda</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Mobile Busqueda</servlet-name>
+        <url-pattern>/mobilebusqueda</url-pattern>
+  	</servlet-mapping>
+	<servlet>
+        <servlet-name>Mobile Consulta Espectaculo</servlet-name>
+        <servlet-class>com.coronatickets.controllers.MobileConsultaEspectaculo</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Mobile Consulta Espectaculo</servlet-name>
+        <url-pattern>/mobileconsultaespectaculo</url-pattern>
   	</servlet-mapping>
   	<servlet>
         <servlet-name>Mobile Home</servlet-name>

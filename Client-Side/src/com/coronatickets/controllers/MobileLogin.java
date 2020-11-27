@@ -40,15 +40,27 @@ public class MobileLogin extends HttpServlet {
         EstadoSesion nuevoEstado=null;
         try {
         	if(port.logueoCorrecto(login, password)) {
-        		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
+        		Boolean esartista = true;
         		if(login.contains("@")) {
-        			request.getSession().setAttribute("usuario_logueado", port.getUsuarioEmail(login).getNickname());
-        			ActualizarUltimoIngreso(request);
+        			DtUsuario usu = port.getUsuarioEmail(login);
+        			esartista = port.esArtista(usu.getNickname());
         		}
-        		else {
-        			request.getSession().setAttribute("usuario_logueado", login);
-        			ActualizarUltimoIngreso(request);
+        		else
+        			esartista = port.esArtista(login);
+        		
+        		if(!esartista) {
+            		if(login.contains("@")) {
+            			request.getSession().setAttribute("usuario_logueado", port.getUsuarioEmail(login).getNickname());
+            			ActualizarUltimoIngreso(request);
+            		}
+            		else {
+            			request.getSession().setAttribute("usuario_logueado", login);
+            			ActualizarUltimoIngreso(request);
+            		}
+            		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
         		}
+        		else 
+        			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
         	}
         	else {
         		nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
