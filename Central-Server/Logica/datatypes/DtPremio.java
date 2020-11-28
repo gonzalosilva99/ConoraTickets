@@ -3,6 +3,10 @@ package datatypes;
 import java.util.Date;
 
 public class DtPremio implements Comparable{
+	private Date fechaSorteo;
+	private String nombreFuncion;
+	private String nombreEspectaculo;
+	private String descripcion;
 
 
 public Date getFechaSorteo() {
@@ -23,15 +27,22 @@ public Date getFechaSorteo() {
 	public void setNombreEspectaculo(String nombreEspectaculo) {
 		this.nombreEspectaculo = nombreEspectaculo;
 	}
-public DtPremio(Date fechaSorteo, String nombreFuncion, String nombreEspectaculo) {
+
+public DtPremio(Date fechaSorteo, String nombreFuncion, String nombreEspectaculo, String descripcion) {
 		super();
 		this.fechaSorteo = fechaSorteo;
 		this.nombreFuncion = nombreFuncion;
 		this.nombreEspectaculo = nombreEspectaculo;
+		this.descripcion = descripcion;
 	}
-private Date fechaSorteo;
-private String nombreFuncion;
-private String nombreEspectaculo;
+
+
+public String getDescripcion() {
+	return descripcion;
+}
+public void setDescripcion(String descripcion) {
+	this.descripcion = descripcion;
+}
 @Override
 public int compareTo(Object o) {
 	// TODO Auto-generated method stub

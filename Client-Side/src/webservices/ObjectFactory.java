@@ -291,6 +291,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtPremio }
+     * 
+     */
+    public DtPremio createDtPremio() {
+        return new DtPremio();
+    }
+
+    /**
      * Create an instance of {@link EspectaculoPersistencia }
      * 
      */
@@ -416,6 +424,14 @@ public class ObjectFactory {
      */
     public ArrayEspectaculos createArrayEspectaculos() {
         return new ArrayEspectaculos();
+    }
+
+    /**
+     * Create an instance of {@link ArrayPremios }
+     * 
+     */
+    public ArrayPremios createArrayPremios() {
+        return new ArrayPremios();
     }
 
     /**

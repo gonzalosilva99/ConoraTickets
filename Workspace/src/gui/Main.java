@@ -25,7 +25,10 @@ import javax.swing.JOptionPane;
 
 import Persistencia.SetEspectaculoPersistencia;
 import controladores.Fabrica;
+import datatypes.ArrayPremios;
 import datatypes.DtEspectaculo;
+import datatypes.DtEspectador;
+import datatypes.DtPremio;
 import datatypes.TipoRegistro;
 import interfaces.ICategoria;
 import interfaces.IPaquete;
@@ -784,6 +787,37 @@ public class Main {
 						
 						
 						datosPruebaCargados = true;
+						
+						/*********** PRUEBAS VISUALIZAR PREMIOS ***********/
+						iusuario.confirmarRegistroFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "chino", "Los Village Volvieron - 1", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+						iusuario.confirmarRegistroFuncionEspectaculo("Twitter Live", "Bien de Familia", "chino", "Bien de Familia - A", FechaRegistro, TipoRegistro.Tipo_1, 0, 0, 0, "", 550.0);
+								
+						
+						Set<DtEspectador> ganadores = iplataforma.sortearPremios("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - i");
+						System.out.println("GANADORES EN Springsteen on Broadway:");
+						for (DtEspectador ganador: ganadores) {
+							System.out.println("Ganador: " + ganador.getNickname());
+						}
+						 Thread.sleep(4000);
+						ganadores = iplataforma.sortearPremios("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1");
+						System.out.println("GANADORES EN los villages volvieron:");
+						for (DtEspectador ganador: ganadores) {
+							System.out.println("Ganador: " + ganador.getNickname());
+						}
+						 Thread.sleep(4000);
+						ganadores = iplataforma.sortearPremios("Twitter Live", "Bien de Familia", "Bien de Familia - A");
+						System.out.println("GANADORES EN bien de familia:");
+						for (DtEspectador ganador: ganadores) {
+							System.out.println("Ganador: " + ganador.getNickname());
+						}
+								/*** chino ***/
+						ArrayPremios premios = iusuario.listarPremiosEspectador("chino");
+						System.out.println("Premios de chino: " );
+						for (DtPremio premio: premios.getPremios()) {
+							System.out.println("PREMIO: " + premio.getNombreEspectaculo() +" "+ premio.getFechaSorteo());
+						}
+						
+						/************* FIN PRUEBAS ***********/
 					}catch(Exception e){
 						JOptionPane.showMessageDialog(null, e.getMessage());
 					}

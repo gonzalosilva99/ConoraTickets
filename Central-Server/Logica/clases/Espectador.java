@@ -250,7 +250,7 @@ public class Espectador extends Usuario{
 	    for (Map.Entry<Integer, RegistroFuncion> registro : registroFunciones.entrySet())  {
 	    	if (registro.getValue().ganoPremio()) {
 	    		DtPremio premio = new DtPremio(registro.getValue().getFuncion().getFechaSorteo(),
-	    				registro.getValue().getFuncion().getNombre() , registro.getValue().getFuncion().getEspectaculo().getNombre());
+	    				registro.getValue().getFuncion().getNombre() , registro.getValue().getFuncion().getEspectaculo().getNombre(), registro.getValue().getFuncion().getEspectaculo().getPremio());
 	    		premios.add(premio);
 	    	}
 	    }
