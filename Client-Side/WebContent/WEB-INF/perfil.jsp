@@ -14,6 +14,7 @@
 	<%@page import="webservices.DtFuncionDatos" %>	
 	<%@page import="webservices.EstadoEspectaculo" %>
 	<%@page import="webservices.EstadoSesion" %>
+	<%@page import="webservices.EspectaculoPersistencia" %>
 	<%@page import="java.time.Month"%>
 	<%@page import="java.util.Date"%>
 	<jsp:include page="/WEB-INF/template/head.jsp"/>
@@ -212,7 +213,12 @@
 					<li class="nav-item">
 						<a class="nav-link" id="funciones-tab" data-toggle="tab" href="#funcionesinvitado" role="tab" aria-controls="funcionesinvitado" aria-selected="false">FUNCIONES INVITADO</a>
 					</li>
-					<% }}%>
+					<% }%>
+					<% if(EsArtista){ %>
+			  			<li class="nav-item">
+							<a class="nav-link" id="espectaculos-tab" data-toggle="tab" href="#espectaculosfinalizados" role="tab" aria-controls="espectaculos" aria-selected="false">FINALIZADOS</a>
+						</li>
+			  		<%}} %>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 			  		<div class="tab-pane fade show active ml-sm-5 mt-sm-5" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -326,7 +332,9 @@
 						<div class="container mt-5">
 							<% Iterator<DtEspectaculo> itresp = dtart.getEspectaculos().iterator();
 							while(itresp.hasNext()) {
-								DtEspectaculo nuevo = itresp.next(); %>
+								DtEspectaculo nuevo = itresp.next();
+								if(nuevo.getEstado()!=EstadoEspectaculo.FINALIZADO){
+								%>
 							
 								<div class="container-fluid media mb-sm-3">
 					    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
@@ -339,6 +347,9 @@
 										  			<%
 										  			if(nuevo.getEstado()==EstadoEspectaculo.ACEPTADO){%>
 										  				<p class="text-success"><b>Aceptado</b></p>
+										  				<button id="buttonfin" type="button" onclick="finalizarEspectaculo('<%= nuevo.getNombre() %>')" name="finalizar" value="finalizar" class="mx-auto btn btn-dark">
+                        								<i class="btn-dark"></i> Finalizar
+                 										</button>
 										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.RECHAZADO){ %>
 										  				<p class="text-danger"><b>Rechazado</b></p>
 										  			<%}else if(nuevo.getEstado()==EstadoEspectaculo.INGRESADO){ %>
@@ -349,7 +360,7 @@
 									</a>
 	            				</div>
 					    		<hr>
-							<%} %>
+							<%}} %>
 						</div>
 					</div>
 					<!-- MOSTRAMOS LAS FUNCIONES A LAS QUE FUE INVITADO -->
@@ -377,6 +388,34 @@
 				  				}
 				  			%>
 			  			</div>
+					</div>
+					<!-- CARGAMOS LOS ESPECTACULOS FINALIZADOS QUE ORGANIZÓ EL ARTISTA DUEÑO DE LA CUENTA -->
+					<div class="tab-pane fade" id="espectaculosfinalizados" role="tabpanel" aria-labelledby="espectaculos-tab">
+						<div class="container mt-5">
+							<% 
+							List<EspectaculoPersistencia> fin = port.listarEspectaculosFinalizados(dtart.getNickname()).getEspectaculos();
+							Iterator<EspectaculoPersistencia> itrespper = fin.iterator();
+							DateFormat fechaIncompletaFin = new SimpleDateFormat("dd/MM/yyyy");
+							while(itrespper.hasNext()) {
+								EspectaculoPersistencia nuevo = itrespper.next();
+								%>
+							
+								<div class="container-fluid media mb-sm-3">
+					    			<a href="/consultaespectaculofinalizado?nomespectaculofin=<%=nuevo.getNombre()%>">
+						    			<div class="container-fluid media">
+						    				<img src="<% if(false){%><%= ""%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + "" + ")" %>" width=150em> 
+												<div class="media-body ml-sm-4">		
+										         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
+										         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
+													<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%try{ %><%= nuevo.getDescripcion().substring(0, 50) + "..."%><%}catch(Exception e){%><%= nuevo.getDescripcion()%>  <%}%> </span></p>									  					            
+										  			<p class="text-dark"><b>Finalización: </b> <span id="finEspectaculo"><%= fechaIncompletaFin.format(nuevo.getFechaFinalizacion().toGregorianCalendar().getTime()) %></span></p>
+											</div>
+										</div>
+									</a>
+	            				</div>
+					    		<hr>
+							<%} %>
+						</div>
 					</div>
 					<%}}%>
 				</div>
@@ -437,6 +476,35 @@
 	    });
 		return false;
 	}
+	</script>
+	
+	<script type="text/javascript">
+		var usuarioLogueado = "<%= idUsuario %>";
+		var usuarioPerfil = "<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>"
+		function finalizarEspectaculo(esp){
+			event.preventDefault();
+			var data = {
+		    		userlogged:'<%= idUsuario %>',
+		    		userprofile:'<%if(EsArtista){%><%=dtart.getNickname()%><%}else{%><%=dtesp.getNickname()%><%}%>',
+		    		tipo:'finalizar',
+		    		espectaculo:esp};
+		    $.ajax({
+		        type: 'POST',
+		        url:  'perfil',
+		        data: data,
+		        async: false,
+		        success: function (data) {
+		            console.log(data);
+		            if(data === "SUCCESS") {
+		   				window.location.reload();
+		            }
+		            else{
+		            	alert("Error! No se pudo finalizar el espectaculo " + data);
+		            }
+		        }
+		    });
+			return false;
+		}	
 	</script>
 </body>
 </html>

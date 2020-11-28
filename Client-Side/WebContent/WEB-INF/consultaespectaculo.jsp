@@ -41,8 +41,8 @@
 		%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-	            <img src="<% if(dtesp.getImagen()!=""){%><%= dtesp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
-	            <div class="media-body ml-sm-4">
+	            <img src="/imagenes?id=<%= dtesp.getImagen() %>"  class="rounded float-left media-object" alt="<%= dtesp.getNombre() %>" width=150em>
+             <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtesp.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>        
 	            </div>

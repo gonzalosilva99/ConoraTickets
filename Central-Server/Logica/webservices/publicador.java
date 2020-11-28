@@ -50,11 +50,15 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
@@ -64,6 +68,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
 
+import Persistencia.EspectaculoPersistencia;
 import Persistencia.SetEspectaculoPersistencia;
 import clases.Categoria;
 import clases.Espectaculo;
@@ -432,6 +437,26 @@ public class publicador {
     	ArrayEspectaculos espectaculos = new ArrayEspectaculos();
     	espectaculos.setEspectaculos(new ArrayList<>(iusuario.listarEspectaculosAceptadosArtistaPlataforma(nickname, nombrePlataforma)));
     	return espectaculos;
+    }
+    
+    @WebMethod
+    public EspectaculoPersistencia getEspectaculoPersistencia(String nombreesp) {
+    	return iplataforma.getEspectculoPersistencia(nombreesp);
+    }
+    
+    @WebMethod
+    public byte[] getFile(@WebParam(name = "fileName") String name)
+                    throws  IOException {
+        byte[] byteArray = null;
+        try {
+                File f = new File("../Central-Server/files/"+name);
+                FileInputStream streamer = new FileInputStream(f);
+                byteArray = new byte[streamer.available()];
+                streamer.read(byteArray);
+        } catch (IOException e) {
+                throw e;
+        }
+        return byteArray;
     }
 
 }

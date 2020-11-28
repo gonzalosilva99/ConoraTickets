@@ -1,8 +1,16 @@
 package controladores;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import clases.Funcion;
 import datatypes.DtCategoria;
@@ -13,6 +21,11 @@ import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
 import datatypes.DtPlataforma;
 import excepciones.Identidad;
+import Persistencia.ArtistaPersistencia;
+import Persistencia.EspectaculoPersistencia;
+import Persistencia.FuncionPersistencia;
+import Persistencia.RegistroPersistencia;
+import Persistencia.SetEspectaculoPersistencia;
 import interfaces.IPlataforma;
 import manejadores.ManejadorPlataforma;
 import relaciones.RegistroFuncion;
@@ -185,6 +198,24 @@ public class ControladorPlataforma implements IPlataforma{
 		manplat.getFuncion(nombrePlataforma, nombreEspectaculo, nombreFuncion).setFechaSorteo(hoy);	
 		return ganadores;
 	}
+	
+	public EspectaculoPersistencia getEspectculoPersistencia(String nombreesp) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspectaculosFinalizados");
+		EntityManager em = emf.createEntityManager();
+		EspectaculoPersistencia ret = null;
+		TypedQuery<EspectaculoPersistencia> selecta =
+				  em.createQuery("SELECT a FROM EspectaculoPersistencia a WHERE a.nombre = :nom",
+						  EspectaculoPersistencia.class);
+				  selecta.setParameter("nom", nombreesp);
+				  ret = (EspectaculoPersistencia) selecta.getSingleResult();
+		return ret;
+	}
+	
+	public void setearPremios(String plat, String esp, String fun, String nick, Date fecha) {
+		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
+		manplat.setearPremios(plat, esp, fun, nick, fecha);
+	}
+
 
 
 }

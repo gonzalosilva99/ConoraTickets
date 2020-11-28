@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -126,6 +127,18 @@ public class Funcion {
 				}
 			}
 			return ret;
+		}
+		
+		public void setearPremios(String nick, Date fecha) {
+			Iterator<RegistroFuncion> itr = registros.iterator();
+			while(itr.hasNext()) {
+				RegistroFuncion raux= itr.next();
+				if(raux.getEspectador().getNickname().equals(nick)) {
+					this.setFechaSorteo(fecha);
+					raux.setGanoPremio(true);
+					break;
+				}
+			}
 		}
 		
 }
