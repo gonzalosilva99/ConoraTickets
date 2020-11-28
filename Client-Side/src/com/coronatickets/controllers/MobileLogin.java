@@ -2,6 +2,7 @@ package com.coronatickets.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,7 @@ public class MobileLogin extends HttpServlet {
         HttpSession objSesion = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        String remember = request.getParameter("checkrememb");
         EstadoSesion nuevoEstado=null;
         try {
         	if(port.logueoCorrecto(login, password)) {
@@ -58,6 +60,14 @@ public class MobileLogin extends HttpServlet {
             			ActualizarUltimoIngreso(request);
             		}
             		nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
+            		if(remember != null) {
+            			Cookie nomusu = new Cookie("nick", login);
+            			Cookie passwusu = new Cookie("pswd", password);
+            			nomusu.setMaxAge(60*60*24*365);
+            			passwusu.setMaxAge(60*60*24*365);
+            			response.addCookie(nomusu);
+            			response.addCookie(passwusu);
+            		}
         		}
         		else 
         			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;

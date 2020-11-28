@@ -31,6 +31,7 @@
    
 		<%
 		
+		
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
 			
 				webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
