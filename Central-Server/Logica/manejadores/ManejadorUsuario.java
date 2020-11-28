@@ -360,5 +360,9 @@ public class ManejadorUsuario {
 			Espectador espec = espectadores.get(Nickname);
 			return espec.listarRegistros();
 		}
+		
+		public boolean esFavorito(String nickname, String nomEspectaculo) {
+			return this.espectadores.get(nickname).esFavorito(nomEspectaculo);
+		}
 
 }

@@ -54,6 +54,9 @@ public class AltaEspectaculo extends HttpServlet {
 		    String duracion = requestt.getParameter("duracion");
 		    String url = requestt.getParameter("url");
 		    String imagen = requestt.getParameter("imagen");
+		    String video = requestt.getParameter("video");
+		    String cantpremios = requestt.getParameter("cantpremios");
+		    String descripcionpremio = requestt.getParameter("descripcionpremios");
 		    webservices.ArrayCategorias cate = new webservices.ArrayCategorias();
 		    List<webservices.DtCategoria> lcat = new ArrayList<webservices.DtCategoria>();
 		    String[] values = requestt.getParameterValues("checked");
@@ -69,7 +72,7 @@ public class AltaEspectaculo extends HttpServlet {
 		    aux.setTime(fechaactual);
 			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
 			System.out.print( (String) requestt.getSession().getAttribute("usuario_logueado"));
-	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cate, "", "", 0);	    		    	
+	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cate, video, descripcionpremio, Integer.parseInt(cantpremios));	    		    	
 	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
 	    	requestt.setAttribute("aceptado", "true");
 	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");

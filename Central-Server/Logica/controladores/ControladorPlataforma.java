@@ -137,12 +137,13 @@ public class ControladorPlataforma implements IPlataforma{
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
 		return manplat.listarCategoriasDeEspectaculo(Plataforma, Espectaculo);
 	}
-	
 	public void aceptarEspectaculo(String nomEspectaculo) {
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
 		manplat.aceptarEspectaculo(nomEspectaculo);
 	}
-
+	public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo) {
+		return manejadores.ManejadorPlataforma.getInstancia().obtenerCantVotos(cantEstrellas, nomEspectaculo);
+	}
 	public void finzalizarEspectaculo(String nomEspectaculo, Date fechafin) {
 		ManejadorPlataforma manplat = manejadores.ManejadorPlataforma.getInstancia();
 		manplat.finalizarEspectaculo(nomEspectaculo, fechafin);

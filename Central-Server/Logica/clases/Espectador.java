@@ -185,7 +185,12 @@ public class Espectador extends Usuario{
 	public void setEspectaculosFavoritos(Map<String, Espectaculo> espectaculosFavoritos) {
 		this.espectaculosFavoritos = espectaculosFavoritos;
 	}
-
+	public Boolean esFavorito(String nomEspectaculo) {
+		if(this.espectaculosFavoritos.containsKey(nomEspectaculo)) {
+			return true;
+		}
+		return false;
+	}
 	public Set<PuntajeAsignado> getPuntajesAsignados() {
 		return puntajesAsignados;
 	}
@@ -199,7 +204,7 @@ public class Espectador extends Usuario{
 	}
 	
 	public void quitarFavorito(Espectaculo esp) {
-		espectaculosFavoritos.remove(esp);
+		espectaculosFavoritos.remove(esp.getNombre());
 	}
 	public Set<DtEspectaculo> getEspectaculosParaPuntuar(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();

@@ -62,5 +62,5 @@ public interface IUsuario {
 	public void valorarEspectaculo(String nickname, String nomEsp, int valoracion);
 	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo);
 	public Set<DtEspectaculo> listarEspectaculosAceptadosArtistaPlataforma(String nickname, String nombrePlataforma);
-
+	public boolean esFavorito(String nickname, String nomEspectaculo);
 }

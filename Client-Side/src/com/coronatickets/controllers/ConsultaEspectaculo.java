@@ -81,7 +81,7 @@ public class ConsultaEspectaculo extends HttpServlet {
 					response.getWriter().write("SUCCESS");
 				}
 				else {
-					response.getWriter().write("Fail, verificar que su sesión esta iniciada, y el espectáculo o el paquete aún existen");
+					response.getWriter().write("Fail. Verificar que su sesión esta iniciada, y el espectáculo o el paquete aún existen");
 				}
 			}
 			else if (tipoPost.equals("sortearPremios")) {
@@ -98,6 +98,39 @@ public class ConsultaEspectaculo extends HttpServlet {
 						ganadores = ganadores + "\t" + nuevo.getNickname() + "\t" + nuevo.getNombre() + " " + nuevo.getApellido() + "\n";
 					}
 					response.getWriter().write("Ganadores: \n"+ganadores);
+				}
+			}
+			else if(tipoPost.contentEquals("favearEspectaculo")) {
+				String espectaculo = (String) request.getParameter("espectaculo");
+				if ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && espectaculo != null) {
+					port.marcarFavorito(usuario, espectaculo);
+					response.getWriter().write("SUCCESS");
+				}
+				else {
+					response.getWriter().write("Fail. Verificar que ha iniciado sesiòn correctamente y el espectáculo aún existe.");
+				}
+			}
+			else if(tipoPost.contentEquals("desfavearEspectaculo")) {
+				String espectaculo = (String) request.getParameter("espectaculo");
+				if ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && espectaculo != null) {
+					port.desmarcarFavorito(usuario, espectaculo);
+					response.getWriter().write("SUCCESS");
+				}
+				else {
+					response.getWriter().write("Fail. Verificar que ha iniciado sesión correctamente y el espectáculo aún existe.");
+				}
+			}
+			else if(tipoPost.contentEquals("valorarEspectaculo")) {
+				String espectaculo = (String) request.getParameter("espectaculo");
+				Integer cantEstrellas = (Integer) Integer.parseInt(request.getParameter("cantEstrellas"));
+				System.out.println("Valoracion: " + espectaculo + " " + usuario + " " + cantEstrellas);
+				if ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && usuario!=null && espectaculo != null && cantEstrellas!= null) {
+					
+					port.valorarEspectaculo(usuario, espectaculo, cantEstrellas);
+					response.getWriter().write("SUCCESS");
+				}
+				else {
+					response.getWriter().write("Fail. Verificar que todo està funcionando correctamente e intente nuevamente.");
 				}
 			}
 			

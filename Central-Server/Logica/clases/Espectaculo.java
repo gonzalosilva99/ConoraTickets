@@ -38,8 +38,7 @@ public class Espectaculo {
 	private Set<PuntajeAsignado> puntajesAsignados;
 	private int cantFavoritos;
 	
-	
-	
+
 	
 		public Espectaculo(String nombre, Date registro, Integer costo, String url, Integer cantmax, 
 				Integer cantmin, Integer duracion, String descripcion, String imagen, String urlVideo, String premio, int cantPremios) {
@@ -318,6 +317,18 @@ public class Espectaculo {
 		public void anadirPuntaje(PuntajeAsignado pun) {
 			this.puntajesAsignados.add(pun);
 		}
+		
+		public int cantVotosEstrella(int cantEstrellas) {
+			Iterator<PuntajeAsignado> itrpuntaje = this.puntajesAsignados.iterator();
+			int ret = 0;
+			while(itrpuntaje.hasNext()) {
+				PuntajeAsignado aux = itrpuntaje.next();
+				if(cantEstrellas==aux.getPuntaje())
+					ret++;
+			}
+			return ret;
+		}
+	
 }
 
 

@@ -90,27 +90,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtArtistaConsulta }
-     * 
-     */
-    public DtArtistaConsulta createDtArtistaConsulta() {
-        return new DtArtistaConsulta();
-    }
-
-    /**
      * Create an instance of {@link PuntajeAsignado }
      * 
      */
     public PuntajeAsignado createPuntajeAsignado() {
         return new PuntajeAsignado();
-    }
-
-    /**
-     * Create an instance of {@link DtEspectaculo }
-     * 
-     */
-    public DtEspectaculo createDtEspectaculo() {
-        return new DtEspectaculo();
     }
 
     /**
@@ -138,6 +122,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArtistaPersistencia }
+     * 
+     */
+    public ArtistaPersistencia createArtistaPersistencia() {
+        return new ArtistaPersistencia();
+    }
+
+    /**
      * Create an instance of {@link Paquete }
      * 
      */
@@ -159,38 +151,6 @@ public class ObjectFactory {
      */
     public DtFuncion createDtFuncion() {
         return new DtFuncion();
-    }
-
-    /**
-     * Create an instance of {@link RegistroFuncion }
-     * 
-     */
-    public RegistroFuncion createRegistroFuncion() {
-        return new RegistroFuncion();
-    }
-
-    /**
-     * Create an instance of {@link DtEspectadorPerfil }
-     * 
-     */
-    public DtEspectadorPerfil createDtEspectadorPerfil() {
-        return new DtEspectadorPerfil();
-    }
-
-    /**
-     * Create an instance of {@link DtEspectadorConsulta }
-     * 
-     */
-    public DtEspectadorConsulta createDtEspectadorConsulta() {
-        return new DtEspectadorConsulta();
-    }
-
-    /**
-     * Create an instance of {@link ArrayArtistas }
-     * 
-     */
-    public ArrayArtistas createArrayArtistas() {
-        return new ArrayArtistas();
     }
 
     /**
@@ -218,19 +178,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtPaquete }
+     * Create an instance of {@link FuncionPersistencia }
      * 
      */
-    public DtPaquete createDtPaquete() {
-        return new DtPaquete();
-    }
-
-    /**
-     * Create an instance of {@link Funcion }
-     * 
-     */
-    public Funcion createFuncion() {
-        return new Funcion();
+    public FuncionPersistencia createFuncionPersistencia() {
+        return new FuncionPersistencia();
     }
 
     /**
@@ -274,19 +226,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Categoria }
+     * Create an instance of {@link RegistroPersistencia }
      * 
      */
-    public Categoria createCategoria() {
-        return new Categoria();
-    }
-
-    /**
-     * Create an instance of {@link DtCategoria }
-     * 
-     */
-    public DtCategoria createDtCategoria() {
-        return new DtCategoria();
+    public RegistroPersistencia createRegistroPersistencia() {
+        return new RegistroPersistencia();
     }
 
     /**
@@ -306,14 +250,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DtUsuario }
-     * 
-     */
-    public DtUsuario createDtUsuario() {
-        return new DtUsuario();
-    }
-
-    /**
      * Create an instance of {@link DtPlataforma }
      * 
      */
@@ -330,6 +266,126 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayPaquetes }
+     * 
+     */
+    public ArrayPaquetes createArrayPaquetes() {
+        return new ArrayPaquetes();
+    }
+
+    /**
+     * Create an instance of {@link DtArtistaConsulta }
+     * 
+     */
+    public DtArtistaConsulta createDtArtistaConsulta() {
+        return new DtArtistaConsulta();
+    }
+
+    /**
+     * Create an instance of {@link EspectaculoPersistencia }
+     * 
+     */
+    public EspectaculoPersistencia createEspectaculoPersistencia() {
+        return new EspectaculoPersistencia();
+    }
+
+    /**
+     * Create an instance of {@link DtEspectaculo }
+     * 
+     */
+    public DtEspectaculo createDtEspectaculo() {
+        return new DtEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link SetEspectaculoPersistencia }
+     * 
+     */
+    public SetEspectaculoPersistencia createSetEspectaculoPersistencia() {
+        return new SetEspectaculoPersistencia();
+    }
+
+    /**
+     * Create an instance of {@link RegistroFuncion }
+     * 
+     */
+    public RegistroFuncion createRegistroFuncion() {
+        return new RegistroFuncion();
+    }
+
+    /**
+     * Create an instance of {@link DtEspectadorPerfil }
+     * 
+     */
+    public DtEspectadorPerfil createDtEspectadorPerfil() {
+        return new DtEspectadorPerfil();
+    }
+
+    /**
+     * Create an instance of {@link DtEspectadorConsulta }
+     * 
+     */
+    public DtEspectadorConsulta createDtEspectadorConsulta() {
+        return new DtEspectadorConsulta();
+    }
+
+    /**
+     * Create an instance of {@link ArrayArtistas }
+     * 
+     */
+    public ArrayArtistas createArrayArtistas() {
+        return new ArrayArtistas();
+    }
+
+    /**
+     * Create an instance of {@link EspectadorPersistencia }
+     * 
+     */
+    public EspectadorPersistencia createEspectadorPersistencia() {
+        return new EspectadorPersistencia();
+    }
+
+    /**
+     * Create an instance of {@link DtPaquete }
+     * 
+     */
+    public DtPaquete createDtPaquete() {
+        return new DtPaquete();
+    }
+
+    /**
+     * Create an instance of {@link Funcion }
+     * 
+     */
+    public Funcion createFuncion() {
+        return new Funcion();
+    }
+
+    /**
+     * Create an instance of {@link Categoria }
+     * 
+     */
+    public Categoria createCategoria() {
+        return new Categoria();
+    }
+
+    /**
+     * Create an instance of {@link DtCategoria }
+     * 
+     */
+    public DtCategoria createDtCategoria() {
+        return new DtCategoria();
+    }
+
+    /**
+     * Create an instance of {@link DtUsuario }
+     * 
+     */
+    public DtUsuario createDtUsuario() {
+        return new DtUsuario();
+    }
+
+    /**
      * Create an instance of {@link SetEspectaculos }
      * 
      */
@@ -343,14 +399,6 @@ public class ObjectFactory {
      */
     public DtFuncionDatos createDtFuncionDatos() {
         return new DtFuncionDatos();
-    }
-
-    /**
-     * Create an instance of {@link ArrayPaquetes }
-     * 
-     */
-    public ArrayPaquetes createArrayPaquetes() {
-        return new ArrayPaquetes();
     }
 
     /**

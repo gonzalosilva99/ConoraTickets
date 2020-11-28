@@ -264,7 +264,6 @@ public class ControladorUsuario implements IUsuario{
 		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
 		espectador.valorarespectaculo(nomEsp, valoracion);
 	}
-
 	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo) {
 		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
 		return espectador.getPuntajeEspectaculo(nomEspectaculo);
@@ -289,6 +288,14 @@ public class ControladorUsuario implements IUsuario{
 
 		}
 		return espectaculosAceptadosArtistaPlataforma;
+	}
+	public boolean esFavorito(String nickname, String nomEspectaculo) {
+		if(existeNickname(nickname)) {
+			return ManejadorUsuario.getInstancia().esFavorito(nickname, nomEspectaculo);
+		}
+		else {
+			return false;
+		}
 	}
 }
 

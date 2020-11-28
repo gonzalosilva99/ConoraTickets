@@ -433,5 +433,14 @@ public class publicador {
     	espectaculos.setEspectaculos(new ArrayList<>(iusuario.listarEspectaculosAceptadosArtistaPlataforma(nickname, nombrePlataforma)));
     	return espectaculos;
     }
+    
+    @WebMethod
+    public boolean esFavorito(String nickname, String nomEspectaculo) {
+    	return iusuario.esFavorito(nickname, nomEspectaculo);
+    }
+    
+    public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo) {
+    	return iplataforma.obtenerCantVotos(cantEstrellas, nomEspectaculo);
+    }
 
 }
