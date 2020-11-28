@@ -81,7 +81,7 @@ public class ControladorPlataforma implements IPlataforma{
 	
 	
 	public Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen) {
-		Funcion ret = new Funcion(NomFuncion, null, null, imagen);
+		Funcion ret = new Funcion(NomFuncion, null, null, imagen, null);
 		return ret;
 	};
 	public Set<DtPlataforma> listarPlataformas(){

@@ -26,7 +26,14 @@ public class Funcion {
 	private Map<String, Artista> artistasinvitados;
 	private Integer espectadores;
 	private Date fechaSorteo;
-		public Funcion(String nombre, Date inicio, Date alta, String imagen) {
+	private Espectaculo espectaculo;
+		public Espectaculo getEspectaculo() {
+		return espectaculo;
+	}
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
+	}
+		public Funcion(String nombre, Date inicio, Date alta, String imagen, Espectaculo espectaculo) {
 			super();
 			this.nombre = nombre;
 			this.inicio = inicio;
@@ -36,6 +43,7 @@ public class Funcion {
 			this.espectadores = 0;
 			this.fechaSorteo = null;
 			this.setRegistros(new HashSet<>());
+			this.espectaculo = espectaculo;
 		}
 		public Date getFechaSorteo() {
 			return fechaSorteo;

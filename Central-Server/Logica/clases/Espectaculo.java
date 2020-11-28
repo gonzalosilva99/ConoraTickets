@@ -199,7 +199,7 @@ public class Espectaculo {
 		
 		}
 		public void anadirFuncion(String nombre, Date inicio, Date alta, String imagen) {
-			Funcion ret = new Funcion(nombre, inicio, alta, imagen);
+			Funcion ret = new Funcion(nombre, inicio, alta, imagen, this);
 			funciones.put(nombre, ret);
 		}
 		public Funcion obtenerFuncion(String nombre) {

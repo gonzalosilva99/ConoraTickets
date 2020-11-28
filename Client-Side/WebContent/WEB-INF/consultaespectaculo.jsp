@@ -82,7 +82,9 @@
 						<a href="<%= dtesp.getUrl() %>"><p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getUrl() %></span></p></a>
 						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores"><%= dtesp.getCantmin() %></span></p>
 					    <p class="text-dark"><b>Cantidad maxima de Espectadores:</b> <span id="cantMaxEspectadores"><%= dtesp.getCantmax() %></span></p>
-						<p class="text-dark"><b>Costo:</b> <span id="costoEspectaculo"><%= dtesp.getCosto() %></span></p>					    
+						<p class="text-dark"><b>Costo:</b> <span id="costoEspectaculo">$<%= (int)(dtesp.getCosto()/1) %></span></p>
+						<p class="text-dark"><b>Premio:</b> <span id="costoEspectaculo"><%= dtesp.getPremio() %></span></p>					    
+											    
 					</div>
 			  		<div class="tab-pane fade ml-sm-5 mt-sm-5" id="funciones" role="tabpanel" aria-labelledby="funciones-tab">	 
 				  			 <div class="panel-group container-fluid">

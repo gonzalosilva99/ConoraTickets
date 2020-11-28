@@ -1006,6 +1006,19 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayPremios
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarPremiosEspectadorRequest", output = "http://webservices/publicador/listarPremiosEspectadorResponse")
+    public ArrayPremios listarPremiosEspectador(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @param fileName
      * @return
      *     returns byte[]
