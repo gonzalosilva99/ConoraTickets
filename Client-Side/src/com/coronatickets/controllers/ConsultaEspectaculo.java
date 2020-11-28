@@ -43,11 +43,21 @@ public class ConsultaEspectaculo extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
+		String nombreEspectaculofin = (String) request.getParameter("nomespectaculofin");
 		if(nombreEspectaculo!=null) {
 			webservices.PublicadorService service = new webservices.PublicadorService();
 	    	webservices.Publicador port = service.getPublicadorPort();
 			request.setAttribute("espectaculo",port.findDatosEspectaculo(nombreEspectaculo));	
 			request.getRequestDispatcher("/WEB-INF/consultaespectaculo.jsp").forward(request, response);
+		}
+		else if(nombreEspectaculofin!=null) {
+			webservices.PublicadorService service = new webservices.PublicadorService();
+	    	webservices.Publicador port = service.getPublicadorPort();
+			request.setAttribute("espectaculofin",port.getEspectaculoPersistencia(nombreEspectaculofin));
+			if(request.getSession().getAttribute("usuario_logueado")!=null&&request.getSession().getAttribute("usuario_logueado").equals(port.getEspectaculoPersistencia(nombreEspectaculofin).getOrganizador().getNickname())) {
+				request.getRequestDispatcher("/WEB-INF/consultaespectaculofinalizado.jsp").forward(request, response);}
+			else
+				response.sendRedirect("/home");
 		}
 	}
 	

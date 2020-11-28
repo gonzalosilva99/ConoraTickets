@@ -64,6 +64,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
 
+import Persistencia.EspectaculoPersistencia;
 import Persistencia.SetEspectaculoPersistencia;
 import clases.Categoria;
 import clases.Espectaculo;
@@ -432,6 +433,11 @@ public class publicador {
     	ArrayEspectaculos espectaculos = new ArrayEspectaculos();
     	espectaculos.setEspectaculos(new ArrayList<>(iusuario.listarEspectaculosAceptadosArtistaPlataforma(nickname, nombrePlataforma)));
     	return espectaculos;
+    }
+    
+    @WebMethod
+    public EspectaculoPersistencia getEspectaculoPersistencia(String nombreesp) {
+    	return iplataforma.getEspectculoPersistencia(nombreesp);
     }
 
 }

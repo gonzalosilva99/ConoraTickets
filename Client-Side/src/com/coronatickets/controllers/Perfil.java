@@ -3,6 +3,7 @@ package com.coronatickets.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import webservices.PublicadorService;
 import webservices.Publicador;
@@ -102,6 +105,21 @@ public class Perfil extends HttpServlet {
 				try {
 					System.out.println("ENTRA A UNFOLLOW");
 					port.dejarSeguirUsuario(usuarioLogueado, usuarioPerfil);
+					response.getWriter().write("SUCCESS");
+				}
+				catch(Exception e){
+					response.getWriter().write("ERROR " + e.getMessage());
+				}
+						
+			}
+			else if(tipo.equals("finalizar")){
+				try {
+					String nomesp = request.getParameter("espectaculo");
+					GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			        DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
+			        XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
+					System.out.println("ENTRA A FINALIZAR "+now.toString());
+					port.finalizarEspectaculo(nomesp, now);
 					response.getWriter().write("SUCCESS");
 				}
 				catch(Exception e){

@@ -97,6 +97,10 @@
         <servlet-name>Consulta Espectaculo</servlet-name>
         <url-pattern>/consultaespectaculo</url-pattern>
   	</servlet-mapping>
+  	<servlet-mapping>
+        <servlet-name>Consulta Espectaculo</servlet-name>
+        <url-pattern>/consultaespectaculofinalizado</url-pattern>
+  	</servlet-mapping>
   	<servlet>
         <servlet-name>Consulta Paquete</servlet-name>
         <servlet-class>com.coronatickets.controllers.ConsultaPaquete</servlet-class>

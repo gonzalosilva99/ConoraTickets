@@ -318,6 +318,11 @@ public class Espectaculo {
 		public void anadirPuntaje(PuntajeAsignado pun) {
 			this.puntajesAsignados.add(pun);
 		}
+		
+		public void setearPremios(String fun, String nick, Date fecha) {
+			Funcion func = funciones.get(fun);
+			func.setearPremios(nick, fecha);
+		}
 }
 
 
