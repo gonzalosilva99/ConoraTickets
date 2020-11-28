@@ -1004,4 +1004,22 @@ public interface Publicador {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
+    /**
+     * 
+     * @param fileName
+     * @return
+     *     returns byte[]
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getFileRequest", output = "http://webservices/publicador/getFileResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices/publicador/getFile/Fault/IOException")
+    })
+    public byte[] getFile(
+        @WebParam(name = "fileName", partName = "fileName")
+        String fileName)
+        throws IOException_Exception
+    ;
+
 }

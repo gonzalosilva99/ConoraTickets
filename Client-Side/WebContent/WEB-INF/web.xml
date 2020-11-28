@@ -182,6 +182,14 @@
         <servlet-name>AltaFuncion</servlet-name>
         <url-pattern>/altafuncion</url-pattern>
   	</servlet-mapping>
+  	<servlet>
+        <servlet-name>Imagenes</servlet-name>
+        <servlet-class>com.coronatickets.controllers.Imagenes</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+        <servlet-name>Imagenes</servlet-name>
+        <url-pattern>/imagenes</url-pattern>
+  	</servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

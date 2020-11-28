@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _IOException_QNAME = new QName("http://webservices/", "IOException");
     private final static QName _Identidad_QNAME = new QName("http://webservices/", "Identidad");
 
     /**
@@ -87,6 +88,14 @@ public class ObjectFactory {
      */
     public Identidad createIdentidad() {
         return new Identidad();
+    }
+
+    /**
+     * Create an instance of {@link IOException }
+     * 
+     */
+    public IOException createIOException() {
+        return new IOException();
     }
 
     /**
@@ -439,6 +448,15 @@ public class ObjectFactory {
      */
     public Espectaculo.Funciones.Entry createEspectaculoFuncionesEntry() {
         return new Espectaculo.Funciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservices/", name = "IOException")
+    public JAXBElement<IOException> createIOException(IOException value) {
+        return new JAXBElement<IOException>(_IOException_QNAME, IOException.class, null, value);
     }
 
     /**
