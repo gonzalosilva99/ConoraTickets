@@ -12,6 +12,7 @@ import datatypes.DtFuncion;
 import datatypes.DtFuncionDatos;
 import datatypes.DtPlataforma;
 import excepciones.Identidad;
+import Persistencia.EspectaculoPersistencia;
 
 public interface IPlataforma {
 	public 
@@ -24,7 +25,7 @@ public interface IPlataforma {
 		Set<DtFuncion> listarFuncionesVigentesEspectaculo(String nombreEsp, String nombrePlat);
 		public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, 
 				Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, Set<String> categorias,  String urlVideo, String premio, int cantPremios) throws Identidad;
-		Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen);
+		public Funcion getFuncion(String nombreEspectaculo, String NomFuncion, String imagen);
 		Set<DtPlataforma> listarPlataformas();
 		public Set<DtEspectaculo> listarEspectaculos(String nombrePlataforma);
 		void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, Set<String> artistas, Date alta, String imagen);		
@@ -47,4 +48,6 @@ public interface IPlataforma {
 		public DtFuncion getDtFuncion(String nombreFuncion);
 		public Set<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
 		public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo);
+		public EspectaculoPersistencia getEspectculoPersistencia(String nombreesp);
+		public void setearPremios(String plat, String esp, String fun, String nick, Date fecha);
 }

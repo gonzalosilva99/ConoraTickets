@@ -16,11 +16,11 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-header mx-auto ml-sm-5"><a href="/home">CORONATICKETS.UY</a></div>
+                        <div class="navbar-header d-xs-none d-sm-none mx-auto ml-sm-5"><a href="/mobilehome">CORONATICKETS.UY</a></div>
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">
-      		<input id="tosearch" class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." aria-label="Search">
+      		<input id="tosearch" class="form-control mr-sm-2" type="search" placeholder="Nickname, Espectáculo..." style="width:14em;" aria-label="Search">
       		<!--<a class="rounded-circle btn btn-outline-success my-2 mr-sm-2" href="../Client-Side/HTMLs/busqueda.html">-->
      		<button class="rounded-circle btn btn-outline-success my-2 mr-sm-2" onclick="InvocarBusqueda()" type="button"> 
       		<i class="fas fa-search"></i>
@@ -30,6 +30,8 @@
     </li>
    
 		<%
+		
+		
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
 			
 				webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);

@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _IOException_QNAME = new QName("http://webservices/", "IOException");
     private final static QName _Identidad_QNAME = new QName("http://webservices/", "Identidad");
 
     /**
@@ -87,6 +88,14 @@ public class ObjectFactory {
      */
     public Identidad createIdentidad() {
         return new Identidad();
+    }
+
+    /**
+     * Create an instance of {@link IOException }
+     * 
+     */
+    public IOException createIOException() {
+        return new IOException();
     }
 
     /**
@@ -170,19 +179,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayList }
-     * 
-     */
-    public ArrayList createArrayList() {
-        return new ArrayList();
-    }
-
-    /**
      * Create an instance of {@link FuncionPersistencia }
      * 
      */
     public FuncionPersistencia createFuncionPersistencia() {
         return new FuncionPersistencia();
+    }
+
+    /**
+     * Create an instance of {@link ArrayList }
+     * 
+     */
+    public ArrayList createArrayList() {
+        return new ArrayList();
     }
 
     /**
@@ -282,6 +291,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DtPremio }
+     * 
+     */
+    public DtPremio createDtPremio() {
+        return new DtPremio();
+    }
+
+    /**
      * Create an instance of {@link EspectaculoPersistencia }
      * 
      */
@@ -330,19 +347,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayArtistas }
-     * 
-     */
-    public ArrayArtistas createArrayArtistas() {
-        return new ArrayArtistas();
-    }
-
-    /**
      * Create an instance of {@link EspectadorPersistencia }
      * 
      */
     public EspectadorPersistencia createEspectadorPersistencia() {
         return new EspectadorPersistencia();
+    }
+
+    /**
+     * Create an instance of {@link ArrayArtistas }
+     * 
+     */
+    public ArrayArtistas createArrayArtistas() {
+        return new ArrayArtistas();
     }
 
     /**
@@ -410,6 +427,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayPremios }
+     * 
+     */
+    public ArrayPremios createArrayPremios() {
+        return new ArrayPremios();
+    }
+
+    /**
      * Create an instance of {@link webservices.Usuario.Siguiendo.Entry }
      * 
      */
@@ -439,6 +464,15 @@ public class ObjectFactory {
      */
     public Espectaculo.Funciones.Entry createEspectaculoFuncionesEntry() {
         return new Espectaculo.Funciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webservices/", name = "IOException")
+    public JAXBElement<IOException> createIOException(IOException value) {
+        return new JAXBElement<IOException>(_IOException_QNAME, IOException.class, null, value);
     }
 
     /**

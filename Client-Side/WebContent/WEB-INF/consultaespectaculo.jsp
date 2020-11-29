@@ -34,6 +34,11 @@
 				float cantVotos4star = port.obtenerCantVotos(4, dtesp.getNombre());
 				float cantVotos5star = port.obtenerCantVotos(5, dtesp.getNombre());
 				float totalVotos = cantVotos1star + cantVotos2star + cantVotos3star + cantVotos4star + cantVotos5star;
+				float porcent = 100;
+				if(totalVotos==0){
+					porcent=0;
+					totalVotos=1;
+				}
 		%>
 	<style>
 		#favearEspectaculo :hover{color:red;}
@@ -78,11 +83,11 @@
 }
 
 /* Individual bars */
-.bar-5 {width: <%= String.valueOf((cantVotos5star/totalVotos)*100) %>%; height: 18px; background-color: #4CAF50;}
-.bar-4 {width: <%= String.valueOf((cantVotos4star/totalVotos)*100) %>%; height: 18px; background-color: #2196F3;}
-.bar-3 {width: <%= String.valueOf((cantVotos3star/totalVotos)*100) %>%; height: 18px; background-color: #00bcd4;}
-.bar-2 {width: <%= String.valueOf((cantVotos2star/totalVotos)*100) %>%; height: 18px; background-color: #ff9800;}
-.bar-1 {width: <%= String.valueOf((cantVotos1star/totalVotos)*100) %>%; height: 18px; background-color: #f44336;}
+.bar-5 {width: <%= String.valueOf((cantVotos5star/totalVotos)*porcent) %>%; height: 18px; background-color: #4CAF50;}
+.bar-4 {width: <%= String.valueOf((cantVotos4star/totalVotos)*porcent) %>%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: <%= String.valueOf((cantVotos3star/totalVotos)*porcent) %>%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: <%= String.valueOf((cantVotos2star/totalVotos)*porcent) %>%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: <%= String.valueOf((cantVotos1star/totalVotos)*porcent) %>%; height: 18px; background-color: #f44336;}
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
@@ -108,8 +113,8 @@
 		<% 		if(dtesp!=null){%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-	            <img src="<% if(dtesp.getImagen()!=""){%><%= dtesp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
-	            <div class="media-body ml-sm-4">
+	            <img src="/imagenes?id=<%= dtesp.getImagen() %>"  class="rounded float-left media-object" alt="<%= dtesp.getNombre() %>" width=150em>
+             <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtesp.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>  
 		            <!-- IF LOGUEADO Y ES ESPECTADOR -->
@@ -144,9 +149,9 @@
 				<%} %>
 					<%}%>
 					<!-- FIN IF LOGUEADO Y ES ESPECTADOR --> 
-					<div class="row">
+					<div class="row" style="width:75%;">
 							  <div class='side'>
-							    <div>5 star</div>
+							    <div><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i></div>
 							  </div>
 							  <div class='middle'>
 							    <div class='bar-container'>
@@ -157,7 +162,7 @@
 							    <div><%= String.valueOf(cantVotos5star) %></div>
 							  </div>
 							  <div class='side'>
-							    <div>4 star</div>
+							    <div><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i></div>
 							  </div>
 							  <div class='middle'>
 							    <div class='bar-container'>
@@ -168,7 +173,7 @@
 							    <div><%= String.valueOf(cantVotos4star) %></div>
 							  </div>
 							  <div class='side'>
-							    <div>3 star</div>
+							    <div><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i></div>
 							  </div>
 							  <div class='middle'>
 							    <div class='bar-container'>
@@ -179,7 +184,7 @@
 							    <div><%= String.valueOf(cantVotos3star) %></div>
 							  </div>
 							  <div class='side'>
-							    <div>2 star</div>
+							    <div><i class="far fa-star" style="color:yellow;"></i><i class="far fa-star" style="color:yellow;"></i></div>
 							  </div>
 							  <div class='middle'>
 							    <div class='bar-container'>
@@ -190,7 +195,7 @@
 							    <div><%= String.valueOf(cantVotos2star) %></div>
 							  </div>
 							  <div class='side'>
-							    <div>1 star</div>
+							    <div><i class="far fa-star" style="color:yellow;"></i></div>
 							  </div>
 							  <div class='middle'>
 							    <div class='bar-container'>
@@ -628,6 +633,7 @@
 							document.getElementById(i.toString()).classList.remove("rating");
 							document.getElementById(i.toString()).setAttribute("onclick","");
 						}
+						location.reload();
 					}
 					else{
 						alert(data);

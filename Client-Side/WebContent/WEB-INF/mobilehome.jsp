@@ -28,24 +28,28 @@
 				webservices.ArrayEspectaculos arrespectaculos = port.listarEspectaculosAceptadosDePlataforma(nomPlataforma);
 				List<webservices.DtEspectaculo> espectaculos = arrespectaculos.getEspectaculos();
 				%>
-            <h2>Espectáculos disponibles en <%= nomPlataforma %></h2><br>
-            <%
-            Iterator<DtEspectaculo> itre = espectaculos.iterator();
-			while(itre.hasNext()){
-				DtEspectaculo auxe = itre.next();
-			
-            %>
-            <div class="mb-sm-4 container-fluid"></div>
-            <div class="container-fluid media mb-sm-5">
-            <a href="/mobileconsultaespectaculo?nomespectaculo=<%= auxe.getNombre() %>">           
-            	<img src="<% if(auxe.getImagen()!=""){%><%= auxe.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
-            <div class="media-body ml-sm-4">
-            <h4><%= auxe.getNombre() %></h4>
-            <p><%= auxe.getDescripcion() %> <u>Leer más</u></p>
-            </a>
-            </div>
-            </div>
-            <%} %>
+            <h2>Espectáculos en <%= nomPlataforma %></h2><br>
+            <div class="container-fluid" style="padding-right:15%;">
+            
+	            <%
+	            Iterator<DtEspectaculo> itre = espectaculos.iterator();
+				while(itre.hasNext()){
+					DtEspectaculo auxe = itre.next();
+				
+	            %>
+	            <div class="row">
+	            	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	            		<a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>"><img class="mr-3" src="<% if(auxe.getImagen()!=null && !auxe.getImagen().equals("")){%><%=auxe.getImagen()%><%}else{%>/img/img-loading-fail.png<%}%>" class="rounded float-left media-object" width="120em"></a>
+			    	</div>
+	            	<div class="col-md-9 col-sm-12 col-12">
+						<h5 class="mt-0 mb-1"><a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>"><%= auxe.getNombre() %></a></h5>
+			      		<p><%= auxe.getDescripcion() %> <a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>">Leer más</a></p>
+   	            	</div>
+	            </div>
+	            <br>
+	            <hr>
+		       	<%} %>
+			</div>
    
             <% }else if(nomCategoria!=null){ 
             	webservices.ArrayEspectaculos arrespectaculosporc = port.listarEspectaculosAceptadosDeCategoria(nomCategoria);
@@ -57,50 +61,56 @@
 				DtEspectaculo auxc = itrc.next();
 			
             %> 
-             
-            <div class="container-fluid media mb-sm-5">
-            <a href="/mobileconsultaespectaculo?nomespectaculo=<%= auxc.getNombre() %>">
-            	<img src="<% if(auxc.getImagen()!=""){%><%= auxc.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>
-            <div class="media-body ml-sm-4">
-            <h4><%= auxc.getNombre() %></h4>
-            <p> <%= auxc.getDescripcion() %> <u>Leer más</u></p>
-            </div>
-            </a>
-            </div>
+           <div class="row">
+	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/consultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>"><img class="mr-3" src="<% if(auxc.getImagen()!=null && !auxc.getImagen().equals("")){%><%=auxc.getImagen()%><%}else{%>/img/img-loading-fail.png<%}%>" class="rounded float-left media-object" width="120em"></a>
+		    	</div>
+	           	<div class="col-md-9 col-sm-12 col-12">
+					<h5 class="mt-0 mb-1"><a href="/consultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>"><%= auxc.getNombre() %></a></h5>
+		      		<p><%= auxc.getDescripcion() %> <a href="/consultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>">Leer más</a></p>
+	            	</div>
+          </div>
+           <br>
+           <hr>
 
 <% }} else { %> 
 	<h2>Espectáculos destacados</h2><br>
-            <div class="mb-sm-4 container-fluid"></div>
-            <a href="/mobileconsultaespectaculo?nomespectaculo=30 años" class="media-heading">
-            <div class="container-fluid media mb-sm-5">
-            	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="SPRINGSTEEN BROADWAY" width=150em>
-            <div class="media-body ml-sm-4">
-            <h4>30 años</h4>
-            <p>Espectáculo conmemorando los 30 años de Violeta. <u>Leer más</u></p>
-            </div>
-            </div>
-            </a>
-            
-            <a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="pull-left">
-            <div class="container-fluid media mb-sm-5">           
-            	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="BIEN DE FAMILIA" width=150em>          
-            <div class="media-body ml-sm-4">
-           <h4>Bien de Familia</h4>
-            <p> El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <u>Leer más</u></p>
-            </div>
-            </div>
-            </a>
-            
-            <a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World" class="pull-left">
-            <div class="container-fluid media mb-sm-5">
-            	<img src="/img/img-loading-fail.png" class="rounded float-left media-object" alt="GLOBAL SPIRIT" width=150em>      
-            <div class="media-body ml-sm-4">
-            <h4>Memphis Blues World</h4>
-            <p> Espectáculo promoviendo álbum Memphis Blues. <u>Leer más</u></p> 
-            </div>
-            </div>
-            </a>
-            
+    <div class="container-fluid" style="padding-right:15%;">
+		 <div class="row">
+	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=30 años" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="120em"></a>
+		    	</div>
+	           	<div class="col-md-9 col-sm-12 col-12">
+					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=30 años">30 años</a></h5>
+		      		<p>Espectáculo conmemorando los 30 años de Violeta. <a href="/mobileconsultaespectaculo?nomespectaculo=30 años"> Leer más</a></p>
+	            	</div>
+          </div>
+          <br>
+          <hr>
+           <div class="row">
+	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="120em"></a>
+		    	</div>
+	           	<div class="col-md-9 col-sm-12 col-12">
+					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia">Bien de familia</a></h5>
+		      		<p>El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia"> Leer más</a></p>
+	            	</div>
+          </div>
+          <br>
+          <hr>
+          <div class="row">
+	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="120em"></a>
+		    	</div>
+	           	<div class="col-md-9 col-sm-12 col-12">
+					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World">Memphis Blues World</a></h5>
+		      		<p>Espectáculo promoviendo álbum Memphis Blues. <a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World"> Leer más</a></p>
+	            	</div>
+          </div>
+          <br>
+          <hr>
+          
+    </div>        
 	<% } %>  
         </div>
 

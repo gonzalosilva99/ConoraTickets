@@ -1023,4 +1023,48 @@ public interface Publicador {
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
 
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.EspectaculoPersistencia
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getEspectaculoPersistenciaRequest", output = "http://webservices/publicador/getEspectaculoPersistenciaResponse")
+    public EspectaculoPersistencia getEspectaculoPersistencia(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayPremios
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarPremiosEspectadorRequest", output = "http://webservices/publicador/listarPremiosEspectadorResponse")
+    public ArrayPremios listarPremiosEspectador(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param fileName
+     * @return
+     *     returns byte[]
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/getFileRequest", output = "http://webservices/publicador/getFileResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://webservices/publicador/getFile/Fault/IOException")
+    })
+    public byte[] getFile(
+        @WebParam(name = "fileName", partName = "fileName")
+        String fileName)
+        throws IOException_Exception
+    ;
+
 }

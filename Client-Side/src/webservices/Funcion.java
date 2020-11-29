@@ -22,6 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="alta" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="espectaculo" type="{http://webservices/}espectaculo" minOccurs="0"/>
  *         &lt;element name="espectadores" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="fechaSorteo" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -39,6 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "funcion", propOrder = {
     "alta",
+    "espectaculo",
     "espectadores",
     "fechaSorteo",
     "imagen",
@@ -50,6 +52,7 @@ public class Funcion {
 
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar alta;
+    protected Espectaculo espectaculo;
     protected Integer espectadores;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaSorteo;
@@ -82,6 +85,30 @@ public class Funcion {
      */
     public void setAlta(XMLGregorianCalendar value) {
         this.alta = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad espectaculo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Espectaculo }
+     *     
+     */
+    public Espectaculo getEspectaculo() {
+        return espectaculo;
+    }
+
+    /**
+     * Define el valor de la propiedad espectaculo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Espectaculo }
+     *     
+     */
+    public void setEspectaculo(Espectaculo value) {
+        this.espectaculo = value;
     }
 
     /**

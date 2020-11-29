@@ -408,9 +408,19 @@ public class ManejadorPlataforma {
 			
 			try {				
 				  em.getTransaction().begin();				 
-				  espectaculo.setFunciones(funciones);		  
-				  em.persist(espectaculo);
+				  espectaculo.setFunciones(funciones);
 				  em.getTransaction().commit();
+				  
+				  
+				  Query existe = em.createQuery("SELECT COUNT(DISTINCT a.nombre) FROM EspectaculoPersistencia a WHERE a.nombre = :nom");
+				  existe.setParameter("nom", espectaculo.getNombre());
+				  long hay = (long) existe.getSingleResult();
+				  if(hay==0) {
+					  em.getTransaction().begin();
+					  em.persist(espectaculo);
+					  em.getTransaction().commit();
+				  }
+				  
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -448,6 +458,11 @@ public class ManejadorPlataforma {
 					return entry.getValue().getDtFuncion(nombreFuncion);
 			}
 			return null;
+		}
+		
+		public void setearPremios(String plat, String esp, String fun, String nick, Date fecha) {
+			Plataforma plata = plataformas.get(plat);
+			plata.setearPremios(esp, fun, nick, fecha);
 		}
 
 }

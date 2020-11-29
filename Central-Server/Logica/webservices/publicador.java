@@ -12,6 +12,7 @@ import controladores.Fabrica;
 import datatypes.ArrayCategorias;
 import datatypes.ArrayDtRegistros;
 import datatypes.ArrayPlataformas;
+import datatypes.ArrayPremios;
 import datatypes.ArrayArtistas;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
@@ -27,6 +28,7 @@ import datatypes.DtFuncionDatos;
 import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
 import datatypes.DtPlataforma;
+import datatypes.DtPremio;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import datatypes.SetEspectaculos;
@@ -50,11 +52,15 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
@@ -64,6 +70,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
 
+import Persistencia.EspectaculoPersistencia;
 import Persistencia.SetEspectaculoPersistencia;
 import clases.Categoria;
 import clases.Espectaculo;
@@ -441,6 +448,29 @@ public class publicador {
     
     public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo) {
     	return iplataforma.obtenerCantVotos(cantEstrellas, nomEspectaculo);
+    }
+    public EspectaculoPersistencia getEspectaculoPersistencia(String nombreesp) {
+    	return iplataforma.getEspectculoPersistencia(nombreesp);
+    }
+    
+    @WebMethod
+    public byte[] getFile(@WebParam(name = "fileName") String name)
+                    throws  IOException {
+        byte[] byteArray = null;
+        try {
+                File f = new File("../Central-Server/files/"+name);
+                FileInputStream streamer = new FileInputStream(f);
+                byteArray = new byte[streamer.available()];
+                streamer.read(byteArray);
+        } catch (IOException e) {
+                throw e;
+        }
+        return byteArray;
+    }
+    
+    @WebMethod
+    public ArrayPremios listarPremiosEspectador(String nickname) {
+    	return iusuario.listarPremiosEspectador(nickname);
     }
 
 }

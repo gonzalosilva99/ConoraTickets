@@ -9,6 +9,7 @@ import java.util.Map;
 
 import clases.Espectaculo;
 import clases.Funcion;
+import datatypes.ArrayPremios;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
 import datatypes.DtArtistaPerfil;
@@ -63,4 +64,5 @@ public interface IUsuario {
 	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo);
 	public Set<DtEspectaculo> listarEspectaculosAceptadosArtistaPlataforma(String nickname, String nombrePlataforma);
 	public boolean esFavorito(String nickname, String nomEspectaculo);
+	public ArrayPremios listarPremiosEspectador(String nickname);
 }

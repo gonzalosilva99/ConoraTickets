@@ -198,7 +198,7 @@ public class Espectaculo {
 		
 		}
 		public void anadirFuncion(String nombre, Date inicio, Date alta, String imagen) {
-			Funcion ret = new Funcion(nombre, inicio, alta, imagen);
+			Funcion ret = new Funcion(nombre, inicio, alta, imagen, this);
 			funciones.put(nombre, ret);
 		}
 		public Funcion obtenerFuncion(String nombre) {
@@ -318,6 +318,7 @@ public class Espectaculo {
 			this.puntajesAsignados.add(pun);
 		}
 		
+
 		public int cantVotosEstrella(int cantEstrellas) {
 			Iterator<PuntajeAsignado> itrpuntaje = this.puntajesAsignados.iterator();
 			int ret = 0;
@@ -329,6 +330,11 @@ public class Espectaculo {
 			return ret;
 		}
 	
+
+		public void setearPremios(String fun, String nick, Date fecha) {
+			Funcion func = funciones.get(fun);
+			func.setearPremios(nick, fecha);
+		}
 }
 
 

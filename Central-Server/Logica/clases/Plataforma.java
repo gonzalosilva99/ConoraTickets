@@ -241,6 +241,11 @@ public class Plataforma {
 			return null;
 		}
 		
+		public void setearPremios(String esp, String fun, String nick, Date fecha) {
+			Espectaculo espe = espectaculos.get(esp);
+			espe.setearPremios(fun, nick, fecha);
+		}
+		
 		
 }
 		
