@@ -410,8 +410,10 @@ public class publicador {
     	iusuario.desmarcarFavorito(nickname, nomEsp);
     }
     @WebMethod
-	public ArrayList<DtEspectaculo> listarEspectaculosParaPuntuar(String nickname){
-    	ArrayList<DtEspectaculo> ret = new ArrayList<DtEspectaculo>(iusuario.listarEspectaculosParaPuntuar(nickname));
+	public ArrayEspectaculos listarEspectaculosParaPuntuar(String nickname){
+    	ArrayEspectaculos ret = new ArrayEspectaculos();
+    	ArrayList<DtEspectaculo> set = new ArrayList<DtEspectaculo>(iusuario.listarEspectaculosParaPuntuar(nickname));
+    	ret.setEspectaculos(set);
     	return ret;
     }
     @WebMethod

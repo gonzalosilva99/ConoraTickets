@@ -720,12 +720,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns webservices.ArrayList
+     *     returns webservices.ArrayEspectaculos
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/listarEspectaculosParaPuntuarRequest", output = "http://webservices/publicador/listarEspectaculosParaPuntuarResponse")
-    public ArrayList listarEspectaculosParaPuntuar(
+    public ArrayEspectaculos listarEspectaculosParaPuntuar(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

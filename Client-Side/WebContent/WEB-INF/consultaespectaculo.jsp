@@ -1,3 +1,4 @@
+<%@page import="webservices.ArrayEspectaculos"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
@@ -6,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<%@page import="webservices.DtEspectaculo"%>
 	<%@page import="webservices.DtEspectaculoDatos"%>
 	<%@page import="webservices.EstadoSesion" %>
 	<%@page import="webservices.DtCategoria" %>
@@ -124,7 +126,16 @@
 		            	<%} else{%>
 		            		<p id="desfavear" class="text-dark"> <span id="desfavearEspectaculo" href="#" onclick="desfavearEspectaculo()"><i id="corazonFav" class="fas fa-heart" style="color:red;" ></i></span> <span id="cantfavs"><%= dtesp.getCantFavoritos() %></span> </p>
 		            <%}%>
-					<%if(port.getPuntajeEspectaculo(usuario, dtesp.getNombre()) == 0){ %>
+		            <%
+		            Iterator<DtEspectaculo> itresppuntuables = port.listarEspectaculosParaPuntuar(usuario).getEspectaculos().iterator();
+		            boolean puedePuntuar =false;
+		            while (itresppuntuables.hasNext() && !puedePuntuar){
+		            	puedePuntuar = dtesp.getNombre().equals(itresppuntuables.next().getNombre());
+		            }
+		            %>
+					<%
+					if(puedePuntuar){
+					if(port.getPuntajeEspectaculo(usuario, dtesp.getNombre()) == 0){ %>
 					<p>	
 		            	<span id="1" class="rating fa fa-star" onclick="valorarEspectaculo(1)"></span>
 						<span id="2" class="rating fa fa-star" onclick="valorarEspectaculo(2)"></span>
@@ -146,6 +157,7 @@
 						<%} %> 
 					</p>
 						
+				<%} %>
 				<%} %>
 					<%}%>
 					<!-- FIN IF LOGUEADO Y ES ESPECTADOR --> 
