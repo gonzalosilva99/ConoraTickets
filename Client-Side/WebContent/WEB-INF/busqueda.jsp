@@ -153,7 +153,7 @@
 			    						<br>
 			    						
 			    						<div class="media mb-sm-2">
-										 	<img src="<% if(dtusu.getImagen()!=null && !dtusu.getImagen().equals("")){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+										 	<img src="/imagenes?id=<%= dtusu.getImagen() %>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 										  	<div class="media-body">
 										    	<h4 class="mt-0" id="nombreapellidoUsuario"><a href="/perfil?id=<%=dtusu.getNickname()%>"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></a></h4>
 										    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
@@ -176,7 +176,7 @@
 									while(itere.hasNext()){%><%DtEspectaculoDatos dtespec = itere.next();%> <%if(j==1){%><div <%if(r>3){%>style="display:none;"<%}%> id="espec<%=r%>" class="col-md-6 col-lg-6"><%j=0;}%>
 			    					<br>
 			    						<div class="media">
-									 	<img src="/imagenes?id=<%= dtespec.getImagen() %>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+									 	<img src="/imagenes?id=<%= dtespec.getImagen() %>" id="imgEspec" class="mr-3 rounded-circle" alt="https://image.flaticon.com/icons/png/512/68/68314.png" width=64em height="64em"> 
 									  	<div class="media-body">
 									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/consultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
 									    	<%=dtespec.getDescripcion() %>
@@ -201,7 +201,7 @@
 			    					for(DtPaqueteDatos dtpaq : PaquetesFiltrados){if(k==1){%></div><div  <%if(q>3){%>style="display:none;"<%}%> id="paq<%=q%>" class="col-md-6 col-lg-6"><%k=0;}%>
 			    					<br>
 			    					<div class="media mb-sm-2">
-									 	<img src="<% if(dtpaq.getImagen() != null && dtpaq.getImagen()!=""){%> <%= dtpaq.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+									 	<img src="/imagenes?id=<%= dtpaq.getImagen() %>" id="imgEspec" class="mr-3 rounded-circle" alt="https://image.flaticon.com/icons/png/512/68/68314.png" width=64em height="64em"> 
 									  	<div class="media-body">
 									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/paquete?nompaquete=<%=dtpaq.getNombre() %>"><%= dtpaq.getNombre() %></a></h4>
 									    	<%= dtpaq.getDescripcion() %>

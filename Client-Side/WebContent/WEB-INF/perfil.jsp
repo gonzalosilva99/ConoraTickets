@@ -52,7 +52,7 @@
             <div class="container-fluid">
             	<div class="mb-sm-4 container-fluid"></div>
 	            <div class="row">
-		            <img src="<% if(EsArtista){if(dtart.getImagen()!=null && dtart.getImagen()!=""){%><%= dtart.getImagen() %> <%}else{%><%= "img/defaultpic.jpg" %><%}}else{ if(dtesp.getImagen()!=null && dtesp.getImagen()!=""){%><%= dtesp.getImagen() %><%}else{%><%= "img/defaultpic.jpg" %><% }} %>" class="shadow mx-auto rounded-circle" width=150em height=150em>
+		            <img src="<% if(EsArtista){%>/imagenes?id=<%= dtart.getImagen() %><%}else{%>/imagenes?id=<%= dtesp.getImagen() %><%}%>" class="shadow mx-auto rounded-circle" width=150em height=150em>
 		        </div >
 		        <div class="row">
 		 	      	<h1 class="mx-auto" style="margin-top:0.5em"> <% if(EsArtista){%>
@@ -112,7 +112,7 @@
 				      	%>
 				      	<a href="/perfil?id=<%= nuevo.getNickname() %>">
 				         <div class="row" > 
-				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="<%if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%=nuevo.getImagen()%><%}else{%><%= "img/defaultpic.jpg" %><%}%>" height=32em width=32em ></div>
+				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="/imagenes?id=<%= nuevo.getImagen() %>" height=32em width=32em ></div>
 				         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
 				         </div>
 				         </a>
@@ -145,7 +145,7 @@
 				      	%>
 						<a href="/perfil?id=<%= nuevo.getNickname() %>">
 							<div class="row" >
-				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="<%if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%=nuevo.getImagen()%><%}else{%><%= "img/defaultpic.jpg" %><%}%>" height=32em width=32em ></div>
+				         	<div class="col-md-2"><img class="float-right rounded-circle img-responsive " src="/imagenes?id=<%= nuevo.getImagen() %>" height=32em width=32em ></div>
 				         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
 							</div>
 						</a>
@@ -341,7 +341,7 @@
 							<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultapaquete?nompaquete=<%=nuevo.getNombre()%>">
 					    			<div class="container-fluid media">
-					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
+					    				<img src="/imagenes?id=<%= nuevo.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 											<div class="media-body ml-sm-4">		
 									         	<p class="text-dark"><b>Nombre del paquete:</b> <span id="nombrePaquete"><%= nuevo.getNombre() %></span></p>
 												<p class="text-dark"><b>Descripcion:</b> <span id="descuentoPaquete"><%= nuevo.getDescripcion() %></span></p>

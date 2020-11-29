@@ -29,7 +29,7 @@
 				String usuario = (String) request.getSession().getAttribute("usuario_logueado");
 			%>
 			<div class="container-fluid media mb-sm-5">
-	            <img src="<%if(dtpaq.getImagen()!=null && dtpaq.getImagen()!=""){%><%= dtpaq.getImagen()%><%}else{%><%="img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 
+	            <img src="/imagenes?id=<%= dtpaq.getImagen() %>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 
 	            <div class="media-body ml-sm-4">
 		            <p class="text-dark"><b>Nombre del paquete:</b> <span id="nombreEspectaculo"><%= dtpaq.getNombre() %>	</span></p>
 						<% Integer tamc = dtpaq.getCategorias().size();

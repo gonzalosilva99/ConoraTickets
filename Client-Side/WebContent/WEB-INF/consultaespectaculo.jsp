@@ -378,7 +378,7 @@
 				    				<div class="container-fluid media mb-sm-5">
 				    					<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
 				    						<div class="container-fluid media mb-sm-5">
-				    					 <img src="<%if(auxp.getImagen()!=""){%><%=auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
+				    					 <img src="/imagenes?id=<%= auxp.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 <%
  										 	Date todayDate = new Date();
  										 %>

@@ -103,36 +103,36 @@ public class Main {
 						// ESPECTADORES (Nickname, Nombre, apellido, Email, Fecha_Nac)
 						fechaNac = formato.parse("31/12/1971");
 						iusuario.confirmarAltaEspectador("eleven11", "Eleven", "Ten", "eleven11@gmail.com", fechaNac,
-								"", "lkj34df");
+								"Usuarioeleven11.jpg", "lkj34df");
 						fechaNac = formato.parse("15/11/1983");
 						iusuario.confirmarAltaEspectador("costas", "Gerardo", "Costas", "gcostas@gmail.com", fechaNac,
-								"", "poke579");
+								"Usuariocostas.jpg", "poke579");
 						fechaNac = formato.parse("15/4/1990");
 						iusuario.confirmarAltaEspectador("waston", "Emma", "Watson", "e.watson@gmail.com", fechaNac,
-								"https://bit.ly/3jrashA", "mkji648");
+								"Usuariowaston.jpg", "mkji648");
 						fechaNac = formato.parse("15/5/1959");
 						iusuario.confirmarAltaEspectador("house", "Gregory", "House", "greghouse@gmail.com", fechaNac,
-								"https://bit.ly/3ng8YZE", "fcku0123");
+								"Usuariohouse.jpg", "fcku0123");
 						fechaNac = formato.parse("28/01/1950");
 						iusuario.confirmarAltaEspectador("sergiop", "Sergio", "Puglia", "puglia@alpanpan.com.uy",
-								fechaNac, "https://bit.ly/2EViUGV", "vbmn4r");
+								fechaNac, "Usuariosergiop.jpg", "vbmn4r");
 						fechaNac = formato.parse("17/03/1976");
 						iusuario.confirmarAltaEspectador("chino", "Alvaro", "Recoba", "chino@trico.com.uy", fechaNac,
-								"https://bit.ly/3cTJWuX", "ncnl123");
+								"Usuariochino.jpg", "ncnl123");
 						fechaNac = formato.parse("14/02/1955");
 						iusuario.confirmarAltaEspectador("tonyp", "Antonio", "Pacheco", "eltony@manya.com.uy", fechaNac,
-								"https://bit.ly/3cS2bkh", "mny101");
+								"Usuariotonyp.jpg", "mny101");
 						fechaNac = formato.parse("23/02/1927");
 						iusuario.confirmarAltaEspectador("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar",
-								fechaNac, "", "1o1vbm");
+								fechaNac, "Usuariolachiqui.jpg", "1o1vbm");
 						fechaNac = formato.parse("08/05/1937");
 						iusuario.confirmarAltaEspectador("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy",
-								fechaNac, "", "ultraton01");
+								fechaNac, "Usuariocbochinche.jpg", "ultraton01");
 
 						// Cargar Artista
 						fechaNac = formato.parse("1/1/1977");
 						iusuario.confirmarAltaArtista("vpeople", "Village", "People", "vpeople@tuta.io", fechaNac,
-								"https://bit.ly/36uctpI", "asdfg456",
+								"Usuariovpeople.jpg", "asdfg456",
 								"Village People es una innovadora formación musical\n"
 										+ "de estilo disco de finales de los a\u00f1os 70. Fue famosa\n"
 										+ "tanto por sus peculiares disfraces, como por sus\n"
@@ -145,7 +145,7 @@ public class Main {
 								"http://www.officialvillag/");
 						fechaNac = formato.parse("14/6/1980");
 						iusuario.confirmarAltaArtista("dmode", "Depeche", "Mode", "dmode@tuta.io", fechaNac,
-								"https://bit.ly/2GB7vME", "123rtgfdv",
+								"Usuariodmode.jpg", "123rtgfdv",
 								"Depeche Mode es un grupo inglés de música\n"
 										+ "electrónica formado en Basildon, Essex, en 1980 por\n"
 										+ "Vicent Clarke y Andrew John Fletcher, a los que se\n"
@@ -154,7 +154,7 @@ public class Main {
 								"", "http://www.depechemod/");
 						fechaNac = formato.parse("22/6/1953");
 						iusuario.confirmarAltaArtista("clauper", "Cyndi", "Lauper", "clauper@hotmail.com", fechaNac,
-								"https://bit.ly/34zFWvV", "poiuy086",
+								"Usuarioclauper.jpg", "poiuy086",
 								"Cynthia Ann Stephanie Lauper, conocida simplemente\n"
 										+ "como Cyndi Lauper, es una cantautora, actriz y\n"
 										+ "empresaria estadounidense. Después de participar en\n"
@@ -169,7 +169,7 @@ public class Main {
 								"cyndilauper.com");
 						fechaNac = formato.parse("23/9/1949");
 						iusuario.confirmarAltaArtista("bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com",
-								fechaNac, "https://bit.ly/34hFwde", "GTO468",
+								fechaNac, "UsuariobruceTheBoss.jpg", "GTO468",
 								"Bruce Frederick Joseph Springsteen (Long Branch,\n"
 										+ "Nueva Jersey, 23 de septiembre de 1949), más conocido\n"
 										+ "como Bruce Springsteen, es un cantante, músico y\n"
@@ -177,7 +177,7 @@ public class Main {
 								"naci blabla", "brucespringsteen.n\n" + "et");
 						fechaNac = formato.parse("1/1/1998");
 						iusuario.confirmarAltaArtista("tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io",
-								fechaNac, "https://bit.ly/2Geps4a", "HGF135",
+								fechaNac, "UsuariotripleNelson.jpg", "HGF135",
 								"La Triple Nelson es un grupo de rock uruguayo\n"
 										+ "formado en enero de 1998 e integrado inicialmente por\n"
 										+ "Christian Cary (guitarra y voz), Fernando \"Paco\" Pintos\n"
@@ -186,7 +186,7 @@ public class Main {
 								"naci blabla", "http://www.latriplenelso/");
 						fechaNac = formato.parse("14/2/1987");
 						iusuario.confirmarAltaArtista("la_ley", "La", "Ley", "la_ley@tuta.io", fechaNac,
-								"https://bit.ly/33oXxqQ", "lkj65D",
+								"Usuariola_ley.jpg", "lkj65D",
 								"La Ley fue una banda chilena de rock formada en 1987\n"
 										+ "por iniciativa del tecladista y guitarrista. En un\n"
 										+ "principio, La Ley tenía la aspiración de ser un grupo de\n"
@@ -196,20 +196,20 @@ public class Main {
 								"naci blabla", "http://www.lasleyesdene/");
 						fechaNac = formato.parse("13/8/1981");
 						iusuario.confirmarAltaArtista("lospimpi", "Pimpinela", "Pimpinela", "lospimpi@gmail.com",
-								fechaNac, "https://bit.ly/30t4tRI", "jhvf395",
+								fechaNac, "Usuariolospimpi.jpg", "jhvf395",
 								"Pimpinela es un dúo musical argentino compuesto por\n"
 										+ "los hermanos Lucía Galán y Joaquín Galán. Pimpinela\n"
 										+ "ha editado veinticuatro discos",
 								"naci blabla", "http://www.pimpinela.n/");
 						fechaNac = formato.parse("5/3/1940");
 						iusuario.confirmarAltaArtista("dyangounchained", "Dyango", "Ango", "dyangounchained@gmail.com",
-								fechaNac, "https://bit.ly/3jwA8JS", "ijngr024",
+								fechaNac, "Usuariodyangounchained.jpg", "ijngr024",
 								"José Gómez Romero, conocido artísticamente como\n"
 										+ "Dyango es un cantante espa\u00f1ol de música romántica.",
 								"naci blabla", "");
 						fechaNac = formato.parse("17/7/1952");
 						iusuario.confirmarAltaArtista("alcides", "Alcides", "Violeta", "alceides@tuta.io", fechaNac,
-								"https://bit.ly/3nnpAiu", "987mnbgh",
+								"Usuarioalcides.jpg", "987mnbgh",
 								"Su carrera comienza en 1976 cuando forma la banda\n"
 										+ "Los Playeros junto a su hermano Víctor. Al poco\n"
 										+ "tiempo se mudan a San Luis donde comienzan a\n"
@@ -604,25 +604,25 @@ public class Main {
 						Date fin = formato.parse("31/07/2020");
 						Date alta = formato.parse("30/4/2020");
 						ipaquete.confirmarAltaPaquete("Paquete de Bandas", "Paquete de bandas musicales", inicio, fin,
-								20.0, alta, "https://bit.ly/3l9Vihe");
+								20.0, alta, "PaquetePaquete de Bandas.jpg");
 
 						inicio = formato.parse("01/08/2020");
 						fin = formato.parse("30/09/2020");
 						alta = formato.parse("15/7/2020");
 						ipaquete.confirmarAltaPaquete("Paquete Solistas", "Paquete de solistas.", inicio, fin, 30.0,
-								alta, "https://bit.ly/2HSF4e0");
+								alta, "PaquetePaquete Solistas.jpg");
 
 						inicio = formato.parse("15/08/2020");
 						fin = formato.parse("25/11/2020");
 						alta = formato.parse("1/8/2020");
 						ipaquete.confirmarAltaPaquete("Paquete Latino", "Paquete de espectáculos latinos.", inicio, fin,
-								15.0, alta, "https://bit.ly/2HSF4e0/3ndBhIw");
+								15.0, alta, "PaquetePaquete Latino.jpg");
 
 						inicio = formato.parse("1/11/2020");
 						fin = formato.parse("23/12/2020");
 						alta = formato.parse("25/11/2020");
 						ipaquete.confirmarAltaPaquete("La Triple Dyango", "Para los rockeros románticos.", inicio, fin,
-								10.0, alta, "https://bit.ly/2JcPJks");
+								10.0, alta, "PaqueteLa Triple Dyango.jpg");
 
 						// Compra paquetes
 						Date compa = formato.parse("01/05/2020");
@@ -951,10 +951,10 @@ public class Main {
 						fechaAltaEspectaculo = formato.parse("1/9/2020");
 						iplataforma.setearPremios("Twitter Live", "Memphis Blues World", "Memphis Blues World - B",
 								"house", fechaAltaEspectaculo);
-						fechaAltaEspectaculo = formato.parse("31/9/2020");
+						fechaAltaEspectaculo = formato.parse("30/9/2020");
 						iplataforma.setearPremios("Twitter Live", "Memphis Blues World", "Memphis Blues World - C",
 								"costas", fechaAltaEspectaculo);
-						fechaAltaEspectaculo = formato.parse("31/9/2020");
+						fechaAltaEspectaculo = formato.parse("30/9/2020");
 						iplataforma.setearPremios("Twitter Live", "Memphis Blues World", "Memphis Blues World - C",
 								"waston", fechaAltaEspectaculo);
 						fechaAltaEspectaculo = formato.parse("30/9/2020");
@@ -975,7 +975,32 @@ public class Main {
 						fechaAltaEspectaculo = formato.parse("30/10/2020");
 						iplataforma.setearPremios("Twitter Live", "30 años", "30 años - 2", "tonyp",
 								fechaAltaEspectaculo);
-
+						
+						iusuario.valorarEspectaculo("chino", "Los Village Volvieron", 5);
+						iusuario.valorarEspectaculo("tonyp", "Los Village Volvieron", 2);
+						iusuario.valorarEspectaculo("costas", "Los Village Volvieron", 3);
+						iusuario.valorarEspectaculo("lachiqui", "Los Village Volvieron", 4);
+						iusuario.valorarEspectaculo("eleven11", "Global Spirit", 4);
+						iusuario.valorarEspectaculo("waston", "Global Spirit", 1);
+						iusuario.valorarEspectaculo("sergiop", "Global Spirit", 2);
+						iusuario.valorarEspectaculo("tonyp", "Global Spirit", 2);
+						iusuario.valorarEspectaculo("cbochinche", "Global Spirit", 5);
+						iusuario.valorarEspectaculo("chino", "Global Spirit", 5);
+						iusuario.valorarEspectaculo("eleven11", "Memphis Blues World", 2);
+						iusuario.valorarEspectaculo("house", "Memphis Blues World", 4);
+						iusuario.valorarEspectaculo("chino", "Memphis Blues World", 2);
+						iusuario.valorarEspectaculo("sergiop", "Springsteen on Broadway", 3);
+						iusuario.valorarEspectaculo("house", "Springsteen on Broadway", 4);
+						iusuario.valorarEspectaculo("eleven11", "Springsteen on Broadway", 2);
+						iusuario.valorarEspectaculo("costas", "Springsteen on Broadway", 1);
+						iusuario.valorarEspectaculo("waston", "Springsteen on Broadway", 5);
+						iusuario.valorarEspectaculo("house", "Bien de Familia", 1);
+						iusuario.valorarEspectaculo("cbochinche", "Bien de Familia", 4);
+						iusuario.valorarEspectaculo("chino", "30 años", 5);
+						iusuario.valorarEspectaculo("tonyp", "30 años", 3);
+						iusuario.valorarEspectaculo("costas", "30 años", 2);
+						
+						
 						// Finalizar Espectaculos
 						fechaAltaEspectaculo = formato.parse("26/11/2020");
 						iplataforma.finzalizarEspectaculo("30 años", fechaAltaEspectaculo);
