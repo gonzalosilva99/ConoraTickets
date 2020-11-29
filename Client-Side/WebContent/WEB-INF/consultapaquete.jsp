@@ -42,7 +42,7 @@
 		            <p> <span id="descripcionEspectaculo"><%= dtpaq.getDescripcion() %> </span></p>        
 		            <%
         		            	Date hoy = new Date();	 
-        		            						  			 if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !port.esArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio().toGregorianCalendar().getTime()) && hoy.before(dtpaq.getFin().toGregorianCalendar().getTime()) ){
+								if(request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO && request.getSession().getAttribute("usuario_logueado")!=null && !port.esArtista((String)request.getSession().getAttribute("usuario_logueado")) && hoy.after(dtpaq.getInicio().toGregorianCalendar().getTime()) && hoy.before(dtpaq.getFin().toGregorianCalendar().getTime()) ){
         		            %>
 				    							<button type="submit" class="btn btn-primary" onclick="ComprarPaquete('<%=dtpaq.getNombre()%>');"><i class="fas fa-shopping-cart"></i> Comprar</button>
 				    						<%

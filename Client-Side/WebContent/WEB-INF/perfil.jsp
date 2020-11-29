@@ -208,6 +208,9 @@
 					<li class="nav-item">
 						<a class="nav-link" id="paquetes-tab" data-toggle="tab" href="#paquetes" role="tab" aria-controls="paquetes" aria-selected="false">PAQUETES</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="premios-tab" data-toggle="tab" href="#premios" role="tab" aria-controls="premios" aria-selected="false">PREMIOS</a>
+					</li>
 					<%} %>
 					<% if(EsArtista){ %>
 					<li class="nav-item">
@@ -256,6 +259,33 @@
 									  		<p class="text-dark"><b>Hora:</b> <span id="horaFuncion"><%= horaFecha.format(nuevo.getInicio().toGregorianCalendar().getTime()) %> </span></p>	
 									  		<p class="text-dark"><b>Costo:</b> <span id="horaFuncion"><%= reg.getCosto() %> </span></p>
 											        
+								        </div>
+								</div>
+								</a>
+            					</div>
+								<hr>
+				  			<%		
+				  				}
+				  			%>
+			  			</div>
+			  		</div>
+			  		<!--  MOSTRAMOS LOS PREMIOS DEL ESPECTADOR -->
+			  		<div class="tab-pane fade" id="premios" role="tabpanel" aria-labelledby="premios-tab">
+			  			<div class="container mt-5">
+							<% 	
+				  			
+				  				List<webservices.DtPremio> premios = port.listarPremiosEspectador(idUsuario).getPremios();
+								
+				  				for (webservices.DtPremio premio: premios){
+				  					
+				  			%>
+					    		<div class="container-fluid media mb-sm-3">
+				    			<div class="container-fluid media">
+										<div class="media-body ml-sm-4">	
+											<p class="text-dark"><b>Premio:</b> <span id="nombrePremio"> <%= premio.getDescripcion() %>  </span></p>
+									  		<p class="text-dark"><b>Fecha del sorteo:</b> <span id="fechaSorte"> <%= fechaIncompleta.format(premio.getFechaSorteo().toGregorianCalendar().getTime()) %> <%= horaFecha.format(premio.getFechaSorteo().toGregorianCalendar().getTime()) %> </span></p>
+									  		<p class="text-dark"><b>Espectaculo:</b> <span id="nombreEspectaculo"> <%= premio.getNombreEspectaculo() %> </span></p>	
+									  		<p class="text-dark"><b>Funcion:</b> <span id="nombreFuncion"> <%= premio.getNombreFuncion() %> </span></p>   
 								        </div>
 								</div>
 								</a>

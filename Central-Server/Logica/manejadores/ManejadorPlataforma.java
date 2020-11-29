@@ -179,6 +179,11 @@ public class ManejadorPlataforma {
 			return fun.getDtFuncionDatos(esp.getDatosEspectaculo());
 		}
 		
+		public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo) {
+			Espectaculo esp = plataformas.get(this.getPlataformaDeEspectaculo(nomEspectaculo)).getEspectaculo(nomEspectaculo);
+			return esp.cantVotosEstrella(cantEstrellas);
+		}
+		
 		public Set<DtEspectaculo> listarEspectaculosEnPlataformaNoPaquete(String NombrePaquete, String NombrePlataforma) {
 			Plataforma pla = this.getPlataforma(NombrePlataforma);
 			return pla.listarEspectaculosEnPlataformaNoPaquete(NombrePaquete);

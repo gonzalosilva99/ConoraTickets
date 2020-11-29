@@ -1,5 +1,7 @@
 package controladores;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,7 @@ import clases.Espectaculo;
 import clases.Espectador;
 import clases.Funcion;
 import clases.Paquete;
+import datatypes.ArrayPremios;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
 import datatypes.DtArtistaPerfil;
@@ -264,7 +267,6 @@ public class ControladorUsuario implements IUsuario{
 		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
 		espectador.valorarespectaculo(nomEsp, valoracion);
 	}
-
 	public int getPuntajeEspectaculo(String nickname, String nomEspectaculo) {
 		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
 		return espectador.getPuntajeEspectaculo(nomEspectaculo);
@@ -290,6 +292,23 @@ public class ControladorUsuario implements IUsuario{
 		}
 		return espectaculosAceptadosArtistaPlataforma;
 	}
+
+	public boolean esFavorito(String nickname, String nomEspectaculo) {
+		if(existeNickname(nickname)) {
+			return ManejadorUsuario.getInstancia().esFavorito(nickname, nomEspectaculo);
+		}
+		else {
+			return false;
+		}
+	}
+
+	public ArrayPremios listarPremiosEspectador(String nickname) {
+		ArrayPremios premios = new ArrayPremios();
+		Espectador espectador = ManejadorUsuario.getInstancia().getEspectador(nickname);
+		premios.setPremios(espectador.listarPremios());
+		return premios;
+	}
+
 }
 
 

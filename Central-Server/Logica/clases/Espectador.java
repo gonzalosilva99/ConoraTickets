@@ -5,7 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 import datatypes.DtEspectaculo;
@@ -15,6 +17,7 @@ import datatypes.DtEspectadorPerfil;
 import datatypes.DtFuncion;
 import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
+import datatypes.DtPremio;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import manejadores.ManejadorPlataforma;
@@ -185,7 +188,12 @@ public class Espectador extends Usuario{
 	public void setEspectaculosFavoritos(Map<String, Espectaculo> espectaculosFavoritos) {
 		this.espectaculosFavoritos = espectaculosFavoritos;
 	}
-
+	public Boolean esFavorito(String nomEspectaculo) {
+		if(this.espectaculosFavoritos.containsKey(nomEspectaculo)) {
+			return true;
+		}
+		return false;
+	}
 	public Set<PuntajeAsignado> getPuntajesAsignados() {
 		return puntajesAsignados;
 	}
@@ -199,7 +207,7 @@ public class Espectador extends Usuario{
 	}
 	
 	public void quitarFavorito(Espectaculo esp) {
-		espectaculosFavoritos.remove(esp);
+		espectaculosFavoritos.remove(esp.getNombre());
 	}
 	public Set<DtEspectaculo> getEspectaculosParaPuntuar(){
 		Set<DtEspectaculo> ret = new HashSet<DtEspectaculo>();
@@ -241,6 +249,18 @@ public class Espectador extends Usuario{
 			}
 		}
 		return ret;
+	}
+	public ArrayList<DtPremio> listarPremios(){
+		ArrayList<DtPremio> premios = new ArrayList<>();
+	    for (Map.Entry<Integer, RegistroFuncion> registro : registroFunciones.entrySet())  {
+	    	if (registro.getValue().ganoPremio()) {
+	    		DtPremio premio = new DtPremio(registro.getValue().getFuncion().getFechaSorteo(),
+	    				registro.getValue().getFuncion().getNombre() , registro.getValue().getFuncion().getEspectaculo().getNombre(), registro.getValue().getFuncion().getEspectaculo().getPremio());
+	    		premios.add(premio);
+	    	}
+	    }
+	    Collections.sort(premios);
+		return premios;
 	}
 }
 

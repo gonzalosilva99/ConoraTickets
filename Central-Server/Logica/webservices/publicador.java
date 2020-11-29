@@ -12,6 +12,7 @@ import controladores.Fabrica;
 import datatypes.ArrayCategorias;
 import datatypes.ArrayDtRegistros;
 import datatypes.ArrayPlataformas;
+import datatypes.ArrayPremios;
 import datatypes.ArrayArtistas;
 import datatypes.DtArtista;
 import datatypes.DtArtistaConsulta;
@@ -27,6 +28,7 @@ import datatypes.DtFuncionDatos;
 import datatypes.DtPaquete;
 import datatypes.DtPaqueteDatos;
 import datatypes.DtPlataforma;
+import datatypes.DtPremio;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import datatypes.SetEspectaculos;
@@ -550,6 +552,13 @@ public class publicador {
     }
     
     @WebMethod
+    public boolean esFavorito(String nickname, String nomEspectaculo) {
+    	return iusuario.esFavorito(nickname, nomEspectaculo);
+    }
+    
+    public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo) {
+    	return iplataforma.obtenerCantVotos(cantEstrellas, nomEspectaculo);
+    }
     public EspectaculoPersistencia getEspectaculoPersistencia(String nombreesp) {
     	return iplataforma.getEspectculoPersistencia(nombreesp);
     }
@@ -567,6 +576,11 @@ public class publicador {
                 throw e;
         }
         return byteArray;
+    }
+    
+    @WebMethod
+    public ArrayPremios listarPremiosEspectador(String nickname) {
+    	return iusuario.listarPremiosEspectador(nickname);
     }
 
 }

@@ -993,6 +993,38 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/esFavoritoRequest", output = "http://webservices/publicador/esFavoritoResponse")
+    public boolean esFavorito(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/obtenerCantVotosRequest", output = "http://webservices/publicador/obtenerCantVotosResponse")
+    public int obtenerCantVotos(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns webservices.EspectaculoPersistencia
@@ -1001,6 +1033,19 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://webservices/publicador/getEspectaculoPersistenciaRequest", output = "http://webservices/publicador/getEspectaculoPersistenciaResponse")
     public EspectaculoPersistencia getEspectaculoPersistencia(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns webservices.ArrayPremios
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://webservices/publicador/listarPremiosEspectadorRequest", output = "http://webservices/publicador/listarPremiosEspectadorResponse")
+    public ArrayPremios listarPremiosEspectador(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

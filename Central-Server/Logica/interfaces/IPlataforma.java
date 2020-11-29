@@ -47,6 +47,7 @@ public interface IPlataforma {
 		public Boolean espectaculoinPlataforma(String nombrePlataforma, String nombreEspectaculo);
 		public DtFuncion getDtFuncion(String nombreFuncion);
 		public Set<DtEspectador> sortearPremios(String nombrePlataforma, String nombreEspectaculo, String nombreFuncion);
+		public int obtenerCantVotos(int cantEstrellas, String nomEspectaculo);
 		public EspectaculoPersistencia getEspectculoPersistencia(String nombreesp);
 		public void setearPremios(String plat, String esp, String fun, String nick, Date fecha);
 }

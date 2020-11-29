@@ -66,7 +66,7 @@
     </div>
     
     <div class="form-row col-md-5  mb-4 mx-auto">
-      <textarea class="form-control row-md-3" rows=5 id="Descripcion" placeholder="Descripción" id="descripcion" name="descripcion"></textarea>
+      <textarea class="form-control row-md-3" rows=5 placeholder="Descripción" id="descripcion" name="descripcion"></textarea>
     </div>
     
     <div class="form-row col-md-5 mx-auto">
@@ -118,11 +118,22 @@
         
       </div>
     </li>
-    <% ;} %>	
+    <% } %>	
   </ul>
    </div> 
     <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
       <input type="url" class="form-control" id="imagen" placeholder="Link Imagen del Espectaculo" name="imagen">
+    </div>
+    <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
+      <input type="url" class="form-control" id="video" placeholder="Link del video asociado" name="video">
+    </div>
+    
+    <br>
+    <div class="form-row col-md-5 row-md-4 mb-4 mx-auto">
+      <input type="number" class="form-control"  placeholder="Cant. Premios" name="cantpremios" required>
+    </div>
+    <div class="form-row col-md-5  mb-4 mx-auto">
+      <textarea class="form-control row-md-3" rows=5 id="descripcionpremios" placeholder="Descripción de premios" name="descripcionpremios"></textarea>
     </div>
 	
 	<div class="form-row col-md-5 mb-4 mx-auto">
