@@ -349,6 +349,7 @@ public class ManejadorPlataforma {
 			espectaculo.setFechaFinalizacion(fechafin);
 			espectaculo.setPlataforma(plataforma);
 			espectaculo.setOrganizador(organizador);
+			espectaculo.setImagen(esp.getImagen());
 			
 			//CARGAR FUNCIONES
 			Set<FuncionPersistencia> funciones = new HashSet<FuncionPersistencia>();
@@ -397,6 +398,7 @@ public class ManejadorPlataforma {
 				funagregar.setNombre(entry.getValue().getNombre());
 				funagregar.setInicio(entry.getValue().getInicio());
 				funagregar.setAlta(entry.getValue().getAlta());
+				funagregar.setImagen(entry.getValue().getImagen());
 				funagregar.setRegistros(registros);
 				funciones.add(funagregar);
 			}

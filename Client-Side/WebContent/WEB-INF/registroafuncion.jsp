@@ -34,7 +34,7 @@
 					List<webservices.DtRegistro> registroscanjeables = arrregistroscanjeables.getRegistros();
 			%>
 			<div class="container-fluid media mb-sm-5">
-	            <img src="<%if(dtfuncdatos.getImagen()!=null && dtfuncdatos.getImagen()!=""){%><%= dtfuncdatos.getImagen()%><%}else{%><%="img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 
+	            <img src="/imagenes?id=<%= dtfuncdatos.getImagen() %>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtfuncdatos.getNombre() %></h4></p>
 		            <p> <span id="fechaFuncion"><span class="text-dark">Fecha:</span> <%= fechaIncompleta.format(dtfuncdatos.getInicio().toGregorianCalendar().getTime()) %></span></p>

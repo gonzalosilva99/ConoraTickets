@@ -100,7 +100,7 @@
 								DtFuncionDatos auxf = itrf.next();%>
 								<div class="container-fluid media mb-sm-5">
 								
-								<img src="<% if(auxf.getImagen()!=""){%><%= auxf.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
+								<img src="/imagenes?id=<%= auxf.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
 								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxf.getNombre() %> </span></p>

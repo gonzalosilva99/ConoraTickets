@@ -23,6 +23,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="alta" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="inicio" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="registros" type="{http://webservices/}registroPersistencia" maxOccurs="unbounded" minOccurs="0"/>
@@ -38,6 +39,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "funcionPersistencia", propOrder = {
     "alta",
     "id",
+    "imagen",
     "inicio",
     "nombre",
     "registros"
@@ -47,6 +49,7 @@ public class FuncionPersistencia {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar alta;
     protected Long id;
+    protected String imagen;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar inicio;
     protected String nombre;
@@ -99,6 +102,30 @@ public class FuncionPersistencia {
      */
     public void setId(Long value) {
         this.id = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad imagen.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * Define el valor de la propiedad imagen.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setImagen(String value) {
+        this.imagen = value;
     }
 
     /**

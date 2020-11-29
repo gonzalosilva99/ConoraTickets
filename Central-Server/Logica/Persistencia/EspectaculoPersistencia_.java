@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2020-11-26T20:32:17.150-0300")
+@Generated(value="Dali", date="2020-11-28T15:15:17.758-0300")
 @StaticMetamodel(EspectaculoPersistencia.class)
 public class EspectaculoPersistencia_ {
 	public static volatile SingularAttribute<EspectaculoPersistencia, Long> id;
@@ -20,4 +20,5 @@ public class EspectaculoPersistencia_ {
 	public static volatile SingularAttribute<EspectaculoPersistencia, String> plataforma;
 	public static volatile SingularAttribute<EspectaculoPersistencia, ArtistaPersistencia> organizador;
 	public static volatile SetAttribute<EspectaculoPersistencia, FuncionPersistencia> funciones;
+	public static volatile SingularAttribute<EspectaculoPersistencia, String> imagen;
 }

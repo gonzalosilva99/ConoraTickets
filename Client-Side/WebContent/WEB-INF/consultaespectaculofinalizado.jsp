@@ -43,7 +43,7 @@
 		%>
 	<div class="mb-sm-4 container-fluid"></div>
             <div class="container-fluid media mb-sm-5">
-	            <img src="<% if(true){%>""<%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
+	            <img src="/imagenes?id=<%= dtesp.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="img-perfil-usuario" width=150em> 
 	            <div class="media-body ml-sm-4">
 		            <p class="media-heading"><h4 id="tituloEspectaculo"><%= dtesp.getNombre() %></h4></p>
 		            <p> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>        
@@ -89,7 +89,7 @@
 								FuncionPersistencia auxf = itrf.next();%>
 								<div class="container-fluid media mb-sm-5">
 								
-								<img src="<% if(true){%>""<%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
+								<img src="/imagenes?id=<%= auxf.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	
 				    				<div class="panel-body">
 				    							    							  				
 								  			 <p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= auxf.getNombre() %> </span></p>

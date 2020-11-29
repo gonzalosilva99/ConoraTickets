@@ -249,7 +249,7 @@
 					    		<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%= port.findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
 				    			<div class="container-fluid media">
-				    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
+				    				<img src="/imagenes?id=<%= nuevo.getImagen() %>" id="imgPaquete" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
 										<div class="media-body ml-sm-4">	
 											<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
 									  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio().toGregorianCalendar().getTime()) %></span></p>
@@ -280,7 +280,7 @@
 							<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
 					    			<div class="container-fluid media">
-					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
+					    				<img src="/imagenes?id=<%= nuevo.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
 											<div class="media-body ml-sm-4">		
 									         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
 									         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
@@ -339,7 +339,7 @@
 								<div class="container-fluid media mb-sm-3">
 					    			<a href="/consultaespectaculo?nomespectaculo=<%=nuevo.getNombre()%>">
 						    			<div class="container-fluid media">
-						    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
+						    				<img src="/imagenes?id=<%= nuevo.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + nuevo.getImagen() + ")" %>" width=150em> 
 												<div class="media-body ml-sm-4">		
 										         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
 										         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>
@@ -374,7 +374,7 @@
 					    		<div class="container-fluid media mb-sm-3">
 				    			<a href="/consultaespectaculo?nomespectaculo=<%= port.findDatosFuncion(nuevo.getNombre()).getEspectaculo().getNombre() %>">
 					    			<div class="container-fluid media">
-					    				<img src="<% if(nuevo.getImagen()!=null && nuevo.getImagen()!=""){%><%= nuevo.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
+					    				<img src="/imagenes?id=<%= nuevo.getImagen() %>" id="imgFuncion" class="rounded float-left media-object" alt="img-funcion" width=150em> 	 
 											<div class="media-body ml-sm-4">	
 												<p class="text-dark"><b>Nombre:</b> <span id="nombreFuncion"><%= nuevo.getNombre() %> </span></p>
 										  		<p class="text-dark"><b>Fecha:</b> <span id="fechaFuncion"><%= fechaIncompleta.format(nuevo.getInicio().toGregorianCalendar().getTime()) %></span></p>
@@ -403,7 +403,7 @@
 								<div class="container-fluid media mb-sm-3">
 					    			<a href="/consultaespectaculofinalizado?nomespectaculofin=<%=nuevo.getNombre()%>">
 						    			<div class="container-fluid media">
-						    				<img src="<% if(false){%><%= ""%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + "" + ")" %>" width=150em> 
+						    				<img src="/imagenes?id=<%= nuevo.getImagen() %>" id="imgEspectaculo" class="rounded float-left media-object" alt="<%="Imagen:(" + "" + ")" %>" width=150em> 
 												<div class="media-body ml-sm-4">		
 										         	<p class="text-dark"><b>Nombre del espectaculo:</b> <span id="nombreEspectaculo"><%= nuevo.getNombre() %></span></p>
 										         	<p class="text-dark"><b>Precio: $</b> <span id="precioEspectaculo"><%= nuevo.getCosto() %></span></p>

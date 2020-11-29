@@ -52,7 +52,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -107,6 +111,27 @@ public class publicador {
     @WebMethod
     public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, ArrayCategorias categorias,  String urlVideo, String premio, int cantPremios) throws Identidad {
     	try {
+    		URL urlaux = new URL(imagen);
+        	URLConnection urlcon = urlaux.openConnection();
+        	System.out.println(urlcon.getContentType());
+        	InputStream is = urlcon.getInputStream();
+        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Espectaculo"+nomEspectaculo+".jpg");
+        	byte[] array = new byte[1000];
+        	int leido = is.read(array);
+        	while(leido>0) {
+        		fos.write(array, 0, leido);
+        		leido = is.read(array);
+        	}
+        	is.close();
+        	fos.close();
+        	
+    	}    	
+    	catch(Exception e) {
+    		System.out.print(e.getMessage());
+    		e.printStackTrace();
+    	}
+    	try {
+    	
     	Set<String> cat = new HashSet<String>();
     	if (categorias.getCategorias().size()>0) {
     	Iterator<DtCategoria> itr = categorias.getCategorias().iterator();
@@ -114,7 +139,8 @@ public class publicador {
     		cat.add(itr.next().getNomCategoria());
     	}
     	}
-        iplataforma.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, imagen, cat, urlVideo, premio, cantPremios);
+    	String im = "Espectaculo"+nomEspectaculo+".jpg";
+        iplataforma.altaEspectaculo(nomPlat, nickArtista, nomEspectaculo, descripcion, minEsp, maxEsp, url, costo, fecha, duracion, im, cat, urlVideo, premio, cantPremios);
     	}
     	catch(Exception e) {
     		throw e;
@@ -158,12 +184,33 @@ public class publicador {
     
     @WebMethod
 	public void confirmarAltaFuncionEspectaculo(String nombrePlataforma, String nombreEspectaculo, String nombre, Date inicio, ArrayArtistas artistas, Date alta, String imagen) {
+    	try {
+    		URL urlaux = new URL(imagen);
+        	URLConnection urlcon = urlaux.openConnection();
+        	System.out.println(urlcon.getContentType());
+        	InputStream is = urlcon.getInputStream();
+        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Funcion"+nombre+".jpg");
+        	byte[] array = new byte[1000];
+        	int leido = is.read(array);
+        	while(leido>0) {
+        		fos.write(array, 0, leido);
+        		leido = is.read(array);
+        	}
+        	is.close();
+        	fos.close();
+        	
+    	}    	
+    	catch(Exception e) {
+    		System.out.print(e.getMessage());
+    		e.printStackTrace();
+    	}
     	ArrayList<String> listaArtistas = new ArrayList<>();
     	for (DtArtista artista: artistas.getArtistas()) {
     		listaArtistas.add(artista.getNickname());
     	}
+    	String im = "Funcion"+nombre+".jpg";
     	Set<String> art = new HashSet<String>(listaArtistas);
-    	iplataforma.confirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, art, alta, imagen);
+    	iplataforma.confirmarAltaFuncionEspectaculo(nombrePlataforma, nombreEspectaculo, nombre, inicio, art, alta, im);
     }
 
     @WebMethod
@@ -212,7 +259,28 @@ public class publicador {
     @WebMethod    
 	public void confirmarAltaArtista(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento, String imagen, String contrasena, String Descripcion, String Biografia, String Link) throws Identidad{
     	try {
-    		iusuario.confirmarAltaArtista(Nickname, Nombre, Apellido, Email, Nacimiento, imagen, contrasena, Descripcion, Biografia, Link);
+    		URL urlaux = new URL(imagen);
+        	URLConnection urlcon = urlaux.openConnection();
+        	System.out.println(urlcon.getContentType());
+        	InputStream is = urlcon.getInputStream();
+        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Usuario"+Nickname+".jpg");
+        	byte[] array = new byte[1000];
+        	int leido = is.read(array);
+        	while(leido>0) {
+        		fos.write(array, 0, leido);
+        		leido = is.read(array);
+        	}
+        	is.close();
+        	fos.close();
+        	
+    	}    	
+    	catch(Exception e) {
+    		System.out.print(e.getMessage());
+    		e.printStackTrace();
+    	}
+    	try {
+    		String im = "Usuario"+Nickname+".jpg";
+    		iusuario.confirmarAltaArtista(Nickname, Nombre, Apellido, Email, Nacimiento, im, contrasena, Descripcion, Biografia, Link);
     	}
     	catch(Exception e) {
     		throw e;
@@ -222,7 +290,28 @@ public class publicador {
     @WebMethod
 	public void confirmarAltaEspectador(String Nickname, String Nombre, String Apellido, String Email, Date Nacimiento,  String imagen, String contrasena) throws Identidad{
     	try {
-    		iusuario.confirmarAltaEspectador(Nickname, Nombre, Apellido, Email, Nacimiento, imagen, contrasena);
+    		URL urlaux = new URL(imagen);
+        	URLConnection urlcon = urlaux.openConnection();
+        	System.out.println(urlcon.getContentType());
+        	InputStream is = urlcon.getInputStream();
+        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Usuario"+Nickname+".jpg");
+        	byte[] array = new byte[1000];
+        	int leido = is.read(array);
+        	while(leido>0) {
+        		fos.write(array, 0, leido);
+        		leido = is.read(array);
+        	}
+        	is.close();
+        	fos.close();
+        	
+    	}    	
+    	catch(Exception e) {
+    		System.out.print(e.getMessage());
+    		e.printStackTrace();
+    	}
+    	try {
+    		String im = "Usuario"+Nickname+".jpg";
+    		iusuario.confirmarAltaEspectador(Nickname, Nombre, Apellido, Email, Nacimiento, im, contrasena);
     	}
     	catch(Exception e) {
     		throw e;
@@ -378,7 +467,28 @@ public class publicador {
     @WebMethod
 	public void confirmarAltaPaquete(String NombrePaquete, String Descripcion, Date inicio, Date fin, Double Descuento, Date alta, String imagen) {
     	try {
-    		ipaquete.confirmarAltaPaquete(NombrePaquete, Descripcion, inicio, fin, Descuento, alta, imagen);
+    		URL urlaux = new URL(imagen);
+        	URLConnection urlcon = urlaux.openConnection();
+        	System.out.println(urlcon.getContentType());
+        	InputStream is = urlcon.getInputStream();
+        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Paquete"+NombrePaquete+".jpg");
+        	byte[] array = new byte[1000];
+        	int leido = is.read(array);
+        	while(leido>0) {
+        		fos.write(array, 0, leido);
+        		leido = is.read(array);
+        	}
+        	is.close();
+        	fos.close();
+        	
+    	}    	
+    	catch(Exception e) {
+    		System.out.print(e.getMessage());
+    		e.printStackTrace();
+    	}
+    	try {
+    		String im = "Paquete"+NombrePaquete+".jpg";
+    		ipaquete.confirmarAltaPaquete(NombrePaquete, Descripcion, inicio, fin, Descuento, alta, im);
     	}
     	catch(Exception e) {
     		

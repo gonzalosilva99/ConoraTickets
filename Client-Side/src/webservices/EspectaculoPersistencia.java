@@ -27,6 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaFinalizacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="funciones" type="{http://webservices/}funcionPersistencia" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="organizador" type="{http://webservices/}artistaPersistencia" minOccurs="0"/>
  *         &lt;element name="plataforma" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -48,6 +49,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaFinalizacion",
     "funciones",
     "id",
+    "imagen",
     "nombre",
     "organizador",
     "plataforma",
@@ -64,6 +66,7 @@ public class EspectaculoPersistencia {
     @XmlElement(nillable = true)
     protected List<FuncionPersistencia> funciones;
     protected Long id;
+    protected String imagen;
     protected String nombre;
     protected ArtistaPersistencia organizador;
     protected String plataforma;
@@ -218,6 +221,30 @@ public class EspectaculoPersistencia {
      */
     public void setId(Long value) {
         this.id = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad imagen.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * Define el valor de la propiedad imagen.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setImagen(String value) {
+        this.imagen = value;
     }
 
     /**

@@ -33,6 +33,7 @@ public class EspectaculoPersistencia implements Serializable {
 	private ArtistaPersistencia organizador;
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private Set<FuncionPersistencia> funciones;
+	private String imagen;
 	
 	
 	
@@ -194,6 +195,20 @@ public class EspectaculoPersistencia implements Serializable {
 
 	public void setFunciones(Set<FuncionPersistencia> funciones) {
 		this.funciones = funciones;
+	}
+
+
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
    
 }

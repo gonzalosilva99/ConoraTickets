@@ -176,7 +176,7 @@
 									while(itere.hasNext()){%><%DtEspectaculoDatos dtespec = itere.next();%> <%if(j==1){%><div <%if(r>3){%>style="display:none;"<%}%> id="espec<%=r%>" class="col-md-6 col-lg-6"><%j=0;}%>
 			    					<br>
 			    						<div class="media">
-									 	<img src="<%if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+									 	<img src="/imagenes?id=<%= dtespec.getImagen() %>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
 									  	<div class="media-body">
 									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
 									    	<%=dtespec.getDescripcion() %>

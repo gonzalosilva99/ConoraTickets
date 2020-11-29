@@ -1,7 +1,9 @@
 package com.coronatickets.controllers;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -46,6 +49,7 @@ public class AltaEspectaculo extends HttpServlet {
 	    	webservices.PublicadorService service = new webservices.PublicadorService();
 	    	webservices.Publicador port = service.getPublicadorPort();
 	    	String nombre = requestt.getParameter("Nombre");
+	    	System.out.println("name: "+nombre);
 			String plat = requestt.getParameter("plat");
 		    String descripcion = requestt.getParameter("descripcion");
 		    String min = requestt.getParameter("espmin");
@@ -70,7 +74,6 @@ public class AltaEspectaculo extends HttpServlet {
 			XMLGregorianCalendar fef = DatatypeFactory.newInstance().newXMLGregorianCalendar(aux);
 			System.out.print( (String) requestt.getSession().getAttribute("usuario_logueado"));
 	    	port.altaEspectaculo(plat, (String) requestt.getSession().getAttribute("usuario_logueado"), nombre, descripcion, Integer.parseInt(min), Integer.parseInt(max), url, Integer.parseInt(costo), fef, Integer.parseInt(duracion), imagen, cate, "", "", 0);	    		    	
-	    	//requestt.setAttribute("id", (String) requestt.getParameter("id"));
 	    	requestt.setAttribute("aceptado", "true");
 	    	RequestDispatcher dispatcher = requestt.getRequestDispatcher("/WEB-INF/altaespectaculo.jsp");
 			dispatcher.forward(requestt, resp);

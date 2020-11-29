@@ -285,7 +285,7 @@ public class Main {
 						
 						fechaAltaEspectaculo = formato.parse("30/05/2020");
 						cat.add("Solistas");
-						iplataforma.altaEspectaculo("Twitter Live", "clauper", "Memphis Blues World", "Espectáculo promoviendo álbum Memphis Blues.", 1, 1000, "https://twitter.com/cyndilauper", 800, fechaAltaEspectaculo, 110, "EspectaculoEspectaculoMemphis Blues World.jpg", cat, "https://youtu.be/ivHp3_gYXIc","Meet & greet (encuentro) virtual con la legendaria cantante e ícono delPop, que inspiró a tantas otras cantante femeninas como Madonna yLady Gaga (aunque ellas jamás lo admitirían).", 2);
+						iplataforma.altaEspectaculo("Twitter Live", "clauper", "Memphis Blues World", "Espectáculo promoviendo álbum Memphis Blues.", 1, 1000, "https://twitter.com/cyndilauper", 800, fechaAltaEspectaculo, 110, "EspectaculoMemphis Blues World.jpg", cat, "https://youtu.be/ivHp3_gYXIc","Meet & greet (encuentro) virtual con la legendaria cantante e ícono delPop, que inspiró a tantas otras cantante femeninas como Madonna yLady Gaga (aunque ellas jamás lo admitirían).", 2);
 						
 						fechaAltaEspectaculo = formato.parse("07/06/2020");
 						cat.add("Rock en Ingles");
@@ -332,14 +332,14 @@ public class Main {
 						artistas.add("clauper"); 
 						fechaInicioFuncion = FormatoInicio.parse("2020-04-15 15:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoLos Village Volvieron.jpg");	
 						
 						//F2
 						artistas.clear();
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-05-01 17:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoLos Village Volvieron.jpg");	
 						
 						//F3
 						artistas.clear();
@@ -347,14 +347,14 @@ public class Main {
 						artistas.add("clauper");
 						fechaInicioFuncion = FormatoInicio.parse("2020-06-01 18:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-03-31 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Los Village Volvieron", "Los Village Volvieron - 3", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoLos Village Volvieron.jpg");	
 						
 						//F4
 						artistas.clear();
 						artistas.add("vpeople");
 						fechaInicioFuncion = FormatoInicio.parse("2020-06-10 19:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+						iplataforma.confirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (I)", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoGlobal Spirit.jpg");	
 						
 						//F5
 						artistas.clear();
@@ -362,21 +362,21 @@ public class Main {
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-07-10 20:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-04-20 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+						iplataforma.confirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (II)", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoGlobal Spirit.jpg");	
 						
 						//F6
 						artistas.clear();
 						artistas.add("lospimpi");
 						fechaInicioFuncion = FormatoInicio.parse("2020-08-10 17:45:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion, "");	
+						iplataforma.confirmarAltaFuncionEspectaculo("Facebook Watch", "Global Spirit", "Global Spirit (III)", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoGlobal Spirit.jpg");	
 						
 						//F7
 						artistas.clear();
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-8-15 17:45:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Memphis Blues World", "Memphis Blues World - A", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Memphis Blues World", "Memphis Blues World - A", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoMemphis Blues World.jpg");
 						
 						//F8
 						artistas.clear();
@@ -384,7 +384,7 @@ public class Main {
 						artistas.add("dmode");
 						fechaInicioFuncion = FormatoInicio.parse("2020-8-31 19:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Memphis Blues World", "Memphis Blues World - B", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Memphis Blues World", "Memphis Blues World - B", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoMemphis Blues World.jpg");
 
 						//F9
 						artistas.clear();
@@ -392,7 +392,7 @@ public class Main {
 						artistas.add("bruceTheBoss");
 						fechaInicioFuncion = FormatoInicio.parse("2020-9-30 20:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-05-30 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Memphis Blues World", "Memphis Blues World - C", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Memphis Blues World", "Memphis Blues World - C", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoMemphis Blues World.jpg");
 						
 						//F10
 						artistas.clear();
@@ -400,7 +400,7 @@ public class Main {
 						artistas.add("tripleNelson");
 						fechaInicioFuncion = FormatoInicio.parse("2020-9-1 19:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - i", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - i", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoSpringsteen on Broadway.jpg");
 						
 						//F11
 						artistas.clear();
@@ -408,20 +408,20 @@ public class Main {
 						artistas.add("la_ley");
 						fechaInicioFuncion = FormatoInicio.parse("2020-9-30 17:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - ii", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - ii", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoSpringsteen on Broadway.jpg");
 						
 						//F12
 						artistas.clear();
 						artistas.add("la_ley");
 						fechaInicioFuncion = FormatoInicio.parse("2020-10-15 20:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-06-07 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - iii", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Springsteen on Broadway", "Springsteen on Broadway - iii", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoSpringsteen on Broadway.jpg");
 						
 						//F18
 						artistas.clear();
 						fechaInicioFuncion = FormatoInicio.parse("2020-11-15 21:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "30 a\u00f1os", "30 a\u00f1os - 3", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "30 a\u00f1os", "30 a\u00f1os - 3", fechaInicioFuncion, artistas, fechaAltaFuncion, "Espectaculo30 años.jpg");
 						
 						//F17
 						artistas.clear();
@@ -429,60 +429,60 @@ public class Main {
 						artistas.add("dyangounchained");
 						fechaInicioFuncion = FormatoInicio.parse("2020-10-01 19:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "30 a\u00f1os", "30 a\u00f1os - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "30 a\u00f1os", "30 a\u00f1os - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "Espectaculo30 años.jpg");
 					
 						//F16
 						artistas.clear();
 						artistas.add("dyangounchained");
 						fechaInicioFuncion = FormatoInicio.parse("2020-09-01 21:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-31 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "30 a\u00f1os", "30 a\u00f1os - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "30 a\u00f1os", "30 a\u00f1os - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "Espectaculo30 años.jpg");
 						
 						//F15
 						artistas.clear();
 						fechaInicioFuncion = FormatoInicio.parse("2020-11-25 17:45:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Bien de Familia", "Bien de Familia - C", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Bien de Familia", "Bien de Familia - C", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoBien de Familia.jpg");
 						
 						//F14
 						artistas.clear();
 						artistas.add("tripleNelson");
 						fechaInicioFuncion = FormatoInicio.parse("2020-10-25 18:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Bien de Familia", "Bien de Familia - B", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Bien de Familia", "Bien de Familia - B", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoBien de Familia.jpg");
 						 
 						//F13
 						artistas.clear();
 						artistas.add("alcides");
 						fechaInicioFuncion = FormatoInicio.parse("2020-09-25 19:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-07-08 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Twitter Live", "Bien de Familia", "Bien de Familia - A", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoBien de Familia.jpg");
 						 
 						//F19
 						artistas.clear();
 						artistas.add("lospimpi");
 						fechaInicioFuncion = FormatoInicio.parse("2020-12-19 17:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-11-25 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Grandes Exitos 2020", "Grandes Exitos 2020 - Dia", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Grandes Exitos 2020", "Grandes Exitos 2020 - Dia", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoGrandes Exitos 2020.jpg");
 						 
 						//F20
 						artistas.clear();
 						artistas.add("lospimpi");
 						fechaInicioFuncion = FormatoInicio.parse("2020-12-19 21:00:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-11-25 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Grandes Exitos 2020", "Grandes Exitos 2020 - Noche", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Youtube", "Grandes Exitos 2020", "Grandes Exitos 2020 - Noche", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoGrandes Exitos 2020.jpg");
 						 
 						//F21
 						artistas.clear();
 						fechaInicioFuncion = FormatoInicio.parse("2020-12-18 21:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-11-24 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Llega a Casa", "Llega a Casa - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Llega a Casa", "Llega a Casa - 1", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoLlega a Casa.jpg");
 						 
 						//F22
 						artistas.clear();
 						fechaInicioFuncion = FormatoInicio.parse("2020-12-19 21:30:00");
 						fechaAltaFuncion = FormatoInicio.parse("2020-11-24 00:00:00");
-						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Llega a Casa", "Llega a Casa - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "");
+						iplataforma.confirmarAltaFuncionEspectaculo("Instagram Live", "Llega a Casa", "Llega a Casa - 2", fechaInicioFuncion, artistas, fechaAltaFuncion, "EspectaculoLlega a Casa.jpg");
 				
 						//Cargar Paquetes
 						IPaquete ipaquete= fab.getIPaquete();

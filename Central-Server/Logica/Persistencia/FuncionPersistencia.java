@@ -28,6 +28,7 @@ public class FuncionPersistencia implements Serializable {
 	private Date alta;
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
     private Set<RegistroPersistencia> registros;
+	private String imagen;
 	
 
 	public FuncionPersistencia() {
@@ -87,6 +88,16 @@ public class FuncionPersistencia implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
    
 	
