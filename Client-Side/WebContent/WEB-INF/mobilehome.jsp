@@ -38,12 +38,12 @@
 				
 	            %>
 	            <div class="row">
-	            	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	            		<a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>"><img class="mr-3" src="<% if(auxe.getImagen()!=null && !auxe.getImagen().equals("")){%><%=auxe.getImagen()%><%}else{%>/img/img-loading-fail.png<%}%>" class="rounded float-left media-object" width="120em"></a>
+	            	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	            		<a href="/mobileconsultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>"><img class="mr-3" src="<% if(auxe.getImagen()!=null && !auxe.getImagen().equals("")){%>/imagenes?id=<%=auxe.getImagen()%><%}else{%>/img/img-loading-fail.png<%}%>" class="rounded float-left media-object" width="113vw"></a>
 			    	</div>
-	            	<div class="col-md-9 col-sm-12 col-12">
-						<h5 class="mt-0 mb-1"><a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>"><%= auxe.getNombre() %></a></h5>
-			      		<p><%= auxe.getDescripcion() %> <a href="/consultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>">Leer más</a></p>
+	            	<div class="col-md-10 col-sm-12 col-12">
+						<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>"><%= auxe.getNombre() %></a></h5>
+			      		<p><%= auxe.getDescripcion() %> <a href="/mobileconsultaespectaculo?nomespectaculo=<%=auxe.getNombre() %>">Leer más</a></p>
    	            	</div>
 	            </div>
 	            <br>
@@ -62,11 +62,11 @@
 			
             %> 
            <div class="row">
-	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/consultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>"><img class="mr-3" src="<% if(auxc.getImagen()!=null && !auxc.getImagen().equals("")){%><%=auxc.getImagen()%><%}else{%>/img/img-loading-fail.png<%}%>" class="rounded float-left media-object" width="120em"></a>
+	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>"><img class="mr-3" src="<% if(auxc.getImagen()!=null && !auxc.getImagen().equals("")){%>/imagenes?id=<%=auxc.getImagen()%><%}else{%>/img/img-loading-fail.png<%}%>" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
-	           	<div class="col-md-9 col-sm-12 col-12">
-					<h5 class="mt-0 mb-1"><a href="/consultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>"><%= auxc.getNombre() %></a></h5>
+	           	<div class="col-md-10 col-sm-12 col-12">
+					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>"><%= auxc.getNombre() %></a></h5>
 		      		<p><%= auxc.getDescripcion() %> <a href="/consultaespectaculo?nomespectaculo=<%=auxc.getNombre() %>">Leer más</a></p>
 	            	</div>
           </div>
@@ -77,10 +77,10 @@
 	<h2>Espectáculos destacados</h2><br>
     <div class="container-fluid" style="padding-right:15%;">
 		 <div class="row">
-	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/mobileconsultaespectaculo?nomespectaculo=30 años" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="120em"></a>
+	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=30 años" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
-	           	<div class="col-md-9 col-sm-12 col-12">
+	           	<div class="col-md-10 col-sm-12 col-12">
 					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=30 años">30 años</a></h5>
 		      		<p>Espectáculo conmemorando los 30 años de Violeta. <a href="/mobileconsultaespectaculo?nomespectaculo=30 años"> Leer más</a></p>
 	            	</div>
@@ -88,10 +88,10 @@
           <br>
           <hr>
            <div class="row">
-	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="120em"></a>
+	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
-	           	<div class="col-md-9 col-sm-12 col-12">
+	           	<div class="col-md-10 col-sm-12 col-12">
 					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia">Bien de familia</a></h5>
 		      		<p>El dúo estará presentando sus más sonados éxitos y también nuevas canciones. <a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia"> Leer más</a></p>
 	            	</div>
@@ -99,10 +99,10 @@
           <br>
           <hr>
           <div class="row">
-	           	<div class="col-md-3 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="120em"></a>
+	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
-	           	<div class="col-md-9 col-sm-12 col-12">
+	           	<div class="col-md-10 col-sm-12 col-12">
 					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World">Memphis Blues World</a></h5>
 		      		<p>Espectáculo promoviendo álbum Memphis Blues. <a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World"> Leer más</a></p>
 	            	</div>

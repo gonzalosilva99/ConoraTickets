@@ -28,9 +28,13 @@
 		function onLoad(){
 			var match = document.cookie.match(new RegExp('(^| )' + 'nick' + '=([^;]+)'));
 			var matchpwd = document.cookie.match(new RegExp('(^| )' + 'pswd' + '=([^;]+)'));
-		      if (match) {
+		      if (match && (match[2]!=null)) {
 		      	document.getElementById("login").setAttribute("value",match[2]);
 		      	document.getElementById("password").setAttribute("value",matchpwd[2]);
+		      }
+		      else{
+		    	  document.getElementById("login").setAttribute("value","");
+			      	document.getElementById("password").setAttribute("value","");
 		      }
 		}
 	</script>
@@ -39,7 +43,7 @@
 <% if((String) request.getAttribute("alta")!=null && ((String) request.getAttribute("alta")).equals("true")){ %> 
 <script type="text/javascript"> alert("Registrado con exito!"); </script>
 <% } %>
-	<div class="row minh-100 align-items-center justify-content-center">
+	<div class="row minh-100 align-items-center justify-content-center" style="margin:0px;">
 		<div class="col-md-6 col-12 col-sm-12 fadeIn second">
 			<div class="row fadeInDown">
 				<div class="col-md-6 col-12 col-sm-12 fadeIn second">
@@ -55,10 +59,9 @@
 			<div  id="formContent" style="margin-left:auto;margin-right:auto;">
 			    		<form action="mobileiniciar-sesion" method="POST">
 			      			<input type="text" id="login" class="fadeIn second mt-sm-3" name="login" placeholder="Usuario" >
-			      			<input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" >
-			      			<input id="check" name="checkrememb" type="checkbox" value="Recuérdame">
+			      			<input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" ><br>
+			      			<input id="check" name="checkrememb" type="checkbox"><label>Recuérdame</label><br>
 			      			<input type="submit" class="fadeIn fourth" value="Acceder" onclick="submit()">
-			      			<a href="/signin"> ¿No tienes cuenta? Regístrate</a>
 						</form>
 			</div>
 		</div>

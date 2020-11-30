@@ -28,6 +28,7 @@
 		else 
 			search = "";
 		List<DtUsuario> UsuariosFiltrados = (ArrayList<DtUsuario>) request.getAttribute("UsuariosFiltrados");
+		System.out.print("Tamanio usu:::" + UsuariosFiltrados.size());
 		List<DtEspectaculoDatos> EspectaculosFiltrados = (ArrayList<DtEspectaculoDatos>) request.getAttribute("EspectaculosFiltrados");
 	%>
 	
@@ -143,14 +144,17 @@
 		    					if(UsuariosFiltrados != null && UsuariosFiltrados.size() != 0){
 			    					for(DtUsuario dtusu : UsuariosFiltrados){if(i==1){%></div><div <%if(p>3){%>style="display:none;"<%}%> id="usu<%=p%>" class="col-md-6 col-lg-6"><%i=0;}%>
 			    						<br>
+			    						<div class="row">
 			    						
-			    						<div class="media mb-sm-2">
-										 	<img src="<% if(dtusu.getImagen()!=null && !dtusu.getImagen().equals("")){%> <%= dtusu.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
-										  	<div class="media-body">
-										    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
-										    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
-										  	</div>
-										</div>
+				    						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				    						 	<img src="/imagenes?id=<%= dtusu.getImagen() %>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+											</div>
+				    						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				    						    	<h4 class="mt-0" id="nombreapellidoUsuario"><%=dtusu.getNombre()%> <%=dtusu.getApellido()%></h4>
+											    	<%=dtusu.getNickname()%> / <%= dtusu.getEmail()%>
+											</div>
+			    						</div>
+			    						<hr class="d-block  d-sm-block d-md-none d-lg-none d-xs-none">
 		    					<%i++;p++;}}%>
 		    					<%if(i>0){%></div><%}%>
 							</div><br>
@@ -167,14 +171,18 @@
 									if(EspectaculosFiltrados != null && EspectaculosFiltrados.size() != 0){
 									while(itere.hasNext()){%><%DtEspectaculoDatos dtespec = itere.next();%> <%if(j==1){%><div <%if(r>3){%>style="display:none;"<%}%> id="espec<%=r%>" class="col-md-6 col-lg-6"><%j=0;}%>
 			    					<br>
-			    						<div class="media">
-									 	<img src="<%if(dtespec.getImagen() != null && dtespec.getImagen()!=""){%> <%= dtespec.getImagen()%> <%} else{ %><%= "https://bit.ly/3ng8YZE"%><%}%>" id="imgEspec" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
-									  	<div class="media-body">
-									    	<h4 class="mt-0" id="nombreespectaculo"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
-									    	<%=dtespec.getDescripcion() %>
-									    	Espectadores: <%= dtespec.getCantmin() %> / <%= dtespec.getCantmax() %>  
-									  	</div>
-									</div>
+			    						<div class="row">
+			    						
+				    						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				    						 	<img src="/imagenes?id=<%= dtespec.getImagen() %>"  alt="https://image.flaticon.com/icons/png/512/68/68314.png" id="imgperfilUsuario" class="mr-3 rounded-circle" alt="img-perfil-usuario" width=64em height="64em"> 
+											</div>
+				    						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				    						    	<h4 class="mt-0" id="nombreespectaculo"><a href="/mobileconsultaespectaculo?nomespectaculo=<%=dtespec.getNombre() %>"><%= dtespec.getNombre()%></a></h4>
+											    	<%=dtespec.getDescripcion() %>
+									    			Espectadores: <%= dtespec.getCantmin() %> / <%= dtespec.getCantmax() %>
+											</div>
+			    						</div>
+			    						<hr class="d-block  d-sm-block d-md-none d-lg-none d-xs-none">
 									</div>
 		    					<%j++;r++;}}%>
 		    					</div><br>
@@ -208,7 +216,6 @@
 				document.getElementById("btnmostrarusuarios").style.display = 'none';
 		}
 		
-
 		function AddEspecs(){
 			var i=4;
 			var cont=0;
@@ -242,5 +249,4 @@
 			});
 		});
 	</script>
-</body>
-</html>
+</body>ml>

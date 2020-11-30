@@ -68,6 +68,14 @@ public class MobileLogin extends HttpServlet {
             			response.addCookie(nomusu);
             			response.addCookie(passwusu);
             		}
+            		else {
+            			Cookie nomusu = new Cookie("nick", null);
+            			Cookie passwusu = new Cookie("pswd", null);
+            			nomusu.setMaxAge(60*60*24*365);
+            			passwusu.setMaxAge(60*60*24*365);
+            			response.addCookie(nomusu);
+            			response.addCookie(passwusu);
+            		}
         		}
         		else 
         			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
