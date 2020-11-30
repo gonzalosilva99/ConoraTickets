@@ -40,6 +40,8 @@ public class Main {
 
 	private JFrame frmMainWindow;
 	private boolean datosPruebaCargados;
+	private boolean publicado;
+	private publicador pub;
 
 	/**
 	 * Launch the application.
@@ -48,8 +50,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					publicador p = new publicador();
-					p.publicar();
+					
 					Main window = new Main();
 					window.frmMainWindow.setVisible(true);
 				} catch (Exception e) {
@@ -71,7 +72,8 @@ public class Main {
 	 */
 	private void initialize() {
 		datosPruebaCargados = false;
-
+		publicado = false;
+		pub = new publicador();
 		frmMainWindow = new JFrame();
 		frmMainWindow.setResizable(false);
 		frmMainWindow.setTitle("Main Window");
@@ -1051,6 +1053,20 @@ public class Main {
 			}
 		});
 		mnInicio.add(mntmCargar);
+		JMenuItem mntmPublicar = new JMenuItem("Publicar/Quitar");
+		mntmPublicar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(!publicado) 
+					{
+					pub.publicar();
+					publicado=true;} 
+				else {pub.quitar();
+					publicado=false;}
+			
+			}
+		});
+		mnInicio.add(mntmPublicar);
 
 		JMenu mnAltas = new JMenu("Altas");
 		menuBar.add(mnAltas);
