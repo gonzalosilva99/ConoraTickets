@@ -78,18 +78,18 @@
     <div class="container-fluid" style="padding-right:15%;">
 		 <div class="row">
 	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/mobileconsultaespectaculo?nomespectaculo=30 años" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="113vw"></a>
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Global Spirit" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/imagenes?id=EspectaculoGlobal Spirit.jpg" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
 	           	<div class="col-md-10 col-sm-12 col-12">
-					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=30 años">30 años</a></h5>
-		      		<p>Espectáculo conmemorando los 30 años de Violeta. <a href="/mobileconsultaespectaculo?nomespectaculo=30 años"> Leer más</a></p>
+					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Global Spirit">Global Spirit</a></h5>
+		      		<p>Espectáculo donde se presenta el álbum Spirit.<a href="/mobileconsultaespectaculo?nomespectaculo=Global Spirit"> Leer más</a></p>
 	            	</div>
           </div>
           <br>
           <hr>
            <div class="row">
 	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="113vw"></a>
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/imagenes?id=EspectaculoBien de Familia.jpg" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
 	           	<div class="col-md-10 col-sm-12 col-12">
 					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Bien de Familia">Bien de familia</a></h5>
@@ -100,11 +100,11 @@
           <hr>
           <div class="row">
 	           	<div class="col-md-2 col-sm-12 col-12 align-items-center justify-content-center" style="text-align:center;">
-	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/img/img-loading-fail.png" class="rounded float-left media-object" width="113vw"></a>
+	           		<a href="/mobileconsultaespectaculo?nomespectaculo=Los Village Volvieron" class="rounded float-left media-object" width="120em"><img class="mr-3" src="/imagenes?id=EspectaculoLos Village Volvieron.jpg" class="rounded float-left media-object" width="113vw"></a>
 		    	</div>
 	           	<div class="col-md-10 col-sm-12 col-12">
-					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World">Memphis Blues World</a></h5>
-		      		<p>Espectáculo promoviendo álbum Memphis Blues. <a href="/mobileconsultaespectaculo?nomespectaculo=Memphis Blues World"> Leer más</a></p>
+					<h5 class="mt-0 mb-1"><a href="/mobileconsultaespectaculo?nomespectaculo=Los Village Volvieron">Los Village Volvieron</a></h5>
+		      		<p>Espectáculo de retorno de los Village People.<a href="/mobileconsultaespectaculo?nomespectaculo=Los Village Volvieron"> Leer más</a></p>
 	            	</div>
           </div>
           <br>

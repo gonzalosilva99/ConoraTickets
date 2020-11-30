@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 
 import webservices.EstadoSesion;
 /**
@@ -64,10 +65,20 @@ public class MobileLoginHome extends HttpServlet {
 				//		forward(req, resp);
 				break;
 			case LOGIN_CORRECTO:
-				// manda una redirección a otra URL (cambia la URL)
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/mobilehome.jsp");
-		        dispatcher.forward(req, resp);
-				break;
+				webservices.PublicadorService service = new webservices.PublicadorService();
+		    	webservices.Publicador port = service.getPublicadorPort();
+		    	webservices.DtUsuario usuario = Login.getUsuarioLogueado(req);
+		    	if(!port.esArtista(usuario.getNickname())) {
+					// manda una redirección a otra URL (cambia la URL)
+					RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/mobilehome.jsp");
+			        dispatcher.forward(req, resp);
+					break;
+		    	}
+		    	else {
+		    		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/mobilelogin.jsp");
+		    		dispatcher.forward(req, resp);
+					break;
+		    	}
 		}
 	}
 	

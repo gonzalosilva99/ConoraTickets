@@ -47,7 +47,11 @@ public class MobileBusqueda extends HttpServlet {
 		webservices.PublicadorService service = new webservices.PublicadorService();
     	webservices.Publicador port = service.getPublicadorPort();
 		
-		String search;
+    	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
+    		webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
+    		if(!port.esArtista(usuario.getNickname())) {
+    			
+    	String search;
 		List<DtUsuario> usufilt;
 		List<DtEspectaculoDatos> especfilt;
 		
@@ -123,6 +127,12 @@ public class MobileBusqueda extends HttpServlet {
 		request.setAttribute("UsuariosFiltrados", usufilt);
 		request.setAttribute("EspectaculosFiltrados", especfilt);
 		request.getRequestDispatcher("/WEB-INF/mobilebusqueda.jsp").forward(request, response);
+    	}
+    		else
+    			response.sendRedirect("/mobilelogin");
+    	}
+    	else
+    		response.sendRedirect("/mobilelogin");
 	}
 	
 

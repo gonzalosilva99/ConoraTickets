@@ -72,12 +72,12 @@
 <% }} else { %> 
 	<h2>Espectáculos destacados</h2><br>
             <div class="mb-sm-4 container-fluid"></div>
-            <a href="/consultaespectaculo?nomespectaculo=30 años" class="media-heading">
+            <a href="/consultaespectaculo?nomespectaculo=Global Spirit" class="media-heading">
             <div class="container-fluid media mb-sm-5">
-            <img src="/imagenes?id=Espectaculo30%20años.jpg"  class="rounded float-left media-object" alt="30 AÑOS" width=150em>
+            <img src="/imagenes?id=EspectaculoGlobal Spirit.jpg"  class="rounded float-left media-object" alt="Global Spirit" width=150em>
             <div class="media-body ml-sm-4">
-            <h4>30 años</h4>
-            <p>Espectáculo conmemorando los 30 años de Violeta. <u>Leer más</u></p>
+            <h4>Global Spirit</h4>
+            <p>Espectáculo donde se presenta el álbum Spirit. <u>Leer más</u></p>
             </div>
             </div>
             </a>
@@ -92,12 +92,12 @@
             </div>
             </a>
             
-            <a href="/consultaespectaculo?nomespectaculo=Memphis Blues World" class="pull-left">
+            <a href="/consultaespectaculo?nomespectaculo=Los Village Volvieron" class="pull-left">
             <div class="container-fluid media mb-sm-5">
-            	<img src="/imagenes?id=EspectaculoMemphis%20Blues%20World.jpg"  class="rounded float-left media-object" alt="MEMPHIS BLUES WORLD" width=150em>
+            	<img src="/imagenes?id=EspectaculoLos Village Volvieron.jpg"  class="rounded float-left media-object" alt="MEMPHIS BLUES WORLD" width=150em>
              <div class="media-body ml-sm-4">
-            <h4>Memphis Blues World</h4>
-            <p> Espectáculo promoviendo álbum Memphis Blues. <u>Leer más</u></p> 
+            <h4>Los Village Volvieron</h4>
+            <p> Espectáculo de retorno de los Village People. <u>Leer más</u></p> 
             </div>
             </div>
             </a>

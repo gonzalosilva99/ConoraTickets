@@ -34,7 +34,17 @@ public class MobileHome extends HttpServlet {
 			throws ServletException, IOException {
 		//String nombrePlataforma = (String) request.getParameter("plataforma");
 		//request.setAttribute("plat",Fabrica.getInstancia().getIPlataforma().findDatosEspectaculo(nombreEspectaculo));	
-		request.getRequestDispatcher("/WEB-INF/mobilehome.jsp").forward(request, response);
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
+		if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)) {
+			webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
+    		if(!port.esArtista(usuario.getNickname()))
+				request.getRequestDispatcher("/WEB-INF/mobilehome.jsp").forward(request, response);
+			else
+				response.sendRedirect("/mobilelogin");
+    			
+		}else
+			response.sendRedirect("/mobilelogin");
 	}
 	
 	

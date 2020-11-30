@@ -42,13 +42,22 @@ public class MobileConsultaEspectaculo extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
-		if(nombreEspectaculo!=null) {
-			webservices.PublicadorService service = new webservices.PublicadorService();
-	    	webservices.Publicador port = service.getPublicadorPort();
-			request.setAttribute("espectaculo",port.findDatosEspectaculo(nombreEspectaculo));	
-			request.getRequestDispatcher("/WEB-INF/mobileconsultaespectaculo.jsp").forward(request, response);
+		webservices.PublicadorService service = new webservices.PublicadorService();
+    	webservices.Publicador port = service.getPublicadorPort();
+    	if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
+    		webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
+    		if(!port.esArtista(usuario.getNickname())) {		
+			String nombreEspectaculo = (String) request.getParameter("nomespectaculo");
+			if(nombreEspectaculo!=null) {
+				request.setAttribute("espectaculo",port.findDatosEspectaculo(nombreEspectaculo));	
+				request.getRequestDispatcher("/WEB-INF/mobileconsultaespectaculo.jsp").forward(request, response);
+			}
 		}
+    		else
+    			response.sendRedirect("/mobilelogin");
+    	}
+		else
+			response.sendRedirect("/mobilelogin");
 	}
 	
 	

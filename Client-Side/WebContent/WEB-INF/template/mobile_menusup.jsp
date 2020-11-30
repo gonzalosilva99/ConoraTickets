@@ -33,7 +33,6 @@
 		
 		
 			if (request.getSession().getAttribute("usuario_logueado")!=null && request.getSession().getAttribute("estado_sesion")!=null && ((EstadoSesion) request.getSession().getAttribute("estado_sesion")==EstadoSesion.LOGIN_CORRECTO)){
-			
 				webservices.DtUsuario usuario = Login.getUsuarioLogueado(request);
 				%>
 		    <li class="nav-item dropdown">
@@ -54,7 +53,6 @@
 		<%
 			}
 			else{
-		
 		%>
 		<li class="nav-item">
 		<a href="/mobilelogin">Iniciar Sesión</a>
