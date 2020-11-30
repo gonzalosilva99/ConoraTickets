@@ -4,8 +4,6 @@
  */
 
 package webservices;
-
-
 import controladores.Fabrica;
 import datatypes.ArrayEspectaculos;
 import controladores.Fabrica;
@@ -52,11 +50,14 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -113,11 +114,16 @@ public class publicador {
     @WebMethod
     public void altaEspectaculo(String nomPlat, String nickArtista, String nomEspectaculo, String descripcion, Integer minEsp, Integer maxEsp, String url, Integer costo, Date fecha, Integer duracion, String imagen, ArrayCategorias categorias,  String urlVideo, String premio, int cantPremios) throws Identidad {
     	try {
+    		File path = new File("rutaimagenes");
+    		FileInputStream pathstream = new FileInputStream(path);
+    		BufferedReader contenidopath = new BufferedReader(new InputStreamReader(new BufferedInputStream(pathstream)));
+            String ruta = contenidopath.readLine();
     		URL urlaux = new URL(imagen);
         	URLConnection urlcon = urlaux.openConnection();
         	System.out.println(urlcon.getContentType());
         	InputStream is = urlcon.getInputStream();
-        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Espectaculo"+nomEspectaculo+".jpg");
+        	
+        	FileOutputStream fos = new FileOutputStream(ruta+"Espectaculo"+nomEspectaculo+".jpg");
         	byte[] array = new byte[1000];
         	int leido = is.read(array);
         	while(leido>0) {
@@ -147,7 +153,7 @@ public class publicador {
     	catch(Exception e) {
     		throw e;
     	}
-    	
+
     }
     @WebMethod
     public void actualizarUltimoIngreso(String nickname) {
@@ -190,8 +196,12 @@ public class publicador {
     		URL urlaux = new URL(imagen);
         	URLConnection urlcon = urlaux.openConnection();
         	System.out.println(urlcon.getContentType());
+        	File path = new File("rutaimagenes");
+    		FileInputStream pathstream = new FileInputStream(path);
+    		BufferedReader contenidopath = new BufferedReader(new InputStreamReader(new BufferedInputStream(pathstream)));
+            String ruta = contenidopath.readLine();
         	InputStream is = urlcon.getInputStream();
-        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Funcion"+nombre+".jpg");
+        	FileOutputStream fos = new FileOutputStream(ruta+"Funcion"+nombre+".jpg");
         	byte[] array = new byte[1000];
         	int leido = is.read(array);
         	while(leido>0) {
@@ -265,7 +275,11 @@ public class publicador {
         	URLConnection urlcon = urlaux.openConnection();
         	System.out.println(urlcon.getContentType());
         	InputStream is = urlcon.getInputStream();
-        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Usuario"+Nickname+".jpg");
+        	File path = new File("rutaimagenes");
+    		FileInputStream pathstream = new FileInputStream(path);
+    		BufferedReader contenidopath = new BufferedReader(new InputStreamReader(new BufferedInputStream(pathstream)));
+            String ruta = contenidopath.readLine();
+        	FileOutputStream fos = new FileOutputStream(ruta+"Usuario"+Nickname+".jpg");
         	byte[] array = new byte[1000];
         	int leido = is.read(array);
         	while(leido>0) {
@@ -296,7 +310,11 @@ public class publicador {
         	URLConnection urlcon = urlaux.openConnection();
         	System.out.println(urlcon.getContentType());
         	InputStream is = urlcon.getInputStream();
-        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Usuario"+Nickname+".jpg");
+        	File path = new File("rutaimagenes");
+    		FileInputStream pathstream = new FileInputStream(path);
+    		BufferedReader contenidopath = new BufferedReader(new InputStreamReader(new BufferedInputStream(pathstream)));
+            String ruta = contenidopath.readLine();
+        	FileOutputStream fos = new FileOutputStream(ruta+"Usuario"+Nickname+".jpg");
         	byte[] array = new byte[1000];
         	int leido = is.read(array);
         	while(leido>0) {
@@ -475,7 +493,11 @@ public class publicador {
         	URLConnection urlcon = urlaux.openConnection();
         	System.out.println(urlcon.getContentType());
         	InputStream is = urlcon.getInputStream();
-        	FileOutputStream fos = new FileOutputStream("../Central-Server/files/Paquete"+NombrePaquete+".jpg");
+        	File path = new File("rutaimagenes");
+    		FileInputStream pathstream = new FileInputStream(path);
+    		BufferedReader contenidopath = new BufferedReader(new InputStreamReader(new BufferedInputStream(pathstream)));
+            String ruta = contenidopath.readLine();
+        	FileOutputStream fos = new FileOutputStream(ruta+"Paquete"+NombrePaquete+".jpg");
         	byte[] array = new byte[1000];
         	int leido = is.read(array);
         	while(leido>0) {
@@ -570,7 +592,11 @@ public class publicador {
                     throws  IOException {
         byte[] byteArray = null;
         try {
-                File f = new File("../Central-Server/files/"+name);
+        		File path = new File("rutaimagenes");
+        		FileInputStream pathstream = new FileInputStream(path);
+        		BufferedReader contenidopath = new BufferedReader(new InputStreamReader(new BufferedInputStream(pathstream)));
+                String ruta = contenidopath.readLine();
+        		File f = new File(ruta+name);
                 FileInputStream streamer = new FileInputStream(f);
                 byteArray = new byte[streamer.available()];
                 streamer.read(byteArray);
