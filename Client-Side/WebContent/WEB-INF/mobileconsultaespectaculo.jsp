@@ -77,7 +77,7 @@
 								<% if(tamc<dtesp.getCategorias().size()) {%>,<%} %>
 								<% } %></span></p>	<% } %>				
 						<p class="text-dark"><b>Descripcion:</b> <span id="descripcionEspectaculo"><%= dtesp.getDescripcion() %> </span></p>
-						<a href="/perfil?id=<%= dtesp.getOrganizador().getNickname() %>"><p class="text-dark"><b>Organizador:</b> <span id="descripcionEspectaculo"><%= dtesp.getOrganizador().getNombre() %> <%= dtesp.getOrganizador().getApellido() %></span></p></a>
+						<p class="text-dark"><b>Organizador:</b> <span id="descripcionEspectaculo"><%= dtesp.getOrganizador().getNombre() %> <%= dtesp.getOrganizador().getApellido() %></span></p>
 						<p class="text-dark"><b>Duracion:</b> <span id="duracionEspectaculo"><%= dtesp.getDuracion() %> minutos</span></p>
 						<a href="<%= dtesp.getUrl() %>"><p class="text-dark"><b>Url:</b> <span id="urlEspectaculo"><%= dtesp.getUrl() %></span></p></a>
 						<p class="text-dark"><b>Cantidad minima de Espectadores:</b> <span id="cantMinEspectadores"><%= dtesp.getCantmin() %></span></p>
@@ -114,7 +114,7 @@
 					      					Iterator<DtArtista> itra = auxf.getArtistas().iterator();
 											while(itra.hasNext())
 											{DtArtista auxa = itra.next();tama++;%>
-											<a href="/perfil?id=<%= auxa.getNickname() %>"> <%= auxa.getNombre() + auxa.getApellido() %></a>
+											 <%= auxa.getNombre() + auxa.getApellido() %>
 											<% if(auxf.getArtistas().size()<tama) {%>,<%}%>
 											<% } %></span></p>
 											<% } %>
@@ -145,11 +145,10 @@
 														while(participantes.hasNext()){
 															DtEspectador nuevo = participantes.next().getEspectador();
 												      	%>
-												      	<a href="/perfil?id=<%= nuevo.getNickname() %>" target="_blank">
+												      	
 												         <div class="row ml-sm-2" > 
 												         	<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
 												         </div>
-												         </a>
 												        <%}%>
 												      <div class="modal-footer">
 												      	<button type="button" class="btn btn-primary" onclick="sortearPremios('<%= plataformaesp %>','<%= dtesp.getNombre() %>','<%= auxf.getNombre() %>')">Sortear</button>
@@ -171,11 +170,10 @@
 				    									while (itrganadores.hasNext()){
 				    										DtEspectador nuevo = itrganadores.next();
 				    										%>
-				    										<a href="/perfil?id=<%= nuevo.getNickname() %>" target="_blank">
+				    										
 													        	<div class="row ml-sm-2" > 
 													         		<div style="padding-left:0px;" class="col-md-10"><label class="float-left"><%= nuevo.getNombre() + " " + nuevo.getApellido()%> -</label> <label style="color:grey;" >@<%= nuevo.getNickname() %></label></div><br>
-													        	</div>
-															</a>				
+													        	</div>		
 				    						<% 
 				    									}//FIN WHILE ITRGANADORES
 				    								}//FIN IF SE REALIZO EL SORTEO
@@ -205,7 +203,7 @@
 				  											DtPaquete auxp = itrp.next();
 				  					%>
 				    				<div class="container-fluid media mb-sm-5">
-				    					<a href="/consultapaquete?nompaquete=<%=auxp.getNombre()%>">
+				    					
 				    						<div class="container-fluid media mb-sm-5">
 				    					 <img src="<%if(auxp.getImagen()!=""){%><%=auxp.getImagen()%><%}else{%><%="/img/img-loading-fail.png"%><%}%>" id="imgPaquete" class="rounded float-left media-object" alt="img-paquete" width=150em> 
 										 <%
@@ -225,7 +223,6 @@
 				    						%>
 								  		</div>
 								  		</div>
-								  		</a>
             						</div>
 				    				<hr>
 				    				<%

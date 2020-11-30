@@ -16,7 +16,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-header d-xs-none d-sm-none mx-auto ml-sm-5"><a href="/mobilehome">CORONATICKETS.UY</a></div>
+                        <div class="navbar-header d-none d-sm-none d-md-none d-lg-block d-xl-block mx-auto ml-sm-5"><a href="/mobilehome">CORONATICKETS.UY</a></div>
     <ul class="navbar-nav ml-auto container-fluid">
     <li class="nav-item mx-auto">
     	<form class="form-inline my-2 my-lg-0 mx-auto">

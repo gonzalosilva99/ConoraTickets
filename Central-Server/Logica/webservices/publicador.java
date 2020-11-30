@@ -105,6 +105,11 @@ public class publicador {
     public void publicar(){
          endpoint = Endpoint.publish("http://localhost:9105/publicador", this);
     }
+    
+    @WebMethod(exclude = true)
+    public void quitar(){
+         endpoint.stop();
+    }
 
     @WebMethod(exclude = true)
     public Endpoint getEndpoint() {

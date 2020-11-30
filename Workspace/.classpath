@@ -7,10 +7,10 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="../JCalendar/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="../JCalendar/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="../JCalendar/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="../JCalendar/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="/home/vagrant/workspace/tpgr05/JCalendar/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="/home/vagrant/workspace/tpgr05/JCalendar/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="/home/vagrant/workspace/tpgr05/JCalendar/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/vagrant/workspace/tpgr05/JCalendar/junit-4.6.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Central-Server"/>
 	<classpathentry kind="lib" path="lib/logica.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/eclipselink">
@@ -18,5 +18,14 @@
 			<attribute name="owner.project.facets" value="#system#;jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Central-Server/lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/hsqldb-2.3.8-jdk6.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/hsqldb-2.3.8-jdk6-sources.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/jakarta.persistence_2.2.3.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/jakarta.persistence.source_2.2.3.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/org.eclipse.persistence.jpa.modelgen_2.7.7.v20200504-69f2c2b80d.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/org.eclipse.persistence.jpa.modelgen.source_2.7.7.v20200504-69f2c2b80d.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/org.eclipse.persistence.jpars_2.7.7.v20200504-69f2c2b80d.jar"/>
+	<classpathentry kind="lib" path="/Central-Server/lib/org.eclipse.persistence.jpars.source_2.7.7.v20200504-69f2c2b80d.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
