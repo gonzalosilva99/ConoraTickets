@@ -52,7 +52,7 @@ public class Imagenes extends HttpServlet {
     	webservices.Publicador port = service.getPublicadorPort();
 
         try {
-
+        	System.out.println("retorno bien");
             img = port.getFile(id);
             response.setContentType("image/jpg");
             response.setContentLength((int) img.length);
@@ -61,7 +61,8 @@ public class Imagenes extends HttpServlet {
             out.write(img);
             out.close();
             
-        } catch (Exception ex) {            
+        } catch (Exception ex) {
+        	System.out.println("retorno mal");            
 
         }
     }
